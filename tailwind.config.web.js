@@ -3,11 +3,20 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
+       'blue-overlay': 'linear-gradient(187.07deg, rgba(16, 69, 150, 0.68) 5.4%, rgba(0, 19, 55, 0.8) 94.48%)',
+       'purple-overlay': 'linear-gradient(180deg, rgba(96, 133, 255, 0.25) 0%, #000000 93.27%)',
         defaultBg: "var(--default-bg)",
         tourCategoryBg: "var(--tourCategory-bg)",
+        tourlistBg: "var(--tourlist-bg)",
+        searchBg: "var(--search-bg)",
       },
       boxShadow: {
+        'soft-deep':'0px 22px 17.1px -15px #00000040',
         btn: "0px 30px 20px -20px rgba(0, 0, 0, 0.25)",
+        'card-shadow': '0px 16px 16px -13px rgba(0, 0, 0, 0.25)',
+        'medium-btn-shadow': '0px 14px 16px -11px #00000040',
+        'small-btn-shadow': '0px 16px 16px -10px #00000040',
+        'small-flag-shadow': '2px 2px 3px 0px #0000001A',
       },
       colors: {
         primary: {
