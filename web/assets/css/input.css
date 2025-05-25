@@ -47,7 +47,7 @@
   --tertiary-900: #461800;
   --tertiary-950: #170800;
 
-  --special-1: #ff5050cc;
+  --special-1: #dfdfdf33;
   --special-2: #db934b33;
 
   ---bg: url("");
@@ -55,6 +55,7 @@
   --tourlist-bg: url("../images/tour-list-back.jpg");
   --tourCategory-bg: url("../images/tour-category-back.png");
   --search-bg: url("../images/search-back.jpg");
+  --freeformgray-bg: url("../images/free-form-gray.jpg");
 }
 
 @font-face {
@@ -79,6 +80,14 @@
   src: url("../fonts/DanaFaNum-Bold.ttf") format("truetype");
 }
 
+.direction-ltr {
+  direction: ltr;
+}
+
+.unicode-embed {
+  unicode-bidi: embed;
+}
+
 .border-bottom-gradient {
   border-bottom: 1px solid;
   border-image-source: radial-gradient(
@@ -98,48 +107,49 @@
   );
   border-image-slice: 1;
 }
-.h1-shadow{
+.h1-shadow {
   text-shadow: 0px 10px 8px rgba(0, 0, 0, 0.5);
 }
 
-.range-thumb::-webkit-slider-thumb {
+.slider-wrapper input[type="range"]::-webkit-slider-thumb {
+  pointer-events: auto;
+  -webkit-appearance: none;
+  height: 16px;
+  width: 16px;
+  background: #11c086;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  z-index: 20;
+  margin-top: 10px;
+}
+
+.slider-wrapper input[type="range"]::-webkit-slider-thumb {
+  pointer-events: auto;
   -webkit-appearance: none;
   appearance: none;
-  height: 24px;
-  width: 24px;
-  background-color: #059669; /* secondary-600 */
-  border-radius: 9999px;
+  height: 20px;
+  width: 20px;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20'><circle cx='10' cy='10' r='10' fill='%2311C086'/><circle cx='10' cy='10' r='4' fill='white'/></svg>")
+    no-repeat center;
+  background-size: cover;
   border: none;
+  border-radius: 50%;
+  cursor: pointer;
   position: relative;
-  z-index: 10;
+  z-index: 30;
+  margin-top: 8px;
+}
+
+.slider-wrapper input[type="range"]::-moz-range-thumb {
   pointer-events: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.range-thumb::-webkit-slider-thumb::before {
-  content: '';
-  width: 8px;
-  height: 8px;
-  background-color: white;
-  border-radius: 9999px;
-  display: block;
-  margin: auto;
-}
-
-.range-thumb::-moz-range-thumb {
-  height: 24px;
-  width: 24px;
-  background-color: #059669;
-  border-radius: 9999px;
+  height: 16px;
+  width: 16px;
+  background: #11c086;
+  border-radius: 50%;
   border: none;
-  pointer-events: auto;
-}
-
-.range-thumb::-moz-range-thumb::before {
-  width: 8px;
-  height: 8px;
-  background-color: white;
-  border-radius: 9999px;
+  cursor: pointer;
+  position: relative;
+  z-index: 20;
 }

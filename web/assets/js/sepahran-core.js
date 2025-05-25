@@ -72,90 +72,102 @@
 //   });
 // });
 
-document.addEventListener("DOMContentLoaded", () => {
-  const min = document.getElementById("minRange");
-  const max = document.getElementById("maxRange");
-  const minVal = document.getElementById("minValue");
-  const maxVal = document.getElementById("maxValue");
-  const track = document.getElementById("rangeTrack");
+window.addEventListener("DOMContentLoaded", () => {
+  const REAL_MIN = 10000000;
+  const REAL_MAX = 100000000;
 
-  if (!min || !max || !minVal || !maxVal || !track) {
-    console.warn("🔧 Some range elements are missing in the DOM.");
-    return;
+  const minInput = document.getElementById("minRange");
+  const maxInput = document.getElementById("maxRange");
+  const rangeTrack = document.getElementById("rangeTrack");
+  const minValText = document.getElementById("minValue");
+  const maxValText = document.getElementById("maxValue");
+
+  function formatPrice(val) {
+    return val.toLocaleString("fa-IR");
   }
 
-  const updateTrack = () => {
-    let minValue = Number(min.value);
-    let maxValue = Number(max.value);
+  function updateTrack() {
+    let min = parseInt(minInput.value);
+    let max = parseInt(maxInput.value);
 
-    if (minValue >= maxValue) {
-      minValue = maxValue - 1;
-      min.value = minValue;
+    // جلوگیری از تداخل دو دسته
+    if (min > max) {
+      [min, max] = [max, min];
     }
 
-    if (maxValue <= minValue) {
-      maxValue = minValue + 1;
-      max.value = maxValue;
-    }
+    // موقعیت نوار سبز بین دو thumb
+    const percentMin = (min / 100) * minInput.offsetWidth;
+    const percentMax = (max / 100) * maxInput.offsetWidth;
 
-    const percentMin = (minValue / 100) * 100;
-    const percentMax = (maxValue / 100) * 100;
+    rangeTrack.style.left = `${min}%`;
+    rangeTrack.style.width = `${max - min}%`;
 
-    track.style.left = `${percentMin}%`;
-    track.style.width = `${percentMax - percentMin}%`;
+    // مقدارهای واقعی (ریالی)
+    const realMin = Math.floor(REAL_MIN + ((REAL_MAX - REAL_MIN) * min / 100));
+    const realMax = Math.floor(REAL_MIN + ((REAL_MAX - REAL_MIN) * max / 100));
 
-    minVal.textContent = minValue;
-    maxVal.textContent = maxValue;
-  };
+    minValText.textContent = formatPrice(realMin);
+    maxValText.textContent = formatPrice(realMax);
+  }
 
-  min.addEventListener("input", updateTrack);
-  max.addEventListener("input", updateTrack);
-  updateTrack(); // Run once initially
+  minInput.addEventListener("input", updateTrack);
+  maxInput.addEventListener("input", updateTrack);
+
+  // مقدار اولیه
+  updateTrack();
 });
 
 
 document.addEventListener("DOMContentLoaded", function () {
-    const container = document.querySelector('.checkboxList');
-    const toggleBtn = document.querySelector('.toggleBtn');
-    const items = container ? Array.from(container.children) : [];
+  const container = document.querySelector(".checkboxList");
+  const toggleBtn = document.querySelector(".toggle-btn");
+  const items = container ? Array.from(container.querySelectorAll(".airline-item")) : [];
+  const visibleCount = 3;
 
-    const visibleCount = 3; // تعداد آیتم‌هایی که اول نمایش داده میشه
+  function hideItems() {
+    items.forEach((item, index) => {
+      if (index >= visibleCount) {
+        item.classList.add("hidden", "opacity-0", "max-h-0", "overflow-hidden");
+      } else {
+        item.classList.remove("hidden", "opacity-0", "max-h-0", "overflow-hidden");
+      }
+    });
+  }
 
-    function initializeItems() {
+  function showItems() {
+    items.forEach((item, index) => {
+      if (index >= visibleCount) {
+        item.classList.remove("hidden", "max-h-0", "overflow-hidden");
+        // برای انیمیشن محو شدن کامل، بعد از کمی delay، opacity-0 رو حذف می‌کنیم
+        setTimeout(() => item.classList.remove("opacity-0"), 10);
+      }
+    });
+  }
+
+  function toggleItems() {
+    if (items[visibleCount].classList.contains("hidden")) {
+      showItems();
+      toggleBtn.textContent = "مشاهده کمتر";
+    } else {
+      // اول opacity رو اضافه می‌کنیم برای انیمیشن محو شدن
       items.forEach((item, index) => {
         if (index >= visibleCount) {
-          item.classList.add('hidden', 'opacity-0');
-          item.classList.add('transition-opacity', 'duration-500');
-        } else {
-          item.classList.remove('hidden', 'opacity-0');
+          item.classList.add("opacity-0");
         }
       });
+      // بعد از انیمیشن، کلاس‌های مخفی رو اضافه می‌کنیم
+      setTimeout(() => {
+        items.forEach((item, index) => {
+          if (index >= visibleCount) {
+            item.classList.add("hidden", "max-h-0", "overflow-hidden");
+          }
+        });
+      }, 500);
+      toggleBtn.textContent = "مشاهده بیشتر";
     }
+  }
 
-    function toggleItems() {
-      if (!container || !toggleBtn) return;
-
-      const isCollapsed = items[visibleCount]?.classList.contains('hidden');
-
-      if (isCollapsed) {
-        // نمایش بقیه آیتم‌ها با انیمیشن
-        for(let i = visibleCount; i < items.length; i++) {
-          items[i].classList.remove('hidden');
-          setTimeout(() => items[i].classList.remove('opacity-0'), 10);
-        }
-        toggleBtn.textContent = 'مشاهده کمتر';
-      } else {
-        // مخفی کردن بقیه آیتم‌ها با انیمیشن
-        for(let i = visibleCount; i < items.length; i++) {
-          items[i].classList.add('opacity-0');
-          setTimeout(() => items[i].classList.add('hidden'), 500);
-        }
-        toggleBtn.textContent = 'مشاهده بیشتر';
-      }
-    }
-
-    // مقداردهی اولیه
-    initializeItems();
-
-    toggleBtn?.addEventListener('click', toggleItems);
+  hideItems();
+  toggleBtn?.addEventListener("click", toggleItems);
 });
+

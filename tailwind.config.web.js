@@ -9,6 +9,7 @@ module.exports = {
         tourCategoryBg: "var(--tourCategory-bg)",
         tourlistBg: "var(--tourlist-bg)",
         searchBg: "var(--search-bg)",
+        freeFormGrayBg: "var(--freeformgray-bg)",
       },
       boxShadow: {
         'soft-deep':'0px 22px 17.1px -15px #00000040',
