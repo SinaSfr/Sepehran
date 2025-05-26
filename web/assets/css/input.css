@@ -177,6 +177,18 @@
   background-repeat: no-repeat;
 }
 
+.vertical-border:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  right: 7.5rem;
+  top: -1.25rem;
+  width: 2px;
+  height: 116px;
+  background-image: url("data:image/svg+xml,%3Csvg width='2' height='116' viewBox='0 0 2 116' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='1' y1='4.37114e-08' x2='0.999995' y2='116' stroke='%23D7DBE1' stroke-width='2' stroke-dasharray='12 12'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
 .slider-wrapper input[type="range"]::-webkit-slider-thumb {
   pointer-events: auto;
   -webkit-appearance: none;

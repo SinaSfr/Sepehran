@@ -17,6 +17,7 @@ module.exports = {
         'card-shadow': '0px 16px 16px -13px rgba(0, 0, 0, 0.25)',
         'medium-btn-shadow': '0px 14px 16px -11px #00000040',
         'small-btn-shadow': '0px 16px 16px -10px #00000040',
+        'btn-shadow': '0px 30px 20px -20px #00000040',
         'small-flag-shadow': '2px 2px 3px 0px #0000001A',
       },
       colors: {
