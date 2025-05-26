@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    font-family: "DanaFaNum";
+    font-family: "YekanBakhFaNum";
   }
 }
 :root {
@@ -48,7 +48,7 @@
   --tertiary-950: #170800;
 
   --special-1: #dfdfdf33;
-  --special-2: #db934b33;
+  --special-2: #FFFFFF80;
 
   ---bg: url("");
   --default-bg: url("../images/default-back.jpg");
@@ -60,24 +60,52 @@
 
 @font-face {
   font-display: swap;
-  font-family: "DanaFaNum";
+  font-family: "YekanBakhFaNum";
+  font-style: normal;
+  font-weight: 100;
+  src: url("../fonts/YekanBakhFaNum-Thin.woff") format("woff");
+}
+@font-face {
+  font-display: swap;
+  font-family: "YekanBakhFaNum";
+  font-style: normal;
+  font-weight: 300;
+  src: url("../fonts/YekanBakhFaNum-Light.woff") format("woff");
+}
+@font-face {
+  font-display: swap;
+  font-family: "YekanBakhFaNum";
   font-style: normal;
   font-weight: 400;
-  src: url("../fonts/DanaFaNum-Regular.ttf") format("truetype");
+  src: url("../fonts/YekanBakhFaNum-Regular.woff") format("woff");
 }
 @font-face {
   font-display: swap;
-  font-family: "DanaFaNum";
+  font-family: "YekanBakhFaNum";
   font-style: normal;
-  font-weight: 500;
-  src: url("../fonts/DanaFaNum-Medium.ttf") format("truetype");
+  font-weight: 600;
+  src: url("../fonts/YekanBakhFaNum-SemiBold.woff") format("woff");
 }
 @font-face {
   font-display: swap;
-  font-family: "DanaFaNum";
+  font-family: "YekanBakhFaNum";
   font-style: normal;
   font-weight: 700;
-  src: url("../fonts/DanaFaNum-Bold.ttf") format("truetype");
+  src: url("../fonts/YekanBakhFaNum-Bold.woff") format("woff");
+}
+@font-face {
+  font-display: swap;
+  font-family: "YekanBakhFaNum";
+  font-style: normal;
+  font-weight: 800;
+  src: url("../fonts/YekanBakhFaNum-ExtraBold.woff") format("woff");
+}
+@font-face {
+  font-display: swap;
+  font-family: "YekanBakhFaNum";
+  font-style: normal;
+  font-weight: 900;
+  src: url("../fonts/YekanBakhFaNum-Black.woff") format("woff");
 }
 
 .direction-ltr {
@@ -109,6 +137,44 @@
 }
 .h1-shadow {
   text-shadow: 0px 10px 8px rgba(0, 0, 0, 0.5);
+}
+
+.custom-dashed-left {
+  border-left: 3px solid;
+  border-image: repeating-linear-gradient(
+      to bottom,
+      #1e2128 0,
+      #1e2128 6px,
+      transparent 6px,
+      transparent 12px
+    )
+    1;
+}
+
+.swiper-big-img {
+  height: 80%;
+  width: 100%;
+}
+
+.swiper-small-img {
+  height: 20%;
+  box-sizing: border-box;
+}
+
+.swiper-small-img .swiper-slide {
+  width: 25%;
+  height: 100%;
+}
+
+.plus-before:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: -1rem;
+  width: 8px;
+  height: 7px;
+  background-image: url("data:image/svg+xml,%3Csvg width='8' height='7' viewBox='0 0 8 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7.06288 4.096H0.734875V2.318H7.06288V4.096ZM4.78088 0.106V6.308H3.01688V0.106H4.78088Z' fill='black'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .slider-wrapper input[type="range"]::-webkit-slider-thumb {
