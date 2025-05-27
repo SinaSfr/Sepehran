@@ -176,6 +176,7 @@ document.addEventListener("DOMContentLoaded", function () {
   toggleBtn?.addEventListener("click", toggleItems);
 });
 
+// faq-box
 document.addEventListener("DOMContentLoaded", function () {
   document.addEventListener("click", function (event) {
     const box = event.target.closest(".faq-box");
@@ -232,6 +233,102 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+// travel-box
+document.addEventListener("DOMContentLoaded", function () {
+  document.addEventListener("click", function (event) {
+    const box = event.target.closest(".travel-box");
+    if (!box) return;
+
+    const wrapper = box.closest(".travel-wrapper");
+    const answer = wrapper.querySelector(".travel-answer");
+    const iconPath = box.querySelector(".travel-btn path");
+    const title = box.querySelector("h2");
+
+    const orangeSun = box.querySelector(".orange-sun");
+    const whiteSun = box.querySelector(".white-sun");
+
+
+    document.querySelectorAll(".travel-wrapper").forEach((otherWrapper) => {
+      if (otherWrapper !== wrapper) {
+        const otherAnswer = otherWrapper.querySelector(".travel-answer");
+        const otherIconPath = otherWrapper.querySelector(".travel-btn path");
+        const otherTitle = otherWrapper.querySelector("h2");
+        const otherBox = otherWrapper.querySelector(".travel-box");
+        const otherOrangeSun = otherWrapper.querySelector(".orange-sun");
+        const otherWhiteSun = otherWrapper.querySelector(".white-sun");
+
+        otherAnswer?.classList.remove("opacity-100", "scale-y-100", "mt-2");
+        otherAnswer?.classList.add("opacity-0", "scale-y-0", "max-h-0");
+        otherAnswer.style.maxHeight = "";
+
+        otherIconPath?.setAttribute("stroke", "#1E2128");
+        otherTitle && (otherTitle.style.color = "");
+        otherBox && (otherBox.style.backgroundColor = "");
+        otherBox && (otherBox.style.border = "1px solid #E5E7EB");
+        otherWrapper.style.border = "none";
+
+        if (otherOrangeSun) {
+          otherOrangeSun.classList.remove("hidden");
+          otherOrangeSun.classList.add("block");
+        }
+        if (otherWhiteSun) {
+          otherWhiteSun.classList.remove("block");
+          otherWhiteSun.classList.add("hidden");
+        }
+      }
+    });
+
+    const isOpen = !answer.classList.contains("max-h-0");
+
+    if (!isOpen) {
+ 
+      answer.classList.remove("opacity-0", "scale-y-0", "max-h-0");
+      answer.classList.add("opacity-100", "scale-y-100", "mt-2");
+      answer.style.maxHeight = answer.scrollHeight + "px";
+
+      box.style.backgroundColor = "var(--primary-500)";
+      box.style.border = "none";
+      wrapper.style.border = "2px solid #D7DBE1";
+
+      iconPath?.setAttribute("stroke", "var(--secondary-500)");
+      title && (title.style.color = "var(--secondary-500)");
+
+      if (orangeSun) {
+        orangeSun.classList.remove("block");
+        orangeSun.classList.add("hidden");
+      }
+      if (whiteSun) {
+        whiteSun.classList.remove("hidden");
+        whiteSun.classList.add("block");
+      }
+    } else {
+
+      answer.classList.remove("opacity-100", "scale-y-100", "mt-2");
+      answer.classList.add("opacity-0", "scale-y-0", "max-h-0");
+      answer.style.maxHeight = null;
+
+      box.style.backgroundColor = "";
+      box.style.border = "1px solid #E5E7EB";
+      wrapper.style.border = "none";
+
+      iconPath?.setAttribute("stroke", "#1E2128");
+      title && (title.style.color = "");
+
+      if (orangeSun) {
+        orangeSun.classList.remove("hidden");
+        orangeSun.classList.add("block");
+      }
+      if (whiteSun) {
+        whiteSun.classList.remove("block");
+        whiteSun.classList.add("hidden");
+      }
+    }
+  });
+});
+
+
+
+
 document.addEventListener("DOMContentLoaded", function () {
   const starHotelInput = document.querySelectorAll(".star-hotel-input");
 
@@ -251,3 +348,40 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const container = document.querySelector(".content-container");
+  const btn = container.querySelector(".toggle-btn");
+  const shadow = container.querySelector(".white-shadow");
+
+  btn.addEventListener("click", () => {
+    const isOpen = container.classList.contains("open");
+
+    if (isOpen) {
+
+      const contentHeight = container.scrollHeight;
+      container.style.maxHeight = contentHeight + "px"; 
+      requestAnimationFrame(() => {
+        container.style.maxHeight = "24rem"; 
+        container.classList.remove("open");
+      });
+
+      if (shadow) shadow.classList.add("bg-white-shadow");
+      btn.textContent = "مشاهده همه";
+    } else {
+
+      const contentHeight = container.scrollHeight;
+      container.style.maxHeight = "24rem"; 
+      container.classList.add("open");
+
+      requestAnimationFrame(() => {
+        container.style.maxHeight = contentHeight + "px";
+      });
+
+      if (shadow) shadow.classList.remove("bg-white-shadow");
+      btn.textContent = "مشاهده کمتر";
+    }
+  });
+});
+
+

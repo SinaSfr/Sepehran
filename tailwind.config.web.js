@@ -5,6 +5,7 @@ module.exports = {
       backgroundImage: {
        'blue-overlay': 'linear-gradient(187.07deg, rgba(16, 69, 150, 0.68) 5.4%, rgba(0, 19, 55, 0.8) 94.48%)',
        'purple-overlay': 'linear-gradient(180deg, rgba(96, 133, 255, 0.25) 0%, #000000 93.27%)',
+       'white-shadow': 'linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 100%)',
         defaultBg: "var(--default-bg)",
         tourCategoryBg: "var(--tourCategory-bg)",
         tourlistBg: "var(--tourlist-bg)",
@@ -19,6 +20,7 @@ module.exports = {
         'small-btn-shadow': '0px 16px 16px -10px #00000040',
         'btn-shadow': '0px 30px 20px -20px #00000040',
         'small-flag-shadow': '2px 2px 3px 0px #0000001A',
+        'drop-shadow': '0px 4px 4px 0px #00000040',
       },
       colors: {
         primary: {
