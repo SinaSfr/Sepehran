@@ -184,11 +184,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const answer = box.querySelector(".faq-answer");
     const icon = box.querySelector(".faq-btn");
+    const iconPath = box.querySelector(".faq-btn path");
+    const title = box.querySelector("h2");
 
+    // بستن بقیه
     document.querySelectorAll(".faq-box").forEach((otherBox) => {
       if (otherBox !== box) {
         const otherAnswer = otherBox.querySelector(".faq-answer");
         const otherIcon = otherBox.querySelector(".faq-btn");
+        const otherIconPath = otherBox.querySelector(".faq-btn path");
+        const otherTitle = otherBox.querySelector("h2");
 
         if (otherAnswer) {
           otherAnswer.classList.remove(
@@ -200,22 +205,40 @@ document.addEventListener("DOMContentLoaded", function () {
           otherAnswer.classList.add("opacity-0", "scale-y-0", "max-h-0");
         }
 
+        otherBox.style.backgroundColor = "";
+        otherBox.style.border = "";
+
         if (otherIcon) {
           otherIcon.classList.remove("rotate-180");
         }
 
-        otherBox.style.backgroundColor = "";
-        otherBox.style.border = "";
+        if (otherIconPath) {
+          otherIconPath.setAttribute("stroke", "#1E2128");
+        }
+
+        if (otherTitle) {
+          otherTitle.style.color = "";
+        }
       }
     });
 
+    // باز یا بسته کردن مورد کلیک‌شده
     const isOpen = answer.classList.contains("scale-y-100");
 
     if (!isOpen) {
       answer.classList.remove("opacity-0", "scale-y-0", "max-h-0");
       answer.classList.add("opacity-100", "scale-y-100", "max-h-96", "mt-2");
-      box.style.backgroundColor = "var(--primary-50)";
-      box.style.border = "2px solid var(--primary-200)";
+
+      box.style.backgroundColor = "var(--primary-500)";
+      box.style.border = "none";
+
+      if (title) {
+        title.style.color = "var(--secondary-500)";
+      }
+
+      if (iconPath) {
+        iconPath.setAttribute("stroke", "var(--secondary-500)");
+      }
 
       if (icon) {
         icon.classList.add("rotate-180");
@@ -223,8 +246,17 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
       answer.classList.remove("opacity-100", "scale-y-100", "max-h-96", "mt-2");
       answer.classList.add("opacity-0", "scale-y-0", "max-h-0");
+
       box.style.backgroundColor = "";
       box.style.border = "";
+
+      if (title) {
+        title.style.color = "";
+      }
+
+      if (iconPath) {
+        iconPath.setAttribute("stroke", "#1E2128");
+      }
 
       if (icon) {
         icon.classList.remove("rotate-180");
@@ -246,7 +278,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const orangeSun = box.querySelector(".orange-sun");
     const whiteSun = box.querySelector(".white-sun");
-
 
     document.querySelectorAll(".travel-wrapper").forEach((otherWrapper) => {
       if (otherWrapper !== wrapper) {
@@ -281,7 +312,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const isOpen = !answer.classList.contains("max-h-0");
 
     if (!isOpen) {
- 
       answer.classList.remove("opacity-0", "scale-y-0", "max-h-0");
       answer.classList.add("opacity-100", "scale-y-100", "mt-2");
       answer.style.maxHeight = answer.scrollHeight + "px";
@@ -302,7 +332,6 @@ document.addEventListener("DOMContentLoaded", function () {
         whiteSun.classList.add("block");
       }
     } else {
-
       answer.classList.remove("opacity-100", "scale-y-100", "mt-2");
       answer.classList.add("opacity-0", "scale-y-0", "max-h-0");
       answer.style.maxHeight = null;
@@ -326,9 +355,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-
-
-
 document.addEventListener("DOMContentLoaded", function () {
   const starHotelInput = document.querySelectorAll(".star-hotel-input");
 
@@ -350,38 +376,37 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  const container = document.querySelector(".content-container");
-  const btn = container.querySelector(".toggle-btn");
-  const shadow = container.querySelector(".white-shadow");
+  const containers = document.querySelectorAll(".content-container");
 
-  btn.addEventListener("click", () => {
-    const isOpen = container.classList.contains("open");
+  containers.forEach((container) => {
+    const btn = container.querySelector(".toggle-btn");
+    const shadow = container.querySelector(".white-shadow");
 
-    if (isOpen) {
+    btn.addEventListener("click", () => {
+      const isOpen = container.classList.contains("open");
 
-      const contentHeight = container.scrollHeight;
-      container.style.maxHeight = contentHeight + "px"; 
-      requestAnimationFrame(() => {
-        container.style.maxHeight = "24rem"; 
-        container.classList.remove("open");
-      });
-
-      if (shadow) shadow.classList.add("bg-white-shadow");
-      btn.textContent = "مشاهده همه";
-    } else {
-
-      const contentHeight = container.scrollHeight;
-      container.style.maxHeight = "24rem"; 
-      container.classList.add("open");
-
-      requestAnimationFrame(() => {
+      if (isOpen) {
+        const contentHeight = container.scrollHeight;
         container.style.maxHeight = contentHeight + "px";
-      });
+        requestAnimationFrame(() => {
+          container.style.maxHeight = "30rem";
+          container.classList.remove("open");
+        });
 
-      if (shadow) shadow.classList.remove("bg-white-shadow");
-      btn.textContent = "مشاهده کمتر";
-    }
+        if (shadow) shadow.classList.add("bg-white-shadow");
+        btn.textContent = "مشاهده همه";
+      } else {
+        const contentHeight = container.scrollHeight;
+        container.style.maxHeight = "30rem";
+        container.classList.add("open");
+
+        requestAnimationFrame(() => {
+          container.style.maxHeight = contentHeight + "px";
+        });
+
+        if (shadow) shadow.classList.remove("bg-white-shadow");
+        btn.textContent = "مشاهده کمتر";
+      }
+    });
   });
 });
-
-

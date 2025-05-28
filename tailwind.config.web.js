@@ -5,11 +5,13 @@ module.exports = {
       backgroundImage: {
        'blue-overlay': 'linear-gradient(187.07deg, rgba(16, 69, 150, 0.68) 5.4%, rgba(0, 19, 55, 0.8) 94.48%)',
        'purple-overlay': 'linear-gradient(180deg, rgba(96, 133, 255, 0.25) 0%, #000000 93.27%)',
+       'light-purple-overlay': 'linear-gradient(180deg, rgba(96, 133, 255, 0.2) 0%, #000000 100%)',
        'white-shadow': 'linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 100%)',
         defaultBg: "var(--default-bg)",
         tourCategoryBg: "var(--tourCategory-bg)",
         tourlistBg: "var(--tourlist-bg)",
         searchBg: "var(--search-bg)",
+        formBg: "var(--form-bg)",
         freeFormGrayBg: "var(--freeformgray-bg)",
       },
       boxShadow: {

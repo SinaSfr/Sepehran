@@ -48,13 +48,15 @@
   --tertiary-950: #170800;
 
   --special-1: #dfdfdf33;
-  --special-2: #FFFFFF80;
+  --special-2: #ffffff80;
+  --special-3: #DFDFDFB2;
 
   ---bg: url("");
   --default-bg: url("../images/default-back.jpg");
   --tourlist-bg: url("../images/tour-list-back.jpg");
   --tourCategory-bg: url("../images/tour-category-back.png");
   --search-bg: url("../images/search-back.jpg");
+  --form-bg: url("../images/phone-form.jpg");
   --freeformgray-bg: url("../images/free-form-gray.jpg");
 }
 
