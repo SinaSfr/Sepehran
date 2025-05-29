@@ -50,6 +50,7 @@
   --special-1: #dfdfdf33;
   --special-2: #ffffff80;
   --special-3: #DFDFDFB2;
+  --special-4: #FFFFFFB2;
 
   ---bg: url("");
   --default-bg: url("../images/default-back.jpg");
@@ -116,6 +117,11 @@
 
 .unicode-embed {
   unicode-bidi: embed;
+}
+
+.swiper-small-gallery-about::selection{
+  background-color: transparent;
+  color: inherit;
 }
 
 .border-bottom-gradient {

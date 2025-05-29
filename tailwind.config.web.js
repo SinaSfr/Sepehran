@@ -7,6 +7,7 @@ module.exports = {
        'purple-overlay': 'linear-gradient(180deg, rgba(96, 133, 255, 0.25) 0%, #000000 93.27%)',
        'light-purple-overlay': 'linear-gradient(180deg, rgba(96, 133, 255, 0.2) 0%, #000000 100%)',
        'white-shadow': 'linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 100%)',
+       'blue-green': 'linear-gradient(78.21deg, #2E58D1 23.19%, #07E7B4 112.73%)',
         defaultBg: "var(--default-bg)",
         tourCategoryBg: "var(--tourCategory-bg)",
         tourlistBg: "var(--tourlist-bg)",
@@ -23,6 +24,9 @@ module.exports = {
         'btn-shadow': '0px 30px 20px -20px #00000040',
         'small-flag-shadow': '2px 2px 3px 0px #0000001A',
         'drop-shadow': '0px 4px 4px 0px #00000040',
+        'big-shadow': '0px 48px 50px -46px #00000040',
+        'shadow-soft': '0px 23px 18px -14px #00000040',
+
       },
       colors: {
         primary: {
