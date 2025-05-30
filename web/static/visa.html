@@ -774,7 +774,7 @@
         <section
           class="bg-formBg bg-center bg-cover flex items-end border border-gray-100 shadow-big-shadow rounded-3xl h-[404px]"
         >
-          <div class="flex flex-col items-center gap-1 mb-16 mr-8">
+          <div class="flex flex-col items-center gap-1 mb-20 mr-8">
             <a
               href=""
               class="group flex items-center gap-2 border border-gray-100 rounded-xl transition-all duration-300 hover:shadow-small-btn-shadow hover:bg-primary-500 hover:text-white hover:border-primary-500 py-2 px-6"
@@ -849,10 +849,13 @@
           </div>
           <div class="px-6">
             <ul
-              class="grid grid-cols-2 gap-2 list-disc list-inside marker:text-xl"
+              class="grid grid-cols-2 gap-2"
             >
-              <div class="flex items-center justify-center gap-2">
-                <li class="font-extrabold">ویزای شنگن</li>
+              <div class="group flex items-center justify-center gap-2">
+                <li class="flex items-center justify-center gap-2 font-extrabold transition-all duration-300 group-hover:text-primary-500">
+                  <span class="w-[7px] h-[7px] rounded-full bg-zinc-900 transition-all duration-300 group-hover:bg-primary-500"></span>
+                  ویزای شنگن
+                </li>
                 <svg
                   width="25"
                   height="25"
@@ -860,13 +863,13 @@
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <path
+                  <path class="transition-all duration-300 group-hover:stroke-primary-500"
                     d="M7.61133 12.5H21.6113"
                     stroke="#1E2128"
                     stroke-linecap="round"
                     stroke-linejoin="round"
                   />
-                  <path
+                  <path class="transition-all duration-300 group-hover:fill-primary-500"
                     d="M2.96862 12.2856L6.39973 10.227C6.93295 9.90703 7.61133 10.2911 7.61133 10.913V14.087C7.61133 14.7089 6.93295 15.093 6.39973 14.773L2.96862 12.7144C2.80678 12.6173 2.80678 12.3827 2.96862 12.2856Z"
                     fill="#1E2128"
                   />

@@ -59,6 +59,7 @@
   --search-bg: url("../images/search-back.jpg");
   --form-bg: url("../images/phone-form.jpg");
   --freeformgray-bg: url("../images/free-form-gray.jpg");
+  --footeroffer-bg: url("../images/footer-offer.jpg");
 }
 
 @font-face {
@@ -148,15 +149,14 @@
 }
 
 .custom-dashed-left {
-  border-left: 3px solid;
-  border-image: repeating-linear-gradient(
-      to bottom,
-      #1e2128 0,
-      #1e2128 6px,
-      transparent 6px,
-      transparent 12px
-    )
-    1;
+  width: 2px;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    #000,
+    #000 8px,
+    transparent 8px,
+    transparent 16px
+  );
 }
 
 .swiper-big-img {

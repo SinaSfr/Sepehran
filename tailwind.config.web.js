@@ -14,6 +14,7 @@ module.exports = {
         searchBg: "var(--search-bg)",
         formBg: "var(--form-bg)",
         freeFormGrayBg: "var(--freeformgray-bg)",
+        footerOfferBg: "var(--footeroffer-bg)",
       },
       boxShadow: {
         'soft-deep':'0px 22px 17.1px -15px #00000040',

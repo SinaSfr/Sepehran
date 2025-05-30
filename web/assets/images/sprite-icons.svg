@@ -129,6 +129,18 @@
         <path d="M5.63608 5.79245L7.05029 7.20667" stroke="#2E58D1" stroke-width="2" stroke-linecap="round" />
     </symbol>
 
+        <symbol id="icon-sun-white" viewBox="0 0 24 25" fill="none">
+        <circle cx="12" cy="12.1569" r="4" fill="#fff" />
+        <path d="M12 5.15686V3.15686" stroke="#fff" stroke-width="2" stroke-linecap="round" />
+        <path d="M12 21.1569V19.1569" stroke="#fff" stroke-width="2" stroke-linecap="round" />
+        <path d="M16.9498 7.20682L18.364 5.7926" stroke="#fff" stroke-width="2" stroke-linecap="round" />
+        <path d="M5.63608 18.5213L7.05029 17.1071" stroke="#fff" stroke-width="2" stroke-linecap="round" />
+        <path d="M19 12.1569L21 12.1569" stroke="#fff" stroke-width="2" stroke-linecap="round" />
+        <path d="M3 12.1569L5 12.1569" stroke="#fff" stroke-width="2" stroke-linecap="round" />
+        <path d="M16.9498 17.1069L18.364 18.5211" stroke="#fff" stroke-width="2" stroke-linecap="round" />
+        <path d="M5.63608 5.79245L7.05029 7.20667" stroke="#fff" stroke-width="2" stroke-linecap="round" />
+    </symbol>
+
     <symbol id="icon-flash" viewBox="0 0 24 25" fill="none">
         <path
             d="M16.2052 5.42156C17.861 4.86963 18.6891 4.59392 19.1261 5.03093C19.5629 5.46799 19.2873 6.29624 18.7355 7.95183L15.8976 16.4645C15.1132 18.8176 14.7208 19.9946 14.0001 19.9948C13.2794 19.9948 12.8871 18.8177 12.1027 16.4645L11.3536 14.2165L15.7072 9.86394L15.7755 9.78777C16.0958 9.39505 16.0731 8.816 15.7072 8.44988C15.341 8.08377 14.762 8.06119 14.3693 8.38152L14.2931 8.44988L9.93958 12.8034L7.6925 12.0544C5.33946 11.27 4.16239 10.8776 4.16223 10.1569C4.16223 9.43615 5.33929 9.04385 7.6925 8.25945L16.2052 5.42156Z"
@@ -156,6 +168,12 @@
 
     </symbol>
 
+        <symbol id="icon-white-border" viewBox="0 0 73 4" fill="none">
+        <path d="M71.5 1.65674L1.5 1.65674" stroke="#fff" stroke-width="3" stroke-linecap="round"
+            stroke-dasharray="8 8" />
+
+    </symbol>
+
     <symbol id="icon-calender" viewBox="0 0 24 25" fill="none">
         <rect x="3" y="6.65674" width="18" height="15" rx="2" stroke="#1E2128" stroke-width="2"
             stroke-linecap="round" />
@@ -174,6 +192,13 @@
         <circle cx="16.5" cy="16.5864" r="12" stroke="#2E58D1" stroke-width="2" />
         <path d="M16.5 20.5864L16.5 12.5864" stroke="#2E58D1" stroke-width="2" stroke-linecap="square" />
         <path d="M20.5 16.5864L12.5 16.5864" stroke="#2E58D1" stroke-width="2" stroke-linecap="square" />
+
+    </symbol>
+
+        <symbol id="icon-plus-circle-white" viewBox="0 0 33 33" fill="none">
+        <circle cx="16.5" cy="16.5864" r="12" stroke="#fff" stroke-width="2" />
+        <path d="M16.5 20.5864L16.5 12.5864" stroke="#fff" stroke-width="2" stroke-linecap="square" />
+        <path d="M20.5 16.5864L12.5 16.5864" stroke="#fff" stroke-width="2" stroke-linecap="square" />
 
     </symbol>
 

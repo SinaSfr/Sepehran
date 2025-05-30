@@ -141,16 +141,16 @@
             </div>
             <ul class="flex items-center justify-center gap-4 mt-10 direction-ltr">
 
-                <li class="flex items-center justify-center w-16 h-16 border border-gray-100 rounded-xl">
+                <li class="group flex items-center justify-center w-16 h-16 border border-gray-100 rounded-xl transition-all duration-300 hover:border-primary-500">
                     <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M15.5 6.15674L9.5 12.1567L15.5 18.1567" stroke="#1E2128" />
+                        <path class="transition-all duration-300 group-hover:stroke-primary-500" d="M15.5 6.15674L9.5 12.1567L15.5 18.1567" stroke="#1E2128" />
                     </svg>
                 </li>
                 <li
-                    class="flex items-center justify-center w-16 h-16 border border-gray-100 text-gray-400 text-2xl font-extrabold rounded-xl">
+                    class="flex items-center justify-center w-16 h-16 border border-gray-100 text-gray-400 text-2xl font-extrabold rounded-xl transition-all duration-300 hover:border-primary-500 hover:text-primary-500">
                     1</li>
                 <li
-                    class="flex items-center justify-center w-16 h-16 border border-gray-100 text-gray-400 text-2xl font-extrabold rounded-xl">
+                    class="flex items-center justify-center w-16 h-16 border border-primary-500 text-primary-500 text-2xl font-extrabold rounded-xl">
                     2</li>
                 <li
                     class="flex items-center justify-center w-16 h-16 border border-gray-100 text-gray-400 text-2xl font-extrabold rounded-xl">
@@ -164,7 +164,7 @@
             </ul>
         </section>
         <div class="flex gap-4 mx-auto max-lg:w-[90%] max-xl:w-[97%] xl:max-w-7xl mt-24">
-            <aside class="w-96">
+            <aside class="sticky top-0 h-fit w-96">
                 <section
                     class="bg-formBg bg-center bg-cover flex items-end border border-gray-100 shadow-big-shadow rounded-3xl h-[404px]">
                     <div class="flex flex-col items-center gap-1 mb-16 mr-8">
@@ -306,14 +306,18 @@
                                 class="content-image w-full h-[504px] rounded-xl" alt="" width="864" height="504"
                                 loading="lazy">
 
-                            <button
-                                class="toggle-btn see-more absolute bottom-6 left-0 right-0 mx-auto z-10 flex items-center justify-center gap-2 w-40 h-11 text-white rounded-xl bg-primary-500 transition-all duration-300">
+                                <button
+                                class="group toggle-btn see-more absolute bottom-6 left-0 right-0 mx-auto z-10 flex items-center justify-center gap-2 w-40 h-11 text-white rounded-xl bg-primary-500 transition-all duration-300 hover:shadow-small-btn-shadow">
                                 مشاهده همه
-                                <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
+                                <svg class="transition-all duration-300 group-hover:hidden group-hover:invisible group-hover:opacity-0" width="24" height="25" viewBox="0 0 24 25" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M17 6.5L11 12.5L17 18.5" stroke="white" stroke-width="2"></path>
-                                    <path d="M6 7.5V17.5" stroke="white" stroke-width="2"></path>
+                                    <path d="M17 6.5L11 12.5L17 18.5" stroke="white" stroke-width="2" />
+                                    <path d="M6 7.5V17.5" stroke="white" stroke-width="2" />
                                 </svg>
+                                <svg class="hidden transition-all duration-300 invisible opacity-0 group-hover:visible group-hover:opacity-100 group-hover:block" width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M7 12.5H21" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M2.35729 12.2856L5.7884 10.227C6.32162 9.90703 7 10.2911 7 10.913V14.087C7 14.7089 6.32162 15.093 5.7884 14.773L2.35729 12.7144C2.19545 12.6173 2.19545 12.3827 2.35729 12.2856Z" fill="white"/>
+                                    </svg>                                
                             </button>
                         </div>
                     </div>
