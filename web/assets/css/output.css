@@ -669,6 +669,10 @@ body {
   left: 1.25rem;
 }
 
+.left-\[7px\] {
+  left: 7px;
+}
+
 .left-auto {
   left: auto;
 }
@@ -1082,6 +1086,10 @@ body {
   height: 73px;
 }
 
+.h-\[7px\] {
+  height: 7px;
+}
+
 .h-\[86px\] {
   height: 86px;
 }
@@ -1093,14 +1101,6 @@ body {
 
 .h-full {
   height: 100%;
-}
-
-.h-\[7px\] {
-  height: 7px;
-}
-
-.h-2 {
-  height: 0.5rem;
 }
 
 .max-h-0 {
@@ -1227,6 +1227,10 @@ body {
   width: 6px;
 }
 
+.w-\[7px\] {
+  width: 7px;
+}
+
 .w-\[85\%\] {
   width: 85%;
 }
@@ -1241,14 +1245,6 @@ body {
 
 .w-full {
   width: 100%;
-}
-
-.w-\[7px\] {
-  width: 7px;
-}
-
-.w-2 {
-  width: 0.5rem;
 }
 
 .min-w-0 {
@@ -1335,6 +1331,10 @@ body {
 
 .scale-y-100 {
   --tw-scale-y: 1;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.transform {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
@@ -1555,10 +1555,6 @@ body {
 
 .border-b-4 {
   border-bottom-width: 4px;
-}
-
-.border-l {
-  border-left-width: 1px;
 }
 
 .border-t {
@@ -2094,10 +2090,6 @@ body {
   color: rgb(24 24 27 / var(--tw-text-opacity, 1));
 }
 
-.text-primary-400 {
-  color: var(--primary-400);
-}
-
 .placeholder-gray-400::-moz-placeholder {
   --tw-placeholder-opacity: 1;
   color: rgb(156 163 175 / var(--tw-placeholder-opacity, 1));
@@ -2199,6 +2191,10 @@ body {
   outline-offset: 2px;
 }
 
+.filter {
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
 .backdrop-blur {
   --tw-backdrop-blur: blur(8px);
   -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
@@ -2288,8 +2284,8 @@ body {
   --tertiary-950: #170800;
   --special-1: #dfdfdf33;
   --special-2: #ffffff80;
-  --special-3: #DFDFDFB2;
-  --special-4: #FFFFFFB2;
+  --special-3: #dfdfdfb2;
+  --special-4: #ffffffb2;
   ---bg: url("");
   --default-bg: url("../images/default-back.jpg");
   --tourlist-bg: url("../images/tour-list-back.jpg");
@@ -2392,12 +2388,12 @@ body {
   unicode-bidi: embed;
 }
 
-.swiper-small-gallery-about::-moz-selection{
+.swiper-small-gallery-about::-moz-selection {
   background-color: transparent;
   color: inherit;
 }
 
-.swiper-small-gallery-about::selection{
+.swiper-small-gallery-about::selection {
   background-color: transparent;
   color: inherit;
 }
@@ -2429,12 +2425,25 @@ body {
 
 .custom-dashed-left {
   width: 2px;
+  background-color: #f9fafb;
   background-image: repeating-linear-gradient(
     to bottom,
     #000,
-    #000 8px,
-    transparent 8px,
-    transparent 16px
+    #000 16px,
+    transparent 16px,
+    transparent 28px
+  );
+  transition: background-color 0.3s ease;
+}
+
+.group:hover .custom-dashed-left {
+  background-color: var(--primary-500);
+  background-image: repeating-linear-gradient(
+    to bottom,
+    #ffffff,
+    #ffffff 16px,
+    transparent 16px,
+    transparent 28px
   );
 }
 
@@ -2505,10 +2514,6 @@ body {
   z-index: 20;
 }
 
-.\*\:flex > * {
-  display: flex;
-}
-
 .marker\:text-xl *::marker {
   font-size: 1.25rem;
   line-height: 1.75rem;
@@ -2571,14 +2576,6 @@ body {
 
 .hover\:bg-secondary-500:hover {
   background-color: var(--secondary-500);
-}
-
-.hover\:fill-primary-500:hover {
-  fill: var(--primary-500);
-}
-
-.hover\:stroke-primary-500:hover {
-  stroke: var(--primary-500);
 }
 
 .hover\:text-primary-500:hover {
@@ -2666,6 +2663,10 @@ body {
   background-color: var(--secondary-500);
 }
 
+.group:hover .group-hover\:fill-primary-500 {
+  fill: var(--primary-500);
+}
+
 .group:hover .group-hover\:fill-primary-900 {
   fill: var(--primary-900);
 }
@@ -2676,10 +2677,6 @@ body {
 
 .group:hover .group-hover\:fill-zinc-900 {
   fill: #18181b;
-}
-
-.group:hover .group-hover\:fill-primary-500 {
-  fill: var(--primary-500);
 }
 
 .group:hover .group-hover\:stroke-primary-500 {

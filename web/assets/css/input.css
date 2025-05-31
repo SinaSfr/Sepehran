@@ -49,8 +49,8 @@
 
   --special-1: #dfdfdf33;
   --special-2: #ffffff80;
-  --special-3: #DFDFDFB2;
-  --special-4: #FFFFFFB2;
+  --special-3: #dfdfdfb2;
+  --special-4: #ffffffb2;
 
   ---bg: url("");
   --default-bg: url("../images/default-back.jpg");
@@ -120,7 +120,7 @@
   unicode-bidi: embed;
 }
 
-.swiper-small-gallery-about::selection{
+.swiper-small-gallery-about::selection {
   background-color: transparent;
   color: inherit;
 }
@@ -150,12 +150,24 @@
 
 .custom-dashed-left {
   width: 2px;
+  background-color: #f9fafb;
   background-image: repeating-linear-gradient(
     to bottom,
     #000,
-    #000 8px,
-    transparent 8px,
-    transparent 16px
+    #000 16px,
+    transparent 16px,
+    transparent 28px
+  );
+  transition: background-color 0.3s ease;
+}
+.group:hover .custom-dashed-left {
+  background-color: var(--primary-500); 
+   background-image: repeating-linear-gradient(
+    to bottom,
+    #ffffff,
+    #ffffff 16px,
+    transparent 16px,
+    transparent 28px
   );
 }
 

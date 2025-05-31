@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../assets/css/output.css">
+</head>
+
+<body>
+    <header class="mx-auto max-lg:w-[90%] max-xl:w-[97%] xl:max-w-7xl pt-4">
+        <section class="bg-white">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2 h-12">
+                    <svg class="flex-shrink-0 cursor-pointer bars3" width="38" height="40" viewBox="0 0 38 40"
+                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7.9165 11.875H30.0832" stroke="#33363F" stroke-width="2" stroke-linecap="round" />
+                        <path d="M7.9165 20H30.0832" stroke="#33363F" stroke-width="2" stroke-linecap="round" />
+                        <path d="M7.9165 28.125H30.0832" stroke="#33363F" stroke-width="2" stroke-linecap="round" />
+                    </svg>
+                </div>
+                <a href="/">
+                    <img src="../assets/images/logo.png" alt="logo-header" width="124" height="27" loading="lazy"
+                        class="transition-all duration-300 hover:scale-90" />
+                </a>
+                <div class="flex items-center gap-1">
+                    <div
+                        class="Login_Information relative group z-10 flex items-center border border-gray-100 rounded-lg transition-all duration-300 hover:border-primary-500">
+                        <!-- <basis core="call" file="authentication/modal" lid="1"></basis> -->
+                        <div class="w-10 h-10 flex items-center justify-center">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M12.4009 14.5156C7.42189 14.5156 5.19189 17.2696 5.19189 19.9996C5.19189 20.1986 5.27089 20.3896 5.41189 20.5306C5.55189 20.6706 5.74289 20.7496 5.94189 20.7496L18.8599 20.7316C19.2739 20.7306 19.6089 20.3946 19.6089 19.9816C19.6089 17.2606 17.3799 14.5156 12.4009 14.5156Z"
+                                    fill="#000" />
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M12.4009 13.001C15.0889 13.001 17.2759 10.813 17.2759 8.125C17.2759 5.437 15.0889 3.25 12.4009 3.25C9.71288 3.25 7.52588 5.437 7.52588 8.125C7.52588 10.813 9.71288 13.001 12.4009 13.001Z"
+                                    fill="#000" />
+                            </svg>
+                        </div>
+
+                    </div>
+                    <a href=""
+                        class="w-10 h-10 flex justify-center items-center rounded-lg bg-primary-500 transition-shadow duration-300 hover:shadow-small-btn-shadow">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M6.67962 3.32038L7.29289 2.70711C7.68342 2.31658 8.31658 2.31658 8.70711 2.70711L11.2929 5.29289C11.6834 5.68342 11.6834 6.31658 11.2929 6.70711L9.50048 8.49952C9.2016 8.7984 9.1275 9.255 9.31653 9.63307C10.4093 11.8186 12.1814 13.5907 14.3669 14.6835C14.745 14.8725 15.2016 14.7984 15.5005 14.4995L17.2929 12.7071C17.6834 12.3166 18.3166 12.3166 18.7071 12.7071L21.2929 15.2929C21.6834 15.6834 21.6834 16.3166 21.2929 16.7071L20.6796 17.3204C18.5683 19.4317 15.2257 19.6693 12.837 17.8777L11.6286 16.9714C9.88504 15.6638 8.33622 14.115 7.02857 12.3714L6.12226 11.163C4.33072 8.7743 4.56827 5.43173 6.67962 3.32038Z"
+                                fill="white" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <!-- header menu -->
+            <div
+                class="header-menu bg-white fixed z-50 translate-x-[1024px] inset-0 w-full transition-all duration-300 overflow-scroll">
+                <div>
+                    <div class="flex items-center justify-between py-3 mx-auto w-[90%]">
+                        <a href="/"><img src="../assets/images/logo.png" alt="logo-header" width="150" height="34"
+                                loading="lazy" class="transition-all duration-300 hover:scale-105" /></a>
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none"
+                            class="cursor-pointer header-menu-close" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M24.8129 23.5001L29.7277 18.5853C30.0908 18.2222 30.0908 17.6354 29.7277 17.2723C29.3646 16.9092 28.7778 16.9092 28.4148 17.2723L23.5 22.1871L18.5852 17.2723C18.2222 16.9092 17.6354 16.9092 17.2723 17.2723C16.9092 17.6354 16.9092 18.2222 17.2723 18.5853L22.187 23.5001L17.2723 28.415C16.9092 28.778 16.9092 29.3649 17.2723 29.7279C17.4534 29.909 17.6911 30 17.9288 30C18.1665 30 18.4042 29.909 18.5852 29.7279L23.5 24.8132L28.4148 29.7279C28.5958 29.909 28.8335 30 29.0712 30C29.3089 30 29.5466 29.909 29.7277 29.7279C30.0908 29.3649 30.0908 28.778 29.7277 28.415L24.8129 23.5001Z"
+                                fill="#000" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="pb-5 bg-white w-[90%] mx-auto">
+                    <nav class="pt-2">
+                        <ul class="text-sm divide-y divide-primary-50">
+                            <li class="py-3"><a href="/" class="text-zinc-900">صفحه اصلی</a></li>
+                            <li class="">
+                                <div class="flex items-center justify-between cursor-pointer toggle-dropdown">
+                                    <a href="" class="ttext-zinc-900">تورهای گردشگران</a>
+                                    <svg width="48" class="transition-all duration-300 dropdown-icon" height="48"
+                                        viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M31 20.5L24 27.5L17 20.5" stroke="#181C47" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </div>
+                                <!-- submenu -->
+                                <ul
+                                    class="flex flex-col overflow-hidden transition-all duration-300 bg-white divide-y opacity-0 divide-primary-50 max-h-0">
+                                    <li class="px-10 py-2 "><a href="" class="text-zinc-900">ویزای شینگن</a></li>
+                                    <li class="px-10 py-2"><a href="">ویزای شینگن</a></li>
+                                    <li class="px-10 py-2"><a href="">ویزای شینگن</a></li>
+                                </ul>
+                                <!-- submenu end -->
+                            </li>
+                            <li class="flex items-center py-3 ">
+                                <a href="" class="w-full text-zinc-900">خدمات ویزا</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- header menu -->
+        </section>
+        <div
+            class="fixed z-20 left-0 right-0 bottom-0 flex items-center justify-center gap-6 px-7 py-4 bg-primary-50 rounded-t-2xl">
+            <a href=""
+                class="flex items-center gap-1 text-sm font-semibold text-primary-500 border-b border-primary-500 pb-1">
+                <svg width="24" height="24">
+                    <use xlink:href="../assets/images/sprite-icons.svg#icon-blue-house"></use>
+                </svg>
+                خانه
+            </a>
+            <button id="openTourMobile" class="flex items-center gap-1 text-sm font-semibold">
+                <svg width="24" height="24">
+                    <use xlink:href="../assets/images/sprite-icons.svg#icon-footer-board"></use>
+                </svg>
+                تور ها
+            </button>
+            <div
+                class="tourcategorymobile__overlay bg-specialcolor-5 p-4 backdrop-blur fixed inset-0 w-full transition-all duration-300 overflow-auto hidden opacity-0">
+                <div class="flex items-center justify-between mb-4">
+                    <a href="/">
+                        <img src="../assets/images/logo.png" alt="logo-header" width="124" height="27" loading="lazy" />
+                    </a>
+                    <span id="closeTourMobile" class="bg-primary-500 p-2 rounded-lg">
+                        <svg width="24" height="24">
+                            <use xlink:href="../assets/images/sprite-icons.svg#icon-x"></use>
+                        </svg>
+                    </span>
+                </div>
+                <div class="tourcategorydropdown">
+                    <div
+                        class="tourcategorydropdown__trigger flex items-center justify-center gap-2 rounded-lg cursor-pointer bg-gray-100 h-11 mb-3">
+                        <svg width="24" height="24">
+                            <use xlink:href="../assets/images/sprite-icons.svg#icon-category"></use>
+                        </svg>
+                        <span class="font-semibold text-sm text-primary-500">دسته بندی تور ها</span>
+                        <svg class="tourcategorydropdown__icon transition-all duration-300" width="24" height="25"
+                            viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18 9.5L12 15.5L6 9.5" stroke="#2E58D1" stroke-width="2" />
+                        </svg>
+                    </div>
+                    <div
+                        class="tourcategorydropdown__content gap-2 bg-gray-100 rounded-lg p-2 hidden opacity-0 transition-all duration-300">
+                        <!-- Right Column -->
+                        <div class="bg-white pl-1 w-2/5 py-2 rounded">
+                            <div
+                                class="tourcategorydropdown__menu scrollbar-tour-category overflow-y-auto max-h-[366px] bg-white">
+                                <ul id="menu" class="flex flex-col gap-2 pr-2 pl-1">
+                                    <li class="tourcategorydropdown__item cursor-pointer flex gap-2 items-center rounded h-9 p-1"
+                                        data-index="0">
+                                        <span class="bg-white p-1 rounded">
+                                            <img src="../assets/images/tailand.jpg" class="h-3 object-cover rounded"
+                                                alt="tailand" width="19" height="12" loading="lazy">
+                                        </span>
+                                        <span class="text-sm font-semibold">تور تایلند</span>
+                                    </li>
+                                    <li class="tourcategorydropdown__item cursor-pointer flex gap-2 items-center rounded h-9 p-1"
+                                        data-index="0">
+                                        <span class="bg-white p-1 rounded">
+                                            <img src="../assets/images/tailand.jpg" class="h-3 object-cover rounded"
+                                                alt="tailand" width="19" height="12" loading="lazy">
+                                        </span>
+                                        <span class="text-sm font-semibold">تور تایلند</span>
+                                    </li>
+                                    <li class="tourcategorydropdown__item cursor-pointer flex gap-2 items-center rounded h-9 p-1"
+                                        data-index="0">
+                                        <span class="bg-white p-1 rounded">
+                                            <img src="../assets/images/tailand.jpg" class="h-3 object-cover rounded"
+                                                alt="tailand" width="19" height="12" loading="lazy">
+                                        </span>
+                                        <span class="text-sm font-semibold">تور تایلند</span>
+                                    </li>
+                                    <li class="tourcategorydropdown__item cursor-pointer flex gap-2 items-center rounded h-9 p-1"
+                                        data-index="0">
+                                        <span class="bg-white p-1 rounded">
+                                            <img src="../assets/images/tailand.jpg" class="h-3 object-cover rounded"
+                                                alt="tailand" width="19" height="12" loading="lazy">
+                                        </span>
+                                        <span class="text-sm font-semibold">تور تایلند</span>
+                                    </li>
+                                    <li class="tourcategorydropdown__item cursor-pointer flex gap-2 items-center rounded h-9 p-1"
+                                        data-index="0">
+                                        <span class="bg-white p-1 rounded">
+                                            <img src="../assets/images/tailand.jpg" class="h-3 object-cover rounded"
+                                                alt="tailand" width="19" height="12" loading="lazy">
+                                        </span>
+                                        <span class="text-sm font-semibold">تور تایلند</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Left Column -->
+                        <div id="details"
+                            class="tourcategorydropdown__details w-3/5 rounded p-2 hidden bg-white opacity-0 transition-all duration-300">
+                            <div class="flex items-center justify-center bg-primary-500 w-full h-7 rounded  mb-2">
+                                <h2 class="text-white text-xs font-light">همه تور های تایلند</h2>
+                            </div>
+                            <ul class="space-y-2 text-zinc-900 pr-2">
+                                <li class="flex items-center gap-2 font-semibold">
+                                    <span class="w-[6px] h-[6px] rounded-full bg-zinc-900"></span>تور پوکت
+                                </li>
+                                <li class="flex items-center gap-2 font-semibold">
+                                    <span class="w-[6px] h-[6px] rounded-full bg-zinc-900"></span>تور پوکت
+                                </li>
+                                <li class="flex items-center gap-2 font-semibold">
+                                    <span class="w-[6px] h-[6px] rounded-full bg-zinc-900"></span>تور پوکت
+                                </li>
+                                <li class="flex items-center gap-2 font-semibold">
+                                    <span class="w-[6px] h-[6px] rounded-full bg-zinc-900"></span>
+                                    تور پوکت <span class="text-xs bg-secondary-500 rounded p-1">ویژه</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <nav class="mt-3">
+                    <ul class="flex flex-col gap-3">
+                        <li>
+                            <div class="flex toggle-dropdown">
+                                <div class="relative group flex items-center gap-2 cursor-pointer">
+                                    <a href="" class="text-zinc-900 font-semibold text-sm">تورهای گردشگران</a>
+                                    <svg class="transition-all duration-300 dropdown-icon" width="24" height="25"
+                                        viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M18 9.5L12 15.5L6 9.5" stroke="#1E2128" />
+                                    </svg>
+                                </div>
+                                <span class="text-xs bg-secondary-500 rounded p-1">ویژه</span>
+                            </div>
+                            <!-- submenu -->
+                            <ul
+                                class="flex flex-col overflow-hidden transition-all duration-300 font-semibold text-sm divide-y opacity-0 divide-secondary-50 max-h-0">
+                                <li class="px-6 py-2 "><a href="" class="text-zinc-900">ویزای شینگن</a></li>
+                                <li class="px-6 py-2"><a href="">ویزای شینگن</a></li>
+                                <li class="px-6 py-2"><a href="">ویزای شینگن</a></li>
+                            </ul>
+                            <!-- submenu end -->
+                        </li>
+                        <li class="relative group flex items-center py-3 ">
+                            <span
+                                class="absolute left-0 right-0 top-6 h-0.5 w-2/5 bg-secondary-500 opacity-0 -translate-y-1 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-1">
+                            </span>
+                            <a href="" class="w-full text-zinc-900">خدمات ویزا</a>
+                        </li>
+                    </ul>
+                </nav>
+                <a href=""
+                    class="flex items-center justify-center gap-2 w-full h-[73px] font-extrabold rounded-xl bg-primary-500 text-white mt-20">
+                    مشاوره رایگان
+                    <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M16.7053 5.76482C18.3611 5.21289 19.1892 4.93718 19.6262 5.3742C20.063 5.81125 19.7875 6.6395 19.2356 8.29509L16.3977 16.8078C15.6134 19.1608 15.2209 20.3379 14.5002 20.3381C13.7795 20.3381 13.3872 19.161 12.6028 16.8078L11.8538 14.5597L16.2073 10.2072L16.2756 10.131C16.5959 9.73831 16.5732 9.15927 16.2073 8.79314C15.8412 8.42703 15.2622 8.40446 14.8694 8.72478L14.7932 8.79314L10.4397 13.1467L8.19263 12.3976C5.83958 11.6133 4.66251 11.2208 4.66235 10.5002C4.66235 9.77941 5.83941 9.38712 8.19263 8.60271L16.7053 5.76482Z"
+                            fill="white" />
+                    </svg>
+                </a>
+            </div>
+            <a href=""
+                class="group w-40 h-11 flex justify-center items-center gap-2 rounded-xl bg-primary-500 transition-shadow duration-300 hover:shadow-small-btn-shadow">
+                <span class="text-sm font-semibold text-white">021-91009292</span>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path class="transition-all duration-300 group-hover:fill-primary-900"
+                        d="M6.67962 3.32038L7.29289 2.70711C7.68342 2.31658 8.31658 2.31658 8.70711 2.70711L11.2929 5.29289C11.6834 5.68342 11.6834 6.31658 11.2929 6.70711L9.50048 8.49952C9.2016 8.7984 9.1275 9.255 9.31653 9.63307C10.4093 11.8186 12.1814 13.5907 14.3669 14.6835C14.745 14.8725 15.2016 14.7984 15.5005 14.4995L17.2929 12.7071C17.6834 12.3166 18.3166 12.3166 18.7071 12.7071L21.2929 15.2929C21.6834 15.6834 21.6834 16.3166 21.2929 16.7071L20.6796 17.3204C18.5683 19.4317 15.2257 19.6693 12.837 17.8777L11.6286 16.9714C9.88504 15.6638 8.33622 14.115 7.02857 12.3714L6.12226 11.163C4.33072 8.7743 4.56827 5.43173 6.67962 3.32038Z"
+                        fill="white" />
+                </svg>
+            </a>
+        </div>
+    </header>
+
+    <script src="../assets/js/sepahran-core.js"></script>
+</body>
+
+</html>

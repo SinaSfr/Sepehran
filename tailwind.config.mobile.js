@@ -1,22 +1,37 @@
 module.exports = {
-  content: [
-    './mobile/**/*.html',       
-    './mobile/assets/js/**/*.js'
-  ],
+  content: ["./mobile/**/*.html", "./mobile/assets/js/**/*.js"],
   theme: {
     extend: {
       backgroundImage: {
+       'blue-overlay': 'linear-gradient(187.07deg, rgba(16, 69, 150, 0.68) 5.4%, rgba(0, 19, 55, 0.8) 94.48%)',
+       'purple-overlay': 'linear-gradient(180deg, rgba(96, 133, 255, 0.25) 0%, #000000 93.27%)',
+       'light-purple-overlay': 'linear-gradient(180deg, rgba(96, 133, 255, 0.2) 0%, #000000 100%)',
+       'white-shadow': 'linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 100%)',
+       'blue-green': 'linear-gradient(78.21deg, #2E58D1 23.19%, #07E7B4 112.73%)',
         defaultBg: "var(--default-bg)",
-        tourListBg: "var(--tourlist-bg)",
-        articleListBg: "var(--articlelist-bg)",
-        hotelListBg: "var(--hotellist-bg)",
-        articleBg: "var(--article-bg)",
-        footerBg: "var(--footer-bg)",
-        contactBg: "var(--contact-bg)"
+        tourCategoryBg: "var(--tourCategory-bg)",
+        tourlistBg: "var(--tourlist-bg)",
+        searchBg: "var(--search-bg)",
+        formBg: "var(--form-bg)",
+        freeFormGrayBg: "var(--freeformgray-bg)",
+        footerOfferBg: "var(--footeroffer-bg)",
+      },
+      boxShadow: {
+        'soft-deep':'0px 22px 17.1px -15px #00000040',
+        btn: "0px 30px 20px -20px rgba(0, 0, 0, 0.25)",
+        'card-shadow': '0px 16px 16px -13px rgba(0, 0, 0, 0.25)',
+        'medium-btn-shadow': '0px 14px 16px -11px #00000040',
+        'small-btn-shadow': '0px 16px 16px -10px #00000040',
+        'btn-shadow': '0px 30px 20px -20px #00000040',
+        'small-flag-shadow': '2px 2px 3px 0px #0000001A',
+        'drop-shadow': '0px 4px 4px 0px #00000040',
+        'big-shadow': '0px 48px 50px -46px #00000040',
+        'shadow-soft': '0px 23px 18px -14px #00000040',
+
       },
       colors: {
         primary: {
-           DEFAULT: "var(--primary)",
+          DEFAULT: "var(--primary)",
           50: "var(--primary-50)",
           100: "var(--primary-100)",
           200: "var(--primary-200)",
@@ -30,7 +45,7 @@ module.exports = {
           950: "var(--primary-950)",
         },
         secondary: {
-           DEFAULT: "var(--secondary)",
+          DEFAULT: "var(--secondary)",
           50: "var(--secondary-50)",
           100: "var(--secondary-100)",
           200: "var(--secondary-200)",
@@ -43,16 +58,30 @@ module.exports = {
           900: "var(--secondary-900)",
           950: "var(--secondary-950)",
         },
+        tertiary: {
+          DEFAULT: "var(--tertiary)",
+          50: "var(--tertiary-50)",
+          100: "var(--tertiary-100)",
+          200: "var(--tertiary-200)",
+          300: "var(--tertiary-300)",
+          400: "var(--tertiary-400)",
+          500: "var(--tertiary-500)",
+          600: "var(--tertiary-600)",
+          700: "var(--tertiary-700)",
+          800: "var(--tertiary-800)",
+          900: "var(--tertiary-900)",
+          950: "var(--tertiary-950)",
+        },
         specialcolor: {
           1: "var(--special-1)",
           2: "var(--special-2)",
           3: "var(--special-3)",
           4: "var(--special-4)",
-       },
-
-      }
+          5: "var(--special-5)",
+          6: "var(--special-6)",
+        },
+      },
     },
   },
   plugins: [],
 };
-

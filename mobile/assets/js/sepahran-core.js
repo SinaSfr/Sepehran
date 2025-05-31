@@ -203,15 +203,15 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-document.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("DOMContentLoaded", () => {
+  const REAL_MIN = 10000000;
+  const REAL_MAX = 100000000;
+
   const minInput = document.getElementById("minRange");
   const maxInput = document.getElementById("maxRange");
   const rangeTrack = document.getElementById("rangeTrack");
   const minValText = document.getElementById("minValue");
   const maxValText = document.getElementById("maxValue");
-
-  const tourContainer = document.querySelector(".tourL-tour-list");
-  const tourCards = tourContainer ? Array.from(tourContainer.querySelectorAll(".tourL-tour-card")) : [];
 
   if (!minInput || !maxInput || !rangeTrack || !minValText || !maxValText) {
     return;
@@ -220,21 +220,6 @@ document.addEventListener("DOMContentLoaded", () => {
   function formatPrice(val) {
     return val.toLocaleString("fa-IR");
   }
-
-  function parsePrice(priceString) {
-    let cleaned = priceString.replace(/[.,\/\s]/g, "");
-    return parseInt(cleaned, 10) || 0;
-  }
-
-  // گرفتن قیمت‌ها و پیدا کردن مین و ماکزیموم
-  let prices = tourCards.map(card => {
-    const priceElem = card.querySelector(".tourL-tour-price");
-    if (!priceElem) return 0;
-    return parsePrice(priceElem.textContent);
-  }).filter(p => p > 0);
-
-  const REAL_MIN = Math.min(...prices);
-  const REAL_MAX = Math.max(...prices);
 
   function updateTrack() {
     let min = parseInt(minInput.value);
@@ -255,20 +240,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     minValText.textContent = formatPrice(realMin);
     maxValText.textContent = formatPrice(realMax);
-
-    tourCards.forEach(card => {
-      const priceElem = card.querySelector(".tourL-tour-price");
-      if (!priceElem) return;
-
-      const cardPrice = parsePrice(priceElem.textContent);
-      if (cardPrice >= realMin && cardPrice <= realMax) {
-        card.classList.remove("hidden");
-        card.classList.add("flex");
-      } else {
-        card.classList.add("hidden");
-        card.classList.remove("flex");
-      }
-    });
   }
 
   minInput.addEventListener("input", updateTrack);
@@ -276,8 +247,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   updateTrack();
 });
-
-
 
 document.addEventListener("DOMContentLoaded", function () {
   const container = document.querySelector(".checkboxList");
@@ -541,14 +510,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const priceButton = document.getElementById("priceToggleButton");
   const priceMenu = document.getElementById("priceDropdownMenu");
   const priceIcon = document.getElementById("priceToggleIcon");
-  const priceOptions = document.querySelectorAll(".price-option");
-  const tourCards = Array.from(document.querySelectorAll(".tourL-tour-card"));
 
   let isOpen = false;
-
-  function extractCleanPrice(priceText) {
-    return parseInt(priceText.replace(/[.,\/\s]+/g, ""));
-  }
 
   if (priceButton && priceMenu && priceIcon) {
     priceButton.addEventListener("click", () => {
@@ -561,7 +524,11 @@ document.addEventListener("DOMContentLoaded", function () {
         priceIcon.classList.add("rotate-180", "text-primary-500");
         priceIcon.classList.remove("text-[#1E2128]");
 
-        priceButton.classList.add("bg-primary-100", "text-primary-500", "border-primary-500");
+        priceButton.classList.add(
+          "bg-primary-100",
+          "text-primary-500",
+          "border-primary-500"
+        );
         priceButton.classList.remove("border-gray-50");
       } else {
         priceMenu.classList.remove("flex");
@@ -570,68 +537,16 @@ document.addEventListener("DOMContentLoaded", function () {
         priceIcon.classList.remove("rotate-180", "text-primary-500");
         priceIcon.classList.add("text-[#1E2128]");
 
-        priceButton.classList.remove("bg-primary-100", "text-primary-500", "border-primary-500");
-        priceButton.classList.add("border-gray-50");
-      }
-    });
-
-    document.addEventListener("click", (event) => {
-      const isClickInsideButton = priceButton.contains(event.target);
-      const isClickInsideMenu = priceMenu.contains(event.target);
-
-      if (!isClickInsideButton && !isClickInsideMenu && isOpen) {
-        // منو رو ببند
-        isOpen = false;
-        priceMenu.classList.remove("flex");
-        priceMenu.classList.add("hidden");
-
-        priceIcon.classList.remove("rotate-180", "text-primary-500");
-        priceIcon.classList.add("text-[#1E2128]");
-
-        priceButton.classList.remove("bg-primary-100", "text-primary-500", "border-primary-500");
+        priceButton.classList.remove(
+          "bg-primary-100",
+          "text-primary-500",
+          "border-primary-500"
+        );
         priceButton.classList.add("border-gray-50");
       }
     });
   }
-
-  priceOptions.forEach(option => {
-    option.addEventListener("click", () => {
-      const selectedFilter = option.dataset.price;
-
-      document.querySelectorAll(".price-check-icon").forEach(icon => {
-        icon.classList.remove("bg-primary-500", "text-white");
-      });
-
-      const icon = option.querySelector(".price-check-icon");
-      icon.classList.add("bg-primary-500", "text-white");
-
-      if (tourCards.length && selectedFilter) {
-        let sortedCards = [...tourCards];
-
-        sortedCards.sort((a, b) => {
-          const priceA = extractCleanPrice(a.querySelector(".tourL-tour-price").innerText);
-          const priceB = extractCleanPrice(b.querySelector(".tourL-tour-price").innerText);
-
-          if (selectedFilter === "high-to-low") return priceB - priceA;
-          if (selectedFilter === "low-to-high") return priceA - priceB;
-          if (selectedFilter === "best-price") return priceA - priceB;
-        });
-
-        const parent = tourCards[0].parentElement;
-        parent.innerHTML = "";
-        sortedCards.forEach(card => {
-          card.classList.remove("hidden");
-          card.classList.add("flex");
-          parent.appendChild(card);
-        });
-      }
-    });
-  });
 });
-
-
-
-
 
 document.addEventListener("DOMContentLoaded", () => {
   const containers = document.querySelectorAll(".content-container");
