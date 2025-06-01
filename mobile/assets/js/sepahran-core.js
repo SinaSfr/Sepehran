@@ -3,15 +3,17 @@ const headerMenuClose = document.querySelector(".header-menu-close");
 const bars3 = document.querySelector(".bars3");
 
 if (window.innerWidth < 1024) {
-  headerMenuClose.addEventListener("click", function () {
-    headerMenu.style.transform = "translateX(1024px)";
-    document.body.classList.remove("overflow-hidden");
-  });
+  if (headerMenu && headerMenuClose && bars3) {
+    headerMenuClose.addEventListener("click", function () {
+      headerMenu.style.transform = "translateX(1024px)";
+      document.body.classList.remove("overflow-hidden");
+    });
 
-  bars3.addEventListener("click", function () {
-    headerMenu.style.transform = "translateX(0)";
-    document.body.classList.add("overflow-hidden");
-  });
+    bars3.addEventListener("click", function () {
+      headerMenu.style.transform = "translateX(0)";
+      document.body.classList.add("overflow-hidden");
+    });
+  }
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -42,12 +44,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const icon = document.querySelector(".tourcategorydropdown__icon");
   const details = document.getElementById("details");
 
-  // دکمه‌های موبایل
   const openMobileBtn = document.getElementById("openTourMobile");
   const mobileOverlay = document.querySelector(".tourcategorymobile__overlay");
   const closeMobileBtn = document.getElementById("closeTourMobile");
 
-  // منوی کشویی دسکتاپ (یا موبایل اگر بخواد استفاده شه)
   if (trigger && content && icon) {
     trigger.addEventListener("click", () => {
       const isHidden = content.classList.contains("hidden");
@@ -69,7 +69,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // انتخاب آیتم‌های منو
   document.querySelectorAll(".tourcategorydropdown__item").forEach((item) => {
     item.addEventListener("click", () => {
       document.querySelectorAll(".tourcategorydropdown__item").forEach((li) => {
@@ -92,7 +91,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (details && details.classList.contains("hidden")) {
         details.classList.remove("hidden");
-        details.classList.add("opacity-0", "transition-opacity", "duration-300");
+        details.classList.add(
+          "opacity-0",
+          "transition-opacity",
+          "duration-300"
+        );
 
         setTimeout(() => {
           details.classList.remove("opacity-0");
@@ -102,7 +105,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // کنترل نمایش اورلی موبایل با دکمه‌ها
   if (openMobileBtn && mobileOverlay && closeMobileBtn) {
     openMobileBtn.addEventListener("click", () => {
       mobileOverlay.classList.remove("hidden", "opacity-0");
@@ -121,8 +123,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
-
-
 
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.querySelector(".search-form");
@@ -179,6 +179,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+
 document.addEventListener("DOMContentLoaded", function () {
   const toggleBtn = document.querySelector(".tour-category-header");
   const menu = document.querySelector(".menu-tour-category");
@@ -203,15 +204,55 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-window.addEventListener("DOMContentLoaded", () => {
-  const REAL_MIN = 10000000;
-  const REAL_MAX = 100000000;
+document.addEventListener("DOMContentLoaded", function () {
+  const filterBtn = document.getElementById("filterBtn");
+  const filterMenu = document.getElementById("filterMenu");
+  const filterMenuClose = document.getElementById("filterMenuClose");
+  const filterIcon = document.getElementById("filterIcon");
 
+  if (filterBtn && filterMenu && filterMenuClose && filterIcon) {
+    filterBtn.addEventListener("click", () => {
+      filterMenu.classList.remove("translate-y-full");
+      document.body.classList.add("overflow-hidden");
+
+      // تغییر کلاس‌های دکمه
+      filterBtn.classList.remove("bg-white");
+      filterBtn.classList.add("bg-primary-500", "shadow-small-btn-shadow", "text-white");
+
+      // تغییر stroke آیکون به secondary-500 (مثلاً #11C086)
+      filterIcon.querySelectorAll("path, ellipse").forEach(el => {
+        el.setAttribute("stroke", "#11C086"); // secondary-500
+      });
+    });
+
+    filterMenuClose.addEventListener("click", () => {
+      filterMenu.classList.add("translate-y-full");
+      document.body.classList.remove("overflow-hidden");
+
+      // برگرداندن کلاس‌های دکمه
+      filterBtn.classList.remove("bg-primary-500", "shadow-small-btn-shadow", "text-white");
+      filterBtn.classList.add("bg-white");
+
+      // برگرداندن stroke آیکون به رنگ اولیه
+      filterIcon.querySelectorAll("path, ellipse").forEach(el => {
+        el.setAttribute("stroke", "#33363F");
+      });
+    });
+  }
+});
+
+
+document.addEventListener("DOMContentLoaded", () => {
   const minInput = document.getElementById("minRange");
   const maxInput = document.getElementById("maxRange");
   const rangeTrack = document.getElementById("rangeTrack");
   const minValText = document.getElementById("minValue");
   const maxValText = document.getElementById("maxValue");
+
+  const tourContainer = document.querySelector(".tourL-tour-list");
+  const tourCards = tourContainer
+    ? Array.from(tourContainer.querySelectorAll(".tourL-tour-card"))
+    : [];
 
   if (!minInput || !maxInput || !rangeTrack || !minValText || !maxValText) {
     return;
@@ -220,6 +261,22 @@ window.addEventListener("DOMContentLoaded", () => {
   function formatPrice(val) {
     return val.toLocaleString("fa-IR");
   }
+
+  function parsePrice(priceString) {
+    let cleaned = priceString.replace(/[.,\/\s]/g, "");
+    return parseInt(cleaned, 10) || 0;
+  }
+
+  let prices = tourCards
+    .map((card) => {
+      const priceElem = card.querySelector(".tourL-tour-price");
+      if (!priceElem) return 0;
+      return parsePrice(priceElem.textContent);
+    })
+    .filter((p) => p > 0);
+
+  const REAL_MIN = Math.min(...prices);
+  const REAL_MAX = Math.max(...prices);
 
   function updateTrack() {
     let min = parseInt(minInput.value);
@@ -240,6 +297,20 @@ window.addEventListener("DOMContentLoaded", () => {
 
     minValText.textContent = formatPrice(realMin);
     maxValText.textContent = formatPrice(realMax);
+
+    tourCards.forEach((card) => {
+      const priceElem = card.querySelector(".tourL-tour-price");
+      if (!priceElem) return;
+
+      const cardPrice = parsePrice(priceElem.textContent);
+      if (cardPrice >= realMin && cardPrice <= realMax) {
+        card.classList.remove("hidden");
+        card.classList.add("flex");
+      } else {
+        card.classList.add("hidden");
+        card.classList.remove("flex");
+      }
+    });
   }
 
   minInput.addEventListener("input", updateTrack);
@@ -317,14 +388,19 @@ document.addEventListener("DOMContentLoaded", function () {
     const icon = box.querySelector(".faq-btn");
     const iconPath = box.querySelector(".faq-btn path");
     const title = box.querySelector("h2");
+    const blackIcon = box.querySelector(".icon-plus-circle");
+    const whiteIcon = box.querySelector(".icon-plus-circle-white");
 
-    // بستن بقیه
     document.querySelectorAll(".faq-box").forEach((otherBox) => {
       if (otherBox !== box) {
         const otherAnswer = otherBox.querySelector(".faq-answer");
         const otherIcon = otherBox.querySelector(".faq-btn");
         const otherIconPath = otherBox.querySelector(".faq-btn path");
         const otherTitle = otherBox.querySelector("h2");
+        const otherBlackIcon = otherBox.querySelector(".icon-plus-circle");
+        const otherWhiteIcon = otherBox.querySelector(
+          ".icon-plus-circle-white"
+        );
 
         if (otherAnswer) {
           otherAnswer.classList.remove(
@@ -350,10 +426,14 @@ document.addEventListener("DOMContentLoaded", function () {
         if (otherTitle) {
           otherTitle.style.color = "";
         }
+
+        if (otherBlackIcon && otherWhiteIcon) {
+          otherBlackIcon.classList.remove("hidden");
+          otherWhiteIcon.classList.add("hidden");
+        }
       }
     });
 
-    // باز یا بسته کردن مورد کلیک‌شده
     const isOpen = answer.classList.contains("scale-y-100");
 
     if (!isOpen) {
@@ -374,6 +454,11 @@ document.addEventListener("DOMContentLoaded", function () {
       if (icon) {
         icon.classList.add("rotate-180");
       }
+
+      if (blackIcon && whiteIcon) {
+        blackIcon.classList.add("hidden");
+        whiteIcon.classList.remove("hidden");
+      }
     } else {
       answer.classList.remove("opacity-100", "scale-y-100", "max-h-96", "mt-2");
       answer.classList.add("opacity-0", "scale-y-0", "max-h-0");
@@ -391,6 +476,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (icon) {
         icon.classList.remove("rotate-180");
+      }
+
+      if (blackIcon && whiteIcon) {
+        blackIcon.classList.remove("hidden");
+        whiteIcon.classList.add("hidden");
       }
     }
   });
@@ -510,8 +600,14 @@ document.addEventListener("DOMContentLoaded", function () {
   const priceButton = document.getElementById("priceToggleButton");
   const priceMenu = document.getElementById("priceDropdownMenu");
   const priceIcon = document.getElementById("priceToggleIcon");
+  const priceOptions = document.querySelectorAll(".price-option");
+  const tourCards = Array.from(document.querySelectorAll(".tourL-tour-card"));
 
   let isOpen = false;
+
+  function extractCleanPrice(priceText) {
+    return parseInt(priceText.replace(/[.,\/\s]+/g, ""));
+  }
 
   if (priceButton && priceMenu && priceIcon) {
     priceButton.addEventListener("click", () => {
@@ -545,7 +641,66 @@ document.addEventListener("DOMContentLoaded", function () {
         priceButton.classList.add("border-gray-50");
       }
     });
+
+    document.addEventListener("click", (event) => {
+      const isClickInsideButton = priceButton.contains(event.target);
+      const isClickInsideMenu = priceMenu.contains(event.target);
+
+      if (!isClickInsideButton && !isClickInsideMenu && isOpen) {
+        isOpen = false;
+        priceMenu.classList.remove("flex");
+        priceMenu.classList.add("hidden");
+
+        priceIcon.classList.remove("rotate-180", "text-primary-500");
+        priceIcon.classList.add("text-[#1E2128]");
+
+        priceButton.classList.remove(
+          "bg-primary-100",
+          "text-primary-500",
+          "border-primary-500"
+        );
+        priceButton.classList.add("border-gray-50");
+      }
+    });
   }
+
+  priceOptions.forEach((option) => {
+    option.addEventListener("click", () => {
+      const selectedFilter = option.dataset.price;
+
+      document.querySelectorAll(".price-check-icon").forEach((icon) => {
+        icon.classList.remove("bg-primary-500", "text-white");
+      });
+
+      const icon = option.querySelector(".price-check-icon");
+      icon.classList.add("bg-primary-500", "text-white");
+
+      if (tourCards.length && selectedFilter) {
+        let sortedCards = [...tourCards];
+
+        sortedCards.sort((a, b) => {
+          const priceA = extractCleanPrice(
+            a.querySelector(".tourL-tour-price").innerText
+          );
+          const priceB = extractCleanPrice(
+            b.querySelector(".tourL-tour-price").innerText
+          );
+
+          if (selectedFilter === "high-to-low") return priceB - priceA;
+          if (selectedFilter === "low-to-high") return priceA - priceB;
+          if (selectedFilter === "best-price") return priceA - priceB;
+        });
+
+        const parent = tourCards[0].parentElement;
+        parent.innerHTML = "";
+        sortedCards.forEach((card) => {
+          card.classList.remove("hidden");
+          card.classList.add("flex");
+          parent.appendChild(card);
+        });
+      }
+    });
+  });
 });
 
 document.addEventListener("DOMContentLoaded", () => {

@@ -27,7 +27,7 @@ module.exports = {
         'drop-shadow': '0px 4px 4px 0px #00000040',
         'big-shadow': '0px 48px 50px -46px #00000040',
         'shadow-soft': '0px 23px 18px -14px #00000040',
-
+        'tour-card-mobile': '0px 22px 17.1px -15px #00000040',
       },
       colors: {
         primary: {

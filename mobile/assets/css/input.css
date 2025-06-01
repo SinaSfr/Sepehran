@@ -125,7 +125,6 @@
   color: inherit;
 }
 
-
 .scrollbar-tour-category::-webkit-scrollbar {
   width: 4px;
 }
@@ -169,22 +168,57 @@
 
 .custom-dashed-left {
   width: 2px;
+  background-color: #f9fafb;
   background-image: repeating-linear-gradient(
     to bottom,
-    #000,
-    #000 8px,
-    transparent 8px,
-    transparent 16px
+    #1e2128,
+    #1e2128 16px,
+    transparent 16px,
+    transparent 28px
+  );
+  transition: background-color 0.3s ease;
+}
+.group:hover .custom-dashed-left {
+  background-color: var(--primary-500);
+  background-image: repeating-linear-gradient(
+    to bottom,
+    #ffffff,
+    #ffffff 16px,
+    transparent 16px,
+    transparent 28px
   );
 }
 
-.line-clamp--1{
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+.custom-dashed-bottom {
+  height: 3px;
+  background-color: #f9fafb;
+  background-image: repeating-linear-gradient(
+    to right,
+    #525252,
+    #525252 16px,
+    transparent 16px,
+    transparent 28px
+  );
+  transition: background-color 0.3s ease;
+}
+.group:hover .custom-dashed-bottom {
+  background-color: var(--primary-500);
+  background-image: repeating-linear-gradient(
+    to right,
+    #ffffff,
+    #ffffff 16px,
+    transparent 16px,
+    transparent 28px
+  );
+}
+
+.line-clamp--1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .swiper-big-img {
@@ -214,6 +248,17 @@
 }
 
 .vertical-border:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  right: 7.5rem;
+  top: -1.25rem;
+  width: 2px;
+  height: 116px;
+  background-image: url("data:image/svg+xml,%3Csvg width='2' height='116' viewBox='0 0 2 116' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='1' y1='4.37114e-08' x2='0.999995' y2='116' stroke='%23D7DBE1' stroke-width='2' stroke-dasharray='12 12'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+
+.vertical-border-mobile:not(:nth-child(even)):not(:last-child)::before {
   content: "";
   position: absolute;
   right: 7.5rem;

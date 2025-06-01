@@ -51,7 +51,7 @@
   --special-2: #ffffff80;
   --special-3: #dfdfdfb2;
   --special-4: #ffffffb2;
-
+  --special-5: #e3e3e3e5;
   ---bg: url("");
   --default-bg: url("../images/default-back.jpg");
   --tourlist-bg: url("../images/tour-list-back.jpg");
@@ -125,6 +125,24 @@
   color: inherit;
 }
 
+.scrollbar-tour-category::-webkit-scrollbar {
+  width: 4px;
+}
+
+.scrollbar-tour-category::-webkit-scrollbar-track {
+  background: #f3f4f6;
+  border-radius: 3px;
+}
+
+.scrollbar-tour-category::-webkit-scrollbar-thumb {
+  background: var(--primary-600);
+  border-radius: 3px;
+}
+
+.scrollbar-tour-category::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary-300);
+}
+
 .border-bottom-gradient {
   border-bottom: 1px solid;
   border-image-source: radial-gradient(
@@ -161,14 +179,23 @@
   transition: background-color 0.3s ease;
 }
 .group:hover .custom-dashed-left {
-  background-color: var(--primary-500); 
-   background-image: repeating-linear-gradient(
+  background-color: var(--primary-500);
+  background-image: repeating-linear-gradient(
     to bottom,
     #ffffff,
     #ffffff 16px,
     transparent 16px,
     transparent 28px
   );
+}
+
+.line-clamp--1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .swiper-big-img {
