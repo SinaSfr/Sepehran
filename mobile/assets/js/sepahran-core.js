@@ -353,7 +353,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function toggleItems() {
-    if (items[visibleCount].classList.contains("hidden")) {
+    if (items.length > visibleCount && items[visibleCount].classList.contains("hidden")) {
       showItems();
       toggleBtn.textContent = "مشاهده کمتر";
     } else {
@@ -362,7 +362,7 @@ document.addEventListener("DOMContentLoaded", function () {
           item.classList.add("opacity-0");
         }
       });
-
+  
       setTimeout(() => {
         items.forEach((item, index) => {
           if (index >= visibleCount) {
@@ -712,12 +712,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     btn.addEventListener("click", () => {
       const isOpen = container.classList.contains("open");
+      const isMobile = window.innerWidth < 1024;
+      const closedHeight = isMobile ? "620px" : "30rem";
 
       if (isOpen) {
         const contentHeight = container.scrollHeight;
         container.style.maxHeight = contentHeight + "px";
         requestAnimationFrame(() => {
-          container.style.maxHeight = "30rem";
+          container.style.maxHeight = closedHeight;
           container.classList.remove("open");
         });
 
@@ -725,7 +727,7 @@ document.addEventListener("DOMContentLoaded", () => {
         btn.textContent = "مشاهده همه";
       } else {
         const contentHeight = container.scrollHeight;
-        container.style.maxHeight = "30rem";
+        container.style.maxHeight = closedHeight;
         container.classList.add("open");
 
         requestAnimationFrame(() => {
