@@ -204,121 +204,191 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-document.addEventListener("DOMContentLoaded", function () {
-  const filterBtn = document.getElementById("filterBtn");
-  const filterMenu = document.getElementById("filterMenu");
-  const filterMenuClose = document.getElementById("filterMenuClose");
-  const filterIcon = document.getElementById("filterIcon");
+// document.addEventListener("DOMContentLoaded", () => {
+//   const minInput = document.getElementById("minRange");
+//   const maxInput = document.getElementById("maxRange");
+//   const rangeTrack = document.getElementById("rangeTrack");
+//   const minValText = document.getElementById("minValue");
+//   const maxValText = document.getElementById("maxValue");
 
-  if (filterBtn && filterMenu && filterMenuClose && filterIcon) {
-    filterBtn.addEventListener("click", () => {
-      filterMenu.classList.remove("translate-y-full");
-      document.body.classList.add("overflow-hidden");
+//   const tourContainer = document.querySelector(".tourL-tour-list");
+//   const tourCards = tourContainer
+//     ? Array.from(tourContainer.querySelectorAll(".tourL-tour-card"))
+//     : [];
 
-      // تغییر کلاس‌های دکمه
-      filterBtn.classList.remove("bg-white");
-      filterBtn.classList.add("bg-primary-500", "shadow-small-btn-shadow", "text-white");
+//   if (!minInput || !maxInput || !rangeTrack || !minValText || !maxValText) {
+//     return;
+//   }
 
-      // تغییر stroke آیکون به secondary-500 (مثلاً #11C086)
-      filterIcon.querySelectorAll("path, ellipse").forEach(el => {
-        el.setAttribute("stroke", "#11C086"); // secondary-500
-      });
-    });
+//   function formatPrice(val) {
+//     return val.toLocaleString("fa-IR");
+//   }
 
-    filterMenuClose.addEventListener("click", () => {
-      filterMenu.classList.add("translate-y-full");
-      document.body.classList.remove("overflow-hidden");
+//   function parsePrice(priceString) {
+//     let cleaned = priceString.replace(/[.,\/\s]/g, "");
+//     return parseInt(cleaned, 10) || 0;
+//   }
 
-      // برگرداندن کلاس‌های دکمه
-      filterBtn.classList.remove("bg-primary-500", "shadow-small-btn-shadow", "text-white");
-      filterBtn.classList.add("bg-white");
+//   let prices = tourCards
+//     .map((card) => {
+//       const priceElem = card.querySelector(".tourL-tour-price");
+//       if (!priceElem) return 0;
+//       return parsePrice(priceElem.textContent);
+//     })
+//     .filter((p) => p > 0);
 
-      // برگرداندن stroke آیکون به رنگ اولیه
-      filterIcon.querySelectorAll("path, ellipse").forEach(el => {
-        el.setAttribute("stroke", "#33363F");
-      });
-    });
-  }
-});
+//   const REAL_MIN = Math.min(...prices);
+//   const REAL_MAX = Math.max(...prices);
 
+//   function updateTrack() {
+//     let min = parseInt(minInput.value);
+//     let max = parseInt(maxInput.value);
 
-document.addEventListener("DOMContentLoaded", () => {
-  const minInput = document.getElementById("minRange");
-  const maxInput = document.getElementById("maxRange");
-  const rangeTrack = document.getElementById("rangeTrack");
-  const minValText = document.getElementById("minValue");
-  const maxValText = document.getElementById("maxValue");
+//     if (min > max) {
+//       [min, max] = [max, min];
+//     }
 
-  const tourContainer = document.querySelector(".tourL-tour-list");
-  const tourCards = tourContainer
-    ? Array.from(tourContainer.querySelectorAll(".tourL-tour-card"))
-    : [];
+//     const left = 100 - max;
+//     const width = max - min;
 
-  if (!minInput || !maxInput || !rangeTrack || !minValText || !maxValText) {
-    return;
-  }
+//     rangeTrack.style.left = `${left}%`;
+//     rangeTrack.style.width = `${width}%`;
 
-  function formatPrice(val) {
-    return val.toLocaleString("fa-IR");
-  }
+//     const realMin = Math.floor(REAL_MIN + ((REAL_MAX - REAL_MIN) * min) / 100);
+//     const realMax = Math.floor(REAL_MIN + ((REAL_MAX - REAL_MIN) * max) / 100);
 
-  function parsePrice(priceString) {
-    let cleaned = priceString.replace(/[.,\/\s]/g, "");
-    return parseInt(cleaned, 10) || 0;
-  }
+//     minValText.textContent = formatPrice(realMin);
+//     maxValText.textContent = formatPrice(realMax);
 
-  let prices = tourCards
-    .map((card) => {
-      const priceElem = card.querySelector(".tourL-tour-price");
-      if (!priceElem) return 0;
-      return parsePrice(priceElem.textContent);
-    })
-    .filter((p) => p > 0);
+//     tourCards.forEach((card) => {
+//       const priceElem = card.querySelector(".tourL-tour-price");
+//       if (!priceElem) return;
 
-  const REAL_MIN = Math.min(...prices);
-  const REAL_MAX = Math.max(...prices);
+//       const cardPrice = parsePrice(priceElem.textContent);
+//       if (cardPrice >= realMin && cardPrice <= realMax) {
+//         card.classList.remove("hidden");
+//         card.classList.add("flex");
+//       } else {
+//         card.classList.add("hidden");
+//         card.classList.remove("flex");
+//       }
+//     });
+//   }
 
-  function updateTrack() {
-    let min = parseInt(minInput.value);
-    let max = parseInt(maxInput.value);
+//   minInput.addEventListener("input", updateTrack);
+//   maxInput.addEventListener("input", updateTrack);
 
-    if (min > max) {
-      [min, max] = [max, min];
-    }
+//   updateTrack();
+// });
 
-    const left = 100 - max;
-    const width = max - min;
+// document.addEventListener("DOMContentLoaded", function () {
+//   const filterButtons = document.querySelectorAll(".day-tour-filter");
+//   const tourCards = document.querySelectorAll(".tourL-tour-card");
 
-    rangeTrack.style.left = `${left}%`;
-    rangeTrack.style.width = `${width}%`;
+//   const normalizeText = (text) => text.replace(/\s/g, "").normalize("NFKD");
 
-    const realMin = Math.floor(REAL_MIN + ((REAL_MAX - REAL_MIN) * min) / 100);
-    const realMax = Math.floor(REAL_MIN + ((REAL_MAX - REAL_MIN) * max) / 100);
+//   const selectedDays = new Set();
 
-    minValText.textContent = formatPrice(realMin);
-    maxValText.textContent = formatPrice(realMax);
+//   filterButtons.forEach((button) => {
+//     button.addEventListener("click", function () {
+//       const selectedDay = normalizeText(button.textContent);
 
-    tourCards.forEach((card) => {
-      const priceElem = card.querySelector(".tourL-tour-price");
-      if (!priceElem) return;
+//       // انتخاب یا لغو انتخاب
+//       if (selectedDays.has(selectedDay)) {
+//         selectedDays.delete(selectedDay);
+//         button.classList.remove("border-primary-500", "text-primary-500");
+//       } else {
+//         selectedDays.add(selectedDay);
+//         button.classList.add("border-primary-500", "text-primary-500");
+//       }
 
-      const cardPrice = parsePrice(priceElem.textContent);
-      if (cardPrice >= realMin && cardPrice <= realMax) {
-        card.classList.remove("hidden");
-        card.classList.add("flex");
-      } else {
-        card.classList.add("hidden");
-        card.classList.remove("flex");
-      }
-    });
-  }
+//       filterCards(); // فیلتر کن
+//     });
+//   });
 
-  minInput.addEventListener("input", updateTrack);
-  maxInput.addEventListener("input", updateTrack);
+//   // پشتیبانی از فیلتر ایرلاین همزمان (درصورتی که قبلی رو هم اد کردی)
+//   const airlineInputs = document.querySelectorAll(".airline-hotel-input");
+//   const selectedAirlines = new Set();
 
-  updateTrack();
-});
+//   airlineInputs.forEach((input) => {
+//     input.addEventListener("click", function () {
+//       const parent = input.closest('.airline-item');
+//       const airlineName = normalizeText(parent.querySelector('.airline-item-name').innerText);
 
+//       if (selectedAirlines.has(airlineName)) {
+//         selectedAirlines.delete(airlineName);
+//         input.classList.remove('bg-primary-500');
+//       } else {
+//         selectedAirlines.add(airlineName);
+//         input.classList.add('bg-primary-500');
+//       }
+
+//       filterCards(); // فیلتر کن
+//     });
+//   });
+
+//   // تابع فیلتر نهایی
+//   function filterCards() {
+//     tourCards.forEach((card) => {
+//       const tourDay = card.querySelector(".tourL-tour-day");
+//       const airline = card.querySelector(".tourL-tour-airline");
+
+//       const cardDay = tourDay ? normalizeText(tourDay.textContent) : "";
+//       const cardAirline = airline ? normalizeText(airline.textContent) : "";
+
+//       const dayMatch = selectedDays.size === 0 || selectedDays.has(cardDay);
+//       const airlineMatch = selectedAirlines.size === 0 || Array.from(selectedAirlines).some(name => cardAirline.includes(name));
+
+//       card.style.display = dayMatch && airlineMatch ? "flex" : "none";
+//     });
+//   }
+// });
+
+// document.addEventListener("DOMContentLoaded", function () {
+//   const normalizeText = (text) => text.replace(/\s/g, '').normalize('NFKD');
+
+//   const tourCards = document.querySelectorAll('.tourL-tour-card');
+//   const airlineInputs = document.querySelectorAll('.airline-hotel-input');
+
+//   const selectedAirlines = new Set();
+
+//   airlineInputs.forEach((input) => {
+//     input.addEventListener("click", function () {
+//       const parent = input.closest('.airline-item');
+//       const airlineName = normalizeText(parent.querySelector('.airline-item-name').innerText);
+
+//       // toggle انتخاب
+//       if (selectedAirlines.has(airlineName)) {
+//         selectedAirlines.delete(airlineName);
+//         input.classList.remove('bg-primary-500');
+//       } else {
+//         selectedAirlines.add(airlineName);
+//         input.classList.add('bg-primary-500');
+//       }
+
+//       // اعمال فیلتر
+//       tourCards.forEach((card) => {
+//         const airlineEl = card.querySelector('.tourL-tour-airline');
+//         if (!airlineEl) return;
+
+//         const cardAirline = normalizeText(airlineEl.innerText);
+
+//         if (selectedAirlines.size === 0) {
+//           card.style.display = 'flex'; // همه رو نشون بده
+//           return;
+//         }
+
+//         const isMatch = Array.from(selectedAirlines).some((selected) =>
+//           cardAirline.includes(selected)
+//         );
+
+//         card.style.display = isMatch ? 'flex' : 'none';
+//       });
+//     });
+//   });
+// });
+
+// see-more-airline-items
 document.addEventListener("DOMContentLoaded", function () {
   const container = document.querySelector(".checkboxList");
   const toggleBtn = document.querySelector(".toggle-btn");
@@ -353,7 +423,10 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function toggleItems() {
-    if (items.length > visibleCount && items[visibleCount].classList.contains("hidden")) {
+    if (
+      items.length > visibleCount &&
+      items[visibleCount].classList.contains("hidden")
+    ) {
       showItems();
       toggleBtn.textContent = "مشاهده کمتر";
     } else {
@@ -362,7 +435,7 @@ document.addEventListener("DOMContentLoaded", function () {
           item.classList.add("opacity-0");
         }
       });
-  
+
       setTimeout(() => {
         items.forEach((item, index) => {
           if (index >= visibleCount) {
@@ -376,6 +449,391 @@ document.addEventListener("DOMContentLoaded", function () {
 
   hideItems();
   toggleBtn?.addEventListener("click", toggleItems);
+});
+
+// open-filter-tour-list-mobile and open-filter-hotel
+document.addEventListener("DOMContentLoaded", () => {
+  function setupFilterMenu(buttonId, menuId, closeId) {
+    const btn = document.getElementById(buttonId);
+    const menu = document.getElementById(menuId);
+    const closeBtn = document.getElementById(closeId);
+
+    if (btn && menu && closeBtn) {
+      btn.addEventListener("click", () => {
+        menu.classList.remove("translate-y-full");
+        document.body.classList.add("overflow-hidden");
+      });
+
+      closeBtn.addEventListener("click", () => {
+        menu.classList.add("translate-y-full");
+        document.body.classList.remove("overflow-hidden");
+      });
+    }
+  }
+
+  setupFilterMenu("filterBtn", "filterMenu", "filterMenuClose");
+  setupFilterMenu("filterBtnHotel", "filterMenuHotel", "filterMenuCloseHotel");
+});
+
+// filter-tour-list
+document.addEventListener("DOMContentLoaded", () => {
+  const normalizeText = (text) => text.replace(/\s/g, "").normalize("NFKD");
+
+  const tourCards = document.querySelectorAll(".tourL-tour-card");
+  const filterButtons = document.querySelectorAll(".day-tour-filter");
+  const airlineInputs = document.querySelectorAll(".airline-hotel-input");
+
+  const minInput = document.getElementById("minRange");
+  const maxInput = document.getElementById("maxRange");
+  const rangeTrack = document.getElementById("rangeTrack");
+  const minValText = document.getElementById("minValue");
+  const maxValText = document.getElementById("maxValue");
+
+  const selectedDays = new Set();
+  const selectedAirlines = new Set();
+
+  const formatPrice = (val) => val.toLocaleString("fa-IR");
+  const parsePrice = (priceString) => {
+    let cleaned = priceString.replace(/[.,\/\s]/g, "");
+    return parseInt(cleaned, 10) || 0;
+  };
+
+  let prices = Array.from(tourCards)
+    .map((card) => {
+      const priceElem = card.querySelector(".tourL-tour-price");
+      return priceElem ? parsePrice(priceElem.textContent) : 0;
+    })
+    .filter((p) => p > 0);
+
+  const REAL_MIN = Math.min(...prices);
+  const REAL_MAX = Math.max(...prices);
+  let realMin = REAL_MIN;
+  let realMax = REAL_MAX;
+
+  function filterCards() {
+    tourCards.forEach((card) => {
+      const tourDay = card.querySelector(".tourL-tour-day");
+      const airline = card.querySelector(".tourL-tour-airline");
+      const priceElem = card.querySelector(".tourL-tour-price");
+
+      const cardDay = tourDay ? normalizeText(tourDay.textContent) : "";
+      const cardAirline = airline ? normalizeText(airline.textContent) : "";
+      const cardPrice = priceElem ? parsePrice(priceElem.textContent) : 0;
+
+      const dayMatch = selectedDays.size === 0 || selectedDays.has(cardDay);
+      const airlineMatch =
+        selectedAirlines.size === 0 ||
+        Array.from(selectedAirlines).some((name) => cardAirline.includes(name));
+      const priceMatch = cardPrice >= realMin && cardPrice <= realMax;
+
+      card.style.display =
+        dayMatch && airlineMatch && priceMatch ? "flex" : "none";
+    });
+
+    updateFilterCount();
+  }
+
+  function updateFilterCount() {
+    const filterCountEl = document.getElementById("filterBtnCount");
+    const filterBtn = document.getElementById("filterBtn");
+    const filterIcon = document.getElementById("filterIcon");
+
+    if (!filterCountEl || !filterBtn || !filterIcon) return;
+
+    let count = 0;
+
+    if (selectedDays.size > 0) count++;
+    if (selectedAirlines.size > 0) count++;
+    if (realMin > REAL_MIN || realMax < REAL_MAX) count++;
+
+    if (count > 0) {
+      filterCountEl.classList.remove("hidden");
+      filterCountEl.classList.add("flex");
+      filterCountEl.textContent = count;
+
+      filterBtn.classList.remove("bg-white");
+      filterBtn.classList.add(
+        "bg-primary-500",
+        "shadow-small-btn-shadow",
+        "text-white"
+      );
+
+      filterIcon.querySelectorAll("path, ellipse").forEach((el) => {
+        el.setAttribute("stroke", "#11C086");
+      });
+    } else {
+      filterCountEl.classList.add("hidden");
+      filterCountEl.classList.remove("flex");
+      filterCountEl.textContent = "";
+
+      filterBtn.classList.remove(
+        "bg-primary-500",
+        "shadow-small-btn-shadow",
+        "text-white"
+      );
+      filterBtn.classList.add("bg-white");
+
+      filterIcon.querySelectorAll("path, ellipse").forEach((el) => {
+        el.setAttribute("stroke", "#33363F");
+      });
+    }
+  }
+
+  filterButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      const selectedDay = normalizeText(button.textContent);
+      const isSelected = selectedDays.has(selectedDay);
+
+      button.classList.toggle("border-primary-500", !isSelected);
+      button.classList.toggle("text-primary-500", !isSelected);
+
+      if (isSelected) {
+        selectedDays.delete(selectedDay);
+      } else {
+        selectedDays.add(selectedDay);
+      }
+
+      filterCards();
+    });
+  });
+
+  airlineInputs.forEach((input) => {
+    input.addEventListener("click", function () {
+      const parent = input.closest(".airline-item");
+      const airlineName = normalizeText(
+        parent.querySelector(".airline-item-name").innerText
+      );
+
+      const isSelected = selectedAirlines.has(airlineName);
+      input.classList.toggle("bg-primary-500", !isSelected);
+
+      if (isSelected) {
+        selectedAirlines.delete(airlineName);
+      } else {
+        selectedAirlines.add(airlineName);
+      }
+
+      filterCards();
+    });
+  });
+
+  function updatePriceRange() {
+    if (!minInput || !maxInput || !rangeTrack || !minValText || !maxValText)
+      return;
+
+    let min = parseInt(minInput.value);
+    let max = parseInt(maxInput.value);
+
+    if (min > max) [min, max] = [max, min];
+
+    const left = 100 - max;
+    const width = max - min;
+
+    rangeTrack.style.left = `${left}%`;
+    rangeTrack.style.width = `${width}%`;
+
+    realMin = Math.floor(REAL_MIN + ((REAL_MAX - REAL_MIN) * min) / 100);
+    realMax = Math.floor(REAL_MIN + ((REAL_MAX - REAL_MIN) * max) / 100);
+
+    minValText.textContent = formatPrice(realMin);
+    maxValText.textContent = formatPrice(realMax);
+
+    filterCards();
+  }
+
+  if (minInput) {
+    minInput.addEventListener("input", updatePriceRange);
+  }
+  if (maxInput) {
+    maxInput.addEventListener("input", updatePriceRange);
+  }
+
+  updatePriceRange();
+});
+
+// filter-hotel-card
+document.addEventListener("DOMContentLoaded", () => {
+  const normalizeText = (text) =>
+    text ? text.replace(/\s|\./g, "").normalize("NFKD").toLowerCase() : "";
+
+  const selectedStars = new Set();
+  const selectedServices = new Set();
+  let hotelNameQuery = "";
+
+  const hotelNameInput = document.querySelector(".hotel-name-input");
+  const starInputs = document.querySelectorAll(".star-hotel-input");
+  const serviceInputs = document.querySelectorAll(".filter-hotel-services");
+  const minRange = document.getElementById("minRange");
+  const maxRange = document.getElementById("maxRange");
+  const minValueSpan = document.getElementById("minValue");
+  const maxValueSpan = document.getElementById("maxValue");
+
+  const hotelCards = document.querySelectorAll(".hotel-card");
+
+  const parsePrice = (text) => parseInt(text.replace(/[^\d]/g, ""), 10) || 0;
+
+  const allPrices = Array.from(hotelCards)
+    .map((card) => {
+      const priceElem = card.querySelector(".hotel-card-price");
+      return priceElem ? parsePrice(priceElem.textContent) : 0;
+    })
+    .filter((p) => p > 0);
+
+  const REAL_MIN = allPrices.length > 0 ? Math.min(...allPrices) : 0;
+  const REAL_MAX = allPrices.length > 0 ? Math.max(...allPrices) : 0;
+
+  let realMin = REAL_MIN;
+  let realMax = REAL_MAX;
+
+  function updateFilterCount() {
+    const filterCountEl = document.getElementById("filterBtnCountHotel");
+    const filterBtn = document.getElementById("filterBtnHotel");
+    const filterIcon = document.getElementById("filterIconHotel");
+
+    if (!filterCountEl || !filterBtn || !filterIcon) return;
+
+    let count = 0;
+
+    if (selectedStars.size > 0) count++;
+    if (selectedServices.size > 0) count++;
+    if (realMin > REAL_MIN || realMax < REAL_MAX) count++;
+    if (hotelNameQuery.trim() !== "") count++; 
+
+    if (count > 0) {
+      filterCountEl.classList.remove("hidden");
+      filterCountEl.classList.add("flex");
+      filterCountEl.textContent = count;
+
+      filterBtn.classList.remove("bg-white");
+      filterBtn.classList.add(
+        "bg-primary-500",
+        "shadow-small-btn-shadow",
+        "text-white"
+      );
+
+      filterIcon.querySelectorAll("path, ellipse").forEach((el) => {
+        el.setAttribute("stroke", "#11C086");
+      });
+    } else {
+      filterCountEl.classList.add("hidden");
+      filterCountEl.classList.remove("flex");
+      filterCountEl.textContent = "";
+
+      filterBtn.classList.remove(
+        "bg-primary-500",
+        "shadow-small-btn-shadow",
+        "text-white"
+      );
+      filterBtn.classList.add("bg-white");
+
+      filterIcon.querySelectorAll("path, ellipse").forEach((el) => {
+        el.setAttribute("stroke", "#33363F");
+      });
+    }
+  }
+
+  function filterCardsExtended() {
+    hotelCards.forEach((card) => {
+      const starElems = card.querySelectorAll(".hotel-card-star");
+      const serviceElems = card.querySelectorAll(".hotel-card-service");
+      const hotelNameElem = card.querySelector(".hotel-card-title");
+      const priceElem = card.querySelector(".hotel-card-price");
+
+      const cardStars = Array.from(starElems).map((el) =>
+        normalizeText(el.textContent)
+      );
+
+      const cardServices = Array.from(serviceElems).map((el) =>
+        normalizeText(el.textContent)
+      );
+
+      const cardHotelName = normalizeText(hotelNameElem?.textContent);
+      const cardPrice = priceElem ? parsePrice(priceElem.textContent) : 0;
+
+      const starMatch =
+        selectedStars.size === 0 ||
+        cardStars.some((star) => selectedStars.has(star));
+
+      const serviceMatch =
+        selectedServices.size === 0 ||
+        cardServices.some((service) => selectedServices.has(service));
+
+      const nameMatch =
+        !hotelNameQuery ||
+        cardHotelName.includes(normalizeText(hotelNameQuery));
+
+      const priceMatch = cardPrice >= realMin && cardPrice <= realMax;
+
+      card.style.display =
+        starMatch && serviceMatch && nameMatch && priceMatch ? "flex" : "none";
+    });
+
+    updateFilterCount();
+  }
+
+  starInputs.forEach((el) => {
+    el.addEventListener("click", () => {
+      const wrapper = el.closest(".star-hotel-wrapper");
+      const rawText = wrapper?.querySelector(".star-hotel")?.textContent || "";
+      const match = normalizeText(rawText).match(/(\d+)ستاره/);
+      const label = match ? match[0] : "";
+
+      if (!label) return;
+
+      const isActive = selectedStars.has(label);
+      el.classList.toggle("bg-primary-500", !isActive);
+      el.classList.toggle("border-primary-500", !isActive);
+
+      isActive ? selectedStars.delete(label) : selectedStars.add(label);
+      filterCardsExtended();
+    });
+  });
+
+  serviceInputs.forEach((el) => {
+    el.addEventListener("click", () => {
+      const labelElem = el.querySelector(".filter-hotel-services-name");
+      const label = normalizeText(
+        labelElem ? labelElem.textContent : el.textContent
+      );
+
+      const isActive = selectedServices.has(label);
+      el.classList.toggle("text-primary-500", !isActive);
+      el.classList.toggle("border-primary-500", !isActive);
+
+      isActive ? selectedServices.delete(label) : selectedServices.add(label);
+      filterCardsExtended();
+    });
+  });
+
+  if (hotelNameInput) {
+    hotelNameInput.addEventListener("input", () => {
+      hotelNameQuery = hotelNameInput.value;
+      filterCardsExtended();
+    });
+  }
+
+  function updatePriceValues() {
+    if (!minRange || !maxRange || !minValueSpan || !maxValueSpan) return;
+
+    let min = parseInt(minRange.value);
+    let max = parseInt(maxRange.value);
+
+    if (min > max) [min, max] = [max, min];
+
+    realMin = Math.floor(REAL_MIN + ((REAL_MAX - REAL_MIN) * min) / 100);
+    realMax = Math.floor(REAL_MIN + ((REAL_MAX - REAL_MIN) * max) / 100);
+
+    minValueSpan.textContent = realMin.toLocaleString("fa-IR");
+    maxValueSpan.textContent = realMax.toLocaleString("fa-IR");
+
+    filterCardsExtended();
+  }
+
+  if (minRange) minRange.addEventListener("input", updatePriceValues);
+  if (maxRange) maxRange.addEventListener("input", updatePriceValues);
+
+  updatePriceValues();
+  filterCardsExtended();
 });
 
 // faq-box
@@ -573,26 +1031,6 @@ document.addEventListener("DOMContentLoaded", function () {
         whiteSun.classList.add("hidden");
       }
     }
-  });
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-  const starHotelInput = document.querySelectorAll(".star-hotel-input");
-
-  starHotelInput.forEach((inp) => {
-    inp.addEventListener("click", function () {
-      inp.classList.toggle("bg-primary-500");
-    });
-  });
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-  const starHotelInput = document.querySelectorAll(".airline-hotel-input");
-
-  starHotelInput.forEach((inp) => {
-    inp.addEventListener("click", function () {
-      inp.classList.toggle("bg-primary-500");
-    });
   });
 });
 

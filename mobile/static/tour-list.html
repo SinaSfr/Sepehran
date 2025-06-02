@@ -346,7 +346,7 @@
             </div>
         </section>
 
-        <section class="mx-auto max-lg:w-[92%] max-xl:w-[97%] xl:max-w-7xl mt-7">
+        <section class="relative mx-auto max-lg:w-[92%] max-xl:w-[97%] xl:max-w-7xl mt-7">
             <div
                 class="flex items-center gap-4 mb-4 bg-gray-100 p-2 rounded-lg overflow-x-auto whitespace-nowrap scrollbar-thin">
                 <div>
@@ -382,9 +382,9 @@
                                     <div class="range-container">
                                         <div class="range-values flex justify-between">
                                             <span class="text-xs font-light">ت <span
-                                                    id="minValue">۱۰,۰۰۰,۰۰۰</span></span>
+                                                    id="minValue"></span></span>
                                             <span class="text-xs font-light">ت <span
-                                                    id="maxValue">۱۰۰,۰۰۰,۰۰۰</span></span>
+                                                    id="maxValue"></span></span>
                                         </div>
 
                                         <div class="slider-wrapper relative h-8 max-w-md mx-auto">
@@ -420,7 +420,7 @@
                                                     </svg>
 
                                                 </span>
-                                                Turkish
+                                                <span class="airline-item-name">ترکیش ایرلاین</span>
                                             </span>
                                             <img src="../assets/images/turkish-airline.png" alt="" width="74"
                                                 height="20" loading="lazy" />
@@ -513,12 +513,12 @@
                                 </div>
                                 <div>
                                     <h3 class="text-sm font-bold mb-2">تعداد روز های تور:</h3>
-                                    <div class="flex items-center justify-between">
-                                        <span class="p-4 bg-white border border-gray-50 rounded-lg text-sm font-bold">6
+                                    <div class="day-tour-filter-wrapper flex items-center justify-between">
+                                        <span class="day-tour-filter p-4 bg-white border border-gray-50 rounded-lg text-sm font-bold">6
                                             روزه</span>
-                                        <span class="p-4 bg-white border border-gray-50 rounded-lg text-sm font-bold">6
+                                        <span class="day-tour-filter p-4 bg-white border border-gray-50 rounded-lg text-sm font-bold">6
                                             روزه</span>
-                                        <span class="p-4 bg-white border border-gray-50 rounded-lg text-sm font-bold">6
+                                        <span class="day-tour-filter p-4 bg-white border border-gray-50 rounded-lg text-sm font-bold">6
                                             روزه</span>
                                     </div>
                                 </div>
@@ -529,7 +529,7 @@
 
                 <span class="font-semibold text-sm">مرتب سازی:</span>
 
-                <div class="relative">
+                <div class="">
                     <button id="priceToggleButton"
                         class="flex items-center gap-2 rounded-lg font-extrabold bg-white border border-gray-50 py-3 px-6 transition-all duration-300">
                         قیمت
@@ -541,7 +541,7 @@
                     </button>
 
                     <div id="priceDropdownMenu"
-                        class="flex-col gap-3 absolute z-30 right-0 mt-2 w-64 py-4 px-3 rounded-md shadow-lg bg-white border hidden">
+                        class="flex-col gap-3 absolute z-30 mx-auto left-0 right-0 mt-2 w-64 py-4 px-3 rounded-md shadow-lg bg-white border hidden">
 
                         <div class="group price-option cursor-pointer p-1 border-b border-gray-100"
                             data-price="high-to-low">
@@ -664,7 +664,7 @@
                                             <use xlink:href="../assets/images/sprite-icons.svg#icon-sun-white">
                                             </use>
                                         </svg>
-                                        7 روزه
+                                        <span class="tourL-tour-day">6 روزه</span>
                                     </span>
                                     <span
                                         class="flex items-center gap-1 text-sm text-primary-500 font-bold transition-all duration-300 group-hover:text-white">
@@ -678,7 +678,7 @@
                                             <use xlink:href="../assets/images/sprite-icons.svg#icon-sun-white">
                                             </use>
                                         </svg>
-                                        ترکیش ایرلاین
+                                       <span class="tourL-tour-airline">ترکیش ایرلاین</span>
                                     </span>
                                     <span
                                         class="flex items-center gap-1 text-sm text-primary-500 font-bold transition-all duration-300 group-hover:text-white">
@@ -718,7 +718,7 @@
                                     قیمت از:</span>
                                 <span
                                     class="flex items-center gap-2 text-sm font-bold mb-6 transition-all duration-300 group-hover:text-white"><span
-                                        class="text-[32px] text-primary-500 font-bold transition-all duration-300 group-hover:text-secondary-500 tourL-tour-price">70.900.000</span>
+                                        class="text-[32px] text-primary-500 font-bold transition-all duration-300 group-hover:text-secondary-500 tourL-tour-price">68.900.000</span>
                                     <span class="text-sm font-bold">تومان</span>
                                 </span>
                             </div>

@@ -137,8 +137,8 @@
                             <h3 class="text-sm font-bold mb-2">قیمت تور:</h3>
                             <div class="range-container">
                                 <div class="range-values flex justify-between">
-                                    <span class="text-xs font-light">ت <span id="minValue">۱۰,۰۰۰,۰۰۰</span></span>
-                                    <span class="text-xs font-light">ت <span id="maxValue">۱۰۰,۰۰۰,۰۰۰</span></span>
+                                    <span class="text-xs font-light">ت <span id="minValue"></span></span>
+                                    <span class="text-xs font-light">ت <span id="maxValue"></span></span>
                                 </div>
 
                                 <div class="slider-wrapper relative h-8 max-w-md mx-auto">
@@ -163,7 +163,7 @@
                                     class="airline-item flex items-center justify-between transition-all duration-500 ease-in-out">
                                     <span class="flex items-center gap-3 text-sm font-bold">
                                         <span
-                                            class="airline-hotel-input flex items-center justify-center w-6 h-6 border border-primary-100 rounded-lg">
+                                            class="airline-hotel-input flex items-center justify-center w-6 h-6 border border-primary-100 rounded-lg cursor-pointer">
                                             <svg width="17" height="16" viewBox="0 0 17 16" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path
@@ -172,7 +172,7 @@
                                             </svg>
 
                                         </span>
-                                        Turkish
+                                        <span class="airline-item-name">ترکیش ایرلاین</span>
                                     </span>
                                     <img src="../assets/images/turkish-airline.png" alt="" width="74" height="20"
                                         loading="lazy" />
@@ -182,7 +182,7 @@
                                     class="airline-item flex items-center justify-between transition-all duration-500 ease-in-out">
                                     <span class="flex items-center gap-3 text-sm font-bold">
                                         <span
-                                            class="airline-hotel-input flex items-center justify-center w-6 h-6 border border-primary-100 rounded-lg">
+                                            class="airline-hotel-input flex items-center justify-center w-6 h-6 border border-primary-100 rounded-lg cursor-pointer">
                                             <svg width="17" height="16" viewBox="0 0 17 16" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path
@@ -191,7 +191,7 @@
                                             </svg>
 
                                         </span>
-                                        Turkish
+                                        <span class="airline-item-name">Turkish</span>
                                     </span>
                                     <img src="../assets/images/turkish-airline.png" alt="" width="74" height="20"
                                         loading="lazy" />
@@ -201,7 +201,7 @@
                                     class="airline-item flex items-center justify-between transition-all duration-500 ease-in-out">
                                     <span class="flex items-center gap-3 text-sm font-bold">
                                         <span
-                                            class="airline-hotel-input flex items-center justify-center w-6 h-6 border border-primary-100 rounded-lg">
+                                            class="airline-hotel-input flex items-center justify-center w-6 h-6 border border-primary-100 rounded-lg cursor-pointer">
                                             <svg width="17" height="16" viewBox="0 0 17 16" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path
@@ -210,7 +210,7 @@
                                             </svg>
 
                                         </span>
-                                        Turkish
+                                        <span class="airline-item-name">Turkish</span>
                                     </span>
                                     <img src="../assets/images/turkish-airline.png" alt="" width="74" height="20"
                                         loading="lazy" />
@@ -220,7 +220,7 @@
                                     class="airline-item flex items-center justify-between transition-all duration-500 ease-in-out">
                                     <span class="flex items-center gap-3 text-sm font-bold">
                                         <span
-                                            class="airline-hotel-input flex items-center justify-center w-6 h-6 border border-primary-100 rounded-lg">
+                                            class="airline-hotel-input flex items-center justify-center w-6 h-6 border border-primary-100 rounded-lg cursor-pointer">
                                             <svg width="17" height="16" viewBox="0 0 17 16" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path
@@ -229,7 +229,7 @@
                                             </svg>
 
                                         </span>
-                                        Turkish
+                                        <span class="airline-item-name">Turkish</span>
                                     </span>
                                     <img src="../assets/images/turkish-airline.png" alt="" width="74" height="20"
                                         loading="lazy" />
@@ -237,9 +237,9 @@
 
                                 <div
                                     class="airline-item flex items-center justify-between transition-all duration-500 ease-in-out">
-                                    <span class="flex items-center gap-3 text-sm font-bold">
+                                    <div class="flex items-center gap-3 text-sm font-bold">
                                         <span
-                                            class="airline-hotel-input flex items-center justify-center w-6 h-6 border border-primary-100 rounded-lg">
+                                            class="airline-hotel-input flex items-center justify-center w-6 h-6 border border-primary-100 rounded-lg cursor-pointer">
                                             <svg width="17" height="16" viewBox="0 0 17 16" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path
@@ -248,8 +248,8 @@
                                             </svg>
 
                                         </span>
-                                        Turkish
-                                    </span>
+                                        <span class="airline-item-name">Turkish</span>
+                                    </div>
                                     <img src="../assets/images/turkish-airline.png" alt="" width="74" height="20"
                                         loading="lazy" />
                                 </div>
@@ -261,13 +261,16 @@
                         </div>
                         <div>
                             <h3 class="text-sm font-bold mb-2">تعداد روز های تور:</h3>
-                            <div class="flex items-center justify-between">
-                                <span class="p-4 bg-white border border-gray-50 rounded-lg text-sm font-bold">6
-                                    روزه</span>
-                                <span class="p-4 bg-white border border-gray-50 rounded-lg text-sm font-bold">6
-                                    روزه</span>
-                                <span class="p-4 bg-white border border-gray-50 rounded-lg text-sm font-bold">6
-                                    روزه</span>
+                            <div class="day-tour-filter-wrapper flex items-center justify-between">
+                                <button class="day-tour-filter p-4 bg-white border border-gray-50 rounded-lg text-sm font-bold cursor-pointer transition-all duration-300 hover:border-primary-500 hpver
+                                hover:text-primary-500">4
+                                    روزه</button>
+                                <button class="day-tour-filter p-4 bg-white border border-gray-50 rounded-lg text-sm font-bold cursor-pointer transition-all duration-300 hover:border-primary-500 hpver
+                                hover:text-primary-500">5
+                                    روزه</button>
+                                <button class="day-tour-filter p-4 bg-white border border-gray-50 rounded-lg text-sm font-bold cursor-pointer transition-all duration-300 hover:border-primary-500 hpver
+                                hover:text-primary-500">6
+                                    روزه</button>
                             </div>
                         </div>
                     </div>
@@ -647,6 +650,20 @@
                                                 SG</h3>
                                         </div>
                                         <div class="flex items-center justify-center gap-8 mb-4">
+                                            <div
+                                                class="flex items-center gap-1 text-sm text-primary-500 font-extrabold transition-all duration-300 group-hover:text-white">
+                                                <svg width="24" height="24"
+                                                    class="transition-all duration-300 group-hover:hidden group-hover:invisible group-hover:opacity-0">
+                                                    <use xlink:href="../assets/images/sprite-icons.svg#icon-sun">
+                                                    </use>
+                                                </svg>
+                                                <svg width="24" height="24"
+                                                    class="hidden transition-all duration-300 invisible opacity-0 group-hover:visible group-hover:opacity-100 group-hover:block">
+                                                    <use xlink:href="../assets/images/sprite-icons.svg#icon-sun-white">
+                                                    </use>
+                                                </svg>
+                                                <span class="tourL-tour-day">6 روزه</span>
+                                            </div>
                                             <span
                                                 class="flex items-center gap-1 text-sm text-primary-500 font-extrabold transition-all duration-300 group-hover:text-white">
                                                 <svg width="24" height="24"
@@ -659,21 +676,7 @@
                                                     <use xlink:href="../assets/images/sprite-icons.svg#icon-sun-white">
                                                     </use>
                                                 </svg>
-                                                7 روزه
-                                            </span>
-                                            <span
-                                                class="flex items-center gap-1 text-sm text-primary-500 font-extrabold transition-all duration-300 group-hover:text-white">
-                                                <svg width="24" height="24"
-                                                    class="transition-all duration-300 group-hover:hidden group-hover:invisible group-hover:opacity-0">
-                                                    <use xlink:href="../assets/images/sprite-icons.svg#icon-sun">
-                                                    </use>
-                                                </svg>
-                                                <svg width="24" height="24"
-                                                    class="hidden transition-all duration-300 invisible opacity-0 group-hover:visible group-hover:opacity-100 group-hover:block">
-                                                    <use xlink:href="../assets/images/sprite-icons.svg#icon-sun-white">
-                                                    </use>
-                                                </svg>
-                                                ترکیش ایرلاین
+                                                <span class="tourL-tour-airline">ترکیش ایرلاین</span>
                                             </span>
                                             <span
                                                 class="flex items-center gap-1 text-sm text-primary-500 font-extrabold transition-all duration-300 group-hover:text-white">
@@ -793,7 +796,7 @@
                                                     <use xlink:href="../assets/images/sprite-icons.svg#icon-sun-white">
                                                     </use>
                                                 </svg>
-                                                7 روزه
+                                                <span class="tourL-tour-day">7 روزه</span>
                                             </span>
                                             <span
                                                 class="flex items-center gap-1 text-sm text-primary-500 font-extrabold transition-all duration-300 group-hover:text-white">
@@ -807,7 +810,7 @@
                                                     <use xlink:href="../assets/images/sprite-icons.svg#icon-sun-white">
                                                     </use>
                                                 </svg>
-                                                ترکیش ایرلاین
+                                                <span class="tourL-tour-airline">6 روزه</span>
                                             </span>
                                             <span
                                                 class="flex items-center gap-1 text-sm text-primary-500 font-extrabold transition-all duration-300 group-hover:text-white">
