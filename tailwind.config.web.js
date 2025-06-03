@@ -28,7 +28,7 @@ module.exports = {
         'drop-shadow': '0px 4px 4px 0px #00000040',
         'big-shadow': '0px 48px 50px -46px #00000040',
         'shadow-soft': '0px 23px 18px -14px #00000040',
-
+        'shadow-date': '0px 36px 21.6px -31px #00000040',
       },
       colors: {
         primary: {
@@ -78,6 +78,8 @@ module.exports = {
           2: "var(--special-2)",
           3: "var(--special-3)",
           4: "var(--special-4)",
+          5: "var(--special-5)",
+          6: "var(--special-6)",
         },
       },
     },
