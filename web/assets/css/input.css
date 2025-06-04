@@ -123,6 +123,20 @@
   unicode-bidi: embed;
 }
 
+.error-number {
+  font-size: 200px;
+  color: #FFFFFF80;
+  -webkit-text-stroke: 4px #2E58D1;
+  display: inline-block;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  line-height: 22rem;
+}
+
+.text-border {
+  -webkit-text-stroke: 1px #fff;
+}
+
 .swiper-small-gallery-about::selection {
   background-color: transparent;
   color: inherit;
