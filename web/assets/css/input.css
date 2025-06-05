@@ -53,7 +53,6 @@
   --special-4: #ffffffb2;
   --special-5: #e3e3e3e5;
   --special-6: #FFFFFFCC;
-;
 
   ---bg: url("");
   --default-bg: url("../images/default-back.jpg");
@@ -188,8 +187,8 @@
   background-color: #f9fafb;
   background-image: repeating-linear-gradient(
     to bottom,
-    #000,
-    #000 16px,
+    #1e2128,
+    #1e2128 16px,
     transparent 16px,
     transparent 28px
   );

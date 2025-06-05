@@ -475,11 +475,49 @@ document.addEventListener("DOMContentLoaded", () => {
   setupFilterMenu("filterBtnHotel", "filterMenuHotel", "filterMenuCloseHotel");
 });
 
+// tour-date-btn
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll(".tourL-tour-date-btn").forEach((btn) => {
+    const container = btn.closest(".tourL-tour-card");
+    const menu = container.querySelector(".tourL-tour-date-menu");
+
+    if (!menu) return;
+
+    btn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      const isShown = menu.classList.contains("opacity-100");
+
+      closeAllTourMenus();
+
+      if (!isShown) {
+        menu.classList.remove("opacity-0", "invisible", "scale-95");
+        menu.classList.add("opacity-100", "visible", "scale-100");
+      }
+    });
+
+    menu.addEventListener("click", function (e) {
+      e.stopPropagation();
+    });
+  });
+
+  document.addEventListener("click", function () {
+    closeAllTourMenus();
+  });
+
+  function closeAllTourMenus() {
+    document.querySelectorAll(".tourL-tour-date-menu").forEach((menu) => {
+      menu.classList.remove("opacity-100", "visible", "scale-100");
+      menu.classList.add("opacity-0", "invisible", "scale-95");
+    });
+  }
+});
+
 // filter-tour-list
 document.addEventListener("DOMContentLoaded", () => {
   const normalizeText = (text) => text.replace(/\s/g, "").normalize("NFKD");
 
   const tourCards = document.querySelectorAll(".tourL-tour-card");
+
   const filterButtons = document.querySelectorAll(".day-tour-filter");
   const airlineInputs = document.querySelectorAll(".airline-hotel-input");
 
@@ -488,42 +526,57 @@ document.addEventListener("DOMContentLoaded", () => {
   const rangeTrack = document.getElementById("rangeTrack");
   const minValText = document.getElementById("minValue");
   const maxValText = document.getElementById("maxValue");
-
   const selectedDays = new Set();
   const selectedAirlines = new Set();
 
   const formatPrice = (val) => val.toLocaleString("fa-IR");
   const parsePrice = (priceString) => {
     let cleaned = priceString.replace(/[.,\/\s]/g, "");
-    return parseInt(cleaned, 10) || 0;
+    const parsed = parseInt(cleaned, 10) || 0;
+    return parsed;
   };
+
+  let REAL_MIN = 0;
+  let REAL_MAX = 0;
+  let realMin = 0;
+  let realMax = 0;
 
   let prices = Array.from(tourCards)
     .map((card) => {
       const priceElem = card.querySelector(".tourL-tour-price");
-      return priceElem ? parsePrice(priceElem.textContent) : 0;
+      if (!priceElem) {
+        return 0;
+      }
+      return parsePrice(priceElem.textContent);
     })
     .filter((p) => p > 0);
 
-  const REAL_MIN = Math.min(...prices);
-  const REAL_MAX = Math.max(...prices);
-  let realMin = REAL_MIN;
-  let realMax = REAL_MAX;
+  if (prices.length > 0) {
+    REAL_MIN = Math.min(...prices);
+    REAL_MAX = Math.max(...prices);
+    realMin = REAL_MIN;
+    realMax = REAL_MAX;
+  }
 
   function filterCards() {
-    tourCards.forEach((card) => {
-      const tourDay = card.querySelector(".tourL-tour-day");
-      const airline = card.querySelector(".tourL-tour-airline");
+    tourCards.forEach((card, i) => {
       const priceElem = card.querySelector(".tourL-tour-price");
-
-      const cardDay = tourDay ? normalizeText(tourDay.textContent) : "";
-      const cardAirline = airline ? normalizeText(airline.textContent) : "";
       const cardPrice = priceElem ? parsePrice(priceElem.textContent) : 0;
 
-      const dayMatch = selectedDays.size === 0 || selectedDays.has(cardDay);
+      const dayMatch =
+        selectedDays.size === 0 ||
+        selectedDays.has(
+          normalizeText(
+            card.querySelector(".tourL-tour-day")?.textContent || ""
+          )
+        );
       const airlineMatch =
         selectedAirlines.size === 0 ||
-        Array.from(selectedAirlines).some((name) => cardAirline.includes(name));
+        Array.from(selectedAirlines).some((name) =>
+          normalizeText(
+            card.querySelector(".tourL-tour-airline")?.textContent || ""
+          ).includes(name)
+        );
       const priceMatch = cardPrice >= realMin && cardPrice <= realMax;
 
       card.style.display =
@@ -538,7 +591,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const filterBtn = document.getElementById("filterBtn");
     const filterIcon = document.getElementById("filterIcon");
 
-    if (!filterCountEl || !filterBtn || !filterIcon) return;
+    if (!filterCountEl || !filterBtn || !filterIcon) {
+      return;
+    }
 
     let count = 0;
 
@@ -618,8 +673,9 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   function updatePriceRange() {
-    if (!minInput || !maxInput || !rangeTrack || !minValText || !maxValText)
+    if (!minInput || !maxInput || !rangeTrack || !minValText || !maxValText) {
       return;
+    }
 
     let min = parseInt(minInput.value);
     let max = parseInt(maxInput.value);
@@ -663,12 +719,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const hotelNameInput = document.querySelector(".hotel-name-input");
   const starInputs = document.querySelectorAll(".star-hotel-input");
   const serviceInputs = document.querySelectorAll(".filter-hotel-services");
-  const minRange = document.getElementById("minRange");
-  const maxRange = document.getElementById("maxRange");
-  const minValueSpan = document.getElementById("minValue");
-  const maxValueSpan = document.getElementById("maxValue");
+  const minRange = document.getElementById("hotel-minRange");
+  const maxRange = document.getElementById("hotel-maxRange");
+  const minValueSpan = document.getElementById("hotel-minValue");
+  const maxValueSpan = document.getElementById("hotel-maxValue");
+  const rangeTrack = document.getElementById("hotel-rangeTrack");
 
   const hotelCards = document.querySelectorAll(".hotel-card");
+
+  const formatPrice = (val) => val.toLocaleString("fa-IR");
 
   const parsePrice = (text) => parseInt(text.replace(/[^\d]/g, ""), 10) || 0;
 
@@ -697,7 +756,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (selectedStars.size > 0) count++;
     if (selectedServices.size > 0) count++;
     if (realMin > REAL_MIN || realMax < REAL_MAX) count++;
-    if (hotelNameQuery.trim() !== "") count++; 
+    if (hotelNameQuery.trim() !== "") count++;
 
     if (count > 0) {
       filterCountEl.classList.remove("hidden");
@@ -813,26 +872,43 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function updatePriceValues() {
-    if (!minRange || !maxRange || !minValueSpan || !maxValueSpan) return;
-
-    let min = parseInt(minRange.value);
-    let max = parseInt(maxRange.value);
-
-    if (min > max) [min, max] = [max, min];
-
-    realMin = Math.floor(REAL_MIN + ((REAL_MAX - REAL_MIN) * min) / 100);
-    realMax = Math.floor(REAL_MIN + ((REAL_MAX - REAL_MIN) * max) / 100);
-
-    minValueSpan.textContent = realMin.toLocaleString("fa-IR");
-    maxValueSpan.textContent = realMax.toLocaleString("fa-IR");
-
+    if (!minRange || !maxRange || !minValueSpan || !maxValueSpan || !rangeTrack) {
+      return;
+    }
+  
+    const rawMin = parseInt(minRange.value) || 0;
+    const rawMax = parseInt(maxRange.value) || 0;
+  
+    // محاسبه realMin و realMax دقیق، بدون جابجایی
+    realMin = Math.floor(REAL_MIN + ((REAL_MAX - REAL_MIN) * rawMin) / 100);
+    realMax = Math.floor(REAL_MIN + ((REAL_MAX - REAL_MIN) * rawMax) / 100);
+  
+    minValueSpan.textContent = formatPrice(Math.min(realMin, realMax));
+    maxValueSpan.textContent = formatPrice(Math.max(realMin, realMax));
+  
+    // محاسبه گرافیکی نوار رنگی
+    const right = Math.min(rawMin, rawMax);
+    const width = Math.abs(rawMax - rawMin);
+  
+    rangeTrack.style.right = `${right}%`;
+    rangeTrack.style.width = `${width}%`;
+  
     filterCardsExtended();
   }
+  
+  
+  
 
-  if (minRange) minRange.addEventListener("input", updatePriceValues);
-  if (maxRange) maxRange.addEventListener("input", updatePriceValues);
+  if (minRange) {
+    minRange.value = minRange.value || "0";
+    minRange.addEventListener("input", updatePriceValues);
+  }
+  if (maxRange) {
+    maxRange.value = maxRange.value || "100";
+    maxRange.addEventListener("input", updatePriceValues);
+  }
 
-  updatePriceValues();
+  setTimeout(updatePriceValues, 100);
   filterCardsExtended();
 });
 
@@ -1145,8 +1221,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const containers = document.querySelectorAll(".content-container");
 
   containers.forEach((container) => {
-    const btn = container.querySelector(".toggle-btn");
+    const btn = container.querySelector(".see-more");
+    const btnText = container.querySelector(".see-more-text");
     const shadow = container.querySelector(".white-shadow");
+
+    if (!btn || !btnText) return;
 
     btn.addEventListener("click", () => {
       const isOpen = container.classList.contains("open");
@@ -1156,13 +1235,14 @@ document.addEventListener("DOMContentLoaded", () => {
       if (isOpen) {
         const contentHeight = container.scrollHeight;
         container.style.maxHeight = contentHeight + "px";
+
         requestAnimationFrame(() => {
           container.style.maxHeight = closedHeight;
           container.classList.remove("open");
         });
 
         if (shadow) shadow.classList.add("bg-white-shadow");
-        btn.textContent = "مشاهده همه";
+        btnText.textContent = "مشاهده همه";
       } else {
         const contentHeight = container.scrollHeight;
         container.style.maxHeight = closedHeight;
@@ -1173,7 +1253,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         if (shadow) shadow.classList.remove("bg-white-shadow");
-        btn.textContent = "مشاهده کمتر";
+        btnText.textContent = "مشاهده کمتر";
       }
     });
   });

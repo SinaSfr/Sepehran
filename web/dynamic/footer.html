@@ -1,0 +1,167 @@
+<basis core="group" if="'[##cms.cms.page_index##]' = 'نمایه پیش فرض'">
+    <basis core="dbsource" source="basiscore" name="db" mid="5" lid="1" usedforid="[##cms.cms.ownerid##]">
+        <member name="infofootersql" type="view" postsql="select * from [db.infofootersql] where TypeID in(240)" />
+    </basis>
+    <basis core="dbsource" source="basiscore" name="db" mid="5" lid="1" usedforid="[##cms.cms.ownerid##]">
+        <member name="infofooter" type="view" />
+    </basis>
+
+    <footer>
+        <div class="flex gap-16 border-footer py-14 mx-auto max-lg:w-[90%] max-xl:w-[97%] xl:max-w-7xl">
+            <!-- right footer -->
+            <div class="flex-1">
+                <section class="flex flex-col gap-4">
+                    <img src="../assets/images/logo.png" class="h-[86px] object-cover" alt="logo" width="246"
+                        height="86">
+                    <div class="flex items-center gap-4 text-zinc-900 font-extrabold">
+                        <h3>تلفن پشتیبانی مشتریان :</h3>
+                        <a href="" class="transition-all duration-300 hover:text-primary-500">91009292 -021</a>
+                    </div>
+                    <div class="text-zinc-900 font-extrabold">
+                        <h3 class="inline-block ml-1">آدرس تهران :</h3>
+                        <span> خیابان ولیعصر - روبه‌روی پارک ملت - برج سایه - طبقه 2</span>
+                    </div>
+                    <div class="text-sm font-semibold text-justify leading-7">
+                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است
+                        چاپگرها و متون بلکه روزنامه و مجله در ستون و سطر آنچنان که لازم است.
+                    </div>
+                </section>
+                <section class="grid grid-cols-3 gap-3 mt-4">
+                    <a href=""
+                        class="flex items-center justify-center gap-4 bg-gray-50 rounded-xl font-extrabold py-4 transition-all duration-300 hover:bg-primary-500 hover:text-white hover:shadow-card-shadow">
+                        <svg width="32" height="33">
+                            <use xlink:href="../assets/images/sprite-icons.svg#icon-google-map"></use>
+                        </svg>
+                        گوگل مپ
+                    </a>
+                    <div class="flex items-center justify-center gap-4 bg-gray-50 rounded-xl font-extrabold py-4">
+                        <svg width="32" height="33">
+                            <use xlink:href="../assets/images/sprite-icons.svg#icon-veiz"></use>
+                        </svg>
+                        ویز
+                    </div>
+                    <div class="flex items-center justify-center gap-4 bg-gray-50 rounded-xl font-extrabold py-4">
+                        <img src="../assets/images/neshan.png" class="h-8 w-8" alt="neshan" width="32" height="32"
+                            loading="lazy">
+                        نشان
+                    </div>
+                </section>
+                <section class="flex items-center justify-between mt-4">
+                    <a href="" rel="noopener" aria-label="enamad"
+                        class="flex border border-gray-50 rounded-lg p-2 transition-all duration-300 hover:border-primary-500">
+                        <img src="../assets/images/enamad.png" class="h-20 w-20 object-cover" alt="enamad" width="80"
+                            height="80" loading="lazy">
+                    </a>
+                    <a href="" rel="noopener" aria-label="ticket" class="flex border border-gray-50 rounded-lg p-2">
+                        <img src="../assets/images/ticket.png" class="h-20 w-20 object-cover" alt="ticket" width="80"
+                            height="80" loading="lazy">
+                    </a>
+                    <a href="" rel="noopener" aria-label="plane-organization"
+                        class="flex border border-gray-50 rounded-lg p-2">
+                        <img src="../assets/images/plane-organization.png" class="h-20 w-20 object-cover"
+                            alt="plane-organization" width="80" height="80" loading="lazy">
+                    </a>
+                    <div rel="noopener" aria-label="samandehi" class="border border-gray-50 rounded-lg p-2">
+                        <img src="../assets/images/samandehi.png" class="h-20 w-20 object-cover" alt="samandehi"
+                            width="80" height="80" loading="lazy">
+                    </div>
+                </section>
+            </div>
+            <!-- left footer -->
+            <div class="flex-[1.5]">
+                <section class="flex justify-between mb-16">
+                    <div>
+                        <div class="flex items-center gap-3 font-extrabold pb-1">
+                            <svg width="24" height="24">
+                                <use xlink:href="../assets/images/sprite-icons.svg#icon-compass"></use>
+                            </svg>
+                            تور های شرق آسیا
+                        </div>
+                        <ul class="grid grid-cols-2 gap-x-10 gap-y-2 pt-4 border-t border-primary-400 pr-1">
+                            <li
+                                class="group flex items-center gap-2 text-sm font-semibold transition-all duration-300 hover:text-primary-500">
+                                <span
+                                    class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover:bg-primary-500"></span>
+                                <a href="">تور تایلند</a>
+                            </li>
+                            <li class="text-sm font-semibold">تور تایلند</li>
+                            <li class="text-sm font-semibold">تور تایلند</li>
+                            <li class="text-sm font-semibold">تور تایلند</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-3 font-extrabold pb-1">
+                            <svg width="24" height="24">
+                                <use xlink:href="../assets/images/sprite-icons.svg#icon-compass"></use>
+                            </svg>
+                            تور های شرق آسیا
+                        </div>
+                        <ul
+                            class="grid grid-cols-2 gap-x-10 gap-y-2 pt-4 border-t border-primary-400 list-disc list-inside pr-1">
+                            <li class="text-sm font-semibold">تور تایلند</li>
+                            <li class="text-sm font-semibold">تور تایلند</li>
+                            <li class="text-sm font-semibold">تور تایلند</li>
+                            <li class="text-sm font-semibold">تور تایلند</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-3 font-extrabold pb-1">
+                            <svg width="24" height="24">
+                                <use xlink:href="../assets/images/sprite-icons.svg#icon-compass"></use>
+                            </svg>
+                            تور های شرق آسیا
+                        </div>
+                        <ul class="flex flex-col gap-2 pt-4 border-t border-primary-400 list-disc list-inside pr-1">
+                            <li class="text-sm font-semibold">تور تایلند</li>
+                            <li class="text-sm font-semibold">تور تایلند</li>
+                            <li class="text-sm font-semibold">تور تایلند</li>
+                            <li class="text-sm font-semibold">تور تایلند</li>
+                        </ul>
+                    </div>
+                </section>
+                <section
+                    class="flex items-center justify-center bg-footerOfferBg bg-cover bg-center border border-gray-50 rounded-xl h-48">
+                    <div class="ml-20">
+                        <h2 class="text-2xl font-extrabold w-[229px] mb-4">برای تخفیف های بیشتر
+                            <span class="text-primary-500">گردشگران</span> را دنبال کنید
+                        </h2>
+
+                        <a href=""
+                            class="flex items-center justify-center gap-2 w-52 h-11 rounded-xl bg-secondary-500 transition-all duration-300 hover:shadow-small-btn-shadow">
+                            اینستاگرام گردشگران
+                            <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7 12.8135H21" stroke="#1E2128" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path
+                                    d="M2.35729 12.5991L5.7884 10.5404C6.32162 10.2205 7 10.6046 7 11.2264V14.4005C7 15.0224 6.32162 15.4064 5.7884 15.0865L2.35729 13.0278C2.19545 12.9307 2.19545 12.6962 2.35729 12.5991Z"
+                                    fill="#1E2128" />
+                            </svg>
+                        </a>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <section class="text-center mx-auto max-lg:w-[90%] max-xl:w-[97%] xl:max-w-7xl mt-6">
+            <div class="font-semibold text-sm">تمام حقوق این وب سایت برای شرکت گردشگران سپهر تهران محفوظ می‌باشد 2025 ©
+            </div>
+        </section>
+        <section class="relative flex items-center gap-5 mx-auto max-lg:w-[90%] max-xl:w-[97%] xl:max-w-7xl mt-7 mb-6">
+            <a href="https://www.basisfly.com/" target="_blank"
+                class="flex text-sm text-zinc-500 text-center transition-all duration-300 hover:text-primary-600">طراحی
+                سایت آژانس مسافرتی و رزرواسیون
+                آنلاین توسط بیسیس فلای</a>
+            <div
+                class="mt-2 flex items-center justify-center gap-2 lg:flex-row-reverse lg:justify-between lg:flex-1 lg:items-center lg:mt-0">
+                <img src="../assets/images/trust-login.png" alt="trust-login" width="90" height="15" loading="lazy">
+                <img src="../assets/images/basisfly-logo.png" alt="basisfly-logo" width="68" height="17" loading="lazy">
+            </div>
+        </section>
+    </footer>
+    
+    <basis core="call" file="script.inc"></basis>
+</basis>
+
+<basis core="group" if="'[##cms.cms.page_index##]' = 'موبایل'">
+    <basis core="call" file="footer.inc" pageindex="[##cms.cms.pageindex##]"></basis>
+</basis>

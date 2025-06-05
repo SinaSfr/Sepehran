@@ -475,6 +475,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupFilterMenu("filterBtnHotel", "filterMenuHotel", "filterMenuCloseHotel");
 });
 
+// tour-date-btn
 document.addEventListener("DOMContentLoaded", function () {
   document.querySelectorAll(".tourL-tour-date-btn").forEach((btn) => {
     const container = btn.closest(".tourL-tour-card");
@@ -872,34 +873,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function updatePriceValues() {
     if (!minRange || !maxRange || !minValueSpan || !maxValueSpan || !rangeTrack) {
-      console.error("Missing DOM elements for price range");
       return;
     }
-
-    let min = parseInt(minRange.value) || 0;
-    let max = parseInt(maxRange.value) || 100;
-
-    if (min > max) [min, max] = [max, min];
-
-    // اصلاح منطق rangeTrack برای اطمینان از left + width = 100%
-    const left = min;
-    const width = 100 - min - (100 - max);
-
-    rangeTrack.style.left = `${left}%`;
+  
+    const rawMin = parseInt(minRange.value) || 0;
+    const rawMax = parseInt(maxRange.value) || 0;
+  
+    realMin = Math.floor(REAL_MIN + ((REAL_MAX - REAL_MIN) * rawMin) / 100);
+    realMax = Math.floor(REAL_MIN + ((REAL_MAX - REAL_MIN) * rawMax) / 100);
+  
+    minValueSpan.textContent = formatPrice(Math.min(realMin, realMax));
+    maxValueSpan.textContent = formatPrice(Math.max(realMin, realMax));
+  
+    const right = Math.min(rawMin, rawMax);
+    const width = Math.abs(rawMax - rawMin);
+  
+    rangeTrack.style.right = `${right}%`;
     rangeTrack.style.width = `${width}%`;
-
-    realMin = Math.floor(REAL_MIN + ((REAL_MAX - REAL_MIN) * min) / 100);
-    realMax = Math.floor(REAL_MIN + ((REAL_MAX - REAL_MIN) * max) / 100);
-
-    minValueSpan.style.display = "inline-block";
-    maxValueSpan.style.display = "inline-block";
-    setTimeout(() => {
-      minValueSpan.textContent = formatPrice(realMin) || "0";
-      maxValueSpan.textContent = formatPrice(realMax) || "0";
-    }, 0);
-
+  
     filterCardsExtended();
   }
+  
+  
+  
 
   if (minRange) {
     minRange.value = minRange.value || "0";

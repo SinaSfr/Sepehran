@@ -8,6 +8,7 @@ module.exports = {
        'light-purple-overlay': 'linear-gradient(180deg, rgba(96, 133, 255, 0.2) 0%, #000000 100%)',
        'white-shadow': 'linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 100%)',
        'blue-green': 'linear-gradient(78.21deg, #2E58D1 23.19%, #07E7B4 112.73%)',
+       'gray-gradient': 'linear-gradient(122.7deg, #E8E8E8 0%, #C7C7C7 100.6%)',
         defaultBg: "var(--default-bg)",
         tourCategoryBg: "var(--tourCategory-bg)",
         tourlistBg: "var(--tourlist-bg)",
@@ -27,6 +28,7 @@ module.exports = {
         'drop-shadow': '0px 4px 4px 0px #00000040',
         'big-shadow': '0px 48px 50px -46px #00000040',
         'shadow-soft': '0px 23px 18px -14px #00000040',
+        'shadow-date': '0px 36px 21.6px -31px #00000040',
         'tour-card-mobile': '0px 22px 17.1px -15px #00000040',
       },
       colors: {
