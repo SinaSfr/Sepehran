@@ -1748,6 +1748,18 @@ body {
   );
 }
 
+.mask-image {
+  -webkit-mask-image: url(../images/mask-shape.svg);
+  mask-image: url(../images/mask-shape.svg);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  width: 100%;
+  display: block;
+  height: 429px;
+}
+
 .line-clamp--1 {
   display: -webkit-box;
   -webkit-line-clamp: 1;
@@ -2032,4 +2044,70 @@ body {
   .xl\:max-w-\[864px\] {
     max-width: 864px;
   }
+}
+
+
+.search-box-container svg {
+  width: 62px;
+  height: 62px;
+}
+
+.section_prev_month svg, .section_next_month svg {
+  width: 28px !important;
+  height: 28px !important;
+}
+
+.r-flight.module-form, .r-hotel.module-form, .r-flighthotel.module-form, .r-tour.module-form {
+  background-color: #fff;
+  border: none;
+  border-radius: 32px;
+  box-shadow: 0px 3px 42px 0px #00000040;
+}
+
+.r-hotel.module-form, .r-flighthotel.module-form, .r-tour.module-form {
+  padding: 24px 42px 36px;
+}
+
+.search-box-container input, .search-box-container select, .search-box-container button {
+  font-family: "YekanBakh" !important;
+}
+
+.search-box-container label {
+  width: auto !important;
+}
+
+.reserve-field.departure-route p, .reserve-field.destination-route p, .reserve-field.departure-date p, .reserve-field.return-date p {
+  display: none !important;
+}
+
+.reserve-field.departure-date, .click-content, .reserve-field.passengers-field, .reserve-field.return-date {
+  background-color: #ffffff !important;
+  height: 148px !important;
+  border-radius: 12px;
+  padding: 16px 24px !important;
+  border: 1px solid #F2F3F5;
+  box-shadow: 0px 16px 16px -13px #00000040;
+}
+
+.reserve-field.departure-date > div:first-of-type,
+.reserve-field.return-date > div:first-of-type{
+  padding: 0 !important;
+}
+
+.Basis_Date.start_date,
+.Basis_Date.end_date{
+  top: 1rem !important;
+  right: 1rem !important;
+}
+
+.reserve-field.passengers-field .down-icon{
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  left: 24px;
+}
+
+.reserve-field.passengers-field > div:first-of-type{
+  display: flex;
+  flex-direction: column;
 }
