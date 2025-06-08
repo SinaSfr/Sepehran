@@ -46,6 +46,20 @@ document.addEventListener("DOMContentLoaded", function () {
                 .appendChild(scriptTag)
                 .parentNode.removeChild(scriptTag);
             }
+
+            //active flighttype-items search-engine
+            const items = document.querySelectorAll(".flighttype-items li");
+
+            if (items.length > 0) {
+              items[0].classList.add("active");
+
+              items.forEach((item) => {
+                item.addEventListener("click", () => {
+                  items.forEach((li) => li.classList.remove("active"));
+                  item.classList.add("active");
+                });
+              });
+            }
           }
         };
       } catch (error) {
@@ -938,30 +952,33 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function updatePriceValues() {
-    if (!minRange || !maxRange || !minValueSpan || !maxValueSpan || !rangeTrack) {
+    if (
+      !minRange ||
+      !maxRange ||
+      !minValueSpan ||
+      !maxValueSpan ||
+      !rangeTrack
+    ) {
       return;
     }
-  
+
     const rawMin = parseInt(minRange.value) || 0;
     const rawMax = parseInt(maxRange.value) || 0;
-  
+
     realMin = Math.floor(REAL_MIN + ((REAL_MAX - REAL_MIN) * rawMin) / 100);
     realMax = Math.floor(REAL_MIN + ((REAL_MAX - REAL_MIN) * rawMax) / 100);
-  
+
     minValueSpan.textContent = formatPrice(Math.min(realMin, realMax));
     maxValueSpan.textContent = formatPrice(Math.max(realMin, realMax));
-  
+
     const right = Math.min(rawMin, rawMax);
     const width = Math.abs(rawMax - rawMin);
-  
+
     rangeTrack.style.right = `${right}%`;
     rangeTrack.style.width = `${width}%`;
-  
+
     filterCardsExtended();
   }
-  
-  
-  
 
   if (minRange) {
     minRange.value = minRange.value || "0";
