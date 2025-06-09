@@ -297,7 +297,6 @@ table {
   /* 1 */
   border-color: inherit;
   /* 2 */
-  border-collapse: collapse;
   /* 3 */
 }
 
@@ -530,7 +529,7 @@ button,
      This can trigger a poorly considered lint error in some tools but is included by design.
   */
 
-img,
+
 svg,
 video,
 canvas,
@@ -550,7 +549,7 @@ object {
 
 img,
 video {
-  max-width: 100%;
+  /* max-width: 100%; */
   height: auto;
 }
 

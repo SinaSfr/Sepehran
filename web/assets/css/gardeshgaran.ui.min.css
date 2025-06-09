@@ -2046,6 +2046,63 @@ body {
   }
 }
 
+.Basis_Calendar .selected_date {
+  background: var(--secondary) !important;
+}
+.confirm-date-content button:hover {
+  background: var(--secondary);
+}
+.confirm-date-content button {
+  background: var(--primary);
+  color: #fff;
+}
+.calendar-apply-date:hover {
+  background: var(--secondary);
+}
+.calendar-apply-date {
+  background: var(--primary);
+  color: #fff;
+}
+.Basis_Calendar .selected_day {
+  background: var(--secondary);
+}
+.day.days_available {
+  background: var(--primary);
+}
+.calendar-switch {
+  color: var(--primary);
+}
+.Basis_Calendar .section_next_month,
+.Basis_Calendar .section_prev_month {
+  color: var(--primary);
+}
+.Basis_Calendar .current_day::after {
+  border-color: var(--secondary) transparent transparent;
+}
+.Basis_Calendar
+  .month_day_list
+  table
+  td:not(.disable_day, .empty_day, .expire_day):hover {
+  border-color: var(--primary);
+}
+.Basis_Calendar .current_day {
+  background: var(--primary) !important;
+  color: #fff !important;
+}
+.Basis_Calendar_Box {
+  font-family: "YekanBakhFaNum" !important;
+}
+.calendar-apply-date,
+.calendar-switch,
+.calendar-today,
+.calendar-footer input::placeholder {
+  font-family: "YekanBakhFaNum" !important;
+}
+.calendar-footer input,
+.calendar-footer ::placeholder {
+  font-family: "YekanBakhFaNum";
+}
+
 .search-box-container svg {
   width: 62px;
   height: 62px;
@@ -2080,7 +2137,7 @@ body {
 .search-box-container input,
 .search-box-container select,
 .search-box-container button {
-  font-family: "YekanBakh" !important;
+  font-family: "YekanBakhFaNum" !important;
 }
 
 .search-nav {
@@ -2290,6 +2347,11 @@ body {
   margin: auto;
 }
 
+.destination,
+.departure {
+  width: 80%;
+}
+
 .Basis_Date_Box {
   gap: 0 !important;
   box-shadow: 0px 16px 16px -13px #00000040;
@@ -2299,11 +2361,6 @@ body {
   overflow: hidden;
 }
 
-.text-textColor {
-  color: #596377 !important;
-  font-size: 14px;
-  font-weight: 600 !important;
-}
 .reserve-field.departure-route,
 .reserve-field.passengers-field,
 .reserve-field.destination-route,
@@ -2326,9 +2383,29 @@ body {
 }
 
 .Basis_Date.start_date,
-.Basis_Date.end_date {
+.Basis_Date.end_date,
+.Basis_Date_ExteraHoteldate,
+.Basis_Date_ExteraHoteldate {
   top: 1rem !important;
   right: 1rem !important;
+} 
+
+.Basis_Date_ExteraHoteldate,
+.Basis_Date_ExteraHoteldate,
+.departure,
+.destination,
+.Basis_Date.start_date,
+.Basis_Date.end_date,
+.Basis_Date_ExteraHoteldate::placeholder,
+.Basis_Date_ExteraHoteldate::placeholder,
+.departure::placeholder,
+.destination::placeholder,
+.Basis_Date.start_date::placeholder,
+.Basis_Date.end_date::placeholder,
+.passenger-counts{
+  color: #596377 !important;
+  font-size: 14px;
+  font-weight: 600 !important;
 }
 
 .click-content::before {
