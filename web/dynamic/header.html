@@ -2,16 +2,21 @@
     <basis core="dbsource" source="basiscore" name="db" mid="5" lid="1" usedforid="[##cms.cms.ownerid##]">
         <member name="info" type="view" />
     </basis>
+
+    <basis core="dbsource" source="basiscore" lid="1" mid="20" name="thailand-tour">
+        <member name="cat" type="tree" request="cat" parentid="215052" order="ord"></member>
+    </basis>
+
     <header>
         <section class="relative mx-auto max-lg:w-[90%] max-xl:w-[97%] xl:max-w-7xl z-30 bg-white mt-8">
             <div class="flex items-center justify-between pb-3 border-bottom-gradient">
                 <div class="flex items-center gap-10 h-16">
-                    <a href="/"><img src="../assets/images/logo.png" alt="logo-header" width="182" height="64"
+                    <a href="/"><img src="[##cms.cms.cdn##]/images/logo.png" alt="logo-header" width="182" height="64"
                             loading="lazy" class="h-16 object-cover transition-all duration-300 hover:scale-90" /></a>
                     <nav class="h-full flex">
                         <ul class="flex items-center gap-10">
                             <li class="flex">
-                                <a href="/Articles"
+                                <a href="/"
                                     class="relative group font-semibold text-sm text-zinc-900 hover:text-primary-600 xl:flex-shrink-0">
                                     خانه
                                     <span
@@ -20,7 +25,7 @@
                                 </a>
                             </li>
                             <li class="flex items-center h-full">
-                                <a href=""
+                                <a href="hotels"
                                     class="relative group flex items-center text-sm font-semibold transition-all duration-300 text-zinc-900 hover:text-primary-600 xl:flex-shrink-0">هتل
                                     <span
                                         class="absolute left-0 right-0 top-5 h-0.5 w-full bg-secondary-500 opacity-0 -translate-y-1 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-1">
@@ -28,7 +33,7 @@
                                 </a>
                             </li>
                             <li class="relative flex items-center h-full group">
-                                <a href="Hotels"
+                                <a href=""
                                     class="relative group flex items-center gap-2 font-semibold text-sm h-full group text-zinc-900 xl:flex-shrink-0">مجله
                                     گردشگران
                                     <svg class="transition-all duration-300 group-hover:rotate-180" width="24"
@@ -131,7 +136,7 @@
                         class="tour-category-header relative flex items-center justify-center gap-2 bg-primary-50 rounded-lg w-52 h-11 transition-all duration-300 hover:bg-secondary-100">
                         <div class="flex items-center justify-center gap-2 cursor-pointer h-full w-full">
                             <svg width="24" height="24">
-                                <use xlink:href="../assets/images/sprite-icons.svg#icon-category"></use>
+                                <use xlink:href="./images/sprite-icons.svg#icon-category"></use>
                             </svg>
                             <span class="font-semibold text-sm text-primary-500">دسته بندی تور ها</span>
                             <svg class="drop-down-tour-category transition-all duration-300" width="24" height="25"
@@ -140,9 +145,9 @@
                             </svg>
                         </div>
                         <div
-                            class="menu-tour-category bg-white absolute scale-95 opacity-0 transition-all duration-300 pointer-events-none min-h-80 top-full right-0 rounded-xl shadow-md w-[954px]">
+                            class="menu-tour-category bg-white absolute z-30 scale-95 opacity-0 transition-all duration-300 pointer-events-none min-h-80 top-full right-0 rounded-xl shadow-md w-[954px]">
                             <div>
-                                <img src="../assets/images/tour-category-back.jpg" alt=""
+                                <img src="[##cms.cms.cdn##]/images/tour-category-back.jpg" alt=""
                                     class="w-full object-cover backdrop:blur opacity-20 min-h-80" width="954"
                                     height="328" loading="lazy">
 
@@ -151,7 +156,7 @@
                                 <div class="grid grid-cols-3 gap-6 py-12 pr-11">
                                     <li class="relative flex items-center h-fit group py-2 pl-6 pr-2">
                                         <div class="flex items-center gap-3">
-                                            <img src="../assets/images/tailand.jpg" class="h-5 object-cover"
+                                            <img src="[##cms.cms.cdn##]/images/tailand.jpg" class="h-5 object-cover"
                                                 alt="tailand" width="27" height="20" loading="lazy">
                                             <a href="Hotels"
                                                 class="flex items-center gap-2 font-extrabold transition-all duration-300 h-full group text-zinc-900 hover:text-primary-500 xl:flex-shrink-0">تور
@@ -208,152 +213,600 @@
                                     </li>
                                 </div>
                                 <div class="self-center">
-                                    <img src="../assets/images/header-plane.png" alt="header-plane"
+                                    <img src="[##cms.cms.cdn##]/images/header-plane.png" alt="header-plane"
                                         class="h-60 object-cover" width="385" height="240" loading="lazy">
                                 </div>
                             </div>
                         </div>
                     </div>
                     <nav class="h-full flex">
+                        <span class="special-tour-host hidden" data-special="[##cms.host.specialTour##]"></span>
                         <ul class="flex items-center gap-8">
-                            <li class="relative flex items-center h-full group">
-                                <a href="Hotels"
-                                    class="relative group flex items-center gap-2 font-semibold text-sm h-full group text-zinc-900 xl:flex-shrink-0">تور
-                                    فصل بهار
-                                    <svg class="transition-all duration-300 group-hover:rotate-180" width="24"
-                                        height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M18 9.5L12 15.5L6 9.5" stroke="#1E2128"></path>
-                                    </svg>
-                                    <span
-                                        class="absolute left-0 right-0 top-[52px] h-0.5 w-full bg-secondary-500 opacity-0 translate-y-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-1">
-                                    </span>
-                                </a>
-                                <!-- submenu -->
-                                <ul
-                                    class="absolute z-30 flex flex-col invisible w-64 gap-2 p-2 font-medium transition-all duration-100 bg-white shadow-card-shadow opacity-0 rounded-xl top-full group-hover:visible group-hover:opacity-100">
-                                    <li
-                                        class="py-1 px-2 transition-all duration-300 rounded-md hover:bg-primary-500 group/leveltwo">
-                                        <a href=""
-                                            class="flex items-center gap-2 transition-all duration-300 group-hover/leveltwo:text-white">
+                            <basis core="tree" datamembername="thailand-tour.cat" idcol="catid" parentidcol="parentid"
+                                nullvalue="215052">
+                                <layout>
+                                    <li class="relative flex items-center h-full group">
+                                        <span
+                                            class="special-tour-label hidden absolute bg-secondary-500 rounded font-bold text-xs p-0.5 -right-3 top-2"
+                                            data-special-catid="215052">ویژه</span>
+                                        <a href="Hotels"
+                                            class="relative group flex items-center gap-2 font-semibold text-sm h-full group text-zinc-900 xl:flex-shrink-0">تور
+                                            فصل بهار
+                                            <svg class="transition-all duration-300 group-hover:rotate-180" width="24"
+                                                height="25" viewBox="0 0 24 25" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M18 9.5L12 15.5L6 9.5" stroke="#1E2128"></path>
+                                            </svg>
                                             <span
-                                                class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover/leveltwo:bg-white"></span>
-                                            ویزای شینگن
+                                                class="absolute left-0 right-0 top-[52px] h-0.5 w-full bg-secondary-500 opacity-0 translate-y-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-1">
+                                            </span>
+                                        </a>
+                                        <!-- submenu -->
+                                        <ul
+                                            class="absolute z-30 flex flex-col invisible w-64 gap-2 p-2 font-medium transition-all duration-100 bg-white shadow-card-shadow opacity-0 rounded-xl top-full group-hover:visible group-hover:opacity-100">
+                                            @child
+                                        </ul>
+                                        <!-- submenu end -->
+                                    </li>
+                                </layout>
+                                <face level="end" filter="link is null">
+                                    <li class="py-1 px-2 transition-all duration-300 rounded-md group/levelfour">
+                                        <a href="/tour-list.bc?catid=@catid"
+                                            class="flex items-center gap-2 transition-all duration-300 group-hover/levelfour:text-primary-500">
+                                            <span
+                                                class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover/levelfour:bg-primary-500"></span>
+                                            @title
                                         </a>
                                     </li>
+                                </face>
+                                <face level="end">
+                                    <li class="py-1 px-2 transition-all duration-300 rounded-md group/levelfour">
+                                        <a href="@link"
+                                            class="flex items-center gap-2 transition-all duration-300 group-hover/levelfour:text-primary-500">
+                                            <span
+                                                class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover/levelfour:bg-primary-500"></span>
+                                            @title
+                                        </a>
+                                    </li>
+                                </face>
+                                <face level="1" filter="link is null">
                                     <li class="px-2 transition-all duration-300 rounded-md group/leveltwo">
-                                        <a href=""
-                                            class="flex items-center gap-2 transition-all duration-300 group-hover/leveltwo:text-primary-500">
+                                        <div
+                                            class="flex justify-between items-center cursor-pointer text-zinc-900 group-hover/leveltwo:text-white">
+                                            <a href="/tour-list.bc?catid=@catid"
+                                                class="flex items-center gap-2 transition-all duration-300 group-hover/leveltwo:text-primary-500">
+                                                <span
+                                                    class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover/leveltwo:bg-primary-500"></span>
+                                                @title
+                                            </a>
+                                        </div>
+                                        <ul
+                                            class="absolute z-30 flex flex-col invisible w-64 gap-2 p-2 font-medium transition-all duration-100 bg-white shadow-card-shadow opacity-0 rounded-xl top-full right-60 group-hover/leveltwo:visible group-hover/leveltwo:opacity-100">
+                                            @child
+                                        </ul>
+                                    </li>
+                                </face>
+                                <face level="1">
+                                    <li class="px-2 transition-all duration-300 rounded-md group/leveltwo">
+                                        <div
+                                            class="flex justify-between items-center cursor-pointer text-zinc-900 group-hover/leveltwo:text-white">
+                                            <a href="@link"
+                                                class="flex items-center gap-2 transition-all duration-300 group-hover/leveltwo:text-primary-500">
+                                                <span
+                                                    class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover/leveltwo:bg-primary-500"></span>
+                                                @title
+                                            </a>
+                                        </div>
+                                        <ul
+                                            class="absolute z-30 flex flex-col invisible w-64 gap-2 p-2 font-medium transition-all duration-100 bg-white shadow-card-shadow opacity-0 rounded-xl top-full right-60 group-hover/leveltwo:visible group-hover/leveltwo:opacity-100">
+                                            @child
+                                        </ul>
+                                    </li>
+                                </face>
+                                <face level="2" filter="link is null">
+                                    <li class="relative px-2 transition-all duration-300 rounded-md group/levelthree">
+                                        <div
+                                            class="flex justify-between items-center cursor-pointer text-zinc-900 group-hover/levelthree:text-white">
+                                            <a href="/tour-list.bc?catid=@catid"
+                                                class="flex items-center gap-2 transition-all duration-300 group-hover/levelthree:text-primary-500">
+                                                <span
+                                                    class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover/levelthree:bg-primary-500"></span>
+                                                @title
+                                            </a>
+                                        </div>
+                                        <ul
+                                            class="absolute z-30 flex flex-col invisible w-64 gap-2 p-2 font-medium transition-all duration-100 bg-white shadow-card-shadow opacity-0 rounded-xl top-full right-60 group-hover/levelthree:visible group-hover/levelthree:opacity-100">
+                                            @child
+                                        </ul>
+                                    </li>
+                                </face>
+                                <face level="2">
+                                    <li class="relative px-2 transition-all duration-300 rounded-md group/levelthree">
+                                        <div
+                                            class="flex justify-between items-center cursor-pointer text-zinc-900 group-hover/levelthree:text-white">
+                                            <a href="@link"
+                                                class="flex items-center gap-2 transition-all duration-300 group-hover/levelthree:text-primary-500">
+                                                <span
+                                                    class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover/levelthree:bg-primary-500"></span>
+                                                @title
+                                            </a>
+                                        </div>
+                                        <ul
+                                            class="absolute z-30 flex flex-col invisible w-64 gap-2 p-2 font-medium transition-all duration-100 bg-white shadow-card-shadow opacity-0 rounded-xl top-full right-60 group-hover/levelthree:visible group-hover/levelthree:opacity-100">
+                                            @child
+                                        </ul>
+                                    </li>
+                                </face>
+
+                            </basis>
+                            <basis core="tree" datamembername="thailand-tour.cat" idcol="catid" parentidcol="parentid"
+                                nullvalue="215052">
+                                <layout>
+                                    <li class="relative flex items-center h-full group">
+                                        <span
+                                            class="special-tour-label hidden absolute bg-secondary-500 rounded font-bold text-xs p-0.5 -right-3 top-2"
+                                            data-special-catid="215052">ویژه</span>
+                                        <a href="Hotels"
+                                            class="relative group flex items-center gap-2 font-semibold text-sm h-full group text-zinc-900 xl:flex-shrink-0">تور
+                                            روسیه
+                                            <svg class="transition-all duration-300 group-hover:rotate-180" width="24"
+                                                height="25" viewBox="0 0 24 25" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M18 9.5L12 15.5L6 9.5" stroke="#1E2128"></path>
+                                            </svg>
                                             <span
-                                                class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover/leveltwo:bg-primary-500"></span>
-                                            ویزای شینگن
+                                                class="absolute left-0 right-0 top-[52px] h-0.5 w-full bg-secondary-500 opacity-0 translate-y-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-1">
+                                            </span>
+                                        </a>
+                                        <!-- submenu -->
+                                        <ul
+                                            class="absolute z-30 flex flex-col invisible w-64 gap-2 p-2 font-medium transition-all duration-100 bg-white shadow-card-shadow opacity-0 rounded-xl top-full group-hover:visible group-hover:opacity-100">
+                                            @child
+                                        </ul>
+                                        <!-- submenu end -->
+                                    </li>
+                                </layout>
+                                <face level="end" filter="link is null">
+                                    <li class="py-1 px-2 transition-all duration-300 rounded-md group/levelfour">
+                                        <a href="/tour-list.bc?catid=@catid"
+                                            class="flex items-center gap-2 transition-all duration-300 group-hover/levelfour:text-primary-500">
+                                            <span
+                                                class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover/levelfour:bg-primary-500"></span>
+                                            @title
                                         </a>
                                     </li>
-                                    <li class="py-1"><a href="">ویزای شینگن</a></li>
-                                </ul>
-                                <!-- submenu end -->
-                            </li>
-                            <li class="relative flex items-center h-full group">
-                                <a href="Hotels"
-                                    class="flex items-center gap-2 font-semibold text-sm transition-all duration-300 h-full group text-zinc-900 hover:text-primary-600 xl:flex-shrink-0">تور
-                                    روسیه
-                                    <svg class="transition-all duration-300 group-hover:rotate-180" width="24"
-                                        height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M18 9.5L12 15.5L6 9.5"
-                                            class="transition-all duration-300 group-hover:stroke-secondary-600"
-                                            stroke="#1E2128"></path>
-                                    </svg>
-                                </a>
-                                <!-- submenu -->
-                                <ul
-                                    class="absolute z-30 flex flex-col invisible w-64 gap-2 p-4 font-medium transition-all duration-100 bg-white shadow-md opacity-0 rounded-xl top-full group-hover:visible group-hover:opacity-100">
-                                    <li
-                                        class="py-1 transition-all duration-300 rounded-md hover:bg-primary-800 group/leveltwo">
-                                        <a href=""
-                                            class="transition-all duration-300 block text-secondary-800 group-hover/leveltwo:text-white">ویزای
-                                            شینگن</a>
+                                </face>
+                                <face level="end">
+                                    <li class="py-1 px-2 transition-all duration-300 rounded-md group/levelfour">
+                                        <a href="@link"
+                                            class="flex items-center gap-2 transition-all duration-300 group-hover/levelfour:text-primary-500">
+                                            <span
+                                                class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover/levelfour:bg-primary-500"></span>
+                                            @title
+                                        </a>
                                     </li>
-                                    <li class="py-1"><a href="">ویزای شینگن</a></li>
-                                    <li class="py-1"><a href="">ویزای شینگن</a></li>
-                                </ul>
-                                <!-- submenu end -->
-                            </li>
-                            <li class="relative flex items-center h-full group">
-                                <span
-                                    class="absolute bg-secondary-500 rounded font-bold text-xs p-0.5 -right-3 top-2">ویژه</span>
-                                <a href="Hotels"
-                                    class="flex items-center gap-2 font-semibold text-sm transition-all duration-300 h-full group text-zinc-900 hover:text-primary-600 xl:flex-shrink-0">تور
-                                    تایلند
-                                    <svg class="transition-all duration-300 group-hover:rotate-180" width="24"
-                                        height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M18 9.5L12 15.5L6 9.5"
-                                            class="transition-all duration-300 group-hover:stroke-secondary-600"
-                                            stroke="#1E2128"></path>
-                                    </svg>
-                                </a>
-                                <!-- submenu -->
-                                <ul
-                                    class="absolute z-30 flex flex-col invisible w-64 gap-2 p-4 font-medium transition-all duration-100 bg-white shadow-md opacity-0 rounded-xl top-full group-hover:visible group-hover:opacity-100">
-                                    <li
-                                        class="py-1 transition-all duration-300 rounded-md hover:bg-primary-800 group/leveltwo">
-                                        <a href=""
-                                            class="transition-all duration-300 block text-secondary-800 group-hover/leveltwo:text-white">ویزای
-                                            شینگن</a>
+                                </face>
+                                <face level="1" filter="link is null">
+                                    <li class="px-2 transition-all duration-300 rounded-md group/leveltwo">
+                                        <div
+                                            class="flex justify-between items-center cursor-pointer text-zinc-900 group-hover/leveltwo:text-white">
+                                            <a href="/tour-list.bc?catid=@catid"
+                                                class="flex items-center gap-2 transition-all duration-300 group-hover/leveltwo:text-primary-500">
+                                                <span
+                                                    class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover/leveltwo:bg-primary-500"></span>
+                                                @title
+                                            </a>
+                                        </div>
+                                        <ul
+                                            class="absolute z-30 flex flex-col invisible w-64 gap-2 p-2 font-medium transition-all duration-100 bg-white shadow-card-shadow opacity-0 rounded-xl top-full right-60 group-hover/leveltwo:visible group-hover/leveltwo:opacity-100">
+                                            @child
+                                        </ul>
                                     </li>
-                                    <li class="py-1"><a href="">ویزای شینگن</a></li>
-                                    <li class="py-1"><a href="">ویزای شینگن</a></li>
-                                </ul>
-                                <!-- submenu end -->
-                            </li>
-                            <li class="relative flex items-center h-full group">
-                                <a href="Hotels"
-                                    class="flex items-center gap-2 font-semibold text-sm transition-all duration-300 h-full group text-zinc-900 hover:text-primary-600 xl:flex-shrink-0">تور
-                                    ترکیه
-                                    <svg class="transition-all duration-300 group-hover:rotate-180" width="24"
-                                        height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M18 9.5L12 15.5L6 9.5"
-                                            class="transition-all duration-300 group-hover:stroke-secondary-600"
-                                            stroke="#1E2128"></path>
-                                    </svg>
-                                </a>
-                                <!-- submenu -->
-                                <ul
-                                    class="absolute z-30 flex flex-col invisible w-64 gap-2 p-4 font-medium transition-all duration-100 bg-white shadow-md opacity-0 rounded-xl top-full group-hover:visible group-hover:opacity-100">
-                                    <li
-                                        class="py-1 transition-all duration-300 rounded-md hover:bg-primary-800 group/leveltwo">
-                                        <a href=""
-                                            class="transition-all duration-300 block text-secondary-800 group-hover/leveltwo:text-white">ویزای
-                                            شینگن</a>
+                                </face>
+                                <face level="1">
+                                    <li class="px-2 transition-all duration-300 rounded-md group/leveltwo">
+                                        <div
+                                            class="flex justify-between items-center cursor-pointer text-zinc-900 group-hover/leveltwo:text-white">
+                                            <a href="@link"
+                                                class="flex items-center gap-2 transition-all duration-300 group-hover/leveltwo:text-primary-500">
+                                                <span
+                                                    class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover/leveltwo:bg-primary-500"></span>
+                                                @title
+                                            </a>
+                                        </div>
+                                        <ul
+                                            class="absolute z-30 flex flex-col invisible w-64 gap-2 p-2 font-medium transition-all duration-100 bg-white shadow-card-shadow opacity-0 rounded-xl top-full right-60 group-hover/leveltwo:visible group-hover/leveltwo:opacity-100">
+                                            @child
+                                        </ul>
                                     </li>
-                                    <li class="py-1"><a href="">ویزای شینگن</a></li>
-                                    <li class="py-1"><a href="">ویزای شینگن</a></li>
-                                </ul>
-                                <!-- submenu end -->
-                            </li>
-                            <li class="relative flex items-center h-full group">
-                                <a href="Hotels"
-                                    class="flex items-center gap-2 font-semibold text-sm transition-all duration-300 h-full group text-zinc-900 hover:text-primary-600 xl:flex-shrink-0">
-                                    تور اروپا
-                                    <svg class="transition-all duration-300 group-hover:rotate-180" width="24"
-                                        height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M18 9.5L12 15.5L6 9.5"
-                                            class="transition-all duration-300 group-hover:stroke-secondary-600"
-                                            stroke="#1E2128"></path>
-                                    </svg>
-                                </a>
-                                <!-- submenu -->
-                                <ul
-                                    class="absolute z-30 flex flex-col invisible w-64 gap-2 p-4 font-medium transition-all duration-100 bg-white shadow-md opacity-0 rounded-xl top-full group-hover:visible group-hover:opacity-100">
-                                    <li
-                                        class="py-1 transition-all duration-300 rounded-md hover:bg-primary-800 group/leveltwo">
-                                        <a href=""
-                                            class="transition-all duration-300 block text-secondary-800 group-hover/leveltwo:text-white">ویزای
-                                            شینگن</a>
+                                </face>
+                                <face level="2" filter="link is null">
+                                    <li class="relative px-2 transition-all duration-300 rounded-md group/levelthree">
+                                        <div
+                                            class="flex justify-between items-center cursor-pointer text-zinc-900 group-hover/levelthree:text-white">
+                                            <a href="/tour-list.bc?catid=@catid"
+                                                class="flex items-center gap-2 transition-all duration-300 group-hover/levelthree:text-primary-500">
+                                                <span
+                                                    class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover/levelthree:bg-primary-500"></span>
+                                                @title
+                                            </a>
+                                        </div>
+                                        <ul
+                                            class="absolute z-30 flex flex-col invisible w-64 gap-2 p-2 font-medium transition-all duration-100 bg-white shadow-card-shadow opacity-0 rounded-xl top-full right-60 group-hover/levelthree:visible group-hover/levelthree:opacity-100">
+                                            @child
+                                        </ul>
                                     </li>
-                                    <li class="py-1"><a href="">ویزای شینگن</a></li>
-                                    <li class="py-1"><a href="">ویزای شینگن</a></li>
-                                </ul>
-                                <!-- submenu end -->
-                            </li>
+                                </face>
+                                <face level="2">
+                                    <li class="relative px-2 transition-all duration-300 rounded-md group/levelthree">
+                                        <div
+                                            class="flex justify-between items-center cursor-pointer text-zinc-900 group-hover/levelthree:text-white">
+                                            <a href="@link"
+                                                class="flex items-center gap-2 transition-all duration-300 group-hover/levelthree:text-primary-500">
+                                                <span
+                                                    class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover/levelthree:bg-primary-500"></span>
+                                                @title
+                                            </a>
+                                        </div>
+                                        <ul
+                                            class="absolute z-30 flex flex-col invisible w-64 gap-2 p-2 font-medium transition-all duration-100 bg-white shadow-card-shadow opacity-0 rounded-xl top-full right-60 group-hover/levelthree:visible group-hover/levelthree:opacity-100">
+                                            @child
+                                        </ul>
+                                    </li>
+                                </face>
+
+                            </basis>
+                            <basis core="tree" datamembername="thailand-tour.cat" idcol="catid" parentidcol="parentid"
+                                nullvalue="215052">
+                                <layout>
+                                    <li class="relative flex items-center h-full group">
+                                        <span
+                                            class="special-tour-label hidden absolute bg-secondary-500 rounded font-bold text-xs p-0.5 -right-3 top-2"
+                                            data-special-catid="215052">ویژه</span>
+                                        <a href="/Thailand-tour"
+                                            class="relative group flex items-center gap-2 font-semibold text-sm h-full group text-zinc-900 xl:flex-shrink-0">تور
+                                            تایلند
+                                            <svg class="transition-all duration-300 group-hover:rotate-180" width="24"
+                                                height="25" viewBox="0 0 24 25" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M18 9.5L12 15.5L6 9.5" stroke="#1E2128"></path>
+                                            </svg>
+                                            <span
+                                                class="absolute left-0 right-0 top-[52px] h-0.5 w-full bg-secondary-500 opacity-0 translate-y-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-1">
+                                            </span>
+                                        </a>
+                                        <!-- submenu -->
+                                        <ul
+                                            class="absolute z-30 flex flex-col invisible w-64 gap-2 p-2 font-medium transition-all duration-100 bg-white shadow-card-shadow opacity-0 rounded-xl top-full group-hover:visible group-hover:opacity-100">
+                                            @child
+                                        </ul>
+                                        <!-- submenu end -->
+                                    </li>
+                                </layout>
+                                <face level="end" filter="link is null">
+                                    <li class="py-1 px-2 transition-all duration-300 rounded-md group/levelfour">
+                                        <a href="/tour-list.bc?catid=@catid"
+                                            class="flex items-center gap-2 transition-all duration-300 group-hover/levelfour:text-primary-500">
+                                            <span
+                                                class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover/levelfour:bg-primary-500"></span>
+                                            @title
+                                        </a>
+                                    </li>
+                                </face>
+                                <face level="end">
+                                    <li class="py-1 px-2 transition-all duration-300 rounded-md group/levelfour">
+                                        <a href="@link"
+                                            class="flex items-center gap-2 transition-all duration-300 group-hover/levelfour:text-primary-500">
+                                            <span
+                                                class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover/levelfour:bg-primary-500"></span>
+                                            @title
+                                        </a>
+                                    </li>
+                                </face>
+                                <face level="1" filter="link is null">
+                                    <li class="px-2 transition-all duration-300 rounded-md group/leveltwo">
+                                        <div
+                                            class="flex justify-between items-center cursor-pointer text-zinc-900 group-hover/leveltwo:text-white">
+                                            <a href="/tour-list.bc?catid=@catid"
+                                                class="flex items-center gap-2 transition-all duration-300 group-hover/leveltwo:text-primary-500">
+                                                <span
+                                                    class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover/leveltwo:bg-primary-500"></span>
+                                                @title
+                                            </a>
+                                        </div>
+                                        <ul
+                                            class="absolute z-30 flex flex-col invisible w-64 gap-2 p-2 font-medium transition-all duration-100 bg-white shadow-card-shadow opacity-0 rounded-xl top-full right-60 group-hover/leveltwo:visible group-hover/leveltwo:opacity-100">
+                                            @child
+                                        </ul>
+                                    </li>
+                                </face>
+                                <face level="1">
+                                    <li class="px-2 transition-all duration-300 rounded-md group/leveltwo">
+                                        <div
+                                            class="flex justify-between items-center cursor-pointer text-zinc-900 group-hover/leveltwo:text-white">
+                                            <a href="@link"
+                                                class="flex items-center gap-2 transition-all duration-300 group-hover/leveltwo:text-primary-500">
+                                                <span
+                                                    class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover/leveltwo:bg-primary-500"></span>
+                                                @title
+                                            </a>
+                                        </div>
+                                        <ul
+                                            class="absolute z-30 flex flex-col invisible w-64 gap-2 p-2 font-medium transition-all duration-100 bg-white shadow-card-shadow opacity-0 rounded-xl top-full right-60 group-hover/leveltwo:visible group-hover/leveltwo:opacity-100">
+                                            @child
+                                        </ul>
+                                    </li>
+                                </face>
+                                <face level="2" filter="link is null">
+                                    <li class="relative px-2 transition-all duration-300 rounded-md group/levelthree">
+                                        <div
+                                            class="flex justify-between items-center cursor-pointer text-zinc-900 group-hover/levelthree:text-white">
+                                            <a href="/tour-list.bc?catid=@catid"
+                                                class="flex items-center gap-2 transition-all duration-300 group-hover/levelthree:text-primary-500">
+                                                <span
+                                                    class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover/levelthree:bg-primary-500"></span>
+                                                @title
+                                            </a>
+                                        </div>
+                                        <ul
+                                            class="absolute z-30 flex flex-col invisible w-64 gap-2 p-2 font-medium transition-all duration-100 bg-white shadow-card-shadow opacity-0 rounded-xl top-full right-60 group-hover/levelthree:visible group-hover/levelthree:opacity-100">
+                                            @child
+                                        </ul>
+                                    </li>
+                                </face>
+                                <face level="2">
+                                    <li class="relative px-2 transition-all duration-300 rounded-md group/levelthree">
+                                        <div
+                                            class="flex justify-between items-center cursor-pointer text-zinc-900 group-hover/levelthree:text-white">
+                                            <a href="@link"
+                                                class="flex items-center gap-2 transition-all duration-300 group-hover/levelthree:text-primary-500">
+                                                <span
+                                                    class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover/levelthree:bg-primary-500"></span>
+                                                @title
+                                            </a>
+                                        </div>
+                                        <ul
+                                            class="absolute z-30 flex flex-col invisible w-64 gap-2 p-2 font-medium transition-all duration-100 bg-white shadow-card-shadow opacity-0 rounded-xl top-full right-60 group-hover/levelthree:visible group-hover/levelthree:opacity-100">
+                                            @child
+                                        </ul>
+                                    </li>
+                                </face>
+
+                            </basis>
+                            <basis core="tree" datamembername="thailand-tour.cat" idcol="catid" parentidcol="parentid"
+                                nullvalue="215052">
+                                <layout>
+                                    <li class="relative flex items-center h-full group">
+                                        <span
+                                            class="special-tour-label hidden absolute bg-secondary-500 rounded font-bold text-xs p-0.5 -right-3 top-2"
+                                            data-special-catid="215052">ویژه</span>
+                                        <a href="Hotels"
+                                            class="relative group flex items-center gap-2 font-semibold text-sm h-full group text-zinc-900 xl:flex-shrink-0">تور
+                                            ترکیه
+                                            <svg class="transition-all duration-300 group-hover:rotate-180" width="24"
+                                                height="25" viewBox="0 0 24 25" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M18 9.5L12 15.5L6 9.5" stroke="#1E2128"></path>
+                                            </svg>
+                                            <span
+                                                class="absolute left-0 right-0 top-[52px] h-0.5 w-full bg-secondary-500 opacity-0 translate-y-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-1">
+                                            </span>
+                                        </a>
+                                        <!-- submenu -->
+                                        <ul
+                                            class="absolute z-30 flex flex-col invisible w-64 gap-2 p-2 font-medium transition-all duration-100 bg-white shadow-card-shadow opacity-0 rounded-xl top-full group-hover:visible group-hover:opacity-100">
+                                            @child
+                                        </ul>
+                                        <!-- submenu end -->
+                                    </li>
+                                </layout>
+                                <face level="end" filter="link is null">
+                                    <li class="py-1 px-2 transition-all duration-300 rounded-md group/levelfour">
+                                        <a href="/tour-list.bc?catid=@catid"
+                                            class="flex items-center gap-2 transition-all duration-300 group-hover/levelfour:text-primary-500">
+                                            <span
+                                                class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover/levelfour:bg-primary-500"></span>
+                                            @title
+                                        </a>
+                                    </li>
+                                </face>
+                                <face level="end">
+                                    <li class="py-1 px-2 transition-all duration-300 rounded-md group/levelfour">
+                                        <a href="@link"
+                                            class="flex items-center gap-2 transition-all duration-300 group-hover/levelfour:text-primary-500">
+                                            <span
+                                                class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover/levelfour:bg-primary-500"></span>
+                                            @title
+                                        </a>
+                                    </li>
+                                </face>
+                                <face level="1" filter="link is null">
+                                    <li class="px-2 transition-all duration-300 rounded-md group/leveltwo">
+                                        <div
+                                            class="flex justify-between items-center cursor-pointer text-zinc-900 group-hover/leveltwo:text-white">
+                                            <a href="/tour-list.bc?catid=@catid"
+                                                class="flex items-center gap-2 transition-all duration-300 group-hover/leveltwo:text-primary-500">
+                                                <span
+                                                    class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover/leveltwo:bg-primary-500"></span>
+                                                @title
+                                            </a>
+                                        </div>
+                                        <ul
+                                            class="absolute z-30 flex flex-col invisible w-64 gap-2 p-2 font-medium transition-all duration-100 bg-white shadow-card-shadow opacity-0 rounded-xl top-full right-60 group-hover/leveltwo:visible group-hover/leveltwo:opacity-100">
+                                            @child
+                                        </ul>
+                                    </li>
+                                </face>
+                                <face level="1">
+                                    <li class="px-2 transition-all duration-300 rounded-md group/leveltwo">
+                                        <div
+                                            class="flex justify-between items-center cursor-pointer text-zinc-900 group-hover/leveltwo:text-white">
+                                            <a href="@link"
+                                                class="flex items-center gap-2 transition-all duration-300 group-hover/leveltwo:text-primary-500">
+                                                <span
+                                                    class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover/leveltwo:bg-primary-500"></span>
+                                                @title
+                                            </a>
+                                        </div>
+                                        <ul
+                                            class="absolute z-30 flex flex-col invisible w-64 gap-2 p-2 font-medium transition-all duration-100 bg-white shadow-card-shadow opacity-0 rounded-xl top-full right-60 group-hover/leveltwo:visible group-hover/leveltwo:opacity-100">
+                                            @child
+                                        </ul>
+                                    </li>
+                                </face>
+                                <face level="2" filter="link is null">
+                                    <li class="relative px-2 transition-all duration-300 rounded-md group/levelthree">
+                                        <div
+                                            class="flex justify-between items-center cursor-pointer text-zinc-900 group-hover/levelthree:text-white">
+                                            <a href="/tour-list.bc?catid=@catid"
+                                                class="flex items-center gap-2 transition-all duration-300 group-hover/levelthree:text-primary-500">
+                                                <span
+                                                    class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover/levelthree:bg-primary-500"></span>
+                                                @title
+                                            </a>
+                                        </div>
+                                        <ul
+                                            class="absolute z-30 flex flex-col invisible w-64 gap-2 p-2 font-medium transition-all duration-100 bg-white shadow-card-shadow opacity-0 rounded-xl top-full right-60 group-hover/levelthree:visible group-hover/levelthree:opacity-100">
+                                            @child
+                                        </ul>
+                                    </li>
+                                </face>
+                                <face level="2">
+                                    <li class="relative px-2 transition-all duration-300 rounded-md group/levelthree">
+                                        <div
+                                            class="flex justify-between items-center cursor-pointer text-zinc-900 group-hover/levelthree:text-white">
+                                            <a href="@link"
+                                                class="flex items-center gap-2 transition-all duration-300 group-hover/levelthree:text-primary-500">
+                                                <span
+                                                    class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover/levelthree:bg-primary-500"></span>
+                                                @title
+                                            </a>
+                                        </div>
+                                        <ul
+                                            class="absolute z-30 flex flex-col invisible w-64 gap-2 p-2 font-medium transition-all duration-100 bg-white shadow-card-shadow opacity-0 rounded-xl top-full right-60 group-hover/levelthree:visible group-hover/levelthree:opacity-100">
+                                            @child
+                                        </ul>
+                                    </li>
+                                </face>
+
+                            </basis>
+                            <basis core="tree" datamembername="thailand-tour.cat" idcol="catid" parentidcol="parentid"
+                                nullvalue="215052">
+                                <layout>
+                                    <li class="relative flex items-center h-full group">
+                                        <span
+                                            class="special-tour-label hidden absolute bg-secondary-500 rounded font-bold text-xs p-0.5 -right-3 top-2"
+                                            data-special-catid="215052">ویژه</span>
+                                        <a href="Hotels"
+                                            class="relative group flex items-center gap-2 font-semibold text-sm h-full group text-zinc-900 xl:flex-shrink-0">تور
+                                            اروپا
+                                            <svg class="transition-all duration-300 group-hover:rotate-180" width="24"
+                                                height="25" viewBox="0 0 24 25" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M18 9.5L12 15.5L6 9.5" stroke="#1E2128"></path>
+                                            </svg>
+                                            <span
+                                                class="absolute left-0 right-0 top-[52px] h-0.5 w-full bg-secondary-500 opacity-0 translate-y-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-1">
+                                            </span>
+                                        </a>
+                                        <!-- submenu -->
+                                        <ul
+                                            class="absolute z-30 flex flex-col invisible w-64 gap-2 p-2 font-medium transition-all duration-100 bg-white shadow-card-shadow opacity-0 rounded-xl top-full group-hover:visible group-hover:opacity-100">
+                                            @child
+                                        </ul>
+                                        <!-- submenu end -->
+                                    </li>
+                                </layout>
+                                <face level="end" filter="link is null">
+                                    <li class="py-1 px-2 transition-all duration-300 rounded-md group/levelfour">
+                                        <a href="/tour-list.bc?catid=@catid"
+                                            class="flex items-center gap-2 transition-all duration-300 group-hover/levelfour:text-primary-500">
+                                            <span
+                                                class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover/levelfour:bg-primary-500"></span>
+                                            @title
+                                        </a>
+                                    </li>
+                                </face>
+                                <face level="end">
+                                    <li class="py-1 px-2 transition-all duration-300 rounded-md group/levelfour">
+                                        <a href="@link"
+                                            class="flex items-center gap-2 transition-all duration-300 group-hover/levelfour:text-primary-500">
+                                            <span
+                                                class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover/levelfour:bg-primary-500"></span>
+                                            @title
+                                        </a>
+                                    </li>
+                                </face>
+                                <face level="1" filter="link is null">
+                                    <li class="px-2 transition-all duration-300 rounded-md group/leveltwo">
+                                        <div
+                                            class="flex justify-between items-center cursor-pointer text-zinc-900 group-hover/leveltwo:text-white">
+                                            <a href="/tour-list.bc?catid=@catid"
+                                                class="flex items-center gap-2 transition-all duration-300 group-hover/leveltwo:text-primary-500">
+                                                <span
+                                                    class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover/leveltwo:bg-primary-500"></span>
+                                                @title
+                                            </a>
+                                        </div>
+                                        <ul
+                                            class="absolute z-30 flex flex-col invisible w-64 gap-2 p-2 font-medium transition-all duration-100 bg-white shadow-card-shadow opacity-0 rounded-xl top-full right-60 group-hover/leveltwo:visible group-hover/leveltwo:opacity-100">
+                                            @child
+                                        </ul>
+                                    </li>
+                                </face>
+                                <face level="1">
+                                    <li class="px-2 transition-all duration-300 rounded-md group/leveltwo">
+                                        <div
+                                            class="flex justify-between items-center cursor-pointer text-zinc-900 group-hover/leveltwo:text-white">
+                                            <a href="@link"
+                                                class="flex items-center gap-2 transition-all duration-300 group-hover/leveltwo:text-primary-500">
+                                                <span
+                                                    class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover/leveltwo:bg-primary-500"></span>
+                                                @title
+                                            </a>
+                                        </div>
+                                        <ul
+                                            class="absolute z-30 flex flex-col invisible w-64 gap-2 p-2 font-medium transition-all duration-100 bg-white shadow-card-shadow opacity-0 rounded-xl top-full right-60 group-hover/leveltwo:visible group-hover/leveltwo:opacity-100">
+                                            @child
+                                        </ul>
+                                    </li>
+                                </face>
+                                <face level="2" filter="link is null">
+                                    <li class="relative px-2 transition-all duration-300 rounded-md group/levelthree">
+                                        <div
+                                            class="flex justify-between items-center cursor-pointer text-zinc-900 group-hover/levelthree:text-white">
+                                            <a href="/tour-list.bc?catid=@catid"
+                                                class="flex items-center gap-2 transition-all duration-300 group-hover/levelthree:text-primary-500">
+                                                <span
+                                                    class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover/levelthree:bg-primary-500"></span>
+                                                @title
+                                            </a>
+                                        </div>
+                                        <ul
+                                            class="absolute z-30 flex flex-col invisible w-64 gap-2 p-2 font-medium transition-all duration-100 bg-white shadow-card-shadow opacity-0 rounded-xl top-full right-60 group-hover/levelthree:visible group-hover/levelthree:opacity-100">
+                                            @child
+                                        </ul>
+                                    </li>
+                                </face>
+                                <face level="2">
+                                    <li class="relative px-2 transition-all duration-300 rounded-md group/levelthree">
+                                        <div
+                                            class="flex justify-between items-center cursor-pointer text-zinc-900 group-hover/levelthree:text-white">
+                                            <a href="@link"
+                                                class="flex items-center gap-2 transition-all duration-300 group-hover/levelthree:text-primary-500">
+                                                <span
+                                                    class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover/levelthree:bg-primary-500"></span>
+                                                @title
+                                            </a>
+                                        </div>
+                                        <ul
+                                            class="absolute z-30 flex flex-col invisible w-64 gap-2 p-2 font-medium transition-all duration-100 bg-white shadow-card-shadow opacity-0 rounded-xl top-full right-60 group-hover/levelthree:visible group-hover/levelthree:opacity-100">
+                                            @child
+                                        </ul>
+                                    </li>
+                                </face>
+
+                            </basis>
                         </ul>
                     </nav>
                 </div>
@@ -361,7 +814,6 @@
                 <div
                     class="Login_Information relative group z-10 flex items-center justify-center gap-2 text-sm w-40 h-11 font-semibold text-center transition-all border border-gray-100 cursor-pointer duration-300 hover:bg-primary-500 hover:text-white hover:shadow-small-btn-shadow hover:border-primary-500 rounded-xl bg-white">
                     <basis core="call" file="authentication/modal" lid="1"></basis>
-                    <span>ورود | ثبت نام</span>
                     <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path class="transition-all duration-300 group-hover:fill-white"
                             d="M2 12.5L1.21913 11.8753L0.719375 12.5L1.21913 13.1247L2 12.5ZM11 13.5C11.5523 13.5 12 13.0523 12 12.5C12 11.9477 11.5523 11.5 11 11.5V13.5ZM6 7.5L5.21913 6.8753L1.21913 11.8753L2 12.5L2.78087 13.1247L6.78087 8.1247L6 7.5ZM2 12.5L1.21913 13.1247L5.21913 18.1247L6 17.5L6.78087 16.8753L2.78087 11.8753L2 12.5ZM2 12.5V13.5H11V12.5V11.5H2V12.5Z"

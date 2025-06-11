@@ -645,6 +645,10 @@ body {
   right: 0px;
 }
 
+.right-60 {
+    right: 15rem /* 240px */;
+}
+
 .top-0 {
   top: 0px;
 }
@@ -2080,6 +2084,41 @@ body {
 .group\/leveltwo:hover .group-hover\/leveltwo\:text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+.group\/levelthree:hover .group-hover\/levelthree\:text-white {
+    --tw-text-opacity: 1;
+    color: rgb(255 255 255 / var(--tw-text-opacity, 1)) /* #ffffff */;
+}
+
+.group\/levelthree:hover .group-hover\/levelthree\:bg-white {
+    --tw-bg-opacity: 1;
+    background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1)) /* #ffffff */;
+}
+
+.group\/levelthree:hover .group-hover\/levelthree\:visible {
+    visibility: visible;
+}
+
+.group\/levelthree:hover .group-hover\/levelthree\:opacity-100 {
+    opacity: 1;
+}
+
+.group\/levelthree:hover .group-hover\/levelthree\:text-primary-500 {
+    color: var(--primary-500);
+}
+
+.group\/levelfour:hover .group-hover\/levelfour\:text-primary-500 {
+    color: var(--primary-500);
+}
+
+.group\/levelfour:hover .group-hover\/levelfour\:bg-white {
+    --tw-bg-opacity: 1;
+    background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1)) /* #ffffff */;
+}
+
+.group\/levelfour:hover .group-hover\/levelfour\:bg-primary-500 {
+    background-color: var(--primary-500);
 }
 
 .group:hover .group-hover\:opacity-100 {

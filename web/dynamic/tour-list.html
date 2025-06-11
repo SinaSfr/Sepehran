@@ -1,6 +1,3 @@
-<basis core="dbsource" source="basiscore" lid="1" mid="18" name="db" usedforid="[##cms.query.catid##]">
-    <member name="scalar" type="scalar" typeid="150" />
-</basis>
 
 <basis core="dbsource" source="basiscore" lid="1" mid="20" name="db" catid="[##cms.query.catid##]">
     <member name="navigation" type="tree" request="navcatid" parentid="[##cms.query.catid##]" />
@@ -20,12 +17,20 @@
         pageno="[##cms.query.pagenum|(1)##]" order="ord" />
     <member name="paging" type="list" request="paging" count="3" parentname="tour-list" />
 </basis>
-<basis core="dbsource" source="basiscore" mid="20" name="list" lid="2" schemaid="987" term="[##cms.query.term##]">
+<basis core="dbsource" source="basiscore" mid="20" name="list" lid="1" schemaid="987" term="[##cms.query.term##]">
     <member name="airline" type="list" request="spelist" />
 </basis>
 <basis core="inlinesource" name="joining">
     <member name="list" lefttblcol="db.tour-list.prp_10000504" righttblcol="list.airline.name" format="join"
         jointype="leftjoin" />
+</basis>
+
+<basis core="dbsource" source="basiscore" name="db" mid="20" lid="1" usedforid="[##cms.query.aid##]">
+    <member name="view" type="view" propertyid="7249" />
+</basis>
+
+<basis core="dbsource" source="basiscore" name="db" mid="1" lid="1" usedforid="[##cms.query.qid##]">
+    <member name="faq" type="view" propertyid="" />
 </basis>
 
 <!DOCTYPE html>
@@ -63,49 +68,58 @@
     <main>
         <section class="relative flex items-center justify-center bg-tourlistBg bg-center bg-cover h-32">
             <div class="absolute inset-0 w-full h-full bg-black/45"></div>
-            <ul itemscope itemtype="https://schema.org/BreadcrumbList" class="flex items-center text-sm gap-1 mt-2">
+            <ul itemscope itemtype="https://schema.org/BreadcrumbList"
+                class="relative flex items-center text-sm gap-1 mt-2">
                 <li class="inline-block font-normal" itemprop="itemListElement" itemscope
                     itemtype="https://schema.org/ListItem">
-                    <a class="text-zinc-900 transition-all duration-300 hover:text-primary-600" itemprop="item" href="/"
+                    <a class="text-white transition-all duration-300 hover:text-secondary-500" itemprop="item" href="/"
                         aria-label="home"><span itemprop="name">صفحه اصلی</span>
                         <meta itemprop="position" content="1" />
                     </a>
                 </li>
-                <span class="text-zinc-900"> > </span>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15 6L9 12L15 18" stroke="white" stroke-width="2" />
+                </svg>
+
                 <basis core="print" datamembername="db.navigation">
-                    <face filter="RowNumber=max(RowNumber) and parentcatid<>151135">
-                        <li class="inline-block font-normal" itemprop="itemListElement" itemscope
+                    <face filter="RowNumber=max(RowNumber) and parentcatid<>214993">
+                        <li class="text-white inline-block font-normal" itemprop="itemListElement" itemscope
                             itemtype="https://schema.org/ListItem">
-                            <span itemprop="name">@title</span>
+                            <h1 class="relative text-secondary-500 text-[54px] font-black" itemprop="name">@title</h1>
                             <meta itemprop="position" content="@rownumber" />
                         </li>
                     </face>
-                    <face filter="link is null and parentcatid<>151135">
-                        <li class="flex gap-1 font-normal " itemprop="itemListElement" itemscope
+                    <face filter="link is null and RowNumber<>max(RowNumber) and parentcatid<>214993">
+                        <li class="flex items-center gap-1 font-normal " itemprop="itemListElement" itemscope
                             itemtype="https://schema.org/ListItem">
-                            <a class="text-zinc-900 transition-all duration-300 hover:text-primary-600" itemprop="item"
+                            <a class="text-white transition-all duration-300 hover:text-secondary-500" itemprop="item"
                                 href="/tour-list.bc?catid=@parentcatid" aria-label="@title"><span
                                     itemprop="name">@title</span>
                                 <meta itemprop="position" content="@rownumber" />
                             </a>
-                            <span class="text-zinc-900"> > </span>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15 6L9 12L15 18" stroke="white" stroke-width="2" />
+                            </svg>
                         </li>
                     </face>
-                    <face filter="parentcatid<>151135">
-                        <li class="flex gap-1 font-normal " itemprop="itemListElement" itemscope
+                    <face filter="RowNumber<>max(RowNumber) and parentcatid<>214993">
+                        <li class="flex items-center gap-1 font-normal " itemprop="itemListElement" itemscope
                             itemtype="https://schema.org/ListItem">
-                            <a class="text-zinc-900 transition-all duration-300 hover:text-primary-600" itemprop="item"
+                            <a class="text-white transition-all duration-300 hover:text-secondary-500" itemprop="item"
                                 href="@link" aria-label="@title"><span
-                                    class="text-zinc-900  transition-all duration-300 hover:text-primary-600"
+                                    class="text-white transition-all duration-300 hover:text-secondary-500"
                                     itemprop="name">@title</span>
                                 <meta itemprop="position" content="@rownumber" />
                             </a>
-                            <span class="text-zinc-900"> > </span>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15 6L9 12L15 18" stroke="white" stroke-width="2" />
+                            </svg>
                         </li>
                     </face>
                 </basis>
             </ul>
-            <span class="text-secondary-500 text-[54px] font-black">تور تایلند</span>
         </section>
         <section class="mt-10">
             <h2 class="mx-auto max-lg:w-[90%] max-xl:w-[97%] xl:max-w-7xl text-[36px] font-extrabold mb-6">
@@ -211,7 +225,7 @@
                         <div class="mb-6">
                             <h3 class="text-sm font-bold mb-2">ایرلاین:</h3>
                             <div class="checkboxList flex flex-col gap-3">
-                               
+
                             </div>
 
                             <button class="w-full mt-4 text-center text-primary-700 toggle-btn">
@@ -604,10 +618,10 @@
                                 </div>
                                 <div
                                     class="relative bg-gray-50 rounded-2xl py-8 px-10 overflow-hidden transition-all duration-300 group-hover:bg-primary-500 group-hover:border-white">
-                                    <img src="../assets/images/earth.png"
+                                    <img src="[##cms.cms.cdn##]/images/earth.png"
                                         class="absolute -top-28 right-20 h-[500px] object-cover hidden transition-all duration-300 invisible opacity-0 group-hover:visible group-hover:opacity-40 group-hover:block"
                                         alt="earth" width="500" height="500" loading="lazy">
-                                    <img src="../assets/images/blue-earth.png"
+                                    <img src="[##cms.cms.cdn##]/images/blue-earth.png"
                                         class="absolute -top-28 right-20 h-[500px] object-cover opacity-40 transition-all duration-300 group-hover:hidden group-hover:invisible group-hover:opacity-0"
                                         alt="earth" width="500" height="500" loading="lazy">
                                     <div class="flex items-center gap-8">
@@ -818,87 +832,28 @@
                     </div>
                 </section>
                 <section class="mt-6">
-                    <h2 class="text-[48px] font-black mb-6">جزئیات تور تایلند</h2>
-                    <div class="overflow-x-auto rounded-lg shadow-md">
-                        <table class="table-auto w-full border border-[#2E58D14D] text-center">
-                            <thead class="bg-primary-500 text-white">
-                                <tr>
-                                    <th class="px-4 py-3">نوع مدرک</th>
-                                    <th class="px-4 py-3">هزینه مورد نیاز</th>
-                                    <th class="px-4 py-3">زمان تقریبی</th>
-                                    <th class="px-4 py-3">مکان دریافت مدارک</th>
-                                </tr>
-                            </thead>
-                            <tbody class="text-gray-800 text-sm">
-                                <tr class="border-b">
-                                    <td class="px-4 py-2 border border-[#2E58D14D]">پاسپورت</td>
-                                    <td class="px-4 py-2 border border-[#2E58D14D]">۱۳۴ دلار آمریکا</td>
-                                    <td class="px-4 py-2 border border-[#2E58D14D]">۳۰ الی ۴۰ روز کاری</td>
-                                    <td class="px-4 py-2 border border-[#2E58D14D]">سفارت در ایران</td>
-                                </tr>
-                                <tr class="border-b">
-                                    <td class="px-4 py-2 border border-[#2E58D14D]">بلیط هواپیما</td>
-                                    <td class="px-4 py-2 border border-[#2E58D14D]">۲۲۳ دلار</td>
-                                    <td class="px-4 py-2 border border-[#2E58D14D]">بعد از پرداخت</td>
-                                    <td class="px-4 py-2 border border-[#2E58D14D]">آژانس گردشگران</td>
-                                </tr>
-                                <tr class="border-b">
-                                    <td class="px-4 py-2 border border-[#2E58D14D]">ووچر هتل</td>
-                                    <td class="px-4 py-2 border border-[#2E58D14D]">۵۴۰ دلار</td>
-                                    <td class="px-4 py-2 border border-[#2E58D14D]">بعد از پرداخت</td>
-                                    <td class="px-4 py-2 border border-[#2E58D14D]">آژانس گردشگران</td>
-                                </tr>
-                                <tr class="border-b">
-                                    <td class="px-4 py-2 border border-[#2E58D14D]">پیکاپ ویزا</td>
-                                    <td class="px-4 py-2 border border-[#2E58D14D]">۴۹ دلار</td>
-                                    <td class="px-4 py-2 border border-[#2E58D14D]">۱۰ الی ۱۵ روز</td>
-                                    <td class="px-4 py-2 border border-[#2E58D14D]">سفارت در ترکیه</td>
-                                </tr>
-                                <tr>
-                                    <td class="px-4 py-2 border border-[#2E58D14D]">تست</td>
-                                    <td class="px-4 py-2 border border-[#2E58D14D]">تست</td>
-                                    <td class="px-4 py-2 border border-[#2E58D14D]">تست</td>
-                                    <td class="px-4 py-2 border border-[#2E58D14D]">تست</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="text-sm font-semibold mt-6 leading-7 text-justify mb-6">
-                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است،
-                        چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی
-                        مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه
-                        درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری
-                        را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این
-                        صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و
-                        زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی
-                        اساسا مورد استفاده قرار گیرد.
-                    </div>
-                    <img src="../assets/images/special-tour-card.jpg" class="h-[563px] object-cover rounded-2xl" alt=""
-                        width="951" height="563" loading="lazy">
-                    <div class="text-sm font-semibold mt-6 text-justify leading-7">
-                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است،
-                        چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی
-                        مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه
-                        درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری
-                        را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این
-                        صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و
-                        زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی
-                        اساسا مورد استفاده قرار گیرد.لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با
-                        استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم
-                        است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می
-                        باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد،
-                        تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو
-                        در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها،
-                        و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات
-                        پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.لورم ایپسوم متن ساختگی با تولید سادگی
-                        نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در
-                        ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف
-                        بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان
-                        جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص
-                        طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و
-                        دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی
-                        دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
-                    </div>
+                    <basis core="print" datamembername="db.view">
+                        <face filter="TypeID in(150)">
+                            <h2 class="text-[48px] font-black mb-6">@text</h2>
+                        </face>
+                    </basis>
+
+                    <basis core="print" datamembername="db.view">
+                        <layout>
+                            <div class="mb-10">
+                                @child
+                            </div>
+                        </layout>
+                        <face filter="TypeID in(129)">
+                            <div class="text-sm font-semibold mt-6 leading-7 text-justify mb-6">
+                                @largetext
+                            </div>
+                        </face>
+                        <face filter="TypeID in(250)">
+                            <h2 id="@valueID" class="font-medium text-zinc-900 mb-2">@text</h2>
+                            <div class="text-sm font-semibold mt-6 leading-7 text-justify mb-6">@largetext</div>
+                        </face>
+                    </basis>
                     <div class="flex items-center justify-center gap-3 mt-6 border border-gray-100 rounded-2xl">
                         <div class="flex flex-col items-center w-[483px]">
                             <h2 class="text-2xl font-extrabold mb-1">عنوان تستی کال تو اکشن</h2>
@@ -941,68 +896,43 @@
                                 </a>
                             </div>
                         </div>
-                        <img src="../assets/images/phone-form.jpg" class="h-64 object-cover" alt="phone-form"
+                        <img src="[##cms.cms.cdn##]/images/phone-form.jpg" class="h-64 object-cover" alt="phone-form"
                             width="242" height="254" loading="lazy">
-                    </div>
-                    <div class="text-sm font-semibold mt-6 leading-7 text-justify mb-6">
-                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است،
-                        چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی
-                        مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه
-                        درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری
-                        را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این
-                        صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و
-                        زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی
-                        اساسا مورد استفاده قرار گیرد.
-                    </div>
-                    <img src="../assets/images/special-tour-card.jpg" class="h-[563px] object-cover rounded-2xl" alt=""
-                        width="951" height="563" loading="lazy">
-                    <div class="text-sm font-semibold mt-6 text-justify leading-7">
-                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است،
-                        چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی
-                        مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه
-                        درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری
-                        را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این
-                        صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و
-                        زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی
-                        اساسا مورد استفاده قرار گیرد.لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با
-                        استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم
-                        است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می
-                        باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد،
-                        تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو
-                        در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها،
-                        و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات
-                        پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.لورم ایپسوم متن ساختگی با تولید سادگی
-                        نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در
-                        ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف
-                        بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان
-                        جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص
-                        طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و
-                        دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی
-                        دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
                     </div>
                 </section>
                 <section class="mt-6 mb-16">
                     <h2 class="text-[36px] font-extrabold mb-3">سوالات متداول کاربران</h2>
-                    <div
-                        class="faq-box transition-all duration-300 cursor-pointer rounded-xl border border-gray-100 bg-white py-6 px-8">
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center gap-2">
-                                <svg width="32" height="32">
-                                    <use xlink:href="./images/sprite-icons.svg#icon-plus-circle"></use>
-                                </svg>
-                                <h2 class="font-extrabold text-2xl text-zinc-900">سوال متداول اول</h2>
+                    <basis core="print" datamembername="db.faq">
+                        <layout>
+                            <div class="flex flex-col gap-4">
+                                @child
                             </div>
-                            <svg class="flex-shrink-0 faq-btn transition-all duration-300" width="33" height="33"
-                                viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M24.5 12.5864L16.5 20.5864L8.5 12.5864" stroke="#1E2128" stroke-width="3" />
-                            </svg>
+                        </layout>
+                        <face>
+                            <div
+                                class="faq-box transition-all duration-300 cursor-pointer rounded-xl border border-gray-100 bg-white py-6 px-8">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-2">
+                                        <svg width="32" height="32">
+                                            <use xlink:href="./images/sprite-icons.svg#icon-plus-circle"></use>
+                                        </svg>
+                                        <h2 class="font-extrabold text-2xl text-zinc-900">@text</h2>
+                                    </div>
+                                    <svg class="flex-shrink-0 faq-btn transition-all duration-300" width="33"
+                                        height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M24.5 12.5864L16.5 20.5864L8.5 12.5864" stroke="#1E2128"
+                                            stroke-width="3" />
+                                    </svg>
 
-                        </div>
-                        <div
-                            class="faq-answer text-sm font-semibold opacity-0 scale-y-0 max-h-0 overflow-hidden transition-all duration-500 ease-in-out origin-top pr-6">
-                            بسیسیییییییییییییییییییییییییییییییییییییییییییییییییییییییی
-                        </div>
-                    </div>
+                                </div>
+                                <div
+                                    class="faq-answer text-white text-sm font-semibold opacity-0 scale-y-0 max-h-0 overflow-hidden transition-all duration-500 ease-in-out origin-top pr-6">
+                                    @largetext
+                                </div>
+                            </div>
+                        </face>
+                    </basis>
+
                 </section>
             </div>
         </div>

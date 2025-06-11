@@ -149,6 +149,27 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // special tour-label
+  document.querySelectorAll(".special-tour-label").forEach((labelEl) => {
+    const catId = labelEl.getAttribute("data-special-catid");
+
+    let matched = false;
+
+    document.querySelectorAll(".special-tour-host").forEach((hostEl) => {
+      const data = hostEl.getAttribute("data-special");
+      if (!data) return;
+
+      const ids = data.split(",").map((id) => id.trim());
+      if (ids.includes(catId)) {
+        matched = true;
+      }
+    });
+
+    if (matched) {
+      labelEl.classList.remove("hidden");
+    }
+  });
+
   document.querySelectorAll(".tourcategorydropdown__item").forEach((item) => {
     item.addEventListener("click", () => {
       document.querySelectorAll(".tourcategorydropdown__item").forEach((li) => {
@@ -331,7 +352,6 @@ document.addEventListener("DOMContentLoaded", function () {
         "text-2xl font-black text-primary-500 transition-all duration-300 group-hover:text-white";
       h3.textContent = dest;
       destContainer.appendChild(h3);
-
 
       if (index < destinations.length - 1 && destinations.length > 1) {
         const blueIcon = createIcon(
@@ -673,7 +693,7 @@ document.addEventListener("DOMContentLoaded", function () {
 //   }
 
 //   updatePriceRange();
-  
+
 // });
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -725,7 +745,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const airlineElem = card.querySelector(".tourL-tour-airline");
     if (airlineElem) {
       const airlineName = normalizeText(airlineElem.textContent);
-      const imagePath = airlineElem.dataset.airlineImg || "../assets/images/default-airline.png";
+      const imagePath =
+        airlineElem.dataset.airlineImg ||
+        "../assets/images/default-airline.png";
       if (airlineName && !airlineData.has(airlineName)) {
         airlineData.set(airlineName, imagePath);
       }

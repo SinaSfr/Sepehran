@@ -1891,6 +1891,10 @@ body {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
 }
 
+.hover\:text-secondary-500:hover {
+    color: var(--secondary-500);
+}
+
 .hover\:text-primary-500:hover {
   color: var(--primary-500);
 }

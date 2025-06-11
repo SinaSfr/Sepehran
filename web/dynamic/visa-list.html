@@ -1,0 +1,432 @@
+<basis core="dbsource" source="basiscore" lid="1" mid="20" name="db" catid="[##cms.query.catid##]">
+    <member name="navigation" type="tree" request="navcatid" parentid="[##cms.query.catid##]" />
+</basis>
+
+<basis core="dbsource" source="basiscore" lid="1" mid="20" name="db" catid="[##cms.query.catid##]">
+    <member name="visa-list" type="list" link="tour.bc" propertyid="" perpage="6" size="294x192"
+        pageno="[##cms.query.pagenum|(1)##]" order="ord" />
+    <member name="paging" type="list" request="paging" count="3" parentname="visa-list" />
+</basis>
+
+<basis core="dbsource" source="basiscore" name="db" mid="20" lid="1" usedforid="[##cms.query.aid##]">
+    <member name="view" type="view" propertyid="7249" />
+</basis>
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,shrink-to-fit=no,viewport-fit=cover">
+    <!-- Title & Description -->
+    <title>[##cms.seo.title|(گردشگران سپهر تهران - خرید بلیط هواپیما - رزرو تور خارجی و داخلی)##]
+    </title>
+    <meta name="description"
+        content="[##cms.seo.description|(گردشگران سپهر تهران ارائه‌دهنده بلیط هواپیما، تورهای خارجی و داخلی، رزرو هتل، و خدمات ویزا. سفر به استانبول، دبی، آنتالیا، اروپا با بهترین قیمت)##]">
+    <!-- Title & Description -->
+    <basis core="dbsource" source="hosting" name="tag" urlid="[##cms.seo.urlid##]">
+        <member type="list" name="list" request="taglist" preview=""></member>
+    </basis>
+    <basis core="print" datamembername="tag.list">
+        <face filter="key = 'canonical'">
+            <link rel="canonical" href="@value" />
+        </face>
+        <face>
+            <meta property="@key" content="@value" />
+        </face>
+    </basis>
+    <!-- pwa metatags -->
+    <basis core="call" file="pwa.inc" />
+    <!-- common styles for all page -->
+    <basis core="call" file="style.inc" />
+</head>
+
+<body>
+    <basis core="call" file="header.inc" />
+    <main>
+        <div class="hidden items-center gap-7 w-[953px] bg-gray-gradient bg-cover bg-center rounded-3xl p-20">
+            <div class="flex-1">
+                <div class="flex items-center gap-2 border-b-2 border-zinc-900 mb-2 pb-3">
+                    <svg width="42" height="42">
+                        <use xlink:href="../assets/images/sprite-icons.svg#icon-black-flash"></use>
+                    </svg>
+                    <h2 class="text-[36px] font-extrabold">مشاوره رایگان رزرو تور</h2>
+                </div>
+                <div class="text-sm font-semibold mb-6">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
+                    استفاده از طراحان گرافیک است.</div>
+            </div>
+            <div class="flex-[1.02]">
+                <img src="../assets/images/tour-reservation-form.png" class="w-full h-[440px] object-cover" alt=""
+                    width="385" height="440" loading="lazy">
+            </div>
+        </div>
+        <section class="relative flex items-center justify-center bg-tourlistBg bg-center bg-cover h-32">
+            <div class="absolute inset-0 w-full h-full bg-black/45"></div>
+            <ul itemscope itemtype="https://schema.org/BreadcrumbList"
+                class="relative flex items-center text-sm gap-1 mt-2">
+                <li class="inline-block font-normal" itemprop="itemListElement" itemscope
+                    itemtype="https://schema.org/ListItem">
+                    <a class="text-white transition-all duration-300 hover:text-secondary-500" itemprop="item" href="/"
+                        aria-label="home"><span itemprop="name">صفحه اصلی</span>
+                        <meta itemprop="position" content="1" />
+                    </a>
+                </li>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15 6L9 12L15 18" stroke="white" stroke-width="2" />
+                </svg>
+
+                <basis core="print" datamembername="db.navigation">
+                    <face filter="RowNumber=max(RowNumber) and parentcatid<>214993">
+                        <li class="text-white inline-block font-normal" itemprop="itemListElement" itemscope
+                            itemtype="https://schema.org/ListItem">
+                            <h1 class="relative text-secondary-500 text-[54px] font-black" itemprop="name">@title</h1>
+                            <meta itemprop="position" content="@rownumber" />
+                        </li>
+                    </face>
+                    <face filter="link is null and RowNumber<>max(RowNumber) and parentcatid<>214993">
+                        <li class="flex items-center gap-1 font-normal " itemprop="itemListElement" itemscope
+                            itemtype="https://schema.org/ListItem">
+                            <a class="text-white transition-all duration-300 hover:text-secondary-500" itemprop="item"
+                                href="/tour-list.bc?catid=@parentcatid" aria-label="@title"><span
+                                    itemprop="name">@title</span>
+                                <meta itemprop="position" content="@rownumber" />
+                            </a>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15 6L9 12L15 18" stroke="white" stroke-width="2" />
+                            </svg>
+                        </li>
+                    </face>
+                    <face filter="RowNumber<>max(RowNumber) and parentcatid<>214993">
+                        <li class="flex items-center gap-1 font-normal " itemprop="itemListElement" itemscope
+                            itemtype="https://schema.org/ListItem">
+                            <a class="text-white transition-all duration-300 hover:text-secondary-500" itemprop="item"
+                                href="@link" aria-label="@title"><span
+                                    class="text-white transition-all duration-300 hover:text-secondary-500"
+                                    itemprop="name">@title</span>
+                                <meta itemprop="position" content="@rownumber" />
+                            </a>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15 6L9 12L15 18" stroke="white" stroke-width="2" />
+                            </svg>
+                        </li>
+                    </face>
+                </basis>
+            </ul>
+        </section>
+        <section class="mx-auto max-lg:w-[90%] max-xl:w-[97%] xl:max-w-7xl mt-16">
+            <h2 class="text-[36px] font-extrabold mb-8">برای چه مقصدی ویزا می‌خواهید؟</h2>
+            <div class="grid grid-cols-4 gap-7">
+                <!-- items -->
+                <div class="border border-gray-50 rounded-xl shadow-card-shadow overflow-hidden">
+                    <img src="../assets/images/special-tour-card.jpg" class="w-full h-48 object-cover" alt=""
+                        width="294" height="192" loading="lazy">
+                    <div class="flex flex-col gap-1 py-4 px-6 divide-y divide-gray-100">
+                        <div class="flex items-center gap-2">
+                            <img src="../assets/images/tailand.jpg" class="h-6 object-cover rounded" alt="" width="36"
+                                height="24" loading="lazy">
+                            <h2 class="text-2xl font-extrabold">ویزای تورستی کانادا</h2>
+                        </div>
+                        <div class="flex flex-col gap-2 pt-2">
+                            <h3 class="flex items-center gap-2 text-sm font-bold">
+                                زمان مورد نیاز:
+                                <span class="text-primary-500">6 ماه</span>
+                            </h3>
+                            <h3 class="flex items-center gap-2 text-sm font-bold">
+                                مدت زمان ویزا:
+                                <span class="text-primary-500">6 ماه</span>
+                            </h3>
+                            <h3 class="flex items-center gap-2 text-sm font-bold">
+                                تعداد دفعات ورود:
+                                <span class="text-primary-500">6 ماه</span>
+                            </h3>
+                        </div>
+                        <div class="flex items-center justify-between pt-2">
+                            <h3 class="text-sm font-bold">شروع قیمت از:</h3>
+                            <span class="text-2xl font-extrabold text-primary-500">650 $</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="border border-gray-50 rounded-xl shadow-card-shadow overflow-hidden">
+                    <img src="../assets/images/special-tour-card.jpg" class="w-full h-48 object-cover" alt=""
+                        width="294" height="192" loading="lazy">
+                    <div class="flex flex-col gap-1 py-4 px-6 divide-y divide-gray-100">
+                        <div class="flex items-center gap-2">
+                            <img src="../assets/images/tailand.jpg" class="h-6 object-cover rounded" alt="" width="36"
+                                height="24" loading="lazy">
+                            <h2 class="text-2xl font-extrabold">ویزای تورستی کانادا</h2>
+                        </div>
+                        <div class="flex flex-col gap-2 pt-2">
+                            <h3 class="flex items-center gap-2 text-sm font-bold">
+                                زمان مورد نیاز:
+                                <span class="text-primary-500">6 ماه</span>
+                            </h3>
+                            <h3 class="flex items-center gap-2 text-sm font-bold">
+                                مدت زمان ویزا:
+                                <span class="text-primary-500">6 ماه</span>
+                            </h3>
+                            <h3 class="flex items-center gap-2 text-sm font-bold">
+                                تعداد دفعات ورود:
+                                <span class="text-primary-500">6 ماه</span>
+                            </h3>
+                        </div>
+                        <div class="flex items-center justify-between pt-2">
+                            <h3 class="text-sm font-bold">شروع قیمت از:</h3>
+                            <span class="text-2xl font-extrabold text-primary-500">650 $</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="border border-gray-50 rounded-xl shadow-card-shadow overflow-hidden">
+                    <img src="../assets/images/special-tour-card.jpg" class="w-full h-48 object-cover" alt=""
+                        width="294" height="192" loading="lazy">
+                    <div class="flex flex-col gap-1 py-4 px-6 divide-y divide-gray-100">
+                        <div class="flex items-center gap-2">
+                            <img src="../assets/images/tailand.jpg" class="h-6 object-cover rounded" alt="" width="36"
+                                height="24" loading="lazy">
+                            <h2 class="text-2xl font-extrabold">ویزای تورستی کانادا</h2>
+                        </div>
+                        <div class="flex flex-col gap-2 pt-2">
+                            <h3 class="flex items-center gap-2 text-sm font-bold">
+                                زمان مورد نیاز:
+                                <span class="text-primary-500">6 ماه</span>
+                            </h3>
+                            <h3 class="flex items-center gap-2 text-sm font-bold">
+                                مدت زمان ویزا:
+                                <span class="text-primary-500">6 ماه</span>
+                            </h3>
+                            <h3 class="flex items-center gap-2 text-sm font-bold">
+                                تعداد دفعات ورود:
+                                <span class="text-primary-500">6 ماه</span>
+                            </h3>
+                        </div>
+                        <div class="flex items-center justify-between pt-2">
+                            <h3 class="text-sm font-bold">شروع قیمت از:</h3>
+                            <span class="text-2xl font-extrabold text-primary-500">650 $</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="border border-gray-50 rounded-xl shadow-card-shadow overflow-hidden">
+                    <img src="../assets/images/special-tour-card.jpg" class="w-full h-48 object-cover" alt=""
+                        width="294" height="192" loading="lazy">
+                    <div class="flex flex-col gap-1 py-4 px-6 divide-y divide-gray-100">
+                        <div class="flex items-center gap-2">
+                            <img src="../assets/images/tailand.jpg" class="h-6 object-cover rounded" alt="" width="36"
+                                height="24" loading="lazy">
+                            <h2 class="text-2xl font-extrabold">ویزای تورستی کانادا</h2>
+                        </div>
+                        <div class="flex flex-col gap-2 pt-2">
+                            <h3 class="flex items-center gap-2 text-sm font-bold">
+                                زمان مورد نیاز:
+                                <span class="text-primary-500">6 ماه</span>
+                            </h3>
+                            <h3 class="flex items-center gap-2 text-sm font-bold">
+                                مدت زمان ویزا:
+                                <span class="text-primary-500">6 ماه</span>
+                            </h3>
+                            <h3 class="flex items-center gap-2 text-sm font-bold">
+                                تعداد دفعات ورود:
+                                <span class="text-primary-500">6 ماه</span>
+                            </h3>
+                        </div>
+                        <div class="flex items-center justify-between pt-2">
+                            <h3 class="text-sm font-bold">شروع قیمت از:</h3>
+                            <span class="text-2xl font-extrabold text-primary-500">650 $</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ul class="flex items-center justify-center gap-4 mt-10 direction-ltr">
+
+                <li
+                    class="group flex items-center justify-center w-16 h-16 border border-gray-100 rounded-xl transition-all duration-300 hover:border-primary-500">
+                    <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path class="transition-all duration-300 group-hover:stroke-primary-500"
+                            d="M15.5 6.15674L9.5 12.1567L15.5 18.1567" stroke="#1E2128" />
+                    </svg>
+                </li>
+                <li
+                    class="flex items-center justify-center w-16 h-16 border border-gray-100 text-gray-400 text-2xl font-extrabold rounded-xl transition-all duration-300 hover:border-primary-500 hover:text-primary-500">
+                    1</li>
+                <li
+                    class="flex items-center justify-center w-16 h-16 border border-primary-500 text-primary-500 text-2xl font-extrabold rounded-xl">
+                    2</li>
+                <li
+                    class="flex items-center justify-center w-16 h-16 border border-gray-100 text-gray-400 text-2xl font-extrabold rounded-xl">
+                    3</li>
+                <li class="flex items-center justify-center w-16 h-16 border border-gray-100 rounded-xl">
+                    <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9.5 6.15674L15.5 12.1567L9.5 18.1567" stroke="#1E2128" />
+                    </svg>
+
+                </li>
+            </ul>
+        </section>
+        <div class="flex gap-4 mx-auto max-lg:w-[90%] max-xl:w-[97%] xl:max-w-7xl mt-24">
+            <aside class="sticky top-0 h-fit w-96">
+                <section
+                    class="bg-formBg bg-center bg-cover flex items-end border border-gray-100 shadow-big-shadow rounded-3xl h-[404px]">
+                    <div class="flex flex-col items-center gap-1 mb-20 mr-8">
+                        <a href=""
+                            class="group flex items-center gap-2 border border-gray-100 rounded-xl transition-all duration-300 hover:shadow-small-btn-shadow hover:bg-primary-500 hover:text-white hover:border-primary-500 py-2 px-6">ارسال
+                            فرم
+                            <svg width="25" height="25" viewBox="0 0 25 25" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path class="transition-all duration-300 group-hover:fill-white"
+                                    d="M16.7051 5.37444C18.3609 4.82251 19.189 4.5468 19.626 4.98381C20.0628 5.42087 19.7872 6.24912 19.2354 7.90471L16.3975 16.4174C15.6131 18.7704 15.2207 19.9475 14.5 19.9477C13.7792 19.9477 13.3869 18.7706 12.6025 16.4174L11.8535 14.1694L16.207 9.81682L16.2754 9.74065C16.5957 9.34793 16.573 8.76888 16.207 8.40276C15.8409 8.03665 15.2619 8.01407 14.8691 8.3344L14.793 8.40276L10.4395 12.7563L8.19238 12.0073C5.83933 11.2229 4.66227 10.8305 4.66211 10.1098C4.66211 9.38903 5.83917 8.99674 8.19238 8.21233L16.7051 5.37444Z"
+                                    fill="#222222" />
+                            </svg>
+                        </a>
+                        <div class="flex items-center gap-2">
+                            <svg width="34" height="2" viewBox="0 0 34 2" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <line y1="0.609863" x2="34" y2="0.609863" stroke="#8892A6" />
+                            </svg>
+                            <span class="text-sm font-semibold text-gray-400">یا</span>
+                            <svg width="34" height="2" viewBox="0 0 34 2" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <line y1="0.609863" x2="34" y2="0.609863" stroke="#8892A6" />
+                            </svg>
+                        </div>
+                        <a href=""
+                            class="group flex items-center gap-2 border  rounded-xl transition-all duration-300 shadow-small-btn-shadow bg-primary-500 text-white border-primary-500 py-2 px-6 hover:border-gray-100 hover:shadow-none hover:bg-white hover:text-zinc-900">تماس
+                            بگیرید
+                            <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path class="transition-all duration-300 group-hover:fill-zinc-900"
+                                    d="M6.67962 3.43024L7.29289 2.81697C7.68342 2.42645 8.31658 2.42645 8.70711 2.81697L11.2929 5.40276C11.6834 5.79328 11.6834 6.42645 11.2929 6.81697L9.50048 8.60938C9.2016 8.90826 9.1275 9.36487 9.31653 9.74293C10.4093 11.9284 12.1814 13.7006 14.3669 14.7933C14.745 14.9824 15.2016 14.9083 15.5005 14.6094L17.2929 12.817C17.6834 12.4264 18.3166 12.4264 18.7071 12.817L21.2929 15.4028C21.6834 15.7933 21.6834 16.4264 21.2929 16.817L20.6796 17.4302C18.5683 19.5416 15.2257 19.7791 12.837 17.9876L11.6286 17.0813C9.88504 15.7736 8.33622 14.2248 7.02857 12.4813L6.12226 11.2729C4.33072 8.88416 4.56827 5.54159 6.67962 3.43024Z"
+                                    fill="#fff" />
+                            </svg>
+
+                        </a>
+
+                    </div>
+                </section>
+            </aside>
+            <div class="flex-1">
+                <section>
+                    <div class="relative content-container max-h-[480px] overflow-hidden transition-all duration-500">
+                        <div
+                            class="absolute bottom-0 h-60 w-full white-shadow bg-white-shadow transition-opacity duration-500">
+                        </div>
+                        <basis core="print" datamembername="db.view">
+                            <face filter="TypeID in(150)">
+                                <h2 class="text-[48px] font-black mb-8">@text</h2>
+                            </face>
+                        </basis>
+
+                        <basis core="print" datamembername="db.view">
+                            <layout>
+                                <div class="mb-10">
+                                    @child
+                                </div>
+                            </layout>
+                            <face filter="TypeID in(129)">
+                                <div class="text-sm font-semibold mt-6 leading-7 text-justify mb-8">
+                                    @largetext
+                                </div>
+                            </face>
+                            <face filter="TypeID in(250)">
+                                <h2 id="@valueID" class="text-[36px] font-extrabold mb-4">@text</h2>
+                                <div class="text-content text-sm font-semibold mt-6 leading-7 text-justify mb-6">
+                                    @largetext</div>
+                            </face>
+                        </basis>
+
+                        <button
+                            class="group see-more absolute bottom-6 left-0 right-0 mx-auto z-10 flex items-center justify-center gap-2 w-40 h-11 text-white rounded-xl bg-primary-500 transition-all duration-300 hover:shadow-small-btn-shadow">
+                            <span class="see-more-text">مشاهده همه</span>
+                            <svg class="transition-all duration-300 group-hover:hidden group-hover:invisible group-hover:opacity-0"
+                                width="24" height="25" viewBox="0 0 24 25" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M17 6.5L11 12.5L17 18.5" stroke="white" stroke-width="2" />
+                                <path d="M6 7.5V17.5" stroke="white" stroke-width="2" />
+                            </svg>
+                            <svg class="hidden transition-all duration-300 invisible opacity-0 group-hover:visible group-hover:opacity-100 group-hover:block"
+                                width="24" height="25" viewBox="0 0 24 25" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7 12.5H21" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+                                <path
+                                    d="M2.35729 12.2856L5.7884 10.227C6.32162 9.90703 7 10.2911 7 10.913V14.087C7 14.7089 6.32162 15.093 5.7884 14.773L2.35729 12.7144C2.19545 12.6173 2.19545 12.3827 2.35729 12.2856Z"
+                                    fill="white" />
+                            </svg>
+                        </button>
+                    </div>
+
+
+                    <div class="flex items-center justify-center gap-3 mt-6 border border-gray-100 rounded-2xl mb-8">
+                        <div class="flex flex-col items-center w-[483px]">
+                            <h2 class="text-2xl font-extrabold mb-1">عنوان تستی کال تو اکشن</h2>
+                            <div class="text-sm font-semibold leading-7 text-center w-4/5">
+                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک
+                                است
+                            </div>
+                            <div class="flex items-center gap-4 mt-4">
+                                <a href=""
+                                    class="group flex items-center gap-2 border rounded-xl transition-all duration-300 shadow-small-btn-shadow bg-primary-500 text-white border-primary-500 py-2 px-6 hover:border-gray-100 hover:text-zinc-900 hover:shadow-none hover:bg-white">تماس
+                                    بگیرید
+                                    <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path class="transition-all duration-300 group-hover:fill-zinc-900"
+                                            d="M6.67962 3.43024L7.29289 2.81697C7.68342 2.42645 8.31658 2.42645 8.70711 2.81697L11.2929 5.40276C11.6834 5.79328 11.6834 6.42645 11.2929 6.81697L9.50048 8.60938C9.2016 8.90826 9.1275 9.36487 9.31653 9.74293C10.4093 11.9284 12.1814 13.7006 14.3669 14.7933C14.745 14.9824 15.2016 14.9083 15.5005 14.6094L17.2929 12.817C17.6834 12.4264 18.3166 12.4264 18.7071 12.817L21.2929 15.4028C21.6834 15.7933 21.6834 16.4264 21.2929 16.817L20.6796 17.4302C18.5683 19.5416 15.2257 19.7791 12.837 17.9876L11.6286 17.0813C9.88504 15.7736 8.33622 14.2248 7.02857 12.4813L6.12226 11.2729C4.33072 8.88416 4.56827 5.54159 6.67962 3.43024Z"
+                                            fill="#fff"></path>
+                                    </svg>
+
+                                </a>
+                                <div class="flex items-center gap-2">
+                                    <svg width="34" height="2" viewBox="0 0 34 2" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <line y1="0.609863" x2="34" y2="0.609863" stroke="#8892A6"></line>
+                                    </svg>
+                                    <span class="text-sm font-semibold text-gray-400">یا</span>
+                                    <svg width="34" height="2" viewBox="0 0 34 2" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <line y1="0.609863" x2="34" y2="0.609863" stroke="#8892A6"></line>
+                                    </svg>
+                                </div>
+                                <a href=""
+                                    class="group flex items-center gap-2 border border-gray-100 rounded-xl transition-all duration-300 hover:shadow-small-btn-shadow hover:bg-primary-500 hover:text-white hover:border-primary-500 py-2 px-6">ارسال
+                                    فرم
+                                    <svg width="25" height="25" viewBox="0 0 25 25" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path class="transition-all duration-300 group-hover:fill-white"
+                                            d="M16.7051 5.37444C18.3609 4.82251 19.189 4.5468 19.626 4.98381C20.0628 5.42087 19.7872 6.24912 19.2354 7.90471L16.3975 16.4174C15.6131 18.7704 15.2207 19.9475 14.5 19.9477C13.7792 19.9477 13.3869 18.7706 12.6025 16.4174L11.8535 14.1694L16.207 9.81682L16.2754 9.74065C16.5957 9.34793 16.573 8.76888 16.207 8.40276C15.8409 8.03665 15.2619 8.01407 14.8691 8.3344L14.793 8.40276L10.4395 12.7563L8.19238 12.0073C5.83933 11.2229 4.66227 10.8305 4.66211 10.1098C4.66211 9.38903 5.83917 8.99674 8.19238 8.21233L16.7051 5.37444Z"
+                                            fill="#222222"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                        <img src="../assets/images/phone-form.jpg" class="h-64 object-cover" alt="phone-form"
+                            width="242" height="254" loading="lazy">
+                    </div>
+                </section>
+                <section class="mt-10 mb-16">
+                    <h2 class="text-[36px] font-extrabold mb-3">سوالات متداول ویزا</h2>
+                    <div
+                        class="faq-box transition-all duration-300 cursor-pointer rounded-xl border border-gray-100 bg-white py-6 px-8">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <svg width="32" height="32">
+                                    <use xlink:href="../assets/images/sprite-icons.svg#icon-plus-circle"></use>
+                                </svg>
+                                <h2 class="font-extrabold text-2xl text-zinc-900">سوال متداول اول</h2>
+                            </div>
+                            <svg class="flex-shrink-0 faq-btn transition-all duration-300" width="33" height="33"
+                                viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M24.5 12.5864L16.5 20.5864L8.5 12.5864" stroke="#1E2128" stroke-width="3" />
+                            </svg>
+
+                        </div>
+                        <div
+                            class="faq-answer text-sm font-semibold opacity-0 scale-y-0 max-h-0 overflow-hidden transition-all duration-500 ease-in-out origin-top pr-6">
+                            بسیسیییییییییییییییییییییییییییییییییییییییییییییییییییییییی
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+    <basis core="call" file="footer.inc" />
+</body>
+
+</html>
