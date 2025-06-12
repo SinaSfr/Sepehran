@@ -3,7 +3,7 @@
 </basis>
 
 <basis core="dbsource" source="basiscore" lid="1" mid="20" name="db" catid="[##cms.query.catid##]">
-    <member name="visa-list" type="list" link="tour.bc" propertyid="" perpage="6" size="294x192"
+    <member name="visa-list" type="list" link="visa.bc" propertyid="1417,3087433,3087930,3087931" perpage="6" size="294x192"
         pageno="[##cms.query.pagenum|(1)##]" order="ord" />
     <member name="paging" type="list" request="paging" count="3" parentname="visa-list" />
 </basis>
@@ -117,150 +117,169 @@
         </section>
         <section class="mx-auto max-lg:w-[90%] max-xl:w-[97%] xl:max-w-7xl mt-16">
             <h2 class="text-[36px] font-extrabold mb-8">برای چه مقصدی ویزا می‌خواهید؟</h2>
-            <div class="grid grid-cols-4 gap-7">
-                <!-- items -->
-                <div class="border border-gray-50 rounded-xl shadow-card-shadow overflow-hidden">
-                    <img src="../assets/images/special-tour-card.jpg" class="w-full h-48 object-cover" alt=""
-                        width="294" height="192" loading="lazy">
-                    <div class="flex flex-col gap-1 py-4 px-6 divide-y divide-gray-100">
-                        <div class="flex items-center gap-2">
-                            <img src="../assets/images/tailand.jpg" class="h-6 object-cover rounded" alt="" width="36"
-                                height="24" loading="lazy">
-                            <h2 class="text-2xl font-extrabold">ویزای تورستی کانادا</h2>
-                        </div>
-                        <div class="flex flex-col gap-2 pt-2">
-                            <h3 class="flex items-center gap-2 text-sm font-bold">
-                                زمان مورد نیاز:
-                                <span class="text-primary-500">6 ماه</span>
-                            </h3>
-                            <h3 class="flex items-center gap-2 text-sm font-bold">
-                                مدت زمان ویزا:
-                                <span class="text-primary-500">6 ماه</span>
-                            </h3>
-                            <h3 class="flex items-center gap-2 text-sm font-bold">
-                                تعداد دفعات ورود:
-                                <span class="text-primary-500">6 ماه</span>
-                            </h3>
-                        </div>
-                        <div class="flex items-center justify-between pt-2">
-                            <h3 class="text-sm font-bold">شروع قیمت از:</h3>
-                            <span class="text-2xl font-extrabold text-primary-500">650 $</span>
-                        </div>
+            <basis core="list" datamemberame="db.visa-list">
+                <layout>
+                    <div class="grid grid-cols-4 gap-7">
+                        <!-- items -->
+                        @child
                     </div>
-                </div>
-                <div class="border border-gray-50 rounded-xl shadow-card-shadow overflow-hidden">
-                    <img src="../assets/images/special-tour-card.jpg" class="w-full h-48 object-cover" alt=""
-                        width="294" height="192" loading="lazy">
-                    <div class="flex flex-col gap-1 py-4 px-6 divide-y divide-gray-100">
-                        <div class="flex items-center gap-2">
-                            <img src="../assets/images/tailand.jpg" class="h-6 object-cover rounded" alt="" width="36"
-                                height="24" loading="lazy">
-                            <h2 class="text-2xl font-extrabold">ویزای تورستی کانادا</h2>
+                </layout>
+                <face filter="link is null">
+                    <a href="/visa.bc?id=@id" class="border border-gray-50 rounded-xl shadow-card-shadow overflow-hidden">
+                        <img src="@00294X00192prp" class="w-full h-48 object-cover" alt="@title"
+                            width="294" height="192" loading="lazy">
+                        <div class="flex flex-col gap-1 py-4 px-6 divide-y divide-gray-100">
+                            <div class="flex items-center gap-2">
+                                <img src="../assets/images/tailand.jpg" class="h-6 object-cover rounded" alt="" width="36"
+                                    height="24" loading="lazy">
+                                <h2 class="text-2xl font-extrabold">@title</h2>
+                            </div>
+                            <div class="flex flex-col gap-2 pt-2">
+                                <h3 class="flex items-center gap-2 text-sm font-bold">
+                                    زمان مورد نیاز:
+                                    <span class="text-primary-500">@prp_1417</span>
+                                </h3>
+                                <h3 class="flex items-center gap-2 text-sm font-bold">
+                                    مدت زمان ویزا:
+                                    <span class="text-primary-500">@prp_3087931</span>
+                                </h3>
+                                <h3 class="flex items-center gap-2 text-sm font-bold">
+                                    تعداد دفعات ورود:
+                                    <span class="text-primary-500">@prp_3087930</span>
+                                </h3>
+                            </div>
+                            <div class="flex items-center justify-between pt-2">
+                                <h3 class="text-sm font-bold">شروع قیمت از:</h3>
+                                <span class="text-2xl font-extrabold text-primary-500">@prp_3087433</span>
+                            </div>
                         </div>
-                        <div class="flex flex-col gap-2 pt-2">
-                            <h3 class="flex items-center gap-2 text-sm font-bold">
-                                زمان مورد نیاز:
-                                <span class="text-primary-500">6 ماه</span>
-                            </h3>
-                            <h3 class="flex items-center gap-2 text-sm font-bold">
-                                مدت زمان ویزا:
-                                <span class="text-primary-500">6 ماه</span>
-                            </h3>
-                            <h3 class="flex items-center gap-2 text-sm font-bold">
-                                تعداد دفعات ورود:
-                                <span class="text-primary-500">6 ماه</span>
-                            </h3>
+                    </a>
+                </face>
+                <face>
+                    <a href="@link" class="border border-gray-50 rounded-xl shadow-card-shadow overflow-hidden">
+                        <img src="@00294X00192prp" class="w-full h-48 object-cover" alt="@title"
+                            width="294" height="192" loading="lazy">
+                        <div class="flex flex-col gap-1 py-4 px-6 divide-y divide-gray-100">
+                            <div class="flex items-center gap-2">
+                                <img src="../assets/images/tailand.jpg" class="h-6 object-cover rounded" alt="" width="36"
+                                    height="24" loading="lazy">
+                                <h2 class="text-2xl font-extrabold">@title</h2>
+                            </div>
+                            <div class="flex flex-col gap-2 pt-2">
+                                <h3 class="flex items-center gap-2 text-sm font-bold">
+                                    زمان مورد نیاز:
+                                    <span class="text-primary-500">@prp_1417</span>
+                                </h3>
+                                <h3 class="flex items-center gap-2 text-sm font-bold">
+                                    مدت زمان ویزا:
+                                    <span class="text-primary-500">@prp_3087931</span>
+                                </h3>
+                                <h3 class="flex items-center gap-2 text-sm font-bold">
+                                    تعداد دفعات ورود:
+                                    <span class="text-primary-500">@prp_3087930</span>
+                                </h3>
+                            </div>
+                            <div class="flex items-center justify-between pt-2">
+                                <h3 class="text-sm font-bold">شروع قیمت از:</h3>
+                                <span class="text-2xl font-extrabold text-primary-500">@prp_3087433</span>
+                            </div>
                         </div>
-                        <div class="flex items-center justify-between pt-2">
-                            <h3 class="text-sm font-bold">شروع قیمت از:</h3>
-                            <span class="text-2xl font-extrabold text-primary-500">650 $</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="border border-gray-50 rounded-xl shadow-card-shadow overflow-hidden">
-                    <img src="../assets/images/special-tour-card.jpg" class="w-full h-48 object-cover" alt=""
-                        width="294" height="192" loading="lazy">
-                    <div class="flex flex-col gap-1 py-4 px-6 divide-y divide-gray-100">
-                        <div class="flex items-center gap-2">
-                            <img src="../assets/images/tailand.jpg" class="h-6 object-cover rounded" alt="" width="36"
-                                height="24" loading="lazy">
-                            <h2 class="text-2xl font-extrabold">ویزای تورستی کانادا</h2>
-                        </div>
-                        <div class="flex flex-col gap-2 pt-2">
-                            <h3 class="flex items-center gap-2 text-sm font-bold">
-                                زمان مورد نیاز:
-                                <span class="text-primary-500">6 ماه</span>
-                            </h3>
-                            <h3 class="flex items-center gap-2 text-sm font-bold">
-                                مدت زمان ویزا:
-                                <span class="text-primary-500">6 ماه</span>
-                            </h3>
-                            <h3 class="flex items-center gap-2 text-sm font-bold">
-                                تعداد دفعات ورود:
-                                <span class="text-primary-500">6 ماه</span>
-                            </h3>
-                        </div>
-                        <div class="flex items-center justify-between pt-2">
-                            <h3 class="text-sm font-bold">شروع قیمت از:</h3>
-                            <span class="text-2xl font-extrabold text-primary-500">650 $</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="border border-gray-50 rounded-xl shadow-card-shadow overflow-hidden">
-                    <img src="../assets/images/special-tour-card.jpg" class="w-full h-48 object-cover" alt=""
-                        width="294" height="192" loading="lazy">
-                    <div class="flex flex-col gap-1 py-4 px-6 divide-y divide-gray-100">
-                        <div class="flex items-center gap-2">
-                            <img src="../assets/images/tailand.jpg" class="h-6 object-cover rounded" alt="" width="36"
-                                height="24" loading="lazy">
-                            <h2 class="text-2xl font-extrabold">ویزای تورستی کانادا</h2>
-                        </div>
-                        <div class="flex flex-col gap-2 pt-2">
-                            <h3 class="flex items-center gap-2 text-sm font-bold">
-                                زمان مورد نیاز:
-                                <span class="text-primary-500">6 ماه</span>
-                            </h3>
-                            <h3 class="flex items-center gap-2 text-sm font-bold">
-                                مدت زمان ویزا:
-                                <span class="text-primary-500">6 ماه</span>
-                            </h3>
-                            <h3 class="flex items-center gap-2 text-sm font-bold">
-                                تعداد دفعات ورود:
-                                <span class="text-primary-500">6 ماه</span>
-                            </h3>
-                        </div>
-                        <div class="flex items-center justify-between pt-2">
-                            <h3 class="text-sm font-bold">شروع قیمت از:</h3>
-                            <span class="text-2xl font-extrabold text-primary-500">650 $</span>
-                        </div>
-                    </div>
-                </div>
+                    </a>
+                </face>
+            </basis>
+
+            <div id="paging" class="flex justify-center mt-10">
+                <ul class="flex items-center gap-4 cd-pagination no-space direction-ltr" id="wibpaging">
+                    <basis core="print" datamembername="db.paging">
+                        <face filter="(@sta='pre')and('[##cms.cms.pageurl##]'='')">
+                            <li
+                                class="group flex items-center justify-center w-16 h-16 border border-gray-100 rounded-xl transition-all duration-300 hover:border-primary-500 page-no prev-page">
+                                <a class="flex items-center justify-center w-full cursor-pointer text-zinc-900"
+                                    aria-label="angle-left" href="/[##cms.cms.link_page##]&pagenum=@page">
+                                    <svg width="25" height="25" viewBox="0 0 25 25" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path class="transition-all duration-300 group-hover:stroke-primary-500"
+                                            d="M15.5 6.15674L9.5 12.1567L15.5 18.1567" stroke="#1E2128" />
+                                    </svg>
+                                </a>
+                            </li>
+                        </face>
+                        <face filter="(@sta='pre')and('[##cms.cms.pageurl##]'<>'')">
+                            <li
+                                class="group flex items-center justify-center w-16 h-16 border border-gray-100 rounded-xl transition-all duration-300 hover:border-primary-500 page-no prev-page">
+                                <a class="flex items-center justify-center w-full cursor-pointer text-zinc-900"
+                                    aria-label="angle-left" href="/[##cms.cms.pageurl##]?pagenum=@page">
+                                    <svg width="25" height="25" viewBox="0 0 25 25" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path class="transition-all duration-300 group-hover:stroke-primary-500"
+                                            d="M15.5 6.15674L9.5 12.1567L15.5 18.1567" stroke="#1E2128" />
+                                    </svg>
+                                </a>
+                            </li>
+                        </face>
+                    </basis>
+                    <basis core="print" datamembername="db.paging">
+                        <face filter="(@page=[##cms.query.pagenum|(1)##])and('[##cms.cms.pageurl##]'='')">
+                            <li
+                                class="flex items-center justify-center w-16 h-16 border border-primary-500 text-primary-500 text-2xl font-extrabold rounded-xl page-no">
+                                <a class="flex items-center justify-center w-full h-full text-primary-500 cursor-pointer page-number"
+                                    href="/[##cms.cms.link_page##]&pagenum=@page">@page</a>
+                            </li>
+                        </face>
+                        <face filter="(@page=[##cms.query.pagenum|(1)##])and('[##cms.cms.pageurl##]'<>'')">
+                            <li
+                                class="flex items-center justify-center w-16 h-16 border border-primary-500 text-primary-500 text-2xl font-extrabold rounded-xl page-no">
+                                <a class="flex items-center justify-center w-full h-full text-primary-500 cursor-pointer page-number"
+                                    href="/[##cms.cms.pageurl##]?pagenum=@page">@page</a>
+                            </li>
+                        </face>
+                        <face
+                            filter="(@page<>[##cms.query.pagenum|(1)##]) and (@page>0) and (@sta='no') and ('[##cms.cms.pageurl##]'='') ">
+                            <li
+                                class="flex items-center justify-center w-16 h-16 border border-gray-100 text-gray-400 text-2xl font-extrabold rounded-xl transition-all duration-300 hover:border-primary-500 hover:text-primary-500 page-no">
+                                <a class="flex items-center justify-center w-full h-full cursor-pointer page-number"
+                                    href="/[##cms.cms.link_page##]&pagenum=@page">@page</a>
+                            </li>
+                        </face>
+                        <face
+                            filter="(@page<>[##cms.query.pagenum|(1)##]) and (@page>0) and (@sta='no') and ('[##cms.cms.pageurl##]'<>'') ">
+                            <li
+                                class="flex items-center justify-center w-16 h-16 border border-gray-100 text-gray-400 text-2xl font-extrabold rounded-xl transition-all duration-300 hover:border-primary-500 hover:text-primary-500 page-no">
+                                <a class="flex items-center justify-center w-full h-full cursor-pointer page-number"
+                                    href="/[##cms.cms.pageurl##]?pagenum=@page">@page</a>
+                            </li>
+                        </face>
+                    </basis>
+                    <basis core="print" datamembername="db.paging">
+                        <face filter="(@sta='nex') and ('[##cms.cms.pageurl##]'='')">
+                            <li
+                                class="group flex items-center justify-center w-16 h-16 border border-gray-100 rounded-xl transition-all duration-300 hover:border-primary-500 page-no next-page">
+                                <a class="flex items-center justify-center w-full h-full cursor-pointer"
+                                    aria-label="angle-right" href="/[##cms.cms.link_page##]&pagenum=@page">
+                                    <svg width="25" height="25" viewBox="0 0 25 25" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path class="transition-all duration-300 group-hover:stroke-primary-500"
+                                            d="M9.5 6.15674L15.5 12.1567L9.5 18.1567" stroke="#1E2128" />
+                                    </svg>
+                                </a>
+                            </li>
+                        </face>
+                        <face filter="(@sta='nex') and ('[##cms.cms.pageurl##]'<>'')">
+                            <li
+                                class="group flex items-center justify-center w-16 h-16 border border-gray-100 rounded-xl transition-all duration-300 hover:border-primary-500 page-no next-page">
+                                <a class="flex items-center justify-center w-full h-full cursor-pointer "
+                                    aria-label="angle-right" href="/[##cms.cms.pageurl##]?pagenum=@page">
+                                    <svg width="25" height="25" viewBox="0 0 25 25" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path class="transition-all duration-300 group-hover:stroke-primary-500"
+                                            d="M9.5 6.15674L15.5 12.1567L9.5 18.1567" stroke="#1E2128" />
+                                    </svg>
+                                </a>
+                            </li>
+                        </face>
+                    </basis>
+                </ul>
             </div>
-            <ul class="flex items-center justify-center gap-4 mt-10 direction-ltr">
-
-                <li
-                    class="group flex items-center justify-center w-16 h-16 border border-gray-100 rounded-xl transition-all duration-300 hover:border-primary-500">
-                    <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path class="transition-all duration-300 group-hover:stroke-primary-500"
-                            d="M15.5 6.15674L9.5 12.1567L15.5 18.1567" stroke="#1E2128" />
-                    </svg>
-                </li>
-                <li
-                    class="flex items-center justify-center w-16 h-16 border border-gray-100 text-gray-400 text-2xl font-extrabold rounded-xl transition-all duration-300 hover:border-primary-500 hover:text-primary-500">
-                    1</li>
-                <li
-                    class="flex items-center justify-center w-16 h-16 border border-primary-500 text-primary-500 text-2xl font-extrabold rounded-xl">
-                    2</li>
-                <li
-                    class="flex items-center justify-center w-16 h-16 border border-gray-100 text-gray-400 text-2xl font-extrabold rounded-xl">
-                    3</li>
-                <li class="flex items-center justify-center w-16 h-16 border border-gray-100 rounded-xl">
-                    <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M9.5 6.15674L15.5 12.1567L9.5 18.1567" stroke="#1E2128" />
-                    </svg>
-
-                </li>
-            </ul>
         </section>
         <div class="flex gap-4 mx-auto max-lg:w-[90%] max-xl:w-[97%] xl:max-w-7xl mt-24">
             <aside class="sticky top-0 h-fit w-96">

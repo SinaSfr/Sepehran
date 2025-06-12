@@ -1586,3 +1586,23 @@ if (document.querySelector(".swiper-special-suggestion")) {
     loop: true,
   });
 }
+if (document.querySelector(".swiper-small-gallery-about")) {
+var swiperSmallImg = new Swiper(".swiper-small-gallery-about", {
+  spaceBetween: 10,
+  slidesPerView: 2,
+  freeMode: true,
+  watchSlidesProgress: true,
+});
+}
+if (document.querySelector(".swiper-big-gallery-about")) {
+var swiperBigImg = new Swiper(".swiper-big-gallery-about", {
+  spaceBetween: 10,
+  navigation: {
+    nextEl: ".swiper-button-next-custom",
+    prevEl: ".swiper-button-prev-custom",
+  },
+  thumbs: {
+    swiper: swiperSmallImg,
+  },
+});
+}
