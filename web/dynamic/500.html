@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0,shrink-to-fit=no,viewport-fit=cover"
+        />
+        <title>[##cms.seo.title|(خطای ارتباط با سرور)##]</title>
+        <meta name="description" content="[##cms.seo.description|(خطای ارتباط با سرور)##]">
+        <meta name="robots" content="noindex, nofollow">
+        <link rel="canonical" href="[##cms.request.:scheme##]://[##cms.request.full-url##]" />
+        <basis core="call" file="pwa.inc"/>
+        <basis core="call" file="style.inc"/>
+    </head>
+  <body>
+    <basis core="call" file="header.inc"/>
+    <main class="bg-primary-300">
+      <section class="flex flex-col items-center mx-auto max-lg:w-[92%] max-xl:w-[97%] xl:max-w-7xl py-24">
+        <img src="[##cms.cms.cdn##]/images/plane-500.png" class="absolute left-0 right-0 mx-auto h-[531px] object-cover" alt="500" width="1280" height="531" loading="lazy">
+        <div class="relative flex flex-col items-center">
+            <h1 class="error-number font-sans">500</h1>
+            <h2 class="text-border text-primary-500 font-black text-[64px] mx-auto text-center">سایت در حال بروز رسانی می‌باشد</h2>
+            <div class="text-center flex items-center gap-6 text-[32px] font-bold mt-4">
+                <span class="text-white">برای دریافت مشاوره با شماره </span>
+                <span class="text-border text-primary-500 font-black">021-91009292</span>
+                 <span class="text-white">تماس بگیرید</span>
+            </div>
+        </div>
+      </section>
+    </main>
+    <basis core="call" file="footer.inc"/>
+  </body>
+</html>

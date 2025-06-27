@@ -60,6 +60,55 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
               });
             }
+
+            // rotate chevron-icon
+            const selectors = [
+              ".click-content",
+              ".reserve-field.departure-date > div:first-child",
+              ".reserve-field.return-date > div:first-child",
+            ];
+
+            let allElements = [];
+
+            selectors.forEach((selector) => {
+              const elements = document.querySelectorAll(selector);
+              if (elements.length > 0) {
+                elements.forEach((element) => {
+                  allElements.push(element);
+
+                  element.addEventListener("click", function (e) {
+                    e.stopPropagation();
+
+                    // اول حذف rotate از همه
+                    allElements.forEach((el) => el.classList.remove("rotate"));
+
+                    // بعد اضافه کردن به همینی که کلیک شده
+                    this.classList.add("rotate");
+                  });
+                });
+              }
+            });
+
+            document.addEventListener("click", function (e) {
+              const isInsideTarget = allElements.some((el) =>
+                el.contains(e.target)
+              );
+              const isInsideCalendar =
+                e.target.closest(".Basis_Calendar_Box") !== null;
+
+              if (!isInsideTarget && !isInsideCalendar) {
+                allElements.forEach((el) => el.classList.remove("rotate"));
+              }
+            });
+
+            const inputExteraHoteldate = document.querySelectorAll(
+              ".Basis_Date_ExteraHoteldate"
+            );
+            if (inputExteraHoteldate.length > 0) {
+              inputExteraHoteldate.forEach((input) => {
+                input.placeholder = "";
+              });
+            }
           }
         };
       } catch (error) {
@@ -303,6 +352,71 @@ document.addEventListener("DOMContentLoaded", function () {
       icon.classList.remove("rotate-180");
     }
   });
+});
+
+// fetch personel
+document.addEventListener("DOMContentLoaded", function () {
+  const fetchContentPersonel = document.querySelector(
+    ".fetch-content-personel"
+  );
+  const personelLi = document.querySelectorAll(".personel-li");
+
+  if (fetchContentPersonel) {
+    async function loadInitialContent() {
+      const firstItem = document.querySelector(".personel-li");
+      if (!firstItem) return;
+
+      const personelId = firstItem.getAttribute("data-personel");
+      if (!personelId) return;
+
+      try {
+        const response = await fetch(
+          `/personel-load-items.bc?catid=${personelId}`
+        );
+        const data = await response.text();
+        fetchContentPersonel.innerHTML = data;
+
+        document.querySelectorAll(".personel-li").forEach((li) => {
+          li.style.backgroundColor = "";
+        });
+        firstItem.style.backgroundColor = "#2e58d1";
+      } catch (err) {
+        fetchContentPersonel.innerHTML =
+          "<p>مشکلی در دریافت اطلاعات رخ داد: " + err.message + "</p>";
+      }
+    }
+
+    loadInitialContent();
+
+    personelLi.forEach((item) => {
+      item.addEventListener("click", async function () {
+        personelLi.forEach((li) => {
+          li.style.backgroundColor = "";
+          li.style.color = "";
+        });
+
+        item.style.backgroundColor = "#2e58d1";
+
+        const personelId = item.getAttribute("data-personel");
+        if (!personelId) return;
+
+        const requestUrl = `/personel-load-items.bc?catid=${personelId}`;
+
+        try {
+          fetchContentPersonel.innerHTML = "<p>در حال بارگذاری...</p>";
+          const response = await fetch(requestUrl);
+          if (!response.ok)
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          const data = await response.text();
+          fetchContentPersonel.innerHTML = data;
+        } catch (error) {
+          console.error("Fetch failed:", error);
+          fetchContentPersonel.innerHTML =
+            "<p>مشکلی در دریافت اطلاعات رخ داد: " + error.message + "</p>";
+        }
+      });
+    });
+  }
 });
 
 // filter tour-destintion with (,)
@@ -1482,6 +1596,52 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+// reply-comment
+async function Reply_Comment(element) {
+  const responsereply = await fetch("Client_CheckAuthentication.inc");
+  if (!responsereply.ok) {
+    throw new Error(
+      "متاسفانه مشکلی به وجود آمده است لطفا بعدا مجددا تلاش فرمایید."
+    );
+  } else {
+    let CheckAuthentication = await responsereply.text();
+    if (CheckAuthentication === "true") {
+      var firstname = document.querySelector(
+        ".user-profile-content .default-name"
+      ).innerText;
+      var lastname = document.querySelector(
+        ".user-profile-content .default-family"
+      ).innerText;
+      element.closest(".opinionRow").querySelector(".reply-title").value =
+        firstname + " " + lastname;
+      element
+        .closest(".opinionRow")
+        .querySelector(".replyCommentForm")
+        .classList.toggle("hidden");
+    } else {
+      showLoginContainer(this);
+    }
+  }
+}
+
+// send-reply
+async function send_Reply(element, event) {
+  event.preventDefault();
+  var form = new FormData(element.closest("pov-form"));
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", element.closest("pov-form").action, true);
+  xhr.onload = function () {
+    if (xhr.status === 200) {
+      document.getElementById("popupMessage").innerHTML = xhr.responseText;
+      document.getElementById("popuparticle").classList.remove("hidden");
+    } else {
+      document.getElementById("popupMessage").innerHTML = xhr.responseText;
+      document.getElementById("popuparticle").classList.remove("hidden");
+    }
+  };
+  xhr.send(form);
+}
+
 //swiper
 if (document.querySelector(".swiper-special-destination")) {
   var swiperSpecialDestination = new Swiper(".swiper-special-destination", {
@@ -1558,7 +1718,7 @@ if (document.querySelector(".swiper-special-destination-tour")) {
     }
   );
 }
-if (document.querySelector(".sswiper-tour-date-tourL")) {
+if (document.querySelector(".swiper-tour-date-tourL")) {
   var swiperTourDateTourL = new Swiper(".swiper-tour-date-tourL", {
     slidesPerView: 2.7,
     speed: 400,
@@ -1587,22 +1747,90 @@ if (document.querySelector(".swiper-special-suggestion")) {
   });
 }
 if (document.querySelector(".swiper-small-gallery-about")) {
-var swiperSmallImg = new Swiper(".swiper-small-gallery-about", {
-  spaceBetween: 10,
-  slidesPerView: 2,
-  freeMode: true,
-  watchSlidesProgress: true,
-});
+  var swiperSmallImg = new Swiper(".swiper-small-gallery-about", {
+    spaceBetween: 10,
+    slidesPerView: 2,
+    freeMode: true,
+    watchSlidesProgress: true,
+  });
 }
 if (document.querySelector(".swiper-big-gallery-about")) {
-var swiperBigImg = new Swiper(".swiper-big-gallery-about", {
-  spaceBetween: 10,
-  navigation: {
-    nextEl: ".swiper-button-next-custom",
-    prevEl: ".swiper-button-prev-custom",
+  var swiperBigImg = new Swiper(".swiper-big-gallery-about", {
+    spaceBetween: 10,
+    navigation: {
+      nextEl: ".swiper-button-next-custom",
+      prevEl: ".swiper-button-prev-custom",
+    },
+    thumbs: {
+      swiper: swiperSmallImg,
+    },
+  });
+}
+if (document.querySelector(".swiper-slogan-mobileL")) {
+var swiperSloganMobile = new Swiper(".swiper-slogan-mobile", {
+  slidesPerView: 1.3,
+  speed: 400,
+  centeredSlides: false,
+  spaceBetween: 16,
+  grabCursor: true,
+  autoplay: {
+      delay: 2500,
+      disableOnInteraction: false,
   },
-  thumbs: {
-    swiper: swiperSmallImg,
+  loop: true,
+});
+}
+if (document.querySelector(".swiper-special-destination-mobile")) {
+var swiperSpecialDestinationMobile = new Swiper(".swiper-special-destination-mobile", {
+  slidesPerView: 1.3,
+  speed: 400,
+  centeredSlides: false,
+  spaceBetween: 24,
+  grabCursor: true,
+  autoplay: {
+      delay: 2500,
+      disableOnInteraction: false,
+  },
+  loop: true,
+  navigation: {
+      nextEl: '.swiper-button-next-custom',
+      prevEl: '.swiper-button-prev-custom',
+  },
+});
+}
+if (document.querySelector(".swiper-special-tour-mobile")) {
+var swiperSpecialTourMobile = new Swiper(".swiper-special-tour-mobile", {
+  slidesPerView: 1.2,
+  speed: 400,
+  centeredSlides: false,
+  spaceBetween: 16,
+  grabCursor: true,
+  autoplay: {
+      delay: 2500,
+      disableOnInteraction: false,
+  },
+  loop: true,
+  navigation: {
+      nextEl: '.swiper-button-next-custom',
+      prevEl: '.swiper-button-prev-custom',
+  },
+});
+}
+if (document.querySelector(".swiper-special-spring-tour-mobile")) {
+var swiperSpecialSpringTourMobile = new Swiper(".swiper-special-spring-tour-mobile", {
+  slidesPerView: 1.3,
+  speed: 400,
+  centeredSlides: false,
+  spaceBetween: 24,
+  grabCursor: true,
+  autoplay: {
+      delay: 2500,
+      disableOnInteraction: false,
+  },
+  loop: true,
+  navigation: {
+      nextEl: '.swiper-button-next-custom',
+      prevEl: '.swiper-button-prev-custom',
   },
 });
 }

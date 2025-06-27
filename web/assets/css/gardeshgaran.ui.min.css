@@ -813,10 +813,6 @@ body {
   align-items: stretch;
 }
 
-.justify-center {
-  justify-content: center;
-}
-
 .justify-between {
   justify-content: space-between;
 }
@@ -1285,6 +1281,11 @@ body {
 .py-8 {
   padding-top: 2rem;
   padding-bottom: 2rem;
+}
+
+.py-24 {
+  padding-top: 6rem /* 96px */;
+  padding-bottom: 6rem /* 96px */;
 }
 
 .pb-11 {
@@ -2353,7 +2354,7 @@ body {
 
 .destination,
 .departure {
-  width: 80%;
+  width: 80% !important;
 }
 
 .Basis_Date_Box {
@@ -2441,6 +2442,13 @@ body {
   background-size: contain;
   background-repeat: no-repeat;
   vertical-align: middle;
+}
+
+.click-content.rotate::before,
+.reserve-field.departure-date > div:first-child.rotate::before,
+.reserve-field.return-date > div:first-child.rotate::before {
+  transform: rotate(180deg);
+  transition: transform 0.3s ease;
 }
 
 .reserve-field.passengers-field .down-icon {

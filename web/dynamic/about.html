@@ -2,10 +2,6 @@
   <member name="info-contact" type="view" />
 </basis> 
 
-<basis core="dbsource" source="basiscore" lid="1" mid="11" name="db" catid="214991">
-  <member name="personel" type="list" order="ord" size="188x214" propertyid="2732,1011" />
-</basis>
-
 <basis core="dbsource" source="media" lid="1" name="db" usedforid="2378812" sourcemid="article">
   <member type="list" name="gallery-manager" format="4" order="ord"></member>
   </basis>
@@ -18,7 +14,11 @@
   <member name="manager-information" type="view" propertyid="" />
 </basis>
 
-<basis core="dbsource" source="basiscore" name="db" mid="1" lid="1" usedforid="[##cms.query.qid##]">
+<basis core="dbsource" source="basiscore" name="db" mid="1" lid="1" usedforid="2379075">
+  <member name="victory" type="view" propertyid="" />
+</basis>
+
+<basis core="dbsource" source="basiscore" name="db" mid="1" lid="1" usedforid="2378944">
   <member name="faq" type="view" propertyid="" />
 </basis>
 
@@ -147,7 +147,7 @@
         <div
           class="flex items-center justify-center bg-blue-green h-72 rounded-2xl"
         >
-          <div class="flex items-center justify-between">
+          <div class="flex items-center justify-center gap-16">
             <!-- items -->
             <div class="flex flex-col items-center">
               <span
@@ -384,97 +384,56 @@
       <section class="mx-auto max-lg:w-[90%] max-xl:w-[97%] xl:max-w-7xl mt-16">
         <h2 class="text-[48px] font-bold text-center mb-10">تیم گردشگران</h2>
         <div class="px-20">
-            <div class="flex justify-between items-center">
-              <div class="flex flex-col items-center">
-                <h3 class="text-sm font-bold text-center mb-3 w-[85%]">
-                    مدیران ارشد و
-                    سهام داران
-                </h3>
-                <div class="w-10 h-10 rounded-full bg-gray-400 transition-all duration-300 hover:bg-primary-500 cursor-pointer"></div>
-              </div>
-          
-              <div class="flex flex-col items-center">
-                <h3 class="text-sm font-bold text-center mb-3 w-[85%]">
-                    تیم crm و خدمات
-                    مشتریان
-                </h3>
-                <div class="w-10 h-10 rounded-full bg-gray-400 transition-all duration-300 hover:bg-primary-500 cursor-pointer"></div>
-              </div>
-          
-              <div class="flex flex-col items-center">
-                <h3 class="text-sm font-bold text-center mb-3 w-[85%]">
-                    تیم فروش و
-                    پشتیبانی
-                </h3>
-                <div class="w-10 h-10 rounded-full bg-gray-400 transition-all duration-300 hover:bg-primary-500 cursor-pointer"></div>
-              </div>
-          
-              <div class="flex flex-col items-center">
-                <h3 class="text-sm font-bold text-center mb-3 w-[85%]">
-                    دیجیتال مارکتینگ
-                    و سئو
-                </h3>
-                <div class="w-10 h-10 rounded-full bg-gray-400 transition-all duration-300 hover:bg-primary-500 cursor-pointer"></div>
-              </div>
-          
-              <div class="flex flex-col items-center">
-                <h3 class="text-sm font-bold text-center mb-3 w-[85%]">
-                    تیم خلاقیت و 
-                    گرافیک
-                </h3>
-                <div class="w-10 h-10 rounded-full bg-gray-400 transition-all duration-300 hover:bg-primary-500 cursor-pointer"></div>
-              </div>
+          <div class="flex justify-between items-center">
+            <div class="flex flex-col items-center">
+              <h3 class="text-sm font-bold text-center mb-3 w-[85%]">
+                  مدیران ارشد و
+                  سهام داران
+              </h3>
+              <div class="personel-li w-10 h-10 rounded-full bg-gray-400 transition-all duration-300 hover:bg-primary-500 cursor-pointer" data-personel="215076"></div>
             </div>
-          
-            <div class="relative -mt-5">
-              <div class="absolute top-1/2 left-0 right-0 mx-auto h-0.5 bg-gray-400 -z-10 w-[89%]"></div>
+        
+            <div class="flex flex-col items-center">
+              <h3 class="text-sm font-bold text-center mb-3 w-[85%]">
+                  تیم crm و خدمات
+                  مشتریان
+              </h3>
+              <div class="personel-li w-10 h-10 rounded-full bg-gray-400 transition-all duration-300 hover:bg-primary-500 cursor-pointer" data-personel="215077"></div>
+            </div>
+        
+            <div class="flex flex-col items-center">
+              <h3 class="text-sm font-bold text-center mb-3 w-[85%]">
+                  تیم فروش و
+                  پشتیبانی
+              </h3>
+              <div class="personel-li w-10 h-10 rounded-full bg-gray-400 transition-all duration-300 hover:bg-primary-500 cursor-pointer" data-personel="215078"></div>
+            </div>
+        
+            <div class="flex flex-col items-center">
+              <h3 class="text-sm font-bold text-center mb-3 w-[85%]">
+                  دیجیتال مارکتینگ
+                  و سئو
+              </h3>
+              <div class="personel-li w-10 h-10 rounded-full bg-gray-400 transition-all duration-300 hover:bg-primary-500 cursor-pointer" data-personel="215079"></div>
+            </div>
+        
+            <div class="flex flex-col items-center">
+              <h3 class="text-sm font-bold text-center mb-3 w-[85%]">
+                  تیم خلاقیت و 
+                  گرافیک
+              </h3>
+              <div class="personel-li w-10 h-10 rounded-full bg-gray-400 transition-all duration-300 hover:bg-primary-500 cursor-pointer" data-personel="215080"></div>
             </div>
           </div>
-            <div class="flex items-center gap-4 mt-16">
-                <!-- items -->
-                 <div class="border border-gray-100 rounded-2xl p-3 shadow-small-flag-shadow">
-                    <img src="[##cms.cms.cdn##]/images/special-tour-card.jpg" class="h-52 object-cover shadow-card-shadow rounded-2xl" alt="" width="188" height="214" loading="lazy">
-                    <div class="mt-3">
-                        <h2 class="font-extrabold mb-1">غزاله لشگری</h2>
-                        <h3 class="text-sm font-semibold">گرافیک دیزاینر</h3>
-                    </div>
-                 </div>
-                 <div class="border border-gray-100 rounded-2xl p-3 shadow-small-flag-shadow">
-                    <img src="[##cms.cms.cdn##]/images/special-tour-card.jpg" class="h-52 object-cover shadow-card-shadow rounded-2xl" alt="" width="188" height="214" loading="lazy">
-                    <div class="mt-3">
-                        <h2 class="font-extrabold mb-1">غزاله لشگری</h2>
-                        <h3 class="text-sm font-semibold">گرافیک دیزاینر</h3>
-                    </div>
-                 </div>
-                 <div class="border border-gray-100 rounded-2xl p-3 shadow-small-flag-shadow">
-                    <img src="[##cms.cms.cdn##]/images/special-tour-card.jpg" class="h-52 object-cover shadow-card-shadow rounded-2xl" alt="" width="188" height="214" loading="lazy">
-                    <div class="mt-3">
-                        <h2 class="font-extrabold mb-1">غزاله لشگری</h2>
-                        <h3 class="text-sm font-semibold">گرافیک دیزاینر</h3>
-                    </div>
-                 </div>
-                 <div class="border border-gray-100 rounded-2xl p-3 shadow-small-flag-shadow">
-                    <img src="[##cms.cms.cdn##]/images/special-tour-card.jpg" class="h-52 object-cover shadow-card-shadow rounded-2xl" alt="" width="188" height="214" loading="lazy">
-                    <div class="mt-3">
-                        <h2 class="font-extrabold mb-1">غزاله لشگری</h2>
-                        <h3 class="text-sm font-semibold">گرافیک دیزاینر</h3>
-                    </div>
-                 </div>
-                 <div class="border border-gray-100 rounded-2xl p-3 shadow-small-flag-shadow">
-                    <img src="[##cms.cms.cdn##]/images/special-tour-card.jpg" class="h-52 object-cover shadow-card-shadow rounded-2xl" alt="" width="188" height="214" loading="lazy">
-                    <div class="mt-3">
-                        <h2 class="font-extrabold mb-1">غزاله لشگری</h2>
-                        <h3 class="text-sm font-semibold">گرافیک دیزاینر</h3>
-                    </div>
-                 </div>
-                 <div class="border border-gray-100 rounded-2xl p-3 shadow-small-flag-shadow">
-                    <img src="[##cms.cms.cdn##]/images/special-tour-card.jpg" class="h-52 object-cover shadow-card-shadow rounded-2xl" alt="" width="188" height="214" loading="lazy">
-                    <div class="mt-3">
-                        <h2 class="font-extrabold mb-1">غزاله لشگری</h2>
-                        <h3 class="text-sm font-semibold">گرافیک دیزاینر</h3>
-                    </div>
-                 </div>
-            </div>
+        
+          <div class="relative -mt-5">
+            <div class="absolute top-1/2 left-0 right-0 mx-auto h-0.5 bg-gray-400 -z-10 w-[89%]"></div>
+          </div>
+        </div>
+        <div class="fetch-content-personel">
+
+        </div>
+
       </section>
       <section class="mx-auto max-lg:w-[90%] max-xl:w-[97%] xl:max-w-[864px] mt-36 mb-20">
         <h2 class="text-[36px] font-extrabold mb-3">سوالات متداول کاربران</h2>

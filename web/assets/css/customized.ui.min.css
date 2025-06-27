@@ -645,6 +645,10 @@ body {
   right: 0px;
 }
 
+.right-40 {
+  right: 10rem /* 160px */;
+}
+
 .right-60 {
     right: 15rem /* 240px */;
 }
@@ -1150,6 +1154,10 @@ body {
   border-color: var(--secondary-50);
 }
 
+.divide-primary-400 > :not([hidden]) ~ :not([hidden]) {
+  border-color: var(--primary-400);
+}
+
 .self-center {
   align-self: center;
 }
@@ -1235,6 +1243,10 @@ body {
   background-color: rgb(249 250 251 / var(--tw-bg-opacity, 1));
 }
 
+.bg-primary {
+  background-color: var(--primary);
+}
+
 .bg-primary-100 {
   background-color: var(--primary-100);
 }
@@ -1245,6 +1257,10 @@ body {
 
 .bg-primary-500 {
   background-color: var(--primary-500);
+}
+
+.bg-secondary {
+  background-color: var(--secondary);
 }
 
 .bg-secondary-500 {
@@ -2051,6 +2067,14 @@ body {
 .group\/leveltwo:hover .group-hover\/leveltwo\:bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
+}
+
+.group\/leveltwo:hover .group-hover\/leveltwo\:visible {
+  visibility: visible;
+}
+
+.group\/leveltwo:hover .group-hover\/leveltwo\:opacity-100 {
+  opacity: 1;
 }
 
 .group:hover .group-hover\:bg-primary-500 {
