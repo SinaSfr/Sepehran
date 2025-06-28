@@ -1,0 +1,135 @@
+<basis core="dbsource" source="basiscore" lid="1" mid="20" name="tour-category-all">
+    <member name="cat" type="tree" request="cat" parentid="[##cms.query.catid##]" order="ord"></member>
+</basis>
+
+
+
+<basis core="tree" datamembername="tour-category-all.cat" idcol="catid" parentidcol="parentid"
+    nullvalue="[##cms.query.catid##]">
+    <layout>
+        <span class="special-tour-host hidden" data-special="[##cms.host.specialTourMobile##]"></span>
+        <div id="details"
+            class="tourcategorydropdown__details rounded p-2 bg-white transition-all duration-300">
+            <div class="flex items-center justify-center bg-primary-500 w-full h-7 rounded  mb-2">
+                <h2 class="text-white text-xs font-light">همه تور های تایلند</h2>
+            </div>
+            <!-- submenu -->
+            <ul
+                class="flex flex-col overflow-hidden transition-all duration-300 text-zinc-900 pr-2 bg-white divide-y submenu divide-primary-400">
+                @child
+            </ul>
+            <!-- submenu end -->
+        </div>
+    </layout>
+
+    <face level="end" filter="link is null">
+        <li class="py-4 px-4 flex items-center gap-2 font-semibold">
+            <span class="w-[6px] h-[6px] rounded-full bg-zinc-900"></span>
+            <a href="/tour-list.bc?catid=@catid">@title</a>
+            <span class="hidden text-xs bg-secondary-500 rounded p-1" data-special-catid="[##cms.query.catid##]">ویژه</span>
+        </li>
+    </face>
+
+    <face level="end">
+        <li class="py-4 px-4 flex items-center gap-2 font-semibold">
+            <span class="w-[6px] h-[6px] rounded-full bg-zinc-900"></span>
+            <a href="@link">@title</a>
+            <span class="hidden text-xs bg-secondary-500 rounded p-1" data-special-catid="[##cms.query.catid##]">ویژه</span>
+        </li>
+    </face>
+
+    <face level="1" filter="link is null">
+        <li class="px-2">
+            <div class="flex items-center justify-between cursor-pointer toggle-dropdown">
+                <div class="py-4 px-4 flex items-center gap-2 font-semibold">
+                    <span class="w-[6px] h-[6px] rounded-full bg-zinc-900"></span>
+                    <a href="/tour-list.bc?catid=@catid">@title</a>
+                    <span class="hidden text-xs bg-secondary-500 rounded p-1" data-special-catid="[##cms.query.catid##]">ویژه</span>
+                </div>
+                <svg width="48" class="transition-all duration-300 dropdown-icon" height="48" viewBox="0 0 48 48"
+                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M31 20.5L24 27.5L17 20.5" stroke="#000" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </div>
+            <!-- nested submenu -->
+            <ul
+                class="flex flex-col overflow-hidden transition-all duration-300 bg-white divide-y opacity-0 header-nested-menu submenu divide-primary-50 max-h-0">
+                @child
+            </ul>
+            <!-- nested submenu end -->
+        </li>
+    </face>
+
+    <face level="1">
+        <li class="px-2">
+            <div class="flex items-center justify-between cursor-pointer toggle-dropdown">
+                <div class="py-4 px-4 flex items-center gap-2 font-semibold">
+                    <span class="w-[6px] h-[6px] rounded-full bg-zinc-900"></span>
+                    <a href="@link">@title</a>
+                    <span class="hidden text-xs bg-secondary-500 rounded p-1" data-special-catid="[##cms.query.catid##]">ویژه</span>
+                </div>
+                <svg width="48" class="transition-all duration-300 dropdown-icon" height="48" viewBox="0 0 48 48"
+                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M31 20.5L24 27.5L17 20.5" stroke="#000" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </div>
+            <!-- nested submenu -->
+            <ul
+                class="flex flex-col overflow-hidden transition-all duration-300 bg-white divide-y opacity-0 header-nested-menu submenu divide-primary-50 max-h-0">
+                @child
+            </ul>
+            <!-- nested submenu end -->
+        </li>
+    </face>
+
+
+    <face level="2" filter="link is null">
+        <li class="px-4">
+            <div class="flex items-center justify-between cursor-pointer toggle-dropdown">
+                <div class="py-4 px-4 flex items-center gap-2 font-semibold">
+                    <span class="w-[6px] h-[6px] rounded-full bg-zinc-900"></span>
+                    <a href="/tour-list.bc?catid=@catid">@title</a>
+                    <span class="hidden text-xs bg-secondary-500 rounded p-1" data-special-catid="[##cms.query.catid##]">ویژه</span>
+                </div>
+                <svg width="48" class="transition-all duration-300 dropdown-icon" height="48" viewBox="0 0 48 48"
+                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M31 20.5L24 27.5L17 20.5" stroke="#000" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </div>
+            <!-- nested submenu -->
+            <ul
+                class="flex flex-col overflow-hidden transition-all duration-300 bg-white divide-y opacity-0 header-nested-menu submenu divide-primary-50 max-h-0">
+                @child
+            </ul>
+            <!-- nested submenu end -->
+        </li>
+    </face>
+
+    <face level="2">
+        <li class="px-4">
+            <div class="flex items-center justify-between cursor-pointer toggle-dropdown">
+                <div class="py-4 px-4 flex items-center gap-2 font-semibold">
+                    <span class="w-[6px] h-[6px] rounded-full bg-zinc-900"></span>
+                    <a href="@link">@title</a>
+                    <span class="hidden text-xs bg-secondary-500 rounded p-1" data-special-catid="[##cms.query.catid##]">ویژه</span>
+                </div>
+                <svg width="48" class="transition-all duration-300 dropdown-icon" height="48" viewBox="0 0 48 48"
+                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M31 20.5L24 27.5L17 20.5" stroke="#000" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </div>
+            <!-- nested submenu -->
+            <ul
+                class="flex flex-col overflow-hidden transition-all duration-300 bg-white divide-y opacity-0 header-nested-menu submenu divide-primary-50 max-h-0">
+                @child
+            </ul>
+            <!-- nested submenu end -->
+        </li>
+    </face>
+
+
+</basis>

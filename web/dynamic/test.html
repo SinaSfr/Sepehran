@@ -1,0 +1,1125 @@
+<!-- Start API Request -->
+<basis core="api" name="api.executionPlanViewDates"
+    url="https://basisfly.com/api/inventory/packages/execution-plan-view/" method="post" content-type="application/json"
+    run="atclient" body='{
+    "pid": "[##cms.query.id##]",
+    "title": "dates",
+    "dmnid": "[##cms.cms.domainid##]",
+    "ownerid": "[##cms.cms.ownerid##]"
+}'>
+</basis>
+<basis core="api" name="api.executionPlanTypesView"
+    url="https://basisfly.com/api/inventory/packages/execution-plan-view/" method="post" content-type="application/json"
+    run="atclient" body='{
+    "pid": "[##cms.query.id##]",
+    "title": "execution",
+    "dmnid": "[##cms.cms.domainid##]",
+    "ownerid": "[##cms.cms.ownerid##]"
+}'>
+</basis>
+<basis core="callback" run="atclient" triggers="db.execution" method="callbackSourceExecutionPlanTypesView">
+
+</basis>
+<basis core="api" name="api.inventoryView" url="https://basisfly.com/api/inventory/packages/inventory-view/"
+    method="post" content-type="application/json" run="atclient" triggers="db.inventoryViewSpecificDate" body='{
+    "pid": "[##cms.query.id##]",
+    "from": "{##db.inventoryViewSpecificDate.from|()##}",
+    "to": "{##db.inventoryViewSpecificDate.to|()##}",
+    "day": "{##db.inventoryViewSpecificDate.day|()##}",
+    "pagename": "[##cms.host.pageNameInventory|(Tem1_Hotel.bc)##]",
+    "dmnid": "[##cms.cms.domainid##]",
+    "ownerid": "[##cms.cms.ownerid##]"
+}'>
+</basis>
+<basis core="api" name="api.airlinesOriginsGallery" url="https://data.basiscore.net/en/bc/airlines/id/gallery/json"
+    method="post" body='{
+    "token": "1E45BBAE-3BE7-4B08-8A8E-8DF7B2E0C7D7",
+    "wordid": 94122,
+    "usedforid": [{##db.airlinesOriginsGallery.ids##}]
+} ' content-type="application/json" run="atclient" triggers="db.airlinesOriginsGallery"
+    if="{##db.airlinesOriginsGallery.run|(false)##}" onprocessed="onProcessedAirlinesOriginsImg">
+</basis>
+<basis core="api" name="api.airlinesDestinationsGallery" url="https://data.basiscore.net/en/bc/airlines/id/gallery/json"
+    method="post" body='{
+    "token": "1E45BBAE-3BE7-4B08-8A8E-8DF7B2E0C7D7",
+    "wordid": 94122,
+    "usedforid": [{##db.airlinesDestinationsGallery.ids##}]
+
+} ' content-type="application/json" run="atclient" triggers="db.airlinesDestinationsGallery"
+    if="{##db.airlinesDestinationsGallery.run|(false)##}" onprocessed="onProcessedAirlinesDestinationsImg">
+</basis>
+<basis core="api" name="api.hotelGallery" url="https://data.basiscore.net/en/bc/hotel/id/gallery/json" method="post"
+    body='{
+    "token": "1E45BBAE-3BE7-4B08-8A8E-8DF7B2E0C7D7",
+    "wordid": 94122,
+    "usedforid": [{##db.hotelGallery.ids##}]
+
+} ' content-type="application/json" run="atclient" triggers="db.hotelGallery" if="{##db.hotelGallery.run|(false)##}"
+    onprocessed="onProcessedHotelsImg">
+</basis>
+<!-- End API Request -->
+
+<!-- Start DBsource Requests -->
+<basis core="dbsource" source="media" lid="1" name="db" usedforid="[##cms.query.id##]" sourcemid="product">
+    <member type="list" name="media-gallery" format="4" order="ord"></member>
+</basis>
+<basis core="dbsource" source="media" name="db" lid="1" usedforid="[##cms.query.id##]" sourcemid="product">
+    <member name="audio" type="list" format="audio" link="article.bc" order="ord" />
+</basis>
+<basis core="inlinesource" name="joining">
+    <member name="podcast" lefttblcol="db.audio.ord" righttblcol="db.media-gallery.ord" format="join"
+        jointype="leftjoin" />
+</basis>
+<basis core="dbsource" source="basiscore" lid="1" mid="1" name="db" catid="[##cms.query.adsid|(0)##]">
+    <member name="ads" type="list" link="article.bc" size="304X526" typeid="159" perpage="1" order="ord"></member>
+</basis>
+<basis core="dbsource" source="basiscore" name="db" mid="1" lid="1" usedforid="[##cms.query.tagid|(0)##]">
+    <member name="tags" type="view" postsql="select * from [db.tags] where prpID in(3087624)" />
+</basis>
+<basis core="dbsource" source="basiscore" name="db" mid="5" lid="1" usedforid="[##cms.cms.ownerid##]">
+    <member name="information" type="view"
+        postsql="select * from [db.information] where TypeID in(240) and prpID in(8000)" />
+</basis>
+<basis core="dbsource" source="basiscore" name="db" mid="5" lid="1" usedforid="[##cms.cms.ownerid##]">
+    <member name="companyInfo" type="view" />
+</basis>
+<basis core="dbsource" source="basiscore" name="db" mid="20" lid="1" usedforid="[##cms.query.id##]">
+    <member name="tour-view" type="view" />
+    <member name="tour-view-travelplan" type="view"
+        postsql="select * from [db.tour-view-travelplan] where Question in('برنامه سفر')" />
+    <member name="tour-related" type="list" blgid="18" propertyid="10000504,8077,8181,8076" typeid="159"
+        link="tour.bc" />
+</basis>
+<basis core="dbsource" source="basiscore" mid="1" name="db" lid="1" schemaid="987" term="[##cms.query.term##]">
+    <member name="airline" type="list" request="spelist" />
+</basis>
+<basis core="inlinesource" name="db">
+    <member name="tour-joining" lefttblcol="db.tour-related.prp_10000504" righttblcol="db.airline.name" format="join"
+        jointype="leftjoin" />
+</basis>
+<basis core="dbsource" source="media" lid="1" name="db" usedforid="[##cms.query.id##]" sourcemid="product">
+    <member type="list" name="tour-gallery" format="4" order="ord" />
+    <member type="list" name="tour-gallery-travelplan" format="4" order="ord"
+        postsql="SELECT * FROM [db.tour-gallery-travelplan] where ord not in(1000,1001,100)" />
+    <member type="list" name="hero" format="4" order="ord" postsql="SELECT * FROM [db.hero] where ord in(100)" />
+    <member type="list" name="pdf" format="pdf" />
+</basis>
+<basis core="dbsource" source="basiscore" name="db" lid="1" mid="20" usedforid="[##cms.query.id##]">
+    <member request="json-ld" type="scalar" name="json" />
+</basis>
+<basis core="dbsource" source="basiscore" name="db" lid="1" mid="20" usedforid="[##cms.query.id##]">
+    <member name="navigation" type="tree" request="navigationcat" />
+</basis>
+<basis core="dbsource" source="userbehavior" name="db" usedforid="[##cms.query.id##]">
+    <member name="comment" type="list" order="ord" request="listcomment" />
+</basis>
+<basis core='dbsource' name='captcha' source='trust_login'>
+    <member name='code' type='scalar' request='captcha'></member>
+</basis>
+<!-- End DBsource Requests -->
+<!DOCTYPE html>
+<html lang="fa">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,shrink-to-fit=no,viewport-fit=cover">
+    <title>[##cms.seo.title|(آمیتیس بال پارس)##]</title>
+    <meta name="description" content="[##cms.seo.description|(آمیتیس بال پارس)##]">
+    <basis core="dbsource" source="hosting" name="tag" urlid="[##cms.seo.urlid##]">
+        <member type="list" name="list" request="taglist" preview=""></member>
+    </basis>
+    <basis core="print" datamembername="tag.list">
+        <face filter="key='canonical'">
+            <link rel="canonical" href="@value" />
+        </face>
+        <face>
+            <meta property="@key" content="@value" />
+        </face>
+    </basis>
+    <basis core="call" file="pwa.inc" pageindex="[##cms.cms.pageindex##]" />
+    <basis core="call" file="style.inc" pageindex="[##cms.cms.pageindex##]" />
+    <link rel="stylesheet" href="[##cms.cms.cdn##]/_css/swiper-bundle.min.css">
+    <style>
+        .active-tab-travel-data {
+            background-color: var(--secondary) !important;
+            color: white !important;
+        }
+    </style>
+</head>
+
+<body class="font-yekanbakhregularFA bg-white ">
+    <basis core="call" file="header.inc" pageindex="[##cms.cms.pageindex##]"></basis>
+    <main class="w-full relative bg-list-pattern bg-no-repeat bg-top bg-cover layout__body__container"
+        data-pageNameInventory="[##cms.host.pageNameInventory|(Tem1_Hotel.bc)##]"
+        data-noImgSign="[##cms.host.noImgSign##]" data-lang="fa">
+        <section class="max-w-7xl mx-auto w-full ">
+            <figure
+                class="relative w-full h-[560px] border-b-[16px] border-b-neutralcolor-600 rounded-b-[263.5px] rounded-t-lg overflow-hidden">
+                <basis core="print" datamembername="db.hero">
+                    <face filter="ord in(100)"><img class="w-full h-full object-cover" src="@largeIMG" width="1280"
+                            height="544" alt="@name"></face>
+                </basis>
+                <figcaption
+                    class="absolute top-5 left-0 right-0 bottom-0 bg-gradient-to-t from-black to-transparent text-center mx-auto flex flex-col justify-end gap-y-10">
+                    <basis core="print" datamembername="db.tour-view">
+                        <face filter="TypeID in(150)">
+                            <h1
+                                class="tour__name__container leading-[80px] text-white font-yekanbakhsemiboldFA text-[44px] w-full line-clamp-1">
+                                @text </h1>
+                        </face>
+                    </basis>
+                    <basis core="print" datamembername="db.tour-view">
+                        <layout>
+                            <h2 class="text-2xl text-white font-yekanbakhregularFA line-clamp-1">@child </h2>
+                        </layout>
+                        <face filter="TypeID in(128) and vocabulary in('مدت-اقامت','تاریخ-اعتبار')"><span
+                                class="ml-1">@text </span></face>
+                    </basis>
+                    <ul class="breadcrumbs-list flex h-[56px] mb-12 items-end gap-x-3 justify-center font-yekanbakhregularFA text-base leading-[56px] mx-auto w-[95%] overflow-x-auto"
+                        itemscope="" itemtype="https://schema.org/BreadcrumbList">
+                        <li class="" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem"><a
+                                itemprop="item" href="/" aria-label="home"><svg class="inline-block ml-2" width="25"
+                                    height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M17.9541 22.75H6.37406C3.63406 22.75 1.41406 20.52 1.41406 17.78V10.37C1.41406 9.00997 2.25406 7.29997 3.33406 6.45997L8.72406 2.25997C10.3441 0.999974 12.9341 0.939974 14.6141 2.11997L20.7941 6.44997C21.9841 7.27997 22.9141 9.05997 22.9141 10.51V17.79C22.9141 20.52 20.6941 22.75 17.9541 22.75ZM9.64406 3.43997L4.25406 7.63997C3.54406 8.19997 2.91406 9.46997 2.91406 10.37V17.78C2.91406 19.69 4.46406 21.25 6.37406 21.25H17.9541C19.8641 21.25 21.4141 19.7 21.4141 17.79V10.51C21.4141 9.54997 20.7241 8.21997 19.9341 7.67997L13.7541 3.34997C12.6141 2.54997 10.7341 2.58997 9.64406 3.43997Z"
+                                        fill="#fff" />
+                                    <path
+                                        d="M12.1641 18.75C11.7541 18.75 11.4141 18.41 11.4141 18V15C11.4141 14.59 11.7541 14.25 12.1641 14.25C12.5741 14.25 12.9141 14.59 12.9141 15V18C12.9141 18.41 12.5741 18.75 12.1641 18.75Z"
+                                        fill="#fff" />
+                                </svg><span itemprop="name" class="text-white">صفحه اصلی</span>
+                                <meta itemprop="position" content="1">
+                            </a></li>
+                        <basis core="print" datamembername="db.navigation">
+                            <face filter="RowNumber=max(RowNumber) and parentcatid<>110382">
+                                <li class="text-secondary" itemprop="itemListElement" itemscope=""
+                                    itemtype="https://schema.org/ListItem"><svg class="inline-block mx-2" width="9"
+                                        height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M7.5 1.75L2.25 7L7.5 12.25" stroke="#fff" stroke-width="2"
+                                            stroke-linecap="round" />
+                                    </svg><span itemprop="name">@title</span>
+                                    <meta itemprop="position" content="@rownumber" />
+                                </li>
+                            </face>
+                            <face filter="link is null and parentcatid<>110382">
+                                <li class="" itemprop="itemListElement" itemscope=""
+                                    itemtype="https://schema.org/ListItem"><a itemprop="item"
+                                        href="/tour-list.bc?catid=@parentcatid" aria-label="@title"><svg
+                                            class="inline-block mx-2" width="9" height="14" viewBox="0 0 9 14"
+                                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M7.5 1.75L2.25 7L7.5 12.25" stroke="#fff" stroke-width="2"
+                                                stroke-linecap="round" />
+                                        </svg><span itemprop="name " class="text-white">@title</span>
+                                        <meta itemprop="position" content="@rownumber" />
+                                    </a></li>
+                            </face>
+                            <face filter="parentcatid<>110382">
+                                <li class="" itemprop="itemListElement" itemscope=""
+                                    itemtype="https://schema.org/ListItem"><a itemprop="item" href="@link"
+                                        aria-label="@title"><svg class="inline-block mx-2" width="9" height="14"
+                                            viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M7.5 1.75L2.25 7L7.5 12.25" stroke="#fff" stroke-width="2"
+                                                stroke-linecap="round" />
+                                        </svg><span itemprop="name" class="text-white">@title</span>
+                                        <meta itemprop="position" content="@rownumber" />
+                                    </a></li>
+                            </face>
+                        </basis>
+                    </ul>
+                </figcaption>
+                <basis core="print" datamembername="db.tour-view">
+                    <face filter="prpID in(3087633)"><span
+                            class="absolute top-5 bg-white left-5 flex justify-center items-center rounded-lg h-10 px-1"><svg
+                                class="inline-block" width="16" height="16">
+                                <use href="./images/sprite-icons.svg#star-hotel-icon"></use>
+                            </svg><span
+                                class="text-primary-900 text-xl font-yekanbakhsemiboldFA mx-2 leading-10">@text</span></span>
+                    </face>
+                </basis>
+            </figure>
+        </section>
+        <div class="max-w-7xl mx-auto w-full my-6 flex items-start justify-between tour__container">
+            <div class="w-[calc(100%-350px)] tour__container__info">
+                <section class="h-24 bg-white w-full mb-8 ">
+                    <ul class="divide-x divide-x-reverse divide-secondary flex justify-between">
+                        <basis core="print" datamembername="db.tour-view">
+                            <layout>
+                                <li class=" h-full w-1/4 p-2">
+                                    <div
+                                        class="bg-primary-50 rounded-xl h-[74px] flex justify-between items-center px-2">
+                                        <svg class="inline-block" width="32" height="32">
+                                            <use href="./images/sprite-icons.svg#wallet-tour-detail-icon"></use>
+                                        </svg>
+                                        <div class="w-[calc(100%-40px)] text-right block">
+                                            <h2 class="text-secondary text-xs font-yekanbakhregularFA ">شروع قیمت ها از
+                                            </h2>@child
+                                        </div>
+                                    </div>
+                                </li>
+                            </layout>
+                            <face filter="TypeID in(251) and vocabulary in('شروع-قیمت-ها-از')">
+                                <div class="font-yekanbakhsemiboldFA text-xl text-primary-900 leading-8 ">@largetext
+                                    <span class="text-txtneutral-500 font-yekanbakhregularFA text-xs">@text </span>
+                                </div>
+                            </face>
+                        </basis>
+                        <basis core="print" datamembername="db.tour-view">
+                            <face filter="TypeID in(128,251) and vocabulary in('تاریخ-اعتبار')">
+                                <li class=" h-full w-1/4 p-2">
+                                    <div
+                                        class="bg-primary-50 rounded-xl h-[74px] flex justify-between items-center px-2">
+                                        <svg class="inline-block" width="32" height="32">
+                                            <use href="./images/sprite-icons.svg#calendar-tour-detail-icon"></use>
+                                        </svg>
+                                        <div class="w-[calc(100%-40px)] text-right block">
+                                            <h2 class="text-secondary text-xs font-yekanbakhregularFA ">@Question</h2>
+                                            <div class="font-yekanbakhsemiboldFA text-xl text-primary-900 leading-8 ">
+                                                @text </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </face>
+                        </basis>
+                        <basis core="print" datamembername="db.tour-view">
+                            <face filter="TypeID in(128,251) and vocabulary in('مدت-اقامت')">
+                                <li class=" h-full w-1/4 p-2">
+                                    <div
+                                        class="bg-primary-50 rounded-xl h-[74px] flex justify-between items-center px-2">
+                                        <svg class="inline-block" width="32" height="32">
+                                            <use href="./images/sprite-icons.svg#daynight-tour-detail-icon"></use>
+                                        </svg>
+                                        <div class="w-[calc(100%-40px)] text-right block">
+                                            <h2 class="text-secondary text-xs font-yekanbakhregularFA ">@Question</h2>
+                                            <div class="font-yekanbakhsemiboldFA text-xl text-primary-900 leading-8 ">
+                                                @text </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </face>
+                        </basis>
+                        <basis core="print" datamembername="db.tour-view">
+                            <face filter="TypeID in(128,251) and vocabulary in('ایرلاین')">
+                                <li class=" h-full w-1/4 p-2">
+                                    <div
+                                        class="bg-primary-50 rounded-xl h-[74px] flex justify-between items-center px-2">
+                                        <svg class="inline-block" width="32" height="32">
+                                            <use href="./images/sprite-icons.svg#flight-tour-detail-icon"></use>
+                                        </svg>
+                                        <div class="w-[calc(100%-40px)] text-right block">
+                                            <h2 class="text-secondary text-xs font-yekanbakhregularFA ">@Question</h2>
+                                            <div class="font-yekanbakhsemiboldFA text-xl text-primary-900 leading-8 ">
+                                                @text </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </face>
+                        </basis>
+                    </ul>
+                </section>
+                <div class="tourExecution__container w-full hidden">
+                    <section
+                        class=" tourExecution__container__origins border border-txtneutral-500 min-h-64 bg-white rounded-2xl mb-8 relative execution__details ">
+                        <div
+                            class=" bg-white -mt-[17px] -mr-1 w-[48%] relative h-8 flex items-center after:content-[''] after:bg-txtneutral-500 after:rounded-full after:w-[5px] after:h-[5px] after:absolute after:left-0 after:top-0 after:bottom-0 after:my-auto ">
+                            <div
+                                class="bg-neutralcolor-50 flex justify-between items-center gap-x-3 px-2 rounded-l-md drop-shadow-sm relative z-20 ">
+                                <svg class="inline-block -rotate-90" width="32" height="32">
+                                    <use href="./images/sprite-icons.svg#flight-tour-detail-icon"></use>
+                                </svg>
+                                <h2 class="font-yekanbakhsemiboldFA text-base text-txtneutral-900 "><span
+                                        class="origins__city"></span>(شروع تور/ مسیر رفت) </h2>
+                            </div>
+                            <div
+                                class="font-yekanbakhregularFA text-sm text-txtneutral-900 bg-neutralcolor-300 h-8 flex items-center px-4 rounded-l-md drop-shadow-sm z-10 -mr-2 ">
+                                <span class="origins__start__day"></span><span
+                                    class="origins__start__weekday mr-2"></span></div>
+                        </div>
+                        <basis core="print" datamembername="refresh.executionPlanTypesOrigins"
+                            if="{##refresh.executionPlanTypesOrigins##}" run="atclient"
+                            onrendered="onrenderedExecutionOrigins">
+                            <layout>
+                                <script
+                                    type="text/template">
+                                    <div class="execution__details__path execution__details__path__origins">
+                                        <div class="flex flex-col execution__details__path__item">@child </div>
+                                    </div>
+                                </script>
+                            </layout>
+                            <face>
+                                <script
+                                    type="text/template">
+                                    <div class="flex min-h-[152px] items-center my-8 relative">
+                                        <div class="mx-6 execution__details__path__item__details flex items-center gap-x-1"><svg class="inline-block ml-1" width="16" height="16"><use href="./images/sprite-icons.svg#timer-icon-tour"></use></svg><span class=" __times__start absolute top-0 font-yekanbakhregularFA text-xs text-txtneutral-900">@info.departure.time@</span><span class="__times__duration font-yekanbakhregularFA text-[10px] text-txtneutral-500 ">@info.time@ دقیقه</span></div><div class="flex flex-col justify-center gap-2"><div class="flex gap-x-1 items-center "><svg width="16" height="16"><use href="./images/sprite-icons.svg#airplane-bold-tour-detail"></use></svg><h2  class="text-lg text-txtneutral-900 font-yekanbakhsemiboldFA details__city" >@info.city.name@</h2></div><div class="flex min-h-[104px] border-r border-txtneutral-400 border-dashed pr-3 items-center mr-2 "><div><span class="h-8 leading-8 block font-yekanbakhregularFA text-xs ">فرودگاه مبدا</span><div class="h-8 leading-8 block text-txtneutral-500 font-yekanbakhregularFA text-xs">@info.origin.name@ </div></div><svg class="block mx-4 mt-8" width="16" height="16"><use href="./images/sprite-icons.svg#arrow-left-tour-detail"></use></svg><div><span class="h-8 leading-8 block font-yekanbakhregularFA text-xs ">فرودگاه مقصد</span><div class="h-8 leading-8 block text-txtneutral-500 font-yekanbakhregularFA text-xs">@info.destination.name@ </div></div><div><span class="h-8 leading-8 block font-yekanbakhregularFA text-xs pr-4"><span class="ml-1">{{ return await renderTransportationName($data)}} </span></span><div class="h-8 leading-8 flex gap-x-2 text-txtneutral-500 font-yekanbakhregularFA text-xs border-r border-neutralcolor-800 pr-4 mr-2">{{ return await renderTransportationImage($data)}} <div><svg class="ml-2 inline-block" width="16" height="16"><use href="./images/sprite-icons.svg#bag-outline-tour-detail"></use></svg><span>میزان بار مجاز: @info.luggage@ Kg </span></div><div><svg class="ml-2 inline-block" width="16" height="16"><use href="./images/sprite-icons.svg#seat-outline-tour-detail"></use></svg><span>کلاس: @info.class@ </span></div></div></div></div><div class="flex gap-x-1 items-center "><svg width="16" height="16"><use href="./images/sprite-icons.svg#location-bold-tour-detail"></use></svg><h2 id="origin-departure-tour" class="text-lg text-txtneutral-900 font-yekanbakhsemiboldFA "></h2></div></div>
+                                    </div>                                
+                                </script>
+                            </face>
+                        </basis>
+                    </section>
+                    <section
+                        class=" tourExecution__container__destinations border border-txtneutral-500 min-h-64 bg-white rounded-2xl mb-8 relative execution__details ">
+                        <div
+                            class=" bg-white -mt-[17px] -mr-1 w-[48%] relative h-8 flex items-center after:content-[''] after:bg-txtneutral-500 after:rounded-full after:w-[5px] after:h-[5px] after:absolute after:left-0 after:top-0 after:bottom-0 after:my-auto ">
+                            <div
+                                class="bg-neutralcolor-50 flex justify-between items-center gap-x-3 px-2 rounded-l-md drop-shadow-sm relative z-20 ">
+                                <svg class="inline-block rotate-90" width="32" height="32">
+                                    <use href="./images/sprite-icons.svg#flight-tour-detail-icon"></use>
+                                </svg>
+                                <h2 class="font-yekanbakhsemiboldFA text-base text-txtneutral-900 "><span
+                                        class="destinations__city"></span>(پایان تور/ مسیر برگشت) </h2>
+                            </div>
+                            <div
+                                class="font-yekanbakhregularFA text-sm text-txtneutral-900 bg-neutralcolor-300 h-8 flex items-center px-4 rounded-l-md drop-shadow-sm z-10 -mr-2 ">
+                                <span class="destinations__start__day"></span><span
+                                    class="destinations__start__weekday mr-2"></span></div>
+                        </div>
+                        <basis core="print" datamembername="refresh.executionPlanTypesDestinations"
+                            if="{##refresh.executionPlanTypesDestinations##}" run="atclient"
+                            onrendered="onrenderedExecutionDestinations">
+                            <layout>
+                                <script
+                                    type="text/template"><div class="execution__details__path execution__details__path__destinations"><div class="flex flex-col execution__details__path__item">@child </div></div></script>
+                            </layout>
+                            <face>
+                                <script
+                                    type="text/template">
+                                    <div class="flex min-h-[152px] items-center my-8 relative">
+                                        <div class="mx-6 execution__details__path__item__details flex items-center gap-x-1"><svg class="inline-block ml-1" width="16" height="16"><use href="./images/sprite-icons.svg#timer-icon-tour"></use></svg><span class="__times__start absolute top-0 font-yekanbakhregularFA text-xs text-txtneutral-900">@info.departure.time@</span><span class="__times__duration font-yekanbakhregularFA text-[10px] text-txtneutral-500 ">@info.time@ دقیقه</span></div><div class="flex flex-col justify-center gap-2"><div class="flex gap-x-1 items-center "><svg width="16" height="16"><use href="./images/sprite-icons.svg#airplane-bold-tour-detail"></use></svg><h2 
+                                            
+                                            class="text-lg text-txtneutral-900 font-yekanbakhsemiboldFA details__city">@info.city.name@</h2></div><div class="flex min-h-[104px] border-r border-txtneutral-400 border-dashed pr-3 items-center mr-2 "><div><span class="h-8 leading-8 block font-yekanbakhregularFA text-xs ">فرودگاه مبدا</span><div class="h-8 leading-8 block text-txtneutral-500 font-yekanbakhregularFA text-xs">@info.origin.name@ </div></div><svg class="block mx-4 mt-8" width="16" height="16"><use href="./images/sprite-icons.svg#arrow-left-tour-detail"></use></svg><div><span class="h-8 leading-8 block font-yekanbakhregularFA text-xs ">فرودگاه مقصد</span><div class="h-8 leading-8 block text-txtneutral-500 font-yekanbakhregularFA text-xs">@info.destination.name@ ></div></div><div><span class="h-8 leading-8 block font-yekanbakhregularFA text-xs pr-4"><span class="ml-1">{{ return await renderTransportationName($data)}} </span></span><div class="h-8 leading-8 flex gap-x-2 text-txtneutral-500 font-yekanbakhregularFA text-xs border-r border-neutralcolor-800 pr-4 mr-2">{{ return await renderTransportationImage($data)}} <div><svg class="ml-2 inline-block" width="16" height="16"><use href="./images/sprite-icons.svg#bag-outline-tour-detail"></use></svg><span>میزان بار مجاز: @info.luggage@ Kg </span></div><div><svg class="ml-2 inline-block" width="16" height="16"><use href="./images/sprite-icons.svg#seat-outline-tour-detail"></use></svg><span>کلاس: @info.class@ </span></div></div></div></div><div class="flex gap-x-1 items-center "><svg width="16" height="16"><use href="./images/sprite-icons.svg#location-bold-tour-detail"></use></svg><h2 class=" text-lg text-txtneutral-900 font-yekanbakhsemiboldFA " id="destination-departure-tour"></h2></div></div>
+                                    </div>
+                                </script>
+                            </face>
+                        </basis>
+                    </section>
+                </div>
+                <basis core="print" datamembername="api.inventoryView" run="atclient"
+                    onrendered="onrenderedInventoryView">
+                    <layout>
+                        <script
+                            type="text/template"><section class="tourInventory__container"><div class="bg-neutral-50 flex h-16 items-center rounded-[4px] gap-x-4 px-3"><svg width="40" height="40"><use href="./images/sprite-icons.svg#builing-tour-detail"></use></svg><h2 class="text-2xl text-primary-900 font-yekanbakhsemiboldFA ">قیمت تور بر اساس هتل ها </h2></div><hr class="w-full border-neutralcolor-500 my-2" />@child </section></script>
+                    </layout>
+                    <face>
+                        <script
+                            type="text/template"><article class="tourInventory__details hotel-card"><div class="tourInventory__details__item w-full border border-neutralcolor-800 rounded-2xl bg-white my-3 min-h-[344px]">{{return await renderHotels($data)}}
+<div class="clear-both relative w-[95%] mx-auto "><div class="flex justify-end gap-x-2 px-1"><button onclick="renderTourInstallmentForm(this)" class="h-12 rounded-[4px] w-[168px] text-center leading-[48px] bg-success-100 text-success-500 hover:bg-success-500 hover:text-white ">شرایط اقساط </button><button onclick="renderTourForm(this)" class="h-12 rounded-[4px] w-[168px] text-center leading-[48px] bg-secondary text-white hover:bg-secondary-500">رزرو تور </button></div><div class="tourInventory__details__item__info flex justify-between divide-neutralcolor-800 divide-x divide-x-reverse mt-2 "><div class="w-1/5 px-1 price-type"><div class="bg-primary text-white h-10 rounded-[4px] font-yekanbakhregularFA text-base text-center leading-10 w-full block ">هر نفر در اتاق دوتخته </div><div class="flex flex-col w-full ">{{ return await renderPriceInfo($data,'doublecost')}} </div></div><div class="w-1/5 px-1 price-type"><div class="bg-primary text-white h-10 rounded-[4px] font-yekanbakhregularFA text-base text-center leading-10 w-full block ">هر نفر در اتاق یک تخته </div><div class="flex flex-col w-full ">{{ return await renderPriceInfo($data,'singlecost')}} </div></div><div class="w-1/5 px-1 price-type"><div class="bg-primary text-white h-10 rounded-[4px] font-yekanbakhregularFA text-base text-center leading-10 w-full block ">6 تا 12 سال با تخت </div><div class="flex flex-col w-full ">{{ return await renderPriceInfo($data,'childwithbed')}} </div></div><div class="w-1/5 px-1 price-type"><div class="bg-primary text-white h-10 rounded-[4px] font-yekanbakhregularFA text-base text-center leading-10 w-full block ">2 تا 6 سال بدون تخت </div><div class="flex flex-col w-full ">{{ return await renderPriceInfo($data,'childwithoutbed')}} </div></div><div class="w-1/5 px-1 price-type"><div class="bg-primary text-white h-10 rounded-[4px] font-yekanbakhregularFA text-base text-center leading-10 w-full block ">توضیحات </div><div class="w-full h-[calc(100%-56px)] "><div id="open-description-btn" class="bg-neutralcolor-50 w-full h-full rounded-[4px] my-2 text-center text-primary-900 text-lg font-yekanbakhsemiboldFA flex justify-center items-center" >{{ return await showDescriptionHTML($data)}} </div></div></div></div><div class="hidden description-hotel"><div id="description-hotel-cost" class="bg-neutral-50 w-full min-h-[80px] rounded-[4px] flex justify-center items-center my-2 leading-[48px] text-primary-900 text-center text-base px-4">{{ return await renderDescriptionHotelCost($data)}} </div></div></div></div></article></script>
+                    </face>
+                </basis>
+            </div>
+            <aside class="w-[302px] sticky top-20">
+                <div id="sharebuttonprimary"
+                    class="group/sharebutton share-container h-[56px] relative z-[51] transition-all duration-500 mb-6 w-full mx-auto hover:h-fit shadow-none ">
+                    <div id="sharebutton-content" onclick="ShareSocialMediaPrimary(event, 'sharebuttonprimary')"
+                        class=" h-[56px] rounded-[28px] bg-primary drop-shadow-xl p-3 cursor-pointer transition-all duration-500 border border-primary z-20 w-full text-white ">
+                        <div
+                            class="bg-activation-sharebtn bg-white w-12 h-12 rounded-full drop-shadow-md absolute top-0 bottom-0 left-0 my-auto mx-1 -z-10 ">
+                        </div>
+                        <div class="flex justify-between items-center"><span
+                                class="text-share-box text-white w-[calc(100%-48px)] text-center block text-base font-yekanbakhregularFA ">اشتراک
+                                گذاری </span><svg width="32" height="32" class="group-hover/sharebutton:fill-white">
+                                <use href="./images/sprite-icons.svg#sharebutton-hvr"></use>
+                            </svg></div>
+                    </div>
+                    <ul
+                        class="socialmedia-box-share invisible opacity-0 w-full flex justify-evenly items-center drop-shadow-none bg-white pt-[56px] h-[112px] border border-primary absolute top-0 left-0 right-0 -z-50 rounded-[28px] transition-all duration-500 ">
+                        <li class=""><a class="flex justify-center items-center cursor-pointer"
+                                href="https://telegram.me/share/url?url=[##cms.request.full-url##]&text=''"
+                                target="_blank" aria-label="telegram"><svg width="24" height="24">
+                                    <use href="./images/sprite-icons.svg#sharebox-telegram"></use>
+                                </svg></a></li>
+                        <li class=""><a class="flex justify-center items-center cursor-pointer"
+                                href="whatsapp://send?text=[##cms.request.full-url##]" target="_blank"
+                                aria-label="whatsapp"><svg width="24" height="24">
+                                    <use href="./images/sprite-icons.svg#sharebox-whatsapp"></use>
+                                </svg></a></li>
+                        <li class=""><a class="flex justify-center items-center cursor-pointer"
+                                href="mailto:?subject=Check%20this%20out&body=I%20found%20this%20interesting%20and%20wanted%20to%20share%20it%20with%20you:%20[##cms.request.full-url##]"
+                                target="_blank" aria-label="email"><svg width="24" height="24">
+                                    <use href="./images/sprite-icons.svg#sharebox-email"></use>
+                                </svg></a></li>
+                        <li class=""><a class="flex justify-center items-center cursor-pointer"
+                                href="https://twitter.com/home?status=[##cms.request.full-url##]" target="_blank"
+                                aria-label="twitter"><svg width="24" height="24">
+                                    <use href="./images/sprite-icons.svg#sharebox-twitter"></use>
+                                </svg></a></li>
+                        <li class=""><a class="flex justify-center items-center cursor-pointer"
+                                href="https://www.facebook.com/sharer/sharer.php?u=[##cms.request.full-url##]"
+                                target="_blank" aria-label="facebook"><svg width="24" height="24">
+                                    <use href="./images/sprite-icons.svg#sharebox-facebook"></use>
+                                </svg></a></li>
+                    </ul>
+                </div>
+                <basis core="print" datamembername="db.pdf"><else-layout><a
+                            href="/Tem1_Pdf_Package.bc?id=[##cms.query.id##]" target="_blank">
+                            <div
+                                class="group/packagedownload w-[302px] h-[56px] relative z-50 transition-all duration-500 my-2 hover:w-[302px] hover:h-fit ">
+                                <div
+                                    class="w-[302px] h-[56px] rounded-[28px] bg-primary drop-shadow-xl p-1 cursor-pointer transition-all duration-500 border border-primary z-20 group-hover/packagedownload:w-[302px] group-hover/packagedownload:bg-white ">
+                                    <div
+                                        class="bg-activation-sharebtn bg-white w-12 h-12 rounded-full absolute top-0 bottom-0 left-0 my-auto mx-1 -z-10 group-hover/packagedownload:bg-primary ">
+                                    </div>
+                                    <div class="flex justify-between items-center"><span
+                                            class="text-white w-[calc(100%-48px)] text-center block text-base font-yekanbakhregularFA group-hover/packagedownload:text-primary ">دانلود
+                                            پکیج </span>
+                                        <div class="w-12 h-12 flex justify-center items-center"><svg width="24"
+                                                height="24"
+                                                class=" group-hover/packagedownload:fill-white group-hover/packagedownload:stroke-white">
+                                                <use href="./images/sprite-icons.svg#packagedownload"></use>
+                                            </svg></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a></else-layout>
+                    <layout>@child </layout>
+                    <face><a href="/@largeIMG" target="_blank">
+                            <div
+                                class="group/packagedownload w-[302px] h-[56px] relative z-50 transition-all duration-500 my-2 hover:w-[302px] hover:h-fit ">
+                                <div
+                                    class="w-[302px] h-[56px] rounded-[28px] bg-primary drop-shadow-xl p-1 cursor-pointer transition-all duration-500 border border-primary z-20 group-hover/packagedownload:w-[302px] group-hover/packagedownload:bg-white ">
+                                    <div
+                                        class="bg-activation-sharebtn bg-white w-12 h-12 rounded-full absolute top-0 bottom-0 left-0 my-auto mx-1 -z-10 group-hover/packagedownload:bg-primary ">
+                                    </div>
+                                    <div class="flex justify-between items-center"><span
+                                            class="text-white w-[calc(100%-48px)] text-center block text-base font-yekanbakhregularFA group-hover/packagedownload:text-primary ">دانلود
+                                            پکیج </span>
+                                        <div class="w-12 h-12 flex justify-center items-center"><svg width="24"
+                                                height="24"
+                                                class=" group-hover/packagedownload:fill-white group-hover/packagedownload:stroke-white">
+                                                <use href="./images/sprite-icons.svg#packagedownload"></use>
+                                            </svg></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a></face>
+                </basis>
+                <div
+                    class="dropdownBox tourDate__container w-full mx-auto bg-white rounded-xl border border-neutralcolor-300 mb-6">
+                    <div class="dropdowntitr gap-x-3 p-3 border-b border-e-neutralcolor-300 flex justify-between">
+                        <div class="flex items-center justify-start gap-x-2"><svg width="24" height="24">
+                                <use href="./images/sprite-icons.svg#dropdown-dates"></use>
+                            </svg>
+                            <h2>تاریخ تور ها </h2>
+                        </div><svg class="block opendropdow" width="24" height="25">
+                            <use href="./images/sprite-icons.svg#arrow-top"></use>
+                        </svg>
+                    </div>
+                    <basis core="print" datamembername="db.dates" run="atclient" onrendered="onrenderedDates">
+                        <layout>
+                            <script
+                                type="text/template"><ul id="dropdown-dates" class="dropdownCotent date__details dropdown-dates w-[95%] mx-auto h-24 overflow-hidden">@child </ul><span onclick="showMoreDates(this,'dropdown-dates')" class="h-10 rounded-md bg-primary-50 text-primary border border-primary-50 hover:border-primary text-base block leading-10 text-center cursor-pointer mx-4 my-4">مشاهده بیشتر </span></script>
+                        </layout>
+                        <face>
+                            <script
+                                type="text/template"><li class="my-3 flex justify-start gap-x-1 px-1 items-center py-1 rounded-md cursor-pointer h-10" onclick="renderInventoryView(this,@day@,@start.dateid@,@end.dateid@)"><input class="w-3 h-3 rounded-[4px] accent-primary" type="radio" id="@start.dateid@" name="tour-date" /><label for="@start.dateid@" class="text-xs text-black font-yekanbakhregularFA w-full flex items-center "><span class="start__date inline-block" data-date="@start.date@">{{ return await renderDayDate($data,'start')}} {{ return await renderMonthDate($data,'start')}} </span><span class="weekday__detail__dates text-xs mr-1">{{ return await renderWeekDayDate($data,'start')}}</span><span class="mx-2 inline-block"><svg width="19" height="6" viewBox="0 0 19 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 3.5C18.2761 3.5 18.5 3.27614 18.5 3C18.5 2.72386 18.2761 2.5 18 2.5L18 3.5ZM0 3L5 5.88675L5 0.113248L0 3ZM18 2.5L4.5 2.5L4.5 3.5L18 3.5L18 2.5Z" fill="#101828"/></svg></span><span class="end__date inline-block" data-date="@end.date@">{{ return await renderDayDate($data,'end')}} {{ return await renderMonthDate($data,'end')}} </span><span class="weekday__detail__dates text-xs mr-1">{{ return await renderWeekDayDate($data,'end')}}</span></label></li></script>
+                        </face>
+                    </basis>
+                </div>
+                <div id="podcastandvideo">
+                    <basis core="list" datamembername="joining.podcast">
+                        <layout>
+                            <div id="audioBox"
+                                class="bg-white rounded-3xl text-center cursor-pointer transition hover:bg-gray-200 w-full mb-6 h-[96px] relative overflow-hidden">
+                                @child </div>
+                        </layout>
+                        <face><img class="w-full h-full absolute top-0 left-0 bottom-0 right-0 object-cover blur-sm"
+                                src="@db.media-gallery.largeIMG" alt="@db.media-gallery.name"><button id="playPauseBtn"
+                                class=" w-full h-full text-white text-2xl flex justify-center items-center shadow-md z-10 relative transition "><img
+                                    class="w-[48px] h-[55px] absolute right-3" src="./images/headphone-podcast.png"
+                                    alt="@db.media-gallery.name"></button>
+                            <div
+                                class="flex flex-col justify-center items-center w-8/12 absolute z-50 top-2 left-3 right-0 mr-auto">
+                                <h2 class="text-white text-sm font-yekanbakhbold leading-10 text-center">درباره این تور
+                                    بشنوید. </h2>
+                                <div id="waveform" class="w-10/12"></div><audio id="audioSource"
+                                    src="@db.audio.largeIMG"></audio>
+                            </div>
+                            <div
+                                class="w-full h-full bg-gradient-to-t from-black/50 to-transparent absolute left-0 right-0 bottom-0 ">
+                            </div>
+                        </face>
+                    </basis>
+                    <basis core="list" datamembername="db.media-gallery">
+                        <face filter="ord in(1000)"><button
+                                class="openModal mb-6 bg-white rounded-3xl text-center cursor-pointer transition hover:bg-gray-200 w-full h-[96px] relative overflow-hidden"
+                                data-id="@Table2ID"><img
+                                    class="w-full h-full absolute top-0 left-0 bottom-0 right-0 object-cover blur-sm"
+                                    src="@largeIMG" width="248" height="96" alt="@name">
+                                <div
+                                    class="z-50 relative text-white text-sm font-yekanbakhbold leading-10 text-center flex flex-row-reverse justify-evenly">
+                                    @name <img class="w-[75px] h-[43px]" src="./images/video-icon.png" alt=""></div>
+                                <div
+                                    class="w-full h-full bg-gradient-to-t from-black/50 to-transparent absolute left-0 right-0 bottom-0">
+                                </div>
+                            </button></face>
+                    </basis>
+                </div>
+                <basis core="print" datamembername="db.information">
+                    <face filter="TypeID in(240) and prpID in(8000) and valueID in(333510600)">
+                        <div
+                            class=" mb-6 bg-primary h-[88px] rounded-2xl hover:bg-primary-800 w-[307px] drop-shadow-support-7-24 hover:drop-shadow-hvr-support-7-24 transition-all duration-500 ">
+                            <a href="tel:@text" class="h-full w-full flex justify-center gap-x-3 items-center"><svg
+                                    width="32" height="32">
+                                    <use href="./images/sprite-icons.svg#telephone-icon"></use>
+                                </svg>
+                                <div><span class="font-yekanbakhbold text-2xl text-white block text-center">مشاوره
+                                        تلفنی</span><span
+                                        class="font-yekanbakhregularFA text-sm text-white block text-center">هر روز هفته
+                                        از ساعت 9 صبح تا 18</span></div>
+                            </a></div>
+                    </face>
+                </basis>
+                <basis core="list" datamembername="db.tags">
+                    <layout>
+                        <div
+                            class="dropdownBox w-[95%] mx-auto bg-white rounded-xl border border-neutralcolor-300 mb-6">
+                            <div
+                                class="dropdowntitr gap-x-3 p-3 border-b border-e-neutralcolor-300 flex justify-between">
+                                <div class="flex items-center justify-start gap-x-2"><svg width="24" height="25">
+                                        <use href="./images/sprite-icons.svg#label-keyword"></use>
+                                    </svg>
+                                    <h2>برچسب </h2>
+                                </div><svg class="block opendropdow" width="24" height="25">
+                                    <use href="./images/sprite-icons.svg#arrow-top"></use>
+                                </svg>
+                            </div>
+                            <div class="dropdownCotent flex justify-start gap-3 flex-wrap p-3">@child </div>
+                        </div>
+                    </layout>
+                    <face><a href="tag.bc?catid=@text&tagtype=@number"
+                            class="border border-neutralcolor-800 text-txtneutral-500 bg-white font-yekanbakhregularFA text-sm leading-[22px] rounded-xl py-1 px-4 inline-block hover:border-primary-50 hover:bg-primary-50 cursor-pointer hover:text-primary transition-all duration-300 ">@largetext</a>
+                    </face>
+                </basis>
+                <basis core="list" datamembername="db.ads">
+                    <layout>@child </layout>
+                    <face><a href="@link">
+                            <figure class="mb-6"><img class="w-[304px] h-[528px] rounded-3xl object-cover "
+                                    src="@00304X00526prp" height="304" width="528" alt="@title"></figure>
+                        </a></face>
+                </basis>
+            </aside>
+        </div>
+        <div class="clear-both"></div>
+        <section class="max-w-7xl mx-auto w-full hidden">
+            <div class="bg-neutral-50 flex h-16 items-center rounded-[4px] gap-x-4 px-3"><svg width="40" height="40">
+                    <use href="./images/sprite-icons.svg#tour-services-detail"></use>
+                </svg>
+                <h2 class="text-2xl text-primary-900 font-yekanbakhsemiboldFA ">خدمات تور آنتالیا</h2>
+            </div>
+            <hr class="w-full border-neutralcolor-500 my-2" />
+            <ul class="flex justify-start gap-2 gap-y-4 flex-wrap">
+                <li class="h-[88px] w-[24.5%] bg-primary-50 rounded-2xl px-3 py-1 flex gap-x-2 items-center ">
+                    <div class="h-16 w-16 rounded-full bg-white flex justify-center items-center "><img
+                            src="[##cms.cms.cdn##]/images/non-upload/insurance.png" width="40" height="40"
+                            alt="insurance"></div>
+                    <h2 class="text-primary-900 text-sm font-yekanbakhregularFA">وعده صبحانه و ناهار</h2>
+                </li>
+                <li class="h-[88px] w-[24.5%] bg-primary-50 rounded-2xl px-3 py-1 flex gap-x-2 items-center ">
+                    <div class="h-16 w-16 rounded-full bg-white flex justify-center items-center "><img
+                            src="[##cms.cms.cdn##]/images/non-upload/insurance.png" width="40" height="40"
+                            alt="insurance"></div>
+                    <h2 class="text-primary-900 text-sm font-yekanbakhregularFA">وعده صبحانه و ناهار</h2>
+                </li>
+                <li class="h-[88px] w-[24.5%] bg-primary-50 rounded-2xl px-3 py-1 flex gap-x-2 items-center ">
+                    <div class="h-16 w-16 rounded-full bg-white flex justify-center items-center "><img
+                            src="[##cms.cms.cdn##]/images/non-upload/insurance.png" width="40" height="40"
+                            alt="insurance"></div>
+                    <h2 class="text-primary-900 text-sm font-yekanbakhregularFA">وعده صبحانه و ناهار</h2>
+                </li>
+                <li class="h-[88px] w-[24.5%] bg-primary-50 rounded-2xl px-3 py-1 flex gap-x-2 items-center ">
+                    <div class="h-16 w-16 rounded-full bg-white flex justify-center items-center "><img
+                            src="[##cms.cms.cdn##]/images/non-upload/insurance.png" width="40" height="40"
+                            alt="insurance"></div>
+                    <h2 class="text-primary-900 text-sm font-yekanbakhregularFA">وعده صبحانه و ناهار</h2>
+                </li>
+                <li class="h-[88px] w-[24.5%] bg-primary-50 rounded-2xl px-3 py-1 flex gap-x-2 items-center ">
+                    <div class="h-16 w-16 rounded-full bg-white flex justify-center items-center "><img
+                            src="[##cms.cms.cdn##]/images/non-upload/insurance.png" width="40" height="40"
+                            alt="insurance"></div>
+                    <h2 class="text-primary-900 text-sm font-yekanbakhregularFA">وعده صبحانه و ناهار</h2>
+                </li>
+                <li class="h-[88px] w-[24.5%] bg-primary-50 rounded-2xl px-3 py-1 flex gap-x-2 items-center ">
+                    <div class="h-16 w-16 rounded-full bg-white flex justify-center items-center "><img
+                            src="[##cms.cms.cdn##]/images/non-upload/insurance.png" width="40" height="40"
+                            alt="insurance"></div>
+                    <h2 class="text-primary-900 text-sm font-yekanbakhregularFA">وعده صبحانه و ناهار</h2>
+                </li>
+                <li class="h-[88px] w-[24.5%] bg-primary-50 rounded-2xl px-3 py-1 flex gap-x-2 items-center ">
+                    <div class="h-16 w-16 rounded-full bg-white flex justify-center items-center "><img
+                            src="[##cms.cms.cdn##]/images/non-upload/insurance.png" width="40" height="40"
+                            alt="insurance"></div>
+                    <h2 class="text-primary-900 text-sm font-yekanbakhregularFA">وعده صبحانه و ناهار</h2>
+                </li>
+                <li class="h-[88px] w-[24.5%] bg-primary-50 rounded-2xl px-3 py-1 flex gap-x-2 items-center ">
+                    <div class="h-16 w-16 rounded-full bg-white flex justify-center items-center "><img
+                            src="[##cms.cms.cdn##]/images/non-upload/insurance.png" width="40" height="40"
+                            alt="insurance"></div>
+                    <h2 class="text-primary-900 text-sm font-yekanbakhregularFA">وعده صبحانه و ناهار</h2>
+                </li>
+                <li class="h-[88px] w-[24.5%] bg-primary-50 rounded-2xl px-3 py-1 flex gap-x-2 items-center ">
+                    <div class="h-16 w-16 rounded-full bg-white flex justify-center items-center "><img
+                            src="[##cms.cms.cdn##]/images/non-upload/insurance.png" width="40" height="40"
+                            alt="insurance"></div>
+                    <h2 class="text-primary-900 text-sm font-yekanbakhregularFA">وعده صبحانه و ناهار</h2>
+                </li>
+                <li class="h-[88px] w-[24.5%] bg-primary-50 rounded-2xl px-3 py-1 flex gap-x-2 items-center ">
+                    <div class="h-16 w-16 rounded-full bg-white flex justify-center items-center "><img
+                            src="[##cms.cms.cdn##]/images/non-upload/insurance.png" width="40" height="40"
+                            alt="insurance"></div>
+                    <h2 class="text-primary-900 text-sm font-yekanbakhregularFA">وعده صبحانه و ناهار</h2>
+                </li>
+            </ul>
+        </section>
+        <basis core="print" datamembername="db.tour-view">
+            <layout>
+                <section class="max-w-7xl mx-auto w-full my-12">
+                    <div class="bg-neutral-50 flex h-16 items-center rounded-[4px] gap-x-4 px-3"><svg width="40"
+                            height="41">
+                            <use href="./images/sprite-icons.svg#travel-role"></use>
+                        </svg>
+                        <h2 class="text-2xl text-primary-900 font-yekanbakhsemiboldFA ">شرایط و مقررات کلی سفر</h2>
+                    </div>
+                    <hr class="w-full border-neutralcolor-500 my-2" />
+                    <div class="my-6 ">
+                        <ul class="flex flex-row-reverse float-right ">
+                            <li onclick="openTabInfo(this , 'required-documents-tour' )"
+                                class="cursor-pointer text-xl font-yekanbakhsemiboldFA overflow-visible -mr-12 w-[250px] rounded-tl-[100px] rounded-tr-[4px] rounded-b-[4px] bg-neutralcolor-50 drop-shadow-travel-data-tour-detail h-16 text-center leading-[64px] ">
+                                مدارک مورد نیاز </li>
+                            <li onclick="openTabInfo(this , 'tour-description' )"
+                                class="cursor-pointer text-xl font-yekanbakhsemiboldFA overflow-visible -mr-12 w-[250px] rounded-tl-[100px] rounded-tr-[4px] rounded-b-[4px] bg-neutralcolor-50 drop-shadow-travel-data-tour-detail h-16 text-center leading-[64px] ">
+                                توضیحات تور </li>
+                            <li onclick="openTabInfo(this , 'service-tour' )"
+                                class="cursor-pointer text-xl font-yekanbakhsemiboldFA active-tab-travel-data overflow-visible w-[250px] rounded-tl-[100px] rounded-tr-[4px] rounded-b-[4px] bg-neutralcolor-50 drop-shadow-travel-data-tour-detail h-16 text-center leading-[64px] ">
+                                <svg width="24" height="24" class="inline-block">
+                                    <use href="./images/sprite-icons.svg#tab-icon-service"></use>
+                                </svg>خدمات تور </li>
+                        </ul>
+                    </div>
+                    <div class="clear-both"></div>
+                    <div class="my-5">@child </div>
+                </section>
+            </layout>
+            <face filter="vocabulary in('خدمات-تور') and TypeID in(200) and largetext is not null">
+                <div id="service-tour" class="block rounded-3xl border border-secondary p-8 bg-white ">
+                    <h2 class="text-primary text-lg font-yekanbakhboldFA mb-2">خدمات تور:</h2>
+                    <div class="text-justify text-lg font-yekanbakhregularFA">@largetext </div>
+                </div>
+            </face>
+            <face filter="vocabulary in('توضیحات') and TypeID in(144)">
+                <div id="tour-description" class="hidden rounded-3xl border border-secondary p-8 bg-white ">
+                    <h2 class="text-primary text-lg font-yekanbakhboldFA mb-2">توضیحات :</h2>
+                    <div class="text-justify text-lg font-yekanbakhregularFA">@largetext </div>
+                </div>
+            </face>
+            <face filter="vocabulary in('مدارک-مورد-نیاز') and TypeID in(200)">
+                <div id="required-documents-tour" class="hidden rounded-3xl border border-secondary p-8 bg-white ">
+                    <h2 class="text-primary text-lg font-yekanbakhboldFA mb-2">مدارک مورد نیاز تور:</h2>
+                    <div class="text-justify text-lg font-yekanbakhregularFA">@largetext </div>
+                </div>
+            </face>
+        </basis>
+        <section class="bg-neutralcolor-50 rounded-tl-[375px] mt-12 py-12">
+            <div class="max-w-7xl mx-auto w-full ">
+                <basis core="print" datamembername="db.tour-view">
+                    <layout>@child </layout>
+                    <face filter="vocabulary in('مدت-اقامت')">
+                        <div class="bg-neutral-50 flex h-16 items-center rounded-[4px] gap-x-4 px-3"><svg width="32"
+                                height="32">
+                                <use href="./images/sprite-icons.svg#travel-plan"></use>
+                            </svg>
+                            <h2 class="text-2xl text-primary-900 font-yekanbakhboldFA ">برنامه سفر <span
+                                    class="text-xl">(@text)</span></h2>
+                        </div>
+                    </face>
+                </basis>
+                <basis core="print" datamembername="db.tour-gallery-travelplan">
+                    <layout>
+                        <div class="my-5 flex justify-start items-center h-[250px]">@child </div>
+                    </layout>
+                    <face filter="ord=max(ord)">
+                        <div onclick="openPlan(this , '@ord-day')" class="relative group cursor-pointer plan-days">
+                            <div class="border-b-8 rounded-full border-white hover:border-primary-100">
+                                <figure
+                                    class="relative z-[2] w-[112px] h-[112px] hover:w-[184px] hover:h-[184px] hover:blur-none transition-all duration-300 ease-in-out rounded-full overflow-hidden blur-sm">
+                                    <img class="w-full h-full object-cover " src="[##cms.cms.cdn##]/@largeIMG"
+                                        width="184" height="184" alt="@name"></figure>
+                            </div>
+                            <div
+                                class="absolute left-0 right-0 mx-auto txt-day-content hidden group-hover:flex justify-center items-center bg-transparent border-4 drop-shadow-sm border-white -bottom-5 z-10 w-[83px] h-[83px] rounded-full">
+                                <span
+                                    class=" w-[65px] h-[65px] rounded-full drop-shadow-sm bg-white font-yekanbakhsemiboldFA text-lg text-secondary text-center leading-6 flex flex-col justify-center items-center ">روز
+                                    <span class="block">@ord </span></span></div>
+                        </div>
+                    </face>
+                    <face filter="ord < max(ord)">
+                        <div onclick="openPlan(this , '@ord-day')" class="relative group cursor-pointer plan-days">
+                            <div class="border-b-8 rounded-full border-white hover:border-primary-100">
+                                <figure
+                                    class="relative z-[2] w-[112px] h-[112px] hover:w-[184px] hover:h-[184px] hover:blur-none transition-all duration-300 ease-in-out rounded-full overflow-hidden blur-sm">
+                                    <img class="w-full h-full object-cover " src="[##cms.cms.cdn##]/@largeIMG"
+                                        width="184" height="184" alt="@name"></figure>
+                            </div>
+                            <div
+                                class="absolute left-0 right-0 mx-auto txt-day-content hidden group-hover:flex justify-center items-center bg-transparent border-4 drop-shadow-sm border-white -bottom-5 z-10 w-[83px] h-[83px] rounded-full">
+                                <span
+                                    class=" w-[65px] h-[65px] rounded-full drop-shadow-sm bg-white font-yekanbakhsemiboldFA text-lg text-secondary text-center leading-6 flex flex-col justify-center items-center ">روز
+                                    <span class="block">@ord </span></span></div>
+                        </div><svg class="-mx-5 relative z-[1]" width="110" height="23" viewBox="0 0 110 23" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0 0 Q 55 18 110 0 L 110 23 Q 55 5 0 23 Z" fill="#FFA200" />
+                        </svg>
+                    </face>
+                </basis>
+                <basis core="print" datamembername="db.tour-view-travelplan">
+                    <layout>@child </layout>
+                    <face filter="rownumber in(1)">
+                        <div id="@rownumber-day" class="w-10/12 mx-auto my-4 "><span
+                                class="text-secondary text-2xl font-yekanbakhbold leading-10">@text </span>
+                            <div class="font-yekanbakhregularFA text-lg to-txtneutral-900 leading-10 text-justify">
+                                @largetext </div>
+                        </div>
+                    </face>
+                    <face filter="rownumber not in(1)">
+                        <div id="@rownumber-day" class="w-10/12 mx-auto my-4 hidden"><span
+                                class="text-secondary text-2xl font-yekanbakhbold leading-10">@text </span>
+                            <div class="font-yekanbakhregularFA text-lg to-txtneutral-900 leading-10 text-justify">
+                                @largetext </div>
+                        </div>
+                    </face>
+                </basis>
+            </div>
+        </section>
+        <basis core="list" datamembername="db.tour-joining">
+            <layout>
+                <section class=" block pt-24 bg-neutralcolor-50 pb-10 ">
+                    <div class="max-w-7xl mx-auto text-center relative">
+                        <h2
+                            class="font-yekanbakhlightFA text-[32px] text-secondary text-center inline-block mx-auto w-fit relative before:content-[' '] before:w-20 before:h-20 before:bg-secondary before:opacity-20 before:rounded-full before:block before:absolute before:-right-10 before:-top-4">
+                            تــــــــورهای <span class="font-yekanbakhboldFA">مرتبط</span></h2>
+                    </div>
+                    <div class="my-8 max-w-7xl mx-auto flex justify-between">@child</div>
+                </section>
+            </layout>
+            <face filter="link is null">
+                <article class="w-[296px] h-[168px] rounded-2xl bg-primary-50 p-4"><a
+                        href="/tour.bc?id=@db.tour-related.id" class="w-full h-full ">
+                        <h2 class="text-primary-900 text-2xl font-yekanbakhsemiboldFA text-center my-2">
+                            @db.tour-related.title</h2>
+                        <div class="h-[92px] rounded-t-[22px] rounded-b-[25px] bg-white relative group">
+                            <div class="text-center flex justify-center items-center gap-x-2 h-11"><span
+                                    class="text-xs font-yekanbakhsemiboldFA to-txtneutral-900 w-14 inline-block">ویژه
+                                    تاریخ </span><span
+                                    class="text-xl text-primary-900 font-yekanbakhsemiboldFA line-clamp-1 w-[calc(100%-56px)]">@db.tour-related.prp_8077
+                                </span></div>
+                            <div
+                                class="rounded-[25px] bg-primary text-white flex justify-center items-center gap-x-2 transition-all duration-200 ease-in-out group-hover:h-full group-hover:top-0 group-hover:left-0 group-hover:right-0 group-hover:absolute ">
+                                <span class="text-xs font-yekanbakhsemiboldFA">شروع از </span><span
+                                    class="text-2xl font-yekanbakhsemiboldFA h-[50px] leading-[50px] text-center">@db.tour-related.prp_8181
+                                </span></div>
+                        </div>
+                    </a></article>
+            </face>
+            <face>
+                <article class="w-[296px] h-[168px] rounded-2xl bg-primary-50 p-4"><a href="/@db.tour-related.link"
+                        class="w-full h-full ">
+                        <h2 class="text-primary-900 text-2xl font-yekanbakhsemiboldFA text-center my-2">
+                            @db.tour-related.title</h2>
+                        <div class="h-[92px] rounded-t-[22px] rounded-b-[25px] bg-white relative group">
+                            <div class="text-center flex justify-center items-center gap-x-2 h-11"><span
+                                    class="text-xs font-yekanbakhsemiboldFA to-txtneutral-900">ویژه تاریخ </span><span
+                                    class="text-xl text-primary-900 font-yekanbakhsemiboldFA">@db.tour-related.prp_8077
+                                </span></div>
+                            <div
+                                class="rounded-[25px] bg-primary text-white flex justify-center items-center gap-x-2 transition-all duration-200 ease-in-out group-hover:h-full group-hover:top-0 group-hover:left-0 group-hover:right-0 group-hover:absolute ">
+                                <span class="text-xs font-yekanbakhsemiboldFA">شروع از </span><span
+                                    class="text-2xl font-yekanbakhsemiboldFA h-[50px] leading-[50px] text-center">@db.tour-related.prp_8181
+                                </span></div>
+                        </div>
+                    </a></article>
+            </face>
+        </basis>
+        <section id="box-faq-form" class="comment-tour-details max-w-7xl mx-auto w-[95%] mt-32 relative z-10">
+            <div class="comment-box">
+                <div id="info_submit_comment" class="info_submit_comment comment-boxes flex justify-between">
+                    <div class="w-1/2">
+                        <div id="OpinioUser-box" class="w-11/12">
+                            <h2 class="font-yekanbakhboldFA text-2xl text-txtneutral-900 ">پرسش و پاسخ</h2><span
+                                class="w-full h-[2px] bg-white my-5 block"></span>
+                            <ul class="font-yekanbakhregularFA text-xl text-txtneutral-900 leading-8">
+                                <li
+                                    class="before:content-[''] before:w-2 before:h-2 before:rounded-full before:bg-black before:inline-block before:ml-3 before:align-middle">
+                                    سوالات خود را در مورد <span>این تور </span>در اینجا بپرسید. </li>
+                                <li
+                                    class="before:content-[''] before:w-2 before:h-2 before:rounded-full before:bg-black before:inline-block before:ml-3 before:align-middle">
+                                    قبل از مطرح کردن سوال، سوالات قبلی پرسیده شده توسط سایر مسافران را مطالعه کنید.</li>
+                                <li
+                                    class="before:content-[''] before:w-2 before:h-2 before:rounded-full before:bg-black before:inline-block before:ml-3 before:align-middle">
+                                    پاسخ سوال شما پس از پاسخ دهی توسط تیم آمیتیس، در وبسایت نمایش داده خواهد شد.</li>
+                            </ul>
+                            <form id="opinionForm" method="post" action="/OpinionAction.bc"
+                                onsubmit="SubmitOpinionForm(this , event)">
+                                <div class="user-info-comment">
+                                    <div class="flname"><input
+                                            class="bg-white rounded-[4px] border border-neutralcolor-800 h-12 w-full block leading-60px px-3 text-sm font-danaregular my-3 focus:border-primary-400 focus:outline-primary-400"
+                                            name="Username" placeholder="نام و نام خانوادگی" type="text" required></div>
+                                    <div class="phone"><input
+                                            class="bg-white rounded-[4px] border border-neutralcolor-800 h-12 w-full block leading-60px px-3 text-sm font-danaregular my-3 focus:border-primary-400 focus:outline-primary-400"
+                                            name="_root.Phone" placeholder="شماره تماس" type="text"></div>
+                                </div>
+                                <d iv class="captcha-container flex justify-between items-center">
+                                    <div class="SecurityCodeRight w-1/3"><input
+                                            class="bg-white rounded-[4px] border border-neutralcolor-800 h-12 w-full leading-60px px-3 text-sm font-danaregular focus:border-primary-400 focus:outline-primary-400"
+                                            name="Captcha" placeholder="کد امنیتی" type="text" required></div>
+                                    <div class="SecurityCodeLeft flex gap-x-3 items-center w-1/3"><span
+                                            class="load-captcha">
+                                            <img class="captchaa" src="/[##captcha.code.captcha##]"
+                                                alt="captcha code" width="80" height="40" /><input id="Captchaid"
+                                                name="Captchaid" value="[##captcha.code.captcha##]"
+                                                type="hidden" /></span><svg onclick="refresh_captcha(this,event)"
+                                            class="cursor-pointer" width="34" height="34" viewBox="0 0 34 34"
+                                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <rect y="0.00195312" width="34" height="34" fill="white" />
+                                            <path
+                                                d="M16.5122 27.9291C11.4608 27.9291 7.36133 23.82 7.36133 18.7782C7.36133 13.7365 11.4608 9.61768 16.5122 9.61768C17.5516 9.61768 18.5619 9.76339 19.5333 10.0645C19.9219 10.1811 20.1356 10.5891 20.019 10.9777C19.9025 11.3662 19.4945 11.58 19.1059 11.4634C18.2802 11.2108 17.4059 11.0748 16.5122 11.0748C12.267 11.0748 8.81847 14.5234 8.81847 18.7685C8.81847 23.0137 12.267 26.4622 16.5122 26.4622C20.7573 26.4622 24.2059 23.0137 24.2059 18.7685C24.2059 17.2337 23.759 15.7571 22.9139 14.4942C22.6905 14.164 22.7779 13.7074 23.1179 13.484C23.4482 13.2605 23.9048 13.348 24.1282 13.688C25.1385 15.1937 25.6728 16.952 25.6728 18.7782C25.663 23.82 21.5636 27.9291 16.5122 27.9291Z"
+                                                fill="#101828" />
+                                            <path
+                                                d="M20.5244 11.7273C20.3204 11.7273 20.1164 11.6399 19.9707 11.4747L17.1632 8.24958C16.9009 7.94844 16.9301 7.48216 17.2312 7.21987C17.5324 6.95758 17.9987 6.98673 18.2609 7.28787L21.0684 10.513C21.3307 10.8142 21.3015 11.2804 21.0004 11.5427C20.8741 11.669 20.6992 11.7273 20.5244 11.7273Z"
+                                                fill="#101828" />
+                                            <path
+                                                d="M17.2524 14.1161C17.029 14.1161 16.8055 14.0092 16.6598 13.8149C16.4267 13.4944 16.4947 13.0378 16.8152 12.7949L20.089 10.4052C20.4095 10.1624 20.8661 10.2401 21.109 10.5607C21.3518 10.8812 21.2741 11.3378 20.9535 11.5807L17.6798 13.9801C17.5535 14.0772 17.4078 14.1161 17.2524 14.1161Z"
+                                                fill="#101828" />
+                                        </svg></div>
+                                    <div><input name="productid" value="[##cms.query.aid##]" type="hidden"><input
+                                            name="mid" value="1" type="hidden"></div>
+                                </d>
+                                <div class="comment"><_textarea
+                                        class="bg-white rounded-[4px] border border-neutralcolor-800 w-full block leading-60px p-3 text-sm font-danaregular my-3 focus:border-primary-400 focus:outline-primary-400"
+                                        name="OpinionMessage" placeholder="متن سوال و نظرات شما" required
+                                        rows="7"></_textarea></div>
+                                <div class="submit-comment "><input
+                                        class="h-12 text-white bg-secondary hover:bg-secondary-500 rounded-[4px] w-full block leading-48px px-3 text-base font-yekanbakhsemiboldFA my-3"
+                                        name="OpinionSubmit" id="OpinionSubmit" value="ارسال دیدگاه" type="submit">
+                                </div>
+                                <div id="ResultOpinion"></div>
+                            </form>
+                        </div>
+                    </div>
+                    <div
+                        class="w-1/2 bg-gradient-to-r from-neutralcolor-100 to-white rounded-r-full h-[656px] relative mt-16 flex justify-center items-end ">
+                        <img class="absolute -top-20 right-12 max-xl:left-0 max-xl:right-auto"
+                            src="[##cms.cms.cdn##]/images/faq-form.png" width="520" height="352" alt="faq-form">
+                        <div class="bg-neutralcolor-50 rounded-3xl p-[6px] w-8/12 mb-32"><span
+                                class="text-primary h-[81px] font-yekanbakhboldFA text-2xl block text-center leading-[81px] ">امتیاز
+                                این تور</span>
+                            <div class="bg-white h-[119px] flex justify-evenly items-center px-5"><span
+                                    class="font-yekanbakhregularFA text-base text-txtneutral-900 ">امتیاز
+                                    کاربران</span><span><span
+                                        class="text-[32px] font-IRANYekanMobileBoldFA ">3.7</span><span
+                                        class="text-[32px] font-IRANYekanRegularMobileFA ">از 5</span></span><img
+                                    src="[##cms.cms.cdn##]/images/rate-star.png" width="120" height="25"
+                                    alt="rate-star"></div>
+                        </div>
+                    </div>
+                </div>
+                <basis core="tree" datamembername="db.comment" idcol="id" parentidcol="parentid" nullvalue="0">
+                    <layout>
+                        <div id="opinion-info-box" class="opinion-info-box comment-boxes mt-32 relative "><span
+                                class="font-yekanbakhboldFA text-white text-2xl text-center w-[360px] h-24 pb-4 bg-secondary block leading-[80px] rounded-tr-[24px] rounded-tl-[80px]">نظر
+                                مسافران آمیتیس</span>
+                            <div id="info_comment" class="info_comment -mt-10">
+                                <div class="user-opinion-txt-box">@Child</div>
+                            </div>
+                        </div>
+                    </layout>
+                    <face level="1">
+                        <div class="opinionRow drop-shadow-comment-box bg-white rounded-3xl py-6 my-6">
+                            <div
+                                class="mt-4 user-opinion-txt text-sm rounded-xl px-3 py-6 my-3 w-10/12 mx-auto flex justify-between ">
+                                <div
+                                    class="opinion-info font-yekanbakhsemiboldFA text-sm flex flex-col items-center justify-between w-2/12">
+                                    <span
+                                        class="username-opinion font-danabold flex flex-col items-center justify-between"><img
+                                            class="mb-2 " src="[##cms.cms.cdn##]/images/user-tag.png" width="32"
+                                            height="32" alt="user-tag">@username</span></div>
+                                <p class=" font-danaregular text-sm leading-10 font-yekanbakhregularFA w-10/12 ">
+                                    @comment</p>
+                            </div>
+                            <div class="flex justify-end w-10/12 mx-auto items-center">
+                                <div class="replyComment Login-options text-left group " onclick="Reply_Comment(this)">
+                                    <span
+                                        class=" group-hover:border-primary group-hover:bg-primary-50 w-fit transition-all duration-300 text-primary cursor-pointer float-left text-base font-danabold border border-white rounded-2xl mt-3 px-2 flex gap-x-2 py-3 ">پاسخ
+                                        دادن <span
+                                            class="group-hover:w-[22px] group-hover:h-[22px] rounded-full bg-white hidden group-hover:flex justify-center items-center transition-all duration-300 "><svg
+                                                width="7" height="12" viewBox="0 0 7 12" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M6 1L1.43945 5.56055L6 10.1211" stroke="#005FF0"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg></span></span></div>
+                                <div class="flex gap-x-4 mt-3 px-2 py-3"><button
+                                        class="font-danaregular group flex items-center flex-row-reverse text-xs text-txtneutral-400 font-IRANYekanRegularFA gap-x-3"
+                                        aria-label="reaction-button" onclick="reactionSubmit('@id' , 'like')"><svg
+                                            width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path class="group-hover:fill-success-500"
+                                                d="M16.2794 22.1H12.4794C11.9194 22.1 10.6994 21.93 10.0494 21.28L7.01937 18.94L7.93937 17.75L11.0394 20.15C11.2894 20.39 11.9194 20.59 12.4794 20.59H16.2794C17.1794 20.59 18.1494 19.87 18.3494 19.06L20.7694 11.71C20.9294 11.27 20.8994 10.87 20.6894 10.58C20.4694 10.27 20.0694 10.09 19.5794 10.09H15.5794C15.0594 10.09 14.5794 9.86999 14.2494 9.48999C13.9094 9.09999 13.7594 8.57999 13.8394 8.03999L14.3394 4.82999C14.4594 4.26999 14.0794 3.63999 13.5394 3.45999C13.0494 3.27999 12.4194 3.53999 12.1994 3.85999L8.09938 9.95999L6.85938 9.12999L10.9594 3.02999C11.5894 2.08999 12.9694 1.63999 14.0494 2.04999C15.2994 2.45999 16.0994 3.83999 15.8194 5.11999L15.3294 8.26999C15.3194 8.33999 15.3194 8.43999 15.3894 8.51999C15.4394 8.56999 15.5094 8.59999 15.5894 8.59999H19.5894C20.5694 8.59999 21.4194 9.00999 21.9194 9.71999C22.4094 10.41 22.5094 11.32 22.1894 12.2L19.7994 19.48C19.4294 20.93 17.8894 22.1 16.2794 22.1Z"
+                                                fill="#98A2B3" />
+                                            <path class="group-hover:fill-success-500"
+                                                d="M5.37891 21H4.37891C2.52891 21 1.62891 20.13 1.62891 18.35V8.55002C1.62891 6.77002 2.52891 5.90002 4.37891 5.90002H5.37891C7.22891 5.90002 8.12891 6.77002 8.12891 8.55002V18.35C8.12891 20.13 7.22891 21 5.37891 21ZM4.37891 7.40002C3.28891 7.40002 3.12891 7.66002 3.12891 8.55002V18.35C3.12891 19.24 3.28891 19.5 4.37891 19.5H5.37891C6.46891 19.5 6.62891 19.24 6.62891 18.35V8.55002C6.62891 7.66002 6.46891 7.40002 5.37891 7.40002H4.37891Z"
+                                                fill="#98A2B3" />
+                                        </svg>@like</button><button
+                                        class="font-danaregular group flex items-center flex-row-reverse text-xs text-txtneutral-400 font-IRANYekanRegularFA gap-x-3"
+                                        aria-label="reaction-button" onclick="reactionSubmit('@id' , 'dislike')"><svg
+                                            width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path class="group-hover:fill-error-500"
+                                                d="M10.7996 22.1C10.5096 22.1 10.2196 22.05 9.94955 21.95C8.69955 21.54 7.89955 20.16 8.17955 18.88L8.66955 15.73C8.67955 15.66 8.67955 15.56 8.60955 15.48C8.55955 15.43 8.48955 15.4 8.40955 15.4H4.40955C3.42955 15.4 2.57955 14.99 2.07955 14.28C1.58955 13.59 1.48955 12.68 1.80955 11.8L4.19955 4.52002C4.56955 3.07002 6.11955 1.90002 7.71955 1.90002H11.5196C12.0796 1.90002 13.2996 2.07002 13.9496 2.72002L16.9796 5.06002L16.0596 6.25002L12.9596 3.85002C12.7096 3.60002 12.0796 3.40002 11.5196 3.40002H7.71955C6.81955 3.40002 5.84955 4.12002 5.64955 4.93002L3.22955 12.28C3.06955 12.72 3.09955 13.12 3.30955 13.41C3.52955 13.72 3.92955 13.9 4.41955 13.9H8.41955C8.93955 13.9 9.41955 14.12 9.74955 14.5C10.0896 14.89 10.2396 15.41 10.1596 15.95L9.65955 19.16C9.53955 19.72 9.91955 20.35 10.4596 20.53C10.9396 20.71 11.5796 20.45 11.7996 20.13L15.8996 14.03L17.1396 14.87L13.0396 20.97C12.5696 21.67 11.6796 22.1 10.7996 22.1Z"
+                                                fill="#98A2B3" />
+                                            <path class="group-hover:fill-error-500"
+                                                d="M19.6211 18.1H18.6211C16.7711 18.1 15.8711 17.23 15.8711 15.45V5.65C15.8711 3.87 16.7711 3 18.6211 3H19.6211C21.4711 3 22.3711 3.87 22.3711 5.65V15.45C22.3711 17.23 21.4711 18.1 19.6211 18.1ZM18.6211 4.5C17.5311 4.5 17.3711 4.76 17.3711 5.65V15.45C17.3711 16.34 17.5311 16.6 18.6211 16.6H19.6211C20.7111 16.6 20.8711 16.34 20.8711 15.45V5.65C20.8711 4.76 20.7111 4.5 19.6211 4.5H18.6211Z"
+                                                fill="#98A2B3" />
+                                        </svg>@dislike</button></div>
+                            </div>
+                            <div class="replyCommentForm w-10/12 mx-auto hidden pb-6 float-none clear-both mt-4">
+                                <form action="ReplyComment.bc" method="post" onsubmit="send_Reply(this , event)"><input
+                                        class="reply-title bg-neutralcolor-100 rounded-xl w-full block leading-60px px-3 text-sm font-danaregular my-3 focus:border-primary-400 focus:outline-primary-400"
+                                        type="hidden" name="username" value=""><_textarea
+                                        class="bg-neutralcolor-100 rounded-[4px] w-full block leading-60px p-3 text-sm font-danaregular my-3 focus:border-primary-400 focus:outline-primary-400"
+                                        placeholder="پاسخ خود را تایپ کنید..." rows="6" name="ReplyComment"
+                                        required></_textarea><input type="hidden" name="parentid" value="@id"><input
+                                        type="hidden" name="replyProductid" value="[##cms.query.aid##]"><input
+                                        name="mid" value="1" type="hidden"><input
+                                        class="bg-secondary hover:bg-secondary-500 h-12 rounded-[4px] w-full block leading-48px min-w-32 px-3 text-sm font-danaregular my-3"
+                                        type="submit" value="ثبت"></form>
+                            </div>
+                            <div class="replyCommentTxt w-10/12 mx-auto">@Child</div>
+                        </div>
+                    </face>
+                    <face level="2" filter="username='آمیتیس'">
+                        <div class="opinionRowReply w-full bg-primary-50 rounded-3xl my-6">
+                            <div class="text-sm rounded-xl px-3 py-3 my-2 w-11/12 mx-auto">
+                                <div class="user-opinion-txt flex justify-between items-center">
+                                    <div class="opinion-info-reply flex justify-between w-2/12"><span
+                                            class="support-icon text-black text-base mx-2 font-danabold"><img
+                                                class="mb-2" src="[##cms.cms.cdn##]/images/amitis-comment-image.png"
+                                                width="72" height="48" alt="amitis">@username</span></div>
+                                    <p class="w-10/12 font-danaregular text-sm leading-10 font-yekanbakhregularFA">
+                                        @comment</p>
+                                </div>
+                            </div>
+                        </div>
+                    </face>
+                    <face level="2">
+                        <div class="opinionRowReply w-full bg-white rounded-3xl border border-neutralcolor-400 my-6">
+                            <div class="text-sm rounded-xl px-3 py-3 my-3 w-11/12 mx-auto">
+                                <div class="user-opinion-txt flex justify-between">
+                                    <div class="opinion-info-reply w-2/12"><span
+                                            class="support-icon text-black text-sm mx-2 font-danabold flex flex-col justify-center items-center text-center "><img
+                                                class="mb-2" src="[##cms.cms.cdn##]/images/user-reply-tag.png"
+                                                width="32" height="32" alt="user-reply-tag">@username</span></div>
+                                    <p
+                                        class="w-10/12 font-danaregular text-sm leading-10 font-yekanbakhregularFA text-txtneutral-500">
+                                        @comment</p>
+                                </div>
+                                <div class="replyCommentTxt my-4">@Child</div>
+                                <div class="flex gap-x-4 flex-row-reverse"><button
+                                        class="font-danaregular group flex items-center flex-row-reverse text-xs text-txtneutral-400 font-IRANYekanRegularFA gap-x-3"
+                                        aria-label="reaction-button" onclick="reactionSubmit('@id' , 'like')"><svg
+                                            width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path class="group-hover:fill-success-500"
+                                                d="M16.2794 22.1H12.4794C11.9194 22.1 10.6994 21.93 10.0494 21.28L7.01937 18.94L7.93937 17.75L11.0394 20.15C11.2894 20.39 11.9194 20.59 12.4794 20.59H16.2794C17.1794 20.59 18.1494 19.87 18.3494 19.06L20.7694 11.71C20.9294 11.27 20.8994 10.87 20.6894 10.58C20.4694 10.27 20.0694 10.09 19.5794 10.09H15.5794C15.0594 10.09 14.5794 9.86999 14.2494 9.48999C13.9094 9.09999 13.7594 8.57999 13.8394 8.03999L14.3394 4.82999C14.4594 4.26999 14.0794 3.63999 13.5394 3.45999C13.0494 3.27999 12.4194 3.53999 12.1994 3.85999L8.09938 9.95999L6.85938 9.12999L10.9594 3.02999C11.5894 2.08999 12.9694 1.63999 14.0494 2.04999C15.2994 2.45999 16.0994 3.83999 15.8194 5.11999L15.3294 8.26999C15.3194 8.33999 15.3194 8.43999 15.3894 8.51999C15.4394 8.56999 15.5094 8.59999 15.5894 8.59999H19.5894C20.5694 8.59999 21.4194 9.00999 21.9194 9.71999C22.4094 10.41 22.5094 11.32 22.1894 12.2L19.7994 19.48C19.4294 20.93 17.8894 22.1 16.2794 22.1Z"
+                                                fill="#98A2B3" />
+                                            <path class="group-hover:fill-success-500"
+                                                d="M5.37891 21H4.37891C2.52891 21 1.62891 20.13 1.62891 18.35V8.55002C1.62891 6.77002 2.52891 5.90002 4.37891 5.90002H5.37891C7.22891 5.90002 8.12891 6.77002 8.12891 8.55002V18.35C8.12891 20.13 7.22891 21 5.37891 21ZM4.37891 7.40002C3.28891 7.40002 3.12891 7.66002 3.12891 8.55002V18.35C3.12891 19.24 3.28891 19.5 4.37891 19.5H5.37891C6.46891 19.5 6.62891 19.24 6.62891 18.35V8.55002C6.62891 7.66002 6.46891 7.40002 5.37891 7.40002H4.37891Z"
+                                                fill="#98A2B3" />
+                                        </svg>@like</button><button
+                                        class="font-danaregular group flex items-center flex-row-reverse text-xs text-txtneutral-400 font-IRANYekanRegularFA gap-x-3"
+                                        aria-label="reaction-button" onclick="reactionSubmit('@id' , 'dislike')"><svg
+                                            width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path class="group-hover:fill-error-500"
+                                                d="M10.7996 22.1C10.5096 22.1 10.2196 22.05 9.94955 21.95C8.69955 21.54 7.89955 20.16 8.17955 18.88L8.66955 15.73C8.67955 15.66 8.67955 15.56 8.60955 15.48C8.55955 15.43 8.48955 15.4 8.40955 15.4H4.40955C3.42955 15.4 2.57955 14.99 2.07955 14.28C1.58955 13.59 1.48955 12.68 1.80955 11.8L4.19955 4.52002C4.56955 3.07002 6.11955 1.90002 7.71955 1.90002H11.5196C12.0796 1.90002 13.2996 2.07002 13.9496 2.72002L16.9796 5.06002L16.0596 6.25002L12.9596 3.85002C12.7096 3.60002 12.0796 3.40002 11.5196 3.40002H7.71955C6.81955 3.40002 5.84955 4.12002 5.64955 4.93002L3.22955 12.28C3.06955 12.72 3.09955 13.12 3.30955 13.41C3.52955 13.72 3.92955 13.9 4.41955 13.9H8.41955C8.93955 13.9 9.41955 14.12 9.74955 14.5C10.0896 14.89 10.2396 15.41 10.1596 15.95L9.65955 19.16C9.53955 19.72 9.91955 20.35 10.4596 20.53C10.9396 20.71 11.5796 20.45 11.7996 20.13L15.8996 14.03L17.1396 14.87L13.0396 20.97C12.5696 21.67 11.6796 22.1 10.7996 22.1Z"
+                                                fill="#98A2B3" />
+                                            <path class="group-hover:fill-error-500"
+                                                d="M19.6211 18.1H18.6211C16.7711 18.1 15.8711 17.23 15.8711 15.45V5.65C15.8711 3.87 16.7711 3 18.6211 3H19.6211C21.4711 3 22.3711 3.87 22.3711 5.65V15.45C22.3711 17.23 21.4711 18.1 19.6211 18.1ZM18.6211 4.5C17.5311 4.5 17.3711 4.76 17.3711 5.65V15.45C17.3711 16.34 17.5311 16.6 18.6211 16.6H19.6211C20.7111 16.6 20.8711 16.34 20.8711 15.45V5.65C20.8711 4.76 20.7111 4.5 19.6211 4.5H18.6211Z"
+                                                fill="#98A2B3" />
+                                        </svg>@dislike</button></div>
+                            </div>
+                        </div>
+                    </face>
+                </basis>
+            </div>
+            <div id="popuparticle" class="popup hidden">
+                <div
+                    class="fixed z-50 left-0 right-0 bottom-0 top-0 w-screen h-screen overflow-auto bg-black/40 flex justify-center items-center">
+                    <div
+                        class="popup-content bg-white rounded-xl p-5 border border-solid border-primary-600 w-2/3 m-auto">
+                        <span id="closePopuparticle" class="close">×</span>
+                        <div id="popupMessage" class="font-danaregular"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- مودال ویدئو -->
+        <div id="videoModal" class="fixed z-50 inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+            <div class="bg-white p-6 rounded-lg shadow-lg max-w-7xl w-[95%] relative"><button id="closeModal"
+                    class="absolute top-2 left-6 text-error-500 hover:text-red-900 text-6xl cursor-pointer z-[52]">×</button>
+                <div id="videoContainer" class="relative w-full aspect-video z-[51]"></div>
+            </div>
+        </div>
+        <!-- tour form section -->
+        <div>
+            <basis core="call" if="{##db.tourForm.run|(false)##}" triggers="db.tourForm" run="atclient"
+                file="/tour-book.bc" hotelName="{##db.tourForm.hotelName##}" method="post"
+                hotelRate="{##db.tourForm.hotelRate##}" hotelService="{##db.tourForm.hotelService##}"
+                tourName="{##db.tourForm.tourName##}" doubleP="{##db.tourForm.doubleP##}"
+                singleP="{##db.tourForm.singleP##}" wBedP="{##db.tourForm.wBedP##}" woBedP="{##db.tourForm.woBedP##}"
+                doubleU="{##db.tourForm.doubleU##}" singleU="{##db.tourForm.singleU##}" wBedU="{##db.tourForm.wBedU##}"
+                woBedU="{##db.tourForm.woBedU|()##}" startDate="{##db.tourForm.startDate##}"
+                endDate="{##db.tourForm.endDate##}" weekdayStartDate="{##db.tourForm.weekdayStartDate##}"
+                weekdayEndDate="{##db.tourForm.weekdayEndDate##}" departureName="{##db.tourForm.departureName##}"
+                destinationName="{##db.tourForm.destinationName##}" startTime="{##db.tourForm.startTime##}"
+                endTime="{##db.tourForm.endTime##}"></basis>
+        </div>
+        <!-- tour-installment form section -->
+        <div>
+            <basis core="call" if="{##db.tourFormInstallment.run|(false)##}" triggers="db.tourFormInstallment"
+                run="atclient" file="/tour-bookInstallment.bc" hotelName="{##db.tourFormInstallment.hotelName##}"
+                method="post" hotelRate="{##db.tourFormInstallment.hotelRate##}"
+                hotelService="{##db.tourFormInstallment.hotelService##}"
+                tourName="{##db.tourFormInstallment.tourName##}" doubleP="{##db.tourFormInstallment.doubleP##}"
+                singleP="{##db.tourFormInstallment.singleP##}" wBedP="{##db.tourFormInstallment.wBedP##}"
+                woBedP="{##db.tourFormInstallment.woBedP##}" doubleU="{##db.tourFormInstallment.doubleU##}"
+                singleU="{##db.tourFormInstallment.singleU##}" wBedU="{##db.tourFormInstallment.wBedU##}"
+                woBedU="{##db.tourFormInstallment.woBedU|()##}" adultCount="{##db.tourFormInstallment.adultCount|(2)##}"
+                childCount="{##db.tourFormInstallment.childCount|(0)##}"
+                infantCount="{##db.tourFormInstallment.infantCount|(0)##}"
+                startDate="{##db.tourFormInstallment.startDate##}" endDate="{##db.tourFormInstallment.endDate##}"
+                weekdayStartDate="{##db.tourFormInstallment.weekdayStartDate##}"
+                weekdayEndDate="{##db.tourFormInstallment.weekdayEndDate##}"
+                departureName="{##db.tourFormInstallment.departureName##}"
+                destinationName="{##db.tourFormInstallment.destinationName##}"
+                startTime="{##db.tourFormInstallment.startTime##}" endTime="{##db.tourFormInstallment.endTime##}"
+                totalAmountINS="{##db.tourFormInstallment.totalAmountINS##}"
+                totalAmountFacilityINS="{##db.tourFormInstallment.totalAmountFacilityINS##}"
+                totalAdvancePaymentINS="{##db.tourFormInstallment.totalAdvancePaymentINS##}"
+                amountEachInstallmentINS="{##db.tourFormInstallment.amountEachInstallmentINS##}"></basis>
+        </div>
+        <div id="load-form-lachin">
+            <basis core="call" if="{##db.tourFormInstallmentplan.run|(false)##}" triggers="db.tourFormInstallmentplan"
+                run="atclient" file="/installmentbook-plan.bc" hotelName="{##db.tourFormInstallmentplan.hotelName##}"
+                method="post" hotelRate="{##db.tourFormInstallmentplan.hotelRate##}"
+                hotelService="{##db.tourFormInstallmentplan.hotelService##}"
+                tourName="{##db.tourFormInstallmentplan.tourName##}" doubleP="{##db.tourFormInstallmentplan.doubleP##}"
+                singleP="{##db.tourFormInstallmentplan.singleP##}" wBedP="{##db.tourFormInstallmentplan.wBedP##}"
+                woBedP="{##db.tourFormInstallmentplan.woBedP##}" doubleU="{##db.tourFormInstallmentplan.doubleU##}"
+                singleU="{##db.tourFormInstallmentplan.singleU##}" wBedU="{##db.tourFormInstallmentplan.wBedU##}"
+                woBedU="{##db.tourFormInstallmentplan.woBedU|()##}"></basis>
+        </div>
+    </main>
+
+    <script src="[##cms.cms.cdn##]/_js/swiper-bundle.11.2.5.min.js" type="text/javascript"></script>
+    <script src="[##cms.cms.cdn##]/js/wavesurfer.min.js"></script>
+    <basis core="call" file="footer.inc" pageindex="[##cms.cms.pageindex##]"></basis>
+    <script src="[##cms.cms.cdn##]/js/tour.function.amitisbalpars.js" type="text/javascript"></script>
+    <script type="application/ld+json">[##db.json.Column1##]</script>
+</body>
+
+</html>

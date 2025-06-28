@@ -167,15 +167,98 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+// fetch header
+document.addEventListener("DOMContentLoaded", function () {
+  const fetchContentHeader = document.querySelector(".fetch-content-header");
+  const headerLi = document.querySelectorAll(".header-li");
+
+  if (fetchContentHeader) {
+    async function loadInitialContent() {
+      const firstItem = document.querySelector(".header-li");
+      if (!firstItem) return;
+
+      const cmsQuery = firstItem.getAttribute("data-catid");
+      if (!cmsQuery) return;
+
+      try {
+        const response = await fetch(`/header-load-items.bc?catid=${cmsQuery}`);
+        const data = await response.text();
+        fetchContentHeader.innerHTML = data;
+
+        document.querySelectorAll(".header-li").forEach((li) => {
+          li.style.backgroundColor = "";
+          li.style.color = "";
+        });
+        firstItem.style.backgroundColor = "#2e58d1";
+
+        const details = document.querySelector(".tourcategorydropdown__details");
+        if (details) {
+          details.classList.remove("hidden");
+          details.classList.remove("opacity-100");
+          details.classList.add("opacity-0", "transition-opacity", "duration-300");
+
+          setTimeout(() => {
+            details.classList.remove("opacity-0");
+            details.classList.add("opacity-100");
+          }, 10);
+        }
+      } catch (err) {
+        fetchContentHeader.innerHTML =
+          "<p>مشکلی در دریافت اطلاعات رخ داد: " + err.message + "</p>";
+      }
+    }
+
+    loadInitialContent();
+
+    headerLi.forEach((item) => {
+      item.addEventListener("click", async function () {
+        headerLi.forEach((li) => {
+          li.style.backgroundColor = "";
+          li.style.color = "";
+        });
+
+        item.style.backgroundColor = "#2e58d1";
+
+        const details = document.querySelector(".tourcategorydropdown__details");
+        if (details) {
+          details.classList.remove("hidden");
+          details.classList.remove("opacity-100");
+          details.classList.add("opacity-0", "transition-opacity", "duration-300");
+
+          setTimeout(() => {
+            details.classList.remove("opacity-0");
+            details.classList.add("opacity-100");
+          }, 10);
+        }
+
+        const cmsQuery = item.getAttribute("data-catid");
+        if (!cmsQuery) return;
+
+        const requestUrl = `/header-load-items.bc?catid=${cmsQuery}`;
+
+        try {
+          fetchContentHeader.innerHTML = "<p>در حال بارگذاری...</p>";
+          const response = await fetch(requestUrl);
+          if (!response.ok)
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          const data = await response.text();
+          fetchContentHeader.innerHTML = data;
+        } catch (error) {
+          console.error("Fetch failed:", error);
+          fetchContentHeader.innerHTML =
+            "<p>مشکلی در دریافت اطلاعات رخ داد: " + error.message + "</p>";
+        }
+      });
+    });
+  }
+});
+
+
 document.addEventListener("DOMContentLoaded", () => {
+  // منوی دراپ‌داون tourcategorydropdown
   const trigger = document.querySelector(".tourcategorydropdown__trigger");
   const content = document.querySelector(".tourcategorydropdown__content");
   const icon = document.querySelector(".tourcategorydropdown__icon");
-  const details = document.getElementById("details");
-
-  const openMobileBtn = document.getElementById("openTourMobile");
-  const mobileOverlay = document.querySelector(".tourcategorymobile__overlay");
-  const closeMobileBtn = document.getElementById("closeTourMobile");
 
   if (trigger && content && icon) {
     trigger.addEventListener("click", () => {
@@ -198,10 +281,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // special tour-label
+  // نمایش لیبل‌های ویژه special-tour-label
   document.querySelectorAll(".special-tour-label").forEach((labelEl) => {
     const catId = labelEl.getAttribute("data-special-catid");
-
     let matched = false;
 
     document.querySelectorAll(".special-tour-host").forEach((hostEl) => {
@@ -219,6 +301,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // استایل‌دهی به آیتم انتخاب‌شده tourcategorydropdown__item
+  const details = document.getElementById("details");
   document.querySelectorAll(".tourcategorydropdown__item").forEach((item) => {
     item.addEventListener("click", () => {
       document.querySelectorAll(".tourcategorydropdown__item").forEach((li) => {
@@ -241,11 +325,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (details && details.classList.contains("hidden")) {
         details.classList.remove("hidden");
-        details.classList.add(
-          "opacity-0",
-          "transition-opacity",
-          "duration-300"
-        );
+        details.classList.add("opacity-0", "transition-opacity", "duration-300");
 
         setTimeout(() => {
           details.classList.remove("opacity-0");
@@ -254,6 +334,11 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
+
+  // باز و بسته کردن منوی موبایل
+  const openMobileBtn = document.getElementById("openTourMobile");
+  const mobileOverlay = document.querySelector(".tourcategorymobile__overlay");
+  const closeMobileBtn = document.getElementById("closeTourMobile");
 
   if (openMobileBtn && mobileOverlay && closeMobileBtn) {
     openMobileBtn.addEventListener("click", () => {
@@ -272,7 +357,34 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 300);
     });
   }
+
+  // اضافه کردن منطق باز/بسته کردن زیرمنو toggle-dropdown
+  const toggleDropdowns = document.querySelectorAll(".toggle-dropdown");
+  toggleDropdowns.forEach((toggle) => {
+    const submenu = toggle.nextElementSibling;
+    const dropdownIcon = toggle.querySelector(".dropdown-icon");
+
+    // مقداردهی اولیه
+    submenu.style.maxHeight = null;
+    submenu.style.opacity = "0";
+
+    toggle.addEventListener("click", () => {
+      dropdownIcon.classList.toggle("rotate-180");
+
+      if (submenu.style.maxHeight) {
+        submenu.style.maxHeight = null;
+        submenu.style.opacity = "0";
+      } else {
+        submenu.style.maxHeight = submenu.scrollHeight * 30 + "px";
+        submenu.style.opacity = "1";
+      }
+    });
+  });
 });
+
+
+
+
 
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.querySelector(".search-form");
@@ -353,6 +465,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+
+
 
 // fetch personel
 document.addEventListener("DOMContentLoaded", function () {
@@ -1767,70 +1881,76 @@ if (document.querySelector(".swiper-big-gallery-about")) {
   });
 }
 if (document.querySelector(".swiper-slogan-mobileL")) {
-var swiperSloganMobile = new Swiper(".swiper-slogan-mobile", {
-  slidesPerView: 1.3,
-  speed: 400,
-  centeredSlides: false,
-  spaceBetween: 16,
-  grabCursor: true,
-  autoplay: {
+  var swiperSloganMobile = new Swiper(".swiper-slogan-mobile", {
+    slidesPerView: 1.3,
+    speed: 400,
+    centeredSlides: false,
+    spaceBetween: 16,
+    grabCursor: true,
+    autoplay: {
       delay: 2500,
       disableOnInteraction: false,
-  },
-  loop: true,
-});
+    },
+    loop: true,
+  });
 }
 if (document.querySelector(".swiper-special-destination-mobile")) {
-var swiperSpecialDestinationMobile = new Swiper(".swiper-special-destination-mobile", {
-  slidesPerView: 1.3,
-  speed: 400,
-  centeredSlides: false,
-  spaceBetween: 24,
-  grabCursor: true,
-  autoplay: {
-      delay: 2500,
-      disableOnInteraction: false,
-  },
-  loop: true,
-  navigation: {
-      nextEl: '.swiper-button-next-custom',
-      prevEl: '.swiper-button-prev-custom',
-  },
-});
+  var swiperSpecialDestinationMobile = new Swiper(
+    ".swiper-special-destination-mobile",
+    {
+      slidesPerView: 1.3,
+      speed: 400,
+      centeredSlides: false,
+      spaceBetween: 24,
+      grabCursor: true,
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
+      loop: true,
+      navigation: {
+        nextEl: ".swiper-button-next-custom",
+        prevEl: ".swiper-button-prev-custom",
+      },
+    }
+  );
 }
 if (document.querySelector(".swiper-special-tour-mobile")) {
-var swiperSpecialTourMobile = new Swiper(".swiper-special-tour-mobile", {
-  slidesPerView: 1.2,
-  speed: 400,
-  centeredSlides: false,
-  spaceBetween: 16,
-  grabCursor: true,
-  autoplay: {
+  var swiperSpecialTourMobile = new Swiper(".swiper-special-tour-mobile", {
+    slidesPerView: 1.2,
+    speed: 400,
+    centeredSlides: false,
+    spaceBetween: 16,
+    grabCursor: true,
+    autoplay: {
       delay: 2500,
       disableOnInteraction: false,
-  },
-  loop: true,
-  navigation: {
-      nextEl: '.swiper-button-next-custom',
-      prevEl: '.swiper-button-prev-custom',
-  },
-});
+    },
+    loop: true,
+    navigation: {
+      nextEl: ".swiper-button-next-custom",
+      prevEl: ".swiper-button-prev-custom",
+    },
+  });
 }
 if (document.querySelector(".swiper-special-spring-tour-mobile")) {
-var swiperSpecialSpringTourMobile = new Swiper(".swiper-special-spring-tour-mobile", {
-  slidesPerView: 1.3,
-  speed: 400,
-  centeredSlides: false,
-  spaceBetween: 24,
-  grabCursor: true,
-  autoplay: {
-      delay: 2500,
-      disableOnInteraction: false,
-  },
-  loop: true,
-  navigation: {
-      nextEl: '.swiper-button-next-custom',
-      prevEl: '.swiper-button-prev-custom',
-  },
-});
+  var swiperSpecialSpringTourMobile = new Swiper(
+    ".swiper-special-spring-tour-mobile",
+    {
+      slidesPerView: 1.3,
+      speed: 400,
+      centeredSlides: false,
+      spaceBetween: 24,
+      grabCursor: true,
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
+      loop: true,
+      navigation: {
+        nextEl: ".swiper-button-next-custom",
+        prevEl: ".swiper-button-prev-custom",
+      },
+    }
+  );
 }
