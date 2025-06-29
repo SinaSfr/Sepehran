@@ -1309,7 +1309,7 @@ body {
 }
 
 .pr-10 {
-    padding-right: 2.5rem /* 40px */;
+  padding-right: 2.5rem /* 40px */;
 }
 
 .pr-20 {
@@ -1897,7 +1897,7 @@ body {
 }
 
 .hover\:text-secondary-500:hover {
-    color: var(--secondary-500);
+  color: var(--secondary-500);
 }
 
 .hover\:text-primary-500:hover {
@@ -2397,7 +2397,7 @@ body {
 .Basis_Date_ExteraHoteldate {
   top: 1rem !important;
   right: 1rem !important;
-} 
+}
 
 .Basis_Date_ExteraHoteldate,
 .Basis_Date_ExteraHoteldate,
@@ -2411,7 +2411,7 @@ body {
 .destination::placeholder,
 .Basis_Date.start_date::placeholder,
 .Basis_Date.end_date::placeholder,
-.passenger-counts{
+.passenger-counts {
   color: #596377 !important;
   font-size: 14px;
   font-weight: 600 !important;
@@ -2521,17 +2521,36 @@ body {
 }
 
 .plus-count span {
-  font-size: 19px;
-  padding-bottom: 0.25rem;
   color: #1e2128;
   font-size: 24px !important;
 }
 
 .minus-count span {
-  font-size: 19px;
   padding-bottom: 0.25rem;
   color: #1e2128;
   font-size: 24px !important;
+}
+
+.confirm-passenger{
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  margin-top: 24px;
+  background-color: var(--secondary-500);
+  border-radius: 8px;
+  font-weight: 800;
+  height: 40px !important;
+}
+
+.passengerbox.hidden-box {
+  width: 300px !important;
+  position: absolute !important;
+  right: 0;
+  left: 0;
+  margin: 0 auto;
+  top: 100%;
+  border: 1px solid #D7DBE1;
+  border-radius: 8px;
 }
 
 .passengerbox.hidden-box span {
@@ -2672,29 +2691,29 @@ body {
 }
 
 .multicity-flight-form .add-routs {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 158px !important;
-    height: 64px !important;
-    color: var(--primary-900) !important;
-    background-color: var(--primary-200) !important;
-    margin-right: 0 !important;
-    font-size: 14px !important;
-    border-radius: 8px;
-    transition: all 300ms ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 158px !important;
+  height: 64px !important;
+  color: var(--primary-900) !important;
+  background-color: var(--primary-200) !important;
+  margin-right: 0 !important;
+  font-size: 14px !important;
+  border-radius: 8px;
+  transition: all 300ms ease;
 }
 
-.multicity-flight-form .Basis_Date_Box{
+.multicity-flight-form .Basis_Date_Box {
   flex: 1;
 }
 .multicity-flight-form .flight-routes {
-    flex: 1.85;
+  flex: 1.85;
 }
 
-.multicity-flight-form .reserve-search{
+.multicity-flight-form .reserve-search {
   position: static;
 }
-.remove-routs{
-    display: none;
+.remove-routs {
+  display: none;
 }

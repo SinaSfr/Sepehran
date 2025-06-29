@@ -2186,13 +2186,6 @@ body {
   color: #2e58d1 !important;
 }
 
-#tourSearch,
-#hotelSearch {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
 .flight-routes,
 #flightSearch,
 #flightHotelSearch > div:first-of-type {
@@ -2244,7 +2237,7 @@ body {
   padding: 0 12px;
 }
 
-.reserve-field.flightclass-field svg:first-of-type {
+.reserve-field.flightclass-field label>svg:first-of-type {
   display: none;
 }
 
@@ -2281,7 +2274,7 @@ body {
 }
 
 .click-content label,
-.reserve-field.passengers-field label,
+.reserve-field.passengers-field>div:first-of-type label,
 .reserve-field.flightclass-field label,
 .reserve-field.departure-date label,
 .reserve-field.return-date label {
@@ -2406,7 +2399,7 @@ body {
   position: absolute;
   left: 24px;
   bottom: 15px;
-  z-index: 30;
+  z-index: 10;
   display: inline-block;
   width: 25px;
   height: 25px;
@@ -2490,14 +2483,11 @@ body {
 }
 
 .plus-count span {
-  font-size: 19px;
-  padding-bottom: 0.25rem;
   color: #1e2128;
   font-size: 24px !important;
 }
 
 .minus-count span {
-  font-size: 19px;
   padding-bottom: 0.25rem;
   color: #1e2128;
   font-size: 24px !important;
@@ -2538,7 +2528,7 @@ body {
 .search-hotel,
 .search-flighthotel,
 .search-tour {
-  width: 200px !important;
+  width: 100% !important;
   background-color: #14eba4 !important;
   height: 43px !important;
   color: #1e2128 !important;
@@ -2557,12 +2547,22 @@ body {
   align-items: center;
   justify-content: center;
   left: 12px !important;
-  top: 72px !important;
+  top: 81px !important;
 }
 
 .exchangeRoute svg {
   width: 24px !important;
   height: 24px !important;
+}
+
+.close-passenger-box{
+  margin-bottom: 3rem !important;
+}
+
+.close-searchList svg,
+.close-passenger-box svg{
+  width: 32px;
+  height: 32px;
 }
 
 .FlightClass.hidden-box {
@@ -2614,12 +2614,8 @@ body {
   top: 9.75rem !important;
 }
 
-.searchList svg {
-  display: none;
-}
-
 .ul-list ul li {
-  text-align: center;
+  text-align: center !important;
 }
 
 .ul-list ul li:first-of-type {
@@ -2673,4 +2669,27 @@ body {
 }
 .remove-routs {
   display: none;
+}
+
+.multi-route-tlt{
+  padding-bottom: 4px;
+  border-bottom: 1px solid #D7DBE1;
+  margin-bottom: 1rem !important;
+}
+
+.reserve-field.departure-route,
+.reserve-field.destination-route,
+.Basis_Date_Box{
+  margin-bottom: 32px !important;
+}
+
+.confirm-passenger{
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  margin-top: 24px;
+  background-color: var(--secondary-500);
+  border-radius: 8px;
+  font-weight: 800;
+  height: 40px !important;
 }
