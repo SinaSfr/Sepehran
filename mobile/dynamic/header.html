@@ -38,7 +38,7 @@
             </a>
             <div class="flex items-center gap-1">
                 <div
-                    class="Login_Information relative group z-30 flex items-center border border-gray-100 rounded-lg transition-all duration-300 hover:border-primary-500">
+                    class="Login_Information relative group z-10 flex items-center border border-gray-100 rounded-lg transition-all duration-300 hover:border-primary-500">
                     <basis core="call" file="authentication/modal" lid="1"></basis>
                 </div>
                 <basis core="print" datamembername="db.info">
@@ -253,19 +253,19 @@
                 </div>
                 <div
                     class="tourcategorydropdown__content gap-2 bg-gray-100 rounded-lg p-2 hidden flex-col opacity-0 transition-all duration-300">
-                    <!-- Right Column -->
-                    <div class="bg-white pl-1 w-2/5 py-2 rounded">
+                    <!-- Top Column -->
+                    <div class="bg-white pl-1 py-2 rounded">
                         <div class="tourcategorydropdown__menu scrollbar-tour-category bg-white">
 
                             <basis core="tree" datamembername="tour-category.cat" idcol="catid" parentidcol="parentid"
                                 nullvalue="215037">
                                 <layout>
-                                    <ul id="menu" class="flex flex-col gap-2 pr-2 pl-1 overflow-auto">
+                                    <ul id="menu" class="flex gap-2 pr-2 pl-1 overflow-auto">
                                         @child
                                     </ul>
                                 </layout>
                                 <face>
-                                    <li class="header-li tourcategorydropdown__item cursor-pointer flex gap-2 items-center rounded p-1"
+                                    <li class="header-li tourcategorydropdown__item cursor-pointer flex gap-2 items-center rounded p-1 flex-shrink-0"
                                         data-index="0" data-catid="@catid">
                                         <span class="bg-white p-1 rounded">
                                             <img src="[##cms.cms.cdn##]/images/tailand.jpg"
@@ -281,7 +281,7 @@
                         </div>
                     </div>
 
-                    <!-- Left Column -->
+                    <!-- bottom Column -->
                     <div class="fetch-content-header">
 
                     </div>

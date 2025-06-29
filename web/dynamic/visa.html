@@ -19,6 +19,10 @@
   <member name="comment" type="list" order="ord" request="listcomment" />
 </basis>
 
+<basis core="dbsource" source="basiscore" name="db" mid="1" lid="1" usedforid="[##cms.query.aid##]">
+  <member name="view-visa" type="view" propertyid="7249" />
+</basis>
+
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 
@@ -77,7 +81,7 @@
               <meta itemprop="position" content="@rownumber" />
             </li>
           </face>
-          <face filter="link is null and RowNumber<>max(RowNumber) and parentcatid<>214993">
+          <face filter="link is null and parentcatid<>214993">
             <li class="flex items-center gap-1 font-normal" itemprop="itemListElement" itemscope
               itemtype="https://schema.org/ListItem">
               <a class="text-white transition-all duration-300 hover:text-secondary-500" itemprop="item"
@@ -89,7 +93,7 @@
               </svg>
             </li>
           </face>
-          <face filter="RowNumber<>max(RowNumber) and parentcatid<>214993">
+          <face filter="parentcatid<>214993">
             <li class="flex items-center gap-1 font-normal" itemprop="itemListElement" itemscope
               itemtype="https://schema.org/ListItem">
               <a class="text-white transition-all duration-300 hover:text-secondary-500" itemprop="item" href="@link"
@@ -270,7 +274,7 @@
     <div class="flex gap-4 mx-auto max-lg:w-[90%] max-xl:w-[97%] xl:max-w-7xl mt-14 mb-24">
       <div class="flex-1">
         <section>
-          <basis core="print" datamembername="db.view">
+          <basis core="print" datamembername="db.view-visa">
             <face filter="TypeID in(150)">
               <h2 class="text-[48px] font-black mb-6">
                 @text
@@ -278,7 +282,7 @@
             </face>
           </basis>
 
-          <basis core="print" datamembername="db.view">
+          <basis core="print" datamembername="db.view-visa">
             <layout>
               <div class="mb-10">
                 @child

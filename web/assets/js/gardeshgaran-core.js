@@ -172,6 +172,31 @@ document.addEventListener("DOMContentLoaded", function () {
   const fetchContentHeader = document.querySelector(".fetch-content-header");
   const headerLi = document.querySelectorAll(".header-li");
 
+  function activateDropdownToggles() {
+    const toggleDropdowns = document.querySelectorAll(".toggle-dropdown");
+    toggleDropdowns.forEach((toggle) => {
+      const submenu = toggle.nextElementSibling;
+      const dropdownIcon = toggle.querySelector(".dropdown-icon");
+
+      submenu.style.maxHeight = null;
+      submenu.style.opacity = "0";
+
+      toggle.addEventListener("click", () => {
+        dropdownIcon.classList.toggle("rotate-180");
+
+        if (submenu.style.maxHeight) {
+          submenu.style.maxHeight = null;
+          submenu.style.opacity = "0";
+        } else {
+          submenu.style.maxHeight = submenu.scrollHeight * 30 + "px";
+          submenu.style.opacity = "1";
+        }
+      });
+    });
+  }
+
+  activateDropdownToggles();
+
   if (fetchContentHeader) {
     async function loadInitialContent() {
       const firstItem = document.querySelector(".header-li");
@@ -189,19 +214,28 @@ document.addEventListener("DOMContentLoaded", function () {
           li.style.backgroundColor = "";
           li.style.color = "";
         });
+        firstItem.style.color = "#14eba4";
         firstItem.style.backgroundColor = "#2e58d1";
 
-        const details = document.querySelector(".tourcategorydropdown__details");
+        const details = document.querySelector(
+          ".tourcategorydropdown__details"
+        );
         if (details) {
           details.classList.remove("hidden");
           details.classList.remove("opacity-100");
-          details.classList.add("opacity-0", "transition-opacity", "duration-300");
+          details.classList.add(
+            "opacity-0",
+            "transition-opacity",
+            "duration-300"
+          );
 
           setTimeout(() => {
             details.classList.remove("opacity-0");
             details.classList.add("opacity-100");
           }, 10);
         }
+
+        activateDropdownToggles();
       } catch (err) {
         fetchContentHeader.innerHTML =
           "<p>مشکلی در دریافت اطلاعات رخ داد: " + err.message + "</p>";
@@ -217,13 +251,20 @@ document.addEventListener("DOMContentLoaded", function () {
           li.style.color = "";
         });
 
+        li.style.color = "#14eba4";
         item.style.backgroundColor = "#2e58d1";
 
-        const details = document.querySelector(".tourcategorydropdown__details");
+        const details = document.querySelector(
+          ".tourcategorydropdown__details"
+        );
         if (details) {
           details.classList.remove("hidden");
           details.classList.remove("opacity-100");
-          details.classList.add("opacity-0", "transition-opacity", "duration-300");
+          details.classList.add(
+            "opacity-0",
+            "transition-opacity",
+            "duration-300"
+          );
 
           setTimeout(() => {
             details.classList.remove("opacity-0");
@@ -237,12 +278,15 @@ document.addEventListener("DOMContentLoaded", function () {
         const requestUrl = `/header-load-items.bc?catid=${cmsQuery}`;
 
         try {
-          fetchContentHeader.innerHTML = "<p>در حال بارگذاری...</p>";
+          fetchContentHeader.innerHTML =
+            '<div class="flex justify-center mt-6"><span class="header-loader"></span></div>';
           const response = await fetch(requestUrl);
           if (!response.ok)
             throw new Error(`HTTP error! Status: ${response.status}`);
           const data = await response.text();
           fetchContentHeader.innerHTML = data;
+
+          activateDropdownToggles();
         } catch (error) {
           console.error("Fetch failed:", error);
           fetchContentHeader.innerHTML =
@@ -253,9 +297,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-
 document.addEventListener("DOMContentLoaded", () => {
-  // منوی دراپ‌داون tourcategorydropdown
   const trigger = document.querySelector(".tourcategorydropdown__trigger");
   const content = document.querySelector(".tourcategorydropdown__content");
   const icon = document.querySelector(".tourcategorydropdown__icon");
@@ -281,7 +323,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // نمایش لیبل‌های ویژه special-tour-label
   document.querySelectorAll(".special-tour-label").forEach((labelEl) => {
     const catId = labelEl.getAttribute("data-special-catid");
     let matched = false;
@@ -301,7 +342,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // استایل‌دهی به آیتم انتخاب‌شده tourcategorydropdown__item
   const details = document.getElementById("details");
   document.querySelectorAll(".tourcategorydropdown__item").forEach((item) => {
     item.addEventListener("click", () => {
@@ -325,7 +365,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (details && details.classList.contains("hidden")) {
         details.classList.remove("hidden");
-        details.classList.add("opacity-0", "transition-opacity", "duration-300");
+        details.classList.add(
+          "opacity-0",
+          "transition-opacity",
+          "duration-300"
+        );
 
         setTimeout(() => {
           details.classList.remove("opacity-0");
@@ -335,7 +379,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // باز و بسته کردن منوی موبایل
   const openMobileBtn = document.getElementById("openTourMobile");
   const mobileOverlay = document.querySelector(".tourcategorymobile__overlay");
   const closeMobileBtn = document.getElementById("closeTourMobile");
@@ -357,34 +400,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 300);
     });
   }
-
-  // اضافه کردن منطق باز/بسته کردن زیرمنو toggle-dropdown
-  const toggleDropdowns = document.querySelectorAll(".toggle-dropdown");
-  toggleDropdowns.forEach((toggle) => {
-    const submenu = toggle.nextElementSibling;
-    const dropdownIcon = toggle.querySelector(".dropdown-icon");
-
-    // مقداردهی اولیه
-    submenu.style.maxHeight = null;
-    submenu.style.opacity = "0";
-
-    toggle.addEventListener("click", () => {
-      dropdownIcon.classList.toggle("rotate-180");
-
-      if (submenu.style.maxHeight) {
-        submenu.style.maxHeight = null;
-        submenu.style.opacity = "0";
-      } else {
-        submenu.style.maxHeight = submenu.scrollHeight * 30 + "px";
-        submenu.style.opacity = "1";
-      }
-    });
-  });
 });
-
-
-
-
 
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.querySelector(".search-form");
@@ -465,8 +481,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
-
-
 
 // fetch personel
 document.addEventListener("DOMContentLoaded", function () {
@@ -1894,7 +1908,7 @@ if (document.querySelector(".swiper-slogan-mobileL")) {
     loop: true,
   });
 }
-if (document.querySelector(".swiper-special-destination-mobile")) {
+if (document.querySelector(".sination-mobiwiper-special-destle")) {
   var swiperSpecialDestinationMobile = new Swiper(
     ".swiper-special-destination-mobile",
     {
@@ -1953,4 +1967,77 @@ if (document.querySelector(".swiper-special-spring-tour-mobile")) {
       },
     }
   );
+}
+if (document.querySelector(".swiper-special-destination-tour")) {
+  var swiperSpecialDestinationTour = new Swiper(
+    ".swiper-special-destination-tour",
+    {
+      slidesPerView: 4,
+      speed: 400,
+      centeredSlides: false,
+      spaceBetween: 24,
+      grabCursor: true,
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
+      loop: true,
+      navigation: {
+        nextEl: ".swiper-button-next-custom",
+        prevEl: ".swiper-button-prev-custom",
+      },
+    }
+  );
+}
+if (document.querySelector(".swiper-small-img")) {
+  var swiperSmallImg = new Swiper(".swiper-small-img", {
+    spaceBetween: 10,
+    slidesPerView: 4,
+    freeMode: true,
+    watchSlidesProgress: true,
+  });
+}
+if (document.querySelector(".swiper-big-img")) {
+  var swiperBigImg = new Swiper(".swiper-big-img", {
+    spaceBetween: 10,
+    navigation: {
+      nextEl: ".swiper-button-next-custom",
+      prevEl: ".swiper-button-prev-custom",
+    },
+    thumbs: {
+      swiper: swiperSmallImg,
+    },
+  });
+}
+if (document.querySelector(".swiper-tour-date")) {
+  var swiperTourDate = new Swiper(".swiper-tour-date", {
+    slidesPerView: 1.5,
+    speed: 400,
+    centeredSlides: false,
+    spaceBetween: 24,
+    grabCursor: true,
+    autoplay: {
+      delay: 2500,
+      disableOnInteraction: false,
+    },
+    loop: true,
+  });
+}
+if (document.querySelector(".swiper-same-tour")) {
+  var swiperSameTour = new Swiper(".swiper-same-tour", {
+    slidesPerView: 2.1,
+    speed: 400,
+    centeredSlides: false,
+    spaceBetween: 16,
+    grabCursor: true,
+    autoplay: {
+      delay: 2500,
+      disableOnInteraction: false,
+    },
+    loop: true,
+    navigation: {
+      nextEl: ".swiper-button-next-custom",
+      prevEl: ".swiper-button-prev-custom",
+    },
+  });
 }

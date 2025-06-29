@@ -25,7 +25,7 @@
         jointype="leftjoin" />
 </basis>
 
-<basis core="dbsource" source="basiscore" name="db" mid="20" lid="1" usedforid="[##cms.query.aid##]">
+<basis core="dbsource" source="basiscore" name="db" mid="1" lid="1" usedforid="[##cms.query.aid##]">
     <member name="view" type="view" propertyid="7249" />
 </basis>
 
@@ -89,7 +89,7 @@
                             <meta itemprop="position" content="@rownumber" />
                         </li>
                     </face>
-                    <face filter="link is null and RowNumber<>max(RowNumber) and parentcatid<>214993">
+                    <face filter="link is null and parentcatid<>214993">
                         <li class="flex items-center gap-1 font-normal " itemprop="itemListElement" itemscope
                             itemtype="https://schema.org/ListItem">
                             <a class="text-white transition-all duration-300 hover:text-secondary-500" itemprop="item"
@@ -103,7 +103,7 @@
                             </svg>
                         </li>
                     </face>
-                    <face filter="RowNumber<>max(RowNumber) and parentcatid<>214993">
+                    <face filter="parentcatid<>214993">
                         <li class="flex items-center gap-1 font-normal " itemprop="itemListElement" itemscope
                             itemtype="https://schema.org/ListItem">
                             <a class="text-white transition-all duration-300 hover:text-secondary-500" itemprop="item"
