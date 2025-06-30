@@ -448,6 +448,10 @@ body {
   height: 24rem;
 }
 
+.h-\[83px\] {
+  height: 83px;
+}
+
 .h-\[101px\] {
   height: 101px;
 }
@@ -466,6 +470,10 @@ body {
 
 .h-\[404px\] {
   height: 404px;
+}
+
+.h-\[434px\] {
+  height: 434px;
 }
 
 .h-\[440px\] {
@@ -1676,6 +1684,11 @@ body {
   -webkit-text-stroke: 1px #fff;
 }
 
+.swiper-tour-date .swiper-wrapper,
+.swiper-same-tour .swiper-wrapper{
+  height: auto !important;
+}
+
 .swiper-small-gallery-about::-moz-selection {
   background-color: transparent;
   color: inherit;
@@ -2531,7 +2544,7 @@ body {
   font-size: 24px !important;
 }
 
-.confirm-passenger{
+.confirm-passenger {
   display: flex !important;
   align-items: center;
   justify-content: center;
@@ -2543,14 +2556,15 @@ body {
 }
 
 .passengerbox.hidden-box {
-  width: 300px !important;
+  width: 310px !important;
   position: absolute !important;
   right: 0;
   left: 0;
   margin: 0 auto;
   top: 100%;
-  border: 1px solid #D7DBE1;
+  border: 1px solid #d7dbe1;
   border-radius: 8px;
+  overflow-x: hidden !important;
 }
 
 .passengerbox.hidden-box span {

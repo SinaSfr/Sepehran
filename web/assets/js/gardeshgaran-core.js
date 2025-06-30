@@ -1894,7 +1894,7 @@ if (document.querySelector(".swiper-big-gallery-about")) {
     },
   });
 }
-if (document.querySelector(".swiper-slogan-mobileL")) {
+if (document.querySelector(".swiper-slogan-mobile")) {
   var swiperSloganMobile = new Swiper(".swiper-slogan-mobile", {
     slidesPerView: 1.3,
     speed: 400,
@@ -1908,7 +1908,7 @@ if (document.querySelector(".swiper-slogan-mobileL")) {
     loop: true,
   });
 }
-if (document.querySelector(".sination-mobiwiper-special-destle")) {
+if (document.querySelector(".swiper-special-destination-mobile")) {
   var swiperSpecialDestinationMobile = new Swiper(
     ".swiper-special-destination-mobile",
     {

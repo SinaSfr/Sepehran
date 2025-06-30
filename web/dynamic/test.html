@@ -331,22 +331,21 @@
                             <div
                                 class="font-yekanbakhregularFA text-sm text-txtneutral-900 bg-neutralcolor-300 h-8 flex items-center px-4 rounded-l-md drop-shadow-sm z-10 -mr-2 ">
                                 <span class="origins__start__day"></span><span
-                                    class="origins__start__weekday mr-2"></span></div>
+                                    class="origins__start__weekday mr-2"></span>
+                            </div>
                         </div>
                         <basis core="print" datamembername="refresh.executionPlanTypesOrigins"
                             if="{##refresh.executionPlanTypesOrigins##}" run="atclient"
                             onrendered="onrenderedExecutionOrigins">
                             <layout>
-                                <script
-                                    type="text/template">
+                                <script type="text/template">
                                     <div class="execution__details__path execution__details__path__origins">
                                         <div class="flex flex-col execution__details__path__item">@child </div>
                                     </div>
                                 </script>
                             </layout>
                             <face>
-                                <script
-                                    type="text/template">
+                                <script type="text/template">
                                     <div class="flex min-h-[152px] items-center my-8 relative">
                                         <div class="mx-6 execution__details__path__item__details flex items-center gap-x-1"><svg class="inline-block ml-1" width="16" height="16"><use href="./images/sprite-icons.svg#timer-icon-tour"></use></svg><span class=" __times__start absolute top-0 font-yekanbakhregularFA text-xs text-txtneutral-900">@info.departure.time@</span><span class="__times__duration font-yekanbakhregularFA text-[10px] text-txtneutral-500 ">@info.time@ دقیقه</span></div><div class="flex flex-col justify-center gap-2"><div class="flex gap-x-1 items-center "><svg width="16" height="16"><use href="./images/sprite-icons.svg#airplane-bold-tour-detail"></use></svg><h2  class="text-lg text-txtneutral-900 font-yekanbakhsemiboldFA details__city" >@info.city.name@</h2></div><div class="flex min-h-[104px] border-r border-txtneutral-400 border-dashed pr-3 items-center mr-2 "><div><span class="h-8 leading-8 block font-yekanbakhregularFA text-xs ">فرودگاه مبدا</span><div class="h-8 leading-8 block text-txtneutral-500 font-yekanbakhregularFA text-xs">@info.origin.name@ </div></div><svg class="block mx-4 mt-8" width="16" height="16"><use href="./images/sprite-icons.svg#arrow-left-tour-detail"></use></svg><div><span class="h-8 leading-8 block font-yekanbakhregularFA text-xs ">فرودگاه مقصد</span><div class="h-8 leading-8 block text-txtneutral-500 font-yekanbakhregularFA text-xs">@info.destination.name@ </div></div><div><span class="h-8 leading-8 block font-yekanbakhregularFA text-xs pr-4"><span class="ml-1">{{ return await renderTransportationName($data)}} </span></span><div class="h-8 leading-8 flex gap-x-2 text-txtneutral-500 font-yekanbakhregularFA text-xs border-r border-neutralcolor-800 pr-4 mr-2">{{ return await renderTransportationImage($data)}} <div><svg class="ml-2 inline-block" width="16" height="16"><use href="./images/sprite-icons.svg#bag-outline-tour-detail"></use></svg><span>میزان بار مجاز: @info.luggage@ Kg </span></div><div><svg class="ml-2 inline-block" width="16" height="16"><use href="./images/sprite-icons.svg#seat-outline-tour-detail"></use></svg><span>کلاس: @info.class@ </span></div></div></div></div><div class="flex gap-x-1 items-center "><svg width="16" height="16"><use href="./images/sprite-icons.svg#location-bold-tour-detail"></use></svg><h2 id="origin-departure-tour" class="text-lg text-txtneutral-900 font-yekanbakhsemiboldFA "></h2></div></div>
                                     </div>                                
@@ -369,7 +368,8 @@
                             <div
                                 class="font-yekanbakhregularFA text-sm text-txtneutral-900 bg-neutralcolor-300 h-8 flex items-center px-4 rounded-l-md drop-shadow-sm z-10 -mr-2 ">
                                 <span class="destinations__start__day"></span><span
-                                    class="destinations__start__weekday mr-2"></span></div>
+                                    class="destinations__start__weekday mr-2"></span>
+                            </div>
                         </div>
                         <basis core="print" datamembername="refresh.executionPlanTypesDestinations"
                             if="{##refresh.executionPlanTypesDestinations##}" run="atclient"
@@ -379,8 +379,7 @@
                                     type="text/template"><div class="execution__details__path execution__details__path__destinations"><div class="flex flex-col execution__details__path__item">@child </div></div></script>
                             </layout>
                             <face>
-                                <script
-                                    type="text/template">
+                                <script type="text/template">
                                     <div class="flex min-h-[152px] items-center my-8 relative">
                                         <div class="mx-6 execution__details__path__item__details flex items-center gap-x-1"><svg class="inline-block ml-1" width="16" height="16"><use href="./images/sprite-icons.svg#timer-icon-tour"></use></svg><span class="__times__start absolute top-0 font-yekanbakhregularFA text-xs text-txtneutral-900">@info.departure.time@</span><span class="__times__duration font-yekanbakhregularFA text-[10px] text-txtneutral-500 ">@info.time@ دقیقه</span></div><div class="flex flex-col justify-center gap-2"><div class="flex gap-x-1 items-center "><svg width="16" height="16"><use href="./images/sprite-icons.svg#airplane-bold-tour-detail"></use></svg><h2 
                                             
@@ -398,9 +397,24 @@
                             type="text/template"><section class="tourInventory__container"><div class="bg-neutral-50 flex h-16 items-center rounded-[4px] gap-x-4 px-3"><svg width="40" height="40"><use href="./images/sprite-icons.svg#builing-tour-detail"></use></svg><h2 class="text-2xl text-primary-900 font-yekanbakhsemiboldFA ">قیمت تور بر اساس هتل ها </h2></div><hr class="w-full border-neutralcolor-500 my-2" />@child </section></script>
                     </layout>
                     <face>
-                        <script
-                            type="text/template"><article class="tourInventory__details hotel-card"><div class="tourInventory__details__item w-full border border-neutralcolor-800 rounded-2xl bg-white my-3 min-h-[344px]">{{return await renderHotels($data)}}
-<div class="clear-both relative w-[95%] mx-auto "><div class="flex justify-end gap-x-2 px-1"><button onclick="renderTourInstallmentForm(this)" class="h-12 rounded-[4px] w-[168px] text-center leading-[48px] bg-success-100 text-success-500 hover:bg-success-500 hover:text-white ">شرایط اقساط </button><button onclick="renderTourForm(this)" class="h-12 rounded-[4px] w-[168px] text-center leading-[48px] bg-secondary text-white hover:bg-secondary-500">رزرو تور </button></div><div class="tourInventory__details__item__info flex justify-between divide-neutralcolor-800 divide-x divide-x-reverse mt-2 "><div class="w-1/5 px-1 price-type"><div class="bg-primary text-white h-10 rounded-[4px] font-yekanbakhregularFA text-base text-center leading-10 w-full block ">هر نفر در اتاق دوتخته </div><div class="flex flex-col w-full ">{{ return await renderPriceInfo($data,'doublecost')}} </div></div><div class="w-1/5 px-1 price-type"><div class="bg-primary text-white h-10 rounded-[4px] font-yekanbakhregularFA text-base text-center leading-10 w-full block ">هر نفر در اتاق یک تخته </div><div class="flex flex-col w-full ">{{ return await renderPriceInfo($data,'singlecost')}} </div></div><div class="w-1/5 px-1 price-type"><div class="bg-primary text-white h-10 rounded-[4px] font-yekanbakhregularFA text-base text-center leading-10 w-full block ">6 تا 12 سال با تخت </div><div class="flex flex-col w-full ">{{ return await renderPriceInfo($data,'childwithbed')}} </div></div><div class="w-1/5 px-1 price-type"><div class="bg-primary text-white h-10 rounded-[4px] font-yekanbakhregularFA text-base text-center leading-10 w-full block ">2 تا 6 سال بدون تخت </div><div class="flex flex-col w-full ">{{ return await renderPriceInfo($data,'childwithoutbed')}} </div></div><div class="w-1/5 px-1 price-type"><div class="bg-primary text-white h-10 rounded-[4px] font-yekanbakhregularFA text-base text-center leading-10 w-full block ">توضیحات </div><div class="w-full h-[calc(100%-56px)] "><div id="open-description-btn" class="bg-neutralcolor-50 w-full h-full rounded-[4px] my-2 text-center text-primary-900 text-lg font-yekanbakhsemiboldFA flex justify-center items-center" >{{ return await showDescriptionHTML($data)}} </div></div></div></div><div class="hidden description-hotel"><div id="description-hotel-cost" class="bg-neutral-50 w-full min-h-[80px] rounded-[4px] flex justify-center items-center my-2 leading-[48px] text-primary-900 text-center text-base px-4">{{ return await renderDescriptionHotelCost($data)}} </div></div></div></div></article></script>
+                        <script type="text/template">
+                            <article class="tourInventory__details hotel-card">
+                                <div class="tourInventory__details__item w-full border border-neutralcolor-800 rounded-2xl bg-white my-3 min-h-[344px]">{{return await renderHotels($data)}}
+<div class="clear-both relative w-[95%] mx-auto ">
+    <div class="flex justify-end gap-x-2 px-1">
+        <button onclick="renderTourInstallmentForm(this)" class="h-12 rounded-[4px] w-[168px] text-center leading-[48px] bg-success-100 text-success-500 hover:bg-success-500 hover:text-white ">شرایط اقساط </button>
+        <button onclick="renderTourForm(this)" class="h-12 rounded-[4px] w-[168px] text-center leading-[48px] bg-secondary text-white hover:bg-secondary-500">رزرو تور </button></div>
+        <div class="tourInventory__details__item__info flex justify-between divide-neutralcolor-800 divide-x divide-x-reverse mt-2 "><div class="w-1/5 px-1 price-type"><div class="bg-primary text-white h-10 rounded-[4px] font-yekanbakhregularFA text-base text-center leading-10 w-full block ">هر نفر در اتاق دوتخته </div><div class="flex flex-col w-full ">{{ return await renderPriceInfo($data,'doublecost')}} </div></div><div class="w-1/5 px-1 price-type"><div class="bg-primary text-white h-10 rounded-[4px] font-yekanbakhregularFA text-base text-center leading-10 w-full block ">هر نفر در اتاق یک تخته </div><div class="flex flex-col w-full ">{{ return await renderPriceInfo($data,'singlecost')}} </div></div><div class="w-1/5 px-1 price-type"><div class="bg-primary text-white h-10 rounded-[4px] font-yekanbakhregularFA text-base text-center leading-10 w-full block ">6 تا 12 سال با تخت </div>
+        <div class="flex flex-col w-full ">
+             </div>
+    </div>
+    <div class="w-1/5 px-1 price-type">
+        <div class="bg-primary text-white h-10 rounded-[4px] font-yekanbakhregularFA text-base text-center leading-10 w-full block ">2 تا 6 سال بدون تخت </div><div class="flex flex-col w-full ">{{ return await renderPriceInfo($data,'childwithoutbed')}} </div></div><div class="w-1/5 px-1 price-type"><div class="bg-primary text-white h-10 rounded-[4px] font-yekanbakhregularFA text-base text-center leading-10 w-full block ">توضیحات </div><div class="w-full h-[calc(100%-56px)] "><div id="open-description-btn" class="bg-neutralcolor-50 w-full h-full rounded-[4px] my-2 text-center text-primary-900 text-lg font-yekanbakhsemiboldFA flex justify-center items-center" >{{ return await showDescriptionHTML($data)}} </div></div></div></div><div class="hidden description-hotel"><div id="description-hotel-cost" class="bg-neutral-50 w-full min-h-[80px] rounded-[4px] flex justify-center items-center my-2 leading-[48px] text-primary-900 text-center text-base px-4">{{ return await renderDescriptionHotelCost($data)}} </div>
+    </div>
+    </div>
+    </div>
+    </article>
+    </script>
                     </face>
                 </basis>
             </div>
@@ -563,7 +577,8 @@
                                         تلفنی</span><span
                                         class="font-yekanbakhregularFA text-sm text-white block text-center">هر روز هفته
                                         از ساعت 9 صبح تا 18</span></div>
-                            </a></div>
+                            </a>
+                        </div>
                     </face>
                 </basis>
                 <basis core="list" datamembername="db.tags">
@@ -689,7 +704,8 @@
                                 class="cursor-pointer text-xl font-yekanbakhsemiboldFA active-tab-travel-data overflow-visible w-[250px] rounded-tl-[100px] rounded-tr-[4px] rounded-b-[4px] bg-neutralcolor-50 drop-shadow-travel-data-tour-detail h-16 text-center leading-[64px] ">
                                 <svg width="24" height="24" class="inline-block">
                                     <use href="./images/sprite-icons.svg#tab-icon-service"></use>
-                                </svg>خدمات تور </li>
+                                </svg>خدمات تور
+                            </li>
                         </ul>
                     </div>
                     <div class="clear-both"></div>
@@ -739,13 +755,15 @@
                                 <figure
                                     class="relative z-[2] w-[112px] h-[112px] hover:w-[184px] hover:h-[184px] hover:blur-none transition-all duration-300 ease-in-out rounded-full overflow-hidden blur-sm">
                                     <img class="w-full h-full object-cover " src="[##cms.cms.cdn##]/@largeIMG"
-                                        width="184" height="184" alt="@name"></figure>
+                                        width="184" height="184" alt="@name">
+                                </figure>
                             </div>
                             <div
                                 class="absolute left-0 right-0 mx-auto txt-day-content hidden group-hover:flex justify-center items-center bg-transparent border-4 drop-shadow-sm border-white -bottom-5 z-10 w-[83px] h-[83px] rounded-full">
                                 <span
                                     class=" w-[65px] h-[65px] rounded-full drop-shadow-sm bg-white font-yekanbakhsemiboldFA text-lg text-secondary text-center leading-6 flex flex-col justify-center items-center ">روز
-                                    <span class="block">@ord </span></span></div>
+                                    <span class="block">@ord </span></span>
+                            </div>
                         </div>
                     </face>
                     <face filter="ord < max(ord)">
@@ -754,13 +772,15 @@
                                 <figure
                                     class="relative z-[2] w-[112px] h-[112px] hover:w-[184px] hover:h-[184px] hover:blur-none transition-all duration-300 ease-in-out rounded-full overflow-hidden blur-sm">
                                     <img class="w-full h-full object-cover " src="[##cms.cms.cdn##]/@largeIMG"
-                                        width="184" height="184" alt="@name"></figure>
+                                        width="184" height="184" alt="@name">
+                                </figure>
                             </div>
                             <div
                                 class="absolute left-0 right-0 mx-auto txt-day-content hidden group-hover:flex justify-center items-center bg-transparent border-4 drop-shadow-sm border-white -bottom-5 z-10 w-[83px] h-[83px] rounded-full">
                                 <span
                                     class=" w-[65px] h-[65px] rounded-full drop-shadow-sm bg-white font-yekanbakhsemiboldFA text-lg text-secondary text-center leading-6 flex flex-col justify-center items-center ">روز
-                                    <span class="block">@ord </span></span></div>
+                                    <span class="block">@ord </span></span>
+                            </div>
                         </div><svg class="-mx-5 relative z-[1]" width="110" height="23" viewBox="0 0 110 23" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path d="M0 0 Q 55 18 110 0 L 110 23 Q 55 5 0 23 Z" fill="#FFA200" />
@@ -812,7 +832,8 @@
                                 class="rounded-[25px] bg-primary text-white flex justify-center items-center gap-x-2 transition-all duration-200 ease-in-out group-hover:h-full group-hover:top-0 group-hover:left-0 group-hover:right-0 group-hover:absolute ">
                                 <span class="text-xs font-yekanbakhsemiboldFA">شروع از </span><span
                                     class="text-2xl font-yekanbakhsemiboldFA h-[50px] leading-[50px] text-center">@db.tour-related.prp_8181
-                                </span></div>
+                                </span>
+                            </div>
                         </div>
                     </a></article>
             </face>
@@ -830,7 +851,8 @@
                                 class="rounded-[25px] bg-primary text-white flex justify-center items-center gap-x-2 transition-all duration-200 ease-in-out group-hover:h-full group-hover:top-0 group-hover:left-0 group-hover:right-0 group-hover:absolute ">
                                 <span class="text-xs font-yekanbakhsemiboldFA">شروع از </span><span
                                     class="text-2xl font-yekanbakhsemiboldFA h-[50px] leading-[50px] text-center">@db.tour-related.prp_8181
-                                </span></div>
+                                </span>
+                            </div>
                         </div>
                     </a></article>
             </face>
@@ -869,12 +891,12 @@
                                             name="Captcha" placeholder="کد امنیتی" type="text" required></div>
                                     <div class="SecurityCodeLeft flex gap-x-3 items-center w-1/3"><span
                                             class="load-captcha">
-                                            <img class="captchaa" src="/[##captcha.code.captcha##]"
-                                                alt="captcha code" width="80" height="40" /><input id="Captchaid"
-                                                name="Captchaid" value="[##captcha.code.captcha##]"
-                                                type="hidden" /></span><svg onclick="refresh_captcha(this,event)"
-                                            class="cursor-pointer" width="34" height="34" viewBox="0 0 34 34"
-                                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <img class="captchaa" src="/[##captcha.code.captcha##]" alt="captcha code"
+                                                width="80" height="40" /><input id="Captchaid" name="Captchaid"
+                                                value="[##captcha.code.captcha##]" type="hidden" /></span><svg
+                                            onclick="refresh_captcha(this,event)" class="cursor-pointer" width="34"
+                                            height="34" viewBox="0 0 34 34" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
                                             <rect y="0.00195312" width="34" height="34" fill="white" />
                                             <path
                                                 d="M16.5122 27.9291C11.4608 27.9291 7.36133 23.82 7.36133 18.7782C7.36133 13.7365 11.4608 9.61768 16.5122 9.61768C17.5516 9.61768 18.5619 9.76339 19.5333 10.0645C19.9219 10.1811 20.1356 10.5891 20.019 10.9777C19.9025 11.3662 19.4945 11.58 19.1059 11.4634C18.2802 11.2108 17.4059 11.0748 16.5122 11.0748C12.267 11.0748 8.81847 14.5234 8.81847 18.7685C8.81847 23.0137 12.267 26.4622 16.5122 26.4622C20.7573 26.4622 24.2059 23.0137 24.2059 18.7685C24.2059 17.2337 23.759 15.7571 22.9139 14.4942C22.6905 14.164 22.7779 13.7074 23.1179 13.484C23.4482 13.2605 23.9048 13.348 24.1282 13.688C25.1385 15.1937 25.6728 16.952 25.6728 18.7782C25.663 23.82 21.5636 27.9291 16.5122 27.9291Z"
@@ -889,10 +911,12 @@
                                     <div><input name="productid" value="[##cms.query.aid##]" type="hidden"><input
                                             name="mid" value="1" type="hidden"></div>
                                 </d>
-                                <div class="comment"><_textarea
+                                <div class="comment">
+                                    <_textarea
                                         class="bg-white rounded-[4px] border border-neutralcolor-800 w-full block leading-60px p-3 text-sm font-danaregular my-3 focus:border-primary-400 focus:outline-primary-400"
-                                        name="OpinionMessage" placeholder="متن سوال و نظرات شما" required
-                                        rows="7"></_textarea></div>
+                                        name="OpinionMessage" placeholder="متن سوال و نظرات شما" required rows="7">
+                                    </_textarea>
+                                </div>
                                 <div class="submit-comment "><input
                                         class="h-12 text-white bg-secondary hover:bg-secondary-500 rounded-[4px] w-full block leading-48px px-3 text-base font-yekanbakhsemiboldFA my-3"
                                         name="OpinionSubmit" id="OpinionSubmit" value="ارسال دیدگاه" type="submit">
@@ -937,7 +961,8 @@
                                     <span
                                         class="username-opinion font-danabold flex flex-col items-center justify-between"><img
                                             class="mb-2 " src="[##cms.cms.cdn##]/images/user-tag.png" width="32"
-                                            height="32" alt="user-tag">@username</span></div>
+                                            height="32" alt="user-tag">@username</span>
+                                </div>
                                 <p class=" font-danaregular text-sm leading-10 font-yekanbakhregularFA w-10/12 ">
                                     @comment</p>
                             </div>
@@ -951,7 +976,8 @@
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M6 1L1.43945 5.56055L6 10.1211" stroke="#005FF0"
                                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                            </svg></span></span></div>
+                                            </svg></span></span>
+                                </div>
                                 <div class="flex gap-x-4 mt-3 px-2 py-3"><button
                                         class="font-danaregular group flex items-center flex-row-reverse text-xs text-txtneutral-400 font-IRANYekanRegularFA gap-x-3"
                                         aria-label="reaction-button" onclick="reactionSubmit('@id' , 'like')"><svg
@@ -979,14 +1005,16 @@
                             <div class="replyCommentForm w-10/12 mx-auto hidden pb-6 float-none clear-both mt-4">
                                 <form action="ReplyComment.bc" method="post" onsubmit="send_Reply(this , event)"><input
                                         class="reply-title bg-neutralcolor-100 rounded-xl w-full block leading-60px px-3 text-sm font-danaregular my-3 focus:border-primary-400 focus:outline-primary-400"
-                                        type="hidden" name="username" value=""><_textarea
+                                        type="hidden" name="username" value="">
+                                    <_textarea
                                         class="bg-neutralcolor-100 rounded-[4px] w-full block leading-60px p-3 text-sm font-danaregular my-3 focus:border-primary-400 focus:outline-primary-400"
-                                        placeholder="پاسخ خود را تایپ کنید..." rows="6" name="ReplyComment"
-                                        required></_textarea><input type="hidden" name="parentid" value="@id"><input
-                                        type="hidden" name="replyProductid" value="[##cms.query.aid##]"><input
-                                        name="mid" value="1" type="hidden"><input
+                                        placeholder="پاسخ خود را تایپ کنید..." rows="6" name="ReplyComment" required>
+                                    </_textarea><input type="hidden" name="parentid" value="@id"><input type="hidden"
+                                        name="replyProductid" value="[##cms.query.aid##]"><input name="mid" value="1"
+                                        type="hidden"><input
                                         class="bg-secondary hover:bg-secondary-500 h-12 rounded-[4px] w-full block leading-48px min-w-32 px-3 text-sm font-danaregular my-3"
-                                        type="submit" value="ثبت"></form>
+                                        type="submit" value="ثبت">
+                                </form>
                             </div>
                             <div class="replyCommentTxt w-10/12 mx-auto">@Child</div>
                         </div>
