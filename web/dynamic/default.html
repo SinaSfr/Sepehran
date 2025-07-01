@@ -11,7 +11,7 @@
 </basis>
 
 <basis core="dbsource" source="basiscore" lid="1" mid="20" name="db" catid="215041">
-    <member name="special-tour" type="list" link="tour.bc" propertyid="3087920,10000504,8181,8076" perpage="5"
+    <member name="special-tour" type="list" link="tour.bc" propertyid="3087934,10000504,8181,8076" perpage="5"
         order="ord" size="344x176" />
 </basis>
 
@@ -29,7 +29,7 @@
 </basis>
 
 <basis core="dbsource" source="basiscore" lid="1" mid="20" name="db" catid="[##fasli.cat.catid##]">
-    <member name="seasonal-tours" type="list" link="tour.bc" propertyid="3087920,10000504,8181,8076" perpage="5"
+    <member name="seasonal-tours" type="list" link="tour.bc" propertyid="3087934,10000504,8181,8076" perpage="5"
         order="ord" size="344x176" />
 </basis>
 
@@ -134,7 +134,7 @@
                         </div>
                     </layout>
                     <face filter="link is null">
-                        <div class="swiper-slide">
+                        <div class="swiper-slide w-[334px]">
                             <a href="/tour-list.bc?catid=@catid"
                                 class="group flex items-end relative rounded-2xl overflow-hidden">
                                 <div class="absolute inset-0 w-full bg-purple-overlay"></div>
@@ -152,7 +152,7 @@
                         </div>
                     </face>
                     <face>
-                        <div class="swiper-slide">
+                        <div class="swiper-slide w-[334px]">
                             <a href="@link" class="group flex items-end relative rounded-2xl overflow-hidden">
                                 <div class="absolute inset-0 w-full bg-purple-overlay"></div>
                                 <img src="@image" class="w-full h-40 object-cover" alt="@title" width="304" height="164"
@@ -185,8 +185,8 @@
                             @child
                         </div>
                     </layout>
-                    <face filter="link is null and prp_3087920 is null">
-                        <div class="swiper-slide">
+                    <face filter="link is null and prp_3087934 is null">
+                        <div class="swiper-slide w-[420px]">
                             <div class="border border-gray-50 rounded-xl shadow-medium-btn-shadow p-6">
                                 <img src="@00344X00176prp"
                                     class="w-full h-44 object-cover rounded-xl overflow-hidden shadow-soft-deep"
@@ -233,8 +233,8 @@
                             </div>
                         </div>
                     </face>
-                    <face filter="prp_3087920 is null">
-                        <div class="swiper-slide">
+                    <face filter="prp_3087934 is null">
+                        <div class="swiper-slide w-[420px]">
                             <div class="border border-gray-50 rounded-xl shadow-medium-btn-shadow p-6">
                                 <img src="@00344X00176prp"
                                     class="w-full h-44 object-cover rounded-xl overflow-hidden shadow-soft-deep"
@@ -282,14 +282,14 @@
                         </div>
                     </face>
                     <face filter="link is null">
-                        <div class="swiper-slide">
+                        <div class="swiper-slide w-[420px]">
                             <div class="border border-gray-50 rounded-xl shadow-medium-btn-shadow p-6">
                                 <div class="relative rounded-xl overflow-hidden shadow-soft-deep">
                                     <img src="@00344X00176prp" class="block w-full h-44 object-cover" alt="@title"
                                         width="344" height="176" loading="lazy">
                                     <span
                                         class="absolute left-0 bottom-0 text-sm font-bold py-2 px-4 bg-amber-400 rounded-tr">
-                                        @prp_3087920</span>
+                                        @prp_3087934</span>
                                 </div>
                                 <h2 class="text-2xl font-extrabold mt-8 text-center">@title</h2>
                                 <div class="flex items-center justify-between mt-3">
@@ -335,14 +335,14 @@
                         </div>
                     </face>
                     <face>
-                        <div class="swiper-slide">
+                        <div class="swiper-slide w-[420px]">
                             <div class="border border-gray-50 rounded-xl shadow-medium-btn-shadow p-6">
                                 <div class="relative rounded-xl overflow-hidden shadow-soft-deep">
                                     <img src="@00344X00176prp" class="block w-full h-44 object-cover" alt="@title"
                                         width="344" height="176" loading="lazy">
                                     <span
                                         class="absolute left-0 bottom-0 text-sm font-bold py-2 px-4 bg-amber-400 rounded-tr">
-                                        @prp_3087920</span>
+                                        @prp_3087934</span>
                                 </div>
                                 <h2 class="text-2xl font-extrabold mt-8 text-center">@title</h2>
                                 <div class="flex items-center justify-between mt-3">
@@ -439,21 +439,21 @@
                     </basis>
                     <div class="flex items-center gap-3">
                         <a href="https://maps.app.goo.gl/T2HRtS5WqqgKUmNLA"
-                            class="flex items-center justify-center gap-4 bg-gray-50 rounded-xl font-extrabold py-4 px-8">
+                            class="flex items-center justify-center gap-4 bg-gray-50 rounded-xl font-extrabold py-4 px-8 transition-all duration-300 hover:bg-primary-500 hover:text-white hover:shadow-card-shadow">
                             <svg width="32" height="33">
                                 <use xlink:href="./images/sprite-icons.svg#icon-google-map"></use>
                             </svg>
                             گوگل مپ
                         </a>
                         <a href=""
-                            class="flex items-center justify-center gap-4 bg-gray-50 rounded-xl font-extrabold py-4 px-8">
+                            class="flex items-center justify-center gap-4 bg-gray-50 rounded-xl font-extrabold py-4 px-8 transition-all duration-300 hover:bg-primary-500 hover:text-white hover:shadow-card-shadow">
                             <svg width="32" height="33">
                                 <use xlink:href="./images/sprite-icons.svg#icon-veiz"></use>
                             </svg>
                             ویز
                         </a>
                         <a href="https://nshn.ir/cd_bv784yxi2Cu"
-                            class="flex items-center justify-center gap-4 bg-gray-50 rounded-xl font-extrabold py-4 px-8">
+                            class="flex items-center justify-center gap-4 bg-gray-50 rounded-xl font-extrabold py-4 px-8 transition-all duration-300 hover:bg-primary-500 hover:text-white hover:shadow-card-shadow">
                             <img src="[##cms.cms.cdn##]/images/neshan.png" class="h-8 w-8" alt="neshan" width="32"
                                 height="32" loading="lazy">
                             نشان
@@ -556,8 +556,8 @@
                             @child
                         </div>
                     </layout>
-                    <face filter="link is null and prp_3087920 is null">
-                        <div class="swiper-slide">
+                    <face filter="link is null and prp_3087934 is null">
+                        <div class="swiper-slide w-[420px]">
                             <div class="border border-gray-50 rounded-xl shadow-medium-btn-shadow p-6">
                                 <img src="@00344X00176prp"
                                     class="w-full h-44 object-cover rounded-xl overflow-hidden shadow-soft-deep"
@@ -604,8 +604,8 @@
                             </div>
                         </div>
                     </face>
-                    <face filter="prp_3087920 is null">
-                        <div class="swiper-slide">
+                    <face filter="prp_3087934 is null">
+                        <div class="swiper-slide w-[420px]">
                             <div class="border border-gray-50 rounded-xl shadow-medium-btn-shadow p-6">
                                 <img src="@00344X00176prp"
                                     class="w-full h-44 object-cover rounded-xl overflow-hidden shadow-soft-deep"
@@ -653,14 +653,14 @@
                         </div>
                     </face>
                     <face filter="link is null">
-                        <div class="swiper-slide">
+                        <div class="swiper-slide w-[420px]">
                             <div class="border border-gray-50 rounded-xl shadow-medium-btn-shadow p-6">
                                 <div class="relative rounded-xl overflow-hidden shadow-soft-deep">
                                     <img src="@00344X00176prp" class="block w-full h-44 object-cover" alt="@title"
                                         width="344" height="176" loading="lazy">
                                     <span
                                         class="absolute left-0 bottom-0 text-sm font-bold py-2 px-4 bg-amber-400 rounded-tr">
-                                        @prp_3087920</span>
+                                        @prp_3087934</span>
                                 </div>
                                 <h2 class="text-2xl font-extrabold mt-8 text-center">@title</h2>
                                 <div class="flex items-center justify-between mt-3">
@@ -706,14 +706,14 @@
                         </div>
                     </face>
                     <face>
-                        <div class="swiper-slide">
+                        <div class="swiper-slide w-[420px]">
                             <div class="border border-gray-50 rounded-xl shadow-medium-btn-shadow p-6">
                                 <div class="relative rounded-xl overflow-hidden shadow-soft-deep">
                                     <img src="@00344X00176prp" class="block w-full h-44 object-cover" alt="@title"
                                         width="344" height="176" loading="lazy">
                                     <span
                                         class="absolute left-0 bottom-0 text-sm font-bold py-2 px-4 bg-amber-400 rounded-tr">
-                                        @prp_3087920</span>
+                                        @prp_3087934</span>
                                 </div>
                                 <h2 class="text-2xl font-extrabold mt-8 text-center">@title</h2>
                                 <div class="flex items-center justify-between mt-3">

@@ -529,7 +529,6 @@ button,
      This can trigger a poorly considered lint error in some tools but is included by design.
   */
 
-
 svg,
 video,
 canvas,
@@ -650,7 +649,7 @@ body {
 }
 
 .right-60 {
-    right: 15rem /* 240px */;
+  right: 15rem /* 240px */;
 }
 
 .top-0 {
@@ -1691,7 +1690,7 @@ body {
 
   font-weight: 100;
 
-  src: url("../fonts/YekanBakhFaNum-Thin.woff") format("woff");
+  src: url("../fonts/YekanBakhFaNum-Thin.ttf") format("truetype");
 }
 
 @font-face {
@@ -1703,7 +1702,7 @@ body {
 
   font-weight: 300;
 
-  src: url("../fonts/YekanBakhFaNum-Light.woff") format("woff");
+  src: url("../fonts/YekanBakhFaNum-Light.ttf") format("truetype");
 }
 
 @font-face {
@@ -1715,7 +1714,7 @@ body {
 
   font-weight: 400;
 
-  src: url("../fonts/YekanBakhFaNum-Regular.woff") format("woff");
+  src: url("../fonts/YekanBakhFaNum-Regular.ttf") format("truetype");
 }
 
 @font-face {
@@ -1727,7 +1726,7 @@ body {
 
   font-weight: 600;
 
-  src: url("../fonts/YekanBakhFaNum-SemiBold.woff") format("woff");
+  src: url("../fonts/YekanBakhFaNum-SemiBold.ttf") format("truetype");
 }
 
 @font-face {
@@ -1739,7 +1738,7 @@ body {
 
   font-weight: 700;
 
-  src: url("../fonts/YekanBakhFaNum-Bold.woff") format("woff");
+  src: url("../fonts/YekanBakhFaNum-Bold.ttf") format("truetype");
 }
 
 @font-face {
@@ -1751,7 +1750,7 @@ body {
 
   font-weight: 800;
 
-  src: url("../fonts/YekanBakhFaNum-ExtraBold.woff") format("woff");
+  src: url("../fonts/YekanBakhFaNum-ExtraBold.ttf") format("truetype");
 }
 
 @font-face {
@@ -1763,7 +1762,7 @@ body {
 
   font-weight: 900;
 
-  src: url("../fonts/YekanBakhFaNum-Black.woff") format("woff");
+  src: url("../fonts/YekanBakhFaNum-Black.ttf") format("truetype");
 }
 
 .direction-ltr {
@@ -1987,7 +1986,7 @@ body {
   animation: rotation 1s linear infinite;
 }
 .header-loader::after {
-  content: '';  
+  content: "";
   box-sizing: border-box;
   position: absolute;
   left: 0;
@@ -2005,7 +2004,7 @@ body {
   100% {
     transform: rotate(360deg);
   }
-} 
+}
 
 .backdrop\:blur::backdrop {
   --tw-blur: blur(8px);
@@ -2142,38 +2141,38 @@ body {
 }
 
 .group\/levelthree:hover .group-hover\/levelthree\:text-white {
-    --tw-text-opacity: 1;
-    color: rgb(255 255 255 / var(--tw-text-opacity, 1)) /* #ffffff */;
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1)) /* #ffffff */;
 }
 
 .group\/levelthree:hover .group-hover\/levelthree\:bg-white {
-    --tw-bg-opacity: 1;
-    background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1)) /* #ffffff */;
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1)) /* #ffffff */;
 }
 
 .group\/levelthree:hover .group-hover\/levelthree\:visible {
-    visibility: visible;
+  visibility: visible;
 }
 
 .group\/levelthree:hover .group-hover\/levelthree\:opacity-100 {
-    opacity: 1;
+  opacity: 1;
 }
 
 .group\/levelthree:hover .group-hover\/levelthree\:text-primary-500 {
-    color: var(--primary-500);
+  color: var(--primary-500);
 }
 
 .group\/levelfour:hover .group-hover\/levelfour\:text-primary-500 {
-    color: var(--primary-500);
+  color: var(--primary-500);
 }
 
 .group\/levelfour:hover .group-hover\/levelfour\:bg-white {
-    --tw-bg-opacity: 1;
-    background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1)) /* #ffffff */;
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1)) /* #ffffff */;
 }
 
 .group\/levelfour:hover .group-hover\/levelfour\:bg-primary-500 {
-    background-color: var(--primary-500);
+  background-color: var(--primary-500);
 }
 
 .group:hover .group-hover\:opacity-100 {
@@ -2197,6 +2196,10 @@ body {
 }
 
 @media (min-width: 1024px) {
+  .hasNot-login-icon {
+    display: none;
+  }
+
   .lg\:mt-0 {
     margin-top: 0px;
   }

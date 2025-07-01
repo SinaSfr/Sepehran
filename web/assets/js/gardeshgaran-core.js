@@ -1773,7 +1773,7 @@ async function send_Reply(element, event) {
 //swiper
 if (document.querySelector(".swiper-special-destination")) {
   var swiperSpecialDestination = new Swiper(".swiper-special-destination", {
-    slidesPerView: 5.5,
+    slidesPerView: 'auto',
     speed: 400,
     centeredSlides: false,
     spaceBetween: 24,
@@ -1791,7 +1791,7 @@ if (document.querySelector(".swiper-special-destination")) {
 }
 if (document.querySelector(".swiper-special-tour")) {
   var swiperSpecialTour = new Swiper(".swiper-special-tour", {
-    slidesPerView: 4.2,
+    slidesPerView: 'auto',
     speed: 400,
     centeredSlides: false,
     spaceBetween: 24,
@@ -1809,7 +1809,7 @@ if (document.querySelector(".swiper-special-tour")) {
 }
 if (document.querySelector(".swiper-special-spring-tour")) {
   var swiperSpecialSpringTour = new Swiper(".swiper-special-spring-tour", {
-    slidesPerView: 4.2,
+    slidesPerView: "auto",
     speed: 400,
     centeredSlides: false,
     spaceBetween: 24,
@@ -1861,7 +1861,7 @@ if (document.querySelector(".swiper-tour-date-tourL")) {
   });
 }
 if (document.querySelector(".swiper-special-suggestion")) {
-  var swiperSpecialDestinationTour = new Swiper(".swiper-special-suggestion", {
+  var swiperSpecialSuggestion = new Swiper(".swiper-special-suggestion", {
     slidesPerView: 2.25,
     speed: 400,
     centeredSlides: false,
@@ -1968,9 +1968,9 @@ if (document.querySelector(".swiper-special-spring-tour-mobile")) {
     }
   );
 }
-if (document.querySelector(".swiper-special-destination-tour")) {
-  var swiperSpecialDestinationTour = new Swiper(
-    ".swiper-special-destination-tour",
+if (document.querySelector(".swiper-special-destination-tour-mobile")) {
+  var swiperSpecialDestinationTourMobile = new Swiper(
+    ".swiper-special-destination-tour-mobile",
     {
       slidesPerView: 4,
       speed: 400,

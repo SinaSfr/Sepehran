@@ -121,7 +121,7 @@
 
 <body>
     <basis core="call" file="header.inc" />
-    <main class="layout__body__container">
+    <main class="layout__body__container" data-noimgsign="no-img-found.jpg" data-pagenameinventory="Tem1_Hotel.bc">
         <section class="relative flex items-center justify-center bg-tourlistBg bg-center bg-cover h-32">
             <div class="absolute inset-0 w-full h-full bg-black/45"></div>
             <ul itemscope itemtype="https://schema.org/BreadcrumbList"
@@ -181,55 +181,52 @@
         </section>
         <div class="flex items-stretch mt-11 mx-auto max-lg:w-[90%] max-xl:w-[97%] xl:max-w-7xl">
             <section class="min-w-0 flex-1">
-                <div class="swiper swiper-big-img">
-                    <basis core="print" datamembername="db.gallery-tour">
-                        <layout>
+                <basis core="print" datamembername="db.gallery-tour">
+                    <layout>
+                        <div class="swiper swiper-big-img">
                             <div class="swiper-wrapper">
                                 @child
                             </div>
-                        </layout>
-                        <face filter="ord in(1000)">
-                            <div class="swiper-slide">
-                                <img src="/@largeIMG" alt="@name" class="img-responsive h-96 object-cover rounded-xl"
-                                    width="384" height="384" loading="lazy" />
+                            <div class="swiper-button-prev-custom ">
+                                <div
+                                    class="absolute left-3 top-48 z-10 flex items-center justify-center h-10 w-10 bg-primary-500 rounded-full shadow-small-btn-shadow transition-all duration-300 hover:bg-secondary-500">
+                                    <svg width="24" height="24">
+                                        <use href="./images/sprite-icons.svg#icon-chevron-left"></use>
+                                    </svg>
+                                </div>
                             </div>
-                        </face>
-                    </basis>
-
-
-                    <div class="swiper-button-prev-custom ">
-                        <div
-                            class="absolute left-3 top-48 z-10 flex items-center justify-center h-10 w-10 bg-primary-500 rounded-full shadow-small-btn-shadow transition-all duration-300 hover:bg-secondary-500">
-                            <svg width="24" height="24">
-                                <use href="./images/sprite-icons.svg#icon-chevron-left"></use>
-                            </svg>
+                            <div class="swiper-button-next-custom ">
+                                <div
+                                    class="absolute right-3 top-48 z-10 flex items-center justify-center h-10 w-10 bg-primary-500 rounded-full shadow-small-btn-shadow transition-all duration-300 hover:bg-secondary-500">
+                                    <svg width="24" height="24">
+                                        <use href="./images/sprite-icons.svg#icon-chevron-right"></use>
+                                    </svg>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="swiper-button-next-custom ">
-                        <div
-                            class="absolute right-3 top-48 z-10 flex items-center justify-center h-10 w-10 bg-primary-500 rounded-full shadow-small-btn-shadow transition-all duration-300 hover:bg-secondary-500">
-                            <svg width="24" height="24">
-                                <use href="./images/sprite-icons.svg#icon-chevron-right"></use>
-                            </svg>
+                    </layout>
+                    <face filter="ord in(1000)">
+                        <div class="swiper-slide">
+                            <img src="/@largeIMG" alt="@name" class="img-responsive h-96 object-cover rounded-xl"
+                                width="384" height="384" loading="lazy" />
                         </div>
-                    </div>
-                </div>
-                <div thumbsSlider="" class="swiper swiper-small-img mt-4">
-                    <basis core="print" datamembername="db.gallery-tour">
-                        <layout>
+                    </face>
+                </basis>
+                <basis core="print" datamembername="db.gallery-tour">
+                    <layout>
+                        <div thumbsSlider="" class="swiper swiper-small-img mt-4">
                             <div class="swiper-wrapper">
                                 @child
                             </div>
-                        </layout>
-                        <face filter="ord in(1000)">
-                            <div class="swiper-slide cursor-pointer">
-                                <img src="/@largeIMG" alt="@name" class="img-responsive h-20 object-cover rounded-xl"
-                                    width="80" height="80" loading="lazy" />
-                            </div>
-                        </face>
-                    </basis>
-
-                </div>
+                        </div>
+                    </layout>
+                    <face filter="ord in(1000)">
+                        <div class="swiper-slide cursor-pointer">
+                            <img src="/@largeIMG" alt="@name" class="img-responsive h-20 object-cover rounded-xl"
+                                width="80" height="80" loading="lazy" />
+                        </div>
+                    </face>
+                </basis>
             </section>
             <section class="flex flex-col gap-5 p-4 flex-[1.21]">
                 <div class="flex items-center gap-2">
@@ -238,29 +235,41 @@
                     </svg>
                     <h2 class="text-2xl font-extrabold">اطلاعات تور:</h2>
                 </div>
-                <div class="flex items-center gap-4 border-y border-gray-50 py-2">
-                    <div
-                        class="flex items-center gap-1 bg-secondary-100 text-sm font-bold rounded border border-secondary-200 py-1 px-2">
-                        <svg width="28" height="28">
-                            <use href="./images/sprite-icons.svg#icon-lightning"></use>
-                        </svg>
-                        تور ویژه
-                    </div>
-                    <div
-                        class="flex items-center gap-1 bg-tertiary-100 text-sm font-bold rounded border border-tertiary-200 py-1 px-2">
-                        <svg width="28" height="28">
-                            <use href="./images/sprite-icons.svg#icon-camera"></use>
-                        </svg>
-                        اقساطی
-                    </div>
-                    <div
-                        class="flex items-center gap-1 bg-primary-100 text-sm font-bold rounded border border-primary-200 py-1 px-2">
-                        <svg width="28" height="28">
-                            <use href="./images/sprite-icons.svg#icon-black-flash"></use>
-                        </svg>
-                        پرواز مستقیم
-                    </div>
-                </div>
+                <basis core="print" datamembername="db.tour-view">
+                    <layout>
+                        <div class="flex items-center gap-4 border-y border-gray-50 py-2">
+                            @child
+                        </div>
+                    </layout>
+                    <face filter="Question in('ویژه')">
+                        <div
+                            class="flex items-center gap-1 bg-secondary-100 text-sm font-bold rounded border border-secondary-200 py-1 px-2">
+                            <svg width="28" height="28">
+                                <use href="./images/sprite-icons.svg#icon-lightning"></use>
+                            </svg>
+                            @text
+                        </div>
+                    </face>
+                    <face filter="Question in('شرایط اقساطی')">
+                        <div
+                            class="flex items-center gap-1 bg-tertiary-100 text-sm font-bold rounded border border-tertiary-200 py-1 px-2">
+                            <svg width="28" height="28">
+                                <use href="./images/sprite-icons.svg#icon-camera"></use>
+                            </svg>
+                            @text
+                        </div>
+                    </face>
+                    <face filter="Question in('پرواز بدون توقف')">
+                        <div
+                            class="flex items-center gap-1 bg-primary-100 text-sm font-bold rounded border border-primary-200 py-1 px-2">
+                            <svg width="28" height="28">
+                                <use href="./images/sprite-icons.svg#icon-black-flash"></use>
+                            </svg>
+                            @text
+                        </div>
+                    </face>
+                </basis>
+
                 <div class="flex items-center gap-4">
                     <h3 class="text-sm font-bold">مقاصد تور:</h3>
                     <basis core="print" datamembername="db.gallery-tour">
@@ -339,10 +348,18 @@
 
                 </basis>
 
-                <div class="flex items-center gap-2">
-                    <h2 class="text-sm font-bold">امکانات تور:</h2>
-                    <span class="text-sm font-bold">تور لیدر حرفه‌ای - ترانسفر فرودگاهی - خدمات CIP</span>
-                </div>
+                <basis core="print" datamembername="db.tour-view">
+                    <layout>
+                        <div class="flex items-center gap-2">
+                            <h2 class="text-sm font-bold">امکانات تور:</h2>
+                            @child
+                        </div>
+                    </layout>
+                    <face filter="Question in('امکانات')">
+                        <span class="text-sm font-bold">@text</span>
+                    </face>
+                </basis>
+
                 <basis core="print" datamembername="db.tour-view">
                     <layout>
                         <div class="flex items-center justify-between">
@@ -665,29 +682,19 @@
                                         <ul class="flex justify-center items-center gap-12">
                                             <li class="relative flex flex-col gap-8 items-center vertical-border">
                                                 <span class="text-sm font-semibold">دوتخته</span>
-                                                <span class="flex items-center gap-2 text-sm font-bold"><span
-                                                        class="text-[36px] font-extrabold text-primary-500 hotel-card-price">{{ return await renderPriceInfo($data,'doublecost')}}</span>
-                                                    دلار</span>
+                                                {{ return await renderPriceInfo($data,'doublecost')}}
                                             </li>
                                             <li class="relative flex flex-col gap-8 items-center vertical-border">
                                                 <span class="text-sm font-semibold">تک تخته</span>
-                                                <span class="flex items-center gap-2 text-sm font-bold">
-                                                    <span
-                                                        class="text-[36px] font-extrabold text-primary-500">{{ return await renderPriceInfo($data,'singlecost')}}</span>
-                                                    دلار
-                                                </span>
+                                                    {{ return await renderPriceInfo($data,'singlecost')}}
                                             </li>
                                             <li class="relative flex flex-col gap-8 items-center vertical-border">
                                                 <span class="text-sm font-semibold">کودک با تخت</span>
-                                                <span class="flex items-center gap-2 text-sm font-bold"><span
-                                                        class="text-[36px] font-extrabold text-primary-500">570</span>
-                                                    دلار</span>
+                                                 {{ return await renderPriceInfo($data,'childwithbed')}}
                                             </li>
                                             <li class="relative flex flex-col gap-8 items-center vertical-border">
                                                 <span class="text-sm font-semibold">کودک بدون تخت</span>
-                                                <span class="flex items-center gap-3 text-sm font-bold"><span
-                                                        class="text-[36px] font-extrabold text-primary-500">{{ return await renderPriceInfo($data,'childwithoutbed')}}</span>
-                                                    دلار</span>
+                                                {{ return await renderPriceInfo($data,'childwithoutbed')}}
                                             </li>
                                         </ul>
                                     </div>
@@ -729,66 +736,73 @@
                     </div>
 
                     <div class="flex flex-col gap-8">
-                        <div class="flex items-center gap-14">
-                            <div class="flex items-center gap-6">
-                                <div class="flex flex-col items-center gap-2">
-                                    <img src="[##cms.cms.cdn##]/images/turkish-airline.png" class="h-10 object-cover"
-                                        alt="" width="135" height="40" loading="lazy" />
-                                    <span class="font-light text-xs">شماره پرواز : <span>W5112</span></span>
+                        <div class="tourExecution__container__origins">
+                            <div class="execution__details__path__item flex items-center gap-14">
+                                <div class="flex items-center gap-6">
+                                    <div class="flex flex-col items-center gap-2">
+                                        <img src="[##cms.cms.cdn##]/images/turkish-airline.png"
+                                            class="transportation__img h-10 object-cover" alt="" width="135" height="40"
+                                            loading="lazy" />
+                                        <span class="font-light text-xs">شماره پرواز : <span>W5112</span></span>
+                                    </div>
+                                    <div class="flex flex-col items-center gap-1 bg-gray-50 rounded-lg px-3">
+                                        <span
+                                            class="text-primary-500 font-extrabold origins__city details__city">تهران</span>
+                                        <span class="text-primary-500 font-extrabold">IKA</span>
+                                        <span class="text-primary-500 font-extrabold">06:30</span>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col items-center gap-px">
+                                    <span class="text-xs font-light h-0">زمان سفر : <span>6 ساعت و 30
+                                            دقیقه</span></span>
+                                    <div class="relative">
+                                        <svg width="488" height="59">
+                                            <use href="./images/sprite-icons.svg#icon-plane-airline"></use>
+                                        </svg>
+                                        <span
+                                            class="absolute top-5 -left-2 right-0 mx-auto bg-secondary-500 w-4 h-4 rounded-full"></span>
+                                    </div>
+                                    <span class="text-sm -mt-5 mr-2">1st</span>
                                 </div>
                                 <div class="flex flex-col items-center gap-1 bg-gray-50 rounded-lg px-3">
-                                    <span class="text-primary-500 font-extrabold">تهران</span>
-                                    <span class="text-primary-500 font-extrabold">IKA</span>
-                                    <span class="text-primary-500 font-extrabold">06:30</span>
+                                    <span class="font-extrabold">تونس</span>
+                                    <span class="font-extrabold">TUN</span>
+                                    <span class="font-extrabold">16:25</span>
                                 </div>
-                            </div>
-                            <div class="flex flex-col items-center gap-px">
-                                <span class="text-xs font-light h-0">زمان سفر : <span>6 ساعت و 30
-                                        دقیقه</span></span>
-                                <div class="relative">
-                                    <svg width="488" height="59">
-                                        <use href="./images/sprite-icons.svg#icon-plane-airline"></use>
-                                    </svg>
-                                    <span
-                                        class="absolute top-5 -left-2 right-0 mx-auto bg-secondary-500 w-4 h-4 rounded-full"></span>
-                                </div>
-                                <span class="text-sm -mt-5 mr-2">1st</span>
-                            </div>
-                            <div class="flex flex-col items-center gap-1 bg-gray-50 rounded-lg px-3">
-                                <span class="font-extrabold">تونس</span>
-                                <span class="font-extrabold">TUN</span>
-                                <span class="font-extrabold">16:25</span>
                             </div>
                         </div>
-                        <div class="flex items-center gap-14">
-                            <div class="flex items-center gap-6">
-                                <div class="flex flex-col gap-2 items-center">
-                                    <img src="[##cms.cms.cdn##]/images/turkish-airline.png" class="h-10 object-cover"
-                                        alt="" width="135" height="40" loading="lazy" />
-                                    <span class="font-light text-xs">شماره پرواز : <span>W5112</span></span>
+                        <div class="tourExecution__container__destinations">
+                            <div class="execution__details__path__item flex items-center gap-14">
+                                <div class="flex items-center gap-6">
+                                    <div class="flex flex-col gap-2 items-center">
+                                        <img src="[##cms.cms.cdn##]/images/turkish-airline.png"
+                                            class="transportation__img h-10 object-cover" alt="" width="135" height="40"
+                                            loading="lazy" />
+                                        <span class="font-light text-xs">شماره پرواز : <span>W5112</span></span>
+                                    </div>
+                                    <div class="flex flex-col items-center gap-1 bg-gray-50 rounded-lg px-3">
+                                        <span class="text-primary-500 font-extrabold details__city">تهران</span>
+                                        <span class="text-primary-500 font-extrabold">IKA</span>
+                                        <span class="text-primary-500 font-extrabold">06:30</span>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col items-center gap-px">
+                                    <span class="text-xs font-light h-0">زمان سفر : <span>6 ساعت و 30
+                                            دقیقه</span></span>
+                                    <div class="relative">
+                                        <svg width="488" height="59">
+                                            <use href="./images/sprite-icons.svg#icon-plane-airline"></use>
+                                        </svg>
+                                        <span
+                                            class="absolute top-5 -left-2 right-0 mx-auto bg-secondary-500 w-4 h-4 rounded-full"></span>
+                                    </div>
+                                    <span class="text-sm -mt-5 mr-2">1st</span>
                                 </div>
                                 <div class="flex flex-col items-center gap-1 bg-gray-50 rounded-lg px-3">
-                                    <span class="text-primary-500 font-extrabold">تهران</span>
-                                    <span class="text-primary-500 font-extrabold">IKA</span>
-                                    <span class="text-primary-500 font-extrabold">06:30</span>
+                                    <span class="font-extrabold">تونس</span>
+                                    <span class="font-extrabold">TUN</span>
+                                    <span class="font-extrabold">16:25</span>
                                 </div>
-                            </div>
-                            <div class="flex flex-col items-center gap-px">
-                                <span class="text-xs font-light h-0">زمان سفر : <span>6 ساعت و 30
-                                        دقیقه</span></span>
-                                <div class="relative">
-                                    <svg width="488" height="59">
-                                        <use href="./images/sprite-icons.svg#icon-plane-airline"></use>
-                                    </svg>
-                                    <span
-                                        class="absolute top-5 -left-2 right-0 mx-auto bg-secondary-500 w-4 h-4 rounded-full"></span>
-                                </div>
-                                <span class="text-sm -mt-5 mr-2">1st</span>
-                            </div>
-                            <div class="flex flex-col items-center gap-1 bg-gray-50 rounded-lg px-3">
-                                <span class="font-extrabold">تونس</span>
-                                <span class="font-extrabold">TUN</span>
-                                <span class="font-extrabold">16:25</span>
                             </div>
                         </div>
                     </div>
