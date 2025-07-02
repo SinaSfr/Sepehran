@@ -347,7 +347,60 @@
                             <face>
                                 <script type="text/template">
                                     <div class="flex min-h-[152px] items-center my-8 relative">
-                                        <div class="mx-6 execution__details__path__item__details flex items-center gap-x-1"><svg class="inline-block ml-1" width="16" height="16"><use href="./images/sprite-icons.svg#timer-icon-tour"></use></svg><span class=" __times__start absolute top-0 font-yekanbakhregularFA text-xs text-txtneutral-900">@info.departure.time@</span><span class="__times__duration font-yekanbakhregularFA text-[10px] text-txtneutral-500 ">@info.time@ دقیقه</span></div><div class="flex flex-col justify-center gap-2"><div class="flex gap-x-1 items-center "><svg width="16" height="16"><use href="./images/sprite-icons.svg#airplane-bold-tour-detail"></use></svg><h2  class="text-lg text-txtneutral-900 font-yekanbakhsemiboldFA details__city" >@info.city.name@</h2></div><div class="flex min-h-[104px] border-r border-txtneutral-400 border-dashed pr-3 items-center mr-2 "><div><span class="h-8 leading-8 block font-yekanbakhregularFA text-xs ">فرودگاه مبدا</span><div class="h-8 leading-8 block text-txtneutral-500 font-yekanbakhregularFA text-xs">@info.origin.name@ </div></div><svg class="block mx-4 mt-8" width="16" height="16"><use href="./images/sprite-icons.svg#arrow-left-tour-detail"></use></svg><div><span class="h-8 leading-8 block font-yekanbakhregularFA text-xs ">فرودگاه مقصد</span><div class="h-8 leading-8 block text-txtneutral-500 font-yekanbakhregularFA text-xs">@info.destination.name@ </div></div><div><span class="h-8 leading-8 block font-yekanbakhregularFA text-xs pr-4"><span class="ml-1">{{ return await renderTransportationName($data)}} </span></span><div class="h-8 leading-8 flex gap-x-2 text-txtneutral-500 font-yekanbakhregularFA text-xs border-r border-neutralcolor-800 pr-4 mr-2">{{ return await renderTransportationImage($data)}} <div><svg class="ml-2 inline-block" width="16" height="16"><use href="./images/sprite-icons.svg#bag-outline-tour-detail"></use></svg><span>میزان بار مجاز: @info.luggage@ Kg </span></div><div><svg class="ml-2 inline-block" width="16" height="16"><use href="./images/sprite-icons.svg#seat-outline-tour-detail"></use></svg><span>کلاس: @info.class@ </span></div></div></div></div><div class="flex gap-x-1 items-center "><svg width="16" height="16"><use href="./images/sprite-icons.svg#location-bold-tour-detail"></use></svg><h2 id="origin-departure-tour" class="text-lg text-txtneutral-900 font-yekanbakhsemiboldFA "></h2></div></div>
+                                        <div class="mx-6 execution__details__path__item__details flex items-center gap-x-1">
+                                            <svg class="inline-block ml-1" width="16" height="16">
+                                                <use href="./images/sprite-icons.svg#timer-icon-tour"></use>
+                                            </svg>
+                                                <span class=" __times__start absolute top-0 font-yekanbakhregularFA text-xs text-txtneutral-900">@info.departure.time@</span>
+                                                <span class="__times__duration font-yekanbakhregularFA text-[10px] text-txtneutral-500 ">@info.time@ دقیقه</span>
+                                            </div>
+                                            <div class="flex flex-col justify-center gap-2">
+                                                <div class="flex gap-x-1 items-center ">
+                                                    <svg width="16" height="16">
+                                                        <use href="./images/sprite-icons.svg#airplane-bold-tour-detail"></use>
+                                                    </svg>
+                                                    <h2  class="text-lg text-txtneutral-900 font-yekanbakhsemiboldFA details__city" >@info.city.name@</h2>
+                                                </div>
+                                                <div class="flex min-h-[104px] border-r border-txtneutral-400 border-dashed pr-3 items-center mr-2 ">
+                                                    <div>
+                                                        <span class="h-8 leading-8 block font-yekanbakhregularFA text-xs ">فرودگاه مبدا</span>
+                                                        <div class="h-8 leading-8 block text-txtneutral-500 font-yekanbakhregularFA text-xs">@info.origin.name@ </div>
+                                                    </div>
+                                                    <svg class="block mx-4 mt-8" width="16" height="16">
+                                                        <use href="./images/sprite-icons.svg#arrow-left-tour-detail">
+
+                                                        </use>
+                                                    </svg>
+                                        <div>
+                                            <span class="h-8 leading-8 block font-yekanbakhregularFA text-xs ">فرودگاه مقصد</span>
+                                            <div class="h-8 leading-8 block text-txtneutral-500 font-yekanbakhregularFA text-xs">@info.destination.name@ </div>
+                                        </div>
+                                        <div>
+                                                <span class="h-8 leading-8 block font-yekanbakhregularFA text-xs pr-4"><span class="ml-1">{{ return await renderTransportationName($data)}} </span>
+                                        </span>
+                                        <div class="h-8 leading-8 flex gap-x-2 text-txtneutral-500 font-yekanbakhregularFA text-xs border-r border-neutralcolor-800 pr-4 mr-2">{{ return await renderTransportationImage($data)}} <div>
+                                            <svg class="ml-2 inline-block" width="16" height="16">
+                                                <use href="./images/sprite-icons.svg#bag-outline-tour-detail"></use>
+                                            </svg>
+                                            <span>میزان بار مجاز: @info.luggage@ Kg </span>
+                                        </div>
+                                        <div>
+                                            <svg class="ml-2 inline-block" width="16" height="16">
+                                                <use href="./images/sprite-icons.svg#seat-outline-tour-detail"></use>
+                                            </svg>
+                                            <span>کلاس: @info.class@ </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex gap-x-1 items-center ">
+                                <svg width="16" height="16"><use href="./images/sprite-icons.svg#location-bold-tour-detail"></use>
+                                </svg>
+                                <h2 id="origin-departure-tour" class="text-lg text-txtneutral-900 font-yekanbakhsemiboldFA ">
+
+                                </h2>
+                            </div>
+                        </div>
                                     </div>                                
                                 </script>
                             </face>
@@ -381,9 +434,54 @@
                             <face>
                                 <script type="text/template">
                                     <div class="flex min-h-[152px] items-center my-8 relative">
-                                        <div class="mx-6 execution__details__path__item__details flex items-center gap-x-1"><svg class="inline-block ml-1" width="16" height="16"><use href="./images/sprite-icons.svg#timer-icon-tour"></use></svg><span class="__times__start absolute top-0 font-yekanbakhregularFA text-xs text-txtneutral-900">@info.departure.time@</span><span class="__times__duration font-yekanbakhregularFA text-[10px] text-txtneutral-500 ">@info.time@ دقیقه</span></div><div class="flex flex-col justify-center gap-2"><div class="flex gap-x-1 items-center "><svg width="16" height="16"><use href="./images/sprite-icons.svg#airplane-bold-tour-detail"></use></svg><h2 
-                                            
-                                            class="text-lg text-txtneutral-900 font-yekanbakhsemiboldFA details__city">@info.city.name@</h2></div><div class="flex min-h-[104px] border-r border-txtneutral-400 border-dashed pr-3 items-center mr-2 "><div><span class="h-8 leading-8 block font-yekanbakhregularFA text-xs ">فرودگاه مبدا</span><div class="h-8 leading-8 block text-txtneutral-500 font-yekanbakhregularFA text-xs">@info.origin.name@ </div></div><svg class="block mx-4 mt-8" width="16" height="16"><use href="./images/sprite-icons.svg#arrow-left-tour-detail"></use></svg><div><span class="h-8 leading-8 block font-yekanbakhregularFA text-xs ">فرودگاه مقصد</span><div class="h-8 leading-8 block text-txtneutral-500 font-yekanbakhregularFA text-xs">@info.destination.name@ ></div></div><div><span class="h-8 leading-8 block font-yekanbakhregularFA text-xs pr-4"><span class="ml-1">{{ return await renderTransportationName($data)}} </span></span><div class="h-8 leading-8 flex gap-x-2 text-txtneutral-500 font-yekanbakhregularFA text-xs border-r border-neutralcolor-800 pr-4 mr-2">{{ return await renderTransportationImage($data)}} <div><svg class="ml-2 inline-block" width="16" height="16"><use href="./images/sprite-icons.svg#bag-outline-tour-detail"></use></svg><span>میزان بار مجاز: @info.luggage@ Kg </span></div><div><svg class="ml-2 inline-block" width="16" height="16"><use href="./images/sprite-icons.svg#seat-outline-tour-detail"></use></svg><span>کلاس: @info.class@ </span></div></div></div></div><div class="flex gap-x-1 items-center "><svg width="16" height="16"><use href="./images/sprite-icons.svg#location-bold-tour-detail"></use></svg><h2 class=" text-lg text-txtneutral-900 font-yekanbakhsemiboldFA " id="destination-departure-tour"></h2></div></div>
+                                        <div class="mx-6 execution__details__path__item__details flex items-center gap-x-1">
+                                            <svg class="inline-block ml-1" width="16" height="16">
+                                                <use href="./images/sprite-icons.svg#timer-icon-tour"></use>
+                                            </svg>
+                                            <span class="__times__start absolute top-0 font-yekanbakhregularFA text-xs text-txtneutral-900">@info.departure.time@</span>
+                                            <span class="__times__duration font-yekanbakhregularFA text-[10px] text-txtneutral-500 ">@info.time@ دقیقه</span></div><div class="flex flex-col justify-center gap-2">
+                                                <div class="flex gap-x-1 items-center ">
+                                                    <svg width="16" height="16">
+                                                        <use href="./images/sprite-icons.svg#airplane-bold-tour-detail">
+
+                                                        </use>
+                                                    </svg>
+                                                    <h2 class="text-lg text-txtneutral-900 font-yekanbakhsemiboldFA details__city">@info.city.name@</h2>
+                                                </div>
+                                                    <div class="flex min-h-[104px] border-r border-txtneutral-400 border-dashed pr-3 items-center mr-2 ">
+                                                        <div>
+                                                            <span class="h-8 leading-8 block font-yekanbakhregularFA text-xs ">فرودگاه مبدا</span>
+                                                            <div class="h-8 leading-8 block text-txtneutral-500 font-yekanbakhregularFA text-xs">@info.origin.name@ </div>
+                                                        </div>
+                                                            <svg class="block mx-4 mt-8" width="16" height="16"><use href="./images/sprite-icons.svg#arrow-left-tour-detail"></use>
+                                                            </svg>
+                                                            <div>
+                                                                <span class="h-8 leading-8 block font-yekanbakhregularFA text-xs ">فرودگاه مقصد</span>
+                                                                <div class="h-8 leading-8 block text-txtneutral-500 font-yekanbakhregularFA text-xs">@info.destination.name@ ></div>
+                                                            </div>
+                                                            <div>
+                                                                <span class="h-8 leading-8 block font-yekanbakhregularFA text-xs pr-4">
+                                                                    <span class="ml-1">{{ return await renderTransportationName($data)}} </span>
+                                                                </span>
+                                                                    <div class="h-8 leading-8 flex gap-x-2 text-txtneutral-500 font-yekanbakhregularFA text-xs border-r border-neutralcolor-800 pr-4 mr-2">{{ return await renderTransportationImage($data)}} <div>
+                                                                        <svg class="ml-2 inline-block" width="16" height="16">
+                                                                            <use href="./images/sprite-icons.svg#bag-outline-tour-detail"></use></svg>
+                                                                            <span>میزان بار مجاز: @info.luggage@ Kg </span>
+                                                                        </div>
+                                                                            <div>
+                                                                                <svg class="ml-2 inline-block" width="16" height="16"><use href="./images/sprite-icons.svg#seat-outline-tour-detail"></use></svg>
+                                                                                <span>کلاس: @info.class@ </span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="flex gap-x-1 items-center ">
+                                                                    <svg width="16" height="16">
+                                                                        <use href="./images/sprite-icons.svg#location-bold-tour-detail"></use>
+                                                                    </svg>
+                                                                    <h2 class=" text-lg text-txtneutral-900 font-yekanbakhsemiboldFA " id="destination-departure-tour"></h2>
+                                                                </div>
+                                                            </div>
                                     </div>
                                 </script>
                             </face>

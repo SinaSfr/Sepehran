@@ -44,71 +44,95 @@ const callbackSourceExecutionPlanTypesView = async (args) => {
   }
 };
 
-// const onProcessedHotelsImg = async (args) => {
-//   console.log(args);
-//   try {
-//     const response = args.response;
-//     if (response.status === 200) {
-//       const responseJson = await response.json();
-//       if (!responseJson) return;
+const onProcessedHotelsImg = async (args) => {
+  console.log(args);
+  try {
+    const response = args.response;
+    if (response.status === 200) {
+      const responseJson = await response.json();
+      if (!responseJson) return;
 
-//       document
-//         .querySelectorAll(".tourInventory__details__item__img")
-//         .forEach((img) => {
-//           const pageName = img.dataset.pagename;
-//           const hotelId = parseInt(img.dataset.id);
+      document
+        .querySelectorAll(".tourInventory__details__item__img")
+        .forEach((img) => {
+          const pageName = img.dataset.pagename;
+          const hotelId = parseInt(img.dataset.id);
 
-//           console.log(`Checking hotelId: ${hotelId}`);
+          console.log(`Checking hotelId: ${hotelId}`);
 
-//           const matched = responseJson.find(
-//             (item) => parseInt(item.usedforid) === hotelId
-//           );
+          const matched = responseJson.find(
+            (item) => parseInt(item.usedforid) === hotelId
+          );
 
-//           if (!matched) {
-//             console.warn(`No matched image for hotelId ${hotelId}`);
-//             return;
-//           }
+          if (!matched) {
+            console.warn(`No matched image for hotelId ${hotelId}`);
+            return;
+          }
 
-//           console.log(`Matched image for ${hotelId}:`, matched);
+          console.log(`Matched image for ${hotelId}:`, matched);
 
-//           // آپدیت تصویر
-//           img.src = `/${matched.originalImage}`;
+          img.src = `/${matched.originalImage}`;
+        });
+    }
+  } catch (err) {
+    console.error(
+      "onProcessedHotelsImg=" + (err.lineNumber || "-") + "," + err.message
+    );
+  }
+};
 
-//           // اگر والد مستقیم تصویر لینک نیست، wrap کنیم
-//           if (img.parentElement.tagName.toLowerCase() !== "a") {
-//             const figure = img.closest("figure");
-//             const figcaption = figure
-//               ? figure.querySelector("figcaption")
-//               : null;
+const renderTransportationImage = async (element) => {
+  try {
+    if (element) {
+      if (element.info.transportation.id) {
+        return ` <img src="" data-id="${element.info.transportation.id}"
+                  class="transportation__img h-10 object-cover" alt="${element.info.transportation.name}" width="135"
+                    height="40" loading="lazy" />`;
+      }
+    }
+  } catch (err) {
+    console.error(
+      "renderTransportationName=" + err.lineNumber + "," + err.message
+    );
+  }
+};
 
-//             const imgClone = img.cloneNode(true);
-//             const a = document.createElement("a");
-//             a.href = `/${pageName}?id=${hotelId}`;
-//             a.appendChild(imgClone);
-//             if (figcaption) a.appendChild(figcaption.cloneNode(true));
-
-//             figure.innerHTML = "";
-//             figure.appendChild(a);
-
-//             // const a = document.createElement("a");
-//             // a.href = `/${pageName}?id=${hotelId}`;
-
-//             // a.appendChild(img);
-//             // if (figcaption) a.appendChild(figcaption);
-
-//             // if (figure) {
-//             //     figure.innerHTML = "";
-//             //     figure.appendChild(a);
-//             // }
-//           }
-//         });
-//     }
-//   } catch (err) {
-//     console.error(
-//       "onProcessedHotelsImg=" + (err.lineNumber || "-") + "," + err.message
-//     );
-//   }
-// };
+const onProcessedAirlinesOriginsImg = async (args) => {
+  const response = args.response;
+  if (response.status == 200) {
+    const responseJson = await response.json();
+    if (responseJson) {
+      document
+        .querySelector(".tourExecution__container__origins")
+        .querySelectorAll(".transportation__img")
+        .forEach((e) => {
+          for (const item of responseJson) {
+            if (parseInt(e.dataset.id) == parseInt(item.usedforid)) {
+              e.setAttribute("src", `/${item.originalImage}`);
+            }
+          }
+        });
+    }
+  }
+};
+const onProcessedAirlinesDestinationsImg = async (args) => {
+  const response = args.response;
+  if (response.status == 200) {
+    const responseJson = await response.json();
+    if (responseJson) {
+      document
+        .querySelector(".tourExecution__container__destinations")
+        .querySelectorAll(".transportation__img")
+        .forEach((e) => {
+          for (const item of responseJson) {
+            if (parseInt(e.dataset.id) == parseInt(item.usedforid)) {
+              e.setAttribute("src", `/${item.originalImage}`);
+            }
+          }
+        });
+    }
+  }
+};
 
 const onrenderedInventoryView = async () => {
   try {
@@ -177,8 +201,10 @@ const renderHotels = async (element, type) => {
           <div class="flex items-stretch justify-between w-full" data-index="${index}">
             <div class="flex items-center gap-6">
               <div class="shadow-card-shadow">
-                <img src="${img}"
-                  class="h-40 object-cover rounded-xl" alt="" width="253" height="164"
+                <img src="${img}" data-id="${
+          hotel.hotelid
+        }" data-pageName="${pageName}"
+                  class="tourInventory__details__item__img h-40 object-cover rounded-xl" alt="" width="253" height="164"
                   loading="lazy" />
               </div>
               <div class="flex flex-col gap-3">
@@ -195,13 +221,17 @@ const renderHotels = async (element, type) => {
                 </div>
                 <div class="flex items-center gap-3">
                   <div class="flex flex-col gap-2 items-center bg-gray-50 p-2 rounded-lg">
-                    <span class="font-semibold text-sm hotel-card-service">B.B</span>
-                    <span class="text-xs font-light">breakfast &amp; bed</span>
+                    <span class="font-semibold text-sm hotel-card-service">${escapeHtml(
+                      serviceHTML.service
+                    )}</span>
+                    <span class="text-xs font-light">${escapeHtml(
+                      serviceHTML.english
+                    )}</span>
                   </div>
                   <span class="text-xs font-light w-2/5 leading-5" data-value="${escapeHtml(
                     hotel.service.vid
                   )}">
-                    ${escapeHtml(serviceHTML)}
+                    ${escapeHtml(serviceHTML.title)}
                   </span>
                 </div>
               </div>
@@ -308,56 +338,70 @@ const renderPriceInfo = async (element, type) => {
   }
 };
 
+const serviceDefinitions = {
+  0: { code: "-", titleFa: "", titleEn: "" },
+  1654: { code: "O.R", titleFa: "بدون وعده غذایی", titleEn: "Room Only" },
+  1655: {
+    code: "B.B",
+    titleFa: "همراه یک وعده صبحانه در روز",
+    titleEn: "Breakfast & Bed",
+  },
+  1656: {
+    code: "H.B",
+    titleFa: "همراه دو وعده غذایی صبحانه و شام",
+    titleEn: "Breakfast & Dinner",
+  },
+  1657: {
+    code: "F.B",
+    titleFa: "همراه سه وعده غذایی صبحانه و ناهار و شام",
+    titleEn: "Breakfast, Lunch & Dinner",
+  },
+  1658: {
+    code: "ALL",
+    titleFa: "تمام وعده‌های غذایی و امکانات هتل",
+    titleEn: "All Inclusive",
+  },
+  1659: {
+    code: "U.ALL",
+    titleFa:
+      "تمام وعده‌های غذایی و امکانات هتل در هر زمان از اقامت بدون محدودیت",
+    titleEn: "Ultra All Inclusive",
+  },
+  1660: {
+    code: "Maximum All Inclusive",
+    titleFa:
+      "تمام وعده‌های غذایی و امکانات هتل در هر زمان از اقامت بدون محدودیت",
+    titleEn: "Maximum All Inclusive",
+  },
+};
+
 const renderServiceHotel = async (element) => {
   try {
-    if (element) {
-      switch (parseInt(element.service.vid)) {
-        case 0:
-          sevice = "-";
-          title = "";
-          break;
+    if (element && element.service && element.service.vid) {
+      const vid = parseInt(element.service.vid);
+      const service = serviceDefinitions[vid];
 
-        case 1654:
-          sevice = "O.R";
-          title = "بدون وعده غذایی";
-          break;
-
-        case 1655:
-          sevice = "B.B";
-          title = "همراه یک وعده صبحانه در روز";
-          break;
-
-        case 1656:
-          sevice = "H.B";
-          title = "همراه دو وعده غذایی صبحانه و شام ";
-          break;
-
-        case 1657:
-          sevice = "F.B";
-          title = "همراه سه وعده غذایی صبحانه و ناهار و شام";
-          break;
-
-        case 1658:
-          sevice = "ALL";
-          title = "تمام وعده های غذایی و امکانات هتل";
-          break;
-
-        case 1659:
-          sevice = "U.ALL";
-          title =
-            "تمام وعده های غذایی و امکانات هتل در هر زمان از اقامت بدون محدودیت";
-          break;
-
-        case 1660:
-          sevice = "Maximum All Inclusive";
-          title =
-            "تمام وعده های غذایی و امکانات هتل در هر زمان از اقامت بدون محدودیت";
-          break;
+      if (service) {
+        return {
+          service: service.code,
+          title: service.titleFa,
+          english: service.titleEn,
+        };
       }
-      return `${sevice}${title}`;
     }
+
+    return {
+      service: "-",
+      title: "",
+      english: "",
+    };
   } catch (err) {
     console.error("renderServiceHotel=" + err.lineNumber + "," + err.message);
+    return {
+      service: "-",
+      title: "",
+      english: "",
+    };
   }
 };
 
@@ -392,17 +436,13 @@ const renderHotelRate = async (element) => {
 
 const onrenderedExecutionOrigins = async () => {
   try {
-    if (
-      document
-        .querySelector(".tourExecution__container__origins")
-        .querySelectorAll(".execution__details__path__item")[0]
-    ) {
-      document
-        .querySelector(".tourExecution__container__origins")
-        .querySelector(".origins__city").textContent = document
-        .querySelector(".tourExecution__container__origins")
-        .querySelectorAll(".execution__details__path__item")[0]
-        .querySelector(".details__city").textContent;
+    const originElement = document.querySelector(
+      ".tourExecution__container__origins .execution__details__path__item .details__city"
+    );
+    if (originElement) {
+      let origin = originElement.textContent;
+      console.log(origin);
+
       let ids = [];
       document
         .querySelector(".tourExecution__container__origins")
@@ -413,10 +453,7 @@ const onrenderedExecutionOrigins = async () => {
           }
         });
       if (ids.length > 0) {
-        $bc.setSource("db.airlinesOriginsGallery", {
-          ids: ids,
-          run: true,
-        });
+        $bc.setSource("db.airlinesOriginsGallery", { ids: ids, run: true });
       }
     }
   } catch (err) {
@@ -428,17 +465,13 @@ const onrenderedExecutionOrigins = async () => {
 
 const onrenderedExecutionDestinations = async () => {
   try {
-    if (
-      document
-        .querySelector(".tourExecution__container__destinations")
-        .querySelectorAll(".execution__details__path__item")[0]
-    ) {
-      document
-        .querySelector(".tourExecution__container__destinations")
-        .querySelector(".destinations__city").textContent = document
-        .querySelector(".tourExecution__container__destinations")
-        .querySelectorAll(".execution__details__path__item")[0]
-        .querySelector(".details__city").textContent;
+    const destinationElement = document.querySelector(
+      ".tourExecution__container__destinations .execution__details__path__item .details__city"
+    );
+    if (destinationElement) {
+      let destination = destinationElement.textContent;
+      console.log(destination);
+
       let ids = [];
       document
         .querySelector(".tourExecution__container__destinations")
@@ -474,6 +507,59 @@ document.addEventListener("DOMContentLoaded", function () {
       } else {
         li.remove();
       }
+    }
+  });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  function toPersianOrdinal(num) {
+    const map = {
+      1: "اول",
+      2: "دوم",
+      3: "سوم",
+      4: "چهارم",
+      5: "پنجم",
+      6: "ششم",
+      7: "هفتم",
+      8: "هشتم",
+      9: "نهم",
+      10: "دهم",
+      11: "یازدهم",
+      12: "دوازدهم",
+      13: "سیزدهم",
+      14: "چهاردهم",
+      15: "پانزدهم",
+      16: "شانزدهم",
+      17: "هفدهم",
+      18: "هجدهم",
+      19: "نوزدهم",
+      20: "بیستم",
+    };
+    return map[num] || num + "‌ام";
+  }
+
+  const wrappers = document.querySelectorAll(".travel-wrapper");
+
+  wrappers.forEach((wrapper, index) => {
+    const title = wrapper.querySelector(".travel-title");
+    if (title) {
+      title.textContent = `روز ${toPersianOrdinal(index + 1)}`;
+    }
+  });
+});
+
+document.querySelectorAll("nav li[data-target]").forEach((item) => {
+  item.addEventListener("click", (e) => {
+    e.preventDefault();
+    const targetId = item.getAttribute("data-target");
+    const targetEl = document.querySelector(targetId);
+
+    if (targetEl) {
+      const yOffset = -100;
+      const y =
+        targetEl.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+      window.scrollTo({ top: y, behavior: "smooth" });
     }
   });
 });

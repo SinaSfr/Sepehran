@@ -644,13 +644,24 @@
             <div class="flex-1 min-w-0">
                 <nav class="sticky top-0 h-fit z-50 bg-gray-50 py-6 px-14 rounded-xl mb-10">
                     <ul class="flex items-center justify-between">
-                        <li class="font-extrabold transition-all duration-300 hover:text-primary-500">هتل ها</li>
-                        <li class="font-extrabold transition-all duration-300 hover:text-primary-500">برنامه سفر
-                        </li>
-                        <li class="font-extrabold transition-all duration-300 hover:text-primary-500">خدمات تور</li>
-                        <li class="font-extrabold transition-all duration-300 hover:text-primary-500">توضیحات</li>
-                        <li class="font-extrabold transition-all duration-300 hover:text-primary-500">نظرات</li>
-                        <li class="font-extrabold transition-all duration-300 hover:text-primary-500">تور مشابه</li>
+                        <li data-target="#hotels"
+                            class="font-extrabold transition-all duration-300 hover:text-primary-500 cursor-pointer">هتل
+                            ها</li>
+                        <li data-target="#plan"
+                            class="font-extrabold transition-all duration-300 hover:text-primary-500 cursor-pointer">
+                            برنامه سفر</li>
+                        <li data-target="#services"
+                            class="font-extrabold transition-all duration-300 hover:text-primary-500 cursor-pointer">
+                            خدمات تور</li>
+                        <li data-target="#description"
+                            class="font-extrabold transition-all duration-300 hover:text-primary-500 cursor-pointer">
+                            توضیحات</li>
+                        <li data-target="#comments"
+                            class="font-extrabold transition-all duration-300 hover:text-primary-500 cursor-pointer">
+                            نظرات</li>
+                        <li data-target="#similar"
+                            class="font-extrabold transition-all duration-300 hover:text-primary-500 cursor-pointer">تور
+                            مشابه</li>
                     </ul>
                 </nav>
                 <section>
@@ -658,7 +669,7 @@
                         <svg width="38" height="38">
                             <use href="./images/sprite-icons.svg#icon-house"></use>
                         </svg>
-                        <h2 class="text-[36px] font-extrabold">هتل ها</h2>
+                        <h2 id="hotels" class="text-[36px] font-extrabold">هتل ها</h2>
                     </div>
                     <basis core="print" datamembername="api.inventoryView" run="atclient"
                         onrendered="onrenderedInventoryView">
@@ -728,82 +739,119 @@
                 </section>
 
                 <section class="mt-10 tourExecution__container">
-                    <div class="inline-flex items-center gap-2 border-b-4 border-primary-500 mb-8">
-                        <svg width="38" height="38">
-                            <use href="./images/sprite-icons.svg#icon-gray-compass"></use>
-                        </svg>
-                        <h2 class="text-[36px] font-extrabold">شروع سفر</h2>
+                    <div class="tourExecution__container__origins">
+                        <div class="inline-flex items-center gap-2 border-b-4 border-primary-500 mb-8">
+                            <svg width="38" height="38">
+                                <use href="./images/sprite-icons.svg#icon-gray-compass"></use>
+                            </svg>
+                            <h2 id="plan" class="text-[36px] font-extrabold">شروع سفر</h2>
+                        </div>
+
+                        <div class="execution__details__path__item flex flex-col gap-8">
+                                <basis core="print" datamembername="refresh.executionPlanTypesOrigins"
+                                    if="{##refresh.executionPlanTypesOrigins##}" run="atclient"
+                                    onrendered="onrenderedExecutionOrigins">
+                                    <layout>
+                                        <script type="text/template">
+                                    <div class="">
+                                        @child
+                                    </div>
+                                    </script>
+                                    </layout>
+                                    <face>
+                                        <script type="text/template">
+                                    <div class="execution__details__path__item__details flex items-center gap-14">
+                                        <div class="flex items-center gap-6">
+                                            <div class="flex flex-col items-center gap-2">
+                                                {{ return await renderTransportationImage($data)}}
+                                                <span class="font-light text-xs">شماره پرواز : <span>W5112</span></span>
+                                            </div>
+                                            <div class="flex flex-col items-center gap-1 bg-gray-50 rounded-lg px-3">
+                                                <span
+                                                    class="text-primary-500 font-extrabold origins__city details__city">@info.city.name@</span>
+                                                <span class="text-primary-500 font-extrabold">@info.origin.name@</span>
+                                                <span class="text-primary-500 font-extrabold">@info.departure.time@</span>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-col items-center gap-px">
+                                            <span class="text-xs font-light h-0">زمان سفر : <span>@info.time@
+                                                    دقیقه</span></span>
+                                            <div class="relative">
+                                                <svg width="488" height="59">
+                                                    <use href="./images/sprite-icons.svg#icon-plane-airline"></use>
+                                                </svg>
+                                                <span
+                                                    class="absolute top-5 -left-2 right-0 mx-auto bg-secondary-500 w-4 h-4 rounded-full"></span>
+                                            </div>
+                                            <span class="text-sm -mt-5 mr-2">1st</span>
+                                        </div>
+                                        <div class="flex flex-col items-center gap-1 bg-gray-50 rounded-lg px-3">
+                                            <span class="font-extrabold details__city">@info.city.name@</span>
+                                            <span class="font-extrabold">@info.destination.name@</span>
+                                            <span class="font-extrabold">@info.departure.time@</span>
+                                        </div>
+                                    </div>
+                                    </script>
+                                    </face>
+                                </basis>
+                        </div>
                     </div>
 
-                    <div class="flex flex-col gap-8">
-                        <div class="tourExecution__container__origins">
-                            <div class="execution__details__path__item flex items-center gap-14">
-                                <div class="flex items-center gap-6">
-                                    <div class="flex flex-col items-center gap-2">
-                                        <img src="[##cms.cms.cdn##]/images/turkish-airline.png"
-                                            class="transportation__img h-10 object-cover" alt="" width="135" height="40"
-                                            loading="lazy" />
-                                        <span class="font-light text-xs">شماره پرواز : <span>W5112</span></span>
-                                    </div>
-                                    <div class="flex flex-col items-center gap-1 bg-gray-50 rounded-lg px-3">
-                                        <span
-                                            class="text-primary-500 font-extrabold origins__city details__city">تهران</span>
-                                        <span class="text-primary-500 font-extrabold">IKA</span>
-                                        <span class="text-primary-500 font-extrabold">06:30</span>
-                                    </div>
-                                </div>
-                                <div class="flex flex-col items-center gap-px">
-                                    <span class="text-xs font-light h-0">زمان سفر : <span>6 ساعت و 30
-                                            دقیقه</span></span>
-                                    <div class="relative">
-                                        <svg width="488" height="59">
-                                            <use href="./images/sprite-icons.svg#icon-plane-airline"></use>
-                                        </svg>
-                                        <span
-                                            class="absolute top-5 -left-2 right-0 mx-auto bg-secondary-500 w-4 h-4 rounded-full"></span>
-                                    </div>
-                                    <span class="text-sm -mt-5 mr-2">1st</span>
-                                </div>
-                                <div class="flex flex-col items-center gap-1 bg-gray-50 rounded-lg px-3">
-                                    <span class="font-extrabold">تونس</span>
-                                    <span class="font-extrabold">TUN</span>
-                                    <span class="font-extrabold">16:25</span>
-                                </div>
-                            </div>
+                    <div class="tourExecution__container__destinations mt-16">
+                        <div class="inline-flex items-center gap-2 border-b-4 border-primary-500 mb-8">
+                            <svg width="38" height="38">
+                                <use href="./images/sprite-icons.svg#icon-gray-compass"></use>
+                            </svg>
+                            <h2 class="text-[36px] font-extrabold">پایان سفر</h2>
                         </div>
-                        <div class="tourExecution__container__destinations">
-                            <div class="execution__details__path__item flex items-center gap-14">
-                                <div class="flex items-center gap-6">
-                                    <div class="flex flex-col gap-2 items-center">
-                                        <img src="[##cms.cms.cdn##]/images/turkish-airline.png"
-                                            class="transportation__img h-10 object-cover" alt="" width="135" height="40"
-                                            loading="lazy" />
-                                        <span class="font-light text-xs">شماره پرواز : <span>W5112</span></span>
+
+                        <div class="execution__details__path__item flex flex-col gap-8">
+                                <basis core="print" datamembername="refresh.executionPlanTypesDestinations"
+                            if="{##refresh.executionPlanTypesDestinations##}" run="atclient"
+                            onrendered="onrenderedExecutionDestinations">
+                                    <layout>
+                                        <script type="text/template">
+                                    <div class="">
+                                        @child
                                     </div>
-                                    <div class="flex flex-col items-center gap-1 bg-gray-50 rounded-lg px-3">
-                                        <span class="text-primary-500 font-extrabold details__city">تهران</span>
-                                        <span class="text-primary-500 font-extrabold">IKA</span>
-                                        <span class="text-primary-500 font-extrabold">06:30</span>
+                                    </script>
+                                    </layout>
+                                    <face>
+                                        <script type="text/template">
+                                    <div class="execution__details__path__item__details flex items-center gap-14">
+                                        <div class="flex items-center gap-6">
+                                            <div class="flex flex-col items-center gap-2">
+                                                {{ return await renderTransportationImage($data)}}
+                                                <span class="font-light text-xs">شماره پرواز : <span>W5112</span></span>
+                                            </div>
+                                            <div class="flex flex-col items-center gap-1 bg-gray-50 rounded-lg px-3">
+                                                <span
+                                                    class="text-primary-500 font-extrabold origins__city details__city">@info.city.name@</span>
+                                                <span class="text-primary-500 font-extrabold">@info.origin.name@</span>
+                                                <span class="text-primary-500 font-extrabold">@info.departure.time@</span>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-col items-center gap-px">
+                                            <span class="text-xs font-light h-0">زمان سفر : <span>@info.time@
+                                                    دقیقه</span></span>
+                                            <div class="relative">
+                                                <svg width="488" height="59">
+                                                    <use href="./images/sprite-icons.svg#icon-plane-airline"></use>
+                                                </svg>
+                                                <span
+                                                    class="absolute top-5 -left-2 right-0 mx-auto bg-secondary-500 w-4 h-4 rounded-full"></span>
+                                            </div>
+                                            <span class="text-sm -mt-5 mr-2">1st</span>
+                                        </div>
+                                        <div class="flex flex-col items-center gap-1 bg-gray-50 rounded-lg px-3">
+                                            <span class="font-extrabold details__city">@info.city.name@</span>
+                                            <span class="font-extrabold">@info.destination.name@</span>
+                                            <span class="font-extrabold">@info.departure.time@</span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="flex flex-col items-center gap-px">
-                                    <span class="text-xs font-light h-0">زمان سفر : <span>6 ساعت و 30
-                                            دقیقه</span></span>
-                                    <div class="relative">
-                                        <svg width="488" height="59">
-                                            <use href="./images/sprite-icons.svg#icon-plane-airline"></use>
-                                        </svg>
-                                        <span
-                                            class="absolute top-5 -left-2 right-0 mx-auto bg-secondary-500 w-4 h-4 rounded-full"></span>
-                                    </div>
-                                    <span class="text-sm -mt-5 mr-2">1st</span>
-                                </div>
-                                <div class="flex flex-col items-center gap-1 bg-gray-50 rounded-lg px-3">
-                                    <span class="font-extrabold">تونس</span>
-                                    <span class="font-extrabold">TUN</span>
-                                    <span class="font-extrabold">16:25</span>
-                                </div>
-                            </div>
+                                    </script>
+                                    </face>
+                                </basis>
                         </div>
                     </div>
                     <basis core="print" datamembername="db.tour-view-travelplan">
@@ -824,7 +872,7 @@
                                             <svg width="32" height="32" class="hidden white-sun">
                                                 <use href="./images/sprite-icons.svg#icon-white-sun"></use>
                                             </svg>
-                                            <h2 class="font-extrabold text-2xl text-zinc-900">@text</h2>
+                                            <h2 class="font-extrabold text-2xl text-zinc-900 travel-title"></h2>
                                         </div>
 
                                         <svg class="flex-shrink-0 travel-btn transition-all duration-300" width="33"
@@ -881,7 +929,7 @@
                                 <svg width="38" height="38">
                                     <use href="./images/sprite-icons.svg#icon-shopping"></use>
                                 </svg>
-                                <h2 class="text-[36px] font-extrabold">خدمات تور:</h2>
+                                <h2 id="services" class="text-[36px] font-extrabold">خدمات تور:</h2>
                             </div>
                             <div class="flex flex-wrap gap-6 p-8">
                                 <!-- items -->
@@ -910,7 +958,7 @@
                         <svg width="38" height="38">
                             <use href="./images/sprite-icons.svg#icon-tour-information"></use>
                         </svg>
-                        <h2 class="text-[36px] font-extrabold">توضیحات تور:</h2>
+                        <h2 id="description" class="text-[36px] font-extrabold">توضیحات تور:</h2>
                     </div>
                     <div class="relative content-container max-h-[480px] overflow-hidden transition-all duration-500">
                         <div
@@ -956,7 +1004,7 @@
                         <svg width="38" height="38">
                             <use href="./images/sprite-icons.svg#icon-pen"></use>
                         </svg>
-                        <h2 class="text-[36px] font-extrabold">نظرات کاربران:</h2>
+                        <h2 id="comments" class="text-[36px] font-extrabold">نظرات کاربران:</h2>
                     </div>
                     <div class="bg-white mb-11">
                         <div class="flex items-center gap-8 mb-3">
@@ -1110,7 +1158,7 @@
 
                 <section class="relative bg-primary-50 px-6 pt-8 pb-4 rounded-2xl mt-11 mb-24">
                     <div class="flex items-center justify-between mb-4">
-                        <h2 class="text-[36px] font-extrabold">تور های مشابه</h2>
+                        <h2 id="similar" class="text-[36px] font-extrabold">تور های مشابه</h2>
                         <a href=""
                             class="group flex items-center justify-center gap-3 rounded-lg px-4 py-2 text-sm font-extrabold bg-white transition-all duration-300 hover:text-white hover:bg-primary-500 hover:shadow-small-btn-shadow">مشاهده
                             همه
