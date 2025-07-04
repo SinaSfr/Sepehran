@@ -65,7 +65,7 @@
         postsql="select * from [db.tour-view-travelplan] where Question in('برنامه سفر')" />
     <member name="tour-view-airline" type="view"
         postsql="select * from [db.tour-view-airline] where Question in('شرکت های هواپیمایی')" />
-    <member name="tour-related" type="list" blgid="18" propertyid="10000504,8077,8181,8076" typeid="159"
+    <member name="tour-related" type="list" blgid="18" propertyid="3087934,10000504,8181,8076" typeid="159"
         link="tour.bc" />
 </basis>
 <basis core="dbsource" source="basiscore" mid="1" name="db" lid="1" schemaid="987" term="[##cms.query.term##]">
@@ -973,10 +973,6 @@
                             </face>
                         </basis>
 
-                        <img src="[##cms.cms.cdn##]/images/special-tour-card.jpg"
-                            class="content-image w-full h-[504px] rounded-xl" alt="" width="864" height="504"
-                            loading="lazy" />
-
                         <button
                             class="group see-more absolute bottom-6 left-0 right-0 mx-auto z-10 flex items-center justify-center gap-2 w-40 h-11 text-white rounded-xl bg-primary-500 transition-all duration-300 hover:shadow-small-btn-shadow">
                             <span class="see-more-text">مشاهده همه</span>
@@ -999,7 +995,7 @@
 
                 </section>
 
-                <section class="mt-11">
+                <section class="mt-11 mb-24">
                     <div class="inline-flex items-center gap-2 border-b-4 border-primary-500 mb-6">
                         <svg width="38" height="38">
                             <use href="./images/sprite-icons.svg#icon-pen"></use>
@@ -1156,10 +1152,12 @@
                     </div>
                 </section>
 
+                <basis core="list" datamembername="db.tour-related">
+                    <layout>
                 <section class="relative bg-primary-50 px-6 pt-8 pb-4 rounded-2xl mt-11 mb-24">
                     <div class="flex items-center justify-between mb-4">
                         <h2 id="similar" class="text-[36px] font-extrabold">تور های مشابه</h2>
-                        <a href=""
+                        <a href="/tours"
                             class="group flex items-center justify-center gap-3 rounded-lg px-4 py-2 text-sm font-extrabold bg-white transition-all duration-300 hover:text-white hover:bg-primary-500 hover:shadow-small-btn-shadow">مشاهده
                             همه
                             <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
@@ -1192,229 +1190,220 @@
                     </div>
                     <div class="swiper swiper-same-tour pb-4">
                         <!-- Additional required wrapper -->
-                        <div class="swiper-wrapper">
-                            <!-- Slides -->
-                            <div class="swiper-slide">
-                                <div class="border border-gray-50 rounded-xl bg-white shadow-medium-btn-shadow p-6">
-                                    <div class="relative rounded-xl overflow-hidden shadow-soft-deep">
-                                        <img src="[##cms.cms.cdn##]/images/special-tour-card.jpg"
-                                            class="w-full h-44 object-cover" alt="destination-card" width="344"
-                                            height="176" loading="lazy" />
-                                        <span
-                                            class="absolute left-0 bottom-0 text-sm font-bold py-2 px-4 bg-amber-400 rounded-tr">امکان
-                                            پرداخت اقساطی</span>
-                                    </div>
-                                    <h2 class="text-2xl font-extrabold mt-8 text-center">
-                                        تور ویژه تایلند 7 روز و 6 شب
-                                    </h2>
-                                    <div class="flex items-center justify-between mt-3">
-                                        <span class="flex items-center gap-1 text-sm font-bold text-primary-500">
-                                            <svg width="24" height="24" class="group-hover:hidden">
-                                                <use href="./images/sprite-icons.svg#icon-sun"></use>
-                                            </svg>
-                                            7 روزه
-                                        </span>
-                                        <span class="flex items-center gap-1 text-sm font-bold text-primary-500">
-                                            <svg width="24" height="24" class="group-hover:hidden">
-                                                <use href="./images/sprite-icons.svg#icon-flash"></use>
-                                            </svg>
-                                            ترکیش ایرلاین
-                                        </span>
-                                        <span class="flex items-center gap-1 text-sm font-bold text-primary-500">
-                                            <svg width="24" height="24" class="group-hover:hidden">
-                                                <use href="./images/sprite-icons.svg#icon-blue-star">
-                                                </use>
-                                            </svg>
-                                            4 ستاره
-                                        </span>
-                                    </div>
-                                    <div class="flex justify-between mt-6 h-full">
-                                        <div class="flex flex-col justify-between h-[73px]">
-                                            <span class="text-xs font-light">شروع قیمت از:</span>
-                                            <span class="flex items-center gap-2 text-sm font-bold"><span
-                                                    class="text-2xl text-primary-500 font-extrabold">68.900.000</span>
-                                                تومان</span>
-                                        </div>
-                                        <a href=""
-                                            class="flex items-center justify-center gap-2 border border-gray-100 rounded-xl w-[170px] h-[73px]">
-                                            اطلاعات بیشتر
-                                            <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M15 6.15674L9 12.1567L15 18.1567" stroke="#1E2128" />
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="border border-gray-50 rounded-xl bg-white shadow-medium-btn-shadow p-6">
-                                    <div class="relative rounded-xl overflow-hidden shadow-soft-deep">
-                                        <img src="[##cms.cms.cdn##]/images/special-tour-card.jpg"
-                                            class="w-full h-44 object-cover" alt="destination-card" width="344"
-                                            height="176" loading="lazy" />
-                                        <span
-                                            class="absolute left-0 bottom-0 text-sm font-bold py-2 px-4 bg-amber-400 rounded-tr">امکان
-                                            پرداخت اقساطی</span>
-                                    </div>
-                                    <h2 class="text-2xl font-extrabold mt-8 text-center">
-                                        تور ویژه تایلند 7 روز و 6 شب
-                                    </h2>
-                                    <div class="flex items-center justify-between mt-3">
-                                        <span
-                                            class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
-                                            <svg width="24" height="24" class="group-hover:hidden">
-                                                <use href="./images/sprite-icons.svg#icon-sun"></use>
-                                            </svg>
-                                            7 روزه
-                                        </span>
-                                        <span
-                                            class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
-                                            <svg width="24" height="24" class="group-hover:hidden">
-                                                <use href="./images/sprite-icons.svg#icon-flash"></use>
-                                            </svg>
-                                            ترکیش ایرلاین
-                                        </span>
-                                        <span
-                                            class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
-                                            <svg width="24" height="24" class="group-hover:hidden">
-                                                <use href="./images/sprite-icons.svg#icon-blue-star">
-                                                </use>
-                                            </svg>
-                                            4 ستاره
-                                        </span>
-                                    </div>
-                                    <div class="flex justify-between mt-6 h-full">
-                                        <div class="flex flex-col justify-between h-[73px]">
-                                            <span class="text-xs font-light">شروع قیمت از:</span>
-                                            <span class="flex items-center gap-2 text-sm font-bold"><span
-                                                    class="text-2xl text-primary-500 font-extrabold">68.900.000</span>
-                                                تومان</span>
-                                        </div>
-                                        <a href=""
-                                            class="flex items-center justify-center gap-2 border border-gray-100 rounded-xl w-[170px] h-[73px]">
-                                            اطلاعات بیشتر
-                                            <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M15 6.15674L9 12.1567L15 18.1567" stroke="#1E2128" />
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="border border-gray-50 rounded-xl bg-white shadow-medium-btn-shadow p-6">
-                                    <div class="relative rounded-xl overflow-hidden shadow-soft-deep">
-                                        <img src="[##cms.cms.cdn##]/images/special-tour-card.jpg"
-                                            class="w-full h-44 object-cover" alt="destination-card" width="344"
-                                            height="176" loading="lazy" />
-                                        <span
-                                            class="absolute left-0 bottom-0 text-sm font-bold py-2 px-4 bg-amber-400 rounded-tr">امکان
-                                            پرداخت اقساطی</span>
-                                    </div>
-                                    <h2 class="text-2xl font-extrabold mt-8 text-center">
-                                        تور ویژه تایلند 7 روز و 6 شب
-                                    </h2>
-                                    <div class="flex items-center justify-between mt-3">
-                                        <span
-                                            class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
-                                            <svg width="24" height="24" class="group-hover:hidden">
-                                                <use href="./images/sprite-icons.svg#icon-sun"></use>
-                                            </svg>
-                                            7 روزه
-                                        </span>
-                                        <span
-                                            class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
-                                            <svg width="24" height="24" class="group-hover:hidden">
-                                                <use href="./images/sprite-icons.svg#icon-flash"></use>
-                                            </svg>
-                                            ترکیش ایرلاین
-                                        </span>
-                                        <span
-                                            class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
-                                            <svg width="24" height="24" class="group-hover:hidden">
-                                                <use href="./images/sprite-icons.svg#icon-blue-star">
-                                                </use>
-                                            </svg>
-                                            4 ستاره
-                                        </span>
-                                    </div>
-                                    <div class="flex justify-between mt-6 h-full">
-                                        <div class="flex flex-col justify-between h-[73px]">
-                                            <span class="text-xs font-light">شروع قیمت از:</span>
-                                            <span class="flex items-center gap-2 text-sm font-bold"><span
-                                                    class="text-2xl text-primary-500 font-extrabold">68.900.000</span>
-                                                تومان</span>
-                                        </div>
-                                        <a href=""
-                                            class="flex items-center justify-center gap-2 border border-gray-100 rounded-xl w-[170px] h-[73px]">
-                                            اطلاعات بیشتر
-                                            <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M15 6.15674L9 12.1567L15 18.1567" stroke="#1E2128" />
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="border border-gray-50 rounded-xl bg-white shadow-medium-btn-shadow p-6">
-                                    <div class="relative rounded-xl overflow-hidden shadow-soft-deep">
-                                        <img src="[##cms.cms.cdn##]/images/special-tour-card.jpg"
-                                            class="w-full h-44 object-cover" alt="destination-card" width="344"
-                                            height="176" loading="lazy" />
-                                        <span
-                                            class="absolute left-0 bottom-0 text-sm font-bold py-2 px-4 bg-amber-400 rounded-tr">امکان
-                                            پرداخت اقساطی</span>
-                                    </div>
-                                    <h2 class="text-2xl font-extrabold mt-8 text-center">
-                                        تور ویژه تایلند 7 روز و 6 شب
-                                    </h2>
-                                    <div class="flex items-center justify-between mt-3">
-                                        <span
-                                            class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
-                                            <svg width="24" height="24" class="group-hover:hidden">
-                                                <use href="./images/sprite-icons.svg#icon-sun"></use>
-                                            </svg>
-                                            7 روزه
-                                        </span>
-                                        <span
-                                            class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
-                                            <svg width="24" height="24" class="group-hover:hidden">
-                                                <use href="./images/sprite-icons.svg#icon-flash"></use>
-                                            </svg>
-                                            ترکیش ایرلاین
-                                        </span>
-                                        <span
-                                            class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
-                                            <svg width="24" height="24" class="group-hover:hidden">
-                                                <use href="./images/sprite-icons.svg#icon-blue-star">
-                                                </use>
-                                            </svg>
-                                            4 ستاره
-                                        </span>
-                                    </div>
-                                    <div class="flex justify-between mt-6 h-full">
-                                        <div class="flex flex-col justify-between h-[73px]">
-                                            <span class="text-xs font-light">شروع قیمت از:</span>
-                                            <span class="flex items-center gap-2 text-sm font-bold"><span
-                                                    class="text-2xl text-primary-500 font-extrabold">68.900.000</span>
-                                                تومان</span>
-                                        </div>
-                                        <a href=""
-                                            class="flex items-center justify-center gap-2 border border-gray-100 rounded-xl w-[170px] h-[73px]">
-                                            اطلاعات بیشتر
-                                            <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M15 6.15674L9 12.1567L15 18.1567" stroke="#1E2128" />
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
-                    </div>
-                </section>
+                                <!-- Additional required wrapper -->
+                                <div class="swiper-wrapper">
+                                    <!-- Slides -->
+                                    @child
+                                </div>
+                            </div>
+                            </section>
+                            </layout>
+                            <face filter="link is null and prp_3087934 is null">
+                                <div class="swiper-slide w-[420px]">
+                                    <div class="bg-white border border-gray-50 rounded-xl shadow-medium-btn-shadow p-6">
+                                        <img src="@type_159"
+                                            class="w-full h-44 object-cover rounded-xl overflow-hidden shadow-soft-deep"
+                                            alt="@title" width="344" height="176" loading="lazy">
+                                        <h2 class="text-2xl font-extrabold mt-8 text-center">@title</h2>
+                                        <div class="flex items-center justify-between mt-3">
+                                            <span
+                                                class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
+                                                <svg width="24" height="24" class="group-hover:hidden">
+                                                    <use xlink:href="./images/sprite-icons.svg#icon-sun"></use>
+                                                </svg>
+                                                @prp_8076
+                                            </span>
+                                            <span
+                                                class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
+                                                <svg width="24" height="24" class="group-hover:hidden">
+                                                    <use xlink:href="./images/sprite-icons.svg#icon-flash"></use>
+                                                </svg>
+                                                @prp_10000504
+                                            </span>
+                                            <span
+                                                class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
+                                                <svg width="24" height="24" class="group-hover:hidden">
+                                                    <use xlink:href="./images/sprite-icons.svg#icon-blue-star"></use>
+                                                </svg>
+                                                4 ستاره
+                                            </span>
+                                        </div>
+                                        <div class="flex justify-between mt-6 h-full">
+                                            <div class="flex flex-col justify-between">
+                                                <span class="text-xs font-light">شروع قیمت از:</span>
+                                                <span class="text-2xl text-primary-500 font-extrabold">@prp_8181</span>
+                                            </div>
+                                            <a href="/tour.bc?id=@id"
+                                                class="group flex items-center justify-center gap-2 border border-gray-100 rounded-xl w-36 h-[73px] transition-all duration-300 hover:bg-primary-500 hover:shadow-btn-shadow hover:text-white">
+                                                اطلاعات بیشتر
+                                                <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path class="transition-all duration-300 group-hover:stroke-white"
+                                                        d="M15 6.15674L9 12.1567L15 18.1567" stroke="#1E2128" />
+                                                </svg>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </face>
+                            <face filter="prp_3087934 is null">
+                                <div class="swiper-slide w-[420px]">
+                                    <div class="bg-white border border-gray-50 rounded-xl shadow-medium-btn-shadow p-6">
+                                        <img src="@type_159"
+                                            class="w-full h-44 object-cover rounded-xl overflow-hidden shadow-soft-deep"
+                                            alt="@title" width="344" height="176" loading="lazy">
+                                        <h2 class="text-2xl font-extrabold mt-8 text-center">@title</h2>
+                                        <div class="flex items-center justify-between mt-3">
+                                            <span
+                                                class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
+                                                <svg width="24" height="24" class="group-hover:hidden">
+                                                    <use xlink:href="./images/sprite-icons.svg#icon-sun"></use>
+                                                </svg>
+                                                @prp_8076
+                                            </span>
+                                            <span
+                                                class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
+                                                <svg width="24" height="24" class="group-hover:hidden">
+                                                    <use xlink:href="./images/sprite-icons.svg#icon-flash"></use>
+                                                </svg>
+                                                @prp_10000504
+                                            </span>
+                                            <span
+                                                class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
+                                                <svg width="24" height="24" class="group-hover:hidden">
+                                                    <use xlink:href="./images/sprite-icons.svg#icon-blue-star"></use>
+                                                </svg>
+                                                4 ستاره
+                                            </span>
+                                        </div>
+                                        <div class="flex justify-between mt-6 h-full">
+                                            <div class="flex flex-col justify-between">
+                                                <span class="text-xs font-light">شروع قیمت از:</span>
+                                                <span class="text-2xl text-primary-500 font-extrabold">@prp_8181</span>
+                                            </div>
+                                            <a href="/tour.bc?id=@id"
+                                                class="group flex items-center justify-center gap-2 border border-gray-100 rounded-xl w-36 h-[73px] transition-all duration-300 hover:bg-primary-500 hover:shadow-btn-shadow hover:text-white">
+                                                اطلاعات بیشتر
+                                                <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path class="transition-all duration-300 group-hover:stroke-white"
+                                                        d="M15 6.15674L9 12.1567L15 18.1567" stroke="#1E2128" />
+                                                </svg>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </face>
+                            <face filter="link is null">
+                                <div class="swiper-slide w-[420px]">
+                                    <div class="bg-white border border-gray-50 rounded-xl shadow-medium-btn-shadow p-6">
+                                        <div class="relative rounded-xl overflow-hidden shadow-soft-deep">
+                                            <img src="@type_159" class="block w-full h-44 object-cover" alt="@title"
+                                                width="344" height="176" loading="lazy">
+                                            <span
+                                                class="absolute left-0 bottom-0 text-sm font-bold py-2 px-4 bg-amber-400 rounded-tr">
+                                                @prp_3087934</span>
+                                        </div>
+                                        <h2 class="text-2xl font-extrabold mt-8 text-center">@title</h2>
+                                        <div class="flex items-center justify-between mt-3">
+                                            <span
+                                                class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
+                                                <svg width="24" height="24" class="group-hover:hidden">
+                                                    <use xlink:href="./images/sprite-icons.svg#icon-sun"></use>
+                                                </svg>
+                                                @prp_8076
+                                            </span>
+                                            <span
+                                                class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
+                                                <svg width="24" height="24" class="group-hover:hidden">
+                                                    <use xlink:href="./images/sprite-icons.svg#icon-flash"></use>
+                                                </svg>
+                                                @prp_10000504
+                                            </span>
+                                            <span
+                                                class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
+                                                <svg width="24" height="24" class="group-hover:hidden">
+                                                    <use xlink:href="./images/sprite-icons.svg#icon-blue-star"></use>
+                                                </svg>
+                                                4 ستاره
+                                            </span>
+                                        </div>
+                                        <div class="flex justify-between mt-6 h-full">
+                                            <div class="flex flex-col justify-between">
+                                                <span class="text-xs font-light">شروع قیمت از:</span>
+                                                <span class="text-2xl text-primary-500 font-extrabold">@prp_8181</span>
+        
+                                            </div>
+                                            <a href="/tour.bc?id=@id"
+                                                class="group flex items-center justify-center gap-2 border border-gray-100 rounded-xl w-36 h-[73px] transition-all duration-300 hover:bg-primary-500 hover:shadow-btn-shadow hover:text-white">
+                                                اطلاعات بیشتر
+                                                <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path class="transition-all duration-300 group-hover:stroke-white"
+                                                        d="M15 6.15674L9 12.1567L15 18.1567" stroke="#1E2128" />
+                                                </svg>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </face>
+                            <face>
+                                <div class="swiper-slide w-[420px]">
+                                    <div class="bg-white border border-gray-50 rounded-xl shadow-medium-btn-shadow p-6">
+                                        <div class="relative rounded-xl overflow-hidden shadow-soft-deep">
+                                            <img src="@type_159" class="block w-full h-44 object-cover" alt="@title"
+                                                width="344" height="176" loading="lazy">
+                                            <span
+                                                class="absolute left-0 bottom-0 text-sm font-bold py-2 px-4 bg-amber-400 rounded-tr">
+                                                @prp_3087934</span>
+                                        </div>
+                                        <h2 class="text-2xl font-extrabold mt-8 text-center">@title</h2>
+                                        <div class="flex items-center justify-between mt-3">
+                                            <span
+                                                class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
+                                                <svg width="24" height="24" class="group-hover:hidden">
+                                                    <use xlink:href="./images/sprite-icons.svg#icon-sun"></use>
+                                                </svg>
+                                                @prp_8076
+                                            </span>
+                                            <span
+                                                class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
+                                                <svg width="24" height="24" class="group-hover:hidden">
+                                                    <use xlink:href="./images/sprite-icons.svg#icon-flash"></use>
+                                                </svg>
+                                                @prp_10000504
+                                            </span>
+                                            <span
+                                                class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
+                                                <svg width="24" height="24" class="group-hover:hidden">
+                                                    <use xlink:href="./images/sprite-icons.svg#icon-blue-star"></use>
+                                                </svg>
+                                                4 ستاره
+                                            </span>
+                                        </div>
+                                        <div class="flex justify-between mt-6 h-full">
+                                            <div class="flex flex-col justify-between">
+                                                <span class="text-xs font-light">شروع قیمت از:</span>
+                                                <span class="text-2xl text-primary-500 font-extrabold">@prp_8181</span>
+                                            </div>
+                                            <a href="/tour.bc?id=@id"
+                                                class="group flex items-center justify-center gap-2 border border-gray-100 rounded-xl w-36 h-[73px] transition-all duration-300 hover:bg-primary-500 hover:shadow-btn-shadow hover:text-white">
+                                                اطلاعات بیشتر
+                                                <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path class="transition-all duration-300 group-hover:stroke-white"
+                                                        d="M15 6.15674L9 12.1567L15 18.1567" stroke="#1E2128" />
+                                                </svg>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </face>
+                        </basis>
+
+                    
+                
 
             </div>
         </div>

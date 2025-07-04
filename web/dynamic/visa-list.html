@@ -1,3 +1,7 @@
+<basis core="dbsource" source="basiscore" name="db" mid="5" lid="1" usedforid="[##cms.cms.ownerid##]">
+    <member name="info-visa" type="view" />
+</basis>
+
 <basis core="dbsource" source="basiscore" lid="1" mid="20" name="db" catid="[##cms.query.catid##]">
     <member name="navigation" type="tree" request="navcatid" parentid="[##cms.query.catid##]" />
 </basis>
@@ -10,6 +14,10 @@
 
 <basis core="dbsource" source="basiscore" name="db" mid="20" lid="1" usedforid="[##cms.query.aid##]">
     <member name="view" type="view" propertyid="7249" />
+</basis>
+
+<basis core="dbsource" source="basiscore" name="db" mid="1" lid="1" usedforid="[##cms.query.qid##]">
+    <member name="faq" type="view" propertyid="" />
 </basis>
 
 <!DOCTYPE html>
@@ -44,22 +52,6 @@
 <body>
     <basis core="call" file="header.inc" />
     <main>
-        <div class="hidden items-center gap-7 w-[953px] bg-gray-gradient bg-cover bg-center rounded-3xl p-20">
-            <div class="flex-1">
-                <div class="flex items-center gap-2 border-b-2 border-zinc-900 mb-2 pb-3">
-                    <svg width="42" height="42">
-                        <use xlink:href="./images/sprite-icons.svg#icon-black-flash"></use>
-                    </svg>
-                    <h2 class="text-[36px] font-extrabold">مشاوره رایگان رزرو تور</h2>
-                </div>
-                <div class="text-sm font-semibold mb-6">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
-                    استفاده از طراحان گرافیک است.</div>
-            </div>
-            <div class="flex-[1.02]">
-                <img src="[##cms.cms.cdn##]/images/tour-reservation-form.png" class="w-full h-[440px] object-cover"
-                    alt="" width="385" height="440" loading="lazy">
-            </div>
-        </div>
         <section class="relative flex items-center justify-center bg-tourlistBg bg-center bg-cover h-32">
             <div class="absolute inset-0 w-full h-full bg-black/45"></div>
             <ul itemscope itemtype="https://schema.org/BreadcrumbList"
@@ -131,7 +123,7 @@
                             height="192" loading="lazy">
                         <div class="flex flex-col gap-1 py-4 px-6 divide-y divide-gray-100">
                             <div class="flex items-center gap-2">
-                                <img src="[##cms.cms.cdn##]/images/@prp_3087936" class="h-6 object-cover rounded" alt=""
+                                <img src="[##cms.cms.cdn##]/images/flags/@prp_3087936" class="h-6 object-cover rounded" alt="@title"
                                     width="36" height="24" loading="lazy">
                                 <h2 class="text-2xl font-extrabold">@title</h2>
                             </div>
@@ -162,7 +154,7 @@
                             height="192" loading="lazy">
                         <div class="flex flex-col gap-1 py-4 px-6 divide-y divide-gray-100">
                             <div class="flex items-center gap-2">
-                                <img src="[##cms.cms.cdn##]/images/@prp_3087936" class="h-6 object-cover rounded" alt=""
+                                <img src="[##cms.cms.cdn##]/images/flags/@prp_3087936" class="h-6 object-cover rounded" alt=""
                                     width="36" height="24" loading="lazy">
                                 <h2 class="text-2xl font-extrabold">@title</h2>
                             </div>
@@ -282,13 +274,13 @@
                 </ul>
             </div>
         </section>
-        <div class="flex gap-4 mx-auto max-lg:w-[90%] max-xl:w-[97%] xl:max-w-7xl mt-24">
+        <div class="flex gap-4 mx-auto max-lg:w-[90%] max-xl:w-[97%] xl:max-w-7xl mt-24 mb-16">
             <aside class="sticky top-0 h-fit w-96">
                 <section
                     class="bg-formBg bg-center bg-cover flex items-end border border-gray-100 shadow-big-shadow rounded-3xl h-[404px]">
                     <div class="flex flex-col items-center gap-1 mb-20 mr-8">
-                        <a href=""
-                            class="group flex items-center gap-2 border border-gray-100 rounded-xl transition-all duration-300 hover:shadow-small-btn-shadow hover:bg-primary-500 hover:text-white hover:border-primary-500 py-2 px-6">ارسال
+                        <button
+                            class="open-consulation-btn group w-40 flex items-center justify-center gap-2 border border-gray-100 rounded-xl transition-all duration-300 hover:shadow-small-btn-shadow hover:bg-primary-500 hover:text-white hover:border-primary-500 py-2">ارسال
                             فرم
                             <svg width="25" height="25" viewBox="0 0 25 25" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -296,7 +288,7 @@
                                     d="M16.7051 5.37444C18.3609 4.82251 19.189 4.5468 19.626 4.98381C20.0628 5.42087 19.7872 6.24912 19.2354 7.90471L16.3975 16.4174C15.6131 18.7704 15.2207 19.9475 14.5 19.9477C13.7792 19.9477 13.3869 18.7706 12.6025 16.4174L11.8535 14.1694L16.207 9.81682L16.2754 9.74065C16.5957 9.34793 16.573 8.76888 16.207 8.40276C15.8409 8.03665 15.2619 8.01407 14.8691 8.3344L14.793 8.40276L10.4395 12.7563L8.19238 12.0073C5.83933 11.2229 4.66227 10.8305 4.66211 10.1098C4.66211 9.38903 5.83917 8.99674 8.19238 8.21233L16.7051 5.37444Z"
                                     fill="#222222" />
                             </svg>
-                        </a>
+                        </button>
                         <div class="flex items-center gap-2">
                             <svg width="34" height="2" viewBox="0 0 34 2" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -308,17 +300,21 @@
                                 <line y1="0.609863" x2="34" y2="0.609863" stroke="#8892A6" />
                             </svg>
                         </div>
-                        <a href=""
-                            class="group flex items-center gap-2 border  rounded-xl transition-all duration-300 shadow-small-btn-shadow bg-primary-500 text-white border-primary-500 py-2 px-6 hover:border-gray-100 hover:shadow-none hover:bg-white hover:text-zinc-900">تماس
-                            بگیرید
-                            <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path class="transition-all duration-300 group-hover:fill-zinc-900"
-                                    d="M6.67962 3.43024L7.29289 2.81697C7.68342 2.42645 8.31658 2.42645 8.70711 2.81697L11.2929 5.40276C11.6834 5.79328 11.6834 6.42645 11.2929 6.81697L9.50048 8.60938C9.2016 8.90826 9.1275 9.36487 9.31653 9.74293C10.4093 11.9284 12.1814 13.7006 14.3669 14.7933C14.745 14.9824 15.2016 14.9083 15.5005 14.6094L17.2929 12.817C17.6834 12.4264 18.3166 12.4264 18.7071 12.817L21.2929 15.4028C21.6834 15.7933 21.6834 16.4264 21.2929 16.817L20.6796 17.4302C18.5683 19.5416 15.2257 19.7791 12.837 17.9876L11.6286 17.0813C9.88504 15.7736 8.33622 14.2248 7.02857 12.4813L6.12226 11.2729C4.33072 8.88416 4.56827 5.54159 6.67962 3.43024Z"
-                                    fill="#fff" />
-                            </svg>
-
-                        </a>
+                        <basis core="print" datamembername="db.info-visa">
+                            <face filter="TypeID in(240)">
+                                <a href="tel:021@text"
+                                class="group w-40 flex items-center justify-center gap-2 border rounded-xl transition-all duration-300 shadow-small-btn-shadow bg-primary-500 text-white border-primary-500 py-2 hover:border-gray-100 hover:shadow-none hover:bg-white hover:text-zinc-900">تماس
+                                بگیرید
+                                <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path class="transition-all duration-300 group-hover:fill-zinc-900"
+                                        d="M6.67962 3.43024L7.29289 2.81697C7.68342 2.42645 8.31658 2.42645 8.70711 2.81697L11.2929 5.40276C11.6834 5.79328 11.6834 6.42645 11.2929 6.81697L9.50048 8.60938C9.2016 8.90826 9.1275 9.36487 9.31653 9.74293C10.4093 11.9284 12.1814 13.7006 14.3669 14.7933C14.745 14.9824 15.2016 14.9083 15.5005 14.6094L17.2929 12.817C17.6834 12.4264 18.3166 12.4264 18.7071 12.817L21.2929 15.4028C21.6834 15.7933 21.6834 16.4264 21.2929 16.817L20.6796 17.4302C18.5683 19.5416 15.2257 19.7791 12.837 17.9876L11.6286 17.0813C9.88504 15.7736 8.33622 14.2248 7.02857 12.4813L6.12226 11.2729C4.33072 8.88416 4.56827 5.54159 6.67962 3.43024Z"
+                                        fill="#fff" />
+                                </svg>
+    
+                            </a>
+                            </face>
+                        </basis>
 
                     </div>
                 </section>
@@ -384,17 +380,22 @@
                                 فرم مشاوره رایگان رو همین حالا پر کن یا با ما تماس بگیر و یه قدم به رویات نزدیک‌تر شو.
                             </div>
                             <div class="flex items-center gap-4 mt-4">
-                                <a href=""
-                                    class="group flex items-center gap-2 border rounded-xl transition-all duration-300 shadow-small-btn-shadow bg-primary-500 text-white border-primary-500 py-2 px-6 hover:border-gray-100 hover:text-zinc-900 hover:shadow-none hover:bg-white">تماس
-                                    بگیرید
-                                    <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path class="transition-all duration-300 group-hover:fill-zinc-900"
-                                            d="M6.67962 3.43024L7.29289 2.81697C7.68342 2.42645 8.31658 2.42645 8.70711 2.81697L11.2929 5.40276C11.6834 5.79328 11.6834 6.42645 11.2929 6.81697L9.50048 8.60938C9.2016 8.90826 9.1275 9.36487 9.31653 9.74293C10.4093 11.9284 12.1814 13.7006 14.3669 14.7933C14.745 14.9824 15.2016 14.9083 15.5005 14.6094L17.2929 12.817C17.6834 12.4264 18.3166 12.4264 18.7071 12.817L21.2929 15.4028C21.6834 15.7933 21.6834 16.4264 21.2929 16.817L20.6796 17.4302C18.5683 19.5416 15.2257 19.7791 12.837 17.9876L11.6286 17.0813C9.88504 15.7736 8.33622 14.2248 7.02857 12.4813L6.12226 11.2729C4.33072 8.88416 4.56827 5.54159 6.67962 3.43024Z"
-                                            fill="#fff"></path>
-                                    </svg>
+                                <basis core="print" datamembername="db.info-visa">
+                                    <face filter="TypeID in(240)">
+                                        <a href="tel:021@text"
+                                        class="group flex items-center gap-2 border rounded-xl transition-all duration-300 shadow-small-btn-shadow bg-primary-500 text-white border-primary-500 py-2 px-6 hover:border-gray-100 hover:text-zinc-900 hover:shadow-none hover:bg-white">تماس
+                                        بگیرید
+                                        <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path class="transition-all duration-300 group-hover:fill-zinc-900"
+                                                d="M6.67962 3.43024L7.29289 2.81697C7.68342 2.42645 8.31658 2.42645 8.70711 2.81697L11.2929 5.40276C11.6834 5.79328 11.6834 6.42645 11.2929 6.81697L9.50048 8.60938C9.2016 8.90826 9.1275 9.36487 9.31653 9.74293C10.4093 11.9284 12.1814 13.7006 14.3669 14.7933C14.745 14.9824 15.2016 14.9083 15.5005 14.6094L17.2929 12.817C17.6834 12.4264 18.3166 12.4264 18.7071 12.817L21.2929 15.4028C21.6834 15.7933 21.6834 16.4264 21.2929 16.817L20.6796 17.4302C18.5683 19.5416 15.2257 19.7791 12.837 17.9876L11.6286 17.0813C9.88504 15.7736 8.33622 14.2248 7.02857 12.4813L6.12226 11.2729C4.33072 8.88416 4.56827 5.54159 6.67962 3.43024Z"
+                                                fill="#fff"></path>
+                                        </svg>
+    
+                                    </a>
+                                    </face>
+                                </basis>
 
-                                </a>
                                 <div class="flex items-center gap-2">
                                     <svg width="34" height="2" viewBox="0 0 34 2" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -406,8 +407,8 @@
                                         <line y1="0.609863" x2="34" y2="0.609863" stroke="#8892A6"></line>
                                     </svg>
                                 </div>
-                                <a href=""
-                                    class="group flex items-center gap-2 border border-gray-100 rounded-xl transition-all duration-300 hover:shadow-small-btn-shadow hover:bg-primary-500 hover:text-white hover:border-primary-500 py-2 px-6">ارسال
+                                <button
+                                    class="open-consulation-btn group flex items-center gap-2 border border-gray-100 rounded-xl transition-all duration-300 hover:shadow-small-btn-shadow hover:bg-primary-500 hover:text-white hover:border-primary-500 py-2 px-6">ارسال
                                     فرم
                                     <svg width="25" height="25" viewBox="0 0 25 25" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -415,36 +416,71 @@
                                             d="M16.7051 5.37444C18.3609 4.82251 19.189 4.5468 19.626 4.98381C20.0628 5.42087 19.7872 6.24912 19.2354 7.90471L16.3975 16.4174C15.6131 18.7704 15.2207 19.9475 14.5 19.9477C13.7792 19.9477 13.3869 18.7706 12.6025 16.4174L11.8535 14.1694L16.207 9.81682L16.2754 9.74065C16.5957 9.34793 16.573 8.76888 16.207 8.40276C15.8409 8.03665 15.2619 8.01407 14.8691 8.3344L14.793 8.40276L10.4395 12.7563L8.19238 12.0073C5.83933 11.2229 4.66227 10.8305 4.66211 10.1098C4.66211 9.38903 5.83917 8.99674 8.19238 8.21233L16.7051 5.37444Z"
                                             fill="#222222"></path>
                                     </svg>
-                                </a>
+                                </button>
+                                <div class="free-consulation-form hidden fixed z-30 items-center justify-center inset-0">
+                                    <div class="absolute inset-0 bg-black/45 modal-backdrop"></div>
+                                    <div class="relative flex items-center gap-7 w-[953px] bg-gray-gradient bg-cover bg-center rounded-3xl p-20">
+                                        <span class="close-consulation-btn absolute -top-5 -right-5 bg-secondary-500 rounded-full p-2 cursor-pointer transition-all duration-300 hover:bg-primary-500">
+                                            <svg width="24" height="24">
+                                                <use xlink:href="./images/sprite-icons.svg#engine-close-icon"></use>
+                                            </svg>
+                                        </span>
+                                        <div class="flex-1">
+                                            <div class="flex items-center gap-2 border-b-2 border-zinc-900 mb-2 pb-3">
+                                                <h2 class="text-[36px] font-extrabold">مشاوره رایگان رزرو تور</h2>
+                                            </div>
+                                            <div class="text-sm font-semibold mb-6">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
+                                                استفاده از طراحان گرافیک است.</div>
+                                        </div>
+                                        <div class="flex-[1.02]">
+                                            <img src="[##cms.cms.cdn##]/images/tour-reservation-form.png" class="w-full h-[440px] object-cover"
+                                                alt="" width="385" height="440" loading="lazy">
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <img src="[##cms.cms.cdn##]/images/phone-form.jpg" class="h-64 object-cover" alt="phone-form"
                             width="242" height="254" loading="lazy">
                     </div>
                 </section>
-                <section class="mt-10 mb-16">
-                    <h2 class="text-[36px] font-extrabold mb-3">سوالات متداول ویزا</h2>
-                    <div
-                        class="faq-box transition-all duration-300 cursor-pointer rounded-xl border border-gray-100 bg-white py-6 px-8">
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center gap-2">
-                                <svg width="32" height="32">
-                                    <use xlink:href="./images/sprite-icons.svg#icon-plus-circle"></use>
-                                </svg>
-                                <h2 class="font-extrabold text-2xl text-zinc-900">سوال متداول اول</h2>
+                
+                    <basis core="print" datamembername="db.faq">
+                        <layout>
+                            <section class="mt-10">
+                            <h2 class="text-[36px] font-extrabold mb-3">سوالات متداول ویزا</h2>
+                            <div class="flex flex-col gap-4">
+                                @child
                             </div>
-                            <svg class="flex-shrink-0 faq-btn transition-all duration-300" width="33" height="33"
-                                viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M24.5 12.5864L16.5 20.5864L8.5 12.5864" stroke="#1E2128" stroke-width="3" />
-                            </svg>
-
-                        </div>
-                        <div
-                            class="faq-answer text-sm font-semibold opacity-0 scale-y-0 max-h-0 overflow-hidden transition-all duration-500 ease-in-out origin-top pr-6">
-                            بسیسیییییییییییییییییییییییییییییییییییییییییییییییییییییییی
-                        </div>
-                    </div>
-                </section>
+                        </section>
+                        </layout>
+                        <face filter="TypeID in(250)">
+                            <div
+                                class="faq-box transition-all duration-300 cursor-pointer rounded-xl border border-gray-100 bg-white py-6 px-8">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-2">
+                                        <svg width="32" height="32" class="icon-plus-circle">
+                                            <use xlink:href="./images/sprite-icons.svg#icon-nut"></use>
+                                        </svg>
+                                        <svg width="32" height="32" class="hidden icon-plus-circle-white">
+                                            <use xlink:href="./images/sprite-icons.svg#icon-nut-white"></use>
+                                        </svg>
+                                        <h2 class="font-extrabold text-2xl text-zinc-900">@text</h2>
+                                    </div>
+                                    <svg class="flex-shrink-0 faq-btn transition-all duration-300" width="33"
+                                        height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M24.5 12.5864L16.5 20.5864L8.5 12.5864" stroke="#1E2128"
+                                            stroke-width="3" />
+                                    </svg>
+                
+                                </div>
+                                <div
+                                    class="faq-answer text-white text-sm font-semibold opacity-0 scale-y-0 max-h-0 overflow-hidden transition-all duration-500 ease-in-out origin-top pr-6">
+                                    @largetext
+                                </div>
+                            </div>
+                        </face>
+                    </basis>
             </div>
         </div>
     </main>

@@ -1,3 +1,7 @@
+<basis core="dbsource" source="basiscore" name="db" mid="5" lid="1" usedforid="[##cms.cms.ownerid##]">
+    <member name="info-tour" type="view" />
+</basis>
+
 <basis core="dbsource" source="basiscore" lid="1" mid="20" name="db" catid="[##cms.query.catid##]">
     <member name="navigation" type="tree" request="navcatid" parentid="[##cms.query.catid##]" />
 </basis>
@@ -7,12 +11,12 @@
 </basis>
 
 <basis core="dbsource" source="basiscore" lid="1" mid="20" name="db" catid="215041">
-    <member name="special-tour" type="list" link="tour.bc" propertyid="3087920,10000504,8181,8076" perpage="5"
+    <member name="special-tour" type="list" link="tour.bc" propertyid="3087934,10000504,8181,8076" perpage="5"
         order="ord" size="344x176" />
 </basis>
 
 <basis core="dbsource" source="basiscore" lid="1" mid="20" name="db" catid="[##cms.query.catid##]">
-    <member name="tour-list" type="list" link="tour.bc" propertyid="8076,8181,10000504" perpage="6" size="151x208"
+    <member name="tour-list" type="list" link="tour.bc" propertyid="8076,8181,10000504,3087921" perpage="6" size="151x208"
         pageno="[##cms.query.pagenum|(1)##]" order="ord" />
     <member name="paging" type="list" request="paging" count="3" parentname="tour-list" />
 </basis>
@@ -136,7 +140,7 @@
                         </div>
                     </layout>
                     <face filter="link is null">
-                        <div class="swiper-slide">
+                        <div class="swiper-slide w-[334px]">
                             <a href="/tour-list.bc?catid=@catid"
                                 class="group flex items-end relative rounded-2xl overflow-hidden">
                                 <div class="absolute inset-0 w-full bg-purple-overlay"></div>
@@ -154,7 +158,7 @@
                         </div>
                     </face>
                     <face>
-                        <div class="swiper-slide">
+                        <div class="swiper-slide w-[334px]">
                             <a href="@link" class="group flex items-end relative rounded-2xl overflow-hidden">
                                 <div class="absolute inset-0 w-full bg-purple-overlay"></div>
                                 <img src="@image" class="w-full h-40 object-cover" alt="@title" width="304" height="164"
@@ -191,7 +195,7 @@
                 </div>
             </div>
         </section>
-        <div class="flex gap-4 mx-auto max-lg:w-[90%] max-xl:w-[97%] xl:max-w-7xl mt-8">
+        <div class="flex gap-4 mx-auto max-lg:w-[90%] max-xl:w-[97%] xl:max-w-7xl mt-8 mb-16">
             <aside class="w-[304px] sticky top-0 h-fit">
                 <section
                     class="relative bg-searchBg bg-center bg-cover border border-gray-50 rounded-xl overflow-hidden shadow-card-shadow">
@@ -247,19 +251,27 @@
                         </div>
                     </div>
                 </section>
-                <section class="bg-freeFormGrayBg bg-center bg-cover rounded-xl mt-4">
-                    <a href="" class="flex flex-col gap-4 py-6 px-8">
-                        <span class="font-extrabold text-white text-center">برای مشاوره رایگان با شماره</span>
-                        <span
-                            class="flex items-center text-white rounded-xl font-extrabold bg-specialcolor-1 backdrop-blur py-4 px-5">
-                            <svg width="25" height="24">
-                                <use xlink:href="./images/sprite-icons.svg#icon-white-phone"></use>
-                            </svg>
-                            <span class="direction-ltr unicode-embed">021- <span class="text-3xl">91009292</span></span>
-                        </span>
-                        <span class="font-extrabold text-white text-center">تماس بگیرید</span>
-                    </a>
-                </section>
+                <basis core="print" datamembername="db.info-tour">
+                    <layout>
+                        <section class="bg-freeFormGrayBg bg-center bg-cover rounded-xl mt-4">
+                            @child
+                        </section>
+                    </layout>
+                    <face filter="TypeID in(240)">
+                        <a href="tel:021@text" class="flex flex-col gap-4 py-6 px-8">
+                            <span class="font-extrabold text-white text-center">برای مشاوره رایگان با شماره</span>
+                            <span
+                                class="flex items-center text-white rounded-xl font-extrabold bg-specialcolor-1 backdrop-blur py-4 px-5">
+                                <svg width="25" height="24">
+                                    <use xlink:href="./images/sprite-icons.svg#icon-white-phone"></use>
+                                </svg>
+                                <span class="direction-ltr unicode-embed">021- <span class="text-3xl">@text</span></span>
+                            </span>
+                            <span class="font-extrabold text-white text-center">تماس بگیرید</span>
+                        </a>
+                    </face>
+                </basis>
+
             </aside>
             <div class="flex-1 min-w-0">
                 <section class="bg-primary-50 px-6 pt-8 pb-4 rounded-2xl">
@@ -276,7 +288,7 @@
                                     @child
                                 </div>
                             </layout>
-                            <face filter="link is null and prp_3087920 is null">
+                            <face filter="link is null and prp_3087934 is null">
                                 <div class="swiper-slide">
                                     <div class="border border-gray-50 rounded-xl bg-white shadow-medium-btn-shadow p-6">
                                         <img src="@00344X00176prp"
@@ -324,7 +336,7 @@
                                     </div>
                                 </div>
                             </face>
-                            <face filter="prp_3087920 is null">
+                            <face filter="prp_3087934 is null">
                                 <div class="swiper-slide">
                                     <div class="border border-gray-50 rounded-xl bg-white shadow-medium-btn-shadow p-6">
                                         <img src="@00344X00176prp"
@@ -380,7 +392,7 @@
                                                 alt="@title" width="344" height="176" loading="lazy">
                                             <span
                                                 class="absolute left-0 bottom-0 text-sm font-bold py-2 px-4 bg-amber-400 rounded-tr">
-                                                @prp_3087920</span>
+                                                @prp_3087934</span>
                                         </div>
                                         <h2 class="text-2xl font-extrabold mt-8 text-center">@title</h2>
                                         <div class="flex items-center justify-between mt-3">
@@ -433,7 +445,7 @@
                                                 alt="@title" width="344" height="176" loading="lazy">
                                             <span
                                                 class="absolute left-0 bottom-0 text-sm font-bold py-2 px-4 bg-amber-400 rounded-tr">
-                                                @prp_3087920</span>
+                                                @prp_3087934</span>
                                         </div>
                                         <h2 class="text-2xl font-extrabold mt-8 text-center">@title</h2>
                                         <div class="flex items-center justify-between mt-3">
@@ -636,7 +648,7 @@
                                                 class="tour-destination-container flex items-center justify-center gap-6 mb-4">
                                                 <h3
                                                     class="tour-destination text-2xl font-black text-primary-500 transition-all duration-300 group-hover:text-white">
-                                                    TH,gh</h3>
+                                                    @db.tour-list.prp_3087921</h3>
                                                 <svg width="73" height="4"
                                                     class="icon-blue-border transition-all duration-300 group-hover:hidden group-hover:invisible group-hover:opacity-0">
                                                     <use xlink:href="./images/sprite-icons.svg#icon-blue-border">
@@ -853,7 +865,7 @@
                             <div class="text-sm font-semibold mt-6 leading-7 text-justify mb-6">@largetext</div>
                         </face>
                     </basis>
-                    <div class="flex items-center justify-center gap-3 mt-6 border border-gray-100 rounded-2xl">
+                    <div class="relative flex items-center justify-center gap-3 mt-6 border border-gray-100 rounded-2xl">
                         <div class="flex flex-col items-center w-[483px]">
                             <h2 class="text-2xl font-extrabold mb-1"> ویزای خودتو با خیال راحت بگیر!</h2>
                             <div class="text-sm font-semibold leading-7 text-center w-4/5">
@@ -863,17 +875,21 @@
                                 فرم مشاوره رایگان رو همین حالا پر کن یا با ما تماس بگیر و یه قدم به رویات نزدیک‌تر شو.
                             </div>
                             <div class="flex items-center gap-4 mt-4">
-                                <a href=""
-                                    class="group flex items-center gap-2 border border-gray-100 rounded-xl transition-all duration-300 hover:shadow-small-btn-shadow hover:bg-primary-500 hover:text-white hover:border-primary-500 py-2 px-6">تماس
-                                    بگیرید
-                                    <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path class="transition-all duration-300 group-hover:fill-white"
-                                            d="M6.67962 3.43024L7.29289 2.81697C7.68342 2.42645 8.31658 2.42645 8.70711 2.81697L11.2929 5.40276C11.6834 5.79328 11.6834 6.42645 11.2929 6.81697L9.50048 8.60938C9.2016 8.90826 9.1275 9.36487 9.31653 9.74293C10.4093 11.9284 12.1814 13.7006 14.3669 14.7933C14.745 14.9824 15.2016 14.9083 15.5005 14.6094L17.2929 12.817C17.6834 12.4264 18.3166 12.4264 18.7071 12.817L21.2929 15.4028C21.6834 15.7933 21.6834 16.4264 21.2929 16.817L20.6796 17.4302C18.5683 19.5416 15.2257 19.7791 12.837 17.9876L11.6286 17.0813C9.88504 15.7736 8.33622 14.2248 7.02857 12.4813L6.12226 11.2729C4.33072 8.88416 4.56827 5.54159 6.67962 3.43024Z"
-                                            fill="#1E2128" />
-                                    </svg>
-
-                                </a>
+                                <basis core="print" datamembername="db.info-tour">
+                                    <face filter="TypeID in(240)">
+                                        <a href="tel:021@text"
+                                        class="group flex items-center gap-2 border rounded-xl transition-all duration-300 shadow-small-btn-shadow bg-primary-500 text-white border-primary-500 py-2 px-6 hover:border-gray-100 hover:text-zinc-900 hover:shadow-none hover:bg-white">تماس
+                                        بگیرید
+                                        <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path class="transition-all duration-300 group-hover:fill-zinc-900"
+                                                d="M6.67962 3.43024L7.29289 2.81697C7.68342 2.42645 8.31658 2.42645 8.70711 2.81697L11.2929 5.40276C11.6834 5.79328 11.6834 6.42645 11.2929 6.81697L9.50048 8.60938C9.2016 8.90826 9.1275 9.36487 9.31653 9.74293C10.4093 11.9284 12.1814 13.7006 14.3669 14.7933C14.745 14.9824 15.2016 14.9083 15.5005 14.6094L17.2929 12.817C17.6834 12.4264 18.3166 12.4264 18.7071 12.817L21.2929 15.4028C21.6834 15.7933 21.6834 16.4264 21.2929 16.817L20.6796 17.4302C18.5683 19.5416 15.2257 19.7791 12.837 17.9876L11.6286 17.0813C9.88504 15.7736 8.33622 14.2248 7.02857 12.4813L6.12226 11.2729C4.33072 8.88416 4.56827 5.54159 6.67962 3.43024Z"
+                                                fill="#fff"></path>
+                                        </svg>
+    
+                                    </a>
+                                    </face> 
+                                </basis>
                                 <div class="flex items-center gap-2">
                                     <svg width="34" height="2" viewBox="0 0 34 2" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -885,8 +901,8 @@
                                         <line y1="0.609863" x2="34" y2="0.609863" stroke="#8892A6" />
                                     </svg>
                                 </div>
-                                <a href=""
-                                    class="group flex items-center gap-2 border border-gray-100 rounded-xl transition-all duration-300 hover:shadow-small-btn-shadow hover:bg-primary-500 hover:text-white hover:border-primary-500 py-2 px-6">ارسال
+                                <button 
+                                    class="open-consulation-btn group flex items-center gap-2 border border-gray-100 rounded-xl transition-all duration-300 hover:shadow-small-btn-shadow hover:bg-primary-500 hover:text-white hover:border-primary-500 py-2 px-6">ارسال
                                     فرم
                                     <svg width="25" height="25" viewBox="0 0 25 25" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -894,14 +910,35 @@
                                             d="M16.7051 5.37444C18.3609 4.82251 19.189 4.5468 19.626 4.98381C20.0628 5.42087 19.7872 6.24912 19.2354 7.90471L16.3975 16.4174C15.6131 18.7704 15.2207 19.9475 14.5 19.9477C13.7792 19.9477 13.3869 18.7706 12.6025 16.4174L11.8535 14.1694L16.207 9.81682L16.2754 9.74065C16.5957 9.34793 16.573 8.76888 16.207 8.40276C15.8409 8.03665 15.2619 8.01407 14.8691 8.3344L14.793 8.40276L10.4395 12.7563L8.19238 12.0073C5.83933 11.2229 4.66227 10.8305 4.66211 10.1098C4.66211 9.38903 5.83917 8.99674 8.19238 8.21233L16.7051 5.37444Z"
                                             fill="#222222" />
                                     </svg>
-                                </a>
+                                </button>
                             </div>
                         </div>
                         <img src="[##cms.cms.cdn##]/images/phone-form.jpg" class="h-64 object-cover" alt="phone-form"
                             width="242" height="254" loading="lazy">
+                        <div class="free-consulation-form hidden fixed z-30 items-center justify-center inset-0">
+                            <div class="absolute inset-0 bg-black/45 modal-backdrop"></div>
+                            <div class="relative flex items-center gap-7 w-[953px] bg-gray-gradient bg-cover bg-center rounded-3xl p-20">
+                                <span class="close-consulation-btn absolute -top-5 -right-5 bg-secondary-500 rounded-full p-2 cursor-pointer transition-all duration-300 hover:bg-primary-500">
+                                    <svg width="24" height="24">
+                                        <use xlink:href="./images/sprite-icons.svg#engine-close-icon"></use>
+                                    </svg>
+                                </span>
+                                <div class="flex-1">
+                                    <div class="flex items-center gap-2 border-b-2 border-zinc-900 mb-2 pb-3">
+                                        <h2 class="text-[36px] font-extrabold">مشاوره رایگان رزرو تور</h2>
+                                    </div>
+                                    <div class="text-sm font-semibold mb-6">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
+                                        استفاده از طراحان گرافیک است.</div>
+                                </div>
+                                <div class="flex-[1.02]">
+                                    <img src="[##cms.cms.cdn##]/images/tour-reservation-form.png" class="w-full h-[440px] object-cover"
+                                        alt="" width="385" height="440" loading="lazy">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </section>
-                <section class="mt-6 mb-16">
+                <section class="mt-6">
                     <h2 class="text-[36px] font-extrabold mb-3">سوالات متداول کاربران</h2>
                     <basis core="print" datamembername="db.faq">
                         <layout>
@@ -909,13 +946,16 @@
                                 @child
                             </div>
                         </layout>
-                        <face>
+                        <face filter="TypeID in(250)">
                             <div
                                 class="faq-box transition-all duration-300 cursor-pointer rounded-xl border border-gray-100 bg-white py-6 px-8">
                                 <div class="flex items-center justify-between">
                                     <div class="flex items-center gap-2">
-                                        <svg width="32" height="32">
+                                        <svg width="32" height="32" class="icon-plus-circle">
                                             <use xlink:href="./images/sprite-icons.svg#icon-plus-circle"></use>
+                                        </svg>
+                                        <svg width="32" height="32" class="hidden icon-plus-circle-white">
+                                            <use xlink:href="./images/sprite-icons.svg#icon-plus-circle-white"></use>
                                         </svg>
                                         <h2 class="font-extrabold text-2xl text-zinc-900">@text</h2>
                                     </div>

@@ -531,7 +531,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const requestUrl = `/personel-load-items.bc?catid=${personelId}`;
 
         try {
-          fetchContentPersonel.innerHTML = "<p>در حال بارگذاری...</p>";
+          fetchContentPersonel.innerHTML = '<div class="flex justify-center mt-16"><span class="header-loader"></span></div>';
           const response = await fetch(requestUrl);
           if (!response.ok)
             throw new Error(`HTTP error! Status: ${response.status}`);
@@ -1171,211 +1171,56 @@ document.addEventListener("DOMContentLoaded", () => {
   updatePriceRange();
 });
 
-// filter-hotel-card
+// free-consulation-form
 document.addEventListener("DOMContentLoaded", () => {
-  const normalizeText = (text) =>
-    text ? text.replace(/\s|\./g, "").normalize("NFKD").toLowerCase() : "";
+  const modal = document.querySelector(".free-consulation-form");
+  const openButtons = document.querySelectorAll(".open-consulation-btn");
+  const closeButton = document.querySelector(".close-consulation-btn");
+  const backdrop = document.querySelector(".modal-backdrop");
 
-  const selectedStars = new Set();
-  const selectedServices = new Set();
-  let hotelNameQuery = "";
+  const showForm = () => {
+    modal.classList.remove("hidden");
+    modal.classList.add("flex");
 
-  const hotelNameInput = document.querySelector(".hotel-name-input");
-  const starInputs = document.querySelectorAll(".star-hotel-input");
-  const serviceInputs = document.querySelectorAll(".filter-hotel-services");
-  const minRange = document.getElementById("hotel-minRange");
-  const maxRange = document.getElementById("hotel-maxRange");
-  const minValueSpan = document.getElementById("hotel-minValue");
-  const maxValueSpan = document.getElementById("hotel-maxValue");
-  const rangeTrack = document.getElementById("hotel-rangeTrack");
-
-  const hotelCards = document.querySelectorAll(".hotel-card");
-
-  const formatPrice = (val) => val.toLocaleString("fa-IR");
-
-  const parsePrice = (text) => parseInt(text.replace(/[^\d]/g, ""), 10) || 0;
-
-  const allPrices = Array.from(hotelCards)
-    .map((card) => {
-      const priceElem = card.querySelector(".hotel-card-price");
-      return priceElem ? parsePrice(priceElem.textContent) : 0;
-    })
-    .filter((p) => p > 0);
-
-  const REAL_MIN = allPrices.length > 0 ? Math.min(...allPrices) : 0;
-  const REAL_MAX = allPrices.length > 0 ? Math.max(...allPrices) : 0;
-
-  let realMin = REAL_MIN;
-  let realMax = REAL_MAX;
-
-  function updateFilterCount() {
-    const filterCountEl = document.getElementById("filterBtnCountHotel");
-    const filterBtn = document.getElementById("filterBtnHotel");
-    const filterIcon = document.getElementById("filterIconHotel");
-
-    if (!filterCountEl || !filterBtn || !filterIcon) return;
-
-    let count = 0;
-
-    if (selectedStars.size > 0) count++;
-    if (selectedServices.size > 0) count++;
-    if (realMin > REAL_MIN || realMax < REAL_MAX) count++;
-    if (hotelNameQuery.trim() !== "") count++;
-
-    if (count > 0) {
-      filterCountEl.classList.remove("hidden");
-      filterCountEl.classList.add("flex");
-      filterCountEl.textContent = count;
-
-      filterBtn.classList.remove("bg-white");
-      filterBtn.classList.add(
-        "bg-primary-500",
-        "shadow-small-btn-shadow",
-        "text-white"
-      );
-
-      filterIcon.querySelectorAll("path, ellipse").forEach((el) => {
-        el.setAttribute("stroke", "#11C086");
-      });
-    } else {
-      filterCountEl.classList.add("hidden");
-      filterCountEl.classList.remove("flex");
-      filterCountEl.textContent = "";
-
-      filterBtn.classList.remove(
-        "bg-primary-500",
-        "shadow-small-btn-shadow",
-        "text-white"
-      );
-      filterBtn.classList.add("bg-white");
-
-      filterIcon.querySelectorAll("path, ellipse").forEach((el) => {
-        el.setAttribute("stroke", "#33363F");
-      });
-    }
-  }
-
-  function filterCardsExtended() {
-    hotelCards.forEach((card) => {
-      const starElems = card.querySelectorAll(".hotel-card-star");
-      const serviceElems = card.querySelectorAll(".hotel-card-service");
-      const hotelNameElem = card.querySelector(".hotel-card-title");
-      const priceElem = card.querySelector(".hotel-card-price");
-
-      const cardStars = Array.from(starElems).map((el) =>
-        normalizeText(el.textContent)
-      );
-
-      const cardServices = Array.from(serviceElems).map((el) =>
-        normalizeText(el.textContent)
-      );
-
-      const cardHotelName = normalizeText(hotelNameElem?.textContent);
-      const cardPrice = priceElem ? parsePrice(priceElem.textContent) : 0;
-
-      const starMatch =
-        selectedStars.size === 0 ||
-        cardStars.some((star) => selectedStars.has(star));
-
-      const serviceMatch =
-        selectedServices.size === 0 ||
-        cardServices.some((service) => selectedServices.has(service));
-
-      const nameMatch =
-        !hotelNameQuery ||
-        cardHotelName.includes(normalizeText(hotelNameQuery));
-
-      const priceMatch = cardPrice >= realMin && cardPrice <= realMax;
-
-      card.style.display =
-        starMatch && serviceMatch && nameMatch && priceMatch ? "flex" : "none";
+    requestAnimationFrame(() => {
+      modal.classList.remove("opacity-0", "scale-95");
+      modal.classList.add("opacity-100", "scale-100");
     });
 
-    updateFilterCount();
-  }
+    document.body.style.overflow = "hidden";
+  };
 
-  starInputs.forEach((el) => {
-    el.addEventListener("click", () => {
-      const wrapper = el.closest(".star-hotel-wrapper");
-      const rawText = wrapper?.querySelector(".star-hotel")?.textContent || "";
-      const match = normalizeText(rawText).match(/(\d+)ستاره/);
-      const label = match ? match[0] : "";
+  const hideForm = () => {
+    modal.classList.remove("opacity-100", "scale-100");
+    modal.classList.add("opacity-0", "scale-95");
 
-      if (!label) return;
+    setTimeout(() => {
+      modal.classList.remove("flex");
+      modal.classList.add("hidden");
+      document.body.style.overflow = "";
+    }, 300);
+  };
 
-      const isActive = selectedStars.has(label);
-      el.classList.toggle("bg-primary-500", !isActive);
-      el.classList.toggle("border-primary-500", !isActive);
-
-      isActive ? selectedStars.delete(label) : selectedStars.add(label);
-      filterCardsExtended();
+  openButtons.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      showForm();
     });
   });
 
-  serviceInputs.forEach((el) => {
-    el.addEventListener("click", () => {
-      const labelElem = el.querySelector(".filter-hotel-services-name");
-      const label = normalizeText(
-        labelElem ? labelElem.textContent : el.textContent
-      );
-
-      const isActive = selectedServices.has(label);
-      el.classList.toggle("text-primary-500", !isActive);
-      el.classList.toggle("border-primary-500", !isActive);
-
-      isActive ? selectedServices.delete(label) : selectedServices.add(label);
-      filterCardsExtended();
-    });
+  closeButton?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    hideForm();
   });
 
-  if (hotelNameInput) {
-    hotelNameInput.addEventListener("input", () => {
-      hotelNameQuery = hotelNameInput.value;
-      filterCardsExtended();
-    });
-  }
+  backdrop?.addEventListener("click", hideForm);
 
-  function updatePriceValues() {
-    if (
-      !minRange ||
-      !maxRange ||
-      !minValueSpan ||
-      !maxValueSpan ||
-      !rangeTrack
-    ) {
-      return;
-    }
-
-    const rawMin = parseInt(minRange.value) || 0;
-    const rawMax = parseInt(maxRange.value) || 0;
-
-    realMin = Math.floor(REAL_MIN + ((REAL_MAX - REAL_MIN) * rawMin) / 100);
-    realMax = Math.floor(REAL_MIN + ((REAL_MAX - REAL_MIN) * rawMax) / 100);
-
-    minValueSpan.textContent = formatPrice(Math.min(realMin, realMax));
-    maxValueSpan.textContent = formatPrice(Math.max(realMin, realMax));
-
-    const right = Math.min(rawMin, rawMax);
-    const width = Math.abs(rawMax - rawMin);
-
-    rangeTrack.style.right = `${right}%`;
-    rangeTrack.style.width = `${width}%`;
-
-    filterCardsExtended();
-  }
-
-  if (minRange) {
-    minRange.value = minRange.value || "0";
-    minRange.addEventListener("input", updatePriceValues);
-  }
-  if (maxRange) {
-    maxRange.value = maxRange.value || "100";
-    maxRange.addEventListener("input", updatePriceValues);
-  }
-
-  setTimeout(updatePriceValues, 100);
-  filterCardsExtended();
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") hideForm();
+  });
 });
+
+
 
 // faq-box
 document.addEventListener("DOMContentLoaded", function () {
@@ -1692,25 +1537,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!btn || !btnText) return;
 
+    const isMobile = window.innerWidth < 1024;
+    const closedHeight = isMobile ? 620 : 480; 
+
+    const contentHeight = container.scrollHeight;
+
+    if (contentHeight <= closedHeight) {
+      if (btn) btn.style.display = "none";
+      if (shadow) shadow.style.display = "none";
+      return; 
+    }
+
+
+    container.style.maxHeight = closedHeight + "px";
+
     btn.addEventListener("click", () => {
       const isOpen = container.classList.contains("open");
-      const isMobile = window.innerWidth < 1024;
-      const closedHeight = isMobile ? "620px" : "30rem";
 
       if (isOpen) {
-        const contentHeight = container.scrollHeight;
         container.style.maxHeight = contentHeight + "px";
-
         requestAnimationFrame(() => {
-          container.style.maxHeight = closedHeight;
+          container.style.maxHeight = closedHeight + "px";
           container.classList.remove("open");
         });
 
         if (shadow) shadow.classList.add("bg-white-shadow");
         btnText.textContent = "مشاهده همه";
       } else {
-        const contentHeight = container.scrollHeight;
-        container.style.maxHeight = closedHeight;
+        container.style.maxHeight = closedHeight + "px";
         container.classList.add("open");
 
         requestAnimationFrame(() => {
@@ -1723,6 +1577,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
 
 // reply-comment
 async function Reply_Comment(element) {
@@ -1829,7 +1684,7 @@ if (document.querySelector(".swiper-special-destination-tour")) {
   var swiperSpecialDestinationTour = new Swiper(
     ".swiper-special-destination-tour",
     {
-      slidesPerView: 5.5,
+      slidesPerView: "auto",
       speed: 400,
       centeredSlides: false,
       spaceBetween: 24,
@@ -1862,10 +1717,10 @@ if (document.querySelector(".swiper-tour-date-tourL")) {
 }
 if (document.querySelector(".swiper-special-suggestion")) {
   var swiperSpecialSuggestion = new Swiper(".swiper-special-suggestion", {
-    slidesPerView: 2.25,
+    slidesPerView: 2.2,
     speed: 400,
     centeredSlides: false,
-    spaceBetween: 24,
+    spaceBetween: 12,
     grabCursor: true,
     autoplay: {
       delay: 2500,
