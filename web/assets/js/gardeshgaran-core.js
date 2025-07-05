@@ -444,8 +444,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  document.addEventListener("click", () => {
-    if (expanded) {
+  document.addEventListener("click", (e) => {
+    if (expanded && !form.contains(e.target)) {
       closeForm();
     }
   });

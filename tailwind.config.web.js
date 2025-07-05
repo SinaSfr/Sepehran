@@ -30,6 +30,7 @@ module.exports = {
         'shadow-soft': '0px 23px 18px -14px #00000040',
         'shadow-date': '0px 36px 21.6px -31px #00000040',
         'tour-card-mobile': '0px 22px 17.1px -15px #00000040',
+        'contact-form': '0px 35px 32px -31px #00000040',
       },
       colors: {
         primary: {

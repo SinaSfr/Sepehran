@@ -648,6 +648,10 @@ body {
   right: 10rem /* 160px */;
 }
 
+.right-56 {
+  right: 14rem /* 224px */;
+}
+
 .right-60 {
   right: 15rem /* 240px */;
 }
@@ -674,6 +678,10 @@ body {
 
 .top-\[52px\] {
   top: 52px;
+}
+
+.top-\[70\%\] {
+  top: 70%;
 }
 
 .top-full {
@@ -904,6 +912,10 @@ body {
 
 .w-52 {
   width: 13rem;
+}
+
+.w-56 {
+  width: 14rem /* 224px */;
 }
 
 .w-64 {
@@ -1403,6 +1415,10 @@ body {
 
 .pl-6 {
   padding-left: 1.5rem;
+}
+
+.pl-8 {
+  padding-left: 2rem;
 }
 
 .pr-0 {
@@ -2135,9 +2151,19 @@ body {
   color: var(--primary-500);
 }
 
+.group\/leveltwo:hover .group-hover\/leveltwo\:rotate-90 {
+  --tw-rotate: 90deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
 .group\/leveltwo:hover .group-hover\/leveltwo\:text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+.group\/levelthree:hover .group-hover\/levelthree\:rotate-90 {
+  --tw-rotate: 90deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
 .group\/levelthree:hover .group-hover\/levelthree\:text-white {
