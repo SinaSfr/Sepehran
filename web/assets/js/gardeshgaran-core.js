@@ -1,71 +1,65 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener('DOMContentLoaded', function () {
   const isDesktop = window.innerWidth > 1024;
-  const requiredFiles = isDesktop
-    ? ["gardeshgaran.ui.min.css"]
-    : ["gardeshgaran-mob.ui.min.css"];
+  const requiredFiles = isDesktop ? ['gardeshgaran.ui.min.css'] : ['gardeshgaran-mob.ui.min.css'];
 
   function checkAllResourcesLoaded() {
-    const resources = performance.getEntriesByType("resource");
+    const resources = performance.getEntriesByType('resource');
     const loadedFiles = resources
-      .map((res) => res.name.split("/").pop())
+      .map((res) => res.name.split('/').pop())
       .filter((name) => requiredFiles.includes(name));
 
     return requiredFiles.every((file) => loadedFiles.includes(file));
   }
 
-  if (document.getElementById("search-box")) {
+  if (document.getElementById('search-box')) {
     function fetchEngine() {
       try {
         const xhrobj = new XMLHttpRequest();
-        xhrobj.open("GET", "search-engine.bc");
+        xhrobj.open('GET', 'search-engine.bc');
         xhrobj.send();
 
         xhrobj.onreadystatechange = function () {
           if (this.readyState == 4 && this.status == 200) {
-            const container = document.getElementById("search-box");
+            const container = document.getElementById('search-box');
             container.innerHTML = xhrobj.responseText;
 
-            [".Basis_Date.end_date", ".Basis_Date.start_date"].forEach(
-              (selector) => {
-                const dateInputs = document.querySelectorAll(selector);
-                dateInputs.forEach((input) => {
-                  input.placeholder = "";
-                });
-              }
-            );
-            const scripts = container.getElementsByTagName("script");
+            ['.Basis_Date.end_date', '.Basis_Date.start_date'].forEach((selector) => {
+              const dateInputs = document.querySelectorAll(selector);
+              dateInputs.forEach((input) => {
+                input.placeholder = '';
+              });
+            });
+            const scripts = container.getElementsByTagName('script');
             for (let i = 0; i < scripts.length; i++) {
-              const scriptTag = document.createElement("script");
+              const scriptTag = document.createElement('script');
               if (scripts[i].src) {
                 scriptTag.src = scripts[i].src;
                 scriptTag.async = false;
               } else {
                 scriptTag.text = scripts[i].textContent;
               }
-              document.head
-                .appendChild(scriptTag)
-                .parentNode.removeChild(scriptTag);
+              document.head.appendChild(scriptTag).parentNode.removeChild(scriptTag);
             }
 
             //active flighttype-items search-engine
-            const items = document.querySelectorAll(".flighttype-items li");
+            const items = document.querySelectorAll('.flighttype-items li');
 
             if (items.length > 0) {
-              items[0].classList.add("active");
+              items[0].classList.add('active');
 
               items.forEach((item) => {
-                item.addEventListener("click", () => {
-                  items.forEach((li) => li.classList.remove("active"));
-                  item.classList.add("active");
+                item.addEventListener('click', () => {
+                  items.forEach((li) => li.classList.remove('active'));
+                  item.classList.add('active');
                 });
               });
             }
 
             // rotate chevron-icon
             const selectors = [
-              ".click-content",
-              ".reserve-field.departure-date > div:first-child",
-              ".reserve-field.return-date > div:first-child",
+              '.click-content',
+              '.reserve-field.departure-date > div:first-child',
+              '.reserve-field.return-date > div:first-child',
             ];
 
             let allElements = [];
@@ -76,43 +70,38 @@ document.addEventListener("DOMContentLoaded", function () {
                 elements.forEach((element) => {
                   allElements.push(element);
 
-                  element.addEventListener("click", function (e) {
+                  element.addEventListener('click', function (e) {
                     e.stopPropagation();
 
                     // اول حذف rotate از همه
-                    allElements.forEach((el) => el.classList.remove("rotate"));
+                    allElements.forEach((el) => el.classList.remove('rotate'));
 
                     // بعد اضافه کردن به همینی که کلیک شده
-                    this.classList.add("rotate");
+                    this.classList.add('rotate');
                   });
                 });
               }
             });
 
-            document.addEventListener("click", function (e) {
-              const isInsideTarget = allElements.some((el) =>
-                el.contains(e.target)
-              );
-              const isInsideCalendar =
-                e.target.closest(".Basis_Calendar_Box") !== null;
+            document.addEventListener('click', function (e) {
+              const isInsideTarget = allElements.some((el) => el.contains(e.target));
+              const isInsideCalendar = e.target.closest('.Basis_Calendar_Box') !== null;
 
               if (!isInsideTarget && !isInsideCalendar) {
-                allElements.forEach((el) => el.classList.remove("rotate"));
+                allElements.forEach((el) => el.classList.remove('rotate'));
               }
             });
 
-            const inputExteraHoteldate = document.querySelectorAll(
-              ".Basis_Date_ExteraHoteldate"
-            );
+            const inputExteraHoteldate = document.querySelectorAll('.Basis_Date_ExteraHoteldate');
             if (inputExteraHoteldate.length > 0) {
               inputExteraHoteldate.forEach((input) => {
-                input.placeholder = "";
+                input.placeholder = '';
               });
             }
           }
         };
       } catch (error) {
-        console.error("مشکلی پیش آمده است. لطفا صبور باشید", error);
+        console.error('مشکلی پیش آمده است. لطفا صبور باشید', error);
       }
     }
 
@@ -127,69 +116,69 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-const headerMenu = document.querySelector(".header-menu");
-const headerMenuClose = document.querySelector(".header-menu-close");
-const bars3 = document.querySelector(".bars3");
+const headerMenu = document.querySelector('.header-menu');
+const headerMenuClose = document.querySelector('.header-menu-close');
+const bars3 = document.querySelector('.bars3');
 
 if (window.innerWidth < 1024) {
   if (headerMenu && headerMenuClose && bars3) {
-    headerMenuClose.addEventListener("click", function () {
-      headerMenu.style.transform = "translateX(1024px)";
-      document.body.classList.remove("overflow-hidden");
+    headerMenuClose.addEventListener('click', function () {
+      headerMenu.style.transform = 'translateX(1024px)';
+      document.body.classList.remove('overflow-hidden');
     });
 
-    bars3.addEventListener("click", function () {
-      headerMenu.style.transform = "translateX(0)";
-      document.body.classList.add("overflow-hidden");
+    bars3.addEventListener('click', function () {
+      headerMenu.style.transform = 'translateX(0)';
+      document.body.classList.add('overflow-hidden');
     });
   }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  const toggleDropdowns = document.querySelectorAll(".toggle-dropdown");
-  const dropdownIcons = document.querySelectorAll(".dropdown-icon");
+document.addEventListener('DOMContentLoaded', function () {
+  const toggleDropdowns = document.querySelectorAll('.toggle-dropdown');
+  const dropdownIcons = document.querySelectorAll('.dropdown-icon');
 
   toggleDropdowns.forEach((toggle, index) => {
     const submenu = toggle.nextElementSibling;
     const dropdownIcon = dropdownIcons[index];
 
-    toggle.addEventListener("click", function () {
-      dropdownIcon.classList.toggle("rotate-180");
+    toggle.addEventListener('click', function () {
+      dropdownIcon.classList.toggle('rotate-180');
 
       if (submenu.style.maxHeight) {
         submenu.style.maxHeight = null;
-        submenu.style.opacity = "0";
+        submenu.style.opacity = '0';
       } else {
-        submenu.style.maxHeight = submenu.scrollHeight * 30 + "px";
-        submenu.style.opacity = "1";
+        submenu.style.maxHeight = submenu.scrollHeight * 30 + 'px';
+        submenu.style.opacity = '1';
       }
     });
   });
 });
 
 // fetch header
-document.addEventListener("DOMContentLoaded", function () {
-  const fetchContentHeader = document.querySelector(".fetch-content-header");
-  const headerLi = document.querySelectorAll(".header-li");
+document.addEventListener('DOMContentLoaded', function () {
+  const fetchContentHeader = document.querySelector('.fetch-content-header');
+  const headerLi = document.querySelectorAll('.header-li');
 
   function activateDropdownToggles() {
-    const toggleDropdowns = document.querySelectorAll(".toggle-dropdown");
+    const toggleDropdowns = document.querySelectorAll('.toggle-dropdown');
     toggleDropdowns.forEach((toggle) => {
       const submenu = toggle.nextElementSibling;
-      const dropdownIcon = toggle.querySelector(".dropdown-icon");
+      const dropdownIcon = toggle.querySelector('.dropdown-icon');
 
       submenu.style.maxHeight = null;
-      submenu.style.opacity = "0";
+      submenu.style.opacity = '0';
 
-      toggle.addEventListener("click", () => {
-        dropdownIcon.classList.toggle("rotate-180");
+      toggle.addEventListener('click', () => {
+        dropdownIcon.classList.toggle('rotate-180');
 
         if (submenu.style.maxHeight) {
           submenu.style.maxHeight = null;
-          submenu.style.opacity = "0";
+          submenu.style.opacity = '0';
         } else {
-          submenu.style.maxHeight = submenu.scrollHeight * 30 + "px";
-          submenu.style.opacity = "1";
+          submenu.style.maxHeight = submenu.scrollHeight * 30 + 'px';
+          submenu.style.opacity = '1';
         }
       });
     });
@@ -199,10 +188,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (fetchContentHeader) {
     async function loadInitialContent() {
-      const firstItem = document.querySelector(".header-li");
+      const firstItem = document.querySelector('.header-li');
       if (!firstItem) return;
 
-      const cmsQuery = firstItem.getAttribute("data-catid");
+      const cmsQuery = firstItem.getAttribute('data-catid');
       if (!cmsQuery) return;
 
       try {
@@ -210,69 +199,56 @@ document.addEventListener("DOMContentLoaded", function () {
         const data = await response.text();
         fetchContentHeader.innerHTML = data;
 
-        document.querySelectorAll(".header-li").forEach((li) => {
-          li.style.backgroundColor = "";
-          li.style.color = "";
+        document.querySelectorAll('.header-li').forEach((li) => {
+          li.style.backgroundColor = '';
+          li.style.color = '';
         });
-        firstItem.style.color = "#14eba4";
-        firstItem.style.backgroundColor = "#2e58d1";
+        firstItem.style.color = '#14eba4';
+        firstItem.style.backgroundColor = '#2e58d1';
 
-        const details = document.querySelector(
-          ".tourcategorydropdown__details"
-        );
+        const details = document.querySelector('.tourcategorydropdown__details');
         if (details) {
-          details.classList.remove("hidden");
-          details.classList.remove("opacity-100");
-          details.classList.add(
-            "opacity-0",
-            "transition-opacity",
-            "duration-300"
-          );
+          details.classList.remove('hidden');
+          details.classList.remove('opacity-100');
+          details.classList.add('opacity-0', 'transition-opacity', 'duration-300');
 
           setTimeout(() => {
-            details.classList.remove("opacity-0");
-            details.classList.add("opacity-100");
+            details.classList.remove('opacity-0');
+            details.classList.add('opacity-100');
           }, 10);
         }
 
         activateDropdownToggles();
       } catch (err) {
-        fetchContentHeader.innerHTML =
-          "<p>مشکلی در دریافت اطلاعات رخ داد: " + err.message + "</p>";
+        fetchContentHeader.innerHTML = '<p>مشکلی در دریافت اطلاعات رخ داد: ' + err.message + '</p>';
       }
     }
 
     loadInitialContent();
 
     headerLi.forEach((item) => {
-      item.addEventListener("click", async function () {
+      item.addEventListener('click', async function () {
         headerLi.forEach((li) => {
-          li.style.backgroundColor = "";
-          li.style.color = "";
+          li.style.backgroundColor = '';
+          li.style.color = '';
         });
 
-        li.style.color = "#14eba4";
-        item.style.backgroundColor = "#2e58d1";
+        item.style.color = '#14eba4';
+        item.style.backgroundColor = '#2e58d1';
 
-        const details = document.querySelector(
-          ".tourcategorydropdown__details"
-        );
+        const details = document.querySelector('.tourcategorydropdown__details');
         if (details) {
-          details.classList.remove("hidden");
-          details.classList.remove("opacity-100");
-          details.classList.add(
-            "opacity-0",
-            "transition-opacity",
-            "duration-300"
-          );
+          details.classList.remove('hidden');
+          details.classList.remove('opacity-100');
+          details.classList.add('opacity-0', 'transition-opacity', 'duration-300');
 
           setTimeout(() => {
-            details.classList.remove("opacity-0");
-            details.classList.add("opacity-100");
+            details.classList.remove('opacity-0');
+            details.classList.add('opacity-100');
           }, 10);
         }
 
-        const cmsQuery = item.getAttribute("data-catid");
+        const cmsQuery = item.getAttribute('data-catid');
         if (!cmsQuery) return;
 
         const requestUrl = `/header-load-items.bc?catid=${cmsQuery}`;
@@ -281,159 +257,141 @@ document.addEventListener("DOMContentLoaded", function () {
           fetchContentHeader.innerHTML =
             '<div class="flex justify-center mt-6"><span class="header-loader"></span></div>';
           const response = await fetch(requestUrl);
-          if (!response.ok)
-            throw new Error(`HTTP error! Status: ${response.status}`);
+          if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
           const data = await response.text();
           fetchContentHeader.innerHTML = data;
 
           activateDropdownToggles();
         } catch (error) {
-          console.error("Fetch failed:", error);
-          fetchContentHeader.innerHTML =
-            "<p>مشکلی در دریافت اطلاعات رخ داد: " + error.message + "</p>";
+          console.error('Fetch failed:', error);
+          fetchContentHeader.innerHTML = '<p>مشکلی در دریافت اطلاعات رخ داد: ' + error.message + '</p>';
         }
       });
     });
   }
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-  const trigger = document.querySelector(".tourcategorydropdown__trigger");
-  const content = document.querySelector(".tourcategorydropdown__content");
-  const icon = document.querySelector(".tourcategorydropdown__icon");
+document.addEventListener('DOMContentLoaded', () => {
+  const trigger = document.querySelector('.tourcategorydropdown__trigger');
+  const content = document.querySelector('.tourcategorydropdown__content');
+  const icon = document.querySelector('.tourcategorydropdown__icon');
 
   if (trigger && content && icon) {
-    trigger.addEventListener("click", () => {
-      const isHidden = content.classList.contains("hidden");
+    trigger.addEventListener('click', () => {
+      const isHidden = content.classList.contains('hidden');
 
       if (isHidden) {
-        content.classList.remove("hidden", "opacity-0");
-        content.classList.add("flex", "opacity-100");
-        icon.classList.add("rotate-180");
+        content.classList.remove('hidden', 'opacity-0');
+        content.classList.add('flex', 'opacity-100');
+        icon.classList.add('rotate-180');
       } else {
-        content.classList.add("opacity-0");
-        content.classList.remove("opacity-100");
-        icon.classList.remove("rotate-180");
+        content.classList.add('opacity-0');
+        content.classList.remove('opacity-100');
+        icon.classList.remove('rotate-180');
 
         setTimeout(() => {
-          content.classList.remove("flex");
-          content.classList.add("hidden");
+          content.classList.remove('flex');
+          content.classList.add('hidden');
         }, 300);
       }
     });
   }
 
-  document.querySelectorAll(".special-tour-label").forEach((labelEl) => {
-    const catId = labelEl.getAttribute("data-special-catid");
+  document.querySelectorAll('.special-tour-label').forEach((labelEl) => {
+    const catId = labelEl.getAttribute('data-special-catid');
     let matched = false;
 
-    document.querySelectorAll(".special-tour-host").forEach((hostEl) => {
-      const data = hostEl.getAttribute("data-special");
+    document.querySelectorAll('.special-tour-host').forEach((hostEl) => {
+      const data = hostEl.getAttribute('data-special');
       if (!data) return;
 
-      const ids = data.split(",").map((id) => id.trim());
+      const ids = data.split(',').map((id) => id.trim());
       if (ids.includes(catId)) {
         matched = true;
       }
     });
 
     if (matched) {
-      labelEl.classList.remove("hidden");
+      labelEl.classList.remove('hidden');
     }
   });
 
-  const details = document.getElementById("details");
-  document.querySelectorAll(".tourcategorydropdown__item").forEach((item) => {
-    item.addEventListener("click", () => {
-      document.querySelectorAll(".tourcategorydropdown__item").forEach((li) => {
-        li.classList.remove(
-          "bg-primary-500",
-          "text-secondary-500",
-          "mr-2",
-          "transition-all",
-          "duration-300"
-        );
+  const details = document.getElementById('details');
+  document.querySelectorAll('.tourcategorydropdown__item').forEach((item) => {
+    item.addEventListener('click', () => {
+      document.querySelectorAll('.tourcategorydropdown__item').forEach((li) => {
+        li.classList.remove('bg-primary-500', 'text-secondary-500', 'mr-2', 'transition-all', 'duration-300');
       });
 
-      item.classList.add(
-        "bg-primary-500",
-        "text-secondary-500",
-        "mr-2",
-        "transition-all",
-        "duration-300"
-      );
+      item.classList.add('bg-primary-500', 'text-secondary-500', 'mr-2', 'transition-all', 'duration-300');
 
-      if (details && details.classList.contains("hidden")) {
-        details.classList.remove("hidden");
-        details.classList.add(
-          "opacity-0",
-          "transition-opacity",
-          "duration-300"
-        );
+      if (details && details.classList.contains('hidden')) {
+        details.classList.remove('hidden');
+        details.classList.add('opacity-0', 'transition-opacity', 'duration-300');
 
         setTimeout(() => {
-          details.classList.remove("opacity-0");
-          details.classList.add("opacity-100");
+          details.classList.remove('opacity-0');
+          details.classList.add('opacity-100');
         }, 10);
       }
     });
   });
 
-  const openMobileBtn = document.getElementById("openTourMobile");
-  const mobileOverlay = document.querySelector(".tourcategorymobile__overlay");
-  const closeMobileBtn = document.getElementById("closeTourMobile");
+  const openMobileBtn = document.getElementById('openTourMobile');
+  const mobileOverlay = document.querySelector('.tourcategorymobile__overlay');
+  const closeMobileBtn = document.getElementById('closeTourMobile');
 
   if (openMobileBtn && mobileOverlay && closeMobileBtn) {
-    openMobileBtn.addEventListener("click", () => {
-      mobileOverlay.classList.remove("hidden", "opacity-0");
-      mobileOverlay.classList.add("opacity-100");
-      document.body.classList.add("overflow-hidden");
+    openMobileBtn.addEventListener('click', () => {
+      mobileOverlay.classList.remove('hidden', 'opacity-0');
+      mobileOverlay.classList.add('opacity-100');
+      document.body.classList.add('overflow-hidden');
     });
 
-    closeMobileBtn.addEventListener("click", () => {
-      mobileOverlay.classList.remove("opacity-100");
-      mobileOverlay.classList.add("opacity-0");
-      document.body.classList.remove("overflow-hidden");
+    closeMobileBtn.addEventListener('click', () => {
+      mobileOverlay.classList.remove('opacity-100');
+      mobileOverlay.classList.add('opacity-0');
+      document.body.classList.remove('overflow-hidden');
 
       setTimeout(() => {
-        mobileOverlay.classList.add("hidden");
+        mobileOverlay.classList.add('hidden');
       }, 300);
     });
   }
 });
 
-document.addEventListener("DOMContentLoaded", function () {
-  const form = document.querySelector(".search-form");
+document.addEventListener('DOMContentLoaded', function () {
+  const form = document.querySelector('.search-form');
   if (!form) return;
 
-  const input = form.querySelector(".search-input");
-  const button = form.querySelector(".search-toggle");
+  const input = form.querySelector('.search-input');
+  const button = form.querySelector('.search-toggle');
   if (!input || !button) return;
 
   let expanded = false;
 
   function openForm() {
-    form.classList.add("w-48");
-    form.classList.remove("w-10");
+    form.classList.add('w-48');
+    form.classList.remove('w-10');
 
-    input.classList.add("w-full", "pr-3");
-    input.classList.remove("w-0", "pr-0");
+    input.classList.add('w-full', 'pr-3');
+    input.classList.remove('w-0', 'pr-0');
 
     expanded = true;
     input.focus();
   }
 
   function closeForm() {
-    form.classList.remove("w-48");
-    form.classList.add("w-10");
+    form.classList.remove('w-48');
+    form.classList.add('w-10');
 
-    input.classList.remove("w-full", "pr-3");
-    input.classList.add("w-0", "pr-0");
+    input.classList.remove('w-full', 'pr-3');
+    input.classList.add('w-0', 'pr-0');
 
     expanded = false;
   }
 
-  button.addEventListener("click", (e) => {
+  button.addEventListener('click', (e) => {
     e.stopPropagation();
     if (!expanded) {
       openForm();
@@ -444,13 +402,13 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  document.addEventListener("click", (e) => {
+  document.addEventListener('click', (e) => {
     if (expanded && !form.contains(e.target)) {
       closeForm();
     }
   });
 
-  form.addEventListener("submit", (e) => {
+  form.addEventListener('submit', (e) => {
     if (!input.value.trim()) {
       e.preventDefault();
       input.focus();
@@ -458,89 +416,83 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-document.addEventListener("DOMContentLoaded", function () {
-  const toggleBtn = document.querySelector(".tour-category-header");
-  const menu = document.querySelector(".menu-tour-category");
-  const icon = document.querySelector(".drop-down-tour-category");
+document.addEventListener('DOMContentLoaded', function () {
+  const toggleBtn = document.querySelector('.tour-category-header');
+  const menu = document.querySelector('.menu-tour-category');
+  const icon = document.querySelector('.drop-down-tour-category');
 
   if (!toggleBtn || !menu || !icon) return;
 
-  toggleBtn.addEventListener("click", () => {
-    menu.classList.toggle("opacity-0");
-    menu.classList.toggle("scale-95");
-    menu.classList.toggle("pointer-events-none");
-    icon.classList.toggle("rotate-180");
+  toggleBtn.addEventListener('click', () => {
+    menu.classList.toggle('opacity-0');
+    menu.classList.toggle('scale-95');
+    menu.classList.toggle('pointer-events-none');
+    icon.classList.toggle('rotate-180');
   });
 
-  document.addEventListener("click", (e) => {
+  document.addEventListener('click', (e) => {
     if (!toggleBtn.contains(e.target) && !menu.contains(e.target)) {
-      menu.classList.add("opacity-0");
-      menu.classList.add("scale-95");
-      menu.classList.add("pointer-events-none");
-      icon.classList.remove("rotate-180");
+      menu.classList.add('opacity-0');
+      menu.classList.add('scale-95');
+      menu.classList.add('pointer-events-none');
+      icon.classList.remove('rotate-180');
     }
   });
 });
 
 // fetch personel
-document.addEventListener("DOMContentLoaded", function () {
-  const fetchContentPersonel = document.querySelector(
-    ".fetch-content-personel"
-  );
-  const personelLi = document.querySelectorAll(".personel-li");
+document.addEventListener('DOMContentLoaded', function () {
+  const fetchContentPersonel = document.querySelector('.fetch-content-personel');
+  const personelLi = document.querySelectorAll('.personel-li');
 
   if (fetchContentPersonel) {
     async function loadInitialContent() {
-      const firstItem = document.querySelector(".personel-li");
+      const firstItem = document.querySelector('.personel-li');
       if (!firstItem) return;
 
-      const personelId = firstItem.getAttribute("data-personel");
+      const personelId = firstItem.getAttribute('data-personel');
       if (!personelId) return;
 
       try {
-        const response = await fetch(
-          `/personel-load-items.bc?catid=${personelId}`
-        );
+        const response = await fetch(`/personel-load-items.bc?catid=${personelId}`);
         const data = await response.text();
         fetchContentPersonel.innerHTML = data;
 
-        document.querySelectorAll(".personel-li").forEach((li) => {
-          li.style.backgroundColor = "";
+        document.querySelectorAll('.personel-li').forEach((li) => {
+          li.style.backgroundColor = '';
         });
-        firstItem.style.backgroundColor = "#2e58d1";
+        firstItem.style.backgroundColor = '#2e58d1';
       } catch (err) {
-        fetchContentPersonel.innerHTML =
-          "<p>مشکلی در دریافت اطلاعات رخ داد: " + err.message + "</p>";
+        fetchContentPersonel.innerHTML = '<p>مشکلی در دریافت اطلاعات رخ داد: ' + err.message + '</p>';
       }
     }
 
     loadInitialContent();
 
     personelLi.forEach((item) => {
-      item.addEventListener("click", async function () {
+      item.addEventListener('click', async function () {
         personelLi.forEach((li) => {
-          li.style.backgroundColor = "";
-          li.style.color = "";
+          li.style.backgroundColor = '';
+          li.style.color = '';
         });
 
-        item.style.backgroundColor = "#2e58d1";
+        item.style.backgroundColor = '#2e58d1';
 
-        const personelId = item.getAttribute("data-personel");
+        const personelId = item.getAttribute('data-personel');
         if (!personelId) return;
 
         const requestUrl = `/personel-load-items.bc?catid=${personelId}`;
 
         try {
-          fetchContentPersonel.innerHTML = '<div class="flex justify-center mt-16"><span class="header-loader"></span></div>';
+          fetchContentPersonel.innerHTML =
+            '<div class="flex justify-center mt-16"><span class="header-loader"></span></div>';
           const response = await fetch(requestUrl);
-          if (!response.ok)
-            throw new Error(`HTTP error! Status: ${response.status}`);
+          if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
           const data = await response.text();
           fetchContentPersonel.innerHTML = data;
         } catch (error) {
-          console.error("Fetch failed:", error);
-          fetchContentPersonel.innerHTML =
-            "<p>مشکلی در دریافت اطلاعات رخ داد: " + error.message + "</p>";
+          console.error('Fetch failed:', error);
+          fetchContentPersonel.innerHTML = '<p>مشکلی در دریافت اطلاعات رخ داد: ' + error.message + '</p>';
         }
       });
     });
@@ -548,17 +500,17 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // filter tour-destintion with (,)
-document.addEventListener("DOMContentLoaded", function () {
-  const textElements = document.querySelectorAll(".tour-destination");
+document.addEventListener('DOMContentLoaded', function () {
+  const textElements = document.querySelectorAll('.tour-destination');
 
   function createIcon(href, classes) {
-    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    svg.setAttribute("width", "73");
-    svg.setAttribute("height", "4");
-    svg.setAttribute("class", classes);
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('width', '73');
+    svg.setAttribute('height', '4');
+    svg.setAttribute('class', classes);
 
-    const use = document.createElementNS("http://www.w3.org/2000/svg", "use");
-    use.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", href);
+    const use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+    use.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', href);
     svg.appendChild(use);
 
     return svg;
@@ -572,38 +524,33 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    const destinations = text.split(",").map((dest) => dest.trim());
+    const destinations = text.split(',').map((dest) => dest.trim());
     const parent = textElement.parentElement;
-    const icons = parent.querySelectorAll("svg");
+    const icons = parent.querySelectorAll('svg');
 
     icons.forEach((icon) => {
-      icon.classList.add("hidden", "invisible", "opacity-0");
-      icon.classList.remove(
-        "group-hover:visible",
-        "group-hover:opacity-100",
-        "group-hover:block"
-      );
+      icon.classList.add('hidden', 'invisible', 'opacity-0');
+      icon.classList.remove('group-hover:visible', 'group-hover:opacity-100', 'group-hover:block');
     });
 
-    const destContainer = document.createElement("div");
-    destContainer.className = "flex items-center justify-center gap-6 mb-4";
+    const destContainer = document.createElement('div');
+    destContainer.className = 'flex items-center justify-center gap-6 mb-4';
 
     destinations.forEach((dest, index) => {
-      const h3 = document.createElement("h3");
-      h3.className =
-        "text-2xl font-black text-primary-500 transition-all duration-300 group-hover:text-white";
+      const h3 = document.createElement('h3');
+      h3.className = 'text-2xl font-black text-primary-500 transition-all duration-300 group-hover:text-white';
       h3.textContent = dest;
       destContainer.appendChild(h3);
 
       if (index < destinations.length - 1 && destinations.length > 1) {
         const blueIcon = createIcon(
-          "./images/sprite-icons.svg#icon-blue-border",
-          "transition-all duration-300 group-hover:hidden group-hover:invisible group-hover:opacity-0"
+          './images/sprite-icons.svg#icon-blue-border',
+          'transition-all duration-300 group-hover:hidden group-hover:invisible group-hover:opacity-0'
         );
 
         const whiteIcon = createIcon(
-          "./images/sprite-icons.svg#icon-white-border",
-          "hidden transition-all duration-300 invisible opacity-0 group-hover:visible group-hover:opacity-100 group-hover:block"
+          './images/sprite-icons.svg#icon-white-border',
+          'hidden transition-all duration-300 invisible opacity-0 group-hover:visible group-hover:opacity-100 group-hover:block'
         );
 
         destContainer.appendChild(blueIcon);
@@ -619,25 +566,18 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // see-more-airline-items
-document.addEventListener("DOMContentLoaded", function () {
-  const container = document.querySelector(".checkboxList");
-  const toggleBtn = document.querySelector(".toggle-btn");
-  const items = container
-    ? Array.from(container.querySelectorAll(".airline-item"))
-    : [];
+document.addEventListener('DOMContentLoaded', function () {
+  const container = document.querySelector('.checkboxList');
+  const toggleBtn = document.querySelector('.toggle-btn');
+  const items = container ? Array.from(container.querySelectorAll('.airline-item')) : [];
   const visibleCount = 3;
 
   function hideItems() {
     items.forEach((item, index) => {
       if (index >= visibleCount) {
-        item.classList.add("hidden", "opacity-0", "max-h-0", "overflow-hidden");
+        item.classList.add('hidden', 'opacity-0', 'max-h-0', 'overflow-hidden');
       } else {
-        item.classList.remove(
-          "hidden",
-          "opacity-0",
-          "max-h-0",
-          "overflow-hidden"
-        );
+        item.classList.remove('hidden', 'opacity-0', 'max-h-0', 'overflow-hidden');
       }
     });
   }
@@ -645,99 +585,96 @@ document.addEventListener("DOMContentLoaded", function () {
   function showItems() {
     items.forEach((item, index) => {
       if (index >= visibleCount) {
-        item.classList.remove("hidden", "max-h-0", "overflow-hidden");
+        item.classList.remove('hidden', 'max-h-0', 'overflow-hidden');
 
-        setTimeout(() => item.classList.remove("opacity-0"), 10);
+        setTimeout(() => item.classList.remove('opacity-0'), 10);
       }
     });
   }
 
   function toggleItems() {
-    if (
-      items.length > visibleCount &&
-      items[visibleCount].classList.contains("hidden")
-    ) {
+    if (items.length > visibleCount && items[visibleCount].classList.contains('hidden')) {
       showItems();
-      toggleBtn.textContent = "مشاهده کمتر";
+      toggleBtn.textContent = 'مشاهده کمتر';
     } else {
       items.forEach((item, index) => {
         if (index >= visibleCount) {
-          item.classList.add("opacity-0");
+          item.classList.add('opacity-0');
         }
       });
 
       setTimeout(() => {
         items.forEach((item, index) => {
           if (index >= visibleCount) {
-            item.classList.add("hidden", "max-h-0", "overflow-hidden");
+            item.classList.add('hidden', 'max-h-0', 'overflow-hidden');
           }
         });
       }, 500);
-      toggleBtn.textContent = "مشاهده بیشتر";
+      toggleBtn.textContent = 'مشاهده بیشتر';
     }
   }
 
   hideItems();
-  toggleBtn?.addEventListener("click", toggleItems);
+  toggleBtn?.addEventListener('click', toggleItems);
 });
 
 // open filter-tour-list-mobile and open-filter-hotel
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
   function setupFilterMenu(buttonId, menuId, closeId) {
     const btn = document.getElementById(buttonId);
     const menu = document.getElementById(menuId);
     const closeBtn = document.getElementById(closeId);
 
     if (btn && menu && closeBtn) {
-      btn.addEventListener("click", () => {
-        menu.classList.remove("translate-y-full");
-        document.body.classList.add("overflow-hidden");
+      btn.addEventListener('click', () => {
+        menu.classList.remove('translate-y-full');
+        document.body.classList.add('overflow-hidden');
       });
 
-      closeBtn.addEventListener("click", () => {
-        menu.classList.add("translate-y-full");
-        document.body.classList.remove("overflow-hidden");
+      closeBtn.addEventListener('click', () => {
+        menu.classList.add('translate-y-full');
+        document.body.classList.remove('overflow-hidden');
       });
     }
   }
 
-  setupFilterMenu("filterBtn", "filterMenu", "filterMenuClose");
-  setupFilterMenu("filterBtnHotel", "filterMenuHotel", "filterMenuCloseHotel");
+  setupFilterMenu('filterBtn', 'filterMenu', 'filterMenuClose');
+  setupFilterMenu('filterBtnHotel', 'filterMenuHotel', 'filterMenuCloseHotel');
 });
 
 // tour-date-btn
-document.addEventListener("DOMContentLoaded", function () {
-  document.querySelectorAll(".tourL-tour-date-btn").forEach((btn) => {
-    const container = btn.closest(".tourL-tour-card");
-    const menu = container.querySelector(".tourL-tour-date-menu");
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.tourL-tour-date-btn').forEach((btn) => {
+    const container = btn.closest('.tourL-tour-card');
+    const menu = container.querySelector('.tourL-tour-date-menu');
 
     if (!menu) return;
 
-    btn.addEventListener("click", function (e) {
+    btn.addEventListener('click', function (e) {
       e.stopPropagation();
-      const isShown = menu.classList.contains("opacity-100");
+      const isShown = menu.classList.contains('opacity-100');
 
       closeAllTourMenus();
 
       if (!isShown) {
-        menu.classList.remove("opacity-0", "invisible", "scale-95");
-        menu.classList.add("opacity-100", "visible", "scale-100");
+        menu.classList.remove('opacity-0', 'invisible', 'scale-95');
+        menu.classList.add('opacity-100', 'visible', 'scale-100');
       }
     });
 
-    menu.addEventListener("click", function (e) {
+    menu.addEventListener('click', function (e) {
       e.stopPropagation();
     });
   });
 
-  document.addEventListener("click", function () {
+  document.addEventListener('click', function () {
     closeAllTourMenus();
   });
 
   function closeAllTourMenus() {
-    document.querySelectorAll(".tourL-tour-date-menu").forEach((menu) => {
-      menu.classList.remove("opacity-100", "visible", "scale-100");
-      menu.classList.add("opacity-0", "invisible", "scale-95");
+    document.querySelectorAll('.tourL-tour-date-menu').forEach((menu) => {
+      menu.classList.remove('opacity-100', 'visible', 'scale-100');
+      menu.classList.add('opacity-0', 'invisible', 'scale-95');
     });
   }
 });
@@ -938,23 +875,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // });
 
-document.addEventListener("DOMContentLoaded", () => {
-  const normalizeText = (text) => text.replace(/\s/g, "").normalize("NFKC");
+document.addEventListener('DOMContentLoaded', () => {
+  const normalizeText = (text) => text.replace(/\s/g, '').normalize('NFKC');
 
-  const tourCards = document.querySelectorAll(".tourL-tour-card");
-  const filterButtons = document.querySelectorAll(".day-tour-filter");
-  const airlineContainer = document.querySelector(".checkboxList");
-  const minInput = document.getElementById("minRange");
-  const maxInput = document.getElementById("maxRange");
-  const rangeTrack = document.getElementById("rangeTrack");
-  const minValText = document.getElementById("minValue");
-  const maxValText = document.getElementById("maxValue");
+  const tourCards = document.querySelectorAll('.tourL-tour-card');
+  const filterButtons = document.querySelectorAll('.day-tour-filter');
+  const airlineContainer = document.querySelector('.checkboxList');
+  const minInput = document.getElementById('minRange');
+  const maxInput = document.getElementById('maxRange');
+  const rangeTrack = document.getElementById('rangeTrack');
+  const minValText = document.getElementById('minValue');
+  const maxValText = document.getElementById('maxValue');
   const selectedDays = new Set();
   const selectedAirlines = new Set();
 
-  const formatPrice = (val) => val.toLocaleString("fa-IR");
+  const formatPrice = (val) => val.toLocaleString('fa-IR');
   const parsePrice = (priceString) => {
-    let cleaned = priceString.replace(/[.,/\s]/g, "");
+    let cleaned = priceString.replace(/[.,/\s]/g, '');
     const parsed = parseInt(cleaned, 10) || 0;
     return parsed;
   };
@@ -966,7 +903,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let prices = Array.from(tourCards)
     .map((card) => {
-      const priceElem = card.querySelector(".tourL-tour-price");
+      const priceElem = card.querySelector('.tourL-tour-price');
       if (!priceElem) {
         return 0;
       }
@@ -984,12 +921,10 @@ document.addEventListener("DOMContentLoaded", () => {
   // جمع‌آوری نام‌های خطوط هوایی و مسیرهای تصویر از tourL-tour-airline
   const airlineData = new Map();
   Array.from(tourCards).forEach((card) => {
-    const airlineElem = card.querySelector(".tourL-tour-airline");
+    const airlineElem = card.querySelector('.tourL-tour-airline');
     if (airlineElem) {
       const airlineName = normalizeText(airlineElem.textContent);
-      const imagePath =
-        airlineElem.dataset.airlineImg ||
-        "../assets/images/default-airline.png";
+      const imagePath = airlineElem.dataset.airlineImg || '../assets/images/default-airline.png';
       if (airlineName && !airlineData.has(airlineName)) {
         airlineData.set(airlineName, imagePath);
       }
@@ -998,11 +933,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // تولید پویای airline-item‌ها
   if (airlineContainer) {
-    airlineContainer.innerHTML = ""; // پاک کردن موارد موجود
+    airlineContainer.innerHTML = ''; // پاک کردن موارد موجود
     airlineData.forEach((imagePath, airlineName) => {
-      const airlineItem = document.createElement("div");
-      airlineItem.className =
-        "airline-item flex items-center justify-between transition-all duration-500 ease-in-out";
+      const airlineItem = document.createElement('div');
+      airlineItem.className = 'airline-item flex items-center justify-between transition-all duration-500 ease-in-out';
       airlineItem.innerHTML = `
         <span class="flex items-center gap-3 text-sm font-bold">
           <span class="airline-hotel-input flex items-center justify-center w-6 h-6 border border-primary-100 rounded-lg cursor-pointer">
@@ -1020,38 +954,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function filterCards() {
     tourCards.forEach((card) => {
-      const priceElem = card.querySelector(".tourL-tour-price");
+      const priceElem = card.querySelector('.tourL-tour-price');
       const cardPrice = priceElem ? parsePrice(priceElem.textContent) : 0;
 
       const dayMatch =
         selectedDays.size === 0 ||
-        selectedDays.has(
-          normalizeText(
-            card.querySelector(".tourL-tour-day")?.textContent || ""
-          )
-        );
+        selectedDays.has(normalizeText(card.querySelector('.tourL-tour-day')?.textContent || ''));
 
       const airlineMatch =
         selectedAirlines.size === 0 ||
         Array.from(selectedAirlines).some((name) =>
-          normalizeText(
-            card.querySelector(".tourL-tour-airline")?.textContent || ""
-          ).includes(name)
+          normalizeText(card.querySelector('.tourL-tour-airline')?.textContent || '').includes(name)
         );
 
       const priceMatch = cardPrice >= realMin && cardPrice <= realMax;
 
-      card.style.display =
-        dayMatch && airlineMatch && priceMatch ? "flex" : "none";
+      card.style.display = dayMatch && airlineMatch && priceMatch ? 'flex' : 'none';
     });
 
     updateFilterCount();
   }
 
   function updateFilterCount() {
-    const filterCountEl = document.getElementById("filterBtnCount");
-    const filterBtn = document.getElementById("filterBtn");
-    const filterIcon = document.getElementById("filterIcon");
+    const filterCountEl = document.getElementById('filterBtnCount');
+    const filterBtn = document.getElementById('filterBtn');
+    const filterIcon = document.getElementById('filterIcon');
 
     if (!filterCountEl || !filterBtn || !filterIcon) {
       return;
@@ -1064,45 +991,37 @@ document.addEventListener("DOMContentLoaded", () => {
     if (realMin > REAL_MIN || realMax < REAL_MAX) count++;
 
     if (count > 0) {
-      filterCountEl.classList.remove("hidden");
-      filterCountEl.classList.add("flex");
+      filterCountEl.classList.remove('hidden');
+      filterCountEl.classList.add('flex');
       filterCountEl.textContent = count;
 
-      filterBtn.classList.remove("bg-white");
-      filterBtn.classList.add(
-        "bg-primary-500",
-        "shadow-small-btn-shadow",
-        "text-white"
-      );
+      filterBtn.classList.remove('bg-white');
+      filterBtn.classList.add('bg-primary-500', 'shadow-small-btn-shadow', 'text-white');
 
-      filterIcon.querySelectorAll("path, ellipse").forEach((el) => {
-        el.setAttribute("stroke", "#11C086");
+      filterIcon.querySelectorAll('path, ellipse').forEach((el) => {
+        el.setAttribute('stroke', '#11C086');
       });
     } else {
-      filterCountEl.classList.add("hidden");
-      filterCountEl.classList.remove("flex");
-      filterCountEl.textContent = "";
+      filterCountEl.classList.add('hidden');
+      filterCountEl.classList.remove('flex');
+      filterCountEl.textContent = '';
 
-      filterBtn.classList.remove(
-        "bg-primary-500",
-        "shadow-small-btn-shadow",
-        "text-white"
-      );
-      filterBtn.classList.add("bg-white");
+      filterBtn.classList.remove('bg-primary-500', 'shadow-small-btn-shadow', 'text-white');
+      filterBtn.classList.add('bg-white');
 
-      filterIcon.querySelectorAll("path, ellipse").forEach((el) => {
-        el.setAttribute("stroke", "#33363F");
+      filterIcon.querySelectorAll('path, ellipse').forEach((el) => {
+        el.setAttribute('stroke', '#33363F');
       });
     }
   }
 
   filterButtons.forEach((button) => {
-    button.addEventListener("click", function () {
+    button.addEventListener('click', function () {
       const selectedDay = normalizeText(button.textContent);
       const isSelected = selectedDays.has(selectedDay);
 
-      button.classList.toggle("border-primary-500", !isSelected);
-      button.classList.toggle("text-primary-500", !isSelected);
+      button.classList.toggle('border-primary-500', !isSelected);
+      button.classList.toggle('text-primary-500', !isSelected);
 
       if (isSelected) {
         selectedDays.delete(selectedDay);
@@ -1115,16 +1034,14 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // اتصال رویدادها به airlineInputs پس از تولید پویا
-  const airlineInputs = document.querySelectorAll(".airline-hotel-input");
+  const airlineInputs = document.querySelectorAll('.airline-hotel-input');
   airlineInputs.forEach((input) => {
-    input.addEventListener("click", function () {
-      const parent = input.closest(".airline-item");
-      const airlineName = normalizeText(
-        parent.querySelector(".airline-item-name").innerText
-      );
+    input.addEventListener('click', function () {
+      const parent = input.closest('.airline-item');
+      const airlineName = normalizeText(parent.querySelector('.airline-item-name').innerText);
 
       const isSelected = selectedAirlines.has(airlineName);
-      input.classList.toggle("bg-primary-500", !isSelected);
+      input.classList.toggle('bg-primary-500', !isSelected);
 
       if (isSelected) {
         selectedAirlines.delete(airlineName);
@@ -1162,364 +1079,400 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   if (minInput) {
-    minInput.addEventListener("input", updatePriceRange);
+    minInput.addEventListener('input', updatePriceRange);
   }
   if (maxInput) {
-    maxInput.addEventListener("input", updatePriceRange);
+    maxInput.addEventListener('input', updatePriceRange);
   }
 
   updatePriceRange();
 });
 
 // free-consulation-form
-document.addEventListener("DOMContentLoaded", () => {
-  const modal = document.querySelector(".free-consulation-form");
-  const openButtons = document.querySelectorAll(".open-consulation-btn");
-  const closeButton = document.querySelector(".close-consulation-btn");
-  const backdrop = document.querySelector(".modal-backdrop");
+document.addEventListener('DOMContentLoaded', () => {
+  const modal = document.querySelector('.free-consulation-form');
+  const openButtons = document.querySelectorAll('.open-consulation-btn');
+  const closeButton = document.querySelector('.close-consulation-btn');
+  const backdrop = document.querySelector('.modal-backdrop');
 
   const showForm = () => {
-    modal.classList.remove("hidden");
-    modal.classList.add("flex");
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
 
     requestAnimationFrame(() => {
-      modal.classList.remove("opacity-0", "scale-95");
-      modal.classList.add("opacity-100", "scale-100");
+      modal.classList.remove('opacity-0', 'scale-95');
+      modal.classList.add('opacity-100', 'scale-100');
     });
 
-    document.body.style.overflow = "hidden";
+    document.body.style.overflow = 'hidden';
   };
 
   const hideForm = () => {
-    modal.classList.remove("opacity-100", "scale-100");
-    modal.classList.add("opacity-0", "scale-95");
+    modal.classList.remove('opacity-100', 'scale-100');
+    modal.classList.add('opacity-0', 'scale-95');
 
     setTimeout(() => {
-      modal.classList.remove("flex");
-      modal.classList.add("hidden");
-      document.body.style.overflow = "";
+      modal.classList.remove('flex');
+      modal.classList.add('hidden');
+      document.body.style.overflow = '';
     }, 300);
   };
 
   openButtons.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
+    btn.addEventListener('click', (e) => {
       e.stopPropagation();
       showForm();
     });
   });
 
-  closeButton?.addEventListener("click", (e) => {
+  closeButton?.addEventListener('click', (e) => {
     e.stopPropagation();
     hideForm();
   });
 
-  backdrop?.addEventListener("click", hideForm);
+  backdrop?.addEventListener('click', hideForm);
 
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") hideForm();
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') hideForm();
   });
 });
 
-
-
 // faq-box
-document.addEventListener("DOMContentLoaded", function () {
-  document.addEventListener("click", function (event) {
-    const box = event.target.closest(".faq-box");
+document.addEventListener('DOMContentLoaded', function () {
+  document.addEventListener('click', function (event) {
+    const box = event.target.closest('.faq-box');
     if (!box) return;
 
-    const answer = box.querySelector(".faq-answer");
-    const icon = box.querySelector(".faq-btn");
-    const iconPath = box.querySelector(".faq-btn path");
-    const title = box.querySelector("h2");
-    const blackIcon = box.querySelector(".icon-plus-circle");
-    const whiteIcon = box.querySelector(".icon-plus-circle-white");
+    const answer = box.querySelector('.faq-answer');
+    const icon = box.querySelector('.faq-btn');
+    const iconPath = box.querySelector('.faq-btn path');
+    const title = box.querySelector('h2');
+    const blackIcon = box.querySelector('.icon-plus-circle');
+    const whiteIcon = box.querySelector('.icon-plus-circle-white');
 
-    document.querySelectorAll(".faq-box").forEach((otherBox) => {
+    document.querySelectorAll('.faq-box').forEach((otherBox) => {
       if (otherBox !== box) {
-        const otherAnswer = otherBox.querySelector(".faq-answer");
-        const otherIcon = otherBox.querySelector(".faq-btn");
-        const otherIconPath = otherBox.querySelector(".faq-btn path");
-        const otherTitle = otherBox.querySelector("h2");
-        const otherBlackIcon = otherBox.querySelector(".icon-plus-circle");
-        const otherWhiteIcon = otherBox.querySelector(
-          ".icon-plus-circle-white"
-        );
+        const otherAnswer = otherBox.querySelector('.faq-answer');
+        const otherIcon = otherBox.querySelector('.faq-btn');
+        const otherIconPath = otherBox.querySelector('.faq-btn path');
+        const otherTitle = otherBox.querySelector('h2');
+        const otherBlackIcon = otherBox.querySelector('.icon-plus-circle');
+        const otherWhiteIcon = otherBox.querySelector('.icon-plus-circle-white');
 
         if (otherAnswer) {
-          otherAnswer.classList.remove(
-            "opacity-100",
-            "scale-y-100",
-            "max-h-96",
-            "mt-2"
-          );
-          otherAnswer.classList.add("opacity-0", "scale-y-0", "max-h-0");
+          otherAnswer.classList.remove('opacity-100', 'scale-y-100', 'max-h-96', 'mt-2');
+          otherAnswer.classList.add('opacity-0', 'scale-y-0', 'max-h-0');
         }
 
-        otherBox.style.backgroundColor = "";
-        otherBox.style.border = "";
+        otherBox.style.backgroundColor = '';
+        otherBox.style.border = '';
 
         if (otherIcon) {
-          otherIcon.classList.remove("rotate-180");
+          otherIcon.classList.remove('rotate-180');
         }
 
         if (otherIconPath) {
-          otherIconPath.setAttribute("stroke", "#1E2128");
+          otherIconPath.setAttribute('stroke', '#1E2128');
         }
 
         if (otherTitle) {
-          otherTitle.style.color = "";
+          otherTitle.style.color = '';
         }
 
         if (otherBlackIcon && otherWhiteIcon) {
-          otherBlackIcon.classList.remove("hidden");
-          otherWhiteIcon.classList.add("hidden");
+          otherBlackIcon.classList.remove('hidden');
+          otherWhiteIcon.classList.add('hidden');
         }
       }
     });
 
-    const isOpen = answer.classList.contains("scale-y-100");
+    const isOpen = answer.classList.contains('scale-y-100');
 
     if (!isOpen) {
-      answer.classList.remove("opacity-0", "scale-y-0", "max-h-0");
-      answer.classList.add("opacity-100", "scale-y-100", "max-h-96", "mt-2");
+      answer.classList.remove('opacity-0', 'scale-y-0', 'max-h-0');
+      answer.classList.add('opacity-100', 'scale-y-100', 'max-h-96', 'mt-2');
 
-      box.style.backgroundColor = "var(--primary-500)";
-      box.style.border = "none";
+      box.style.backgroundColor = 'var(--primary-500)';
+      box.style.border = 'none';
 
       if (title) {
-        title.style.color = "var(--secondary-500)";
+        title.style.color = 'var(--secondary-500)';
       }
 
       if (iconPath) {
-        iconPath.setAttribute("stroke", "var(--secondary-500)");
+        iconPath.setAttribute('stroke', 'var(--secondary-500)');
       }
 
       if (icon) {
-        icon.classList.add("rotate-180");
+        icon.classList.add('rotate-180');
       }
 
       if (blackIcon && whiteIcon) {
-        blackIcon.classList.add("hidden");
-        whiteIcon.classList.remove("hidden");
+        blackIcon.classList.add('hidden');
+        whiteIcon.classList.remove('hidden');
       }
     } else {
-      answer.classList.remove("opacity-100", "scale-y-100", "max-h-96", "mt-2");
-      answer.classList.add("opacity-0", "scale-y-0", "max-h-0");
+      answer.classList.remove('opacity-100', 'scale-y-100', 'max-h-96', 'mt-2');
+      answer.classList.add('opacity-0', 'scale-y-0', 'max-h-0');
 
-      box.style.backgroundColor = "";
-      box.style.border = "";
+      box.style.backgroundColor = '';
+      box.style.border = '';
 
       if (title) {
-        title.style.color = "";
+        title.style.color = '';
       }
 
       if (iconPath) {
-        iconPath.setAttribute("stroke", "#1E2128");
+        iconPath.setAttribute('stroke', '#1E2128');
       }
 
       if (icon) {
-        icon.classList.remove("rotate-180");
+        icon.classList.remove('rotate-180');
       }
 
       if (blackIcon && whiteIcon) {
-        blackIcon.classList.remove("hidden");
-        whiteIcon.classList.add("hidden");
+        blackIcon.classList.remove('hidden');
+        whiteIcon.classList.add('hidden');
       }
     }
   });
+});
+
+//visa with visa word and tour with tour word
+document.addEventListener('DOMContentLoaded', function () {
+  const urlParams = new URLSearchParams(window.location.search);
+  const tParam = urlParams.get('t');
+
+  if (tParam === 'all') {
+    const allVisaItems = Array.from(document.querySelectorAll('.visa-list-search'));
+    const allTourItems = Array.from(document.querySelectorAll('.tour-list-search'));
+    const containerVisa = document.querySelector('.visa-list-container');
+    const sectionVisa = document.querySelector('.visa-list-section');
+    const containerTour = document.querySelector('.tour-list-container');
+    const sectionTour = document.querySelector('.tour-list-section');
+
+    // ویزا
+    if (containerVisa && allVisaItems.length > 0) {
+      containerVisa.innerHTML = '';
+      let hasVisaMatch = false;
+
+      allVisaItems.forEach((item) => {
+        const titleEl = item.querySelector('.title-visa');
+        const titleText = titleEl ? titleEl.textContent.trim().toLowerCase() : '';
+
+        if (titleText.includes('visa') || titleText.includes('ویزا')) {
+          const clone = item.cloneNode(true);
+          containerVisa.appendChild(clone);
+          hasVisaMatch = true;
+        }
+      });
+
+      if (!hasVisaMatch && sectionVisa) {
+        sectionVisa.style.display = 'none';
+      }
+    } else if (sectionVisa) {
+      sectionVisa.style.display = 'none';
+    }
+
+    // تور
+    if (containerTour && allTourItems.length > 0) {
+      containerTour.innerHTML = '';
+      let hasTourMatch = false;
+
+      allTourItems.forEach((item) => {
+        const titleEl = item.querySelector('.title-tour');
+        const titleText = titleEl ? titleEl.textContent.trim().toLowerCase() : '';
+
+        if (titleText.includes('tour') || titleText.includes('تور')) {
+          const clone = item.cloneNode(true);
+          containerTour.appendChild(clone);
+          hasTourMatch = true;
+        }
+      });
+
+      if (!hasTourMatch && sectionTour) {
+        sectionTour.style.display = 'none';
+      }
+    } else if (sectionTour) {
+      sectionTour.style.display = 'none';
+    }
+  }
 });
 
 // travel-box
-document.addEventListener("DOMContentLoaded", function () {
-  document.addEventListener("click", function (event) {
-    const box = event.target.closest(".travel-box");
+document.addEventListener('DOMContentLoaded', function () {
+  document.addEventListener('click', function (event) {
+    const box = event.target.closest('.travel-box');
     if (!box) return;
 
-    const wrapper = box.closest(".travel-wrapper");
-    const answer = wrapper.querySelector(".travel-answer");
-    const iconPath = box.querySelector(".travel-btn path");
-    const title = box.querySelector("h2");
+    const wrapper = box.closest('.travel-wrapper');
+    const answer = wrapper.querySelector('.travel-answer');
+    const iconPath = box.querySelector('.travel-btn path');
+    const title = box.querySelector('h2');
 
-    const orangeSun = box.querySelector(".orange-sun");
-    const whiteSun = box.querySelector(".white-sun");
+    const orangeSun = box.querySelector('.orange-sun');
+    const whiteSun = box.querySelector('.white-sun');
 
-    document.querySelectorAll(".travel-wrapper").forEach((otherWrapper) => {
+    document.querySelectorAll('.travel-wrapper').forEach((otherWrapper) => {
       if (otherWrapper !== wrapper) {
-        const otherAnswer = otherWrapper.querySelector(".travel-answer");
-        const otherIconPath = otherWrapper.querySelector(".travel-btn path");
-        const otherTitle = otherWrapper.querySelector("h2");
-        const otherBox = otherWrapper.querySelector(".travel-box");
-        const otherOrangeSun = otherWrapper.querySelector(".orange-sun");
-        const otherWhiteSun = otherWrapper.querySelector(".white-sun");
+        const otherAnswer = otherWrapper.querySelector('.travel-answer');
+        const otherIconPath = otherWrapper.querySelector('.travel-btn path');
+        const otherTitle = otherWrapper.querySelector('h2');
+        const otherBox = otherWrapper.querySelector('.travel-box');
+        const otherOrangeSun = otherWrapper.querySelector('.orange-sun');
+        const otherWhiteSun = otherWrapper.querySelector('.white-sun');
 
-        otherAnswer?.classList.remove("opacity-100", "scale-y-100", "mt-2");
-        otherAnswer?.classList.add("opacity-0", "scale-y-0", "max-h-0");
-        otherAnswer.style.maxHeight = "";
+        otherAnswer?.classList.remove('opacity-100', 'scale-y-100', 'mt-2');
+        otherAnswer?.classList.add('opacity-0', 'scale-y-0', 'max-h-0');
+        otherAnswer.style.maxHeight = '';
 
-        otherIconPath?.setAttribute("stroke", "#1E2128");
-        otherTitle && (otherTitle.style.color = "");
-        otherBox && (otherBox.style.backgroundColor = "");
-        otherBox && (otherBox.style.border = "1px solid #E5E7EB");
-        otherWrapper.style.border = "none";
+        otherIconPath?.setAttribute('stroke', '#1E2128');
+        otherTitle && (otherTitle.style.color = '');
+        otherBox && (otherBox.style.backgroundColor = '');
+        otherBox && (otherBox.style.border = '1px solid #E5E7EB');
+        otherWrapper.style.border = 'none';
 
         if (otherOrangeSun) {
-          otherOrangeSun.classList.remove("hidden");
-          otherOrangeSun.classList.add("block");
+          otherOrangeSun.classList.remove('hidden');
+          otherOrangeSun.classList.add('block');
         }
         if (otherWhiteSun) {
-          otherWhiteSun.classList.remove("block");
-          otherWhiteSun.classList.add("hidden");
+          otherWhiteSun.classList.remove('block');
+          otherWhiteSun.classList.add('hidden');
         }
       }
     });
 
-    const isOpen = !answer.classList.contains("max-h-0");
+    const isOpen = !answer.classList.contains('max-h-0');
 
     if (!isOpen) {
-      answer.classList.remove("opacity-0", "scale-y-0", "max-h-0");
-      answer.classList.add("opacity-100", "scale-y-100", "mt-2");
-      answer.style.maxHeight = answer.scrollHeight + "px";
+      answer.classList.remove('opacity-0', 'scale-y-0', 'max-h-0');
+      answer.classList.add('opacity-100', 'scale-y-100', 'mt-2');
+      answer.style.maxHeight = answer.scrollHeight + 'px';
 
-      box.style.backgroundColor = "var(--primary-500)";
-      box.style.border = "none";
-      wrapper.style.border = "2px solid #D7DBE1";
+      box.style.backgroundColor = 'var(--primary-500)';
+      box.style.border = 'none';
+      wrapper.style.border = '2px solid #D7DBE1';
 
-      iconPath?.setAttribute("stroke", "var(--secondary-500)");
-      title && (title.style.color = "var(--secondary-500)");
+      iconPath?.setAttribute('stroke', 'var(--secondary-500)');
+      title && (title.style.color = 'var(--secondary-500)');
 
       if (orangeSun) {
-        orangeSun.classList.remove("block");
-        orangeSun.classList.add("hidden");
+        orangeSun.classList.remove('block');
+        orangeSun.classList.add('hidden');
       }
       if (whiteSun) {
-        whiteSun.classList.remove("hidden");
-        whiteSun.classList.add("block");
+        whiteSun.classList.remove('hidden');
+        whiteSun.classList.add('block');
       }
     } else {
-      answer.classList.remove("opacity-100", "scale-y-100", "mt-2");
-      answer.classList.add("opacity-0", "scale-y-0", "max-h-0");
+      answer.classList.remove('opacity-100', 'scale-y-100', 'mt-2');
+      answer.classList.add('opacity-0', 'scale-y-0', 'max-h-0');
       answer.style.maxHeight = null;
 
-      box.style.backgroundColor = "";
-      box.style.border = "1px solid #E5E7EB";
-      wrapper.style.border = "none";
+      box.style.backgroundColor = '';
+      box.style.border = '1px solid #E5E7EB';
+      wrapper.style.border = 'none';
 
-      iconPath?.setAttribute("stroke", "#1E2128");
-      title && (title.style.color = "");
+      iconPath?.setAttribute('stroke', '#1E2128');
+      title && (title.style.color = '');
 
       if (orangeSun) {
-        orangeSun.classList.remove("hidden");
-        orangeSun.classList.add("block");
+        orangeSun.classList.remove('hidden');
+        orangeSun.classList.add('block');
       }
       if (whiteSun) {
-        whiteSun.classList.remove("block");
-        whiteSun.classList.add("hidden");
+        whiteSun.classList.remove('block');
+        whiteSun.classList.add('hidden');
       }
     }
   });
 });
 
-document.addEventListener("DOMContentLoaded", function () {
-  const priceButton = document.getElementById("priceToggleButton");
-  const priceMenu = document.getElementById("priceDropdownMenu");
-  const priceIcon = document.getElementById("priceToggleIcon");
-  const priceOptions = document.querySelectorAll(".price-option");
-  const tourCards = Array.from(document.querySelectorAll(".tourL-tour-card"));
+document.addEventListener('DOMContentLoaded', function () {
+  const priceButton = document.getElementById('priceToggleButton');
+  const priceMenu = document.getElementById('priceDropdownMenu');
+  const priceIcon = document.getElementById('priceToggleIcon');
+  const priceOptions = document.querySelectorAll('.price-option');
+  const tourCards = Array.from(document.querySelectorAll('.tourL-tour-card'));
 
   let isOpen = false;
 
   function extractCleanPrice(priceText) {
-    return parseInt(priceText.replace(/[.,\/\s]+/g, ""));
+    return parseInt(priceText.replace(/[.,\/\s]+/g, ''));
   }
 
   if (priceButton && priceMenu && priceIcon) {
-    priceButton.addEventListener("click", () => {
+    priceButton.addEventListener('click', () => {
       isOpen = !isOpen;
 
       if (isOpen) {
-        priceMenu.classList.remove("hidden");
-        priceMenu.classList.add("flex");
+        priceMenu.classList.remove('hidden');
+        priceMenu.classList.add('flex');
 
-        priceIcon.classList.add("rotate-180", "text-primary-500");
-        priceIcon.classList.remove("text-[#1E2128]");
+        priceIcon.classList.add('rotate-180', 'text-primary-500');
+        priceIcon.classList.remove('text-[#1E2128]');
 
-        priceButton.classList.add(
-          "bg-primary-100",
-          "text-primary-500",
-          "border-primary-500"
-        );
-        priceButton.classList.remove("border-gray-50");
+        priceButton.classList.add('bg-primary-100', 'text-primary-500', 'border-primary-500');
+        priceButton.classList.remove('border-gray-50');
       } else {
-        priceMenu.classList.remove("flex");
-        priceMenu.classList.add("hidden");
+        priceMenu.classList.remove('flex');
+        priceMenu.classList.add('hidden');
 
-        priceIcon.classList.remove("rotate-180", "text-primary-500");
-        priceIcon.classList.add("text-[#1E2128]");
+        priceIcon.classList.remove('rotate-180', 'text-primary-500');
+        priceIcon.classList.add('text-[#1E2128]');
 
-        priceButton.classList.remove(
-          "bg-primary-100",
-          "text-primary-500",
-          "border-primary-500"
-        );
-        priceButton.classList.add("border-gray-50");
+        priceButton.classList.remove('bg-primary-100', 'text-primary-500', 'border-primary-500');
+        priceButton.classList.add('border-gray-50');
       }
     });
 
-    document.addEventListener("click", (event) => {
+    document.addEventListener('click', (event) => {
       const isClickInsideButton = priceButton.contains(event.target);
       const isClickInsideMenu = priceMenu.contains(event.target);
 
       if (!isClickInsideButton && !isClickInsideMenu && isOpen) {
         isOpen = false;
-        priceMenu.classList.remove("flex");
-        priceMenu.classList.add("hidden");
+        priceMenu.classList.remove('flex');
+        priceMenu.classList.add('hidden');
 
-        priceIcon.classList.remove("rotate-180", "text-primary-500");
-        priceIcon.classList.add("text-[#1E2128]");
+        priceIcon.classList.remove('rotate-180', 'text-primary-500');
+        priceIcon.classList.add('text-[#1E2128]');
 
-        priceButton.classList.remove(
-          "bg-primary-100",
-          "text-primary-500",
-          "border-primary-500"
-        );
-        priceButton.classList.add("border-gray-50");
+        priceButton.classList.remove('bg-primary-100', 'text-primary-500', 'border-primary-500');
+        priceButton.classList.add('border-gray-50');
       }
     });
   }
 
   priceOptions.forEach((option) => {
-    option.addEventListener("click", () => {
+    option.addEventListener('click', () => {
       const selectedFilter = option.dataset.price;
 
-      document.querySelectorAll(".price-check-icon").forEach((icon) => {
-        icon.classList.remove("bg-primary-500", "text-white");
+      document.querySelectorAll('.price-check-icon').forEach((icon) => {
+        icon.classList.remove('bg-primary-500', 'text-white');
       });
 
-      const icon = option.querySelector(".price-check-icon");
-      icon.classList.add("bg-primary-500", "text-white");
+      const icon = option.querySelector('.price-check-icon');
+      icon.classList.add('bg-primary-500', 'text-white');
 
       if (tourCards.length && selectedFilter) {
         let sortedCards = [...tourCards];
 
         sortedCards.sort((a, b) => {
-          const priceA = extractCleanPrice(
-            a.querySelector(".tourL-tour-price").innerText
-          );
-          const priceB = extractCleanPrice(
-            b.querySelector(".tourL-tour-price").innerText
-          );
+          const priceA = extractCleanPrice(a.querySelector('.tourL-tour-price').innerText);
+          const priceB = extractCleanPrice(b.querySelector('.tourL-tour-price').innerText);
 
-          if (selectedFilter === "high-to-low") return priceB - priceA;
-          if (selectedFilter === "low-to-high") return priceA - priceB;
-          if (selectedFilter === "best-price") return priceA - priceB;
+          if (selectedFilter === 'high-to-low') return priceB - priceA;
+          if (selectedFilter === 'low-to-high') return priceA - priceB;
+          if (selectedFilter === 'best-price') return priceA - priceB;
         });
 
         const parent = tourCards[0].parentElement;
-        parent.innerHTML = "";
+        parent.innerHTML = '';
         sortedCards.forEach((card) => {
-          card.classList.remove("hidden");
-          card.classList.add("flex");
+          card.classList.remove('hidden');
+          card.classList.add('flex');
           parent.appendChild(card);
         });
       }
@@ -1527,80 +1480,68 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-  const containers = document.querySelectorAll(".content-container");
+document.addEventListener('DOMContentLoaded', () => {
+  const containers = document.querySelectorAll('.content-container');
 
   containers.forEach((container) => {
-    const btn = container.querySelector(".see-more");
-    const btnText = container.querySelector(".see-more-text");
-    const shadow = container.querySelector(".white-shadow");
+    const btn = container.querySelector('.see-more');
+    const btnText = container.querySelector('.see-more-text');
+    const shadow = container.querySelector('.white-shadow');
 
     if (!btn || !btnText) return;
 
     const isMobile = window.innerWidth < 1024;
-    const closedHeight = isMobile ? 620 : 480; 
+    const closedHeight = isMobile ? 620 : 480;
 
     const contentHeight = container.scrollHeight;
 
     if (contentHeight <= closedHeight) {
-      if (btn) btn.style.display = "none";
-      if (shadow) shadow.style.display = "none";
-      return; 
+      if (btn) btn.style.display = 'none';
+      if (shadow) shadow.style.display = 'none';
+      return;
     }
 
+    container.style.maxHeight = closedHeight + 'px';
 
-    container.style.maxHeight = closedHeight + "px";
-
-    btn.addEventListener("click", () => {
-      const isOpen = container.classList.contains("open");
+    btn.addEventListener('click', () => {
+      const isOpen = container.classList.contains('open');
 
       if (isOpen) {
-        container.style.maxHeight = contentHeight + "px";
+        container.style.maxHeight = contentHeight + 'px';
         requestAnimationFrame(() => {
-          container.style.maxHeight = closedHeight + "px";
-          container.classList.remove("open");
+          container.style.maxHeight = closedHeight + 'px';
+          container.classList.remove('open');
         });
 
-        if (shadow) shadow.classList.add("bg-white-shadow");
-        btnText.textContent = "مشاهده همه";
+        if (shadow) shadow.classList.add('bg-white-shadow');
+        btnText.textContent = 'مشاهده همه';
       } else {
-        container.style.maxHeight = closedHeight + "px";
-        container.classList.add("open");
+        container.style.maxHeight = closedHeight + 'px';
+        container.classList.add('open');
 
         requestAnimationFrame(() => {
-          container.style.maxHeight = contentHeight + "px";
+          container.style.maxHeight = contentHeight + 'px';
         });
 
-        if (shadow) shadow.classList.remove("bg-white-shadow");
-        btnText.textContent = "مشاهده کمتر";
+        if (shadow) shadow.classList.remove('bg-white-shadow');
+        btnText.textContent = 'مشاهده کمتر';
       }
     });
   });
 });
 
-
 // reply-comment
 async function Reply_Comment(element) {
-  const responsereply = await fetch("Client_CheckAuthentication.inc");
+  const responsereply = await fetch('Client_CheckAuthentication.inc');
   if (!responsereply.ok) {
-    throw new Error(
-      "متاسفانه مشکلی به وجود آمده است لطفا بعدا مجددا تلاش فرمایید."
-    );
+    throw new Error('متاسفانه مشکلی به وجود آمده است لطفا بعدا مجددا تلاش فرمایید.');
   } else {
     let CheckAuthentication = await responsereply.text();
-    if (CheckAuthentication === "true") {
-      var firstname = document.querySelector(
-        ".user-profile-content .default-name"
-      ).innerText;
-      var lastname = document.querySelector(
-        ".user-profile-content .default-family"
-      ).innerText;
-      element.closest(".opinionRow").querySelector(".reply-title").value =
-        firstname + " " + lastname;
-      element
-        .closest(".opinionRow")
-        .querySelector(".replyCommentForm")
-        .classList.toggle("hidden");
+    if (CheckAuthentication === 'true') {
+      var firstname = document.querySelector('.user-profile-content .default-name').innerText;
+      var lastname = document.querySelector('.user-profile-content .default-family').innerText;
+      element.closest('.opinionRow').querySelector('.reply-title').value = firstname + ' ' + lastname;
+      element.closest('.opinionRow').querySelector('.replyCommentForm').classList.toggle('hidden');
     } else {
       showLoginContainer(this);
     }
@@ -1610,24 +1551,177 @@ async function Reply_Comment(element) {
 // send-reply
 async function send_Reply(element, event) {
   event.preventDefault();
-  var form = new FormData(element.closest("pov-form"));
+  var form = new FormData(element.closest('pov-form'));
   var xhr = new XMLHttpRequest();
-  xhr.open("POST", element.closest("pov-form").action, true);
+  xhr.open('POST', element.closest('pov-form').action, true);
   xhr.onload = function () {
     if (xhr.status === 200) {
-      document.getElementById("popupMessage").innerHTML = xhr.responseText;
-      document.getElementById("popuparticle").classList.remove("hidden");
+      document.getElementById('popupMessage').innerHTML = xhr.responseText;
+      document.getElementById('popuparticle').classList.remove('hidden');
     } else {
-      document.getElementById("popupMessage").innerHTML = xhr.responseText;
-      document.getElementById("popuparticle").classList.remove("hidden");
+      document.getElementById('popupMessage').innerHTML = xhr.responseText;
+      document.getElementById('popuparticle').classList.remove('hidden');
     }
   };
   xhr.send(form);
 }
 
+// request-form
+function uploadDocumentRequest(args) {
+  document.querySelector('#request-form .Loading_Form').style.display = 'block';
+  const captcha = document
+    .querySelector('#request-form')
+    .querySelector("#captchaContainer input[name='captcha']").value;
+  const captchaid = document
+    .querySelector('#request-form')
+    .querySelector("#captchaContainer input[name='captchaid']").value;
+  const stringJson = JSON.stringify(args.source?.rows[0]);
+  $bc.setSource('cms.uploadRequest', {
+    value: stringJson,
+    captcha: captcha,
+    captchaid: captchaid,
+    run: true,
+  });
+}
+
+function refreshCaptchaRequest(e) {
+  $bc.setSource('captcha.refreshRequest', true);
+}
+
+async function OnProcessedEditObjectRequest(args) {
+  var response = args.response;
+  var json = await response.json();
+  var errorid = json.errorid;
+  if (errorid == '6') {
+    document.querySelector('#request-form .Loading_Form').style.display = 'none';
+    document.querySelector('#request-form .message-api').innerHTML = 'درخواست شما با موفقیت ثبت شد.';
+  } else {
+    refreshCaptchaRequest();
+    setTimeout(() => {
+      document.querySelector('#request-form .Loading_Form').style.display = 'none';
+      document.querySelector('#request-form .message-api').innerHTML = 'خطایی رخ داده, لطفا مجدد اقدام کنید.';
+    }, 2000);
+  }
+}
+
+async function RenderFormRequest() {
+  var inputElementVisa7 = document.querySelector(' .request-username input[data-bc-text-input]');
+  inputElementVisa7.setAttribute('placeholder', 'نام و نام خانوادگی');
+
+  var inputElementVisa7 = document.querySelector(' .request-number input[data-bc-text-input]');
+  inputElementVisa7.setAttribute('placeholder', 'شماره تماس');
+
+  var inputElementVisa7 = document.querySelector(' .request-email input[data-bc-text-input]');
+  inputElementVisa7.setAttribute('placeholder', 'آدرس ایمیل');
+
+  var inputElementVisa7 = document.querySelector(' .request-message textarea[data-bc-text-input]');
+  inputElementVisa7.setAttribute('placeholder', 'متن درخواست');
+}
+
+// employment-form
+function uploadDocumentEmployment(args) {
+  document.querySelector('#employment-form .Loading_Form').style.display = 'block';
+  const captcha = document
+    .querySelector('#employment-form')
+    .querySelector("#captchaContainer input[name='captcha']").value;
+  const captchaid = document
+    .querySelector('#employment-form')
+    .querySelector("#captchaContainer input[name='captchaid']").value;
+  const stringJson = JSON.stringify(args.source?.rows[0]);
+  $bc.setSource('cms.uploadEmployment', {
+    value: stringJson,
+    captcha: captcha,
+    captchaid: captchaid,
+    run: true,
+  });
+}
+
+function refreshCaptchaEmployment(e) {
+  $bc.setSource('captcha.refreshEmployment', true);
+}
+
+async function OnProcessedEditObjectEmployment(args) {
+  var response = args.response;
+  var json = await response.json();
+  var errorid = json.errorid;
+  if (errorid == '6') {
+    document.querySelector('#employment-form .Loading_Form').style.display = 'none';
+    document.querySelector('#employment-form .message-api').innerHTML = 'درخواست شما با موفقیت ثبت شد.';
+  } else {
+    refreshCaptchaEmployment();
+    setTimeout(() => {
+      document.querySelector('#employment-form .Loading_Form').style.display = 'none';
+      document.querySelector('#employment-form .message-api').innerHTML = 'خطایی رخ داده, لطفا مجدد اقدام کنید.';
+    }, 2000);
+  }
+}
+
+async function RenderFormEmployment() {
+  var inputElementVisa7 = document.querySelector(' .employment-username input[data-bc-text-input]');
+  inputElementVisa7.setAttribute('placeholder', 'نام و نام خانوادگی');
+
+  var inputElementVisa7 = document.querySelector(' .employment-number input[data-bc-text-input]');
+  inputElementVisa7.setAttribute('placeholder', 'شماره تماس');
+
+  var inputElementVisa7 = document.querySelector(' .employment-birth input[data-bc-text-input]');
+  inputElementVisa7.setAttribute('placeholder', 'تاریخ تولد');
+
+  var inputElementVisa7 = document.querySelector(".employment-upload input[type='file'][data-bc-file-input]");
+  inputElementVisa7.setAttribute('title', 'آپلود رزومه');
+
+  var inputElementVisa7 = document.querySelector(' .employment-message textarea[data-bc-text-input]');
+  inputElementVisa7.setAttribute('placeholder', 'توضیحات');
+}
+
+// consulation-form
+function uploadDocumentConsulation(args) {
+  document.querySelector('#consulation-form .Loading_Form').style.display = 'block';
+  const captcha = document
+    .querySelector('#consulation-form')
+    .querySelector("#captchaContainer input[name='captcha']").value;
+  const captchaid = document
+    .querySelector('#consulation-form')
+    .querySelector("#captchaContainer input[name='captchaid']").value;
+  const stringJson = JSON.stringify(args.source?.rows[0]);
+  $bc.setSource('cms.uploadConsulation', {
+    value: stringJson,
+    captcha: captcha,
+    captchaid: captchaid,
+    run: true,
+  });
+}
+
+function refreshCaptchaConsulation(e) {
+  $bc.setSource('captcha.refreshConsulation', true);
+}
+
+async function OnProcessedEditObjectConsulation(args) {
+  var response = args.response;
+  var json = await response.json();
+  var errorid = json.errorid;
+  if (errorid == '6') {
+    document.querySelector('#consulation-form .Loading_Form').style.display = 'none';
+    document.querySelector('#consulation-form .message-api').innerHTML = 'درخواست شما با موفقیت ثبت شد.';
+  } else {
+    refreshCaptchaConsulation();
+    setTimeout(() => {
+      document.querySelector('#consulation-form .Loading_Form').style.display = 'none';
+      document.querySelector('#consulation-form .message-api').innerHTML = 'خطایی رخ داده, لطفا مجدد اقدام کنید.';
+    }, 2000);
+  }
+}
+
+async function RenderFormConsulation() {
+  var inputElementVisa7 = document.querySelector(' .consulation-username input[data-bc-text-input]');
+  inputElementVisa7.setAttribute('placeholder', 'اسم و فامیل');
+
+  var inputElementVisa7 = document.querySelector(' .consulation-number input[data-bc-text-input]');
+  inputElementVisa7.setAttribute('placeholder', '09123456789');
+}
+
 //swiper
-if (document.querySelector(".swiper-special-destination")) {
-  var swiperSpecialDestination = new Swiper(".swiper-special-destination", {
+if (document.querySelector('.swiper-special-destination')) {
+  var swiperSpecialDestination = new Swiper('.swiper-special-destination', {
     slidesPerView: 'auto',
     speed: 400,
     centeredSlides: false,
@@ -1639,13 +1733,13 @@ if (document.querySelector(".swiper-special-destination")) {
     },
     loop: true,
     navigation: {
-      nextEl: ".swiper-button-next-custom",
-      prevEl: ".swiper-button-prev-custom",
+      nextEl: '.swiper-button-next-custom',
+      prevEl: '.swiper-button-prev-custom',
     },
   });
 }
-if (document.querySelector(".swiper-special-tour")) {
-  var swiperSpecialTour = new Swiper(".swiper-special-tour", {
+if (document.querySelector('.swiper-special-tour')) {
+  var swiperSpecialTour = new Swiper('.swiper-special-tour', {
     slidesPerView: 'auto',
     speed: 400,
     centeredSlides: false,
@@ -1657,14 +1751,14 @@ if (document.querySelector(".swiper-special-tour")) {
     },
     loop: true,
     navigation: {
-      nextEl: ".swiper-button-next-custom",
-      prevEl: ".swiper-button-prev-custom",
+      nextEl: '.swiper-button-next-custom',
+      prevEl: '.swiper-button-prev-custom',
     },
   });
 }
-if (document.querySelector(".swiper-special-spring-tour")) {
-  var swiperSpecialSpringTour = new Swiper(".swiper-special-spring-tour", {
-    slidesPerView: "auto",
+if (document.querySelector('.swiper-special-spring-tour')) {
+  var swiperSpecialSpringTour = new Swiper('.swiper-special-spring-tour', {
+    slidesPerView: 'auto',
     speed: 400,
     centeredSlides: false,
     spaceBetween: 24,
@@ -1675,34 +1769,31 @@ if (document.querySelector(".swiper-special-spring-tour")) {
     },
     loop: true,
     navigation: {
-      nextEl: ".swiper-button-next-custom",
-      prevEl: ".swiper-button-prev-custom",
+      nextEl: '.swiper-button-next-custom',
+      prevEl: '.swiper-button-prev-custom',
     },
   });
 }
-if (document.querySelector(".swiper-special-destination-tour")) {
-  var swiperSpecialDestinationTour = new Swiper(
-    ".swiper-special-destination-tour",
-    {
-      slidesPerView: "auto",
-      speed: 400,
-      centeredSlides: false,
-      spaceBetween: 24,
-      grabCursor: true,
-      autoplay: {
-        delay: 2500,
-        disableOnInteraction: false,
-      },
-      loop: true,
-      navigation: {
-        nextEl: ".swiper-button-next-custom",
-        prevEl: ".swiper-button-prev-custom",
-      },
-    }
-  );
+if (document.querySelector('.swiper-special-destination-tour')) {
+  var swiperSpecialDestinationTour = new Swiper('.swiper-special-destination-tour', {
+    slidesPerView: 'auto',
+    speed: 400,
+    centeredSlides: false,
+    spaceBetween: 24,
+    grabCursor: true,
+    autoplay: {
+      delay: 2500,
+      disableOnInteraction: false,
+    },
+    loop: true,
+    navigation: {
+      nextEl: '.swiper-button-next-custom',
+      prevEl: '.swiper-button-prev-custom',
+    },
+  });
 }
-if (document.querySelector(".swiper-tour-date-tourL")) {
-  var swiperTourDateTourL = new Swiper(".swiper-tour-date-tourL", {
+if (document.querySelector('.swiper-tour-date-tourL')) {
+  var swiperTourDateTourL = new Swiper('.swiper-tour-date-tourL', {
     slidesPerView: 2.7,
     speed: 400,
     centeredSlides: false,
@@ -1715,8 +1806,22 @@ if (document.querySelector(".swiper-tour-date-tourL")) {
     loop: true,
   });
 }
-if (document.querySelector(".swiper-special-suggestion")) {
-  var swiperSpecialSuggestion = new Swiper(".swiper-special-suggestion", {
+if (document.querySelector('.swiper-tour-date-tourL-mobile')) {
+  var swiperTourDateTourLMobile = new Swiper('.swiper-tour-date-tourL-mobile', {
+    slidesPerView: 2.7,
+    speed: 400,
+    centeredSlides: false,
+    spaceBetween: 8,
+    grabCursor: true,
+    autoplay: {
+      delay: 2500,
+      disableOnInteraction: false,
+    },
+    loop: true,
+  });
+}
+if (document.querySelector('.swiper-special-suggestion')) {
+  var swiperSpecialSuggestion = new Swiper('.swiper-special-suggestion', {
     slidesPerView: 2.2,
     speed: 400,
     centeredSlides: false,
@@ -1729,28 +1834,28 @@ if (document.querySelector(".swiper-special-suggestion")) {
     loop: true,
   });
 }
-if (document.querySelector(".swiper-small-gallery-about")) {
-  var swiperSmallImg = new Swiper(".swiper-small-gallery-about", {
+if (document.querySelector('.swiper-small-gallery-about')) {
+  var swiperSmallImg = new Swiper('.swiper-small-gallery-about', {
     spaceBetween: 10,
     slidesPerView: 2,
     freeMode: true,
     watchSlidesProgress: true,
   });
 }
-if (document.querySelector(".swiper-big-gallery-about")) {
-  var swiperBigImg = new Swiper(".swiper-big-gallery-about", {
+if (document.querySelector('.swiper-big-gallery-about')) {
+  var swiperBigImg = new Swiper('.swiper-big-gallery-about', {
     spaceBetween: 10,
     navigation: {
-      nextEl: ".swiper-button-next-custom",
-      prevEl: ".swiper-button-prev-custom",
+      nextEl: '.swiper-button-next-custom',
+      prevEl: '.swiper-button-prev-custom',
     },
     thumbs: {
       swiper: swiperSmallImg,
     },
   });
 }
-if (document.querySelector(".swiper-slogan-mobile")) {
-  var swiperSloganMobile = new Swiper(".swiper-slogan-mobile", {
+if (document.querySelector('.swiper-slogan-mobile')) {
+  var swiperSloganMobile = new Swiper('.swiper-slogan-mobile', {
     slidesPerView: 1.3,
     speed: 400,
     centeredSlides: false,
@@ -1763,29 +1868,26 @@ if (document.querySelector(".swiper-slogan-mobile")) {
     loop: true,
   });
 }
-if (document.querySelector(".swiper-special-destination-mobile")) {
-  var swiperSpecialDestinationMobile = new Swiper(
-    ".swiper-special-destination-mobile",
-    {
-      slidesPerView: 1.3,
-      speed: 400,
-      centeredSlides: false,
-      spaceBetween: 24,
-      grabCursor: true,
-      autoplay: {
-        delay: 2500,
-        disableOnInteraction: false,
-      },
-      loop: true,
-      navigation: {
-        nextEl: ".swiper-button-next-custom",
-        prevEl: ".swiper-button-prev-custom",
-      },
-    }
-  );
+if (document.querySelector('.swiper-special-destination-mobile')) {
+  var swiperSpecialDestinationMobile = new Swiper('.swiper-special-destination-mobile', {
+    slidesPerView: 1.3,
+    speed: 400,
+    centeredSlides: false,
+    spaceBetween: 24,
+    grabCursor: true,
+    autoplay: {
+      delay: 2500,
+      disableOnInteraction: false,
+    },
+    loop: true,
+    navigation: {
+      nextEl: '.swiper-button-next-custom',
+      prevEl: '.swiper-button-prev-custom',
+    },
+  });
 }
-if (document.querySelector(".swiper-special-tour-mobile")) {
-  var swiperSpecialTourMobile = new Swiper(".swiper-special-tour-mobile", {
+if (document.querySelector('.swiper-special-tour-mobile')) {
+  var swiperSpecialTourMobile = new Swiper('.swiper-special-tour-mobile', {
     slidesPerView: 1.2,
     speed: 400,
     centeredSlides: false,
@@ -1797,75 +1899,69 @@ if (document.querySelector(".swiper-special-tour-mobile")) {
     },
     loop: true,
     navigation: {
-      nextEl: ".swiper-button-next-custom",
-      prevEl: ".swiper-button-prev-custom",
+      nextEl: '.swiper-button-next-custom',
+      prevEl: '.swiper-button-prev-custom',
     },
   });
 }
-if (document.querySelector(".swiper-special-spring-tour-mobile")) {
-  var swiperSpecialSpringTourMobile = new Swiper(
-    ".swiper-special-spring-tour-mobile",
-    {
-      slidesPerView: 1.3,
-      speed: 400,
-      centeredSlides: false,
-      spaceBetween: 24,
-      grabCursor: true,
-      autoplay: {
-        delay: 2500,
-        disableOnInteraction: false,
-      },
-      loop: true,
-      navigation: {
-        nextEl: ".swiper-button-next-custom",
-        prevEl: ".swiper-button-prev-custom",
-      },
-    }
-  );
+if (document.querySelector('.swiper-special-spring-tour-mobile')) {
+  var swiperSpecialSpringTourMobile = new Swiper('.swiper-special-spring-tour-mobile', {
+    slidesPerView: 1.3,
+    speed: 400,
+    centeredSlides: false,
+    spaceBetween: 24,
+    grabCursor: true,
+    autoplay: {
+      delay: 2500,
+      disableOnInteraction: false,
+    },
+    loop: true,
+    navigation: {
+      nextEl: '.swiper-button-next-custom',
+      prevEl: '.swiper-button-prev-custom',
+    },
+  });
 }
-if (document.querySelector(".swiper-special-destination-tour-mobile")) {
-  var swiperSpecialDestinationTourMobile = new Swiper(
-    ".swiper-special-destination-tour-mobile",
-    {
-      slidesPerView: 4,
-      speed: 400,
-      centeredSlides: false,
-      spaceBetween: 24,
-      grabCursor: true,
-      autoplay: {
-        delay: 2500,
-        disableOnInteraction: false,
-      },
-      loop: true,
-      navigation: {
-        nextEl: ".swiper-button-next-custom",
-        prevEl: ".swiper-button-prev-custom",
-      },
-    }
-  );
+if (document.querySelector('.swiper-special-destination-tour-mobile')) {
+  var swiperSpecialDestinationTourMobile = new Swiper('.swiper-special-destination-tour-mobile', {
+    slidesPerView: 4,
+    speed: 400,
+    centeredSlides: false,
+    spaceBetween: 24,
+    grabCursor: true,
+    autoplay: {
+      delay: 2500,
+      disableOnInteraction: false,
+    },
+    loop: true,
+    navigation: {
+      nextEl: '.swiper-button-next-custom',
+      prevEl: '.swiper-button-prev-custom',
+    },
+  });
 }
-if (document.querySelector(".swiper-small-img")) {
-  var swiperSmallImg = new Swiper(".swiper-small-img", {
+if (document.querySelector('.swiper-small-img')) {
+  var swiperSmallImg = new Swiper('.swiper-small-img', {
     spaceBetween: 10,
     slidesPerView: 4,
     freeMode: true,
     watchSlidesProgress: true,
   });
 }
-if (document.querySelector(".swiper-big-img")) {
-  var swiperBigImg = new Swiper(".swiper-big-img", {
+if (document.querySelector('.swiper-big-img')) {
+  var swiperBigImg = new Swiper('.swiper-big-img', {
     spaceBetween: 10,
     navigation: {
-      nextEl: ".swiper-button-next-custom",
-      prevEl: ".swiper-button-prev-custom",
+      nextEl: '.swiper-button-next-custom',
+      prevEl: '.swiper-button-prev-custom',
     },
     thumbs: {
       swiper: swiperSmallImg,
     },
   });
 }
-if (document.querySelector(".swiper-tour-date")) {
-  var swiperTourDate = new Swiper(".swiper-tour-date", {
+if (document.querySelector('.swiper-tour-date')) {
+  var swiperTourDate = new Swiper('.swiper-tour-date', {
     slidesPerView: 1.5,
     speed: 400,
     centeredSlides: false,
@@ -1878,8 +1974,8 @@ if (document.querySelector(".swiper-tour-date")) {
     loop: true,
   });
 }
-if (document.querySelector(".swiper-same-tour")) {
-  var swiperSameTour = new Swiper(".swiper-same-tour", {
+if (document.querySelector('.swiper-same-tour')) {
+  var swiperSameTour = new Swiper('.swiper-same-tour', {
     slidesPerView: 2.1,
     speed: 400,
     centeredSlides: false,
@@ -1891,8 +1987,60 @@ if (document.querySelector(".swiper-same-tour")) {
     },
     loop: true,
     navigation: {
-      nextEl: ".swiper-button-next-custom",
-      prevEl: ".swiper-button-prev-custom",
+      nextEl: '.swiper-button-next-custom',
+      prevEl: '.swiper-button-prev-custom',
     },
+  });
+}
+if (document.querySelector('.swiper-small-gallery-about-mobile')) {
+  var swiperSmallImgMobile = new Swiper('.swiper-small-gallery-about-mobile', {
+    spaceBetween: 10,
+    slidesPerView: 2,
+    freeMode: true,
+    watchSlidesProgress: true,
+  });
+}
+if (document.querySelector('.swiper-big-gallery-about-mobile')) {
+  var swiperBigImgMobile = new Swiper('.swiper-big-gallery-about-mobile', {
+    spaceBetween: 10,
+    navigation: {
+      nextEl: '.swiper-button-next-custom',
+      prevEl: '.swiper-button-prev-custom',
+    },
+    thumbs: {
+      swiper: swiperSmallImgMobile,
+    },
+  });
+}
+if (document.querySelector('.swiper-special-destination-tour-list-mobile')) {
+  var swiperSpecialDestinationTourListMobile = new Swiper('.swiper-special-destination-tour-list-mobile', {
+    slidesPerView: 1.3,
+    speed: 400,
+    centeredSlides: false,
+    spaceBetween: 24,
+    grabCursor: true,
+    autoplay: {
+      delay: 2500,
+      disableOnInteraction: false,
+    },
+    loop: true,
+    navigation: {
+      nextEl: '.swiper-button-next-custom',
+      prevEl: '.swiper-button-prev-custom',
+    },
+  });
+}
+if (document.querySelector('.swiper-special-suggestion-mobile')) {
+  var swiperSpecialDestinationTourMobile = new Swiper('.swiper-special-suggestion-mobile', {
+    slidesPerView: 1.17,
+    speed: 400,
+    centeredSlides: false,
+    spaceBetween: 10,
+    grabCursor: true,
+    autoplay: {
+      delay: 2500,
+      disableOnInteraction: false,
+    },
+    loop: true,
   });
 }

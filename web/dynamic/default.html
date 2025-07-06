@@ -11,7 +11,7 @@
 </basis>
 
 <basis core="dbsource" source="basiscore" lid="1" mid="20" name="db" catid="215041">
-    <member name="special-tour" type="list" link="tour.bc" propertyid="3087934,10000504,8181,8076" perpage="5"
+    <member name="special-tour" type="list" link="tour.bc" propertyid="3087934,10000504,8181,8076,3087933" perpage="5"
         order="ord" size="344x176" />
 </basis>
 
@@ -29,7 +29,7 @@
 </basis>
 
 <basis core="dbsource" source="basiscore" lid="1" mid="20" name="db" catid="[##fasli.cat.catid##]">
-    <member name="seasonal-tours" type="list" link="tour.bc" propertyid="3087934,10000504,8181,8076" perpage="5"
+    <member name="seasonal-tours" type="list" link="tour.bc" propertyid="3087934,10000504,8181,8076,3087933" perpage="5"
         order="ord" size="344x176" />
 </basis>
 
@@ -187,7 +187,7 @@
                     </layout>
                     <face filter="link is null and prp_3087934 is null">
                         <div class="swiper-slide w-[420px]">
-                            <div class="border border-gray-50 rounded-xl shadow-medium-btn-shadow p-6">
+                            <a href="/tour.bc?id=@id" class="flex flex-col border border-gray-50 rounded-xl shadow-medium-btn-shadow p-6">
                                 <img src="@00344X00176prp"
                                     class="w-full h-44 object-cover rounded-xl overflow-hidden shadow-soft-deep"
                                     alt="@title" width="344" height="176" loading="lazy">
@@ -212,7 +212,7 @@
                                         <svg width="24" height="24" class="group-hover:hidden">
                                             <use xlink:href="./images/sprite-icons.svg#icon-blue-star"></use>
                                         </svg>
-                                        4 ستاره
+                                        @prp_3087933 ستاره
                                     </span>
                                 </div>
                                 <div class="flex justify-between mt-6 h-full">
@@ -220,7 +220,7 @@
                                         <span class="text-xs font-light">شروع قیمت از:</span>
                                         <span class="text-2xl text-primary-500 font-extrabold">@prp_8181</span>
                                     </div>
-                                    <a href="/tour.bc?id=@id"
+                                    <button
                                         class="group flex items-center justify-center gap-2 border border-gray-100 rounded-xl w-36 h-[73px] transition-all duration-300 hover:bg-primary-500 hover:shadow-btn-shadow hover:text-white">
                                         اطلاعات بیشتر
                                         <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
@@ -228,14 +228,14 @@
                                             <path class="transition-all duration-300 group-hover:stroke-white"
                                                 d="M15 6.15674L9 12.1567L15 18.1567" stroke="#1E2128" />
                                         </svg>
-                                    </a>
+                                    </button>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     </face>
                     <face filter="prp_3087934 is null">
                         <div class="swiper-slide w-[420px]">
-                            <div class="border border-gray-50 rounded-xl shadow-medium-btn-shadow p-6">
+                            <a href="@link" class="flex flex-col border border-gray-50 rounded-xl shadow-medium-btn-shadow p-6">
                                 <img src="@00344X00176prp"
                                     class="w-full h-44 object-cover rounded-xl overflow-hidden shadow-soft-deep"
                                     alt="@title" width="344" height="176" loading="lazy">
@@ -260,7 +260,7 @@
                                         <svg width="24" height="24" class="group-hover:hidden">
                                             <use xlink:href="./images/sprite-icons.svg#icon-blue-star"></use>
                                         </svg>
-                                        4 ستاره
+                                        @prp_3087933 ستاره
                                     </span>
                                 </div>
                                 <div class="flex justify-between mt-6 h-full">
@@ -268,7 +268,7 @@
                                         <span class="text-xs font-light">شروع قیمت از:</span>
                                         <span class="text-2xl text-primary-500 font-extrabold">@prp_8181</span>
                                     </div>
-                                    <a href="/tour.bc?id=@id"
+                                    <button
                                         class="group flex items-center justify-center gap-2 border border-gray-100 rounded-xl w-36 h-[73px] transition-all duration-300 hover:bg-primary-500 hover:shadow-btn-shadow hover:text-white">
                                         اطلاعات بیشتر
                                         <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
@@ -276,14 +276,14 @@
                                             <path class="transition-all duration-300 group-hover:stroke-white"
                                                 d="M15 6.15674L9 12.1567L15 18.1567" stroke="#1E2128" />
                                         </svg>
-                                    </a>
+                                    </button>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     </face>
                     <face filter="link is null">
                         <div class="swiper-slide w-[420px]">
-                            <div class="border border-gray-50 rounded-xl shadow-medium-btn-shadow p-6">
+                            <a href="/tour.bc?id=@id" class="flex flex-col border border-gray-50 rounded-xl shadow-medium-btn-shadow p-6">
                                 <div class="relative rounded-xl overflow-hidden shadow-soft-deep">
                                     <img src="@00344X00176prp" class="block w-full h-44 object-cover" alt="@title"
                                         width="344" height="176" loading="lazy">
@@ -312,7 +312,7 @@
                                         <svg width="24" height="24" class="group-hover:hidden">
                                             <use xlink:href="./images/sprite-icons.svg#icon-blue-star"></use>
                                         </svg>
-                                        4 ستاره
+                                        @prp_3087933 ستاره
                                     </span>
                                 </div>
                                 <div class="flex justify-between mt-6 h-full">
@@ -321,7 +321,7 @@
                                         <span class="text-2xl text-primary-500 font-extrabold">@prp_8181</span>
 
                                     </div>
-                                    <a href="/tour.bc?id=@id"
+                                    <button
                                         class="group flex items-center justify-center gap-2 border border-gray-100 rounded-xl w-36 h-[73px] transition-all duration-300 hover:bg-primary-500 hover:shadow-btn-shadow hover:text-white">
                                         اطلاعات بیشتر
                                         <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
@@ -329,14 +329,14 @@
                                             <path class="transition-all duration-300 group-hover:stroke-white"
                                                 d="M15 6.15674L9 12.1567L15 18.1567" stroke="#1E2128" />
                                         </svg>
-                                    </a>
+                                    </button>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     </face>
                     <face>
                         <div class="swiper-slide w-[420px]">
-                            <div class="border border-gray-50 rounded-xl shadow-medium-btn-shadow p-6">
+                            <a href="@link" class="flex flex-col border border-gray-50 rounded-xl shadow-medium-btn-shadow p-6">
                                 <div class="relative rounded-xl overflow-hidden shadow-soft-deep">
                                     <img src="@00344X00176prp" class="block w-full h-44 object-cover" alt="@title"
                                         width="344" height="176" loading="lazy">
@@ -365,7 +365,7 @@
                                         <svg width="24" height="24" class="group-hover:hidden">
                                             <use xlink:href="./images/sprite-icons.svg#icon-blue-star"></use>
                                         </svg>
-                                        4 ستاره
+                                        @prp_3087933 ستاره
                                     </span>
                                 </div>
                                 <div class="flex justify-between mt-6 h-full">
@@ -373,7 +373,7 @@
                                         <span class="text-xs font-light">شروع قیمت از:</span>
                                         <span class="text-2xl text-primary-500 font-extrabold">@prp_8181</span>
                                     </div>
-                                    <a href="/tour.bc?id=@id"
+                                    <button
                                         class="group flex items-center justify-center gap-2 border border-gray-100 rounded-xl w-36 h-[73px] transition-all duration-300 hover:bg-primary-500 hover:shadow-btn-shadow hover:text-white">
                                         اطلاعات بیشتر
                                         <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
@@ -381,9 +381,9 @@
                                             <path class="transition-all duration-300 group-hover:stroke-white"
                                                 d="M15 6.15674L9 12.1567L15 18.1567" stroke="#1E2128" />
                                         </svg>
-                                    </a>
+                                    </button>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     </face>
                 </basis>
@@ -558,7 +558,7 @@
                     </layout>
                     <face filter="link is null and prp_3087934 is null">
                         <div class="swiper-slide w-[420px]">
-                            <div class="border border-gray-50 rounded-xl shadow-medium-btn-shadow p-6">
+                            <a href="/tour.bc?id=@id" class="flex flex-col border border-gray-50 rounded-xl shadow-medium-btn-shadow p-6">
                                 <img src="@00344X00176prp"
                                     class="w-full h-44 object-cover rounded-xl overflow-hidden shadow-soft-deep"
                                     alt="@title" width="344" height="176" loading="lazy">
@@ -583,7 +583,7 @@
                                         <svg width="24" height="24" class="group-hover:hidden">
                                             <use xlink:href="./images/sprite-icons.svg#icon-blue-star"></use>
                                         </svg>
-                                        4 ستاره
+                                        @prp_3087933 ستاره
                                     </span>
                                 </div>
                                 <div class="flex justify-between mt-6 h-full">
@@ -591,7 +591,7 @@
                                         <span class="text-xs font-light">شروع قیمت از:</span>
                                         <span class="text-2xl text-primary-500 font-extrabold">@prp_8181</span>
                                     </div>
-                                    <a href="/tour.bc?id=@id"
+                                    <button
                                         class="group flex items-center justify-center gap-2 border border-gray-100 rounded-xl w-36 h-[73px] transition-all duration-300 hover:bg-primary-500 hover:shadow-btn-shadow hover:text-white">
                                         اطلاعات بیشتر
                                         <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
@@ -599,14 +599,14 @@
                                             <path class="transition-all duration-300 group-hover:stroke-white"
                                                 d="M15 6.15674L9 12.1567L15 18.1567" stroke="#1E2128" />
                                         </svg>
-                                    </a>
+                                    </button>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     </face>
                     <face filter="prp_3087934 is null">
                         <div class="swiper-slide w-[420px]">
-                            <div class="border border-gray-50 rounded-xl shadow-medium-btn-shadow p-6">
+                            <a href="@link" class="flex flex-col border border-gray-50 rounded-xl shadow-medium-btn-shadow p-6">
                                 <img src="@00344X00176prp"
                                     class="w-full h-44 object-cover rounded-xl overflow-hidden shadow-soft-deep"
                                     alt="@title" width="344" height="176" loading="lazy">
@@ -631,7 +631,7 @@
                                         <svg width="24" height="24" class="group-hover:hidden">
                                             <use xlink:href="./images/sprite-icons.svg#icon-blue-star"></use>
                                         </svg>
-                                        4 ستاره
+                                        @prp_3087933 ستاره
                                     </span>
                                 </div>
                                 <div class="flex justify-between mt-6 h-full">
@@ -639,7 +639,7 @@
                                         <span class="text-xs font-light">شروع قیمت از:</span>
                                         <span class="text-2xl text-primary-500 font-extrabold">@prp_8181</span>
                                     </div>
-                                    <a href="/tour.bc?id=@id"
+                                    <button
                                         class="group flex items-center justify-center gap-2 border border-gray-100 rounded-xl w-36 h-[73px] transition-all duration-300 hover:bg-primary-500 hover:shadow-btn-shadow hover:text-white">
                                         اطلاعات بیشتر
                                         <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
@@ -647,14 +647,14 @@
                                             <path class="transition-all duration-300 group-hover:stroke-white"
                                                 d="M15 6.15674L9 12.1567L15 18.1567" stroke="#1E2128" />
                                         </svg>
-                                    </a>
+                                    </button>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     </face>
                     <face filter="link is null">
                         <div class="swiper-slide w-[420px]">
-                            <div class="border border-gray-50 rounded-xl shadow-medium-btn-shadow p-6">
+                            <a href="/tour.bc?id=@id" class="flex flex-col border border-gray-50 rounded-xl shadow-medium-btn-shadow p-6">
                                 <div class="relative rounded-xl overflow-hidden shadow-soft-deep">
                                     <img src="@00344X00176prp" class="block w-full h-44 object-cover" alt="@title"
                                         width="344" height="176" loading="lazy">
@@ -683,7 +683,7 @@
                                         <svg width="24" height="24" class="group-hover:hidden">
                                             <use xlink:href="./images/sprite-icons.svg#icon-blue-star"></use>
                                         </svg>
-                                        4 ستاره
+                                        @prp_3087933 ستاره
                                     </span>
                                 </div>
                                 <div class="flex justify-between mt-6 h-full">
@@ -692,7 +692,7 @@
                                         <span class="text-2xl text-primary-500 font-extrabold">@prp_8181</span>
 
                                     </div>
-                                    <a href="/tour.bc?id=@id"
+                                    <button
                                         class="group flex items-center justify-center gap-2 border border-gray-100 rounded-xl w-36 h-[73px] transition-all duration-300 hover:bg-primary-500 hover:shadow-btn-shadow hover:text-white">
                                         اطلاعات بیشتر
                                         <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
@@ -700,14 +700,14 @@
                                             <path class="transition-all duration-300 group-hover:stroke-white"
                                                 d="M15 6.15674L9 12.1567L15 18.1567" stroke="#1E2128" />
                                         </svg>
-                                    </a>
+                                    </button>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     </face>
                     <face>
                         <div class="swiper-slide w-[420px]">
-                            <div class="border border-gray-50 rounded-xl shadow-medium-btn-shadow p-6">
+                            <a href="@link" class="flex flex-col border border-gray-50 rounded-xl shadow-medium-btn-shadow p-6">
                                 <div class="relative rounded-xl overflow-hidden shadow-soft-deep">
                                     <img src="@00344X00176prp" class="block w-full h-44 object-cover" alt="@title"
                                         width="344" height="176" loading="lazy">
@@ -736,7 +736,7 @@
                                         <svg width="24" height="24" class="group-hover:hidden">
                                             <use xlink:href="./images/sprite-icons.svg#icon-blue-star"></use>
                                         </svg>
-                                        4 ستاره
+                                        @prp_3087933 ستاره
                                     </span>
                                 </div>
                                 <div class="flex justify-between mt-6 h-full">
@@ -744,7 +744,7 @@
                                         <span class="text-xs font-light">شروع قیمت از:</span>
                                         <span class="text-2xl text-primary-500 font-extrabold">@prp_8181</span>
                                     </div>
-                                    <a href="/tour.bc?id=@id"
+                                    <button
                                         class="group flex items-center justify-center gap-2 border border-gray-100 rounded-xl w-36 h-[73px] transition-all duration-300 hover:bg-primary-500 hover:shadow-btn-shadow hover:text-white">
                                         اطلاعات بیشتر
                                         <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
@@ -752,9 +752,9 @@
                                             <path class="transition-all duration-300 group-hover:stroke-white"
                                                 d="M15 6.15674L9 12.1567L15 18.1567" stroke="#1E2128" />
                                         </svg>
-                                    </a>
+                                    </button>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     </face>
                 </basis>

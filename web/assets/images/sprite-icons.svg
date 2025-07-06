@@ -2879,4 +2879,10 @@
 <path d="M18 6L6 18" stroke="#1E2128" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M6 6L18 18" stroke="#1E2128" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
     </symbol>
+
+    <symbol id="engine-removeroute-icon" viewBox="0 0 24 24" fill="none">
+<path d="M14.9624 3.87899L15.7806 5.66378H18.42C19.2315 5.66378 19.8894 6.32166 19.8894 7.1332V8.2214C19.8894 8.77626 19.4396 9.22606 18.8848 9.22606H5.11501C4.56015 9.22606 4.11035 8.77626 4.11035 8.2214V7.1332C4.11035 6.32166 4.76823 5.66378 5.57978 5.66378H8.2192L9.0374 3.87899C9.2829 3.34339 9.8181 3 10.4073 3H13.5925C14.1817 3 14.7168 3.34339 14.9624 3.87899Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M18.3504 9.22607V17.9118C18.3504 19.5764 17.0177 20.9258 15.3738 20.9258H8.62696C6.98305 20.9258 5.65039 19.5764 5.65039 17.9118V9.22607" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M11.0596 13.4771V17.7917M14.44 13.4771V17.7917" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
 </svg>

@@ -1,0 +1,43 @@
+<basis core="dbsource" source="basiscore" name="db" mid="5" lid="1" usedforid="[##cms.cms.ownerid##]">
+  <member name="info-500" type="view" />
+</basis>
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0,shrink-to-fit=no,viewport-fit=cover"
+    />
+    <title>[##cms.seo.title|(خطای ارتباط با سرور)##]</title>
+    <meta name="description" content="[##cms.seo.description|(خطای ارتباط با سرور)##]">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="canonical" href="[##cms.request.:scheme##]://[##cms.request.full-url##]" />
+    <basis core="call" file="pwa.inc" pageindex="[##cms.cms.pageindex##]"/>
+    <basis core="call" file="style.inc" pageindex="[##cms.cms.pageindex##]"/>
+</head>
+  <body>
+    <basis core="call" file="header.inc" pageindex="[##cms.cms.pageindex##]"/>
+    <main class="bg-primary-300">
+      <section class="flex flex-col items-center mx-auto max-lg:w-[92%] max-xl:w-[97%] xl:max-w-7xl pt-24 pb-24">
+        <img src="[##cms.cms.cdn##]/images/plane-500.png" class="absolute w-full h-36 object-cover" alt="500" width="352" height="144" loading="lazy">
+        <div class="pt-12">
+            <h1 class="relative error-number font-sans">500</h1>
+            <h2 class="text-border text-primary-500 font-black text-2xl w-4/5 mx-auto text-center">سایت در حال بروز رسانی می‌باشد</h2>
+            <div class="text-center flex flex-col text-2xl font-bold mt-4">
+                <span class="text-white">برای دریافت مشاوره با شماره </span>
+                <basis core="print" datamembername="db.info-500">
+                  <face filter="TypeID in(240)">
+                    <a href="tel:021@text" class="text-border text-primary-500 font-black text-2xl">021-@text</a>
+                  </face>
+                </basis>
+
+                 <span class="text-white">تماس بگیرید</span>
+            </div>
+        </div>
+      </section>
+    </main>
+    <basis core="call" file="footer.inc" pageindex="[##cms.cms.pageindex##]"/>
+  </body>
+</html>

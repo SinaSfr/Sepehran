@@ -866,6 +866,10 @@ body {
   height: 100%;
 }
 
+.h-auto {
+  height: auto;
+}
+
 .max-h-0 {
   max-height: 0px;
 }
@@ -2255,4 +2259,9 @@ body {
   .xl\:flex-shrink-0 {
     flex-shrink: 0;
   }
+}
+
+.itemInput,
+.login-btn {
+  font-family: "YekanBakhFaNum" !important;
 }

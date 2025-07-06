@@ -1,3 +1,7 @@
+<basis core="dbsource" source="basiscore" name="db" mid="5" lid="1" usedforid="[##cms.cms.ownerid##]">
+  <member name="info-500" type="view" />
+</basis>
+
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
     <head>
@@ -23,7 +27,11 @@
             <h2 class="text-border text-primary-500 font-black text-[64px] mx-auto text-center">سایت در حال بروز رسانی می‌باشد</h2>
             <div class="text-center flex items-center gap-6 text-[32px] font-bold mt-4">
                 <span class="text-white">برای دریافت مشاوره با شماره </span>
-                <span class="text-border text-primary-500 font-black">021-91009292</span>
+                <basis core="print" datamembername="db.info-500">
+                  <face filter="TypeID in(240)">
+                    <a href="tel:021@text" class="text-border text-primary-500 font-black transition-all duration-300 hover:text-secondary-500">021-@text</a>
+                  </face>
+                </basis>
                  <span class="text-white">تماس بگیرید</span>
             </div>
         </div>
