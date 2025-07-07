@@ -16,8 +16,8 @@
 </basis>
 
 <basis core="dbsource" source="basiscore" lid="1" mid="20" name="db" catid="[##cms.query.catid##]">
-    <member name="tour-list" type="list" link="tour.bc" propertyid="8076,8181,10000504,3087921" perpage="6" size="151x208"
-        pageno="[##cms.query.pagenum|(1)##]" order="ord" />
+    <member name="tour-list" type="list" link="tour.bc" propertyid="8076,8181,10000504,3087921,3087938,3087939" perpage="6"
+        size="151x208" pageno="[##cms.query.pagenum|(1)##]" order="ord" />
     <member name="paging" type="list" request="paging" count="3" parentname="tour-list" />
 </basis>
 <basis core="dbsource" source="basiscore" mid="20" name="list" lid="1" schemaid="987" term="[##cms.query.term##]">
@@ -265,7 +265,8 @@
                                 <svg width="25" height="24">
                                     <use xlink:href="./images/sprite-icons.svg#icon-white-phone"></use>
                                 </svg>
-                                <span class="direction-ltr unicode-embed">021- <span class="text-3xl">@text</span></span>
+                                <span class="direction-ltr unicode-embed">021- <span
+                                        class="text-3xl">@text</span></span>
                             </span>
                             <span class="font-extrabold text-white text-center">تماس بگیرید</span>
                         </a>
@@ -290,7 +291,8 @@
                             </layout>
                             <face filter="link is null and prp_3087934 is null">
                                 <div class="swiper-slide w-[420px]">
-                                    <a href="/tour.bc?id=@id" class="flex flex-col border border-gray-50 bg-white rounded-xl shadow-medium-btn-shadow p-6">
+                                    <a href="/tour.bc?id=@id"
+                                        class="flex flex-col border border-gray-50 bg-white rounded-xl shadow-medium-btn-shadow p-6">
                                         <img src="@00344X00176prp"
                                             class="w-full h-44 object-cover rounded-xl overflow-hidden shadow-soft-deep"
                                             alt="@title" width="344" height="176" loading="lazy">
@@ -338,7 +340,8 @@
                             </face>
                             <face filter="prp_3087934 is null">
                                 <div class="swiper-slide w-[420px]">
-                                    <a href="@link" class="flex flex-col border border-gray-50 bg-white rounded-xl shadow-medium-btn-shadow p-6">
+                                    <a href="@link"
+                                        class="flex flex-col border border-gray-50 bg-white rounded-xl shadow-medium-btn-shadow p-6">
                                         <img src="@00344X00176prp"
                                             class="w-full h-44 object-cover rounded-xl overflow-hidden shadow-soft-deep"
                                             alt="@title" width="344" height="176" loading="lazy">
@@ -386,10 +389,11 @@
                             </face>
                             <face filter="link is null">
                                 <div class="swiper-slide w-[420px]">
-                                    <a href="/tour.bc?id=@id" class="flex flex-col border border-gray-50 bg-white rounded-xl shadow-medium-btn-shadow p-6">
+                                    <a href="/tour.bc?id=@id"
+                                        class="flex flex-col border border-gray-50 bg-white rounded-xl shadow-medium-btn-shadow p-6">
                                         <div class="relative rounded-xl overflow-hidden shadow-soft-deep">
-                                            <img src="@00344X00176prp" class="block w-full h-44 object-cover" alt="@title"
-                                                width="344" height="176" loading="lazy">
+                                            <img src="@00344X00176prp" class="block w-full h-44 object-cover"
+                                                alt="@title" width="344" height="176" loading="lazy">
                                             <span
                                                 class="absolute left-0 bottom-0 text-sm font-bold py-2 px-4 bg-amber-400 rounded-tr">
                                                 @prp_3087934</span>
@@ -422,7 +426,7 @@
                                             <div class="flex flex-col justify-between">
                                                 <span class="text-xs font-light">شروع قیمت از:</span>
                                                 <span class="text-2xl text-primary-500 font-extrabold">@prp_8181</span>
-        
+
                                             </div>
                                             <button
                                                 class="group flex items-center justify-center gap-2 border border-gray-100 rounded-xl w-36 h-[73px] transition-all duration-300 hover:bg-primary-500 hover:shadow-btn-shadow hover:text-white">
@@ -439,10 +443,11 @@
                             </face>
                             <face>
                                 <div class="swiper-slide w-[420px]">
-                                    <a href="@link" class="flex flex-col border border-gray-50 bg-white rounded-xl shadow-medium-btn-shadow p-6">
+                                    <a href="@link"
+                                        class="flex flex-col border border-gray-50 bg-white rounded-xl shadow-medium-btn-shadow p-6">
                                         <div class="relative rounded-xl overflow-hidden shadow-soft-deep">
-                                            <img src="@00344X00176prp" class="block w-full h-44 object-cover" alt="@title"
-                                                width="344" height="176" loading="lazy">
+                                            <img src="@00344X00176prp" class="block w-full h-44 object-cover"
+                                                alt="@title" width="344" height="176" loading="lazy">
                                             <span
                                                 class="absolute left-0 bottom-0 text-sm font-bold py-2 px-4 bg-amber-400 rounded-tr">
                                                 @prp_3087934</span>
@@ -515,7 +520,7 @@
                                     <span
                                         class="flex items-center gap-3 text-sm font-bold transition-all duration-300 group-hover:text-primary-500">
                                         <span
-                                            class="price-check-icon flex items-center justify-center w-4 h-4 border border-primary-100 rounded bg-primary-500 text-white">
+                                            class="price-check-icon flex items-center justify-center w-4 h-4 border border-primary-100 rounded">
                                             <svg width="17" height="16" viewBox="0 0 17 16" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path
@@ -635,10 +640,12 @@
                                     <img src="[##cms.cms.cdn##]/images/blue-earth.png"
                                         class="absolute -top-28 right-20 h-[500px] object-cover opacity-40 transition-all duration-300 group-hover:hidden group-hover:invisible group-hover:opacity-0"
                                         alt="earth" width="500" height="500" loading="lazy">
+                                    <span class="hidden economic">@db.tour-list.prp_3087939</span>
+                                    <span class="hidden special-facilities">@db.tour-list.prp_3087938</span>
                                     <div class="flex items-center gap-8">
                                         <img src="@db.tour-list.00151X00208prp"
-                                            class="h-52 object-cover backdrop-blur-sm opacity-80 rounded-2xl" alt="@db.tour-list.title"
-                                            width="151" height="208" loading="lazy">
+                                            class="h-52 object-cover backdrop-blur-sm opacity-80 rounded-2xl"
+                                            alt="@db.tour-list.title" width="151" height="208" loading="lazy">
                                         <div class="relative z-10 min-w-[417px]">
                                             <h2
                                                 class="text-2xl text-center font-extrabold text-primary-500 mb-4 transition-all duration-300 group-hover:text-white">
@@ -807,8 +814,10 @@
                                         alt="earth" width="500" height="500" loading="lazy">
                                     <div class="flex items-center gap-8">
                                         <img src="@db.tour-list.00151X00208prp"
-                                            class="h-52 object-cover backdrop-blur-sm opacity-80 rounded-2xl" alt="@db.tour-list.title"
-                                            width="151" height="208" loading="lazy">
+                                            class="h-52 object-cover backdrop-blur-sm opacity-80 rounded-2xl"
+                                            alt="@db.tour-list.title" width="151" height="208" loading="lazy">
+                                        <span class="hidden economic">@db.tour-list.prp_3087939</span>
+                                        <span class="hidden special-facilities">@db.tour-list.prp_3087938</span>
                                         <div class="relative z-10 min-w-[417px]">
                                             <h2
                                                 class="text-2xl text-center font-extrabold text-primary-500 mb-4 transition-all duration-300 group-hover:text-white">
@@ -1035,7 +1044,8 @@
                             <div class="text-sm font-semibold mt-6 leading-7 text-justify mb-6">@largetext</div>
                         </face>
                     </basis>
-                    <div class="relative flex items-center justify-center gap-3 mt-6 border border-gray-100 rounded-2xl">
+                    <div
+                        class="relative flex items-center justify-center gap-3 mt-6 border border-gray-100 rounded-2xl">
                         <div class="flex flex-col items-center w-[483px]">
                             <h2 class="text-2xl font-extrabold mb-1"> ویزای خودتو با خیال راحت بگیر!</h2>
                             <div class="text-sm font-semibold leading-7 text-center w-4/5">
@@ -1048,17 +1058,17 @@
                                 <basis core="print" datamembername="db.info-tour">
                                     <face filter="TypeID in(240)">
                                         <a href="tel:021@text"
-                                        class="group flex items-center gap-2 border rounded-xl transition-all duration-300 shadow-small-btn-shadow bg-primary-500 text-white border-primary-500 py-2 px-6 hover:border-gray-100 hover:text-zinc-900 hover:shadow-none hover:bg-white">تماس
-                                        بگیرید
-                                        <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path class="transition-all duration-300 group-hover:fill-zinc-900"
-                                                d="M6.67962 3.43024L7.29289 2.81697C7.68342 2.42645 8.31658 2.42645 8.70711 2.81697L11.2929 5.40276C11.6834 5.79328 11.6834 6.42645 11.2929 6.81697L9.50048 8.60938C9.2016 8.90826 9.1275 9.36487 9.31653 9.74293C10.4093 11.9284 12.1814 13.7006 14.3669 14.7933C14.745 14.9824 15.2016 14.9083 15.5005 14.6094L17.2929 12.817C17.6834 12.4264 18.3166 12.4264 18.7071 12.817L21.2929 15.4028C21.6834 15.7933 21.6834 16.4264 21.2929 16.817L20.6796 17.4302C18.5683 19.5416 15.2257 19.7791 12.837 17.9876L11.6286 17.0813C9.88504 15.7736 8.33622 14.2248 7.02857 12.4813L6.12226 11.2729C4.33072 8.88416 4.56827 5.54159 6.67962 3.43024Z"
-                                                fill="#fff"></path>
-                                        </svg>
-    
-                                    </a>
-                                    </face> 
+                                            class="group flex items-center gap-2 border rounded-xl transition-all duration-300 shadow-small-btn-shadow bg-primary-500 text-white border-primary-500 py-2 px-6 hover:border-gray-100 hover:text-zinc-900 hover:shadow-none hover:bg-white">تماس
+                                            بگیرید
+                                            <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path class="transition-all duration-300 group-hover:fill-zinc-900"
+                                                    d="M6.67962 3.43024L7.29289 2.81697C7.68342 2.42645 8.31658 2.42645 8.70711 2.81697L11.2929 5.40276C11.6834 5.79328 11.6834 6.42645 11.2929 6.81697L9.50048 8.60938C9.2016 8.90826 9.1275 9.36487 9.31653 9.74293C10.4093 11.9284 12.1814 13.7006 14.3669 14.7933C14.745 14.9824 15.2016 14.9083 15.5005 14.6094L17.2929 12.817C17.6834 12.4264 18.3166 12.4264 18.7071 12.817L21.2929 15.4028C21.6834 15.7933 21.6834 16.4264 21.2929 16.817L20.6796 17.4302C18.5683 19.5416 15.2257 19.7791 12.837 17.9876L11.6286 17.0813C9.88504 15.7736 8.33622 14.2248 7.02857 12.4813L6.12226 11.2729C4.33072 8.88416 4.56827 5.54159 6.67962 3.43024Z"
+                                                    fill="#fff"></path>
+                                            </svg>
+
+                                        </a>
+                                    </face>
                                 </basis>
                                 <div class="flex items-center gap-2">
                                     <svg width="34" height="2" viewBox="0 0 34 2" fill="none"
@@ -1071,7 +1081,7 @@
                                         <line y1="0.609863" x2="34" y2="0.609863" stroke="#8892A6" />
                                     </svg>
                                 </div>
-                                <button 
+                                <button
                                     class="open-consulation-btn group flex items-center gap-2 border border-gray-100 rounded-xl transition-all duration-300 hover:shadow-small-btn-shadow hover:bg-primary-500 hover:text-white hover:border-primary-500 py-2 px-6">ارسال
                                     فرم
                                     <svg width="25" height="25" viewBox="0 0 25 25" fill="none"
@@ -1087,8 +1097,10 @@
                             width="242" height="254" loading="lazy">
                         <div class="free-consulation-form hidden fixed z-30 items-center justify-center inset-0">
                             <div class="absolute inset-0 bg-black/45 modal-backdrop"></div>
-                            <div class="relative flex items-center gap-7 w-[953px] bg-gray-gradient bg-cover bg-center rounded-3xl px-20 py-12">
-                                <span class="close-consulation-btn absolute -top-5 -right-5 bg-secondary-500 rounded-full p-2 cursor-pointer transition-all duration-300 hover:bg-primary-500">
+                            <div
+                                class="relative flex items-center gap-7 w-[953px] bg-gray-gradient bg-cover bg-center rounded-3xl px-20 py-12">
+                                <span
+                                    class="close-consulation-btn absolute -top-5 -right-5 bg-secondary-500 rounded-full p-2 cursor-pointer transition-all duration-300 hover:bg-primary-500">
                                     <svg width="24" height="24">
                                         <use xlink:href="./images/sprite-icons.svg#engine-close-icon"></use>
                                     </svg>
@@ -1097,33 +1109,40 @@
                                     <div class="flex items-center gap-2 border-b-2 border-zinc-900 mb-2 pb-3">
                                         <h2 class="text-[36px] font-extrabold">مشاوره رایگان رزرو تور</h2>
                                     </div>
-                                    <div class="text-sm font-semibold mb-6">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
+                                    <div class="text-sm font-semibold mb-6">لورم ایپسوم متن ساختگی با تولید سادگی
+                                        نامفهوم از صنعت چاپ و با
                                         استفاده از طراحان گرافیک است.</div>
-                                        <div class="flex flex-col mx-auto consulation-form mt-2" id="consulation-form">
+                                    <div class="flex flex-col mx-auto consulation-form mt-2" id="consulation-form">
 
-                                            <basis core="schema" run="atclient"
-                                                schemaurl="/schema/domainform/7CF675E2-4165-434A-B3D5-F01013BA5F10/17F8C970-A195-411E-B369-D86756F6C8B4/fa/مشاوره-رایگان"
-                                                displaymode="new" button="[data-btn-uploadConsulation]" resultsourceid="upload.dataConsulation"
-                                                OnRendered="RenderFormConsulation"></basis>
-                                            <basis core="api" if="{##cms.uploadConsulation.run|(false)##}" run="atclient"
-                                                url="/schema/domainform/7CF675E2-4165-434A-B3D5-F01013BA5F10/fa/editobject" method="post"
-                                                body="object_edit={##cms.uploadConsulation.value##}&captcha={##cms.uploadConsulation.captcha##}&captchaid={##cms.uploadConsulation.captchaid##}"
-                                                content-type="application/x-www-form-urlencoded" triggers='cms.uploadConsulation'
-                                                OnProcessed="OnProcessedEditObjectConsulation"></basis>
-                                            <basis core="callback" run="atclient" method="uploadDocumentConsulation" triggers="upload.dataConsulation">
-                                            </basis>
-                            
-                                            <div class="captcha-button flex flex-col items-center justify-center mt-4">
-                                                <div id="captchaContainer" class="captchaContainerclass captcha-sefaresh w-auto"
-                                                    data-bc-answer-container data-bc-schema-info-multi="0" data-bc-schema-info-word="58"
-                                                    data-bc-schema-info-part="1" data-bc-schema-info-part-0-type="text">
-                                                    <basis core="dbsource" source="trust_login" name="captcha" run="atclient"
-                                                        triggers="captcha.refreshConsulation">
-                                                        <member name="code" type="scalar" request="captcha"></member>
-                                                    </basis>
-                                                    <basis datamembername="captcha.code" core="print" run="atclient">
-                                                        <face>
-                                                            <script type="text/template">
+                                        <basis core="schema" run="atclient"
+                                            schemaurl="/schema/domainform/7CF675E2-4165-434A-B3D5-F01013BA5F10/17F8C970-A195-411E-B369-D86756F6C8B4/fa/مشاوره-رایگان"
+                                            displaymode="new" button="[data-btn-uploadConsulation]"
+                                            resultsourceid="upload.dataConsulation" OnRendered="RenderFormConsulation">
+                                        </basis>
+                                        <basis core="api" if="{##cms.uploadConsulation.run|(false)##}" run="atclient"
+                                            url="/schema/domainform/7CF675E2-4165-434A-B3D5-F01013BA5F10/fa/editobject"
+                                            method="post"
+                                            body="object_edit={##cms.uploadConsulation.value##}&captcha={##cms.uploadConsulation.captcha##}&captchaid={##cms.uploadConsulation.captchaid##}"
+                                            content-type="application/x-www-form-urlencoded"
+                                            triggers='cms.uploadConsulation'
+                                            OnProcessed="OnProcessedEditObjectConsulation"></basis>
+                                        <basis core="callback" run="atclient" method="uploadDocumentConsulation"
+                                            triggers="upload.dataConsulation">
+                                        </basis>
+
+                                        <div class="captcha-button flex flex-col items-center justify-center mt-4">
+                                            <div id="captchaContainer"
+                                                class="captchaContainerclass captcha-sefaresh w-auto"
+                                                data-bc-answer-container data-bc-schema-info-multi="0"
+                                                data-bc-schema-info-word="58" data-bc-schema-info-part="1"
+                                                data-bc-schema-info-part-0-type="text">
+                                                <basis core="dbsource" source="trust_login" name="captcha"
+                                                    run="atclient" triggers="captcha.refreshConsulation">
+                                                    <member name="code" type="scalar" request="captcha"></member>
+                                                </basis>
+                                                <basis datamembername="captcha.code" core="print" run="atclient">
+                                                    <face>
+                                                        <script type="text/template">
                                                               <div class="d-inline-block">
                                                                 <div class="flex justify-between">
                                                                 <div class="float-right w-[323px]">
@@ -1136,23 +1155,28 @@
                                                                 </div>
                                                                 
                                                             </div></div></script>
-                                                        </face>
-                                                    </basis>
-                                                </div>
-                                                <button
-                                                    class="flex justify-center items-center gap-2 w-full h-[73px] text-white transition-all duration-300 data-body-btn mt-6 bg-primary-500 rounded-xl hover:bg-secondary-500"
-                                                    type="button" data-btn-uploadConsulation>
-                                                    <span class="">ارسال اطلاعات</span>
-                                                    <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                      <path d="M7.5 12H21.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                      <path d="M2.78481 11.7966L8.23501 7.90356C8.7645 7.52535 9.5 7.90385 9.5 8.55455V15.4454C9.5 16.0961 8.7645 16.4746 8.23501 16.0964L2.78481 12.2034C2.64522 12.1037 2.64522 11.8963 2.78481 11.7966Z" fill="white"/>
-                                                      </svg>                                                
-                                                </button>
-                            
+                                                    </face>
+                                                </basis>
                                             </div>
-                                            <div
+                                            <button
+                                                class="flex justify-center items-center gap-2 w-full h-[73px] text-white transition-all duration-300 data-body-btn mt-6 bg-primary-500 rounded-xl hover:bg-secondary-500"
+                                                type="button" data-btn-uploadConsulation>
+                                                <span class="">ارسال اطلاعات</span>
+                                                <svg width="25" height="24" viewBox="0 0 25 24" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M7.5 12H21.5" stroke="white" stroke-width="2"
+                                                        stroke-linecap="round" stroke-linejoin="round" />
+                                                    <path
+                                                        d="M2.78481 11.7966L8.23501 7.90356C8.7645 7.52535 9.5 7.90385 9.5 8.55455V15.4454C9.5 16.0961 8.7645 16.4746 8.23501 16.0964L2.78481 12.2034C2.64522 12.1037 2.64522 11.8963 2.78481 11.7966Z"
+                                                        fill="white" />
+                                                </svg>
+                                            </button>
+
+                                        </div>
+                                        <div
                                             class="Loading_Form hidden data-body-btn w-[126px] h-12 px-4 py-2 bg-secondary-800 rounded-2xl justify-center items-center gap-2.5">
-                                            <div id="ballsWaveG" class="text-base font-normal leading-normal ext-zinc-50">
+                                            <div id="ballsWaveG"
+                                                class="text-base font-normal leading-normal ext-zinc-50">
                                                 <div id="ballsWaveG_1" class="ballsWaveG"></div>
                                                 <div id="ballsWaveG_2" class="ballsWaveG"></div>
                                                 <div id="ballsWaveG_3" class="ballsWaveG"></div>
@@ -1163,12 +1187,13 @@
                                                 <div id="ballsWaveG_8" class="ballsWaveG"></div>
                                             </div>
                                         </div>
-                                            <div class="mt-4 text-center text-secondary-500 message-api"></div>
-                                        </div>
+                                        <div class="mt-4 text-center text-secondary-500 message-api"></div>
+                                    </div>
                                 </div>
                                 <div class="flex-[1.02]">
-                                    <img src="[##cms.cms.cdn##]/images/tour-reservation-form.png" class="w-full h-[440px] object-cover"
-                                        alt="" width="385" height="440" loading="lazy">
+                                    <img src="[##cms.cms.cdn##]/images/tour-reservation-form.png"
+                                        class="w-full h-[440px] object-cover" alt="" width="385" height="440"
+                                        loading="lazy">
                                 </div>
                             </div>
                         </div>

@@ -1389,6 +1389,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
+// filter price tour-list
 document.addEventListener('DOMContentLoaded', function () {
   const priceButton = document.getElementById('priceToggleButton');
   const priceMenu = document.getElementById('priceDropdownMenu');
@@ -1468,16 +1469,50 @@ document.addEventListener('DOMContentLoaded', function () {
           if (selectedFilter === 'best-price') return priceA - priceB;
         });
 
-        const parent = tourCards[0].parentElement;
+        const parent = document.querySelector('.tourL-tour-list');
         parent.innerHTML = '';
+
         sortedCards.forEach((card) => {
-          card.classList.remove('hidden');
-          card.classList.add('flex');
-          parent.appendChild(card);
+          const economicText = card.querySelector('.economic')?.innerText.trim().toLowerCase();
+
+          if (selectedFilter === 'best-price') {
+            if (economicText === 'true') {
+              card.classList.remove('hidden');
+              card.classList.add('flex');
+              parent.appendChild(card);
+            }
+          } else {
+            card.classList.remove('hidden');
+            card.classList.add('flex');
+            parent.appendChild(card);
+          }
         });
       }
     });
   });
+});
+
+// special-facilities-tour
+document.addEventListener('DOMContentLoaded', function () {
+  const tourCards = Array.from(document.querySelectorAll('.tourL-tour-card'));
+  const specialFacilitiesBtn = document.querySelector('.special-tour-btn');
+
+  if (specialFacilitiesBtn) {
+    specialFacilitiesBtn.addEventListener('click', () => {
+      tourCards.forEach(card => {
+        const specialSpan = card.querySelector('.special-facilities');
+        const hasSpecial = specialSpan && specialSpan.innerText.trim().toLowerCase() === 'true';
+
+        if (hasSpecial) {
+          card.classList.remove('hidden');
+          card.classList.add('flex');
+        } else {
+          card.classList.add('hidden');
+          card.classList.remove('flex');
+        }
+      });
+    });
+  }
 });
 
 document.addEventListener('DOMContentLoaded', () => {

@@ -561,6 +561,10 @@ body {
   width: 50%;
 }
 
+.w-1\/4 {
+    width: 25%;
+}
+
 .w-10 {
   width: 2.5rem;
 }
@@ -639,6 +643,10 @@ body {
 
 .w-\[215px\] {
   width: 215px;
+}
+
+.w-\[230px\] {
+    width: 230px;
 }
 
 .w-\[304px\] {
@@ -1001,6 +1009,10 @@ body {
   border-bottom-width: 4px;
 }
 
+.border-l-2 {
+    border-left-width: 2px;
+}
+
 .border-dashed {
   border-style: dashed;
 }
@@ -1029,6 +1041,10 @@ body {
 }
 
 .border-primary-200 {
+  border-color: var(--primary-200);
+}
+
+.border-primary-400 {
   border-color: var(--primary-200);
 }
 
@@ -1446,6 +1462,11 @@ body {
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
+}
+
+.text-xl {
+    font-size: 1.25rem /* 20px */;
+    line-height: 1.75rem /* 28px */;
 }
 
 .font-black {
@@ -1879,7 +1900,7 @@ body {
   content: "";
   position: absolute;
   right: 7.5rem;
-  top: -1.25rem;
+  top: 0;
   width: 2px;
   height: 116px;
   background-image: url("data:image/svg+xml,%3Csvg width='2' height='116' viewBox='0 0 2 116' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='1' y1='4.37114e-08' x2='0.999995' y2='116' stroke='%23D7DBE1' stroke-width='2' stroke-dasharray='12 12'/%3E%3C/svg%3E");
