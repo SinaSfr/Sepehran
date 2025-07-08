@@ -137,12 +137,14 @@
       <div class="flex flex-[1.20] basis-0 min-w-0 flex-col gap-4">
       <basis core="print" datamembername="db.view">
         <layout>
-            <div class="flex items-center gap-4 border-b-2 border-gray-100 pb-2">
-              <img src="[##cms.cms.cdn##]/images/tailand.jpg" class="h-10 object-cover rounded shadow-small-flag-shadow"
-                alt="" width="56" height="40" loading="lazy" />
+            <div class="flex flex-row-reverse justify-start items-center gap-4 border-b-2 border-gray-100 pb-2">
                 @child
             </div>
         </layout>
+        <face filter="Question in('لوگو')">
+          <img src="[##cms.cms.cdn##]/images/flags/@text" class="h-10 object-cover rounded shadow-small-flag-shadow"
+          alt="flags" width="56" height="40" loading="lazy" />
+        </face>
         <face filter="TypeID in(150)">
           <h2 class="text-2xl font-extrabold">@text</h2>
         </face>

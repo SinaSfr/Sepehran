@@ -208,6 +208,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const details = document.querySelector('.tourcategorydropdown__details');
         if (details) {
+          const label = details.querySelector('.tourcategorydropdown__label');
+          if (label) {
+            label.textContent = firstItem.textContent.trim();
+          }
+
           details.classList.remove('hidden');
           details.classList.remove('opacity-100');
           details.classList.add('opacity-0', 'transition-opacity', 'duration-300');
@@ -236,18 +241,6 @@ document.addEventListener('DOMContentLoaded', function () {
         item.style.color = '#14eba4';
         item.style.backgroundColor = '#2e58d1';
 
-        const details = document.querySelector('.tourcategorydropdown__details');
-        if (details) {
-          details.classList.remove('hidden');
-          details.classList.remove('opacity-100');
-          details.classList.add('opacity-0', 'transition-opacity', 'duration-300');
-
-          setTimeout(() => {
-            details.classList.remove('opacity-0');
-            details.classList.add('opacity-100');
-          }, 10);
-        }
-
         const cmsQuery = item.getAttribute('data-catid');
         if (!cmsQuery) return;
 
@@ -262,6 +255,23 @@ document.addEventListener('DOMContentLoaded', function () {
           fetchContentHeader.innerHTML = data;
 
           activateDropdownToggles();
+
+          const details = document.querySelector('.tourcategorydropdown__details');
+          if (details) {
+            const label = details.querySelector('.tourcategorydropdown__label');
+            if (label) {
+              label.textContent = item.textContent.trim();
+            }
+
+            details.classList.remove('hidden');
+            details.classList.remove('opacity-100');
+            details.classList.add('opacity-0', 'transition-opacity', 'duration-300');
+
+            setTimeout(() => {
+              details.classList.remove('opacity-0');
+              details.classList.add('opacity-100');
+            }, 10);
+          }
         } catch (error) {
           console.error('Fetch failed:', error);
           fetchContentHeader.innerHTML = '<p>مشکلی در دریافت اطلاعات رخ داد: ' + error.message + '</p>';
@@ -297,24 +307,27 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  document.querySelectorAll('.special-tour-label').forEach((labelEl) => {
-    const catId = labelEl.getAttribute('data-special-catid');
-    let matched = false;
+  setTimeout(() => {
+    document.querySelectorAll('.special-tour-label').forEach((labelEl) => {
+      const catId = parseInt(labelEl.getAttribute('data-special-catid')?.replace(/[^\d]/g, ''), 10);
+      let matched = false;
 
-    document.querySelectorAll('.special-tour-host').forEach((hostEl) => {
-      const data = hostEl.getAttribute('data-special');
-      if (!data) return;
+      document.querySelectorAll('.special-tour-host').forEach((hostEl) => {
+        const data = hostEl.getAttribute('data-special');
+        if (!data) return;
 
-      const ids = data.split(',').map((id) => id.trim());
-      if (ids.includes(catId)) {
-        matched = true;
+        const ids = data.split(',').map((id) => parseInt(id.replace(/[^\d]/g, ''), 10));
+
+        if (ids.includes(catId)) {
+          matched = true;
+        }
+      });
+
+      if (matched) {
+        labelEl.classList.remove('hidden');
       }
     });
-
-    if (matched) {
-      labelEl.classList.remove('hidden');
-    }
-  });
+  }, 1000);
 
   const details = document.getElementById('details');
   document.querySelectorAll('.tourcategorydropdown__item').forEach((item) => {
@@ -738,8 +751,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
-
-// tour-list date 
+// tour-list date
 const toggleTourDateMenu = (button, tourId) => {
   const dateMenu = button.closest('.tourL-tour-card').querySelector('.tourL-tour-date-menu');
   const swiperWrapper = dateMenu.querySelector('.swiper-tour-date-tourL .swiper-wrapper');
@@ -769,7 +781,6 @@ const isMobile = () => {
 };
 
 const onTourDatesLoaded = async (apiResponse) => {
-
   if (!window.currentDateContainer) {
     return;
   }
@@ -777,7 +788,6 @@ const onTourDatesLoaded = async (apiResponse) => {
   try {
     const response = apiResponse.response;
     const jsonData = await response.json();
-
 
     let data = [];
     if (jsonData && jsonData.sources && jsonData.sources.length > 0) {
@@ -794,7 +804,6 @@ const onTourDatesLoaded = async (apiResponse) => {
     const mobile = isMobile();
 
     data.forEach((dateItem, index) => {
-
       const tourLink = `/tour.bc?id=${window.currentTourId}&from=${dateItem.start.dateid}&to=${dateItem.end.dateid}&day=${dateItem.day}`;
 
       if (mobile) {
@@ -833,7 +842,6 @@ const onTourDatesLoaded = async (apiResponse) => {
         window.currentDateContainer.appendChild(li);
       }
     });
-
   } catch (error) {
     console.error('خطا در پردازش response:', error);
     window.currentDateContainer.innerHTML = '<div class="error">خطا در بارگذاری تاریخ‌ها</div>';
@@ -842,7 +850,6 @@ const onTourDatesLoaded = async (apiResponse) => {
 
 const renderInventoryList = async (element, day, from, to) => {
   try {
-
     const mobile = isMobile();
     const selector = mobile ? '.swiper-slide' : '.date-li';
 
@@ -916,7 +923,6 @@ document.addEventListener('DOMContentLoaded', () => {
     realMax = REAL_MAX;
   }
 
-  // جمع‌آوری نام‌های خطوط هوایی و مسیرهای تصویر از tourL-tour-airline
   const airlineData = new Map();
   Array.from(tourCards).forEach((card) => {
     const airlineElem = card.querySelector('.tourL-tour-airline');
@@ -929,9 +935,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // تولید پویای airline-item‌ها
+  
   if (airlineContainer) {
-    airlineContainer.innerHTML = ''; // پاک کردن موارد موجود
+    airlineContainer.innerHTML = ''; 
     airlineData.forEach((imagePath, airlineName) => {
       const airlineItem = document.createElement('div');
       airlineItem.className = 'airline-item flex items-center justify-between transition-all duration-500 ease-in-out';
@@ -1411,7 +1417,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  // باز و بسته کردن منو فیلتر قیمت
   if (priceButton && priceMenu && priceIcon) {
     priceButton.addEventListener('click', () => {
       isOpen = !isOpen;
@@ -1442,34 +1447,29 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // فیلتر قیمت و خوش‌قیمت
   priceOptions.forEach((option) => {
     option.addEventListener('click', () => {
       const selectedFilter = option.dataset.price;
 
-      // ریست آیکون‌های انتخاب
       document.querySelectorAll('.price-check-icon').forEach((icon) => {
         icon.classList.remove('bg-primary-500', 'text-white');
       });
 
-      // فعال‌سازی آیکون فعلی
       const icon = option.querySelector('.price-check-icon');
       icon.classList.add('bg-primary-500', 'text-white');
 
       if (tourCards.length && selectedFilter) {
         let filteredCards = [...tourCards];
 
-        // مرتب‌سازی بر اساس قیمت
         filteredCards.sort((a, b) => {
           const priceA = extractCleanPrice(a.querySelector('.tourL-tour-price').innerText);
           const priceB = extractCleanPrice(b.querySelector('.tourL-tour-price').innerText);
 
           if (selectedFilter === 'high-to-low') return priceB - priceA;
           if (selectedFilter === 'low-to-high') return priceA - priceB;
-          if (selectedFilter === 'best-price') return priceA - priceB; // خوش‌قیمت به معنای کم‌قیمت‌تر
+          if (selectedFilter === 'best-price') return priceA - priceB; 
         });
 
-        // پاک کردن لیست قبلی
         tourListContainer.innerHTML = '';
 
         filteredCards.forEach((card) => {
@@ -1488,7 +1488,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // دکمه فیلتر تورهای ویژه
   if (specialTourBtn) {
     specialTourBtn.addEventListener('click', () => {
       tourCards.forEach((card) => {
@@ -2062,5 +2061,75 @@ if (document.querySelector('.swiper-special-suggestion-mobile')) {
       disableOnInteraction: false,
     },
     loop: true,
+  });
+}
+if (document.querySelector('.swiper-special-destination-tour-mobile')) {
+  var swiperSpecialDestinationTourMobile = new Swiper('.swiper-special-destination-tour-mobile', {
+    slidesPerView: 4,
+    speed: 400,
+    centeredSlides: false,
+    spaceBetween: 24,
+    grabCursor: true,
+    autoplay: {
+      delay: 2500,
+      disableOnInteraction: false,
+    },
+    loop: true,
+    navigation: {
+      nextEl: '.swiper-button-next-custom',
+      prevEl: '.swiper-button-prev-custom',
+    },
+  });
+}
+if (document.querySelector('.sswiper-small-img-mobile')) {
+  var swiperSmallImgMobile = new Swiper('.swiper-small-img-mobile', {
+    spaceBetween: 10,
+    slidesPerView: 4,
+    freeMode: true,
+    watchSlidesProgress: true,
+  });
+}
+if (document.querySelector('.swiper-big-img-mobile')) {
+  var swiperBigImgMobile = new Swiper('.swiper-big-img-mobile', {
+    spaceBetween: 10,
+    navigation: {
+      nextEl: '.swiper-button-next-custom',
+      prevEl: '.swiper-button-prev-custom',
+    },
+    thumbs: {
+      swiper: swiperSmallImgMobile,
+    },
+  });
+}
+if (document.querySelector('.swiper-tour-date')) {
+  var swiperTourDateMobile = new Swiper('.swiper-tour-date', {
+    slidesPerView: 1.5,
+    speed: 400,
+    centeredSlides: false,
+    spaceBetween: 24,
+    grabCursor: true,
+    autoplay: {
+      delay: 2500,
+      disableOnInteraction: false,
+    },
+    loop: true,
+  });
+}
+if (document.querySelector('.swiper-same-tour-mobile')) {
+  var swiperSameTourMobile = new Swiper('.swiper-same-tour-mobile', {
+    slidesPerView: 1.17,
+    speed: 400,
+    centeredSlides: false,
+    spaceBetween: 16,
+    grabCursor: true,
+    autoplay: {
+      delay: 2500,
+      disableOnInteraction: false,
+    },
+    loop: true,
+    navigation: {
+      nextEl: '.swiper-button-next-custom',
+      prevEl: '.swiper-button-prev-custom',
+    },
   });
 }

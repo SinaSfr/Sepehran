@@ -352,6 +352,10 @@ body {
   display: flex;
 }
 
+.flex-row-reverse {
+  flex-direction: row-reverse;
+}
+
 .inline-flex {
   display: inline-flex;
 }
@@ -867,6 +871,10 @@ body {
 
 .justify-between {
   justify-content: space-between;
+}
+
+.justify-start {
+  justify-content: start;
 }
 
 .gap-1 {
