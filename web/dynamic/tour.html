@@ -22,9 +22,9 @@
 <basis core="api" name="api.inventoryView" url="https://basisfly.com/api/inventory/packages/inventory-view/"
     method="post" content-type="application/json" run="atclient" triggers="db.inventoryViewSpecificDate" body='{
     "pid": "[##cms.query.id##]",
-    "from": "{##db.inventoryViewSpecificDate.from|()##}",
-    "to": "{##db.inventoryViewSpecificDate.to|()##}",
-    "day": "{##db.inventoryViewSpecificDate.day|()##}",
+    "from": "{##db.inventoryViewSpecificDate.from|cms.query.from##}",
+    "to": "{##db.inventoryViewSpecificDate.to|cms.query.to##}",
+    "day": "{##db.inventoryViewSpecificDate.day|cms.query.day##}",
     "pagename": "[##cms.host.pageNameInventory|(Tem1_Hotel.bc)##]",
     "dmnid": "[##cms.cms.domainid##]",
     "ownerid": "[##cms.cms.ownerid##]"

@@ -1,3 +1,25 @@
+<basis core="api" name="api.inventoryView" url="https://basisfly.com/api/inventory/packages/inventory-view/"
+    method="post" content-type="application/json" run="atclient" triggers="db.inventoryViewSpecificDate" body='{
+        "pid": "{##db.inventoryViewSpecificDate.pid##}",
+        "from": "{##db.inventoryViewSpecificDate.from##}",
+        "to": "{##db.inventoryViewSpecificDate.to##}",
+        "day": "{##db.inventoryViewSpecificDate.day##}",
+        "pagename": "[##cms.host.pageNameInventory|(Tem1_Hotel.bc)##]",
+        "dmnid": "[##cms.cms.domainid##]",
+        "ownerid": "[##cms.cms.ownerid##]"
+    }'>
+</basis>
+
+<basis core="api" name="api.getTourDates" url="https://basisfly.com/api/inventory/packages/execution-plan-view/"
+    method="post" content-type="application/json" run="atclient" triggers="db.tourDatesRequest"
+    if="{##db.tourDatesRequest##}" onprocessed="onTourDatesLoaded" body='{
+        "pid": "{##db.tourDatesRequest.value##}",
+        "title": "dates",
+        "dmnid": "[##cms.cms.domainid##]",
+        "ownerid": "[##cms.cms.ownerid##]"
+    }'>
+</basis>
+
 <basis core="dbsource" source="basiscore" name="db" mid="5" lid="1" usedforid="[##cms.cms.ownerid##]">
     <member name="info-tour" type="view" />
 </basis>
@@ -16,8 +38,8 @@
 </basis>
 
 <basis core="dbsource" source="basiscore" lid="1" mid="20" name="db" catid="[##cms.query.catid##]">
-    <member name="tour-list" type="list" link="tour.bc" propertyid="8076,8181,10000504,3087921,3087938,3087939" perpage="6"
-        size="151x208" pageno="[##cms.query.pagenum|(1)##]" order="ord" />
+    <member name="tour-list" type="list" link="tour.bc" propertyid="8076,8181,8077,10000504,3087921,3087938,3087939"
+        perpage="6" size="151x208" pageno="[##cms.query.pagenum|(1)##]" order="ord" />
     <member name="paging" type="list" request="paging" count="3" parentname="tour-list" />
 </basis>
 <basis core="dbsource" source="basiscore" mid="20" name="list" lid="1" schemaid="987" term="[##cms.query.term##]">
@@ -581,55 +603,13 @@
                             </div>
                         </layout>
                         <face filter="link is null">
-                            <a href="/tour.bc?id=@id" class="relative tourL-tour-card group flex items-stretch">
+                            <div class="relative tourL-tour-card group flex items-stretch">
                                 <div
                                     class="tourL-tour-date-menu absolute w-[606px] top-60 z-20 left-[30%] right-0 mx-auto border border-primary-100 py-4 rounded-lg backdrop-blur bg-specialcolor-6 shadow-shadow-date opacity-0 invisible scale-95 transition-all duration-300 origin-top">
                                     <!-- Slider main container -->
                                     <div class="swiper swiper-tour-date-tourL px-1">
                                         <!-- Additional required wrapper -->
-                                        <div class="swiper-wrapper">
-                                            <!-- Slides -->
-                                            <div class="swiper-slide">
-                                                <div
-                                                    class="group/leveltwo border border-gray-50 w-[215px] bg-white rounded-lg py-4 px-6 transition-all duration-300 hover:border-primary-400">
-                                                    <h3 class="text-gray-500 font-light mb-1">تاریخ رفت و
-                                                        برگشت:</h3>
-                                                    <span
-                                                        class="text-sm font-semibold text-gray-500 transition-all duration-300 group-hover/leveltwo:text-primary-500">1404-04-11
-                                                        تا 19-04-1404</span>
-                                                </div>
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <div
-                                                    class="group border border-gray-50 w-[215px] bg-white rounded-lg py-4 px-6 transition-all duration-300 hover:border-primary-400">
-                                                    <h3 class="text-gray-500 font-light mb-1">تاریخ رفت و
-                                                        برگشت:</h3>
-                                                    <span
-                                                        class="text-sm font-semibold text-gray-500 transition-all duration-300 group-hover:text-primary-500">1404-04-11
-                                                        تا 19-04-1404</span>
-                                                </div>
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <div
-                                                    class="group border border-gray-50 w-[215px] bg-white rounded-lg py-4 px-6 transition-all duration-300 hover:border-primary-400">
-                                                    <h3 class="text-gray-500 font-light mb-1">تاریخ رفت و
-                                                        برگشت:</h3>
-                                                    <span
-                                                        class="text-sm font-semibold text-gray-500 transition-all duration-300 group-hover:text-primary-500">1404-04-11
-                                                        تا 19-04-1404</span>
-                                                </div>
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <div
-                                                    class="group border border-gray-50 w-[215px] bg-white rounded-lg py-4 px-6 transition-all duration-300 hover:border-primary-400">
-                                                    <h3 class="text-gray-500 font-light mb-1">تاریخ رفت و
-                                                        برگشت:</h3>
-                                                    <span
-                                                        class="text-sm font-semibold text-gray-500 transition-all duration-300 group-hover:text-primary-500">1404-04-11
-                                                        تا 19-04-1404</span>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <div class="swiper-wrapper"></div>
                                     </div>
                                 </div>
                                 <div
@@ -709,11 +689,11 @@
                                                         <use xlink:href="./images/sprite-icons.svg#icon-sun-white">
                                                         </use>
                                                     </svg>
-                                                    اردیبهشت
+                                                    @db.tour-list.prp_8077
                                                 </span>
                                             </div>
                                             <div class="flex justify-center">
-                                                <button
+                                                <button onclick="toggleTourDateMenu(this, '@db.tour-list.id')"
                                                     class="tourL-tour-date-btn flex items-center justify-center gap-2 w-48 h-11 bg-white norder border-gray-100 rounded-xl text-sm font-semibold">
                                                     تاریخ های برگذاری
                                                     <svg width="24" height="24">
@@ -734,7 +714,7 @@
                                             قیمت از:</span>
                                         <span
                                             class="flex text-2xl text-primary-500 font-extrabold transition-all duration-300 group-hover:text-secondary-500 mb-6 tourL-tour-price">@db.tour-list.prp_8181</span>
-                                        <button
+                                        <a href="/tour.bc?id=@id"
                                             class="flex items-center justify-center gap-2 w-[183px] h-[73px] font-extrabold rounded-xl bg-primary-500 text-white transition-all duration-300 group-hover:bg-secondary-500 group-hover:text-zinc-900">
                                             مشاهده جزئیات
                                             <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
@@ -747,61 +727,19 @@
                                                     fill="white" />
                                             </svg>
 
-                                        </button>
+                                        </a>
                                     </div>
                                 </div>
-                            </a>
+                            </div>
                         </face>
                         <face>
-                            <a href="@db.tour-list.link" class="relative tourL-tour-card group flex items-stretch">
+                            <div class="relative tourL-tour-card group flex items-stretch">
                                 <div
                                     class="tourL-tour-date-menu absolute w-[606px] top-60 z-20 left-[30%] right-0 mx-auto border border-primary-100 py-4 rounded-lg backdrop-blur bg-specialcolor-6 shadow-shadow-date opacity-0 invisible scale-95 transition-all duration-300 origin-top">
                                     <!-- Slider main container -->
                                     <div class="swiper swiper-tour-date-tourL px-1">
                                         <!-- Additional required wrapper -->
-                                        <div class="swiper-wrapper">
-                                            <!-- Slides -->
-                                            <div class="swiper-slide">
-                                                <div
-                                                    class="group/leveltwo border border-gray-50 w-[215px] bg-white rounded-lg py-4 px-6 transition-all duration-300 hover:border-primary-400">
-                                                    <h3 class="text-gray-500 font-light mb-1">تاریخ رفت و
-                                                        برگشت:</h3>
-                                                    <span
-                                                        class="text-sm font-semibold text-gray-500 transition-all duration-300 group-hover/leveltwo:text-primary-500">1404-04-11
-                                                        تا 19-04-1404</span>
-                                                </div>
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <div
-                                                    class="group border border-gray-50 w-[215px] bg-white rounded-lg py-4 px-6 transition-all duration-300 hover:border-primary-400">
-                                                    <h3 class="text-gray-500 font-light mb-1">تاریخ رفت و
-                                                        برگشت:</h3>
-                                                    <span
-                                                        class="text-sm font-semibold text-gray-500 transition-all duration-300 group-hover:text-primary-500">1404-04-11
-                                                        تا 19-04-1404</span>
-                                                </div>
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <div
-                                                    class="group border border-gray-50 w-[215px] bg-white rounded-lg py-4 px-6 transition-all duration-300 hover:border-primary-400">
-                                                    <h3 class="text-gray-500 font-light mb-1">تاریخ رفت و
-                                                        برگشت:</h3>
-                                                    <span
-                                                        class="text-sm font-semibold text-gray-500 transition-all duration-300 group-hover:text-primary-500">1404-04-11
-                                                        تا 19-04-1404</span>
-                                                </div>
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <div
-                                                    class="group border border-gray-50 w-[215px] bg-white rounded-lg py-4 px-6 transition-all duration-300 hover:border-primary-400">
-                                                    <h3 class="text-gray-500 font-light mb-1">تاریخ رفت و
-                                                        برگشت:</h3>
-                                                    <span
-                                                        class="text-sm font-semibold text-gray-500 transition-all duration-300 group-hover:text-primary-500">1404-04-11
-                                                        تا 19-04-1404</span>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <div class="swiper-wrapper"></div>
                                     </div>
                                 </div>
                                 <div
@@ -881,11 +819,11 @@
                                                         <use xlink:href="./images/sprite-icons.svg#icon-sun-white">
                                                         </use>
                                                     </svg>
-                                                    اردیبهشت
+                                                    @db.tour-list.prp_8077
                                                 </span>
                                             </div>
                                             <div class="flex justify-center">
-                                                <button
+                                                <button onclick="toggleTourDateMenu(this, '@db.tour-list.id')"
                                                     class="tourL-tour-date-btn flex items-center justify-center gap-2 w-48 h-11 bg-white norder border-gray-100 rounded-xl text-sm font-semibold">
                                                     تاریخ های برگذاری
                                                     <svg width="24" height="24">
@@ -906,7 +844,7 @@
                                             قیمت از:</span>
                                         <span
                                             class="flex text-2xl text-primary-500 font-extrabold transition-all duration-300 group-hover:text-secondary-500 mb-6 tourL-tour-price">@db.tour-list.prp_8181</span>
-                                        <button
+                                        <a href="@db.tour-list.link"
                                             class="flex items-center justify-center gap-2 w-[183px] h-[73px] font-extrabold rounded-xl bg-primary-500 text-white transition-all duration-300 group-hover:bg-secondary-500 group-hover:text-zinc-900">
                                             مشاهده جزئیات
                                             <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
@@ -919,10 +857,10 @@
                                                     fill="white" />
                                             </svg>
 
-                                        </button>
+                                        </a>
                                     </div>
                                 </div>
-                            </a>
+                            </div>
                         </face>
 
                     </basis>
@@ -1199,48 +1137,48 @@
                         </div>
                     </div>
                 </section>
-                <section class="mt-6">
-                    <h2 class="text-[36px] font-extrabold mb-3">سوالات متداول کاربران</h2>
-                    <basis core="print" datamembername="db.faq">
-                        <layout>
+                <basis core="print" datamembername="db.faq">
+                    <layout>
+                        <section class="mt-6">
+                            <h2 class="text-[36px] font-extrabold mb-3">سوالات متداول کاربران</h2>
                             <div class="flex flex-col gap-4">
                                 @child
                             </div>
-                        </layout>
-                        <face filter="TypeID in(250)">
-                            <div
-                                class="faq-box transition-all duration-300 cursor-pointer rounded-xl border border-gray-100 bg-white py-6 px-8">
-                                <div class="flex items-center justify-between">
-                                    <div class="flex items-center gap-2">
-                                        <svg width="32" height="32" class="icon-plus-circle">
-                                            <use xlink:href="./images/sprite-icons.svg#icon-plus-circle"></use>
-                                        </svg>
-                                        <svg width="32" height="32" class="hidden icon-plus-circle-white">
-                                            <use xlink:href="./images/sprite-icons.svg#icon-plus-circle-white"></use>
-                                        </svg>
-                                        <h2 class="font-extrabold text-2xl text-zinc-900">@text</h2>
-                                    </div>
-                                    <svg class="flex-shrink-0 faq-btn transition-all duration-300" width="33"
-                                        height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M24.5 12.5864L16.5 20.5864L8.5 12.5864" stroke="#1E2128"
-                                            stroke-width="3" />
+                        </section>
+                    </layout>
+                    <face filter="TypeID in(250)">
+                        <div
+                            class="faq-box transition-all duration-300 cursor-pointer rounded-xl border border-gray-100 bg-white py-6 px-8">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-2">
+                                    <svg width="32" height="32" class="icon-plus-circle">
+                                        <use xlink:href="./images/sprite-icons.svg#icon-plus-circle"></use>
                                     </svg>
+                                    <svg width="32" height="32" class="hidden icon-plus-circle-white">
+                                        <use xlink:href="./images/sprite-icons.svg#icon-plus-circle-white"></use>
+                                    </svg>
+                                    <h2 class="font-extrabold text-2xl text-zinc-900">@text</h2>
+                                </div>
+                                <svg class="flex-shrink-0 faq-btn transition-all duration-300" width="33" height="33"
+                                    viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M24.5 12.5864L16.5 20.5864L8.5 12.5864" stroke="#1E2128"
+                                        stroke-width="3" />
+                                </svg>
 
-                                </div>
-                                <div
-                                    class="faq-answer text-white text-sm font-semibold opacity-0 scale-y-0 max-h-0 overflow-hidden transition-all duration-500 ease-in-out origin-top pr-6">
-                                    @largetext
-                                </div>
                             </div>
-                        </face>
-                    </basis>
+                            <div
+                                class="faq-answer text-white text-sm font-semibold opacity-0 scale-y-0 max-h-0 overflow-hidden transition-all duration-500 ease-in-out origin-top pr-6">
+                                @largetext
+                            </div>
+                        </div>
+                    </face>
+                </basis>
 
-                </section>
+
             </div>
         </div>
     </main>
     <script src="[##cms.cms.cdn##]/_js/swiper-bundle.11.2.5.min.js"></script>
-
 
     <basis core="call" file="footer.inc" />
 </body>

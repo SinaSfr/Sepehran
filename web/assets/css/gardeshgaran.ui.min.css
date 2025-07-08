@@ -1768,7 +1768,9 @@ body {
 }
 
 .swiper-tour-date .swiper-wrapper,
-.swiper-same-tour .swiper-wrapper {
+.swiper-same-tour .swiper-wrapper,
+.swiper-special-suggestion .swiper-wrapper,
+.swiper-special-destination-tour .swiper-wrapper {
   height: auto !important;
 }
 

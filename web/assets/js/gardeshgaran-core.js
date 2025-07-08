@@ -499,6 +499,65 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
+// fetch tour-date
+document.addEventListener('DOMContentLoaded', function () {
+  const fetchContentPersonel = document.querySelector('.fetch-content-personel');
+  const personelLi = document.querySelectorAll('.date-li');
+
+  if (fetchContentPersonel) {
+    async function loadInitialContent() {
+      const firstItem = document.querySelector('.date-li');
+      if (!firstItem) return;
+
+      const personelId = firstItem.getAttribute('data-personel');
+      if (!personelId) return;
+
+      try {
+        const response = await fetch(`/personel-load-items.bc?catid=${personelId}`);
+        const data = await response.text();
+        fetchContentPersonel.innerHTML = data;
+
+        document.querySelectorAll('.date-li').forEach((li) => {
+          li.style.backgroundColor = '';
+        });
+        firstItem.style.backgroundColor = '#2e58d1';
+      } catch (err) {
+        fetchContentPersonel.innerHTML = '<p>مشکلی در دریافت اطلاعات رخ داد: ' + err.message + '</p>';
+      }
+    }
+
+    loadInitialContent();
+
+    personelLi.forEach((item) => {
+      item.addEventListener('click', async function () {
+        personelLi.forEach((li) => {
+          li.style.backgroundColor = '';
+          li.style.color = '';
+        });
+
+        item.style.backgroundColor = '#2e58d1';
+
+        const personelId = item.getAttribute('data-personel');
+        if (!personelId) return;
+
+        const requestUrl = `/date-load-items.bc?catid=${personelId}`;
+
+        try {
+          fetchContentPersonel.innerHTML =
+            '<div class="flex justify-center mt-16"><span class="header-loader"></span></div>';
+          const response = await fetch(requestUrl);
+          if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+          const data = await response.text();
+          fetchContentPersonel.innerHTML = data;
+        } catch (error) {
+          console.error('Fetch failed:', error);
+          fetchContentPersonel.innerHTML = '<p>مشکلی در دریافت اطلاعات رخ داد: ' + error.message + '</p>';
+        }
+      });
+    });
+  }
+});
+
 // filter tour-destintion with (,)
 document.addEventListener('DOMContentLoaded', function () {
   const textElements = document.querySelectorAll('.tour-destination');
@@ -679,201 +738,140 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
-// filter tour-list
-// document.addEventListener("DOMContentLoaded", () => {
-//   const normalizeText = (text) => text.replace(/\s/g, "").normalize("NFKD");
 
-//   const tourCards = document.querySelectorAll(".tourL-tour-card");
+// tour-list date 
+const toggleTourDateMenu = (button, tourId) => {
+  const dateMenu = button.closest('.tourL-tour-card').querySelector('.tourL-tour-date-menu');
+  const swiperWrapper = dateMenu.querySelector('.swiper-tour-date-tourL .swiper-wrapper');
 
-//   const filterButtons = document.querySelectorAll(".day-tour-filter");
-//   const airlineInputs = document.querySelectorAll(".airline-hotel-input");
+  document.querySelectorAll('.tourL-tour-date-menu').forEach((menu) => {
+    if (menu !== dateMenu) {
+      menu.classList.add('opacity-0', 'invisible', 'scale-95');
+    }
+  });
 
-//   const minInput = document.getElementById("minRange");
-//   const maxInput = document.getElementById("maxRange");
-//   const rangeTrack = document.getElementById("rangeTrack");
-//   const minValText = document.getElementById("minValue");
-//   const maxValText = document.getElementById("maxValue");
-//   const selectedDays = new Set();
-//   const selectedAirlines = new Set();
+  if (dateMenu.classList.contains('opacity-0')) {
+    swiperWrapper.innerHTML = '<div class="loading">در حال بارگذاری...</div>';
 
-//   const formatPrice = (val) => val.toLocaleString("fa-IR");
-//   const parsePrice = (priceString) => {
-//     let cleaned = priceString.replace(/[.,\/\s]/g, "");
-//     const parsed = parseInt(cleaned, 10) || 0;
-//     return parsed;
-//   };
+    window.currentDateContainer = swiperWrapper;
+    window.currentTourId = tourId;
 
-//   let REAL_MIN = 0;
-//   let REAL_MAX = 0;
-//   let realMin = 0;
-//   let realMax = 0;
+    $bc.setSource('db.tourDatesRequest', tourId);
 
-//   let prices = Array.from(tourCards)
-//     .map((card) => {
-//       const priceElem = card.querySelector(".tourL-tour-price");
-//       if (!priceElem) {
-//         return 0;
-//       }
-//       return parsePrice(priceElem.textContent);
-//     })
-//     .filter((p) => p > 0);
+    dateMenu.classList.remove('opacity-0', 'invisible', 'scale-95');
+  } else {
+    dateMenu.classList.add('opacity-0', 'invisible', 'scale-95');
+  }
+};
 
-//   if (prices.length > 0) {
-//     REAL_MIN = Math.min(...prices);
-//     REAL_MAX = Math.max(...prices);
-//     realMin = REAL_MIN;
-//     realMax = REAL_MAX;
-//   }
+const isMobile = () => {
+  return window.innerWidth < 1024;
+};
 
-//   function filterCards() {
-//     tourCards.forEach((card, i) => {
-//       const priceElem = card.querySelector(".tourL-tour-price");
-//       const cardPrice = priceElem ? parsePrice(priceElem.textContent) : 0;
+const onTourDatesLoaded = async (apiResponse) => {
 
-//       const dayMatch =
-//         selectedDays.size === 0 ||
-//         selectedDays.has(
-//           normalizeText(
-//             card.querySelector(".tourL-tour-day")?.textContent || ""
-//           )
-//         );
-//       const airlineMatch =
-//         selectedAirlines.size === 0 ||
-//         Array.from(selectedAirlines).some((name) =>
-//           normalizeText(
-//             card.querySelector(".tourL-tour-airline")?.textContent || ""
-//           ).includes(name)
-//         );
-//       const priceMatch = cardPrice >= realMin && cardPrice <= realMax;
+  if (!window.currentDateContainer) {
+    return;
+  }
 
-//       card.style.display =
-//         dayMatch && airlineMatch && priceMatch ? "flex" : "none";
-//     });
+  try {
+    const response = apiResponse.response;
+    const jsonData = await response.json();
 
-//     updateFilterCount();
-//   }
 
-//   function updateFilterCount() {
-//     const filterCountEl = document.getElementById("filterBtnCount");
-//     const filterBtn = document.getElementById("filterBtn");
-//     const filterIcon = document.getElementById("filterIcon");
+    let data = [];
+    if (jsonData && jsonData.sources && jsonData.sources.length > 0) {
+      data = jsonData.sources[0].data || [];
+    }
 
-//     if (!filterCountEl || !filterBtn || !filterIcon) {
-//       return;
-//     }
+    if (!data || !Array.isArray(data) || data.length === 0) {
+      window.currentDateContainer.innerHTML = '<div class="no-dates">تاریخی موجود نیست</div>';
+      return;
+    }
 
-//     let count = 0;
+    window.currentDateContainer.innerHTML = '';
 
-//     if (selectedDays.size > 0) count++;
-//     if (selectedAirlines.size > 0) count++;
-//     if (realMin > REAL_MIN || realMax < REAL_MAX) count++;
+    const mobile = isMobile();
 
-//     if (count > 0) {
-//       filterCountEl.classList.remove("hidden");
-//       filterCountEl.classList.add("flex");
-//       filterCountEl.textContent = count;
+    data.forEach((dateItem, index) => {
 
-//       filterBtn.classList.remove("bg-white");
-//       filterBtn.classList.add(
-//         "bg-primary-500",
-//         "shadow-small-btn-shadow",
-//         "text-white"
-//       );
+      const tourLink = `/tour.bc?id=${window.currentTourId}&from=${dateItem.start.dateid}&to=${dateItem.end.dateid}&day=${dateItem.day}`;
 
-//       filterIcon.querySelectorAll("path, ellipse").forEach((el) => {
-//         el.setAttribute("stroke", "#11C086");
-//       });
-//     } else {
-//       filterCountEl.classList.add("hidden");
-//       filterCountEl.classList.remove("flex");
-//       filterCountEl.textContent = "";
+      if (mobile) {
+        const div = document.createElement('div');
+        div.className = 'date-li swiper-slide !w-[230px]';
+        div.onclick = () => renderInventoryList(div, dateItem.day, dateItem.start.dateid, dateItem.end.dateid);
 
-//       filterBtn.classList.remove(
-//         "bg-primary-500",
-//         "shadow-small-btn-shadow",
-//         "text-white"
-//       );
-//       filterBtn.classList.add("bg-white");
+        div.innerHTML = `
+                    <a href="${tourLink}" class="group block border border-gray-50 bg-white rounded-lg py-4 px-6 transition-all duration-300 hover:border-primary-400">
+                        <h3 class="text-gray-500 font-light mb-1">تاریخ رفت و برگشت:</h3>
+                        <div class="tour-dates text-sm font-semibold text-gray-500 transition-all duration-300 group-hover/leveltwo:text-primary-500">
+                            <span class="start__date" data-date="${dateItem.start.date}">${dateItem.start.date}</span>
+                            تا
+                            <span class="end__date unicode-embed direction-ltr" data-date="${dateItem.end.date}">${dateItem.end.date}</span>
+                        </div>
+                    </a>
+                `;
 
-//       filterIcon.querySelectorAll("path, ellipse").forEach((el) => {
-//         el.setAttribute("stroke", "#33363F");
-//       });
-//     }
-//   }
+        window.currentDateContainer.appendChild(div);
+      } else {
+        const li = document.createElement('li');
+        li.className = 'date-li swiper-slide cursor-pointer';
+        li.onclick = () => renderInventoryList(li, dateItem.day, dateItem.start.dateid, dateItem.end.dateid);
 
-//   filterButtons.forEach((button) => {
-//     button.addEventListener("click", function () {
-//       const selectedDay = normalizeText(button.textContent);
-//       const isSelected = selectedDays.has(selectedDay);
+        li.innerHTML = `
+                    <a href="${tourLink}" class="group/leveltwo block border border-gray-50 w-[230px] bg-white rounded-lg py-4 px-6 transition-all duration-300 hover:border-primary-400">
+                        <h3 class="text-gray-500 font-light mb-1">تاریخ رفت و برگشت:</h3>
+                        <div class="tour-dates text-sm font-semibold text-gray-500 transition-all duration-300 group-hover/leveltwo:text-primary-500">
+                            <span class="start__date" data-date="${dateItem.start.date}">${dateItem.start.date}</span>
+                            تا
+                            <span class="end__date" data-date="${dateItem.end.date}">${dateItem.end.date}</span>
+                        </div>
+                    </a>
+                `;
 
-//       button.classList.toggle("border-primary-500", !isSelected);
-//       button.classList.toggle("text-primary-500", !isSelected);
+        window.currentDateContainer.appendChild(li);
+      }
+    });
 
-//       if (isSelected) {
-//         selectedDays.delete(selectedDay);
-//       } else {
-//         selectedDays.add(selectedDay);
-//       }
+  } catch (error) {
+    console.error('خطا در پردازش response:', error);
+    window.currentDateContainer.innerHTML = '<div class="error">خطا در بارگذاری تاریخ‌ها</div>';
+  }
+};
 
-//       filterCards();
-//     });
-//   });
+const renderInventoryList = async (element, day, from, to) => {
+  try {
 
-//   airlineInputs.forEach((input) => {
-//     input.addEventListener("click", function () {
-//       const parent = input.closest(".airline-item");
-//       const airlineName = normalizeText(
-//         parent.querySelector(".airline-item-name").innerText
-//       );
+    const mobile = isMobile();
+    const selector = mobile ? '.swiper-slide' : '.date-li';
 
-//       const isSelected = selectedAirlines.has(airlineName);
-//       input.classList.toggle("bg-primary-500", !isSelected);
+    document.querySelectorAll(selector).forEach((e) => {
+      const group = e.querySelector('.group, .group\\/leveltwo');
+      const dates = e.querySelector('.tour-dates, span');
+      if (group) {
+        group.classList.remove('border-primary-400');
+      }
+      if (dates) {
+        dates.classList.remove('text-primary-500');
+      }
+    });
 
-//       if (isSelected) {
-//         selectedAirlines.delete(airlineName);
-//       } else {
-//         selectedAirlines.add(airlineName);
-//       }
+    $bc.setSource('db.inventoryViewSpecificDate', {
+      from: from,
+      to: to,
+      day: day,
+    });
 
-//       filterCards();
-//     });
-//   });
-
-//   function updatePriceRange() {
-//     if (!minInput || !maxInput || !rangeTrack || !minValText || !maxValText) {
-//       return;
-//     }
-
-//     let min = parseInt(minInput.value);
-//     let max = parseInt(maxInput.value);
-
-//     if (min > max) [min, max] = [max, min];
-
-//     const left = 100 - max;
-//     const width = max - min;
-
-//     rangeTrack.style.left = `${left}%`;
-//     rangeTrack.style.width = `${width}%`;
-
-//     realMin = Math.floor(REAL_MIN + ((REAL_MAX - REAL_MIN) * min) / 100);
-//     realMax = Math.floor(REAL_MIN + ((REAL_MAX - REAL_MIN) * max) / 100);
-
-//     minValText.textContent = formatPrice(realMin);
-//     maxValText.textContent = formatPrice(realMax);
-
-//     filterCards();
-//   }
-
-//   if (minInput) {
-//     minInput.addEventListener("input", updatePriceRange);
-//   }
-//   if (maxInput) {
-//     maxInput.addEventListener("input", updatePriceRange);
-//   }
-
-//   updatePriceRange();
-
-// });
+    const group = element.querySelector('.group, .group\\/leveltwo');
+    const dates = element.querySelector('.tour-dates, span');
+    if (group) group.classList.add('border-primary-400');
+    if (dates) dates.classList.add('text-primary-500');
+  } catch (err) {
+    console.error('خطا در renderInventoryList:', err);
+  }
+};
+// tour-list date end
 
 document.addEventListener('DOMContentLoaded', () => {
   const normalizeText = (text) => text.replace(/\s/g, '').normalize('NFKC');
@@ -1396,6 +1394,8 @@ document.addEventListener('DOMContentLoaded', function () {
   const priceIcon = document.getElementById('priceToggleIcon');
   const priceOptions = document.querySelectorAll('.price-option');
   const tourCards = Array.from(document.querySelectorAll('.tourL-tour-card'));
+  const tourListContainer = document.querySelector('.tourL-tour-list');
+  const specialTourBtn = document.querySelector('.special-tour-btn');
 
   let isOpen = false;
 
@@ -1403,113 +1403,98 @@ document.addEventListener('DOMContentLoaded', function () {
     return parseInt(priceText.replace(/[.,\/\s]+/g, ''));
   }
 
+  function toggleCardVisibility(card, show) {
+    if (show) {
+      card.style.display = 'flex';
+    } else {
+      card.style.display = 'none';
+    }
+  }
+
+  // باز و بسته کردن منو فیلتر قیمت
   if (priceButton && priceMenu && priceIcon) {
     priceButton.addEventListener('click', () => {
       isOpen = !isOpen;
 
-      if (isOpen) {
-        priceMenu.classList.remove('hidden');
-        priceMenu.classList.add('flex');
-
-        priceIcon.classList.add('rotate-180', 'text-primary-500');
-        priceIcon.classList.remove('text-[#1E2128]');
-
-        priceButton.classList.add('bg-primary-100', 'text-primary-500', 'border-primary-500');
-        priceButton.classList.remove('border-gray-50');
-      } else {
-        priceMenu.classList.remove('flex');
-        priceMenu.classList.add('hidden');
-
-        priceIcon.classList.remove('rotate-180', 'text-primary-500');
-        priceIcon.classList.add('text-[#1E2128]');
-
-        priceButton.classList.remove('bg-primary-100', 'text-primary-500', 'border-primary-500');
-        priceButton.classList.add('border-gray-50');
-      }
+      priceMenu.classList.toggle('hidden', !isOpen);
+      priceMenu.classList.toggle('flex', isOpen);
+      priceIcon.classList.toggle('rotate-180', isOpen);
+      priceIcon.classList.toggle('text-primary-500', isOpen);
+      priceIcon.classList.toggle('text-[#1E2128]', !isOpen);
+      priceButton.classList.toggle('bg-primary-100', isOpen);
+      priceButton.classList.toggle('text-primary-500', isOpen);
+      priceButton.classList.toggle('border-primary-500', isOpen);
+      priceButton.classList.toggle('border-gray-50', !isOpen);
     });
 
     document.addEventListener('click', (event) => {
       const isClickInsideButton = priceButton.contains(event.target);
       const isClickInsideMenu = priceMenu.contains(event.target);
-
       if (!isClickInsideButton && !isClickInsideMenu && isOpen) {
         isOpen = false;
-        priceMenu.classList.remove('flex');
         priceMenu.classList.add('hidden');
-
+        priceMenu.classList.remove('flex');
         priceIcon.classList.remove('rotate-180', 'text-primary-500');
         priceIcon.classList.add('text-[#1E2128]');
-
         priceButton.classList.remove('bg-primary-100', 'text-primary-500', 'border-primary-500');
         priceButton.classList.add('border-gray-50');
       }
     });
   }
 
+  // فیلتر قیمت و خوش‌قیمت
   priceOptions.forEach((option) => {
     option.addEventListener('click', () => {
       const selectedFilter = option.dataset.price;
 
+      // ریست آیکون‌های انتخاب
       document.querySelectorAll('.price-check-icon').forEach((icon) => {
         icon.classList.remove('bg-primary-500', 'text-white');
       });
 
+      // فعال‌سازی آیکون فعلی
       const icon = option.querySelector('.price-check-icon');
       icon.classList.add('bg-primary-500', 'text-white');
 
       if (tourCards.length && selectedFilter) {
-        let sortedCards = [...tourCards];
+        let filteredCards = [...tourCards];
 
-        sortedCards.sort((a, b) => {
+        // مرتب‌سازی بر اساس قیمت
+        filteredCards.sort((a, b) => {
           const priceA = extractCleanPrice(a.querySelector('.tourL-tour-price').innerText);
           const priceB = extractCleanPrice(b.querySelector('.tourL-tour-price').innerText);
 
           if (selectedFilter === 'high-to-low') return priceB - priceA;
           if (selectedFilter === 'low-to-high') return priceA - priceB;
-          if (selectedFilter === 'best-price') return priceA - priceB;
+          if (selectedFilter === 'best-price') return priceA - priceB; // خوش‌قیمت به معنای کم‌قیمت‌تر
         });
 
-        const parent = document.querySelector('.tourL-tour-list');
-        parent.innerHTML = '';
+        // پاک کردن لیست قبلی
+        tourListContainer.innerHTML = '';
 
-        sortedCards.forEach((card) => {
-          const economicText = card.querySelector('.economic')?.innerText.trim().toLowerCase();
+        filteredCards.forEach((card) => {
+          const econSpan = card.querySelector('.economic');
+          const isEcon = econSpan?.innerText?.trim().toLowerCase() === 'true';
 
           if (selectedFilter === 'best-price') {
-            if (economicText === 'true') {
-              card.classList.remove('hidden');
-              card.classList.add('flex');
-              parent.appendChild(card);
-            }
+            toggleCardVisibility(card, isEcon);
+            if (isEcon) tourListContainer.appendChild(card);
           } else {
-            card.classList.remove('hidden');
-            card.classList.add('flex');
-            parent.appendChild(card);
+            toggleCardVisibility(card, true);
+            tourListContainer.appendChild(card);
           }
         });
       }
     });
   });
-});
 
-// special-facilities-tour
-document.addEventListener('DOMContentLoaded', function () {
-  const tourCards = Array.from(document.querySelectorAll('.tourL-tour-card'));
-  const specialFacilitiesBtn = document.querySelector('.special-tour-btn');
-
-  if (specialFacilitiesBtn) {
-    specialFacilitiesBtn.addEventListener('click', () => {
-      tourCards.forEach(card => {
+  // دکمه فیلتر تورهای ویژه
+  if (specialTourBtn) {
+    specialTourBtn.addEventListener('click', () => {
+      tourCards.forEach((card) => {
         const specialSpan = card.querySelector('.special-facilities');
-        const hasSpecial = specialSpan && specialSpan.innerText.trim().toLowerCase() === 'true';
-
-        if (hasSpecial) {
-          card.classList.remove('hidden');
-          card.classList.add('flex');
-        } else {
-          card.classList.add('hidden');
-          card.classList.remove('flex');
-        }
+        const isSpecial = specialSpan?.innerText?.trim().toLowerCase() === 'true';
+        toggleCardVisibility(card, isSpecial);
       });
     });
   }

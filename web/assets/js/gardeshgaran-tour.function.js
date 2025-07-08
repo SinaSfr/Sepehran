@@ -57,7 +57,6 @@ const renderInventoryView = async (element, day, from, to) => {
 };
 
 const onProcessedHotelsImg = async (args) => {
-  console.log(args);
   try {
     const response = args.response;
     if (response.status === 200) {
@@ -68,16 +67,12 @@ const onProcessedHotelsImg = async (args) => {
         const pageName = img.dataset.pagename;
         const hotelId = parseInt(img.dataset.id);
 
-        console.log(`Checking hotelId: ${hotelId}`);
-
         const matched = responseJson.find((item) => parseInt(item.usedforid) === hotelId);
 
         if (!matched) {
           console.warn(`No matched image for hotelId ${hotelId}`);
           return;
         }
-
-        console.log(`Matched image for ${hotelId}:`, matched);
 
         img.src = `/${matched.originalImage}`;
       });
@@ -408,7 +403,6 @@ const onrenderedExecutionOrigins = async () => {
     );
     if (originElement) {
       let origin = originElement.textContent;
-      console.log(origin);
 
       let ids = [];
       document
@@ -435,7 +429,6 @@ const onrenderedExecutionDestinations = async () => {
     );
     if (destinationElement) {
       let destination = destinationElement.textContent;
-      console.log(destination);
 
       let ids = [];
       document
