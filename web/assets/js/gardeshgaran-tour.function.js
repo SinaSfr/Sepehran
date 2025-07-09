@@ -184,7 +184,48 @@ const renderHotels = async (element, type) => {
         const hotelStar = item.hotel.star === '' ? 0 : item.hotel.star;
         const serviceHTML = await renderServiceHotel(hotel);
 
-        output += `
+        const isMobile = window.innerWidth <= 1024;
+        if (isMobile) {
+          output += `
+                          <div class="hotel-card flex flex-col gap-8 border border-gray-100 rounded-xl p-4" data-index="${index}">
+                    <div class="flex flex-col items-center">
+                        <div class="w-full shadow-card-shadow mb-4">
+                            <img src="${img}" data-id="${hotel.hotelid}" data-pageName="${pageName}"
+                                class="tourInventory__details__item__img w-full h-40 object-cover rounded-xl" alt="" width="320" height="160"
+                                loading="lazy" />
+                        </div>
+                        <h2 class="font-extrabold text-center mb-3 hotel-card-title">${escapeHtml(cleanHotelName)}
+                        </h2>
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="flex flex-col gap-2 items-center bg-gray-50 p-2 rounded-lg">
+                                <span class="font-semibold text-sm hotel-card-service">${escapeHtml(
+                                  serviceHTML.service
+                                )}</span>
+                                <span class="text-xs font-light">${escapeHtml(serviceHTML.english)}</span>
+                            </div>
+                            <div class="flex items-center gap-3 text-sm font-bold">
+                                <span class="hotel-card-star" data-value="${hotelStar}">${hotelStar} ستاره</span>
+                                <span class="flex items-center">${await renderHotelRate(hotel)}</span>
+                            </div>
+                        </div>
+                        <a href="/${pageName}?id=${hotel.hotelid}" data-id="${
+            hotel.hotelid
+          }" data-pageName="${pageName}"
+                            class="group flex items-center justify-center gap-2 font-extrabold border border-gray-100 rounded-xl w-full h-[73px] transition-all duration-300 hover:bg-primary-500 hover:text-white hover:shadow-btn-shadow">
+                            جزئیات هتل
+                            <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path class="transition-all duration-300 group-hover:stroke-white"
+                                    d="M17 6.5L11 12.5L17 18.5" stroke="#1E2128" stroke-width="2" />
+                                <path class="transition-all duration-300 group-hover:stroke-white" d="M6 7.5V17.5"
+                                    stroke="#1E2128" stroke-width="2" />
+                            </svg>
+                        </a>
+                    </div>
+                    </div>`;
+          index++;
+        } else {
+          output += `
           <div class="flex items-stretch justify-between w-full" data-index="${index}">
             <div class="flex items-center gap-6">
               <div class="shadow-card-shadow">
@@ -230,7 +271,8 @@ const renderHotels = async (element, type) => {
               </a>
             </div>
           </div>`;
-        index++;
+          index++;
+        }
       }
 
       return output;
@@ -240,67 +282,89 @@ const renderHotels = async (element, type) => {
   }
 };
 
-const renderPriceInfo = async (element, type) => {
-  try {
-    if (element) {
-      if (type == 'doublecost') {
-        let output = '';
-        for (const item of element.priceinfo.doublecost) {
-          output += `<div class="flex flex-col items-center gap-2 text-sm font-bold">
-                                <span class="text-xl font-extrabold text-primary-500 hotel-card-price">${new Intl.NumberFormat().format(
-                                  item.doublecost.doublecostf
-                                )}</span>
-                                ${item.doublecost.doubleunit.length == 0 ? `` : item.doublecost.doubleunit}</div>`;
-        }
+function renderPriceInfo(element, type) {
+  if (!element) return '';
 
-        return output;
-      } else if (type == 'singlecost') {
-        let output = '';
-        for (const item of element.priceinfo.singlecost) {
-          output += `<div class="flex flex-col items-center gap-2 text-sm font-bold">
-                                <span class="text-xl font-extrabold text-primary-500 hotel-card-price">${new Intl.NumberFormat().format(
-                                  item.singlecost.singlecostf
-                                )}</span>
-                                ${item.singlecost.singleunit.length == 0 ? `` : item.singlecost.singleunit}</div>`;
-        }
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 1024;
 
-        return output;
-      } else if (type == 'childwithbed') {
-        let output = '';
-        for (const item of element.priceinfo.childwithbed) {
-          output += `<div class="flex flex-col items-center gap-2 text-sm font-bold">
-                                <span class="text-xl font-extrabold text-primary-500 hotel-card-price">${new Intl.NumberFormat().format(
-                                  item.childwithbed.childwithbedf
-                                )}</span>
-                                ${
-                                  item.childwithbed.childwithbedunit.length == 0
-                                    ? ``
-                                    : item.childwithbed.childwithbedunit
-                                }</div>`;
-        }
+  let output = '';
 
-        return output;
-      } else if (type == 'childwithoutbed') {
-        let output = '';
-        for (const item of element.priceinfo.childwithoutbed) {
-          output += `<div class="flex flex-col items-center gap-2 text-sm font-bold">
-                                <span class="text-xl font-extrabold text-primary-500 hotel-card-price">${new Intl.NumberFormat().format(
-                                  item.childwithoutbed.childwithoutbedf
-                                )}</span>
-                                ${
-                                  item.childwithoutbed.childwithoutbedunit.length == 0
-                                    ? ``
-                                    : item.childwithoutbed.childwithoutbedunit
-                                }</div>`;
-        }
-
-        return output;
+  if (type === 'doublecost') {
+    for (const item of element.priceinfo.doublecost) {
+      if (isMobile) {
+        output += `
+          <div class="text-sm font-bold text-primary-500 hotel-card-price-mobile">
+            ${new Intl.NumberFormat().format(item.doublecost.doublecostf)} 
+            ${item.doublecost.doubleunit.length === 0 ? '' : item.doublecost.doubleunit}
+          </div>`;
+      } else {
+        output += `
+          <div class="flex flex-col items-center gap-2 text-sm font-bold">
+            <span class="text-xl font-extrabold text-primary-500 hotel-card-price">
+              ${new Intl.NumberFormat().format(item.doublecost.doublecostf)}
+            </span>
+            ${item.doublecost.doubleunit.length === 0 ? '' : item.doublecost.doubleunit}
+          </div>`;
       }
     }
-  } catch (err) {
-    console.error('renderPriceInfo=' + err.lineNumber + ',' + err.message);
+  } else if (type === 'singlecost') {
+    for (const item of element.priceinfo.singlecost) {
+      if (isMobile) {
+        output += `
+          <div class="text-sm font-bold text-primary-500 hotel-card-price-mobile">
+            ${new Intl.NumberFormat().format(item.singlecost.singlecostf)} 
+            ${item.singlecost.singleunit.length === 0 ? '' : item.singlecost.singleunit}
+          </div>`;
+      } else {
+        output += `
+          <div class="flex flex-col items-center gap-2 text-sm font-bold">
+            <span class="text-xl font-extrabold text-primary-500 hotel-card-price">
+              ${new Intl.NumberFormat().format(item.singlecost.singlecostf)}
+            </span>
+            ${item.singlecost.singleunit.length === 0 ? '' : item.singlecost.singleunit}
+          </div>`;
+      }
+    }
+  } else if (type === 'childwithbed') {
+    for (const item of element.priceinfo.childwithbed) {
+      if (isMobile) {
+        output += `
+          <div class="text-sm font-bold text-primary-500 hotel-card-price-mobile">
+            ${new Intl.NumberFormat().format(item.childwithbed.childwithbedf)} 
+            ${item.childwithbed.childwithbedunit.length === 0 ? '' : item.childwithbed.childwithbedunit}
+          </div>`;
+      } else {
+        output += `
+          <div class="flex flex-col items-center gap-2 text-sm font-bold">
+            <span class="text-xl font-extrabold text-primary-500 hotel-card-price">
+              ${new Intl.NumberFormat().format(item.childwithbed.childwithbedf)}
+            </span>
+            ${item.childwithbed.childwithbedunit.length === 0 ? '' : item.childwithbed.childwithbedunit}
+          </div>`;
+      }
+    }
+  } else if (type === 'childwithoutbed') {
+    for (const item of element.priceinfo.childwithoutbed) {
+      if (isMobile) {
+        output += `
+          <div class="text-sm font-bold text-primary-500 hotel-card-price-mobile">
+            ${new Intl.NumberFormat().format(item.childwithoutbed.childwithoutbedf)} 
+            ${item.childwithoutbed.childwithoutbedunit.length === 0 ? '' : item.childwithoutbed.childwithoutbedunit}
+          </div>`;
+      } else {
+        output += `
+          <div class="flex flex-col items-center gap-2 text-sm font-bold">
+            <span class="text-xl font-extrabold text-primary-500 hotel-card-price">
+              ${new Intl.NumberFormat().format(item.childwithoutbed.childwithoutbedf)}
+            </span>
+            ${item.childwithoutbed.childwithoutbedunit.length === 0 ? '' : item.childwithoutbed.childwithoutbedunit}
+          </div>`;
+      }
+    }
   }
-};
+
+  return output;
+}
 
 const serviceDefinitions = {
   0: { code: '-', titleFa: '', titleEn: '' },
