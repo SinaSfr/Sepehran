@@ -64,7 +64,7 @@
         postsql="select * from [db.tour-view-travelplan] where Question in('برنامه سفر')" />
     <member name="tour-view-airline" type="view"
         postsql="select * from [db.tour-view-airline] where Question in('شرکت های هواپیمایی')" />
-    <member name="tour-related" type="list" blgid="18" propertyid="3087934,10000504,8181,8076" typeid="159"
+    <member name="tour-related" type="list" blgid="18" propertyid="3087934,3087933,10000504,8181,8076," typeid="159"
         link="tour.bc" />
 </basis>
 <basis core="dbsource" source="basiscore" mid="1" name="db" lid="1" schemaid="987" term="[##cms.query.term##]">
@@ -212,7 +212,7 @@
                             </div>
                         </div>
                     </layout>
-                    <face filter="ord in(1000)">
+                    <face filter="ord not in(500)">
                         <div class="swiper-slide">
                             <img src="/@largeIMG" alt="@name" class="img-responsive h-96 object-cover rounded-xl"
                                 width="384" height="384" loading="lazy" />
@@ -227,7 +227,7 @@
                             </div>
                         </div>
                     </layout>
-                    <face filter="ord in(1000)">
+                    <face filter="ord not in(500)">
                         <div class="swiper-slide cursor-pointer">
                             <img src="/@largeIMG" alt="@name" class="img-responsive h-20 object-cover rounded-xl"
                                 width="80" height="80" loading="lazy" />
@@ -296,30 +296,56 @@
 
                 </div>
                 <div class="flex flex-col gap-3">
-                    <div class="flex justify-between items-center">
-                        <h3 class="text-sm font-bold">تاریخ شروع تور:</h3>
-                        <span class="relative">
-                            <svg width="43" height="17" class="absolute right-5 -top-2">
-                                <use href="./images/sprite-icons.svg#icon-plane-left"></use>
-                            </svg>
-                            <svg width="194" height="3">
-                                <use href="./images/sprite-icons.svg#icon-plane-line"></use>
-                            </svg>
-                        </span>
-                        <span class="text-sm font-bold">1404/04/05</span>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <h3 class="text-sm font-bold">تاریخ اتمام تور:</h3>
-                        <span class="relative">
-                            <svg width="43" height="17" class="absolute left-5 -top-2">
-                                <use href="./images/sprite-icons.svg#icon-plane-right"></use>
-                            </svg>
-                            <svg width="194" height="3">
-                                <use href="./images/sprite-icons.svg#icon-plane-line"></use>
-                            </svg>
-                        </span>
-                        <span class="text-sm font-bold">1404/04/05</span>
-                    </div>
+                    <basis core='print' run='AtClient' datamembername='db.dates' onrendered='onrenderedDates'>
+                        <layout>
+                            <script type="text/template">
+                             <!-- Additional required wrapper -->
+                             <div class="flex justify-between items-center">
+                                <h3 class="text-sm font-bold">تاریخ شروع تور:</h3>
+                                <span class="relative">
+                                    <svg width="43" height="17" class="absolute right-5 -top-2">
+                                        <use href="./images/sprite-icons.svg#icon-plane-left"></use>
+                                    </svg>
+                                    <svg width="194" height="3">
+                                        <use href="./images/sprite-icons.svg#icon-plane-line"></use>
+                                    </svg>
+                                </span>
+                                @child
+                            </div>
+                            </script>
+                        </layout>
+                        <face>
+                            <script type="text/template">
+                                <span class="text-sm font-bold">@start.date@</span>
+                            </script>
+                        </face>
+                    </basis>
+
+                    <basis core='print' run='AtClient' datamembername='db.dates' onrendered='onrenderedDates'>
+                        <layout>
+                            <script type="text/template">
+                             <!-- Additional required wrapper -->
+                             <div class="flex justify-between items-center">
+                                <h3 class="text-sm font-bold">تاریخ اتمام تور:</h3>
+                                <span class="relative">
+                                    <svg width="43" height="17" class="absolute left-5 -top-2">
+                                        <use href="./images/sprite-icons.svg#icon-plane-right"></use>
+                                    </svg>
+                                    <svg width="194" height="3">
+                                        <use href="./images/sprite-icons.svg#icon-plane-line"></use>
+                                    </svg>
+                                </span>
+                                    @child
+                            </div>
+                            </script>
+                        </layout>
+                        <face>
+                            <script type="text/template">
+                                <span class="text-sm font-bold">@end.date@</span>
+                            </script>
+                        </face>
+                    </basis>
+
                 </div>
                 <div class="flex items-center gap-1">
                     <h2 class="text-sm font-bold">پرواز: </h2>
@@ -405,6 +431,15 @@
                                     </ul>
                                     </script>
                                 </layout>
+                                <else-layout>
+                                    <ul class="swiper-wrapper flex justify-center">
+                                        <!-- Slides -->
+                                        <li class="swiper-slide cursor-pointer">
+                                            در حال حاضر تاریخ دیگری وجود ندارد
+                                        </li>
+                                    </ul>
+
+                                </else-layout>
                                 <face>
                                     <script type="text/template">
                                       <li class="swiper-slide cursor-pointer" onclick="renderInventoryView(this,@day@,@start.dateid@,@end.dateid@)">
@@ -693,23 +728,31 @@
                                 </div>
                                 <div class="flex items-center justify-between gap-2">
                                     <div
-                                        class="flex flex-1 justify-center p-8 border border-gray-50 shadow-card-shadow rounded-xl h-44">
+                                        class="flex flex-1 justify-center p-8 border border-gray-50 shadow-card-shadow rounded-xl">
                                         <ul class="w-full flex justify-center items-center">
-                                            <li class="relative w-1/4 flex flex-col gap-8 items-center border-l-2 border-gray-100 border-dashed">
+                                            <li class="relative w-1/4 h-full flex flex-col gap-4 items-center border-l-2 border-gray-100 border-dashed">
                                                 <span class="text-sm font-semibold">دوتخته</span>
-                                                {{ return await renderPriceInfo($data,'doublecost')}}
+                                                <div class="flex flex-col items-center gap-2">
+                                                    {{ return await renderPriceInfo($data,'doublecost')}}
+                                                </div>
                                             </li>
-                                            <li class="relative w-1/4 flex flex-col gap-8 items-center border-l-2 border-gray-100 border-dashed">
+                                            <li class="relative w-1/4 h-full flex flex-col gap-4 items-center border-l-2 border-gray-100 border-dashed">
                                                 <span class="text-sm font-semibold">تک تخته</span>
-                                                    {{ return await renderPriceInfo($data,'singlecost')}}
+                                                    <div class="flex flex-col items-center gap-2">
+                                                        {{ return await renderPriceInfo($data,'singlecost')}}
+                                                    </div>
                                             </li>
-                                            <li class="relative w-1/4 flex flex-col gap-8 items-center border-l-2 border-gray-100 border-dashed">
+                                            <li class="relative w-1/4 h-full flex flex-col gap-4 items-center border-l-2 border-gray-100 border-dashed">
                                                 <span class="text-sm font-semibold">کودک با تخت</span>
-                                                 {{ return await renderPriceInfo($data,'childwithbed')}}
+                                                 <div class="flex flex-col items-center gap-2">
+                                                    {{ return await renderPriceInfo($data,'childwithbed')}}
+                                                 </div>
                                             </li>
-                                            <li class="relative w-1/4 flex flex-col gap-8 items-center">
+                                            <li class="relative w-1/4 h-full flex flex-col gap-4 items-center">
                                                 <span class="text-sm font-semibold">کودک بدون تخت</span>
-                                                {{ return await renderPriceInfo($data,'childwithoutbed')}}
+                                                <div class="flex flex-col items-center gap-2">
+                                                    {{ return await renderPriceInfo($data,'childwithoutbed')}}
+                                                </div>
                                             </li>
                                         </ul>
                                     </div>

@@ -159,6 +159,10 @@ body {
   top: 18rem;
 }
 
+.top-88 {
+  top: 22rem;
+}
+
 .top-8 {
   top: 2rem;
 }
@@ -565,6 +569,10 @@ body {
   width: 1rem;
 }
 
+.w-1\/2 {
+  width: 50%;
+}
+
 .w-4\/5 {
   width: 80%;
 }
@@ -834,6 +842,10 @@ body {
   row-gap: 2rem;
 }
 
+.gap-y-12 {
+  row-gap: 3rem;
+}
+
 .divide-y > :not([hidden]) ~ :not([hidden]) {
   --tw-divide-y-reverse: 0;
   border-top-width: calc(1px * calc(1 - var(--tw-divide-y-reverse)));
@@ -916,6 +928,10 @@ body {
 .border-y {
   border-top-width: 1px;
   border-bottom-width: 1px;
+}
+
+.border-l-2 {
+  border-left-width: 2px;
 }
 
 .border-b {
@@ -1575,7 +1591,10 @@ body {
   -webkit-text-stroke: 1px #fff;
 }
 
-.swiper-special-destination-tour-list-mobile .swiper-wrapper {
+.swiper-special-destination-tour-list-mobile .swiper-wrapper,
+.swiper-same-tour-mobile .swiper-wrapper,
+.swiper-big-img-mobile .swiper-wrapper,
+.swiper-small-img-mobile .swiper-wrapper {
   height: auto !important;
 }
 

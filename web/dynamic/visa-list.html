@@ -12,7 +12,7 @@
     <member name="paging" type="list" request="paging" count="3" parentname="visa-list" />
 </basis>
 
-<basis core="dbsource" source="basiscore" name="db" mid="20" lid="1" usedforid="[##cms.query.aid##]">
+<basis core="dbsource" source="basiscore" name="db" mid="1" lid="1" usedforid="[##cms.query.aid##]">
     <member name="view" type="view" propertyid="7249" />
 </basis>
 
@@ -323,7 +323,7 @@
                 <section>
                     <div class="relative content-container max-h-[480px] overflow-hidden transition-all duration-500">
                         <div
-                            class="absolute bottom-0 h-60 w-full white-shadow bg-white-shadow transition-opacity duration-500">
+                            class="absolute z-10 bottom-0 h-60 w-full white-shadow bg-white-shadow transition-opacity duration-500">
                         </div>
                         <basis core="print" datamembername="db.view">
                             <face filter="TypeID in(150)">
@@ -343,14 +343,14 @@
                                 </div>
                             </face>
                             <face filter="TypeID in(250)">
-                                <h2 id="@valueID" class="text-[36px] font-extrabold mb-4">@text</h2>
+                                <h2 class="text-[36px] font-extrabold mb-4">@text</h2>
                                 <div class="text-content text-sm font-semibold mt-6 leading-7 text-justify mb-6">
                                     @largetext</div>
                             </face>
                         </basis>
 
                         <button
-                            class="group see-more absolute bottom-6 left-0 right-0 mx-auto z-10 flex items-center justify-center gap-2 w-40 h-11 text-white rounded-xl bg-primary-500 transition-all duration-300 hover:shadow-small-btn-shadow">
+                            class="group see-more absolute bottom-6 left-0 right-0 mx-auto z-10 flex items-center justify-center gap-2 w-40 h-11 text-white rounded-xl bg-primary-500 cursor-pointer transition-all duration-300 hover:shadow-small-btn-shadow">
                             <span class="see-more-text">مشاهده همه</span>
                             <svg class="transition-all duration-300 group-hover:hidden group-hover:invisible group-hover:opacity-0"
                                 width="24" height="25" viewBox="0 0 24 25" fill="none"

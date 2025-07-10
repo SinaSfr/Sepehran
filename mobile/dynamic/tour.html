@@ -64,7 +64,7 @@
         postsql="select * from [db.tour-view-travelplan] where Question in('برنامه سفر')" />
     <member name="tour-view-airline" type="view"
         postsql="select * from [db.tour-view-airline] where Question in('شرکت های هواپیمایی')" />
-    <member name="tour-related" type="list" blgid="18" propertyid="3087934,10000504,8181,8076" typeid="159"
+    <member name="tour-related" type="list" blgid="18" propertyid="3087934,3087933,10000504,8181,8076" typeid="159"
         link="tour.bc" />
 </basis>
 <basis core="dbsource" source="basiscore" mid="1" name="db" lid="1" schemaid="987" term="[##cms.query.term##]">
@@ -126,7 +126,7 @@
 <body>
     <basis core="call" file="header.inc" pageindex="[##cms.cms.pageindex##]" />
     <main class="layout__body__container" data-noimgsign="no-img-found.jpg" data-pagenameinventory="Tem1_Hotel.bc">
-        <section class="relative flex items-center justify-center bg-tourlistBg bg-center bg-cover h-24">
+        <section class="relative flex items-center justify-center bg-tourlistBg bg-center bg-cover py-4">
             <div class="absolute inset-0 w-full h-full bg-black/45"></div>
             <ul itemscope itemtype="https://schema.org/BreadcrumbList"
                 class="breadcrumb relative flex flex-wrap justify-center items-center text-sm gap-1">
@@ -190,7 +190,7 @@
             <section>
                 <div class="swiper-button-prev-custom ">
                     <div
-                        class="absolute left-1 top-72 z-10 flex items-center justify-center h-10 w-10 bg-primary-500 rounded-full shadow-small-btn-shadow transition-all duration-300 hover:bg-secondary-500">
+                        class="absolute left-1 top-88 z-10 flex items-center justify-center h-10 w-10 bg-primary-500 rounded-full shadow-small-btn-shadow transition-all duration-300 hover:bg-secondary-500">
                         <svg width="24" height="24">
                             <use href="./images/sprite-icons.svg#icon-chevron-left"></use>
                         </svg>
@@ -198,7 +198,7 @@
                 </div>
                 <div class="swiper-button-next-custom ">
                     <div
-                        class="absolute right-1 top-72 z-10 flex items-center justify-center h-10 w-10 bg-primary-500 rounded-full shadow-small-btn-shadow transition-all duration-300 hover:bg-secondary-500">
+                        class="absolute right-1 top-88 z-10 flex items-center justify-center h-10 w-10 bg-primary-500 rounded-full shadow-small-btn-shadow transition-all duration-300 hover:bg-secondary-500">
                         <svg width="24" height="24">
                             <use href="./images/sprite-icons.svg#icon-chevron-right"></use>
                         </svg>
@@ -212,7 +212,7 @@
                             </div>
                         </div>
                     </layout>
-                    <face filter="ord in(1000)">
+                    <face filter="ord not in(500)">
                         <div class="swiper-slide">
                             <img src="/@largeIMG" alt="@name" class="w-full h-[353px] object-cover rounded-xl"
                                 width="353" height="353" loading="lazy" />
@@ -228,7 +228,7 @@
                             </div>
                         </div>
                     </layout>
-                    <face filter="ord in(1000)">
+                    <face filter="ord not in(500)">
                         <div class="swiper-slide cursor-pointer">
                             <img src="/@largeIMG" alt="@name" class="w-full h-20 object-cover rounded-xl" width="80"
                                 height="80" loading="lazy" />
@@ -298,30 +298,54 @@
 
                 </div>
                 <div class="flex flex-col gap-3">
-                    <div class="flex justify-between items-center">
-                        <h3 class="text-sm font-bold">تاریخ شروع تور:</h3>
-                        <span class="relative">
-                            <svg width="43" height="17" class="absolute right-4 -top-2">
-                                <use href="./images/sprite-icons.svg#icon-plane-left"></use>
-                            </svg>
-                            <svg width="124" height="3">
-                                <use href="./images/sprite-icons.svg#icon-plane-line"></use>
-                            </svg>
-                        </span>
-                        <span class="text-sm font-bold">1404/04/05</span>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <h3 class="text-sm font-bold">تاریخ اتمام تور:</h3>
-                        <span class="relative">
-                            <svg width="43" height="17" class="absolute left-3 -top-2">
-                                <use href="./images/sprite-icons.svg#icon-plane-right"></use>
-                            </svg>
-                            <svg width="124" height="3">
-                                <use href="./images/sprite-icons.svg#icon-plane-line"></use>
-                            </svg>
-                        </span>
-                        <span class="text-sm font-bold">1404/04/05</span>
-                    </div>
+                    <basis core='print' run='AtClient' datamembername='db.dates' onrendered='onrenderedDates'>
+                        <layout>
+                            <script type="text/template">
+                                <div class="flex justify-between items-center">
+                                    <h3 class="text-sm font-bold">تاریخ شروع تور:</h3>
+                                    <span class="relative">
+                                        <svg width="43" height="17" class="absolute right-4 -top-2">
+                                            <use href="./images/sprite-icons.svg#icon-plane-left"></use>
+                                        </svg>
+                                        <svg width="124" height="3">
+                                            <use href="./images/sprite-icons.svg#icon-plane-line"></use>
+                                        </svg>
+                                    </span>
+                                    @child
+                                </div>
+                        </script>
+                        </layout>
+                        <face>
+                            <script type="text/template">
+                                    <span class="text-sm font-bold">@start.date@</span>
+                            </script>
+                        </face>
+                    </basis>
+
+                    <basis core='print' run='AtClient' datamembername='db.dates' onrendered='onrenderedDates'>
+                        <layout>
+                            <script type="text/template">
+                                <div class="flex justify-between items-center">
+                                    <h3 class="text-sm font-bold">تاریخ اتمام تور:</h3>
+                                    <span class="relative">
+                                        <svg width="43" height="17" class="absolute left-3 -top-2">
+                                            <use href="./images/sprite-icons.svg#icon-plane-right"></use>
+                                        </svg>
+                                        <svg width="124" height="3">
+                                            <use href="./images/sprite-icons.svg#icon-plane-line"></use>
+                                        </svg>
+                                    </span>
+                                    @child
+                                </div>
+                        </script>
+                        </layout>
+                        <face>
+                            <script type="text/template">
+                                    <span class="text-sm font-bold">@end.date@</span>
+                            </script>
+                        </face>
+                    </basis>
+
                 </div>
                 <div class="flex items-center gap-1">
                     <h2 class="text-sm font-bold">پرواز: </h2>
@@ -408,6 +432,14 @@
                                     </ul>
                                 </script>
                                 </layout>
+                                <else-layout>
+                                    <ul class="swiper-wrapper flex justify-center">
+                                        <!-- Slides -->
+                                        <li class="swiper-slide cursor-pointer">
+                                            در حال حاضر تاریخ دیگری وجود ندارد
+                                        </li>
+                                    </ul>
+                                </else-layout>
                                 <face>
                                     <script type="text/template">
                                         <li class="swiper-slide" onclick="renderInventoryView(this,@day@,@start.dateid@,@end.dateid@)">
@@ -688,7 +720,7 @@
                 </ul>
             </nav>
         </section>
-        <section class="mx-auto max-lg:w-[92%] max-xl:w-[97%] xl:max-w-7xl mt-6">
+        <section id="hotels" class="mx-auto max-lg:w-[92%] max-xl:w-[97%] xl:max-w-7xl mt-6">
             <basis core="print" datamembername="api.inventoryView" run="atclient" onrendered="onrenderedInventoryView">
                 <layout>
                     <script type="text/template">
@@ -704,20 +736,20 @@
                     {{return await renderHotels($data)}}
                     <div class="flex flex-col gap-8 items-center">
                         <div class="flex justify-center px-9 py-7 border border-gray-50 shadow-card-shadow rounded-xl">
-                            <ul class="flex items-center flex-wrap justify-between gap-12">
-                                <li class="relative flex flex-col gap-2 items-center vertical-border-mobile">
+                            <ul class="flex items-center flex-wrap justify-between gap-y-8">
+                                <li class="relative w-1/2 flex flex-col gap-2 items-center border-l-2 border-gray-100 border-dashed">
                                     <span class="text-sm font-semibold">دوتخته</span>
                                     {{ return await renderPriceInfo($data,'doublecost')}}
                                 </li>
-                                <li class="relative flex flex-col gap-2 items-center vertical-border-mobile">
+                                <li class="relative w-1/2 flex flex-col gap-2 items-center">
                                     <span class="text-sm font-semibold">تک تخته</span>
                                     {{ return await renderPriceInfo($data,'singlecost')}}
                                 </li>
-                                <li class="relative flex flex-col gap-2 items-center vertical-border-mobile">
+                                <li class="relative w-1/2 flex flex-col gap-2 items-center border-l-2 border-gray-100 border-dashed">
                                     <span class="text-sm font-semibold">کودک با تخت</span>
                                     {{ return await renderPriceInfo($data,'childwithbed')}}
                                 </li>
-                                <li class="relative flex flex-col gap-2 items-center vertical-border-mobile">
+                                <li class="relative w-1/2 flex flex-col gap-2 items-center">
                                     <span class="text-sm font-semibold">کودک بدون تخت</span>
                                     {{ return await renderPriceInfo($data,'childwithoutbed')}}
                                 </li>
@@ -756,7 +788,7 @@
                     <svg width="38" height="38">
                         <use href="./images/sprite-icons.svg#icon-gray-compass"></use>
                     </svg>
-                    <h2 class="text-[32px] font-black">شروع سفر</h2>
+                    <h2 id="plan" class="text-[32px] font-black">شروع سفر</h2>
                 </div>
 
                 <div class="execution__details__path__item flex flex-col gap-8">
@@ -906,7 +938,7 @@
                         </div>
                         <div
                             class="travel-answer bg-white opacity-0 scale-y-0 max-h-0 overflow-hidden transition-all duration-500 ease-in-out origin-top">
-                            <div class="flex flex-col items-center gap-24 py-4 px-8 border-b border-gray-50 mb-3">
+                            <div class="flex flex-col gap-24 py-4 px-8 border-b border-gray-50 mb-3">
                                 <div class="flex-[3.22]">
                                     <h2 class="font-semibold text-sm mb-3">@text</h2>
                                     <div class="text-xs font-light leading-5 text-justify">
@@ -946,7 +978,7 @@
                         <svg width="38" height="38">
                             <use href="./images/sprite-icons.svg#icon-shopping"></use>
                         </svg>
-                        <h2 class="text-2xl font-extrabold">خدمات تور:</h2>
+                        <h2 id="services" class="text-2xl font-extrabold">خدمات تور:</h2>
                     </div>
                     <div class="flex flex-wrap gap-6 p-2">
                         <!-- items -->
@@ -972,7 +1004,7 @@
                 <svg width="38" height="38">
                     <use href="./images/sprite-icons.svg#icon-tour-information"></use>
                 </svg>
-                <h2 class="text-[32px] font-black">توضیحات تور:</h2>
+                <h2 id="description" class="text-[32px] font-black">توضیحات تور:</h2>
             </div>
             <div class="relative content-container max-h-[620px] overflow-hidden transition-all duration-500">
                 <div class="absolute bottom-0 h-60 w-full white-shadow bg-white-shadow transition-opacity duration-500">
@@ -1011,7 +1043,7 @@
                 <svg width="38" height="38">
                     <use href="./images/sprite-icons.svg#icon-pen"></use>
                 </svg>
-                <h2 class="text-[32px] font-black">نظرات کاربران:</h2>
+                <h2 id="comments" class="text-[32px] font-black">نظرات کاربران:</h2>
             </div>
             <form action="/Tem1_OpinionAction.bc" method="POST" class="bg-white mb-11">
                 <input type="hidden" name="title" value="[##cms.seo.title##]" />
@@ -1181,7 +1213,7 @@
 
                     <div class="swiper swiper-same-tour-mobile pb-4">
                         <div class="flex items-center justify-between mb-4">
-                            <h2 class="text-[32px] font-black">تور مشابه</h2>
+                            <h2 id="similar" class="text-[32px] font-black">تور مشابه</h2>
                             <a href="/tours"
                                 class="group flex items-center justify-center gap-3 rounded-lg px-4 py-2 text-sm font-semibold bg-white transition-all duration-300 hover:text-white hover:bg-primary-500 hover:shadow-small-btn-shadow">مشاهده
                                 همه
@@ -1207,7 +1239,7 @@
                 <div class="swiper-slide">
                     <a href="/tour.bc?id=@id"
                         class="flex flex-col border border-gray-50 bg-white rounded-xl shadow-medium-btn-shadow p-4">
-                        <img src="@00253X00135prp"
+                        <img src="@type_159"
                             class="w-full h-36 object-cover rounded-xl overflow-hidden shadow-soft-deep" alt="@title"
                             width="253" height="135" loading="lazy" />
                         <h2 class="text-lg font-extrabold mt-8 text-center">@title</h2>
@@ -1257,7 +1289,7 @@
                 <div class="swiper-slide">
                     <a href="@link"
                         class="flex flex-col border border-gray-50 bg-white rounded-xl shadow-medium-btn-shadow p-4">
-                        <img src="@00253X00135prp"
+                        <img src="@type_159"
                             class="w-full h-36 object-cover rounded-xl overflow-hidden shadow-soft-deep" alt="@title"
                             width="253" height="135" loading="lazy" />
                         <h2 class="text-lg font-extrabold mt-8 text-center">@title</h2>
@@ -1308,7 +1340,7 @@
                     <a href="/tour.bc?id=@id"
                         class="flex flex-col border border-gray-50 bg-white rounded-xl shadow-medium-btn-shadow p-4">
                         <div class="relative rounded-xl overflow-hidden shadow-soft-deep">
-                            <img src="@00253X00135prp" class="w-full h-36 object-cover" alt="@title" width="253"
+                            <img src="@type_159" class="w-full h-36 object-cover" alt="@title" width="253"
                                 height="135" loading="lazy" />
                             <span class="absolute left-0 bottom-0 text-sm font-bold py-2 px-4 bg-amber-400 rounded-tr">
                                 @prp_3087934
@@ -1362,7 +1394,7 @@
                     <a href="@link"
                         class="flex flex-col border border-gray-50 bg-white rounded-xl shadow-medium-btn-shadow p-4">
                         <div class="relative rounded-xl overflow-hidden shadow-soft-deep">
-                            <img src="@00253X00135prp" class="w-full h-36 object-cover" alt="@title" width="253"
+                            <img src="@type_159" class="w-full h-36 object-cover" alt="@title" width="253"
                                 height="135" loading="lazy" />
                             <span class="absolute left-0 bottom-0 text-sm font-bold py-2 px-4 bg-amber-400 rounded-tr">
                                 @prp_3087934
