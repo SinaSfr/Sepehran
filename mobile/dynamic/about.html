@@ -115,6 +115,93 @@
                   stroke-width="2"></path>
               </svg>
             </button>
+            <div class="free-consulation-form hidden fixed z-30 items-center justify-center overflow-y-auto inset-0">
+              <div class="hidden inset-0 bg-black/45 modal-backdrop"></div>
+              <div class="relative flex flex-col items-center gap-7 w-full h-full bg-gray-gradient bg-cover bg-center p-4">
+                <div class="flex justify-end w-full">
+                  <span class="close-consulation-btn bg-secondary-500 rounded-full p-2 cursor-pointer transition-all duration-300 hover:bg-primary-500">
+                    <svg width="24" height="24">
+                        <use xlink:href="./images/sprite-icons.svg#engine-close-icon"></use>
+                    </svg>
+                </span>
+                </div>
+                  <div class="flex-1">
+                      <div class="flex items-center gap-2 border-b-2 border-zinc-900 mb-2 pb-3">
+                        <svg width="42" height="43" viewBox="0 0 42 43" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M31.2053 8.76482C32.8611 8.21289 33.6892 7.93718 34.1262 8.3742C34.563 8.81125 34.2875 9.6395 33.7356 11.2951L26.3977 33.3078C25.6134 35.6608 25.2209 36.8379 24.5002 36.8381C23.7795 36.8381 23.3872 35.661 22.6028 33.3078L19.6038 24.3097L26.9573 16.9572C27.3477 16.5667 27.3476 15.9337 26.9573 15.5431C26.5668 15.1526 25.9337 15.1526 25.5432 15.5431L18.1897 22.8967L9.19263 19.8976C6.83957 19.1133 5.66251 18.7208 5.66235 18.0002C5.66235 17.2794 6.83941 16.8871 9.19263 16.1027L31.2053 8.76482Z" fill="#1E2128"/>
+                          </svg>                                    
+                          <h2 class="text-xl font-extrabold">مشاوره رایگان رزرو تور</h2>
+                      </div>
+                      <div class="text-sm font-semibold mb-6">وقت سفر رسیده ما در گردشگران سپهر تهران منتظر شنیدن از شما هستیم. فرم زیر رو پر کنید تا راهنمای سفرتون در کمترین زمان باهاتون تماس بگیره. چه به دنبال ماجراجویی باشین، چه یه سفر آرامش‌بخش، ما کنارتونیم تا تجربه‌ای خاص براتون بسازیم.</div>
+                          <div class="flex flex-col mx-auto consulation-form mt-2" id="consulation-form">
+
+                            <basis core="schema" run="atclient"
+                                schemaurl="/schema/domainform/7CF675E2-4165-434A-B3D5-F01013BA5F10/17F8C970-A195-411E-B369-D86756F6C8B4/fa/مشاوره-رایگان"
+                                displaymode="new" button="[data-btn-uploadConsulation]" resultsourceid="upload.dataConsulation"
+                                OnRendered="RenderFormConsulation"></basis>
+                            <basis core="api" if="{##cms.uploadConsulation.run|(false)##}" run="atclient"
+                                url="/schema/domainform/7CF675E2-4165-434A-B3D5-F01013BA5F10/fa/editobject" method="post"
+                                body="object_edit={##cms.uploadConsulation.value##}&captcha={##cms.uploadConsulation.captcha##}&captchaid={##cms.uploadConsulation.captchaid##}"
+                                content-type="application/x-www-form-urlencoded" triggers='cms.uploadConsulation'
+                                OnProcessed="OnProcessedEditObjectConsulation"></basis>
+                            <basis core="callback" run="atclient" method="uploadDocumentConsulation" triggers="upload.dataConsulation">
+                            </basis>
+            
+                            <div class="captcha-button flex flex-col items-center justify-center mt-4">
+                                <div id="captchaContainer" class="captchaContainerclass captcha-sefaresh w-auto"
+                                    data-bc-answer-container data-bc-schema-info-multi="0" data-bc-schema-info-word="58"
+                                    data-bc-schema-info-part="1" data-bc-schema-info-part-0-type="text">
+                                    <basis core="dbsource" source="trust_login" name="captcha" run="atclient"
+                                        triggers="captcha.refreshConsulation">
+                                        <member name="code" type="scalar" request="captcha"></member>
+                                    </basis>
+                                    <basis datamembername="captcha.code" core="print" run="atclient">
+                                        <face>
+                                            <script type="text/template">
+                                              <div class="d-inline-block">
+                                                <div class="flex justify-between">
+                                                <div class="float-right w-[323px]">
+                                                  <input type="text" class="!w-[287px] contactUsInput codeinputm" name="captcha" maxlength="4" placeholder="کد امنیتی"/>
+                                                  <input type="hidden" name="captchaid" value="@captcha@" />
+                                                </div>
+                                                <div class="flex items-center gap-4 ml-2">
+                                                    <img src="/@captcha@" loading="lazy" width="120" height="60" alt="captcha" class="w-16 h-auto" />
+                                                    <svg class="inline-block align-middle cursor-pointer w-9 h-9" onclick="refreshCaptchaConsulation()" width="24" height="24" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18.1247 8.56165H18.1238C18.0007 8.56175 17.8788 8.5861 17.7651 8.63331C17.6514 8.68052 17.5481 8.74967 17.4611 8.8368C17.3741 8.92393 17.3052 9.02734 17.2581 9.14113C17.2111 9.25492 17.187 9.37685 17.1871 9.49997C17.1859 10.8143 16.8245 12.1032 16.1421 13.2265C15.4597 14.3498 14.4824 15.2646 13.3166 15.8714C12.1507 16.4782 10.8408 16.7538 9.52921 16.6683C8.21765 16.5827 6.95463 16.1393 5.87744 15.3862C2.63134 13.1132 1.83959 8.62309 4.11255 5.37696C6.38552 2.13083 10.8757 1.33899 14.1218 3.61204C14.6129 3.95501 15.0592 4.358 15.4504 4.81165H12.8121C12.5635 4.81165 12.325 4.91042 12.1492 5.08623C11.9734 5.26205 11.8746 5.5005 11.8746 5.74915C11.8746 5.99779 11.9734 6.23624 12.1492 6.41206C12.325 6.58787 12.5635 6.68665 12.8121 6.68665H17.1871C17.4358 6.68665 17.6742 6.58787 17.85 6.41206C18.0259 6.23624 18.1246 5.99779 18.1246 5.74915V1.37415C18.1246 1.12551 18.0259 0.887048 17.85 0.711233C17.6742 0.535418 17.4358 0.436646 17.1871 0.436646C16.9385 0.436646 16.7 0.535418 16.5242 0.711233C16.3484 0.887048 16.2496 1.12551 16.2496 1.37415V2.93536C15.9206 2.62321 15.5689 2.33596 15.1973 2.07598C14.2225 1.39342 13.1228 0.909542 11.9609 0.651979C10.7991 0.394417 9.59797 0.368213 8.42603 0.574863C7.25409 0.781513 6.13433 1.21697 5.13067 1.85637C4.12702 2.49578 3.25914 3.3266 2.57658 4.30141C1.19808 6.27013 0.658111 8.70582 1.07546 11.0727C1.49281 13.4395 2.83329 15.5436 4.80201 16.9221C6.31776 17.9898 8.12639 18.563 9.98041 18.5633C10.5144 18.5631 11.0474 18.5162 11.5732 18.4233C13.6714 18.0531 15.5722 16.9556 16.9417 15.3235C18.3112 13.6914 19.062 11.6289 19.0621 9.49833C19.0619 9.24983 18.963 9.01159 18.7873 8.83596C18.6115 8.66032 18.3732 8.56166 18.1247 8.56165Z" fill="#18181B"/></svg>
+                                                </div>
+                                                
+                                            </div></div></script>
+                                        </face>
+                                    </basis>
+                                </div>
+                                <button
+                                    class="flex justify-center items-center gap-2 w-full h-[73px] text-white transition-all duration-300 data-body-btn mt-6 bg-primary-500 rounded-xl hover:bg-secondary-500"
+                                    type="button" data-btn-uploadConsulation>
+                                    <span class="">ارسال اطلاعات</span>
+                                    <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <path d="M7.5 12H21.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                      <path d="M2.78481 11.7966L8.23501 7.90356C8.7645 7.52535 9.5 7.90385 9.5 8.55455V15.4454C9.5 16.0961 8.7645 16.4746 8.23501 16.0964L2.78481 12.2034C2.64522 12.1037 2.64522 11.8963 2.78481 11.7966Z" fill="white"/>
+                                      </svg>                                                
+                                </button>
+            
+                            </div>
+                            <div
+                            class="Loading_Form hidden data-body-btn w-[126px] h-12 px-4 py-2 bg-secondary-800 rounded-2xl justify-center items-center gap-2.5">
+                            <div id="ballsWaveG" class="text-base font-normal leading-normal ext-zinc-50">
+                                <div id="ballsWaveG_1" class="ballsWaveG"></div>
+                                <div id="ballsWaveG_2" class="ballsWaveG"></div>
+                                <div id="ballsWaveG_3" class="ballsWaveG"></div>
+                                <div id="ballsWaveG_4" class="ballsWaveG"></div>
+                                <div id="ballsWaveG_5" class="ballsWaveG"></div>
+                                <div id="ballsWaveG_6" class="ballsWaveG"></div>
+                                <div id="ballsWaveG_7" class="ballsWaveG"></div>
+                                <div id="ballsWaveG_8" class="ballsWaveG"></div>
+                            </div>
+                        </div>
+                            <div class="mt-4 text-center text-secondary-500 message-api"></div>
+                        </div>
+                  </div>
+              </div>
+          </div>
           </div>
         </div>
       </section>
@@ -238,7 +325,7 @@
             </basis>
 
             <button
-              class="group flex items-center justify-center gap-2 font-extrabold border border-gray-100 rounded-xl w-36 h-[73px] transition-all duration-300 hover:bg-primary-500 hover:text-white hover:shadow-btn-shadow">
+              class="open-consulation-btn group flex items-center justify-center gap-2 font-extrabold border border-gray-100 rounded-xl w-36 h-[73px] transition-all duration-300 hover:bg-primary-500 hover:text-white hover:shadow-btn-shadow">
               ارسال فرم
               <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path

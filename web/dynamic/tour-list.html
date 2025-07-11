@@ -602,6 +602,11 @@
                                 @child
                             </div>
                         </layout>
+                        <else-layout>
+                            <div class="flex items-center justify-center">
+                                <h2 class="text-2xl font-extrabold mt-16 mb-16 text-center">در حال حاضر توری وجود ندارد!</h2>
+                            </div>
+                        </else-layout>
                         <face filter="link is null">
                             <div class="relative tourL-tour-card group flex items-stretch">
                                 <div
@@ -694,7 +699,7 @@
                                             </div>
                                             <div class="flex justify-center">
                                                 <button onclick="toggleTourDateMenu(this, '@db.tour-list.id')"
-                                                    class="tourL-tour-date-btn flex items-center justify-center gap-2 w-48 h-11 bg-white norder border-gray-100 rounded-xl text-sm font-semibold">
+                                                    class="tourL-tour-date-btn flex items-center justify-center gap-2 w-48 h-11 bg-white border border-gray-100 rounded-xl text-sm font-semibold">
                                                     تاریخ های برگذاری
                                                     <svg width="24" height="24">
                                                         <use xlink:href="./images/sprite-icons.svg#icon-calender">
@@ -824,7 +829,7 @@
                                             </div>
                                             <div class="flex justify-center">
                                                 <button onclick="toggleTourDateMenu(this, '@db.tour-list.id')"
-                                                    class="tourL-tour-date-btn flex items-center justify-center gap-2 w-48 h-11 bg-white norder border-gray-100 rounded-xl text-sm font-semibold">
+                                                    class="tourL-tour-date-btn flex items-center justify-center gap-2 w-48 h-11 bg-white border border-gray-100 rounded-xl text-sm font-semibold">
                                                     تاریخ های برگذاری
                                                     <svg width="24" height="24">
                                                         <use xlink:href="./images/sprite-icons.svg#icon-calender">
@@ -1047,9 +1052,7 @@
                                     <div class="flex items-center gap-2 border-b-2 border-zinc-900 mb-2 pb-3">
                                         <h2 class="text-[36px] font-extrabold">مشاوره رایگان رزرو تور</h2>
                                     </div>
-                                    <div class="text-sm font-semibold mb-6">لورم ایپسوم متن ساختگی با تولید سادگی
-                                        نامفهوم از صنعت چاپ و با
-                                        استفاده از طراحان گرافیک است.</div>
+                                    <div class="text-sm font-semibold mb-6">وقت سفر رسیده ما در گردشگران سپهر تهران منتظر شنیدن از شما هستیم. فرم زیر رو پر کنید تا راهنمای سفرتون در کمترین زمان باهاتون تماس بگیره. چه به دنبال ماجراجویی باشین، چه یه سفر آرامش‌بخش، ما کنارتونیم تا تجربه‌ای خاص براتون بسازیم.</div>
                                     <div class="flex flex-col mx-auto consulation-form mt-2" id="consulation-form">
 
                                         <basis core="schema" run="atclient"

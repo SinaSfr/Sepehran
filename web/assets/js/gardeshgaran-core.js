@@ -637,12 +637,84 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
+// success message form
+document.addEventListener('DOMContentLoaded', function () {
+  const form = document.querySelector('.pov-form');
+  if (!form) return;
+
+  const messageBox = form.querySelector('.Message-Form');
+  if (!messageBox) return;
+  
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+
+    fetch('/Tem1_OpinionAction.bc', {
+      method: 'POST',
+      body: formData,
+    })
+      .then(res => res.text())
+      .then(html => {
+        if (html.includes('نظر شما با موفقیت ثبت شد')) {
+          messageBox.textContent = 'نظر شما با موفقیت ثبت شد، پس از بررسی توسط مدیر سایت نمایش داده خواهد شد.';
+          messageBox.classList.add('text-secondary-500', 'font-bold');
+          form.reset();
+        } else {
+          messageBox.textContent = 'خطایی در ارسال نظر رخ داده است.';
+          messageBox.classList.add('text-red-600', 'font-bold');
+        }
+
+        setTimeout(() => {
+          messageBox.textContent = '';
+          messageBox.classList.remove('text-green-600', 'text-red-600', 'font-bold');
+        }, 4000);
+      })
+      .catch(() => {
+        messageBox.textContent = 'ارسال ناموفق بود. لطفاً دوباره تلاش کنید.';
+        messageBox.classList.add('text-red-600', 'font-bold');
+
+        setTimeout(() => {
+          messageBox.textContent = '';
+          messageBox.classList.remove('text-red-600', 'font-bold');
+        }, 5000);
+      });
+  });
+});
+
+
+// see-more footer
+document.addEventListener('DOMContentLoaded', function () {
+  const content = document.querySelector('.content-inner');
+  const button = document.querySelector('.see-more-footer');
+  let expanded = false;
+
+  content.style.height = '140px';
+  content.style.overflow = 'hidden';
+  content.style.transition = 'height 0.5s ease';
+
+  button.addEventListener('click', function () {
+    if (!expanded) {
+      content.style.height = content.scrollHeight + 'px';
+      button.textContent = 'نمایش کمتر';
+    } else {
+      content.style.height = '140px';
+      button.textContent = 'مشاهده بیشتر';
+    }
+    expanded = !expanded;
+  });
+});
+
 // see-more-airline-items
 document.addEventListener('DOMContentLoaded', function () {
   const container = document.querySelector('.checkboxList');
   const toggleBtn = document.querySelector('.toggle-btn');
   const items = container ? Array.from(container.querySelectorAll('.airline-item')) : [];
   const visibleCount = 3;
+
+  if (toggleBtn && items.length <= visibleCount) {
+    toggleBtn.classList.add('hidden');
+  }
 
   function hideItems() {
     items.forEach((item, index) => {
@@ -658,7 +730,6 @@ document.addEventListener('DOMContentLoaded', function () {
     items.forEach((item, index) => {
       if (index >= visibleCount) {
         item.classList.remove('hidden', 'max-h-0', 'overflow-hidden');
-
         setTimeout(() => item.classList.remove('opacity-0'), 10);
       }
     });
@@ -686,8 +757,13 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  hideItems();
-  toggleBtn?.addEventListener('click', toggleItems);
+  if (items.length > 0) {
+    hideItems();
+  }
+
+  if (toggleBtn && items.length > visibleCount) {
+    toggleBtn.addEventListener('click', toggleItems);
+  }
 });
 
 // open filter-tour-list-mobile and open-filter-hotel
@@ -718,16 +794,13 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('.tourL-tour-date-btn').forEach((btn) => {
     const container = btn.closest('.tourL-tour-card');
-    const menu = container.querySelector('.tourL-tour-date-menu');
-
+    const menu = container?.querySelector('.tourL-tour-date-menu');
     if (!menu) return;
 
     btn.addEventListener('click', function (e) {
       e.stopPropagation();
       const isShown = menu.classList.contains('opacity-100');
-
       closeAllTourMenus();
-
       if (!isShown) {
         menu.classList.remove('opacity-0', 'invisible', 'scale-95');
         menu.classList.add('opacity-100', 'visible', 'scale-100');
@@ -739,8 +812,12 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  document.addEventListener('click', function () {
-    closeAllTourMenus();
+  document.addEventListener('click', function (e) {
+    const isInsideMenu = e.target.closest('.tourL-tour-date-menu');
+    const isButton = e.target.closest('.tourL-tour-date-btn');
+    if (!isInsideMenu && !isButton) {
+      closeAllTourMenus();
+    }
   });
 
   function closeAllTourMenus() {
@@ -750,6 +827,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 });
+
 
 // tour-list date
 const toggleTourDateMenu = (button, tourId) => {
@@ -834,7 +912,7 @@ const onTourDatesLoaded = async (apiResponse) => {
                         <div class="tour-dates text-sm font-semibold text-gray-500 transition-all duration-300 group-hover/leveltwo:text-primary-500">
                             <span class="start__date" data-date="${dateItem.start.date}">${dateItem.start.date}</span>
                             تا
-                            <span class="end__date" data-date="${dateItem.end.date}">${dateItem.end.date}</span>
+                            <span class="end__date unicode-embed direction-ltr" data-date="${dateItem.end.date}">${dateItem.end.date}</span>
                         </div>
                     </a>
                 `;
@@ -1249,7 +1327,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   if (tParam === 'all') {
     const allVisaItems = Array.from(document.querySelectorAll('.visa-list-search'));
-    const allTourItems = Array.from(document.querySelectorAll('.tour-list-search'));
+    const allTourItems = Array.from(document.querySelectorAll('.tourL-tour-card'));
     const containerVisa = document.querySelector('.visa-list-container');
     const sectionVisa = document.querySelector('.visa-list-section');
     const containerTour = document.querySelector('.tour-list-container');
@@ -1305,6 +1383,66 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // travel-box
 document.addEventListener('DOMContentLoaded', function () {
+  const wrappers = document.querySelectorAll('.travel-wrapper');
+
+  function openBox(wrapper, box, answer, iconPath, title, orangeSun, whiteSun) {
+    answer.classList.remove('opacity-0', 'scale-y-0', 'max-h-0');
+    answer.classList.add('opacity-100', 'scale-y-100', 'mt-2');
+    answer.style.maxHeight = answer.scrollHeight + 'px';
+
+    box.style.backgroundColor = 'var(--primary-500)';
+    box.style.border = 'none';
+    wrapper.style.border = '2px solid #D7DBE1';
+
+    if (iconPath) iconPath.setAttribute('stroke', 'var(--secondary-500)');
+    if (title) title.style.color = 'var(--secondary-500)';
+
+    if (orangeSun) {
+      orangeSun.classList.remove('block');
+      orangeSun.classList.add('hidden');
+    }
+    if (whiteSun) {
+      whiteSun.classList.remove('hidden');
+      whiteSun.classList.add('block');
+    }
+  }
+
+  function closeBox(wrapper, box, answer, iconPath, title, orangeSun, whiteSun) {
+    answer.classList.remove('opacity-100', 'scale-y-100', 'mt-2');
+    answer.classList.add('opacity-0', 'scale-y-0', 'max-h-0');
+    answer.style.maxHeight = '';
+
+    box.style.backgroundColor = '';
+    box.style.border = '1px solid #E5E7EB';
+    wrapper.style.border = 'none';
+
+    if (iconPath) iconPath.setAttribute('stroke', '#1E2128');
+    if (title) title.style.color = '';
+
+    if (orangeSun) {
+      orangeSun.classList.remove('hidden');
+      orangeSun.classList.add('block');
+    }
+    if (whiteSun) {
+      whiteSun.classList.remove('block');
+      whiteSun.classList.add('hidden');
+    }
+  }
+
+  if (wrappers.length > 0) {
+    const firstWrapper = wrappers[0];
+    const firstBox = firstWrapper.querySelector('.travel-box');
+    const firstAnswer = firstWrapper.querySelector('.travel-answer');
+    const firstIconPath = firstBox?.querySelector('.travel-btn path');
+    const firstTitle = firstBox?.querySelector('h2');
+    const firstOrangeSun = firstBox?.querySelector('.orange-sun');
+    const firstWhiteSun = firstBox?.querySelector('.white-sun');
+
+    if (firstAnswer) {
+      openBox(firstWrapper, firstBox, firstAnswer, firstIconPath, firstTitle, firstOrangeSun, firstWhiteSun);
+    }
+  }
+
   document.addEventListener('click', function (event) {
     const box = event.target.closest('.travel-box');
     if (!box) return;
@@ -1313,83 +1451,42 @@ document.addEventListener('DOMContentLoaded', function () {
     const answer = wrapper.querySelector('.travel-answer');
     const iconPath = box.querySelector('.travel-btn path');
     const title = box.querySelector('h2');
-
     const orangeSun = box.querySelector('.orange-sun');
     const whiteSun = box.querySelector('.white-sun');
 
-    document.querySelectorAll('.travel-wrapper').forEach((otherWrapper) => {
-      if (otherWrapper !== wrapper) {
-        const otherAnswer = otherWrapper.querySelector('.travel-answer');
-        const otherIconPath = otherWrapper.querySelector('.travel-btn path');
-        const otherTitle = otherWrapper.querySelector('h2');
-        const otherBox = otherWrapper.querySelector('.travel-box');
-        const otherOrangeSun = otherWrapper.querySelector('.orange-sun');
-        const otherWhiteSun = otherWrapper.querySelector('.white-sun');
-
-        otherAnswer?.classList.remove('opacity-100', 'scale-y-100', 'mt-2');
-        otherAnswer?.classList.add('opacity-0', 'scale-y-0', 'max-h-0');
-        otherAnswer.style.maxHeight = '';
-
-        otherIconPath?.setAttribute('stroke', '#1E2128');
-        otherTitle && (otherTitle.style.color = '');
-        otherBox && (otherBox.style.backgroundColor = '');
-        otherBox && (otherBox.style.border = '1px solid #E5E7EB');
-        otherWrapper.style.border = 'none';
-
-        if (otherOrangeSun) {
-          otherOrangeSun.classList.remove('hidden');
-          otherOrangeSun.classList.add('block');
+    if (wrapper === wrappers[0]) {
+      wrappers.forEach((otherWrapper, index) => {
+        if (index !== 0) {
+          const otherBox = otherWrapper.querySelector('.travel-box');
+          const otherAnswer = otherWrapper.querySelector('.travel-answer');
+          const otherIconPath = otherBox?.querySelector('.travel-btn path');
+          const otherTitle = otherBox?.querySelector('h2');
+          const otherOrangeSun = otherBox?.querySelector('.orange-sun');
+          const otherWhiteSun = otherBox?.querySelector('.white-sun');
+          closeBox(otherWrapper, otherBox, otherAnswer, otherIconPath, otherTitle, otherOrangeSun, otherWhiteSun);
         }
-        if (otherWhiteSun) {
-          otherWhiteSun.classList.remove('block');
-          otherWhiteSun.classList.add('hidden');
-        }
-      }
-    });
+      });
+      return;
+    }
 
     const isOpen = !answer.classList.contains('max-h-0');
-
     if (!isOpen) {
-      answer.classList.remove('opacity-0', 'scale-y-0', 'max-h-0');
-      answer.classList.add('opacity-100', 'scale-y-100', 'mt-2');
-      answer.style.maxHeight = answer.scrollHeight + 'px';
-
-      box.style.backgroundColor = 'var(--primary-500)';
-      box.style.border = 'none';
-      wrapper.style.border = '2px solid #D7DBE1';
-
-      iconPath?.setAttribute('stroke', 'var(--secondary-500)');
-      title && (title.style.color = 'var(--secondary-500)');
-
-      if (orangeSun) {
-        orangeSun.classList.remove('block');
-        orangeSun.classList.add('hidden');
-      }
-      if (whiteSun) {
-        whiteSun.classList.remove('hidden');
-        whiteSun.classList.add('block');
-      }
+      openBox(wrapper, box, answer, iconPath, title, orangeSun, whiteSun);
     } else {
-      answer.classList.remove('opacity-100', 'scale-y-100', 'mt-2');
-      answer.classList.add('opacity-0', 'scale-y-0', 'max-h-0');
-      answer.style.maxHeight = null;
-
-      box.style.backgroundColor = '';
-      box.style.border = '1px solid #E5E7EB';
-      wrapper.style.border = 'none';
-
-      iconPath?.setAttribute('stroke', '#1E2128');
-      title && (title.style.color = '');
-
-      if (orangeSun) {
-        orangeSun.classList.remove('hidden');
-        orangeSun.classList.add('block');
-      }
-      if (whiteSun) {
-        whiteSun.classList.remove('block');
-        whiteSun.classList.add('hidden');
-      }
+      closeBox(wrapper, box, answer, iconPath, title, orangeSun, whiteSun);
     }
+
+    wrappers.forEach((otherWrapper, index) => {
+      if (otherWrapper !== wrapper && index !== 0) {
+        const otherBox = otherWrapper.querySelector('.travel-box');
+        const otherAnswer = otherWrapper.querySelector('.travel-answer');
+        const otherIconPath = otherBox?.querySelector('.travel-btn path');
+        const otherTitle = otherBox?.querySelector('h2');
+        const otherOrangeSun = otherBox?.querySelector('.orange-sun');
+        const otherWhiteSun = otherBox?.querySelector('.white-sun');
+        closeBox(otherWrapper, otherBox, otherAnswer, otherIconPath, otherTitle, otherOrangeSun, otherWhiteSun);
+      }
+    });
   });
 });
 
