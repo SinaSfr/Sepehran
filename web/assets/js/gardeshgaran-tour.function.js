@@ -241,7 +241,7 @@ const renderHotels = async (element, type) => {
                   </span>
                   <div class="flex items-center">${await renderHotelRate(hotel)}</div>
                 </div>
-                <div class="flex items-center gap-3">
+                <div class="tourInventory__details__item__service flex items-center gap-3">
                   <div class="flex flex-col gap-2 items-center bg-gray-50 p-2 rounded-lg">
                     <span class="font-semibold text-sm hotel-card-service">${escapeHtml(serviceHTML.service)}</span>
                     <span class="text-xs font-light">${escapeHtml(serviceHTML.english)}</span>
@@ -290,7 +290,7 @@ function renderPriceInfo(element, type) {
     doublecost: { costKey: 'doublecostf', unitKey: 'doubleunit' },
     singlecost: { costKey: 'singlecostf', unitKey: 'singleunit' },
     childwithbed: { costKey: 'childwithbedf', unitKey: 'childwithbedunit' },
-    childwithoutbed: { costKey: 'childwithoutbedf', unitKey: 'childwithoutbedunit' }
+    childwithoutbed: { costKey: 'childwithoutbedf', unitKey: 'childwithoutbedunit' },
   };
 
   const config = priceTypes[type];
@@ -306,28 +306,37 @@ function renderPriceInfo(element, type) {
 
     if (items.length === 2 && index === 1) {
       return `
-        <div class="flex items-center gap-1 text-sm font-bold ${isMobile ? 'text-primary-500 hotel-card-price-mobile' : ''}">
-          <span class="text-xl font-extrabold text-primary-500 hotel-card-price">
+        <div class="flex items-center gap-1 text-sm font-bold ${
+          isMobile ? 'text-primary-500 hotel-card-price-mobile' : ''
+        }">
+          <span class="tourInventory__details__item__price text-xl font-extrabold text-primary-500 hotel-card-price">
             ${formatPrice(cost)}
           </span>
-          ${unit ? `<span class="text-sm text-zinc-900">${unit}</span>` : ''}
+          ${unit ? `<span class="text-sm text-zinc-900 tourInventory__details__item__unit">${unit}</span>` : ''}
         </div>`;
     }
 
     return `
-      <div class="${isMobile ? 'text-sm font-bold text-primary-500 hotel-card-price-mobile flex flex-col items-center gap-1' : 'flex flex-col items-center gap-1 text-sm font-bold'}" ${dataPriceAttr}>
-        <span class="text-xl font-extrabold text-primary-500 hotel-card-price">
+      <div class="${
+        isMobile
+          ? 'text-sm font-bold text-primary-500 hotel-card-price-mobile flex flex-col items-center gap-1'
+          : 'flex flex-col items-center gap-1 text-sm font-bold'
+      }" ${dataPriceAttr}>
+        <span class="tourInventory__details__item__price text-xl font-extrabold text-primary-500 hotel-card-price">
           ${formatPrice(cost)}
         </span>
-        ${unit ? `<span class="text-sm text-zinc-900">${unit}</span>` : ''}
+        ${unit ? `<span class="text-sm text-zinc-900 tourInventory__details__item__unit">${unit}</span>` : ''}
       </div>`;
   };
 
   return items.length === 2
-    ? items.map((item, index) => generatePriceHTML(item, index, isMobile)).join('<div class="relative w-full flex justify-center items-center -my-2"><hr class="w-full" /><span class="leading-4 font-IRANYekanMobileBoldFA text-2xl text-primary-900 bg-white px-3 mx-auto inline-block">+</span><hr class="w-full" /></div>')
-    : items.map(item => generatePriceHTML(item, 0, isMobile)).join('');
+    ? items
+        .map((item, index) => generatePriceHTML(item, index, isMobile))
+        .join(
+          '<div class="relative w-full flex justify-center items-center -my-2"><hr class="w-full" /><span class="leading-4 font-IRANYekanMobileBoldFA text-2xl text-primary-900 bg-white px-3 mx-auto inline-block">+</span><hr class="w-full" /></div>'
+        )
+    : items.map((item) => generatePriceHTML(item, 0, isMobile)).join('');
 }
-
 
 const serviceDefinitions = {
   0: { code: '-', titleFa: '', titleEn: '' },
@@ -476,6 +485,7 @@ const onrenderedExecutionDestinations = async () => {
   }
 };
 
+// dont repeat breadcrumb
 document.addEventListener('DOMContentLoaded', function () {
   const breadcrumbContainer = document.querySelector('.breadcrumb');
   const items = breadcrumbContainer.querySelectorAll('li');
@@ -530,6 +540,409 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+const renderTourInstallmentForm = async (element) => {
+  let service = '-';
+  switch (
+    parseInt(
+      element.closest('.hotel-card').querySelector('.tourInventory__details__item__service')
+        .dataset.value
+    )
+  ) {
+    case 0:
+      service = '-';
+      break;
+    case 1654:
+      service = 'O.R';
+      break;
+    case 1655:
+      service = 'B.B';
+      break;
+    case 1656:
+      service = 'H.B';
+      break;
+    case 1657:
+      service = 'F.B';
+      break;
+    case 1658:
+      service = 'ALL';
+      break;
+    case 1659:
+      service = 'U.ALL';
+      break;
+    case 1660:
+      service = 'Maximum All Inclusive';
+      break;
+  }
+  $bc.setSource('db.tourBookingFormIns', {
+    run: false,
+  });
+
+  $bc.setSource('db.tourFormInstallmentplan', {
+    hotelName: element.closest('.hotel-card').querySelector('.hotel-card-title').textContent,
+    hotelRate: element
+      .closest('.hotel-card')
+      .querySelector('.hotel-card-star').dataset.value,
+    hotelService: service,
+    tourName: document.querySelector('.tour-name').textContent,
+    doubleP: element
+      .closest('.hotel-card-wrapper')
+      .querySelectorAll('.tourInventory__details__item__double')[0]
+      .querySelector('.tourInventory__details__item__price').textContent,
+    singleP: element
+      .closest('.hotel-card-wrapper')
+      .querySelectorAll('.tourInventory__details__item__single')[0]
+      .querySelector('.tourInventory__details__item__price').textContent,
+    wBedP: element
+      .closest('.hotel-card-wrapper')
+      .querySelectorAll('.tourInventory__details__item__wBed')[0]
+      .querySelector('.tourInventory__details__item__price').textContent,
+    woBedP: element
+      .closest('.hotel-card-wrapper')
+      .querySelectorAll('.tourInventory__details__item__woBed')[0]
+      .querySelector('.tourInventory__details__item__price').textContent,
+    doubleU: element
+      .closest('.hotel-card-wrapper')
+      .querySelectorAll('.tourInventory__details__item__double')[0]
+      .querySelector('.tourInventory__details__item__unit')
+      ? element
+          .closest('.hotel-card-wrapper')
+          .querySelectorAll('.tourInventory__details__item__double')[0]
+          .querySelector('.tourInventory__details__item__unit').textContent
+      : ` `,
+    singleU: element
+      .closest('.hotel-card-wrapper')
+      .querySelectorAll('.tourInventory__details__item__single')[0]
+      .querySelector('.tourInventory__details__item__unit')
+      ? element
+          .closest('.hotel-card-wrapper')
+          .querySelectorAll('.tourInventory__details__item__single')[0]
+          .querySelector('.tourInventory__details__item__unit').textContent
+      : ` `,
+    wBedU: element
+      .closest('.hotel-card-wrapper')
+      .querySelectorAll('.tourInventory__details__item__wBed')[0]
+      .querySelector('.tourInventory__details__item__unit')
+      ? element
+          .closest('.hotel-card-wrapper')
+          .querySelectorAll('.tourInventory__details__item__wBed')[0]
+          .querySelector('.tourInventory__details__item__unit').textContent
+      : ` `,
+    woBedU: element
+      .closest('.hotel-card-wrapper')
+      .querySelectorAll('.tourInventory__details__item__woBed')[0]
+      .querySelector('.tourInventory__details__item__unit')
+      ? element
+          .closest('.hotel-card-wrapper')
+          .querySelectorAll('.tourInventory__details__item__woBed')[0]
+          .querySelector('.tourInventory__details__item__unit').textContent
+      : ` `,
+    run: true,
+  });
+
+  (FormhotelName = element.closest('.hotel-card').querySelector('.hotel-card-title').textContent),
+    (FormhotelRate = element
+      .closest('.hotel-card')
+      .querySelector('.hotel-card-star').dataset.value),
+    (FormhotelService = service),
+    (FormtourName = document.querySelector('.tour-name').textContent),
+    (FormdoubleP = element
+      .closest('.hotel-card-wrapper')
+      .querySelectorAll('.tourInventory__details__item__double')[0]
+      .querySelector('.tourInventory__details__item__price').textContent),
+    (FormsingleP = element
+      .closest('.hotel-card-wrapper')
+      .querySelectorAll('.tourInventory__details__item__single')[0]
+      .querySelector('.tourInventory__details__item__price').textContent),
+    (FormwBedP = element
+      .closest('.hotel-card-wrapper')
+      .querySelectorAll('.tourInventory__details__item__wBed')[0]
+      .querySelector('.tourInventory__details__item__price').textContent),
+    (FormwoBedP = element
+      .closest('.hotel-card-wrapper')
+      .querySelectorAll('.tourInventory__details__item__woBed')[0]
+      .querySelector('.tourInventory__details__item__price').textContent),
+    (FormdoubleU = element
+      .closest('.hotel-card-wrapper')
+      .querySelectorAll('.tourInventory__details__item__double')[0]
+      .querySelector('.tourInventory__details__item__unit')
+      ? element
+          .closest('.hotel-card-wrapper')
+          .querySelectorAll('.tourInventory__details__item__double')[0]
+          .querySelector('.tourInventory__details__item__unit').textContent
+      : ` `),
+    (FormsingleU = element
+      .closest('.hotel-card-wrapper')
+      .querySelectorAll('.tourInventory__details__item__single')[0]
+      .querySelector('.tourInventory__details__item__unit')
+      ? element
+          .closest('.hotel-card-wrapper')
+          .querySelectorAll('.tourInventory__details__item__single')[0]
+          .querySelector('.tourInventory__details__item__unit').textContent
+      : ` `),
+    (FormwBedU = element
+      .closest('.hotel-card-wrapper')
+      .querySelectorAll('.tourInventory__details__item__wBed')[0]
+      .querySelector('.tourInventory__details__item__unit')
+      ? element
+          .closest('.hotel-card-wrapper')
+          .querySelectorAll('.tourInventory__details__item__wBed')[0]
+          .querySelector('.tourInventory__details__item__unit').textContent
+      : ` `),
+    (FormwoBedU = element
+      .closest('.hotel-card-wrapper')
+      .querySelectorAll('.tourInventory__details__item__woBed')[0]
+      .querySelector('.tourInventory__details__item__unit')
+      ? element
+          .closest('.hotel-card-wrapper')
+          .querySelectorAll('.tourInventory__details__item__woBed')[0]
+          .querySelector('.tourInventory__details__item__unit').textContent
+      : ` `);
+};
+
+const renderReserveTourInstallmentForm = async (element) => {
+  document.getElementById('white-modal').classList.add('hidden');
+
+  $bc.setSource('db.tourBookingFormIns', {
+    run: false,
+  });
+
+  let ed2;
+  let sd2;
+  if (document.querySelector('.tour-dates .start__date')) {
+    //origins__start__day
+    sd2 = document.querySelector('.tour-dates .start__date').textContent;
+  } else {
+    sd2 = '';
+  }
+
+  if (document.querySelector('.tour-dates .end__date')) {
+    // destinations__start__day
+    ed2 = document.querySelector('.tour-dates .end__date').textContent;
+  } else {
+    ed2 = '';
+  }
+
+  $bc.setSource('db.tourFormInstallment', {
+    hotelName: FormhotelName,
+    hotelRate: FormhotelRate,
+    hotelService: FormhotelService,
+    tourName: FormtourName,
+    doubleP: FormdoubleP,
+    singleP: FormsingleP,
+    wBedP: FormwBedP,
+    woBedP: FormwoBedP,
+    doubleU: FormdoubleU,
+    singleU: FormsingleU,
+    wBedU: FormwBedU,
+    woBedU: FormwoBedU,
+
+    adultCount: parseInt(document.getElementById('adult-installment').value),
+    childCount: parseInt(document.getElementById('child-bed-installment').value),
+    infantCount:
+      parseInt(document.getElementById('child-installment').value) +
+      parseInt(document.getElementById('infant-installment').value),
+
+    //origins__start__day
+    startDate: sd2,
+    // destinations__start__day
+    endDate: ed2,
+
+    // origins__start__weekday
+    weekdayStartDate: document
+      .querySelector('.tourExecution__container__origins')
+      .querySelector('.origins__start__weekday').textContent,
+    // destinations__start__weekday
+    weekdayEndDate: document
+      .querySelector('.tourExecution__container__destinations')
+      .querySelector('.destinations__start__weekday').textContent,
+
+    departureName: document.querySelector('.tourExecution__container__origins').querySelector('.origins__city')
+      .textContent,
+    destinationName: document
+      .querySelector('.tourExecution__container__destinations')
+      .querySelector('.destinations__city').textContent,
+
+    // __times__start
+    startTime: document
+      .querySelector('.execution__details__path__origins')
+      .querySelectorAll('.execution__details__path__item')[0]
+      .querySelector('.__times__start').textContent,
+    // __times__start
+    endTime: document
+      .querySelector('.execution__details__path__destinations')
+      .querySelectorAll('.execution__details__path__item')[0]
+      .querySelector('.__times__start').textContent,
+
+    totalAmountINS: document.getElementById('white-modal').querySelector('.total-amount').innerText,
+    totalAmountFacilityINS: document.getElementById('white-modal').querySelector('.Total-amount-facilities').innerText,
+    totalAdvancePaymentINS: document.getElementById('white-modal').querySelector('.Total-advance-payment').innerText,
+    amountEachInstallmentINS: document.getElementById('white-modal').querySelector('.amount-each-installment')
+      .innerText,
+
+    run: true,
+  });
+};
+
+const renderCaptchaCode = async (element, event) => {
+  try {
+    fetch(`tour-captcha.bc`, {
+      method: `get`,
+    })
+      .then((response) => response.text())
+      .then((text) => {
+        element.closest('form').querySelector('.captcha__content').innerHTML = text;
+      })
+      .catch((error) => console.error(error));
+  } catch (err) {
+    console.error('renderCaptchaCode=' + err.lineNumber + ',' + err.message);
+  }
+};
+const onrenderedFormSchema = async () => {
+  try {
+  } catch (err) {
+    console.error('onrenderedFormSchema=' + err.lineNumber + ',' + err.message);
+  }
+};
+const toggleCount = (element, type, limit, passenger) => {
+  try {
+    let currentCount = parseInt(element.closest('li').querySelector('.count__container').textContent);
+    type == 'plus' ? currentCount++ : currentCount--;
+    if (currentCount < limit) return false;
+    element.closest('li').querySelector('.count__container').textContent = currentCount;
+    document
+      .querySelector('.tour__booking__form__modal__container')
+      .querySelector(`.${passenger}-count`)
+      .querySelector('input').value = currentCount;
+  } catch (err) {
+    console.error('toggleCount=' + err.lineNumber + ',' + err.message);
+  }
+};
+const onrenderedSchmaTourBookingForm = async (args) => {
+  try {
+    document
+      .querySelector('.tour__booking__form__modal__container')
+      .querySelector('.adult-count')
+      .querySelector('input').value = document
+      .querySelector('.tour__booking__form__modal__container')
+      .querySelector('.adult__count__container').textContent;
+    document
+      .querySelector('.tour__booking__form__modal__container')
+      .querySelector('.child-count')
+      .querySelector('input').value = document
+      .querySelector('.tour__booking__form__modal__container')
+      .querySelector('.child__count__container').textContent;
+    document
+      .querySelector('.tour__booking__form__modal__container')
+      .querySelector('.infant-count')
+      .querySelector('input').value = document
+      .querySelector('.tour__booking__form__modal__container')
+      .querySelector('.infant__count__container').textContent;
+    document
+      .querySelector('.tour__booking__form__modal__container')
+      .querySelector('.hotel-name')
+      .querySelector('input').value = document
+      .querySelector('.tour__booking__form__modal__container')
+      .querySelector('.hotel__name__container').textContent;
+    document
+      .querySelector('.tour__booking__form__modal__container')
+      .querySelector('.hotel-service')
+      .querySelector('input').value = document
+      .querySelector('.tour__booking__form__modal__container')
+      .querySelector('.hotel__service__container').textContent;
+    document
+      .querySelector('.tour__booking__form__modal__container')
+      .querySelector('.hotel-rate')
+      .querySelector('input').value = document
+      .querySelector('.tour__booking__form__modal__container')
+      .querySelector('.hotel__rate__container').textContent;
+    document
+      .querySelector('.tour__booking__form__modal__container')
+      .querySelector('.tour-name')
+      .querySelector('input').value = document
+      .querySelector('.tour__booking__form__modal__container')
+      .querySelector('.tour__name__container').textContent;
+
+    document
+      .querySelector('.tour__booking__form__modal__container')
+      .querySelector('.first-last-name input').placeholder = 'نام و نام خانوادگی';
+    document.querySelector('.tour__booking__form__modal__container').querySelector('.phone input').placeholder =
+      'شماره تماس';
+    document.querySelector('.tour__booking__form__modal__container').querySelector('.message input').placeholder =
+      'توضیحات';
+  } catch (err) {
+    console.error('onrenderedSchmaTourBookingForm=' + err.lineNumber + ',' + err.message);
+  }
+};
+const callbackSourceTourBookingForm = async (args) => {
+  try {
+    document
+      .querySelector('.tour__booking__form__modal__container')
+      .querySelector('button')
+      .classList.add('button--loading');
+    $bc.setSource('db.tourBookingForm', {
+      value: JSON.stringify(args.source?.rows[0]),
+      captcha: document.querySelector('.tour__booking__form__modal__container').querySelector("input[name='captcha']")
+        .value,
+      captchaid: document
+        .querySelector('.tour__booking__form__modal__container')
+        .querySelector("input[name='captchaid']").value,
+      run: true,
+    });
+  } catch (err) {
+    console.error('callbackSourceTourBookingForm=' + err.lineNumber + ',' + err.message);
+  }
+};
+const OnProcessedTourBookingForm = async (args) => {
+  try {
+    var response = args.response;
+    var json = await response.json();
+    var errorid = json.errorid;
+    document
+      .querySelector('.tour__booking__form__modal__container')
+      .querySelector('button')
+      .classList.remove('button--loading');
+    if (errorid == '6') {
+      if (page_lang === 'fa') {
+        document
+          .querySelector('.tour__booking__form__modal__container')
+          .querySelector('.message__action__container').innerHTML = 'درخواست شما با موفقیت ثبت شد';
+      } else if (page_lang === 'en') {
+        document
+          .querySelector('.tour__booking__form__modal__container')
+          .querySelector('.message__action__container').innerHTML = 'Your request has been successfully registered';
+      } else if (page_lang === 'ar') {
+        document
+          .querySelector('.tour__booking__form__modal__container')
+          .querySelector('.message__action__container').innerHTML = 'لقد تم تسجيل طلبك بنجاح';
+      }
+    } else {
+      if (page_lang === 'fa') {
+        document
+          .querySelector('.tour__booking__form__modal__container')
+          .querySelector('.message__action__container').innerHTML = 'خطایی رخ داده, لطفا مجدد اقدام کنید';
+      } else if (page_lang === 'en') {
+        document
+          .querySelector('.tour__booking__form__modal__container')
+          .querySelector('.message__action__container').innerHTML = 'An error occurred, please try again';
+      } else if (page_lang === 'ar') {
+        document
+          .querySelector('.tour__booking__form__modal__container')
+          .querySelector('.message__action__container').innerHTML = 'حدث خطأ، يرجى المحاولة مرة أخرى';
+      }
+    }
+    setTimeout(function () {
+      document
+        .querySelector('.tour__booking__form__modal__container')
+        .querySelector('.message__action__container').innerHTML = '';
+      setTimeout(function () {
+        document.querySelector('.tour__booking__form__modal__container').classList.add('hidden');
+      }, 2000);
+    }, 3000);
+  } catch (err) {
+    console.error('OnProcessedTourBookingForm=' + err.lineNumber + ',' + err.message);
+  }
+};
 
 document.querySelectorAll('nav li[data-target]').forEach((item) => {
   item.addEventListener('click', (e) => {

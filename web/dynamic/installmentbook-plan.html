@@ -1,0 +1,547 @@
+<div id="modal-plan-installment" class="font-danaregular ">
+    <section id="white-modal" onclick="closeModalContainerForm(event)"
+        class="tour__booking__form__modal__container modal__container  bg-white/25 backdrop-blur-3xl w-full h-full fixed top-0 left-0 right-0 bottom-0 dir-rtl z-50">
+
+
+
+        <div class="mx-auto max-lg:w-[90%] max-xl:w-[97%] xl:max-w-7xl h-[90%] bg-neutralcolor-50 absolute top-0 left-0 right-0 bottom-0 m-auto shadow-2xl p-4 overflow-y-auto">
+
+                <div class="w-full">
+                    <svg onclick="closeModalForm(this , 'modal-plan-installment')" width="48" height="48" class="mr-auto"  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="float-left cursor-pointer">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"></path>
+                    </svg>
+                </div>
+
+            <h2 class="text-xl font-danabold text-neutralcolor-800">
+                شرایط اقساطی
+            </h2>
+            <input type="hidden" name="doubleP" id="inphidden-doubleP" value="[##cms.form.doubleP##]">
+            <input type="hidden" name="singleP" id="inphidden-singleP" value="[##cms.form.singleP##]">
+            <input type="hidden" name="wBedP" id="inphidden-wBedP" value="[##cms.form.wBedP##]">
+            <input type="hidden" name="woBedP" id="inphidden-woBedP" value="[##cms.form.woBedP##]">
+
+            <span class="text-neutralcolor-800 text-sm font-danaregular">جهت مشاهده شرایط خرید این تور به صورت اقساطی
+                تعداد مسافران طرح مورد نظر را وارد نمایید</span>
+            <div class="w-full flex items-stretch gap-4">
+                <div class=" bg-white rounded-xl w-full p-3  mt-3">
+                    <div class="font-danaregular text-primary-400 text-lg flex items-center">
+                        <svg width="49" height="49" viewBox="0 0 49 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M21.0927 23.2301C20.9677 23.2176 20.8177 23.2176 20.6802 23.2301C17.7052 23.1301 15.3427 20.6926 15.3427 17.6926C15.3427 14.6301 17.8177 12.1426 20.8927 12.1426C23.9552 12.1426 26.4427 14.6301 26.4427 17.6926C26.4302 20.6926 24.0677 23.1301 21.0927 23.2301Z"
+                                stroke="#2e58d1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <path
+                                d="M30.1547 14.6426C32.5797 14.6426 34.5297 16.6051 34.5297 19.0176C34.5297 21.3801 32.6547 23.3051 30.3172 23.3926C30.2172 23.3801 30.1047 23.3801 29.9922 23.3926"
+                                stroke="#2e58d1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <path
+                                d="M14.843 27.8426C11.818 29.8676 11.818 33.1676 14.843 35.1801C18.2805 37.4801 23.918 37.4801 27.3555 35.1801C30.3805 33.1551 30.3805 29.8551 27.3555 27.8426C23.9305 25.5551 18.293 25.5551 14.843 27.8426Z"
+                                stroke="#2e58d1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <path
+                                d="M32.5674 34.6426C33.4674 34.4551 34.3174 34.0926 35.0174 33.5551C36.9674 32.0926 36.9674 29.6801 35.0174 28.2176C34.3299 27.6926 33.4924 27.3426 32.6049 27.1426"
+                                stroke="#2e58d1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+
+                        تعداد مسافران
+                    </div>
+
+                    <ul>
+                        <li class="my-2">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <span class="text-neutralcolor-900 text-lg font-danaregular block">بزرگسال</span>
+                                    <span class="text-neutralcolor-500 text-sm font-danaregular block">12 سال به
+                                        بالا</span>
+                                </div>
+                                <div class="w-28 h-12 bg-gray-100 rounded-md px-2">
+                                    <select onChange="calculateInstallments(this)"
+                                        class="w-full h-12 bg-gray-100 focus:border-none font-danaregular text-base "
+                                        name="adult-installment" id="adult-installment">
+                                        <option value="1">1</option>
+                                        <option value="2" selected>2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-2">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <span class="text-neutralcolor-900 text-lg font-danaregular block">کودک با
+                                        تخت</span>
+                                    <span class="text-neutralcolor-500 text-sm font-danaregular block">6 تا 12
+                                        سال</span>
+                                </div>
+                                <div class="w-28 h-12 bg-gray-100 rounded-md px-2">
+                                    <select onChange="calculateInstallments(this)"
+                                        class="w-full h-12 bg-gray-100 focus:border-none font-danaregular text-base "
+                                        name="child-bed-installment" id="child-bed-installment">
+                                        <option value="0" selected>0</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-2">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <span class="text-neutralcolor-900 text-lg font-danaregular block">کودک بدون
+                                        تخت</span>
+                                    <span class="text-neutralcolor-500 text-sm font-danaregular block">2 تا 6 سال</span>
+                                </div>
+                                <div class="w-28 h-12 bg-gray-100 rounded-md px-2">
+                                    <select onChange="calculateInstallments(this)"
+                                        class="w-full h-12 bg-gray-100 focus:border-none font-danaregular text-base "
+                                        name="child-installment" id="child-installment">
+                                        <option value="0" selected>0</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-2">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <span class="text-neutralcolor-900 text-lg font-danaregular block">نوزاد</span>
+                                    <span class="text-neutralcolor-500 text-sm font-danaregular block">زیر 2 سال</span>
+                                </div>
+                                <div class="w-28 h-12 bg-gray-100 rounded-md px-2">
+                                    <select onChange="calculateInstallments(this)"
+                                        class="w-full h-12 bg-gray-100 focus:border-none font-danaregular text-base "
+                                        name="infant-installment" id="infant-installment">
+                                        <option value="0" selected>0</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class=" bg-white rounded-xl w-full p-3 mt-3">
+                    <div class="font-danaregular text-primary-400 text-lg flex items-center">
+                        <svg width="49" height="49" viewBox="0 0 49 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 22H37" stroke="#2e58d1" stroke-width="1.5" stroke-miterlimit="10"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                            <path
+                                d="M23.9353 35.1242H17.5479C13.1104 35.1242 11.9854 34.0242 11.9854 29.6367V19.3617C11.9854 15.3867 12.9104 14.1117 16.3979 13.9117C16.7479 13.8992 17.1354 13.8867 17.5479 13.8867H31.4353C35.8728 13.8867 36.9979 14.9867 36.9979 19.3742V24.8867"
+                                stroke="#2e58d1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M17 29.5H22" stroke="#2e58d1" stroke-width="1.5" stroke-miterlimit="10"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                            <path
+                                d="M37 32C37 32.9375 36.7375 33.825 36.275 34.575C35.4125 36.025 33.825 37 32 37C30.175 37 28.5875 36.025 27.725 34.575C27.2625 33.825 27 32.9375 27 32C27 29.2375 29.2375 27 32 27C34.7625 27 37 29.2375 37 32Z"
+                                stroke="#2e58d1" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M30.0518 31.9984L31.2892 33.2359L33.9518 30.7734" stroke="#2e58d1"
+                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        طرح اقساط
+                    </div>
+                    <ul class="divide-y divide-neutralcolor-100">
+                        <li class="my-2">
+                            <div class="flex items-end justify-between">
+                                <div>
+                                    <span class="text-neutralcolor-900 text-base font-danaregular block leading-10">طرح
+                                        اقساط با چک صیادی</span>
+                                    <span class="text-neutralcolor-500 text-sm font-danaregular block leading-10">طرح تا
+                                        سقف 100 میلون تومان با چک صیادی</span>
+                                </div>
+
+                                <div class="leading-9 rounded-lg flex plan-container cursor-pointer"
+                                    onclick="selectPlanInstallment(this ,'check-sayyadi' , 'sayyadiplan' , 100 , 4 , 0.2)">
+                                      <input type="radio" id="check-sayyadi" name="plan" value="sayyadi"
+                                        class="plan-radio w-0 h-0 inline m-0 p-0 appearance-none" selected>
+                                      <label
+                                        class="text-center text-sm font-danaregular block px-3 py-2 rounded-lg cursor-pointer transition-all duration-300 bg-primary-500 hover:bg-secondary-500 text-white"
+                                        for="check-sayyadi">انتخاب</label>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-2">
+                            <div class="flex items-end justify-between">
+                                <div>
+                                    <span class="text-neutralcolor-900 text-base font-danaregular block leading-10">طرح
+                                        اقساط لاچین سیر</span>
+                                    <span class="text-neutralcolor-500 text-sm font-danaregular block leading-10">طرح تا
+                                        سقف 100 میلون تومان</span>
+                                </div>
+
+                                <div class="leading-9 rounded-lg flex plan-container cursor-pointer"
+                                    onclick="selectPlanInstallment(this ,'manisa' , 'manisaplan' , 130 , 12 , 0.21)">
+                                      <input type="radio" id="manisa" name="plan" value="manisa"
+                                        class="plan-radio w-0 h-0 inline  m-0 p-0 appearance-none">
+                                      <label
+                                        class="text-center text-sm font-danaregular block px-3 py-2 rounded-lg cursor-pointer transition-all duration-300 bg-primary-500 hover:bg-secondary-500 text-white"
+                                        for="manisa">انتخاب</label>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl w-full flex items-stretch gap-8 mt-3 py-3 px-5">
+                <section class="w-full">
+                    <div id="calculator-form" class="flex justify-start items-center gap-x-2">
+                        <svg width="39" height="39" viewBox="0 0 39 39" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M11.18 29.4936V26.1299" stroke="#2e58d1" stroke-width="1.5"
+                                stroke-linecap="round" />
+                            <path d="M19.5 29.4941V22.7666" stroke="#2e58d1" stroke-width="1.5"
+                                stroke-linecap="round" />
+                            <path d="M27.82 29.4942V19.3867" stroke="#2e58d1" stroke-width="1.5"
+                                stroke-linecap="round" />
+                            <path d="M27.82 9.50586L27.0725 10.3834C22.9287 15.2259 17.3712 18.6546 11.18 20.1984"
+                                stroke="#2e58d1" stroke-width="1.5" stroke-linecap="round" />
+                            <path d="M23.0587 9.50586H27.82V14.2509" stroke="#2e58d1" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                            <path
+                                d="M14.625 35.75H24.375C32.5 35.75 35.75 32.5 35.75 24.375V14.625C35.75 6.5 32.5 3.25 24.375 3.25H14.625C6.5 3.25 3.25 6.5 3.25 14.625V24.375C3.25 32.5 6.5 35.75 14.625 35.75Z"
+                                stroke="#2e58d1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <h2 class="text-base font-danaregular text-primary-400">محاسبه گر اقساط چک صیادی</h2>
+                    </div>
+                    <span class="text-sm font-danaregular text-neutralcolor-900">مبلغ درخواستی و مدت زمان بازپرداخت را
+                        مشخص
+                        کنید</span>
+
+                    <div class="w-full">
+                        <form action="">
+                            <label class="font-danaregular text-base mt-5 mb-2 block" for="amount">مبلغ وام</label>
+
+                            <div class="w-full rounded-xl bg-primary-50 h-12 flex items-center justify-between px-8">
+                                <span
+                                    class="text-32px font-danamedium cursor-pointer hover:text-primary-500 w-12 h-76px text-center"
+                                    onclick="increase(this)">+</span>
+                                <div>
+                                    <input id="amount"
+                                        class="bg-transparent w-7 font-danaregular text-base text-center" type="text"
+                                        value="10" placeholder="100" oninput="updateLoanAmount(this.value)">
+                                    <span class="font-danaregular text-sm ">میلیون تومان</span>
+                                </div>
+                                <span
+                                    class="text-32px font-danamedium cursor-pointer hover:text-primary-500 w-12 h-76px text-center"
+                                    onclick="decrease(this)">-</span>
+                            </div>
+
+                            <div class="relative mt-6">
+                                <input oninput="updateLoanFromRange(this.value)" type="range" min="10" max="100"
+                                    value="10" class="slider" id="myRange">
+                                <span class=" absolute left-0 text-neutralcolor-500 top-7 font-danaregular text-sm">10
+                                    میلیون تومان </span>
+                                <span class=" absolute right-0 text-neutralcolor-500 top-7 font-danaregular text-sm">
+                                    <span id="limit-range">100</span>
+                                    میلیون تومان</span>
+                            </div>
+
+
+                            <div class="mt-28">
+                                <span class="text-sm font-danaregular my-5">
+                                    مدت باز پرداخت
+                                </span>
+
+                                <ul class="flex justify-between gap-4 mt-4 flex-wrap gap-y-2" id="month-list">
+                                    <li month="4" rate="0.2" onclick="calculateMonth(4 , 0.2 , this)"
+                                        class="sayyadiplan flex flex-1 items-center justify-center h-12 rounded-xl  bg-primary-500 text-white text-center hover:bg-primary-500 hover:text-white text-base cursor-pointer">
+                                        4ماهه</li>
+                                    <li onclick="calculateMonth(6 , 0.3 , this)"
+                                        class="sayyadiplan flex flex-1 items-center justify-center h-12 rounded-xl  bg-gray-100 text-neutralcolor-900 text-center hover:bg-primary-500 hover:text-white text-base cursor-pointer">
+                                        6ماهه</li>
+                                    <li onclick="calculateMonth(8 , 0.4 , this)"
+                                        class="sayyadiplan flex flex-1 items-center justify-center h-12 rounded-xl  bg-gray-100 text-neutralcolor-900 text-center hover:bg-primary-500 hover:text-white text-base cursor-pointer">
+                                        8ماهه</li>
+                                    <li onclick="calculateMonth(10 , 0.5 , this)"
+                                        class="sayyadiplan flex flex-1 items-center justify-center h-12 rounded-xl  bg-gray-100 text-neutralcolor-900 text-center hover:bg-primary-500 hover:text-white text-base cursor-pointer">
+                                        10ماهه</li>
+
+                                    <li month="12" rate="0.21" onclick="calculateMonth(12 , 0.21 , this)" class="manisaplan flex flex-1 items-center justify-center h-12 rounded-xl bg-gray-100 text-center hover:bg-primary-500 hover:text-white text-base cursor-pointer
+                                        hidden
+                                        ">
+                                        12ماهه</li>
+                                    <li onclick="calculateMonth(18 , 0.27 , this)" class="manisaplan flex flex-1 items-center justify-center h-12 rounded-xl bg-gray-100 text-center hover:bg-primary-500 hover:text-white text-base cursor-pointer
+                                        hidden
+                                        ">
+                                        18ماهه</li>
+                                </ul>
+
+                            </div>
+                        </form>
+
+
+
+                    </div>
+                </section>
+                <div class=" w-full bg-gray-100 rounded-xl py-2 mt-5 px-3">
+                    <ul class="divide-y-2  divide-neutralcolor-300">
+                        <li class="flex justify-between px-2 py-4 text-sm font-danaregular">
+                            <span>مبلغ کل : </span>
+                            <div>
+                                <span class="total-amount">
+                                    0
+                                </span>
+
+                                <span>تومان</span>
+                            </div>
+                        </li>
+                        <li class="flex justify-between px-2 py-4 text-sm font-danaregular">
+                            <span>مبلغ کل با اعمال تسهیلات: </span>
+                            <div>
+                                <span class="Total-amount-facilities">
+                                    0
+                                </span>
+
+                                <span>تومان</span>
+                            </div>
+                        </li>
+                        <li class="flex justify-between px-2 py-4 text-sm font-danaregular">
+                            <span>مبلغ کل پیش پرداخت :</span>
+                            <div>
+                                <span class="Total-advance-payment">
+                                    0
+                                </span>
+
+                                <span>تومان</span>
+                            </div>
+                        </li>
+                        <li class="flex justify-between px-2 py-4 text-sm font-danaregular">
+                            <span>مبلغ هر قسط : </span>
+                            <div class="text-attention-400">
+                                <span class="amount-each-installment">
+                                    0
+                                </span>
+
+                                <span>تومان</span>
+                            </div>
+                        </li>
+                    </ul>
+                    <div onclick="renderReserveTourInstallmentForm(this)"
+                        class="cursor-pointer bg-primary-500 rounded-lg mr-auto mt-5 py-2 w-32 text-center text-white transition-all duration-300 hover:bg-secondary-500">
+                        رزرو تور</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script>
+    // TOUR INSTALLMENT
+var limitrange = 100;
+var rangeInput = document.getElementById('myRange');
+var amountInput = document.getElementById('amount');
+rangeInput.addEventListener('input', updateRangeBackground);
+var loanAmount = 10;
+var loanMonths = 4;
+var interestRate = 0.2;
+var totalprice = 0;
+
+
+    var adultCountF = 2;
+    var childbedCountF = 0;
+    var childwobedCountF = 0;
+    var infantCountF = 0;
+
+
+    function selectPlanInstallment(el, plan, monthplan, limitinstallment, lm, ir) {
+
+
+        loanMonths = lm;
+        interestRate = ir;
+
+        document.querySelectorAll(".plan-radio").forEach(element => {
+            element.addEventListener("click", function (ele) {
+                document.querySelectorAll(".plan-container").forEach(div => {
+                    div.querySelector("label").classList.remove("bg-primary-500");
+                    div.querySelector("label").classList.remove("text-white");
+                    div.querySelector("label").classList.add("text-neutralcolor-900");
+                    div.querySelector("label").classList.add("bg-gray-100");
+                });
+            });
+        });
+
+
+        el.querySelector("label").classList.add("bg-primary-500");
+        el.querySelector("label").classList.remove("bg-gray-100");
+        el.querySelector("label").classList.add("text-white");
+        el.querySelector("label").classList.remove("text-neutralcolor-900");
+
+        limitrange = limitinstallment;
+        rangeInput.setAttribute("max", limitrange);
+        document.getElementById("limit-range").innerText = limitrange;
+
+        document.getElementById("month-list").querySelectorAll("li").forEach(element => {
+            element.classList.add("hidden");
+        });
+
+        document.querySelectorAll(`.${monthplan}`).forEach(element => {
+            element.classList.remove("hidden");
+        });
+
+        updateRangeBackground();
+        calculateInstallments();
+    }
+
+
+
+    function updateRangeBackground() {
+        const value = rangeInput.value;
+        const min = rangeInput.min;
+        const max = rangeInput.max;
+        const percentage = ((value - min) / (max - min)) * 100;
+        rangeInput.style.background = `linear-gradient(to right, #2e58d1 ${percentage}%, #e5e7eb ${percentage}%)`;
+        amountInput.value = value;
+    }
+
+    function updateLoanAmount(amount) {
+        loanAmount = amount;
+        document.getElementById('myRange').value = amount;
+        updateRangeBackground();
+        calculateInstallments();
+    }
+
+    function updateLoanFromRange(amount) {
+        loanAmount = amount;
+        document.getElementById('amount').value = amount;
+        updateRangeBackground();
+        calculateInstallments();
+    }
+
+    function increase(element) {
+
+        loanAmount = Math.min(parseInt(loanAmount) + 1, limitrange);
+        document.getElementById('amount').value = loanAmount;
+        document.getElementById('myRange').value = loanAmount;
+        calculateInstallments();
+        updateRangeBackground();
+    }
+
+    function decrease() {
+        loanAmount = Math.max(parseInt(loanAmount) - 1, 10);
+        document.getElementById('amount').value = loanAmount;
+        document.getElementById('myRange').value = loanAmount;
+        calculateInstallments();
+        updateRangeBackground();
+    }
+
+    function calculateMonth(months, interestrate, element) {
+
+        const allTabs = document.querySelectorAll('#month-list li');
+        allTabs.forEach(function (tab) {
+            tab.classList.remove('bg-primary-500');
+            tab.classList.add('bg-gray-100');
+
+            tab.classList.add('text-neutralcolor-900');
+            tab.classList.remove('text-white');
+        });
+
+        element.classList.remove('text-neutralcolor-900');
+        element.classList.add('text-white');
+
+        element.classList.remove('bg-gray-100');
+        element.classList.add('bg-primary-500');
+
+        loanMonths = months;
+        interestRate = interestrate;
+        calculateInstallments();
+    }
+
+
+    function calculateInstallments() {
+
+    var inpHDNdoublePbef = document.getElementById("inphidden-doubleP").value;
+    var inpHDNdoubleP = parseFloat(inpHDNdoublePbef.replaceAll(",", ""));
+    
+    var inpHDNsinglePbef = document.getElementById("inphidden-singleP").value;
+    var inpHDNsingleP = parseFloat(inpHDNsinglePbef.replaceAll(",", ""));
+    
+    var inpHDNwBedPbef = document.getElementById("inphidden-wBedP").value;
+    var inpHDNwBedP = parseFloat(inpHDNwBedPbef.replaceAll(",", ""));
+    
+    var inpHDNwoBedPbef = document.getElementById("inphidden-woBedP").value;
+    var inpHDNwoBedP = parseFloat(inpHDNwoBedPbef.replaceAll(",", ""));
+       
+    if(inpHDNdoubleP == 0){
+        document.getElementById("adult-installment").disabled = true;
+    }
+    if(inpHDNsingleP == 0){
+        document.getElementById("adult-installment").disabled = true;
+    }
+    if(inpHDNwBedP == 0){
+        document.getElementById("child-installment").disabled = true;
+        document.getElementById("child-bed-installment").disabled = true;
+    }
+    if(inpHDNwoBedP == 0){
+        document.getElementById("infant-installment").disabled = true;
+    }
+
+        adultCountF = document.getElementById("adult-installment").value;
+        childbedCountF = document.getElementById("child-bed-installment").value;
+        childwobedCountF = document.getElementById("child-installment").value;
+        infantCountF = document.getElementById("infant-installment").value;
+
+        if(adultCountF == 1){
+            totalprice = (adultCountF * parseFloat(inpHDNsingleP)) + (childwobedCountF * parseFloat(inpHDNwoBedP)) + (infantCountF * parseFloat(inpHDNwoBedP)) + (childbedCountF * parseFloat(inpHDNwBedP));
+        }else{
+            totalprice = (adultCountF * parseFloat(inpHDNdoubleP)) + (childwobedCountF * parseFloat(inpHDNwoBedP)) + (infantCountF * parseFloat(inpHDNwoBedP)) + (childbedCountF * parseFloat(inpHDNwBedP));
+        }
+
+        var totalAdvancePayment = 0;
+        const totalAmount = loanAmount * 1000000;
+        // totalprice = totalprice * 1000000;
+        if (totalprice > totalAmount) {
+            totalAdvancePayment = totalprice - totalAmount;
+        }
+
+        const totalAmountWithFacilities = (totalAmount + (totalAmount * interestRate) + totalAdvancePayment);
+        const totalAmountafterFacilitiesMinus = (totalAmount + (totalAmount * interestRate));
+        const installmentAmount = totalAmountafterFacilitiesMinus / loanMonths;
+        // installmentAmountceil = Math.ceil(installmentAmount);
+        // installmentAmountceil = installmentAmount;
+        document.querySelector('.total-amount').textContent = totalprice.toLocaleString();
+        document.querySelector('.Total-amount-facilities').textContent = totalAmountWithFacilities.toLocaleString();
+        document.querySelector('.Total-advance-payment').textContent = totalAdvancePayment.toLocaleString();
+        document.querySelector('.amount-each-installment').textContent = parseInt(installmentAmount).toLocaleString();
+    }
+
+    updateRangeBackground();
+    calculateInstallments();
+
+
+    function closeModalContainerForm(event) {
+        // بررسی اینکه آیا کلیک روی پس‌زمینه مودال انجام شده است یا خیر
+        if (event.target === event.currentTarget) {
+            event.currentTarget.classList.add('hidden');
+        }
+    }
+
+</script>

@@ -188,24 +188,24 @@
         </section>
         <div class="mx-auto max-lg:w-[92%] max-xl:w-[97%] xl:max-w-7xl mt-6">
             <section>
-                <div class="swiper-button-prev-custom ">
-                    <div
-                        class="absolute left-1 top-88 z-10 flex items-center justify-center h-10 w-10 bg-primary-500 rounded-full shadow-small-btn-shadow transition-all duration-300 hover:bg-secondary-500">
-                        <svg width="24" height="24">
-                            <use href="./images/sprite-icons.svg#icon-chevron-left"></use>
-                        </svg>
-                    </div>
-                </div>
-                <div class="swiper-button-next-custom ">
-                    <div
-                        class="absolute right-1 top-88 z-10 flex items-center justify-center h-10 w-10 bg-primary-500 rounded-full shadow-small-btn-shadow transition-all duration-300 hover:bg-secondary-500">
-                        <svg width="24" height="24">
-                            <use href="./images/sprite-icons.svg#icon-chevron-right"></use>
-                        </svg>
-                    </div>
-                </div>
                 <basis core="print" datamembername="db.gallery-tour">
                     <layout>
+                        <div class="swiper-button-prev-custom ">
+                            <div
+                                class="absolute left-1 top-88 z-10 flex items-center justify-center h-10 w-10 bg-primary-500 rounded-full shadow-small-btn-shadow transition-all duration-300 hover:bg-secondary-500">
+                                <svg width="24" height="24">
+                                    <use href="./images/sprite-icons.svg#icon-chevron-left"></use>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="swiper-button-next-custom ">
+                            <div
+                                class="absolute right-1 top-88 z-10 flex items-center justify-center h-10 w-10 bg-primary-500 rounded-full shadow-small-btn-shadow transition-all duration-300 hover:bg-secondary-500">
+                                <svg width="24" height="24">
+                                    <use href="./images/sprite-icons.svg#icon-chevron-right"></use>
+                                </svg>
+                            </div>
+                        </div>
                         <div class="swiper swiper-big-img-mobile">
                             <div class="swiper-wrapper">
                                 @child
@@ -804,7 +804,7 @@
                         </layout>
                         <face>
                             <script type="text/template">
-                            <div class="execution__details__path__item__details flex items-center justify-between">
+                            <div class="execution__details__path__item__details flex flex-col items-center gap-4 justify-between">
                                 <div class="flex flex-col items-center gap-3">
                                     <div class="flex flex-col gap-2">
                                         {{ return await renderTransportationImage($data)}}
@@ -817,7 +817,7 @@
                                     </div>
                                 </div>
                                 <div class="flex flex-col items-center gap-0.5">
-                                    <div class="flex flex-col gap-1 items-center text-xs font-light">
+                                    <div class="flex gap-1 items-center text-xs font-light">
                                         <span>زمان سفر:</span>
                                         <span>@info.time@ دقیقه</span>
                                     </div>
@@ -866,7 +866,7 @@
                         </layout>
                         <face>
                             <script type="text/template">
-                            <div class="execution__details__path__item__details flex items-center justify-between">
+                            <div class="execution__details__path__item__details flex flex-col items-center gap-4 justify-between">
                                 <div class="flex flex-col items-center gap-3">
                                     <div class="flex flex-col gap-2">
                                         {{ return await renderTransportationImage($data)}}
@@ -879,7 +879,7 @@
                                     </div>
                                 </div>
                                 <div class="flex flex-col items-center gap-0.5">
-                                    <div class="flex flex-col gap-1 items-center text-xs font-light">
+                                    <div class="flex gap-1 items-center text-xs font-light">
                                         <span>زمان سفر:</span>
                                         <span>@info.time@ دقیقه</span>
                                     </div>
@@ -1007,7 +1007,8 @@
                 <h2 id="description" class="text-[32px] font-black">توضیحات تور:</h2>
             </div>
             <div class="relative content-container max-h-[620px] overflow-hidden transition-all duration-500">
-                <div class="absolute z-10 bottom-0 h-60 w-full white-shadow bg-white-shadow transition-opacity duration-500">
+                <div
+                    class="absolute z-10 bottom-0 h-60 w-full white-shadow bg-white-shadow transition-opacity duration-500">
                 </div>
 
                 <basis core="print" datamembername="db.tour-view">
@@ -1340,8 +1341,8 @@
                     <a href="/tour.bc?id=@id"
                         class="flex flex-col border border-gray-50 bg-white rounded-xl shadow-medium-btn-shadow p-4">
                         <div class="relative rounded-xl overflow-hidden shadow-soft-deep">
-                            <img src="@type_159" class="w-full h-36 object-cover" alt="@title" width="253"
-                                height="135" loading="lazy" />
+                            <img src="@type_159" class="w-full h-36 object-cover" alt="@title" width="253" height="135"
+                                loading="lazy" />
                             <span class="absolute left-0 bottom-0 text-sm font-bold py-2 px-4 bg-amber-400 rounded-tr">
                                 @prp_3087934
                             </span>
@@ -1394,8 +1395,8 @@
                     <a href="@link"
                         class="flex flex-col border border-gray-50 bg-white rounded-xl shadow-medium-btn-shadow p-4">
                         <div class="relative rounded-xl overflow-hidden shadow-soft-deep">
-                            <img src="@type_159" class="w-full h-36 object-cover" alt="@title" width="253"
-                                height="135" loading="lazy" />
+                            <img src="@type_159" class="w-full h-36 object-cover" alt="@title" width="253" height="135"
+                                loading="lazy" />
                             <span class="absolute left-0 bottom-0 text-sm font-bold py-2 px-4 bg-amber-400 rounded-tr">
                                 @prp_3087934
                             </span>

@@ -644,7 +644,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const messageBox = form.querySelector('.Message-Form');
   if (!messageBox) return;
-  
+
   form.addEventListener('submit', function (e) {
     e.preventDefault();
 
@@ -654,8 +654,8 @@ document.addEventListener('DOMContentLoaded', function () {
       method: 'POST',
       body: formData,
     })
-      .then(res => res.text())
-      .then(html => {
+      .then((res) => res.text())
+      .then((html) => {
         if (html.includes('نظر شما با موفقیت ثبت شد')) {
           messageBox.textContent = 'نظر شما با موفقیت ثبت شد، پس از بررسی توسط مدیر سایت نمایش داده خواهد شد.';
           messageBox.classList.add('text-secondary-500', 'font-bold');
@@ -681,7 +681,6 @@ document.addEventListener('DOMContentLoaded', function () {
       });
   });
 });
-
 
 // see-more footer
 document.addEventListener('DOMContentLoaded', function () {
@@ -827,7 +826,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 });
-
 
 // tour-list date
 const toggleTourDateMenu = (button, tourId) => {
@@ -1013,9 +1011,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  
   if (airlineContainer) {
-    airlineContainer.innerHTML = ''; 
+    airlineContainer.innerHTML = '';
     airlineData.forEach((imagePath, airlineName) => {
       const airlineItem = document.createElement('div');
       airlineItem.className = 'airline-item flex items-center justify-between transition-all duration-500 ease-in-out';
@@ -1387,24 +1384,30 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function openBox(wrapper, box, answer, iconPath, title, orangeSun, whiteSun) {
     answer.classList.remove('opacity-0', 'scale-y-0', 'max-h-0');
-    answer.classList.add('opacity-100', 'scale-y-100', 'mt-2');
-    answer.style.maxHeight = answer.scrollHeight + 'px';
+    answer.style.maxHeight = 'none';
 
-    box.style.backgroundColor = 'var(--primary-500)';
-    box.style.border = 'none';
-    wrapper.style.border = '2px solid #D7DBE1';
+    requestAnimationFrame(() => {
+      const fullHeight = answer.scrollHeight;
 
-    if (iconPath) iconPath.setAttribute('stroke', 'var(--secondary-500)');
-    if (title) title.style.color = 'var(--secondary-500)';
+      answer.style.maxHeight = fullHeight + 'px';
+      answer.classList.add('opacity-100', 'scale-y-100', 'mt-2');
 
-    if (orangeSun) {
-      orangeSun.classList.remove('block');
-      orangeSun.classList.add('hidden');
-    }
-    if (whiteSun) {
-      whiteSun.classList.remove('hidden');
-      whiteSun.classList.add('block');
-    }
+      box.style.backgroundColor = 'var(--primary-500)';
+      box.style.border = 'none';
+      wrapper.style.border = '2px solid #D7DBE1';
+
+      if (iconPath) iconPath.setAttribute('stroke', 'var(--secondary-500)');
+      if (title) title.style.color = 'var(--secondary-500)';
+
+      if (orangeSun) {
+        orangeSun.classList.remove('block');
+        orangeSun.classList.add('hidden');
+      }
+      if (whiteSun) {
+        whiteSun.classList.remove('hidden');
+        whiteSun.classList.add('block');
+      }
+    });
   }
 
   function closeBox(wrapper, box, answer, iconPath, title, orangeSun, whiteSun) {
@@ -1429,19 +1432,21 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  if (wrappers.length > 0) {
-    const firstWrapper = wrappers[0];
-    const firstBox = firstWrapper.querySelector('.travel-box');
-    const firstAnswer = firstWrapper.querySelector('.travel-answer');
-    const firstIconPath = firstBox?.querySelector('.travel-btn path');
-    const firstTitle = firstBox?.querySelector('h2');
-    const firstOrangeSun = firstBox?.querySelector('.orange-sun');
-    const firstWhiteSun = firstBox?.querySelector('.white-sun');
+  window.addEventListener('load', () => {
+    if (wrappers.length > 0) {
+      const firstWrapper = wrappers[0];
+      const firstBox = firstWrapper.querySelector('.travel-box');
+      const firstAnswer = firstWrapper.querySelector('.travel-answer');
+      const firstIconPath = firstBox?.querySelector('.travel-btn path');
+      const firstTitle = firstBox?.querySelector('h2');
+      const firstOrangeSun = firstBox?.querySelector('.orange-sun');
+      const firstWhiteSun = firstBox?.querySelector('.white-sun');
 
-    if (firstAnswer) {
-      openBox(firstWrapper, firstBox, firstAnswer, firstIconPath, firstTitle, firstOrangeSun, firstWhiteSun);
+      if (firstAnswer) {
+        openBox(firstWrapper, firstBox, firstAnswer, firstIconPath, firstTitle, firstOrangeSun, firstWhiteSun);
+      }
     }
-  }
+  });
 
   document.addEventListener('click', function (event) {
     const box = event.target.closest('.travel-box');
@@ -1489,6 +1494,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 });
+
 
 // filter price tour-list
 document.addEventListener('DOMContentLoaded', function () {
@@ -1564,7 +1570,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
           if (selectedFilter === 'high-to-low') return priceB - priceA;
           if (selectedFilter === 'low-to-high') return priceA - priceB;
-          if (selectedFilter === 'best-price') return priceA - priceB; 
+          if (selectedFilter === 'best-price') return priceA - priceB;
         });
 
         tourListContainer.innerHTML = '';
@@ -1609,42 +1615,45 @@ document.addEventListener('DOMContentLoaded', () => {
     const isMobile = window.innerWidth < 1024;
     const closedHeight = isMobile ? 620 : 480;
 
-    const contentHeight = container.scrollHeight;
+    requestAnimationFrame(() => {
+      const contentHeight = container.scrollHeight;
 
-    if (contentHeight <= closedHeight) {
-      if (btn) btn.style.display = 'none';
-      if (shadow) shadow.style.display = 'none';
-      return;
-    }
-
-    container.style.maxHeight = closedHeight + 'px';
-
-    btn.addEventListener('click', () => {
-      const isOpen = container.classList.contains('open');
-
-      if (isOpen) {
-        container.style.maxHeight = contentHeight + 'px';
-        requestAnimationFrame(() => {
-          container.style.maxHeight = closedHeight + 'px';
-          container.classList.remove('open');
-        });
-
-        if (shadow) shadow.classList.add('bg-white-shadow');
-        btnText.textContent = 'مشاهده همه';
-      } else {
-        container.style.maxHeight = closedHeight + 'px';
-        container.classList.add('open');
-
-        requestAnimationFrame(() => {
-          container.style.maxHeight = contentHeight + 'px';
-        });
-
-        if (shadow) shadow.classList.remove('bg-white-shadow');
-        btnText.textContent = 'مشاهده کمتر';
+      if (contentHeight <= closedHeight) {
+        btn.style.display = 'none';
+        if (shadow) shadow.style.display = 'none';
+        return;
       }
+
+      container.style.maxHeight = closedHeight + 'px';
+
+      btn.addEventListener('click', () => {
+        const isOpen = container.classList.contains('open');
+
+        if (isOpen) {
+          container.style.maxHeight = contentHeight + 'px';
+          requestAnimationFrame(() => {
+            container.style.maxHeight = closedHeight + 'px';
+            container.classList.remove('open');
+          });
+
+          if (shadow) shadow.classList.add('bg-white-shadow');
+          btnText.textContent = 'مشاهده همه';
+        } else {
+          container.style.maxHeight = closedHeight + 'px';
+          container.classList.add('open');
+
+          requestAnimationFrame(() => {
+            container.style.maxHeight = container.scrollHeight + 'px';
+          });
+
+          if (shadow) shadow.classList.remove('bg-white-shadow');
+          btnText.textContent = 'مشاهده کمتر';
+        }
+      });
     });
   });
 });
+
 
 // reply-comment
 async function Reply_Comment(element) {

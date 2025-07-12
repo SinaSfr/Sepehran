@@ -125,6 +125,355 @@
     <link rel="stylesheet" href="[##cms.cms.cdn##]/_css/swiper-bundle.min.css" />
     <basis core="call" file="style.inc" />
 </head>
+<style>
+    .fixed {
+        position: fixed;
+    }
+
+    .absolute {
+        position: absolute;
+    }
+
+    .relative {
+        position: relative;
+    }
+
+    .bottom-0 {
+        bottom: 0px;
+    }
+
+    .left-0 {
+        left: 0px;
+    }
+
+    .right-0 {
+        right: 0px;
+    }
+
+    .top-0 {
+        top: 0px;
+    }
+
+    .top-7 {
+        top: 1.75rem;
+    }
+
+    .z-50 {
+        z-index: 50;
+    }
+
+    .float-left {
+        float: left;
+    }
+
+    .m-0 {
+        margin: 0px;
+    }
+
+    .m-auto {
+        margin: auto;
+    }
+
+    .my-2 {
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .my-5 {
+        margin-top: 1.25rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .mb-2 {
+        margin-bottom: 0.5rem;
+    }
+
+    .mr-auto {
+        margin-right: auto;
+    }
+
+    .mt-28 {
+        margin-top: 7rem;
+    }
+
+    .mt-3 {
+        margin-top: 0.75rem;
+    }
+
+    .mt-4 {
+        margin-top: 1rem;
+    }
+
+    .mt-5 {
+        margin-top: 1.25rem;
+    }
+
+    .mt-6 {
+        margin-top: 1.5rem;
+    }
+
+    .block {
+        display: block;
+    }
+
+    .inline {
+        display: inline;
+    }
+
+    .flex {
+        display: flex;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .h-0 {
+        height: 0px;
+    }
+
+    .h-12 {
+        height: 3rem;
+    }
+
+    .h-9 {
+        height: 2.25rem;
+    }
+
+    .h-\[90\%\] {
+        height: 90%;
+    }
+
+    .h-full {
+        height: 100%;
+    }
+
+    .w-0 {
+        width: 0px;
+    }
+
+    .w-\[49\%\] {
+        width: 49%;
+    }
+
+    .w-12 {
+        width: 3rem;
+    }
+
+    .w-16 {
+        width: 4rem;
+    }
+
+    .w-28 {
+        width: 7rem;
+    }
+
+    .w-7 {
+        width: 1.75rem;
+    }
+
+    .w-full {
+        width: 100%;
+    }
+
+    .cursor-pointer {
+        cursor: pointer;
+    }
+
+    .appearance-none {
+        appearance: none;
+    }
+
+    .flex-wrap {
+        flex-wrap: wrap;
+    }
+
+    .items-center {
+        align-items: center;
+    }
+
+    .justify-start {
+        justify-content: flex-start;
+    }
+
+    .justify-between {
+        justify-content: space-between;
+    }
+
+    .gap-x-2 {
+        column-gap: 0.5rem;
+    }
+
+    .gap-y-2 {
+        row-gap: 0.5rem;
+    }
+
+    .divide-y> :not([hidden])~ :not([hidden]) {
+        --tw-divide-y-reverse: 0;
+        border-top-width: calc(1px * calc(1 - var(--tw-divide-y-reverse)));
+        border-bottom-width: calc(1px * var(--tw-divide-y-reverse));
+    }
+
+    .divide-y-2> :not([hidden])~ :not([hidden]) {
+        --tw-divide-y-reverse: 0;
+        border-top-width: calc(2px * calc(1 - var(--tw-divide-y-reverse)));
+        border-bottom-width: calc(2px * var(--tw-divide-y-reverse));
+    }
+
+    .overflow-y-auto {
+        overflow-y: auto;
+    }
+
+    .rounded-lg {
+        border-radius: 0.5rem;
+    }
+
+    .rounded-md {
+        border-radius: 0.375rem;
+    }
+
+    .rounded-xl {
+        border-radius: 0.75rem;
+    }
+
+    .bg-transparent {
+        background-color: transparent;
+    }
+
+    .bg-white {
+        --tw-bg-opacity: 1;
+        background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
+    }
+
+    .bg-white\/25 {
+        background-color: rgb(255 255 255 / 0.25);
+    }
+
+    .p-0 {
+        padding: 0px;
+    }
+
+    .p-3 {
+        padding: 0.75rem;
+    }
+
+    .p-4 {
+        padding: 1rem;
+    }
+
+    .px-2 {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+
+    .px-3 {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+
+    .px-5 {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+    }
+
+    .px-8 {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+
+    .py-2 {
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+
+    .py-3 {
+        padding-top: 0.75rem;
+        padding-bottom: 0.75rem;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .text-base {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    .text-lg {
+        font-size: 1.125rem;
+        line-height: 1.75rem;
+    }
+
+    .text-sm {
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+    }
+
+    .text-xl {
+        font-size: 1.25rem;
+        line-height: 1.75rem;
+    }
+
+    .leading-10 {
+        line-height: 2.5rem;
+    }
+
+    .leading-9 {
+        line-height: 2.25rem;
+    }
+
+    .text-white {
+        --tw-text-opacity: 1;
+        color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+    }
+
+    .shadow-2xl {
+        --tw-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+        --tw-shadow-colored: 0 25px 50px -12px var(--tw-shadow-color);
+        box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+    }
+
+    .backdrop-blur-3xl {
+        --tw-backdrop-blur: blur(64px);
+        -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+        backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+    }
+
+    .hover\:text-white:hover {
+        --tw-text-opacity: 1;
+        color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+    }
+
+    .focus\:border-none:focus {
+        border-style: none;
+    }
+
+    #myRange {
+        width: 100%;
+        height: 8px;
+        border-radius: 4px;
+        appearance: none;
+    }
+
+    #myRange::-webkit-slider-thumb {
+        appearance: none;
+        height: 20px;
+        width: 20px;
+        border-radius: 9999px;
+        background: var(--primary-500);
+        cursor: pointer;
+        margin-top: -6px;
+    }
+
+    #myRange::-moz-range-thumb {
+        height: 20px;
+        width: 20px;
+        border-radius: 9999px;
+        background: var(--primary-500);
+        cursor: pointer;
+    }
+</style>
 
 <body>
     <basis core="call" file="header.inc" />
@@ -186,6 +535,11 @@
                 </basis>
             </ul>
         </section>
+        <basis core="print" datamembername="db.tour-view">
+            <face filter="TypeID in(150)">
+                <h2 class="tour-name hidden">@text</h2>
+            </face>
+        </basis>
         <div class="flex items-stretch mt-11 mx-auto max-lg:w-[90%] max-xl:w-[97%] xl:max-w-7xl">
             <section class="min-w-0 flex-1">
                 <basis core="print" datamembername="db.gallery-tour">
@@ -300,7 +654,7 @@
                         <layout>
                             <script type="text/template">
                              <!-- Additional required wrapper -->
-                             <div class="flex justify-between items-center">
+                            <div class="flex justify-between items-center">
                                 <h3 class="text-sm font-bold">تاریخ شروع تور:</h3>
                                 <span class="relative">
                                     <svg width="43" height="17" class="absolute right-5 -top-2">
@@ -325,7 +679,7 @@
                         <layout>
                             <script type="text/template">
                              <!-- Additional required wrapper -->
-                             <div class="flex justify-between items-center">
+                            <div class="flex justify-between items-center">
                                 <h3 class="text-sm font-bold">تاریخ اتمام تور:</h3>
                                 <span class="relative">
                                     <svg width="43" height="17" class="absolute left-5 -top-2">
@@ -335,7 +689,7 @@
                                         <use href="./images/sprite-icons.svg#icon-plane-line"></use>
                                     </svg>
                                 </span>
-                                    @child
+                                @child
                             </div>
                             </script>
                         </layout>
@@ -730,25 +1084,25 @@
                                     <div
                                         class="flex flex-1 justify-center p-8 border border-gray-50 shadow-card-shadow rounded-xl">
                                         <ul class="w-full flex justify-center items-center">
-                                            <li class="relative w-1/4 h-full flex flex-col gap-4 items-center border-l-2 border-gray-100 border-dashed">
+                                            <li class="tourInventory__details__item__double relative w-1/4 h-full flex flex-col gap-4 items-center border-l-2 border-gray-100 border-dashed">
                                                 <span class="text-sm font-semibold">دوتخته</span>
                                                 <div class="flex flex-col items-center gap-2">
                                                     {{ return await renderPriceInfo($data,'doublecost')}}
                                                 </div>
                                             </li>
-                                            <li class="relative w-1/4 h-full flex flex-col gap-4 items-center border-l-2 border-gray-100 border-dashed">
+                                            <li class="tourInventory__details__item__single relative w-1/4 h-full flex flex-col gap-4 items-center border-l-2 border-gray-100 border-dashed">
                                                 <span class="text-sm font-semibold">تک تخته</span>
                                                     <div class="flex flex-col items-center gap-2">
                                                         {{ return await renderPriceInfo($data,'singlecost')}}
                                                     </div>
                                             </li>
-                                            <li class="relative w-1/4 h-full flex flex-col gap-4 items-center border-l-2 border-gray-100 border-dashed">
+                                            <li class="tourInventory__details__item__wBed relative w-1/4 h-full flex flex-col gap-4 items-center border-l-2 border-gray-100 border-dashed">
                                                 <span class="text-sm font-semibold">کودک با تخت</span>
                                                  <div class="flex flex-col items-center gap-2">
                                                     {{ return await renderPriceInfo($data,'childwithbed')}}
                                                  </div>
                                             </li>
-                                            <li class="relative w-1/4 h-full flex flex-col gap-4 items-center">
+                                            <li class="tourInventory__details__item__woBed relative w-1/4 h-full flex flex-col gap-4 items-center">
                                                 <span class="text-sm font-semibold">کودک بدون تخت</span>
                                                 <div class="flex flex-col items-center gap-2">
                                                     {{ return await renderPriceInfo($data,'childwithoutbed')}}
@@ -817,7 +1171,7 @@
                                                 <span
                                                     class="text-primary-500 font-extrabold origins__city details__city">@info.city.name@</span>
                                                 <span class="text-primary-500 font-extrabold text-center">@info.origin.name@</span>
-                                                <span class="text-primary-500 font-extrabold">@info.departure.time@</span>
+                                                <span class="__times__start text-primary-500 font-extrabold">@info.departure.time@</span>
                                             </div>
                                         </div>
                                         <div class="flex flex-col items-center gap-px">
@@ -875,7 +1229,7 @@
                                                 <span
                                                     class="text-primary-500 font-extrabold origins__city details__city">@info.city.name@</span>
                                                 <span class="text-primary-500 font-extrabold text-center">@info.origin.name@</span>
-                                                <span class="text-primary-500 font-extrabold">@info.departure.time@</span>
+                                                <span class="__times__start text-primary-500 font-extrabold">@info.departure.time@</span>
                                             </div>
                                         </div>
                                         <div class="flex flex-col items-center gap-px">
@@ -1470,11 +1824,54 @@
                         </div>
                     </face>
                 </basis>
-
-
-
-
             </div>
+        </div>
+
+        <basis core="call" if="{##db.tourForm.run|(false)##}" triggers="db.tourForm" run="atclient" file="/tour-book.bc"
+            hotelName="{##db.tourForm.hotelName##}" method="post" hotelRate="{##db.tourForm.hotelRate##}"
+            hotelService="{##db.tourForm.hotelService##}" tourName="{##db.tourForm.tourName##}"
+            doubleP="{##db.tourForm.doubleP##}" singleP="{##db.tourForm.singleP##}" wBedP="{##db.tourForm.wBedP##}"
+            woBedP="{##db.tourForm.woBedP##}" doubleU="{##db.tourForm.doubleU##}" singleU="{##db.tourForm.singleU##}"
+            wBedU="{##db.tourForm.wBedU##}" woBedU="{##db.tourForm.woBedU|()##}" startDate="{##db.tourForm.startDate##}"
+            endDate="{##db.tourForm.endDate##}" weekdayStartDate="{##db.tourForm.weekdayStartDate##}"
+            weekdayEndDate="{##db.tourForm.weekdayEndDate##}" departureName="{##db.tourForm.departureName##}"
+            destinationName="{##db.tourForm.destinationName##}" startTime="{##db.tourForm.startTime##}"
+            endTime="{##db.tourForm.endTime##}"></basis>
+        </div>
+        <!-- tour-installment form section -->
+        <div>
+            <basis core="call" if="{##db.tourFormInstallment.run|(false)##}" triggers="db.tourFormInstallment"
+                run="atclient" file="/tour-bookInstallment.bc" hotelName="{##db.tourFormInstallment.hotelName##}"
+                method="post" hotelRate="{##db.tourFormInstallment.hotelRate##}"
+                hotelService="{##db.tourFormInstallment.hotelService##}"
+                tourName="{##db.tourFormInstallment.tourName##}" doubleP="{##db.tourFormInstallment.doubleP##}"
+                singleP="{##db.tourFormInstallment.singleP##}" wBedP="{##db.tourFormInstallment.wBedP##}"
+                woBedP="{##db.tourFormInstallment.woBedP##}" doubleU="{##db.tourFormInstallment.doubleU##}"
+                singleU="{##db.tourFormInstallment.singleU##}" wBedU="{##db.tourFormInstallment.wBedU##}"
+                woBedU="{##db.tourFormInstallment.woBedU|()##}" adultCount="{##db.tourFormInstallment.adultCount|(2)##}"
+                childCount="{##db.tourFormInstallment.childCount|(0)##}"
+                infantCount="{##db.tourFormInstallment.infantCount|(0)##}"
+                startDate="{##db.tourFormInstallment.startDate##}" endDate="{##db.tourFormInstallment.endDate##}"
+                weekdayStartDate="{##db.tourFormInstallment.weekdayStartDate##}"
+                weekdayEndDate="{##db.tourFormInstallment.weekdayEndDate##}"
+                departureName="{##db.tourFormInstallment.departureName##}"
+                destinationName="{##db.tourFormInstallment.destinationName##}"
+                startTime="{##db.tourFormInstallment.startTime##}" endTime="{##db.tourFormInstallment.endTime##}"
+                totalAmountINS="{##db.tourFormInstallment.totalAmountINS##}"
+                totalAmountFacilityINS="{##db.tourFormInstallment.totalAmountFacilityINS##}"
+                totalAdvancePaymentINS="{##db.tourFormInstallment.totalAdvancePaymentINS##}"
+                amountEachInstallmentINS="{##db.tourFormInstallment.amountEachInstallmentINS##}"></basis>
+        </div>
+        <div id="load-form-lachin">
+            <basis core="call" if="{##db.tourFormInstallmentplan.run|(false)##}" triggers="db.tourFormInstallmentplan"
+                run="atclient" file="/installmentbook-plan.bc" hotelName="{##db.tourFormInstallmentplan.hotelName##}"
+                method="post" hotelRate="{##db.tourFormInstallmentplan.hotelRate##}"
+                hotelService="{##db.tourFormInstallmentplan.hotelService##}"
+                tourName="{##db.tourFormInstallmentplan.tourName##}" doubleP="{##db.tourFormInstallmentplan.doubleP##}"
+                singleP="{##db.tourFormInstallmentplan.singleP##}" wBedP="{##db.tourFormInstallmentplan.wBedP##}"
+                woBedP="{##db.tourFormInstallmentplan.woBedP##}" doubleU="{##db.tourFormInstallmentplan.doubleU##}"
+                singleU="{##db.tourFormInstallmentplan.singleU##}" wBedU="{##db.tourFormInstallmentplan.wBedU##}"
+                woBedU="{##db.tourFormInstallmentplan.woBedU|()##}"></basis>
         </div>
     </main>
     <script src="[##cms.cms.cdn##]/_js/swiper-bundle.11.2.5.min.js"></script>
