@@ -700,6 +700,7 @@ const renderTourInstallmentForm = async (element) => {
       : ` `);
 };
 
+
 const renderReserveTourInstallmentForm = async (element) => {
   document.getElementById('white-modal').classList.add('hidden');
 
@@ -723,6 +724,7 @@ const renderReserveTourInstallmentForm = async (element) => {
     ed2 = '';
   }
 
+  console.log(document.getElementById('white-modal').querySelector('.total-amount').innerText)
   $bc.setSource('db.tourFormInstallment', {
     hotelName: FormhotelName,
     hotelRate: FormhotelRate,
@@ -749,19 +751,19 @@ const renderReserveTourInstallmentForm = async (element) => {
     endDate: ed2,
 
     // origins__start__weekday
-    weekdayStartDate: document
-      .querySelector('.tourExecution__container__origins')
-      .querySelector('.origins__start__weekday').textContent,
+    // weekdayStartDate: document
+    //   .querySelector('.tourExecution__container__origins')
+    //   .querySelector('.origins__start__weekday').textContent,
     // destinations__start__weekday
-    weekdayEndDate: document
-      .querySelector('.tourExecution__container__destinations')
-      .querySelector('.destinations__start__weekday').textContent,
+    // weekdayEndDate: document
+    //   .querySelector('.tourExecution__container__destinations')
+    //   .querySelector('.destinations__start__weekday').textContent,
 
     departureName: document.querySelector('.tourExecution__container__origins').querySelector('.origins__city')
       .textContent,
-    destinationName: document
-      .querySelector('.tourExecution__container__destinations')
-      .querySelector('.destinations__city').textContent,
+    // destinationName: document
+    //   .querySelector('.tourExecution__container__destinations')
+    //   .querySelector('.destinations__city').textContent,
 
     // __times__start
     startTime: document
@@ -774,6 +776,7 @@ const renderReserveTourInstallmentForm = async (element) => {
       .querySelectorAll('.execution__details__path__item')[0]
       .querySelector('.__times__start').textContent,
 
+      
     totalAmountINS: document.getElementById('white-modal').querySelector('.total-amount').innerText,
     totalAmountFacilityINS: document.getElementById('white-modal').querySelector('.Total-amount-facilities').innerText,
     totalAdvancePaymentINS: document.getElementById('white-modal').querySelector('.Total-advance-payment').innerText,
@@ -783,6 +786,25 @@ const renderReserveTourInstallmentForm = async (element) => {
     run: true,
   });
 };
+
+const closeModalContainer = (element, event, closed, className, type) => {
+    try {
+        if (type == 'parent') {
+            if (!event.target.closest('.modal__content')) {
+                element.closest(`.${closed}`).classList.add(`${className}`);
+            }
+        } else {
+            element.closest(`.${closed}`).classList.add(`${className}`);
+        }
+    } catch (err) {
+        console.error('closeModalContainer=' + err.lineNumber + ',' + err.message);
+    }
+
+}
+
+function closeModalForm(element , container ){
+document.getElementById(container).classList.add("hidden");
+}
 
 const renderCaptchaCode = async (element, event) => {
   try {
@@ -903,33 +925,13 @@ const OnProcessedTourBookingForm = async (args) => {
       .querySelector('button')
       .classList.remove('button--loading');
     if (errorid == '6') {
-      if (page_lang === 'fa') {
         document
           .querySelector('.tour__booking__form__modal__container')
           .querySelector('.message__action__container').innerHTML = 'درخواست شما با موفقیت ثبت شد';
-      } else if (page_lang === 'en') {
-        document
-          .querySelector('.tour__booking__form__modal__container')
-          .querySelector('.message__action__container').innerHTML = 'Your request has been successfully registered';
-      } else if (page_lang === 'ar') {
-        document
-          .querySelector('.tour__booking__form__modal__container')
-          .querySelector('.message__action__container').innerHTML = 'لقد تم تسجيل طلبك بنجاح';
-      }
     } else {
-      if (page_lang === 'fa') {
         document
           .querySelector('.tour__booking__form__modal__container')
           .querySelector('.message__action__container').innerHTML = 'خطایی رخ داده, لطفا مجدد اقدام کنید';
-      } else if (page_lang === 'en') {
-        document
-          .querySelector('.tour__booking__form__modal__container')
-          .querySelector('.message__action__container').innerHTML = 'An error occurred, please try again';
-      } else if (page_lang === 'ar') {
-        document
-          .querySelector('.tour__booking__form__modal__container')
-          .querySelector('.message__action__container').innerHTML = 'حدث خطأ، يرجى المحاولة مرة أخرى';
-      }
     }
     setTimeout(function () {
       document

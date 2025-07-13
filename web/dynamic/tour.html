@@ -1148,7 +1148,7 @@
                             <h2 id="plan" class="text-[36px] font-extrabold">شروع سفر</h2>
                         </div>
 
-                        <div class="execution__details__path__item flex flex-col gap-8">
+                        <div class="execution__details__path__item execution__details__path__origins flex flex-col gap-8">
                             <basis core="print" datamembername="refresh.executionPlanTypesOrigins"
                                 if="{##refresh.executionPlanTypesOrigins##}" run="atclient"
                                 onrendered="onrenderedExecutionOrigins">
@@ -1162,7 +1162,7 @@
                                 <face>
                                     <script type="text/template">
                                     <div class="execution__details__path__item__details flex items-center gap-6">
-                                        <div class="flex items-center gap-6">
+                                        <div class="execution__details__path__item flex items-center gap-6">
                                             <div class="flex flex-col items-center gap-2">
                                                 {{ return await renderTransportationImage($data)}}
                                                 <span class="font-light text-xs">شماره پرواز : <span>W5112</span></span>
@@ -1206,7 +1206,7 @@
                             <h2 class="text-[36px] font-extrabold">پایان سفر</h2>
                         </div>
 
-                        <div class="execution__details__path__item flex flex-col gap-8">
+                        <div class="execution__details__path__item execution__details__path__destinations flex flex-col gap-8">
                             <basis core="print" datamembername="refresh.executionPlanTypesDestinations"
                                 if="{##refresh.executionPlanTypesDestinations##}" run="atclient"
                                 onrendered="onrenderedExecutionDestinations">
@@ -1220,7 +1220,7 @@
                                 <face>
                                     <script type="text/template">
                                     <div class="execution__details__path__item__details flex items-center gap-6">
-                                        <div class="flex items-center gap-6">
+                                        <div class="execution__details__path__item flex items-center gap-6">
                                             <div class="flex flex-col items-center gap-2">
                                                 {{ return await renderTransportationImage($data)}}
                                                 <span class="font-light text-xs">شماره پرواز : <span>W5112</span></span>

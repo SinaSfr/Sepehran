@@ -4,13 +4,16 @@
 
 
 
-        <div class="mx-auto max-lg:w-[90%] max-xl:w-[97%] xl:max-w-7xl h-[90%] bg-neutralcolor-50 absolute top-0 left-0 right-0 bottom-0 m-auto shadow-2xl p-4 overflow-y-auto">
+        <div
+            class="mx-auto max-lg:w-[90%] max-xl:w-[97%] xl:max-w-7xl h-[90%] bg-neutralcolor-50 absolute top-0 left-0 right-0 bottom-0 m-auto shadow-2xl p-4 overflow-y-auto">
 
-                <div class="w-full">
-                    <svg onclick="closeModalForm(this , 'modal-plan-installment')" width="48" height="48" class="mr-auto"  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="float-left cursor-pointer">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"></path>
-                    </svg>
-                </div>
+            <div class="w-full">
+                <svg onclick="closeModalForm(this , 'modal-plan-installment')" width="48" height="48" class="mr-auto"
+                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="float-left cursor-pointer">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"></path>
+                </svg>
+            </div>
 
             <h2 class="text-xl font-danabold text-neutralcolor-800">
                 شرایط اقساطی
@@ -53,10 +56,10 @@
                                 </div>
                                 <div class="w-28 h-12 bg-gray-100 rounded-md px-2">
                                     <select onChange="calculateInstallments(this)"
-                                        class="w-full h-12 bg-gray-100 focus:border-none font-danaregular text-base "
+                                        class="w-full h-12 bg-gray-100 focus:border-none font-danaregular text-base outline-none"
                                         name="adult-installment" id="adult-installment">
-                                        <option value="1">1</option>
-                                        <option value="2" selected>2</option>
+                                        <option value="1" selected>1</option>
+                                        <option value="2">2</option>
                                         <option value="3">3</option>
                                         <option value="4">4</option>
                                         <option value="5">5</option>
@@ -79,7 +82,7 @@
                                 </div>
                                 <div class="w-28 h-12 bg-gray-100 rounded-md px-2">
                                     <select onChange="calculateInstallments(this)"
-                                        class="w-full h-12 bg-gray-100 focus:border-none font-danaregular text-base "
+                                        class="w-full h-12 bg-gray-100 focus:border-none font-danaregular text-base outline-none"
                                         name="child-bed-installment" id="child-bed-installment">
                                         <option value="0" selected>0</option>
                                         <option value="1">1</option>
@@ -105,7 +108,7 @@
                                 </div>
                                 <div class="w-28 h-12 bg-gray-100 rounded-md px-2">
                                     <select onChange="calculateInstallments(this)"
-                                        class="w-full h-12 bg-gray-100 focus:border-none font-danaregular text-base "
+                                        class="w-full h-12 bg-gray-100 focus:border-none font-danaregular text-base outline-none"
                                         name="child-installment" id="child-installment">
                                         <option value="0" selected>0</option>
                                         <option value="1">1</option>
@@ -130,7 +133,7 @@
                                 </div>
                                 <div class="w-28 h-12 bg-gray-100 rounded-md px-2">
                                     <select onChange="calculateInstallments(this)"
-                                        class="w-full h-12 bg-gray-100 focus:border-none font-danaregular text-base "
+                                        class="w-full h-12 bg-gray-100 focus:border-none font-danaregular text-base outline-none"
                                         name="infant-installment" id="infant-installment">
                                         <option value="0" selected>0</option>
                                         <option value="1">1</option>
@@ -169,7 +172,7 @@
                         طرح اقساط
                     </div>
                     <ul class="divide-y divide-neutralcolor-100">
-                        <li class="my-2">
+                        <li class="my-2 hidden">
                             <div class="flex items-end justify-between">
                                 <div>
                                     <span class="text-neutralcolor-900 text-base font-danaregular block leading-10">طرح
@@ -192,9 +195,9 @@
                             <div class="flex items-end justify-between">
                                 <div>
                                     <span class="text-neutralcolor-900 text-base font-danaregular block leading-10">طرح
-                                        اقساط لاچین سیر</span>
+                                        اقساط گردشگران</span>
                                     <span class="text-neutralcolor-500 text-sm font-danaregular block leading-10">طرح تا
-                                        سقف 100 میلون تومان</span>
+                                        سقف 150 میلون تومان</span>
                                 </div>
 
                                 <div class="leading-9 rounded-lg flex plan-container cursor-pointer"
@@ -202,7 +205,7 @@
                                       <input type="radio" id="manisa" name="plan" value="manisa"
                                         class="plan-radio w-0 h-0 inline  m-0 p-0 appearance-none">
                                       <label
-                                        class="text-center text-sm font-danaregular block px-3 py-2 rounded-lg cursor-pointer transition-all duration-300 bg-primary-500 hover:bg-secondary-500 text-white"
+                                        class="text-center text-sm font-danaregular hidden px-3 py-2 rounded-lg cursor-pointer transition-all duration-300 bg-primary-500 hover:bg-secondary-500 text-white"
                                         for="manisa">انتخاب</label>
                                 </div>
                             </div>
@@ -244,9 +247,8 @@
                                     class="text-32px font-danamedium cursor-pointer hover:text-primary-500 w-12 h-76px text-center"
                                     onclick="increase(this)">+</span>
                                 <div>
-                                    <input id="amount"
-                                        class="bg-transparent w-7 font-danaregular text-base text-center" type="text"
-                                        value="10" placeholder="100" oninput="updateLoanAmount(this.value)">
+                                    <input id="amount" class="bg-transparent w-7 font-danaregular text-base text-center"
+                                        type="text" value="8" placeholder="150" oninput="updateLoanAmount(this.value)">
                                     <span class="font-danaregular text-sm ">میلیون تومان</span>
                                 </div>
                                 <span
@@ -255,12 +257,12 @@
                             </div>
 
                             <div class="relative mt-6">
-                                <input oninput="updateLoanFromRange(this.value)" type="range" min="10" max="100"
-                                    value="10" class="slider" id="myRange">
-                                <span class=" absolute left-0 text-neutralcolor-500 top-7 font-danaregular text-sm">10
+                                <input oninput="updateLoanFromRange(this.value)" type="range" min="8" max="150"
+                                    value="8" class="slider direction-ltr" id="myRange">
+                                <span class=" absolute left-0 text-neutralcolor-500 top-7 font-danaregular text-sm">8
                                     میلیون تومان </span>
                                 <span class=" absolute right-0 text-neutralcolor-500 top-7 font-danaregular text-sm">
-                                    <span id="limit-range">100</span>
+                                    <span id="limit-range">150</span>
                                     میلیون تومان</span>
                             </div>
 
@@ -270,19 +272,34 @@
                                     مدت باز پرداخت
                                 </span>
 
-                                <ul class="flex justify-between gap-4 mt-4 flex-wrap gap-y-2" id="month-list">
-                                    <li month="4" rate="0.2" onclick="calculateMonth(4 , 0.2 , this)"
+                                <ul class="grid grid-cols-5 gap-4 mt-4 gap-y-2" id="month-list">
+                                    <li month="4" rate="0.5" onclick="calculateMonth(4 , 0.5 , this)"
                                         class="sayyadiplan flex flex-1 items-center justify-center h-12 rounded-xl  bg-primary-500 text-white text-center hover:bg-primary-500 hover:text-white text-base cursor-pointer">
-                                        4ماهه</li>
-                                    <li onclick="calculateMonth(6 , 0.3 , this)"
+                                        4 ماهه</li>
+                                    <li month="5" rate="0.5" onclick="calculateMonth(5 , 0.5 , this)"
                                         class="sayyadiplan flex flex-1 items-center justify-center h-12 rounded-xl  bg-gray-100 text-neutralcolor-900 text-center hover:bg-primary-500 hover:text-white text-base cursor-pointer">
-                                        6ماهه</li>
-                                    <li onclick="calculateMonth(8 , 0.4 , this)"
+                                        5 ماهه</li>
+                                    <li month="6" rate="0.5" onclick="calculateMonth(6 , 0.5 , this)"
                                         class="sayyadiplan flex flex-1 items-center justify-center h-12 rounded-xl  bg-gray-100 text-neutralcolor-900 text-center hover:bg-primary-500 hover:text-white text-base cursor-pointer">
-                                        8ماهه</li>
-                                    <li onclick="calculateMonth(10 , 0.5 , this)"
+                                        6 ماهه</li>
+                                    <li month="7" rate="0.5" onclick="calculateMonth(7 , 0.5 , this)"
                                         class="sayyadiplan flex flex-1 items-center justify-center h-12 rounded-xl  bg-gray-100 text-neutralcolor-900 text-center hover:bg-primary-500 hover:text-white text-base cursor-pointer">
-                                        10ماهه</li>
+                                        7 ماهه</li>
+                                    <li month="8" rate="0.5" onclick="calculateMonth(8 , 0.5 , this)"
+                                        class="sayyadiplan flex flex-1 items-center justify-center h-12 rounded-xl  bg-gray-100 text-neutralcolor-900 text-center hover:bg-primary-500 hover:text-white text-base cursor-pointer">
+                                        8 ماهه</li>
+                                    <li month="9" rate="0.5" onclick="calculateMonth(9 , 0.5 , this)"
+                                        class="sayyadiplan flex flex-1 items-center justify-center h-12 rounded-xl  bg-gray-100 text-neutralcolor-900 text-center hover:bg-primary-500 hover:text-white text-base cursor-pointer">
+                                        9 ماهه</li>
+                                    <li month="10" rate="0.5" onclick="calculateMonth(10 , 0.5 , this)"
+                                        class="sayyadiplan flex flex-1 items-center justify-center h-12 rounded-xl  bg-gray-100 text-neutralcolor-900 text-center hover:bg-primary-500 hover:text-white text-base cursor-pointer">
+                                        10 ماهه</li>
+                                    <li month="11" rate="0.5" onclick="calculateMonth(11 , 0.5 , this)"
+                                        class="sayyadiplan flex flex-1 items-center justify-center h-12 rounded-xl  bg-gray-100 text-neutralcolor-900 text-center hover:bg-primary-500 hover:text-white text-base cursor-pointer">
+                                        11 ماهه</li>
+                                    <li month="5" rate="0.5" onclick="calculateMonth(12 , 0.5 , this)"
+                                        class="sayyadiplan flex flex-1 items-center justify-center h-12 rounded-xl  bg-gray-100 text-neutralcolor-900 text-center hover:bg-primary-500 hover:text-white text-base cursor-pointer">
+                                        12 ماهه</li>
 
                                     <li month="12" rate="0.21" onclick="calculateMonth(12 , 0.21 , this)" class="manisaplan flex flex-1 items-center justify-center h-12 rounded-xl bg-gray-100 text-center hover:bg-primary-500 hover:text-white text-base cursor-pointer
                                         hidden
@@ -356,14 +373,14 @@
 
 <script>
     // TOUR INSTALLMENT
-var limitrange = 100;
-var rangeInput = document.getElementById('myRange');
-var amountInput = document.getElementById('amount');
-rangeInput.addEventListener('input', updateRangeBackground);
-var loanAmount = 10;
-var loanMonths = 4;
-var interestRate = 0.2;
-var totalprice = 0;
+    var limitrange = 150;
+    var rangeInput = document.getElementById('myRange');
+    var amountInput = document.getElementById('amount');
+    rangeInput.addEventListener('input', updateRangeBackground);
+    var loanAmount = 8;
+    var loanMonths = 4;
+    var interestRate = 0.2;
+    var totalprice = 0;
 
 
     var adultCountF = 2;
@@ -414,13 +431,16 @@ var totalprice = 0;
 
 
     function updateRangeBackground() {
-        const value = rangeInput.value;
-        const min = rangeInput.min;
-        const max = rangeInput.max;
+        const value = parseFloat(rangeInput.value);
+        const min = parseFloat(rangeInput.min);
+        const max = parseFloat(rangeInput.max);
         const percentage = ((value - min) / (max - min)) * 100;
         rangeInput.style.background = `linear-gradient(to right, #2e58d1 ${percentage}%, #e5e7eb ${percentage}%)`;
-        amountInput.value = value;
     }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        updateRangeBackground();
+    });
 
     function updateLoanAmount(amount) {
         loanAmount = amount;
@@ -476,62 +496,76 @@ var totalprice = 0;
     }
 
 
-    function calculateInstallments() {
+   function calculateInstallments() {
+  // تبدیل اعداد فارسی و حذف ویرگول‌ها (، و ,)
+  const toEnglishNumber = (str) => {
+    return str
+      .replace(/[۰-۹]/g, (d) => String('۰۱۲۳۴۵۶۷۸۹'.indexOf(d)))
+      .replace(/[٬,]/g, '');
+  };
 
-    var inpHDNdoublePbef = document.getElementById("inphidden-doubleP").value;
-    var inpHDNdoubleP = parseFloat(inpHDNdoublePbef.replaceAll(",", ""));
-    
-    var inpHDNsinglePbef = document.getElementById("inphidden-singleP").value;
-    var inpHDNsingleP = parseFloat(inpHDNsinglePbef.replaceAll(",", ""));
-    
-    var inpHDNwBedPbef = document.getElementById("inphidden-wBedP").value;
-    var inpHDNwBedP = parseFloat(inpHDNwBedPbef.replaceAll(",", ""));
-    
-    var inpHDNwoBedPbef = document.getElementById("inphidden-woBedP").value;
-    var inpHDNwoBedP = parseFloat(inpHDNwoBedPbef.replaceAll(",", ""));
-       
-    if(inpHDNdoubleP == 0){
-        document.getElementById("adult-installment").disabled = true;
+  // خواندن امن از input مخفی و تبدیل به عدد
+  const safeParse = (id) => {
+    const el = document.getElementById(id);
+    if (!el) {
+      console.warn(`⛔ عنصر ${id} پیدا نشد: ${id}`);
+      return 0;
     }
-    if(inpHDNsingleP == 0){
-        document.getElementById("adult-installment").disabled = true;
-    }
-    if(inpHDNwBedP == 0){
-        document.getElementById("child-installment").disabled = true;
-        document.getElementById("child-bed-installment").disabled = true;
-    }
-    if(inpHDNwoBedP == 0){
-        document.getElementById("infant-installment").disabled = true;
-    }
+    return parseFloat(toEnglishNumber(el.value || '0')) || 0;
+  };
 
-        adultCountF = document.getElementById("adult-installment").value;
-        childbedCountF = document.getElementById("child-bed-installment").value;
-        childwobedCountF = document.getElementById("child-installment").value;
-        infantCountF = document.getElementById("infant-installment").value;
+  // دریافت قیمت‌ها از input مخفی (فارسی یا انگلیسی)
+  const inpHDNdoubleP = safeParse("inphidden-doubleP");
+  const inpHDNsingleP = safeParse("inphidden-singleP");
+  const inpHDNwBedP = safeParse("inphidden-wBedP");
+  const inpHDNwoBedP = safeParse("inphidden-woBedP");
 
-        if(adultCountF == 1){
-            totalprice = (adultCountF * parseFloat(inpHDNsingleP)) + (childwobedCountF * parseFloat(inpHDNwoBedP)) + (infantCountF * parseFloat(inpHDNwoBedP)) + (childbedCountF * parseFloat(inpHDNwBedP));
-        }else{
-            totalprice = (adultCountF * parseFloat(inpHDNdoubleP)) + (childwobedCountF * parseFloat(inpHDNwoBedP)) + (infantCountF * parseFloat(inpHDNwoBedP)) + (childbedCountF * parseFloat(inpHDNwBedP));
-        }
+  // فعال/غیرفعال کردن فیلدها بر اساس قیمت
+  document.getElementById("adult-installment").disabled = (inpHDNdoubleP === 0 && inpHDNsingleP === 0);
+  document.getElementById("child-bed-installment").disabled = (inpHDNwBedP === 0);
+  document.getElementById("child-installment").disabled = (inpHDNwoBedP === 0);
+  document.getElementById("infant-installment").disabled = (inpHDNwoBedP === 0);
 
-        var totalAdvancePayment = 0;
-        const totalAmount = loanAmount * 1000000;
-        // totalprice = totalprice * 1000000;
-        if (totalprice > totalAmount) {
-            totalAdvancePayment = totalprice - totalAmount;
-        }
+  // دریافت تعداد مسافران
+  adultCountF = parseInt(document.getElementById("adult-installment")?.value || "0");
+  childbedCountF = parseInt(document.getElementById("child-bed-installment")?.value || "0");
+  childwobedCountF = parseInt(document.getElementById("child-installment")?.value || "0");
+  infantCountF = parseInt(document.getElementById("infant-installment")?.value || "0");
 
-        const totalAmountWithFacilities = (totalAmount + (totalAmount * interestRate) + totalAdvancePayment);
-        const totalAmountafterFacilitiesMinus = (totalAmount + (totalAmount * interestRate));
-        const installmentAmount = totalAmountafterFacilitiesMinus / loanMonths;
-        // installmentAmountceil = Math.ceil(installmentAmount);
-        // installmentAmountceil = installmentAmount;
-        document.querySelector('.total-amount').textContent = totalprice.toLocaleString();
-        document.querySelector('.Total-amount-facilities').textContent = totalAmountWithFacilities.toLocaleString();
-        document.querySelector('.Total-advance-payment').textContent = totalAdvancePayment.toLocaleString();
-        document.querySelector('.amount-each-installment').textContent = parseInt(installmentAmount).toLocaleString();
-    }
+  // محاسبه قیمت کل
+  if (adultCountF === 1) {
+    totalprice =
+      (adultCountF * inpHDNsingleP) +
+      (childwobedCountF * inpHDNwoBedP) +
+      (infantCountF * inpHDNwoBedP) +
+      (childbedCountF * inpHDNwBedP);
+  } else {
+    totalprice =
+      (adultCountF * inpHDNdoubleP) +
+      (childwobedCountF * inpHDNwoBedP) +
+      (infantCountF * inpHDNwoBedP) +
+      (childbedCountF * inpHDNwBedP);
+  }
+
+  // محاسبه پیش‌پرداخت
+  const totalAmount = (parseFloat(loanAmount) || 0) * 1_000_000;
+  let totalAdvancePayment = 0;
+
+  if (totalprice > totalAmount) {
+    totalAdvancePayment = totalprice - totalAmount;
+  }
+
+  // محاسبه اقساط
+  const totalAmountafterFacilities = totalAmount + (totalAmount * interestRate);
+  const totalAmountWithFacilities = totalAmountafterFacilities + totalAdvancePayment;
+  const installmentAmount = Math.ceil(totalAmountafterFacilities / loanMonths);
+
+  // نمایش در صفحه
+  document.querySelector('.total-amount').textContent = totalprice.toLocaleString();
+  document.querySelector('.Total-amount-facilities').textContent = totalAmountWithFacilities.toLocaleString();
+  document.querySelector('.Total-advance-payment').textContent = totalAdvancePayment.toLocaleString();
+  document.querySelector('.amount-each-installment').textContent = installmentAmount.toLocaleString();
+}
 
     updateRangeBackground();
     calculateInstallments();

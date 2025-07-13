@@ -11,8 +11,8 @@
         <div class="max-h-[600px] overflow-auto p-4">
             <h3 class="tour__name__container 
             w-0 h-0 hidden">[##cms.form.tourName##]</h3>
-            <div class="md:flex md:justify-between">
-                <div class=" rounded-xl text-sm w-49per">
+            <div class="flex justify-between gap-10">
+                <div class="flex-1 rounded-xl text-sm">
                     <div class="flex flex-col mb-10 gap-y-3">
                         <basis core="group" if=" '[##cms.form.startDate##]' <> 'null' ">
                             <div class="border rounded-20px border-neutral-200 p-4 mb-3">
@@ -81,7 +81,7 @@
 
 
                 </div>
-                <div class="tour__booking__form__container text-sm  max-md:mt-3 w-49per">
+                <div class="tour__booking__form__container flex-1 text-sm">
                     <form>
                         <basis core="schema" run="atclient"
                             schemaurl="/schema/domainform/[##cms.host.bookingTourInstallmentId1##]/[##cms.host.bookingTourInstallmentId2##]/fa/رزرو-تور-بصورت-اقساطی"
