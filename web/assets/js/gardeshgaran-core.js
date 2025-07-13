@@ -960,7 +960,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const normalizeText = (text) => text.replace(/\s/g, '').normalize('NFKC');
 
   const tourCards = document.querySelectorAll('.tourL-tour-card');
-  const filterButtons = document.querySelectorAll('.day-tour-filter');
+  const dayFilterContainer = document.querySelector('.day-tour-filter-wrapper');
   const airlineContainer = document.querySelector('.checkboxList');
   const minInput = document.getElementById('minRange');
   const maxInput = document.getElementById('maxRange');
@@ -998,6 +998,49 @@ document.addEventListener('DOMContentLoaded', () => {
     realMin = REAL_MIN;
     realMax = REAL_MAX;
   }
+
+  const daysMap = new Map();
+  tourCards.forEach(card => {
+    const dayElem = card.querySelector('.tourL-tour-day');
+    if (dayElem) {
+      const originalText = dayElem.textContent.trim();
+      const key = normalizeText(originalText);
+      if (key && !daysMap.has(key)) {
+        const match = originalText.match(/(\d+)[^\d]+(\d+)/); 
+        const night = match ? parseInt(match[1], 10) : 0;
+        const day = match ? parseInt(match[2], 10) : 0;
+        const sortValue = night + day; 
+        daysMap.set(key, { originalText, sortValue, night, day });
+      }
+    }
+  });
+
+  const sortedDays = Array.from(daysMap.entries()).sort((a, b) => {
+    if (a[1].sortValue !== b[1].sortValue) {
+      return a[1].sortValue - b[1].sortValue;
+    }
+    return a[1].night - b[1].night;
+  });
+
+  dayFilterContainer.innerHTML = '';
+  sortedDays.forEach(([key, { originalText }]) => {
+    const btn = document.createElement('button');
+    btn.className = 'day-tour-filter p-4 bg-white border border-gray-50 rounded-lg text-sm font-bold cursor-pointer transition-all duration-300 hover:border-primary-500 hover:text-primary-500';
+    btn.textContent = originalText;
+    btn.addEventListener('click', () => {
+      const isSelected = selectedDays.has(key);
+      btn.classList.toggle('border-primary-500', !isSelected);
+      btn.classList.toggle('text-primary-500', !isSelected);
+
+      if (isSelected) {
+        selectedDays.delete(key);
+      } else {
+        selectedDays.add(key);
+      }
+      filterCards();
+    });
+    dayFilterContainer.appendChild(btn);
+  });
 
   const airlineData = new Map();
   Array.from(tourCards).forEach((card) => {
@@ -1094,27 +1137,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  filterButtons.forEach((button) => {
-    button.addEventListener('click', function () {
-      const selectedDay = normalizeText(button.textContent);
-      const isSelected = selectedDays.has(selectedDay);
-
-      button.classList.toggle('border-primary-500', !isSelected);
-      button.classList.toggle('text-primary-500', !isSelected);
-
-      if (isSelected) {
-        selectedDays.delete(selectedDay);
-      } else {
-        selectedDays.add(selectedDay);
-      }
-
-      filterCards();
-    });
-  });
-
-  // اتصال رویدادها به airlineInputs پس از تولید پویا
-  const airlineInputs = document.querySelectorAll('.airline-hotel-input');
-  airlineInputs.forEach((input) => {
+  document.querySelectorAll('.airline-hotel-input').forEach((input) => {
     input.addEventListener('click', function () {
       const parent = input.closest('.airline-item');
       const airlineName = normalizeText(parent.querySelector('.airline-item-name').innerText);
@@ -1166,6 +1189,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   updatePriceRange();
 });
+
 
 // free-consulation-form
 document.addEventListener('DOMContentLoaded', () => {

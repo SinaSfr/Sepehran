@@ -700,7 +700,6 @@ const renderTourInstallmentForm = async (element) => {
       : ` `);
 };
 
-
 const renderReserveTourInstallmentForm = async (element) => {
   document.getElementById('white-modal').classList.add('hidden');
 
@@ -826,6 +825,7 @@ const onrenderedFormSchema = async () => {
     console.error('onrenderedFormSchema=' + err.lineNumber + ',' + err.message);
   }
 };
+
 const toggleCount = (element, type, limit, passenger) => {
   try {
     let currentCount = parseInt(element.closest('li').querySelector('.count__container').textContent);
@@ -840,6 +840,100 @@ const toggleCount = (element, type, limit, passenger) => {
     console.error('toggleCount=' + err.lineNumber + ',' + err.message);
   }
 };
+
+const renderTourForm = async (element) => {
+  // تبدیل مقدار سرویس
+  let service = "-";
+  switch (
+    parseInt(
+      element
+        .closest(".hotel-card")
+        .querySelector(".tourInventory__details__item__service").dataset.value
+    )
+  ) {
+    case 1654:
+      service = "O.R";
+      break;
+    case 1655:
+      service = "B.B";
+      break;
+    case 1656:
+      service = "H.B";
+      break;
+    case 1657:
+      service = "F.B";
+      break;
+    case 1658:
+      service = "ALL";
+      break;
+    case 1659:
+      service = "U.ALL";
+      break;
+    case 1660:
+      service = "Maximum All Inclusive";
+      break;
+  }
+
+  $bc.setSource("db.tourBookingForm", {
+    run: false,
+  });
+
+  // نرمال‌سازی متن
+  const normalizeText = (text) =>
+    text.replace(/ي/g, "ی").replace(/ك/g, "ک");
+
+  let sd = "";
+  let ed = "";
+
+  const sdEl = document.querySelector(".date__details .active .start__date");
+  const edEl = document.querySelector(".date__details .active .end__date");
+
+  if (sdEl) sd = normalizeText(sdEl.textContent);
+  if (edEl) ed = normalizeText(edEl.textContent);
+
+  const wrapper = element.closest(".hotel-card-wrapper");
+
+  $bc.setSource("db.tourForm", {
+    hotelName: element
+      .closest(".hotel-card")
+      .querySelector(".hotel-card-title").textContent,
+    hotelRate: element
+      .closest(".hotel-card")
+      .querySelector(".hotel-card-star").dataset.value,
+    hotelService: service,
+    tourName: document.querySelector(".tour-name").textContent,
+
+    doubleP: wrapper.querySelector(".tourInventory__details__item__double .tourInventory__details__item__price").textContent,
+    singleP: wrapper.querySelector(".tourInventory__details__item__single .tourInventory__details__item__price").textContent,
+    wBedP: wrapper.querySelector(".tourInventory__details__item__wBed .tourInventory__details__item__price").textContent,
+    woBedP: wrapper.querySelector(".tourInventory__details__item__woBed .tourInventory__details__item__price").textContent,
+
+    doubleU: wrapper.querySelector(".tourInventory__details__item__double .tourInventory__details__item__unit")?.textContent || " ",
+    singleU: wrapper.querySelector(".tourInventory__details__item__single .tourInventory__details__item__unit")?.textContent || " ",
+    wBedU: wrapper.querySelector(".tourInventory__details__item__wBed .tourInventory__details__item__unit")?.textContent || " ",
+    woBedU: wrapper.querySelector(".tourInventory__details__item__woBed .tourInventory__details__item__unit")?.textContent || " ",
+
+    startDate: sd,
+    endDate: ed,
+
+    weekdayStartDate: document.querySelector(".origins__start__weekday")?.textContent || " ",
+    weekdayEndDate: document.querySelector(".destinations__start__weekday")?.textContent || " ",
+
+    departureName: document.querySelector(".origins__city")?.textContent || " ",
+    destinationName: document.querySelector(".destinations__city")?.textContent || " ",
+
+    startTime: document
+      .querySelector(".execution__details__path__origins .execution__details__path__item .__times__start")
+      ?.textContent || " ",
+    endTime: document
+      .querySelector(".execution__details__path__destinations .execution__details__path__item .__times__start")
+      ?.textContent || " ",
+
+    run: true,
+  });
+};
+
+
 const onrenderedSchmaTourBookingForm = async (args) => {
   try {
     document
