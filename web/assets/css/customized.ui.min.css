@@ -726,6 +726,9 @@ body {
 .inline-block {
   display: inline-block;
 }
+.inline {
+  display: inline;
+}
 .flex {
   display: flex;
 }
@@ -1851,4 +1854,8 @@ body {
 .itemInput,
 .login-btn {
   font-family: 'YekanBakhFaNum' !important;
+}
+
+.adress-wrapper p{
+  display: inline;
 }

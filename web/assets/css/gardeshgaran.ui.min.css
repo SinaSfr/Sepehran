@@ -1033,6 +1033,9 @@ body {
 .pb-11 {
   padding-bottom: 2.75rem;
 }
+.pb-12 {
+  padding-bottom: 3rem /* 48px */;
+}
 .pb-2 {
   padding-bottom: 0.5rem;
 }

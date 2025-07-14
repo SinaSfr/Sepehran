@@ -73,10 +73,8 @@ document.addEventListener('DOMContentLoaded', function () {
                   element.addEventListener('click', function (e) {
                     e.stopPropagation();
 
-                    // اول حذف rotate از همه
                     allElements.forEach((el) => el.classList.remove('rotate'));
 
-                    // بعد اضافه کردن به همینی که کلیک شده
                     this.classList.add('rotate');
                   });
                 });
@@ -1000,16 +998,16 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const daysMap = new Map();
-  tourCards.forEach(card => {
+  tourCards.forEach((card) => {
     const dayElem = card.querySelector('.tourL-tour-day');
     if (dayElem) {
       const originalText = dayElem.textContent.trim();
       const key = normalizeText(originalText);
       if (key && !daysMap.has(key)) {
-        const match = originalText.match(/(\d+)[^\d]+(\d+)/); 
+        const match = originalText.match(/(\d+)[^\d]+(\d+)/);
         const night = match ? parseInt(match[1], 10) : 0;
         const day = match ? parseInt(match[2], 10) : 0;
-        const sortValue = night + day; 
+        const sortValue = night + day;
         daysMap.set(key, { originalText, sortValue, night, day });
       }
     }
@@ -1022,25 +1020,28 @@ document.addEventListener('DOMContentLoaded', () => {
     return a[1].night - b[1].night;
   });
 
-  dayFilterContainer.innerHTML = '';
-  sortedDays.forEach(([key, { originalText }]) => {
-    const btn = document.createElement('button');
-    btn.className = 'day-tour-filter p-4 bg-white border border-gray-50 rounded-lg text-sm font-bold cursor-pointer transition-all duration-300 hover:border-primary-500 hover:text-primary-500';
-    btn.textContent = originalText;
-    btn.addEventListener('click', () => {
-      const isSelected = selectedDays.has(key);
-      btn.classList.toggle('border-primary-500', !isSelected);
-      btn.classList.toggle('text-primary-500', !isSelected);
+  if (dayFilterContainer) {
+    dayFilterContainer.innerHTML = '';
+    sortedDays.forEach(([key, { originalText }]) => {
+      const btn = document.createElement('button');
+      btn.className =
+        'day-tour-filter p-4 bg-white border border-gray-50 rounded-lg text-sm font-bold cursor-pointer transition-all duration-300 hover:border-primary-500 hover:text-primary-500';
+      btn.textContent = originalText;
+      btn.addEventListener('click', () => {
+        const isSelected = selectedDays.has(key);
+        btn.classList.toggle('border-primary-500', !isSelected);
+        btn.classList.toggle('text-primary-500', !isSelected);
 
-      if (isSelected) {
-        selectedDays.delete(key);
-      } else {
-        selectedDays.add(key);
-      }
-      filterCards();
+        if (isSelected) {
+          selectedDays.delete(key);
+        } else {
+          selectedDays.add(key);
+        }
+        filterCards();
+      });
+      dayFilterContainer.appendChild(btn);
     });
-    dayFilterContainer.appendChild(btn);
-  });
+  }
 
   const airlineData = new Map();
   Array.from(tourCards).forEach((card) => {
@@ -1189,7 +1190,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   updatePriceRange();
 });
-
 
 // free-consulation-form
 document.addEventListener('DOMContentLoaded', () => {
@@ -1354,50 +1354,54 @@ document.addEventListener('DOMContentLoaded', function () {
     const containerTour = document.querySelector('.tour-list-container');
     const sectionTour = document.querySelector('.tour-list-section');
 
-    // ویزا
-    if (containerVisa && allVisaItems.length > 0) {
+    if (containerVisa) {
       containerVisa.innerHTML = '';
-      let hasVisaMatch = false;
 
-      allVisaItems.forEach((item) => {
-        const titleEl = item.querySelector('.title-visa');
-        const titleText = titleEl ? titleEl.textContent.trim().toLowerCase() : '';
+      if (allVisaItems.length > 0) {
+        let hasVisaMatch = false;
 
-        if (titleText.includes('visa') || titleText.includes('ویزا')) {
-          const clone = item.cloneNode(true);
-          containerVisa.appendChild(clone);
-          hasVisaMatch = true;
+        allVisaItems.forEach((item) => {
+          const titleEl = item.querySelector('.title-visa');
+          const titleText = titleEl ? titleEl.textContent.trim().toLowerCase() : '';
+
+          if (titleText.includes('visa') || titleText.includes('ویزا')) {
+            const clone = item.cloneNode(true);
+            containerVisa.appendChild(clone);
+            hasVisaMatch = true;
+          }
+        });
+
+        if (!hasVisaMatch) {
+          containerVisa.innerHTML = '<p>ویزا‌ای وجود ندارد.</p>';
         }
-      });
-
-      if (!hasVisaMatch && sectionVisa) {
-        sectionVisa.style.display = 'none';
+      } else {
+        containerVisa.innerHTML = '<p>هیچ آیتم ویزایی یافت نشد.</p>';
       }
-    } else if (sectionVisa) {
-      sectionVisa.style.display = 'none';
     }
 
-    // تور
-    if (containerTour && allTourItems.length > 0) {
+    if (containerTour) {
       containerTour.innerHTML = '';
-      let hasTourMatch = false;
 
-      allTourItems.forEach((item) => {
-        const titleEl = item.querySelector('.title-tour');
-        const titleText = titleEl ? titleEl.textContent.trim().toLowerCase() : '';
+      if (allTourItems.length > 0) {
+        let hasTourMatch = false;
 
-        if (titleText.includes('tour') || titleText.includes('تور')) {
-          const clone = item.cloneNode(true);
-          containerTour.appendChild(clone);
-          hasTourMatch = true;
+        allTourItems.forEach((item) => {
+          const titleEl = item.querySelector('.title-tour');
+          const titleText = titleEl ? titleEl.textContent.trim().toLowerCase() : '';
+
+          if (titleText.includes('tour') || titleText.includes('تور')) {
+            const clone = item.cloneNode(true);
+            containerTour.appendChild(clone);
+            hasTourMatch = true;
+          }
+        });
+
+        if (!hasTourMatch) {
+          containerTour.innerHTML = '<p>توری وجود ندارد.</p>';
         }
-      });
-
-      if (!hasTourMatch && sectionTour) {
-        sectionTour.style.display = 'none';
+      } else {
+        containerTour.innerHTML = '<p>هیچ آیتم توری یافت نشد.</p>';
       }
-    } else if (sectionTour) {
-      sectionTour.style.display = 'none';
     }
   }
 });
@@ -1518,7 +1522,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 });
-
 
 // filter price tour-list
 document.addEventListener('DOMContentLoaded', function () {
@@ -1654,7 +1657,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const isOpen = container.classList.contains('open');
 
         if (isOpen) {
-          container.style.maxHeight = contentHeight + 'px';
+          container.style.maxHeight = container.scrollHeight + 'px';
           requestAnimationFrame(() => {
             container.style.maxHeight = closedHeight + 'px';
             container.classList.remove('open');
@@ -1667,7 +1670,8 @@ document.addEventListener('DOMContentLoaded', () => {
           container.classList.add('open');
 
           requestAnimationFrame(() => {
-            container.style.maxHeight = container.scrollHeight + 'px';
+            const expandedHeight = container.scrollHeight + 52;
+            container.style.maxHeight = expandedHeight + 'px';
           });
 
           if (shadow) shadow.classList.remove('bg-white-shadow');
@@ -1677,7 +1681,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
-
 
 // reply-comment
 async function Reply_Comment(element) {
@@ -1744,11 +1747,13 @@ async function OnProcessedEditObjectRequest(args) {
   if (errorid == '6') {
     document.querySelector('#request-form .Loading_Form').style.display = 'none';
     document.querySelector('#request-form .message-api').innerHTML = 'درخواست شما با موفقیت ثبت شد.';
+    document.querySelector('#request-form .message-api').style.color = 'var(--secondary-700)';
   } else {
     refreshCaptchaRequest();
     setTimeout(() => {
       document.querySelector('#request-form .Loading_Form').style.display = 'none';
       document.querySelector('#request-form .message-api').innerHTML = 'خطایی رخ داده, لطفا مجدد اقدام کنید.';
+      document.querySelector('#request-form .message-api').style.color = 'rgb(220 38 38)';
     }, 2000);
   }
 }
@@ -1796,11 +1801,13 @@ async function OnProcessedEditObjectEmployment(args) {
   if (errorid == '6') {
     document.querySelector('#employment-form .Loading_Form').style.display = 'none';
     document.querySelector('#employment-form .message-api').innerHTML = 'درخواست شما با موفقیت ثبت شد.';
+    document.querySelector('#employment-form .message-api').style.color = 'var(--secondary-700)';
   } else {
     refreshCaptchaEmployment();
     setTimeout(() => {
       document.querySelector('#employment-form .Loading_Form').style.display = 'none';
       document.querySelector('#employment-form .message-api').innerHTML = 'خطایی رخ داده, لطفا مجدد اقدام کنید.';
+      document.querySelector('#employment-form .message-api').style.color = 'rgb(220 38 38)';
     }, 2000);
   }
 }
@@ -1851,11 +1858,13 @@ async function OnProcessedEditObjectConsulation(args) {
   if (errorid == '6') {
     document.querySelector('#consulation-form .Loading_Form').style.display = 'none';
     document.querySelector('#consulation-form .message-api').innerHTML = 'درخواست شما با موفقیت ثبت شد.';
+    document.querySelector('#consulation-form .message-api').style.color = 'var(--secondary-700)';
   } else {
     refreshCaptchaConsulation();
     setTimeout(() => {
       document.querySelector('#consulation-form .Loading_Form').style.display = 'none';
       document.querySelector('#consulation-form .message-api').innerHTML = 'خطایی رخ داده, لطفا مجدد اقدام کنید.';
+      document.querySelector('#consulation-form .message-api').style.color = 'rgb(220 38 38)';
     }, 2000);
   }
 }

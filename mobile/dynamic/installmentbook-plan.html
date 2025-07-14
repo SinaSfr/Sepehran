@@ -5,7 +5,7 @@
 
 
         <div
-            class="mx-auto max-lg:w-[90%] max-xl:w-[97%] xl:max-w-7xl h-[90%] bg-neutralcolor-50 absolute top-0 left-0 right-0 bottom-0 m-auto shadow-2xl p-4 overflow-y-auto">
+            class="w-full bg-primary-100 absolute top-0 left-0 right-0 bottom-0 m-auto shadow-2xl p-4 overflow-y-auto">
 
             <div class="w-full">
                 <svg onclick="closeModalForm(this , 'modal-plan-installment')" width="48" height="48" class="mr-auto"
@@ -25,7 +25,7 @@
 
             <span class="text-neutralcolor-800 text-sm font-danaregular">جهت مشاهده شرایط خرید این تور به صورت اقساطی
                 تعداد مسافران طرح مورد نظر را وارد نمایید</span>
-            <div class="w-full flex items-stretch gap-4">
+            <div class="w-full flex flex-col items-stretch gap-4">
                 <div class=" bg-white rounded-xl w-full p-3  mt-3">
                     <div class="font-danaregular text-primary-400 text-lg flex items-center">
                         <svg width="49" height="49" viewBox="0 0 49 49" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -195,7 +195,7 @@
                             <div class="flex flex-col justify-between">
                                 <div>
                                     <span class="text-neutralcolor-900 text-base font-danaregular block leading-10">طرح
-                                        اقساط گردشگران</span>
+                                        اقشگرساط گردان</span>
                                     <span class="text-neutralcolor-500 text-sm font-danaregular block leading-10">طرح تا
                                         سقف 150 میلون تومان</span>
                                 </div>
@@ -222,9 +222,9 @@
                 </div>
             </div>
 
-            <div class="bg-white rounded-xl w-full flex items-stretch gap-8 mt-3 py-3 px-5">
+            <div class="bg-white rounded-xl w-full flex flex-col items-stretch gap-8 mt-3 py-3 px-5">
                 <section class="w-full">
-                    <div id="calculator-form" class="flex justify-start items-center gap-x-2">
+                    <div id="calculator-form" class="flex justify-start items-center gap-x-2 mb-2">
                         <svg width="39" height="39" viewBox="0 0 39 39" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M11.18 29.4936V26.1299" stroke="#2e58d1" stroke-width="1.5"
                                 stroke-linecap="round" />
@@ -280,33 +280,33 @@
                                     مدت باز پرداخت
                                 </span>
 
-                                <ul class="grid grid-cols-5 gap-4 mt-4 gap-y-2" id="month-list">
+                                <ul class="flex flex-col gap-4 mt-4 gap-y-2" id="month-list">
                                     <li month="4" rate="0.5" onclick="calculateMonth(4 , 0.5 , this)"
-                                        class="sayyadiplan flex flex-1 items-center justify-center h-12 rounded-xl  bg-primary-500 text-white text-center hover:bg-primary-500 hover:text-white text-base cursor-pointer">
+                                        class="sayyadiplan flex items-center justify-center h-12 rounded-xl  bg-primary-500 text-white text-center hover:bg-primary-500 hover:text-white text-base cursor-pointer">
                                         4 ماهه</li>
                                     <li month="5" rate="0.5" onclick="calculateMonth(5 , 0.5 , this)"
-                                        class="sayyadiplan flex flex-1 items-center justify-center h-12 rounded-xl  bg-gray-100 text-neutralcolor-900 text-center hover:bg-primary-500 hover:text-white text-base cursor-pointer">
+                                        class="sayyadiplan flex items-center justify-center h-12 rounded-xl  bg-gray-100 text-neutralcolor-900 text-center hover:bg-primary-500 hover:text-white text-base cursor-pointer">
                                         5 ماهه</li>
                                     <li month="6" rate="0.5" onclick="calculateMonth(6 , 0.5 , this)"
-                                        class="sayyadiplan flex flex-1 items-center justify-center h-12 rounded-xl  bg-gray-100 text-neutralcolor-900 text-center hover:bg-primary-500 hover:text-white text-base cursor-pointer">
+                                        class="sayyadiplan flex items-center justify-center h-12 rounded-xl  bg-gray-100 text-neutralcolor-900 text-center hover:bg-primary-500 hover:text-white text-base cursor-pointer">
                                         6 ماهه</li>
                                     <li month="7" rate="0.5" onclick="calculateMonth(7 , 0.5 , this)"
-                                        class="sayyadiplan flex flex-1 items-center justify-center h-12 rounded-xl  bg-gray-100 text-neutralcolor-900 text-center hover:bg-primary-500 hover:text-white text-base cursor-pointer">
+                                        class="sayyadiplan flex items-center justify-center h-12 rounded-xl  bg-gray-100 text-neutralcolor-900 text-center hover:bg-primary-500 hover:text-white text-base cursor-pointer">
                                         7 ماهه</li>
                                     <li month="8" rate="0.5" onclick="calculateMonth(8 , 0.5 , this)"
-                                        class="sayyadiplan flex flex-1 items-center justify-center h-12 rounded-xl  bg-gray-100 text-neutralcolor-900 text-center hover:bg-primary-500 hover:text-white text-base cursor-pointer">
+                                        class="sayyadiplan flex items-center justify-center h-12 rounded-xl  bg-gray-100 text-neutralcolor-900 text-center hover:bg-primary-500 hover:text-white text-base cursor-pointer">
                                         8 ماهه</li>
                                     <li month="9" rate="0.5" onclick="calculateMonth(9 , 0.5 , this)"
-                                        class="sayyadiplan flex flex-1 items-center justify-center h-12 rounded-xl  bg-gray-100 text-neutralcolor-900 text-center hover:bg-primary-500 hover:text-white text-base cursor-pointer">
+                                        class="sayyadiplan flex items-center justify-center h-12 rounded-xl  bg-gray-100 text-neutralcolor-900 text-center hover:bg-primary-500 hover:text-white text-base cursor-pointer">
                                         9 ماهه</li>
                                     <li month="10" rate="0.5" onclick="calculateMonth(10 , 0.5 , this)"
-                                        class="sayyadiplan flex flex-1 items-center justify-center h-12 rounded-xl  bg-gray-100 text-neutralcolor-900 text-center hover:bg-primary-500 hover:text-white text-base cursor-pointer">
+                                        class="sayyadiplan flex items-center justify-center h-12 rounded-xl  bg-gray-100 text-neutralcolor-900 text-center hover:bg-primary-500 hover:text-white text-base cursor-pointer">
                                         10 ماهه</li>
                                     <li month="11" rate="0.5" onclick="calculateMonth(11 , 0.5 , this)"
-                                        class="sayyadiplan flex flex-1 items-center justify-center h-12 rounded-xl  bg-gray-100 text-neutralcolor-900 text-center hover:bg-primary-500 hover:text-white text-base cursor-pointer">
+                                        class="sayyadiplan flex items-center justify-center h-12 rounded-xl  bg-gray-100 text-neutralcolor-900 text-center hover:bg-primary-500 hover:text-white text-base cursor-pointer">
                                         11 ماهه</li>
                                     <li month="5" rate="0.5" onclick="calculateMonth(12 , 0.5 , this)"
-                                        class="sayyadiplan flex flex-1 items-center justify-center h-12 rounded-xl  bg-gray-100 text-neutralcolor-900 text-center hover:bg-primary-500 hover:text-white text-base cursor-pointer">
+                                        class="sayyadiplan flex items-center justify-center h-12 rounded-xl  bg-gray-100 text-neutralcolor-900 text-center hover:bg-primary-500 hover:text-white text-base cursor-pointer">
                                         12 ماهه</li>
 
                                     <li month="12" rate="0.21" onclick="calculateMonth(12 , 0.21 , this)" class="manisaplan flex flex-1 items-center justify-center h-12 rounded-xl bg-gray-100 text-center hover:bg-primary-500 hover:text-white text-base cursor-pointer

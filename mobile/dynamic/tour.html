@@ -186,7 +186,12 @@
                 </basis>
             </ul>
         </section>
-        <div class="mx-auto max-lg:w-[92%] max-xl:w-[97%] xl:max-w-7xl mt-6">
+        <basis core="print" datamembername="db.tour-view">
+            <face filter="TypeID in(150)">
+                <h2 class="tour-name hidden">@text</h2>
+            </face>
+        </basis>
+        <div class="mx-auto max-lg:w-[92%] max-xl:w-[97%] xl:max-w-7xl mt-6 min-h-[612px]">
             <section>
                 <basis core="print" datamembername="db.gallery-tour">
                     <layout>
@@ -411,7 +416,7 @@
                 </basis>
 
             </section>
-            <section class="flex flex-col justify-between flex-1 min-w-0 mt-7">
+            <section class="flex flex-col justify-between flex-1 min-w-0 mt-7 min-h-[275px]">
                 <div class="bg-primary-50 rounded-2xl p-4">
                     <div class="flex items-center gap-2 mb-3">
                         <svg width="24" height="24">
@@ -470,7 +475,7 @@
                     </div>
                     <div class="flex items-center gap-3">
                         <a href="#"
-                            class="group flex items-center justify-center gap-2 font-extrabold border border-gray-100 rounded-xl p-6 transition-all duration-300 hover:bg-primary-500 hover:text-white hover:shadow-btn-shadow">
+                            class="group flex items-center justify-center gap-2 font-extrabold border border-gray-100 rounded-xl w-40 h-[73px] transition-all duration-300 hover:bg-primary-500 hover:text-white hover:shadow-btn-shadow">
                             محاسبه اقساط
                             <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -481,7 +486,7 @@
                             </svg>
                         </a>
                         <a href=""
-                            class="flex items-center justify-center gap-2 font-extrabold text-white bg-primary-500 rounded-xl p-6 transition-all duration-300 hover:shadow-small-btn-shadow">
+                            class="flex items-center justify-center gap-2 font-extrabold text-white bg-primary-500 rounded-xl w-40 h-[73px] transition-all duration-300 hover:shadow-small-btn-shadow">
                             مشاوره خرید
                             <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -737,33 +742,33 @@
                     <div class="flex flex-col gap-8 items-center">
                         <div class="flex justify-center px-9 py-7 border border-gray-50 shadow-card-shadow rounded-xl">
                             <ul class="flex items-center flex-wrap justify-between gap-y-8">
-                                <li class="relative w-1/2 flex flex-col gap-2 items-center border-l-2 border-gray-100 border-dashed">
+                                <li class="tourInventory__details__item__double relative w-1/2 flex flex-col gap-2 items-center border-l-2 border-gray-100 border-dashed">
                                     <span class="text-sm font-semibold">دوتخته</span>
                                     {{ return await renderPriceInfo($data,'doublecost')}}
                                 </li>
-                                <li class="relative w-1/2 flex flex-col gap-2 items-center">
+                                <li class="tourInventory__details__item__single relative w-1/2 flex flex-col gap-2 items-center">
                                     <span class="text-sm font-semibold">تک تخته</span>
                                     {{ return await renderPriceInfo($data,'singlecost')}}
                                 </li>
-                                <li class="relative w-1/2 flex flex-col gap-2 items-center border-l-2 border-gray-100 border-dashed">
+                                <li class="tourInventory__details__item__wBed relative w-1/2 flex flex-col gap-2 items-center border-l-2 border-gray-100 border-dashed">
                                     <span class="text-sm font-semibold">کودک با تخت</span>
                                     {{ return await renderPriceInfo($data,'childwithbed')}}
                                 </li>
-                                <li class="relative w-1/2 flex flex-col gap-2 items-center">
+                                <li class="tourInventory__details__item__woBed relative w-1/2 flex flex-col gap-2 items-center">
                                     <span class="text-sm font-semibold">کودک بدون تخت</span>
                                     {{ return await renderPriceInfo($data,'childwithoutbed')}}
                                 </li>
                             </ul>
                         </div>
                         <div class="flex gap-4">
-                            <a href=""
+                            <button onclick="renderTourInstallmentForm(this)"
                                 class="group flex items-center justify-center gap-2 font-extrabold rounded-xl w-[151px] h-[73px] transition-all duration-300 bg-secondary-500 hover:shadow-btn-shadow">
                                 شرایط اقساط
                                 <svg width="24" height="24">
                                     <use href="./images/sprite-icons.svg#icon-black-camera"></use>
                                 </svg>
-                            </a>
-                            <a href=""
+                            </button>
+                            <button type="button" onclick="renderTourForm(this)"
                                 class="group flex items-center justify-center gap-2 text-white font-extrabold rounded-xl w-[151px] h-[73px] transition-all duration-300 bg-primary-500 hover:shadow-btn-shadow">
                                 رزرو آنلاین
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -774,7 +779,7 @@
                                         d="M22 11C21.6249 11 21.4372 10.9996 21.2725 11.0273C20.5879 11.1425 20.012 11.6048 19.751 12.248C19.6882 12.4029 19.6478 12.5861 19.5664 12.9521L18.6963 16.8682C18.3626 18.3695 18.1958 19.1207 17.6475 19.5605C17.0991 20.0005 16.3293 20 14.791 20H9.20898C7.67074 20 6.90095 20.0005 6.35254 19.5605C5.80418 19.1207 5.63735 18.3695 5.30371 16.8682L4.43359 12.9521C4.35225 12.5861 4.31183 12.4029 4.24902 12.248C3.98805 11.6048 3.41208 11.1425 2.72754 11.0273C2.56276 10.9996 2.37511 11 2 11V8H22V11ZM9.46484 12.7354C9.33141 12.2466 8.8465 11.9287 8.33594 12.0137C7.82528 12.0988 7.46967 12.5568 7.50195 13.0625L7.51367 13.1641L8.01367 16.1641L8.03516 16.2646C8.16859 16.7534 8.6535 17.0713 9.16406 16.9863C9.67472 16.9012 10.0303 16.4432 9.99805 15.9375L9.98633 15.8359L9.48633 12.8359L9.46484 12.7354ZM15.6641 12.0137C15.1194 11.923 14.6045 12.2912 14.5137 12.8359L14.0137 15.8359C13.9231 16.3806 14.2913 16.8955 14.8359 16.9863C15.3806 17.0769 15.8956 16.7087 15.9863 16.1641L16.4863 13.1641C16.5769 12.6194 16.2087 12.1044 15.6641 12.0137Z"
                                         fill="white" />
                                 </svg>
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -784,124 +789,128 @@
         </section>
         <section class="mx-auto max-lg:w-[92%] max-xl:w-[97%] xl:max-w-7xl mt-9">
             <div class="tourExecution__container">
-                <div class="inline-flex items-center gap-2 border-b-4 border-primary-500 mb-8">
-                    <svg width="38" height="38">
-                        <use href="./images/sprite-icons.svg#icon-gray-compass"></use>
-                    </svg>
-                    <h2 id="plan" class="text-[32px] font-black">شروع سفر</h2>
-                </div>
-
-                <div class="execution__details__path__item flex flex-col gap-8">
-                    <basis core="print" datamembername="refresh.executionPlanTypesOrigins"
-                        if="{##refresh.executionPlanTypesOrigins##}" run="atclient"
-                        onrendered="onrenderedExecutionOrigins">
-                        <layout>
-                            <script type="text/template">
-                            <div class="">
-                                @child
-                            </div>
+                <div class="tourExecution__container__origins">
+                    <div class="inline-flex items-center gap-2 border-b-4 border-primary-500 mb-8">
+                        <svg width="38" height="38">
+                            <use href="./images/sprite-icons.svg#icon-gray-compass"></use>
+                        </svg>
+                        <h2 id="plan" class="text-[32px] font-black">شروع سفر</h2>
+                    </div>
+    
+                    <div class="execution__details__path__item execution__details__path__origins flex-col gap-8">
+                        <basis core="print" datamembername="refresh.executionPlanTypesOrigins"
+                            if="{##refresh.executionPlanTypesOrigins##}" run="atclient"
+                            onrendered="onrenderedExecutionOrigins">
+                            <layout>
+                                <script type="text/template">
+                                <div class="">
+                                    @child
+                                </div>
+                                </script>
+                            </layout>
+                            <face>
+                                <script type="text/template">
+                                <div class="execution__details__path__item__details flex flex-col items-center gap-4 justify-between">
+                                    <div class="execution__details__path__item flex flex-col items-center gap-3">
+                                        <div class="flex flex-col gap-2">
+                                            {{ return await renderTransportationImage($data)}}
+                                            <span class="font-light text-xs">شماره پرواز : <span>W5112</span></span>
+                                        </div>
+                                        <div class="flex items-center gap-2 bg-gray-50 rounded-lg p-2 text-sm font-bold">
+                                            <span class="__times__start text-primary-500">@info.departure.time@</span>
+                                            <span class="text-primary-500">@info.origin.name@</span>
+                                            <span class="text-primary-500 origins__city details__city">@info.city.name@</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col items-center gap-0.5">
+                                        <div class="flex gap-1 items-center text-xs font-light">
+                                            <span>زمان سفر:</span>
+                                            <span>@info.time@ دقیقه</span>
+                                        </div>
+                                        <div class="relative">
+                                            <svg width="134" height="12">
+                                                <use href="./images/sprite-icons.svg#icon-plane-airline-mobile"></use>
+                                            </svg>
+                                            <span
+                                                class="absolute -top-0.5 -left-2 right-0 mx-auto bg-secondary-500 w-4 h-4 rounded-full"></span>
+                                        </div>
+                                        <span class="text-sm mr-2">1st</span>
+                                    </div>
+                                    <div class="flex flex-col items-center gap-1 rounded-lg">
+                                        <span class="font-extrabold details__city">@info.city.name@</span>
+                                        <span class="text-sm">@info.destination.name@</span>
+                                        <span class="font-extrabold">@info.arrival.time@</span>
+                                    </div>
+                                </div>
+                            
                             </script>
-                        </layout>
-                        <face>
-                            <script type="text/template">
-                            <div class="execution__details__path__item__details flex flex-col items-center gap-4 justify-between">
-                                <div class="flex flex-col items-center gap-3">
-                                    <div class="flex flex-col gap-2">
-                                        {{ return await renderTransportationImage($data)}}
-                                        <span class="font-light text-xs">شماره پرواز : <span>W5112</span></span>
-                                    </div>
-                                    <div class="flex items-center gap-2 bg-gray-50 rounded-lg p-2 text-sm font-bold">
-                                        <span class="text-primary-500">@info.departure.time@</span>
-                                        <span class="text-primary-500">@info.origin.name@</span>
-                                        <span class="text-primary-500 origins__city details__city">@info.city.name@</span>
-                                    </div>
-                                </div>
-                                <div class="flex flex-col items-center gap-0.5">
-                                    <div class="flex gap-1 items-center text-xs font-light">
-                                        <span>زمان سفر:</span>
-                                        <span>@info.time@ دقیقه</span>
-                                    </div>
-                                    <div class="relative">
-                                        <svg width="134" height="12">
-                                            <use href="./images/sprite-icons.svg#icon-plane-airline-mobile"></use>
-                                        </svg>
-                                        <span
-                                            class="absolute -top-0.5 -left-2 right-0 mx-auto bg-secondary-500 w-4 h-4 rounded-full"></span>
-                                    </div>
-                                    <span class="text-sm mr-2">1st</span>
-                                </div>
-                                <div class="flex flex-col items-center gap-1 rounded-lg">
-                                    <span class="font-extrabold details__city">@info.city.name@</span>
-                                    <span class="text-sm">@info.destination.name@</span>
-                                    <span class="font-extrabold">@info.arrival.time@</span>
-                                </div>
-                            </div>
-                        
-                        </script>
-                        </face>
-                    </basis>
+                            </face>
+                        </basis>
+                    </div>
                 </div>
             </div>
 
 
             <div class="tourExecution__container__destinations mt-16">
-                <div class="inline-flex items-center gap-2 border-b-4 border-primary-500 mb-8">
-                    <svg width="38" height="38">
-                        <use href="./images/sprite-icons.svg#icon-gray-compass"></use>
-                    </svg>
-                    <h2 class="text-[32px] font-black">پایان سفر</h2>
-                </div>
-
-
-                <div class="execution__details__path__item flex flex-col gap-8">
-                    <basis core="print" datamembername="refresh.executionPlanTypesDestinations"
-                        if="{##refresh.executionPlanTypesDestinations##}" run="atclient"
-                        onrendered="onrenderedExecutionDestinations">
-                        <layout>
-                            <script type="text/template">
-                                <div class="">
-                                    @child
-                                </div>
-                                </script>
-                        </layout>
-                        <face>
-                            <script type="text/template">
-                            <div class="execution__details__path__item__details flex flex-col items-center gap-4 justify-between">
-                                <div class="flex flex-col items-center gap-3">
-                                    <div class="flex flex-col gap-2">
-                                        {{ return await renderTransportationImage($data)}}
-                                        <span class="font-light text-xs">شماره پرواز : <span>W5112</span></span>
+                <div>
+                    <div class="inline-flex items-center gap-2 border-b-4 border-primary-500 mb-8">
+                        <svg width="38" height="38">
+                            <use href="./images/sprite-icons.svg#icon-gray-compass"></use>
+                        </svg>
+                        <h2 class="text-[32px] font-black">پایان سفر</h2>
+                    </div>
+    
+    
+                    <div class="execution__details__path__item execution__details__path__destinations flex flex-col gap-8">
+                        <basis core="print" datamembername="refresh.executionPlanTypesDestinations"
+                            if="{##refresh.executionPlanTypesDestinations##}" run="atclient"
+                            onrendered="onrenderedExecutionDestinations">
+                            <layout>
+                                <script type="text/template">
+                                    <div class="">
+                                        @child
                                     </div>
-                                    <div class="flex items-center gap-2 bg-gray-50 rounded-lg p-2 text-sm font-bold">
-                                        <span class="text-primary-500">@info.departure.time@</span>
-                                        <span class="text-primary-500">@info.origin.name@</span>
-                                        <span class="text-primary-500 origins__city details__city">@info.city.name@</span>
+                                    </script>
+                            </layout>
+                            <face>
+                                <script type="text/template">
+                                <div class="execution__details__path__item__details flex flex-col items-center gap-4 justify-between">
+                                    <div class="execution__details__path__item flex flex-col items-center gap-3">
+                                        <div class="flex flex-col gap-2">
+                                            {{ return await renderTransportationImage($data)}}
+                                            <span class="font-light text-xs">شماره پرواز : <span>W5112</span></span>
+                                        </div>
+                                        <div class="flex items-center gap-2 bg-gray-50 rounded-lg p-2 text-sm font-bold">
+                                            <span class="__times__start text-primary-500">@info.departure.time@</span>
+                                            <span class="text-primary-500">@info.origin.name@</span>
+                                            <span class="text-primary-500 origins__city details__city">@info.city.name@</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col items-center gap-0.5">
+                                        <div class="flex gap-1 items-center text-xs font-light">
+                                            <span>زمان سفر:</span>
+                                            <span>@info.time@ دقیقه</span>
+                                        </div>
+                                        <div class="relative">
+                                            <svg width="134" height="12">
+                                                <use href="./images/sprite-icons.svg#icon-plane-airline-mobile"></use>
+                                            </svg>
+                                            <span
+                                                class="absolute -top-0.5 -left-2 right-0 mx-auto bg-secondary-500 w-4 h-4 rounded-full"></span>
+                                        </div>
+                                        <span class="text-sm mr-2">1st</span>
+                                    </div>
+                                    <div class="flex flex-col items-center gap-1 rounded-lg">
+                                        <span class="font-extrabold details__city">@info.city.name@</span>
+                                        <span class="text-sm">@info.destination.name@</span>
+                                        <span class="font-extrabold">@info.arrival.time@</span>
                                     </div>
                                 </div>
-                                <div class="flex flex-col items-center gap-0.5">
-                                    <div class="flex gap-1 items-center text-xs font-light">
-                                        <span>زمان سفر:</span>
-                                        <span>@info.time@ دقیقه</span>
-                                    </div>
-                                    <div class="relative">
-                                        <svg width="134" height="12">
-                                            <use href="./images/sprite-icons.svg#icon-plane-airline-mobile"></use>
-                                        </svg>
-                                        <span
-                                            class="absolute -top-0.5 -left-2 right-0 mx-auto bg-secondary-500 w-4 h-4 rounded-full"></span>
-                                    </div>
-                                    <span class="text-sm mr-2">1st</span>
-                                </div>
-                                <div class="flex flex-col items-center gap-1 rounded-lg">
-                                    <span class="font-extrabold details__city">@info.city.name@</span>
-                                    <span class="text-sm">@info.destination.name@</span>
-                                    <span class="font-extrabold">@info.arrival.time@</span>
-                                </div>
-                            </div>
-                        </script>
-                        </face>
-                    </basis>
-
+                            </script>
+                            </face>
+                        </basis>
+    
+                    </div>
                 </div>
             </div>
 
@@ -1447,7 +1456,52 @@
         </basis>
 
 
-
+        <basis core="call" if="{##db.tourForm.run|(false)##}" triggers="db.tourForm" run="atclient" file="/tour-book.bc"
+        hotelName="{##db.tourForm.hotelName##}" method="post" hotelRate="{##db.tourForm.hotelRate##}"
+        hotelService="{##db.tourForm.hotelService##}" tourName="{##db.tourForm.tourName##}"
+        doubleP="{##db.tourForm.doubleP##}" singleP="{##db.tourForm.singleP##}" wBedP="{##db.tourForm.wBedP##}"
+        woBedP="{##db.tourForm.woBedP##}" doubleU="{##db.tourForm.doubleU##}" singleU="{##db.tourForm.singleU##}"
+        wBedU="{##db.tourForm.wBedU##}" woBedU="{##db.tourForm.woBedU|()##}" startDate="{##db.tourForm.startDate##}"
+        endDate="{##db.tourForm.endDate##}" weekdayStartDate="{##db.tourForm.weekdayStartDate##}"
+        weekdayEndDate="{##db.tourForm.weekdayEndDate##}" departureName="{##db.tourForm.departureName##}"
+        destinationName="{##db.tourForm.destinationName##}" startTime="{##db.tourForm.startTime##}"
+        endTime="{##db.tourForm.endTime##}"></basis>
+    </div>
+    <!-- tour-installment form section -->
+    <div>
+        <basis core="call" if="{##db.tourFormInstallment.run|(false)##}" triggers="db.tourFormInstallment"
+            run="atclient" file="/tour-bookInstallment.bc" hotelName="{##db.tourFormInstallment.hotelName##}"
+            method="post" hotelRate="{##db.tourFormInstallment.hotelRate##}"
+            hotelService="{##db.tourFormInstallment.hotelService##}"
+            tourName="{##db.tourFormInstallment.tourName##}" doubleP="{##db.tourFormInstallment.doubleP##}"
+            singleP="{##db.tourFormInstallment.singleP##}" wBedP="{##db.tourFormInstallment.wBedP##}"
+            woBedP="{##db.tourFormInstallment.woBedP##}" doubleU="{##db.tourFormInstallment.doubleU##}"
+            singleU="{##db.tourFormInstallment.singleU##}" wBedU="{##db.tourFormInstallment.wBedU##}"
+            woBedU="{##db.tourFormInstallment.woBedU|()##}" adultCount="{##db.tourFormInstallment.adultCount|(2)##}"
+            childCount="{##db.tourFormInstallment.childCount|(0)##}"
+            infantCount="{##db.tourFormInstallment.infantCount|(0)##}"
+            startDate="{##db.tourFormInstallment.startDate##}" endDate="{##db.tourFormInstallment.endDate##}"
+            weekdayStartDate="{##db.tourFormInstallment.weekdayStartDate##}"
+            weekdayEndDate="{##db.tourFormInstallment.weekdayEndDate##}"
+            departureName="{##db.tourFormInstallment.departureName##}"
+            destinationName="{##db.tourFormInstallment.destinationName##}"
+            startTime="{##db.tourFormInstallment.startTime##}" endTime="{##db.tourFormInstallment.endTime##}"
+            totalAmountINS="{##db.tourFormInstallment.totalAmountINS##}"
+            totalAmountFacilityINS="{##db.tourFormInstallment.totalAmountFacilityINS##}"
+            totalAdvancePaymentINS="{##db.tourFormInstallment.totalAdvancePaymentINS##}"
+            amountEachInstallmentINS="{##db.tourFormInstallment.amountEachInstallmentINS##}"></basis>
+    </div>
+    <div id="load-form-lachin">
+        <basis core="call" if="{##db.tourFormInstallmentplan.run|(false)##}" triggers="db.tourFormInstallmentplan"
+            run="atclient" file="/installmentbook-plan.bc" hotelName="{##db.tourFormInstallmentplan.hotelName##}"
+            method="post" hotelRate="{##db.tourFormInstallmentplan.hotelRate##}"
+            hotelService="{##db.tourFormInstallmentplan.hotelService##}"
+            tourName="{##db.tourFormInstallmentplan.tourName##}" doubleP="{##db.tourFormInstallmentplan.doubleP##}"
+            singleP="{##db.tourFormInstallmentplan.singleP##}" wBedP="{##db.tourFormInstallmentplan.wBedP##}"
+            woBedP="{##db.tourFormInstallmentplan.woBedP##}" doubleU="{##db.tourFormInstallmentplan.doubleU##}"
+            singleU="{##db.tourFormInstallmentplan.singleU##}" wBedU="{##db.tourFormInstallmentplan.wBedU##}"
+            woBedU="{##db.tourFormInstallmentplan.woBedU|()##}"></basis>
+    </div>
     </main>
 
     <script src="[##cms.cms.cdn##]/_js/swiper-bundle.11.2.5.min.js"></script>

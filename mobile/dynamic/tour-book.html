@@ -1,7 +1,7 @@
 <div class="tour__booking__form__modal__container modal__container fixed top-0 left-0 w-screen h-screen overflow-hidden z-50"
 onclick="closeModalContainer(this,event,'modal__container','hidden','parent')">
 <div
-    class="modal__content bg-white fixed inset-x-0 max-md:bottom-0 rounded-t-xl xl:rounded-b-xl w-3/5 max-xl:w-12/12 mx-auto mt-10 p-4 max-h-[650px]">
+    class="modal__content w-full bg-white fixed inset-0 mx-auto p-4 overflow-y-auto">
     <svg width="30" height="30" onclick="closeModalContainer(this,event,'modal__container','hidden')"
         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
         class="cursor-pointer">
@@ -11,9 +11,9 @@ onclick="closeModalContainer(this,event,'modal__container','hidden','parent')">
     <div class="max-h-[600px] overflow-auto p-4">
         <h3 class="tour__name__container 
         w-0 h-0 hidden">[##cms.form.tourName##]</h3>
-        <div class="flex justify-between gap-10">
+        <div class="flex flex-col justify-between gap-10">
             <div class="flex-1 rounded-xl text-sm">
-                <div class="flex flex-col mb-10 gap-y-3">
+                <div class="flex flex-col gap-y-3">
                     <div class="border rounded-20px border-neutral-200 p-4 mb-3">
                         <h3 class="font-danabold text-xl">برنامه رفت</h3>
                         <div>

@@ -305,7 +305,7 @@
                         <layout>
                             <script type="text/template">
                              <!-- Additional required wrapper -->
-                            <div class="flex justify-between items-center">
+                            <div class="date__details flex justify-between items-center">
                                 <h3 class="text-sm font-bold">تاریخ شروع تور:</h3>
                                 <span class="relative">
                                     <svg width="43" height="17" class="absolute right-5 -top-2">
@@ -321,7 +321,7 @@
                         </layout>
                         <face>
                             <script type="text/template">
-                                <span class="text-sm font-bold">@start.date@</span>
+                                <span class=".start__date text-sm font-bold">@start.date@</span>
                             </script>
                         </face>
                     </basis>
@@ -330,7 +330,7 @@
                         <layout>
                             <script type="text/template">
                              <!-- Additional required wrapper -->
-                            <div class="flex justify-between items-center">
+                            <div class="date__details flex justify-between items-center">
                                 <h3 class="text-sm font-bold">تاریخ اتمام تور:</h3>
                                 <span class="relative">
                                     <svg width="43" height="17" class="absolute left-5 -top-2">
@@ -346,7 +346,7 @@
                         </layout>
                         <face>
                             <script type="text/template">
-                                <span class="text-sm font-bold">@end.date@</span>
+                                <span class=".end__date text-sm font-bold">@end.date@</span>
                             </script>
                         </face>
                     </basis>
@@ -896,7 +896,7 @@
                                             <span class="text-sm -mt-5 mr-2">1st</span>
                                         </div>
                                         <div class="flex flex-col items-center gap-1 bg-gray-50 rounded-lg px-3">
-                                            <span class="font-extrabold details__city">@info.city.name@</span>
+                                            <span class="font-extrabold details__city destinations__city">@info.city.name@</span>
                                             <span class="font-extrabold text-center">@info.destination.name@</span>
                                             <span class="font-extrabold">@info.arrival.time@</span>
                                         </div>

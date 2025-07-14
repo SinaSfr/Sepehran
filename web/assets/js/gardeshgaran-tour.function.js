@@ -196,11 +196,11 @@ const renderHotels = async (element, type) => {
                         </div>
                         <h2 class="font-extrabold text-center mb-3 hotel-card-title">${escapeHtml(cleanHotelName)}
                         </h2>
-                        <div class="flex items-center gap-3 mb-4">
+                        <div class="tourInventory__details__item__service flex items-center gap-3 mb-4">
                             <div class="flex flex-col gap-2 items-center bg-gray-50 p-2 rounded-lg">
-                                <span class="font-semibold text-sm hotel-card-service">${escapeHtml(
-                                  serviceHTML.service
-                                )}</span>
+                                <span class="font-semibold text-sm hotel-card-service" data-value="${escapeHtml(
+                                  hotel.service.vid
+                                )}">${escapeHtml(serviceHTML.service)}</span>
                                 <span class="text-xs font-light">${escapeHtml(serviceHTML.english)}</span>
                             </div>
                             <div class="flex items-center gap-3 text-sm font-bold">
@@ -243,10 +243,12 @@ const renderHotels = async (element, type) => {
                 </div>
                 <div class="tourInventory__details__item__service flex items-center gap-3">
                   <div class="flex flex-col gap-2 items-center bg-gray-50 p-2 rounded-lg">
-                    <span class="font-semibold text-sm hotel-card-service">${escapeHtml(serviceHTML.service)}</span>
+                    <span class="font-semibold text-sm hotel-card-service" data-value="${escapeHtml(
+                      hotel.service.vid
+                    )}">${escapeHtml(serviceHTML.service)}</span>
                     <span class="text-xs font-light">${escapeHtml(serviceHTML.english)}</span>
                   </div>
-                  <span class="text-xs font-light w-2/5 leading-5" data-value="${escapeHtml(hotel.service.vid)}">
+                  <span class="text-xs font-light w-2/5 leading-5">
                     ${escapeHtml(serviceHTML.title)}
                   </span>
                 </div>
@@ -545,8 +547,8 @@ const renderTourInstallmentForm = async (element) => {
   let service = '-';
   switch (
     parseInt(
-      element.closest('.hotel-card').querySelector('.tourInventory__details__item__service')
-        .dataset.value
+      element.closest('.hotel-card').querySelector('.tourInventory__details__item__service .hotel-card-service').dataset
+        .value
     )
   ) {
     case 0:
@@ -578,11 +580,10 @@ const renderTourInstallmentForm = async (element) => {
     run: false,
   });
 
+  console.log('🔹 مقدار hotelService:', service);
   $bc.setSource('db.tourFormInstallmentplan', {
     hotelName: element.closest('.hotel-card').querySelector('.hotel-card-title').textContent,
-    hotelRate: element
-      .closest('.hotel-card')
-      .querySelector('.hotel-card-star').dataset.value,
+    hotelRate: element.closest('.hotel-card').querySelector('.hotel-card-star').dataset.value,
     hotelService: service,
     tourName: document.querySelector('.tour-name').textContent,
     doubleP: element
@@ -641,9 +642,7 @@ const renderTourInstallmentForm = async (element) => {
   });
 
   (FormhotelName = element.closest('.hotel-card').querySelector('.hotel-card-title').textContent),
-    (FormhotelRate = element
-      .closest('.hotel-card')
-      .querySelector('.hotel-card-star').dataset.value),
+    (FormhotelRate = element.closest('.hotel-card').querySelector('.hotel-card-star').dataset.value),
     (FormhotelService = service),
     (FormtourName = document.querySelector('.tour-name').textContent),
     (FormdoubleP = element
@@ -723,7 +722,6 @@ const renderReserveTourInstallmentForm = async (element) => {
     ed2 = '';
   }
 
-  console.log(document.getElementById('white-modal').querySelector('.total-amount').innerText)
   $bc.setSource('db.tourFormInstallment', {
     hotelName: FormhotelName,
     hotelRate: FormhotelRate,
@@ -775,7 +773,6 @@ const renderReserveTourInstallmentForm = async (element) => {
       .querySelectorAll('.execution__details__path__item')[0]
       .querySelector('.__times__start').textContent,
 
-      
     totalAmountINS: document.getElementById('white-modal').querySelector('.total-amount').innerText,
     totalAmountFacilityINS: document.getElementById('white-modal').querySelector('.Total-amount-facilities').innerText,
     totalAdvancePaymentINS: document.getElementById('white-modal').querySelector('.Total-advance-payment').innerText,
@@ -787,22 +784,21 @@ const renderReserveTourInstallmentForm = async (element) => {
 };
 
 const closeModalContainer = (element, event, closed, className, type) => {
-    try {
-        if (type == 'parent') {
-            if (!event.target.closest('.modal__content')) {
-                element.closest(`.${closed}`).classList.add(`${className}`);
-            }
-        } else {
-            element.closest(`.${closed}`).classList.add(`${className}`);
-        }
-    } catch (err) {
-        console.error('closeModalContainer=' + err.lineNumber + ',' + err.message);
+  try {
+    if (type == 'parent') {
+      if (!event.target.closest('.modal__content')) {
+        element.closest(`.${closed}`).classList.add(`${className}`);
+      }
+    } else {
+      element.closest(`.${closed}`).classList.add(`${className}`);
     }
+  } catch (err) {
+    console.error('closeModalContainer=' + err.lineNumber + ',' + err.message);
+  }
+};
 
-}
-
-function closeModalForm(element , container ){
-document.getElementById(container).classList.add("hidden");
+function closeModalForm(element, container) {
+  document.getElementById(container).classList.add('hidden');
 }
 
 const renderCaptchaCode = async (element, event) => {
@@ -843,96 +839,96 @@ const toggleCount = (element, type, limit, passenger) => {
 
 const renderTourForm = async (element) => {
   // تبدیل مقدار سرویس
-  let service = "-";
-  switch (
-    parseInt(
-      element
-        .closest(".hotel-card")
-        .querySelector(".tourInventory__details__item__service").dataset.value
-    )
-  ) {
+  let service = '-';
+  switch (parseInt(element.closest('.hotel-card').querySelector('.hotel-card-service').dataset.value)) {
     case 1654:
-      service = "O.R";
+      service = 'O.R';
       break;
     case 1655:
-      service = "B.B";
+      service = 'B.B';
       break;
     case 1656:
-      service = "H.B";
+      service = 'H.B';
       break;
     case 1657:
-      service = "F.B";
+      service = 'F.B';
       break;
     case 1658:
-      service = "ALL";
+      service = 'ALL';
       break;
     case 1659:
-      service = "U.ALL";
+      service = 'U.ALL';
       break;
     case 1660:
-      service = "Maximum All Inclusive";
+      service = 'Maximum All Inclusive';
       break;
   }
 
-  $bc.setSource("db.tourBookingForm", {
+  $bc.setSource('db.tourBookingForm', {
     run: false,
   });
 
-  // نرمال‌سازی متن
-  const normalizeText = (text) =>
-    text.replace(/ي/g, "ی").replace(/ك/g, "ک");
+  const normalizeText = (text) => text.replace(/ي/g, 'ی').replace(/ك/g, 'ک');
 
-  let sd = "";
-  let ed = "";
+  let sd = '';
+  let ed = '';
 
-  const sdEl = document.querySelector(".date__details .active .start__date");
-  const edEl = document.querySelector(".date__details .active .end__date");
+  const sdEl = document.querySelector('.date__details .start__date');
+  const edEl = document.querySelector('.date__details .end__date');
+
 
   if (sdEl) sd = normalizeText(sdEl.textContent);
   if (edEl) ed = normalizeText(edEl.textContent);
 
-  const wrapper = element.closest(".hotel-card-wrapper");
+  const wrapper = element.closest('.hotel-card-wrapper');
 
-  $bc.setSource("db.tourForm", {
-    hotelName: element
-      .closest(".hotel-card")
-      .querySelector(".hotel-card-title").textContent,
-    hotelRate: element
-      .closest(".hotel-card")
-      .querySelector(".hotel-card-star").dataset.value,
+  $bc.setSource('db.tourForm', {
+    hotelName: element.closest('.hotel-card').querySelector('.hotel-card-title').textContent,
+    hotelRate: element.closest('.hotel-card').querySelector('.hotel-card-star').dataset.value,
     hotelService: service,
-    tourName: document.querySelector(".tour-name").textContent,
+    tourName: document.querySelector('.tour-name').textContent,
 
-    doubleP: wrapper.querySelector(".tourInventory__details__item__double .tourInventory__details__item__price").textContent,
-    singleP: wrapper.querySelector(".tourInventory__details__item__single .tourInventory__details__item__price").textContent,
-    wBedP: wrapper.querySelector(".tourInventory__details__item__wBed .tourInventory__details__item__price").textContent,
-    woBedP: wrapper.querySelector(".tourInventory__details__item__woBed .tourInventory__details__item__price").textContent,
+    doubleP: wrapper.querySelector('.tourInventory__details__item__double .tourInventory__details__item__price')
+      .textContent,
+    singleP: wrapper.querySelector('.tourInventory__details__item__single .tourInventory__details__item__price')
+      .textContent,
+    wBedP: wrapper.querySelector('.tourInventory__details__item__wBed .tourInventory__details__item__price')
+      .textContent,
+    woBedP: wrapper.querySelector('.tourInventory__details__item__woBed .tourInventory__details__item__price')
+      .textContent,
 
-    doubleU: wrapper.querySelector(".tourInventory__details__item__double .tourInventory__details__item__unit")?.textContent || " ",
-    singleU: wrapper.querySelector(".tourInventory__details__item__single .tourInventory__details__item__unit")?.textContent || " ",
-    wBedU: wrapper.querySelector(".tourInventory__details__item__wBed .tourInventory__details__item__unit")?.textContent || " ",
-    woBedU: wrapper.querySelector(".tourInventory__details__item__woBed .tourInventory__details__item__unit")?.textContent || " ",
+    doubleU:
+      wrapper.querySelector('.tourInventory__details__item__double .tourInventory__details__item__unit')?.textContent ||
+      ' ',
+    singleU:
+      wrapper.querySelector('.tourInventory__details__item__single .tourInventory__details__item__unit')?.textContent ||
+      ' ',
+    wBedU:
+      wrapper.querySelector('.tourInventory__details__item__wBed .tourInventory__details__item__unit')?.textContent ||
+      ' ',
+    woBedU:
+      wrapper.querySelector('.tourInventory__details__item__woBed .tourInventory__details__item__unit')?.textContent ||
+      ' ',
 
     startDate: sd,
     endDate: ed,
 
-    weekdayStartDate: document.querySelector(".origins__start__weekday")?.textContent || " ",
-    weekdayEndDate: document.querySelector(".destinations__start__weekday")?.textContent || " ",
+    weekdayStartDate: document.querySelector('.origins__start__weekday')?.textContent || ' ',
+    weekdayEndDate: document.querySelector('.destinations__start__weekday')?.textContent || ' ',
 
-    departureName: document.querySelector(".origins__city")?.textContent || " ",
-    destinationName: document.querySelector(".destinations__city")?.textContent || " ",
+    departureName: document.querySelector('.origins__city')?.textContent || ' ',
+    destinationName: document.querySelector('.destinations__city')?.textContent || ' ',
 
-    startTime: document
-      .querySelector(".execution__details__path__origins .execution__details__path__item .__times__start")
-      ?.textContent || " ",
-    endTime: document
-      .querySelector(".execution__details__path__destinations .execution__details__path__item .__times__start")
-      ?.textContent || " ",
+    startTime:
+      document.querySelector('.execution__details__path__origins .execution__details__path__item .__times__start')
+        ?.textContent || ' ',
+    endTime:
+      document.querySelector('.execution__details__path__destinations .execution__details__path__item .__times__start')
+        ?.textContent || ' ',
 
     run: true,
   });
 };
-
 
 const onrenderedSchmaTourBookingForm = async (args) => {
   try {
@@ -1019,13 +1015,13 @@ const OnProcessedTourBookingForm = async (args) => {
       .querySelector('button')
       .classList.remove('button--loading');
     if (errorid == '6') {
-        document
-          .querySelector('.tour__booking__form__modal__container')
-          .querySelector('.message__action__container').innerHTML = 'درخواست شما با موفقیت ثبت شد';
+      document
+        .querySelector('.tour__booking__form__modal__container')
+        .querySelector('.message__action__container').innerHTML = 'درخواست شما با موفقیت ثبت شد';
     } else {
-        document
-          .querySelector('.tour__booking__form__modal__container')
-          .querySelector('.message__action__container').innerHTML = 'خطایی رخ داده, لطفا مجدد اقدام کنید';
+      document
+        .querySelector('.tour__booking__form__modal__container')
+        .querySelector('.message__action__container').innerHTML = 'خطایی رخ داده, لطفا مجدد اقدام کنید';
     }
     setTimeout(function () {
       document
