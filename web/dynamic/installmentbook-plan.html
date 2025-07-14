@@ -379,11 +379,11 @@
     rangeInput.addEventListener('input', updateRangeBackground);
     var loanAmount = 8;
     var loanMonths = 4;
-    var interestRate = 0.2;
+    var interestRate = 0.5;
     var totalprice = 0;
 
 
-    var adultCountF = 2;
+    var adultCountF = 1;
     var childbedCountF = 0;
     var childwobedCountF = 0;
     var infantCountF = 0;
@@ -466,7 +466,7 @@
     }
 
     function decrease() {
-        loanAmount = Math.max(parseInt(loanAmount) - 1, 10);
+        loanAmount = Math.max(parseInt(loanAmount) - 1, 8);
         document.getElementById('amount').value = loanAmount;
         document.getElementById('myRange').value = loanAmount;
         calculateInstallments();
@@ -496,15 +496,13 @@
     }
 
 
-   function calculateInstallments() {
-  // تبدیل اعداد فارسی و حذف ویرگول‌ها (، و ,)
+function calculateInstallments() {
   const toEnglishNumber = (str) => {
     return str
       .replace(/[۰-۹]/g, (d) => String('۰۱۲۳۴۵۶۷۸۹'.indexOf(d)))
       .replace(/[٬,]/g, '');
   };
 
-  // خواندن امن از input مخفی و تبدیل به عدد
   const safeParse = (id) => {
     const el = document.getElementById(id);
     if (!el) {
@@ -514,25 +512,21 @@
     return parseFloat(toEnglishNumber(el.value || '0')) || 0;
   };
 
-  // دریافت قیمت‌ها از input مخفی (فارسی یا انگلیسی)
   const inpHDNdoubleP = safeParse("inphidden-doubleP");
   const inpHDNsingleP = safeParse("inphidden-singleP");
   const inpHDNwBedP = safeParse("inphidden-wBedP");
   const inpHDNwoBedP = safeParse("inphidden-woBedP");
 
-  // فعال/غیرفعال کردن فیلدها بر اساس قیمت
   document.getElementById("adult-installment").disabled = (inpHDNdoubleP === 0 && inpHDNsingleP === 0);
   document.getElementById("child-bed-installment").disabled = (inpHDNwBedP === 0);
   document.getElementById("child-installment").disabled = (inpHDNwoBedP === 0);
   document.getElementById("infant-installment").disabled = (inpHDNwoBedP === 0);
 
-  // دریافت تعداد مسافران
   adultCountF = parseInt(document.getElementById("adult-installment")?.value || "0");
   childbedCountF = parseInt(document.getElementById("child-bed-installment")?.value || "0");
   childwobedCountF = parseInt(document.getElementById("child-installment")?.value || "0");
   infantCountF = parseInt(document.getElementById("infant-installment")?.value || "0");
 
-  // محاسبه قیمت کل
   if (adultCountF === 1) {
     totalprice =
       (adultCountF * inpHDNsingleP) +
@@ -547,25 +541,26 @@
       (childbedCountF * inpHDNwBedP);
   }
 
-  // محاسبه پیش‌پرداخت
   const totalAmount = (parseFloat(loanAmount) || 0) * 1_000_000;
-  let totalAdvancePayment = 0;
 
+  let totalAdvancePayment = 0;
   if (totalprice > totalAmount) {
     totalAdvancePayment = totalprice - totalAmount;
   }
 
-  // محاسبه اقساط
-  const totalAmountafterFacilities = totalAmount + (totalAmount * interestRate);
-  const totalAmountWithFacilities = totalAmountafterFacilities + totalAdvancePayment;
-  const installmentAmount = Math.ceil(totalAmountafterFacilities / loanMonths);
+  // تغییر سود طبق درخواست شما:
+  const totalInterest = loanMonths * interestRate * 1_000_000;
+  const totalAmountWithFacilities = totalInterest + totalAdvancePayment + totalAmount;
+  const installmentAmount = Math.ceil(totalAmountWithFacilities / loanMonths);
 
-  // نمایش در صفحه
   document.querySelector('.total-amount').textContent = totalprice.toLocaleString();
   document.querySelector('.Total-amount-facilities').textContent = totalAmountWithFacilities.toLocaleString();
   document.querySelector('.Total-advance-payment').textContent = totalAdvancePayment.toLocaleString();
   document.querySelector('.amount-each-installment').textContent = installmentAmount.toLocaleString();
 }
+
+
+
 
     updateRangeBackground();
     calculateInstallments();
