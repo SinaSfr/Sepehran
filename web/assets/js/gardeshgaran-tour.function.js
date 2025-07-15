@@ -187,7 +187,7 @@ const renderHotels = async (element, type) => {
         const isMobile = window.innerWidth <= 1024;
         if (isMobile) {
           output += `
-                          <div class="hotel-card flex flex-col gap-8 border border-gray-100 rounded-xl p-4" data-index="${index}">
+                          <div class="" data-index="${index}">
                     <div class="flex flex-col items-center">
                         <div class="w-full shadow-card-shadow mb-4">
                             <img src="${img}" data-id="${hotel.hotelid}" data-pageName="${pageName}"
@@ -706,21 +706,9 @@ const renderReserveTourInstallmentForm = async (element) => {
     run: false,
   });
 
-  let ed2;
-  let sd2;
-  if (document.querySelector('.tour-dates .start__date')) {
-    //origins__start__day
-    sd2 = document.querySelector('.tour-dates .start__date').textContent;
-  } else {
-    sd2 = '';
-  }
+  let sd2 = document.querySelector('.tour-dates .start__date')?.textContent || '';
 
-  if (document.querySelector('.tour-dates .end__date')) {
-    // destinations__start__day
-    ed2 = document.querySelector('.tour-dates .end__date').textContent;
-  } else {
-    ed2 = '';
-  }
+  let ed2 = document.querySelector('.tour-dates .end__date')?.textContent || '';
 
   $bc.setSource('db.tourFormInstallment', {
     hotelName: FormhotelName,
@@ -758,9 +746,9 @@ const renderReserveTourInstallmentForm = async (element) => {
 
     departureName: document.querySelector('.tourExecution__container__origins').querySelector('.origins__city')
       .textContent,
-    // destinationName: document
-    //   .querySelector('.tourExecution__container__destinations')
-    //   .querySelector('.destinations__city').textContent,
+    destinationName: document
+      .querySelector('.tourExecution__container__destinations')
+      .querySelector('.destinations__city').textContent,
 
     // __times__start
     startTime: document
@@ -876,7 +864,6 @@ const renderTourForm = async (element) => {
   const sdEl = document.querySelector('.date__details .start__date');
   const edEl = document.querySelector('.date__details .end__date');
 
-
   if (sdEl) sd = normalizeText(sdEl.textContent);
   if (edEl) ed = normalizeText(edEl.textContent);
 
@@ -913,8 +900,8 @@ const renderTourForm = async (element) => {
     startDate: sd,
     endDate: ed,
 
-    weekdayStartDate: document.querySelector('.origins__start__weekday')?.textContent || ' ',
-    weekdayEndDate: document.querySelector('.destinations__start__weekday')?.textContent || ' ',
+    // weekdayStartDate: document.querySelector('.origins__start__weekday')?.textContent || ' ',
+    // weekdayEndDate: document.querySelector('.destinations__start__weekday')?.textContent || ' ',
 
     departureName: document.querySelector('.origins__city')?.textContent || ' ',
     destinationName: document.querySelector('.destinations__city')?.textContent || ' ',
@@ -928,6 +915,55 @@ const renderTourForm = async (element) => {
 
     run: true,
   });
+};
+
+const onrenderedSchmaTourBookingFormIns = async () => {
+  try {
+    const containerIns = document.querySelector('.tour__booking__form__modal__container_Ins');
+    if (!containerIns) return;
+
+    const formContainer = containerIns.querySelector('.tour__booking__form__container');
+    const whiteModal = document.querySelector('#white-modal');
+
+    const setInputValue = (root, inputSelector, textSelector) => {
+      const input = root.querySelector(inputSelector);
+      const textEl = root.querySelector(textSelector);
+      if (input && textEl) input.value = textEl.textContent.trim();
+    };
+
+    const setInputFromExternal = (inputRoot, textRoot, inputSelector, textSelector) => {
+      const input = inputRoot.querySelector(inputSelector);
+      const textEl = textRoot?.querySelector(textSelector);
+      if (input && textEl) input.value = textEl.textContent.trim();
+    };
+
+    const setPlaceholder = (root, inputSelector, placeholderText) => {
+      const input = root.querySelector(inputSelector);
+      if (input) input.placeholder = placeholderText;
+    };
+
+    // از containerIns
+    setInputValue(containerIns, '.adult-count input', '.adult__count__container');
+    setInputValue(containerIns, '.child-count input', '.child__count__container');
+    setInputValue(containerIns, '.infant-count input', '.infant__count__container');
+    setInputValue(containerIns, '.hotel-name input', '.hotel__name__container');
+    setInputValue(containerIns, '.hotel-service input', '.hotel__service__container');
+    setInputValue(containerIns, '.hotel-rate input', '.hotel__rate__container');
+    setInputValue(containerIns, '.tour-name input', '.tour__name__container');
+
+    // مقادیر مالی از white-modal
+    setInputFromExternal(formContainer, whiteModal, '.total-amountF input', '.total-amount');
+    setInputFromExternal(formContainer, whiteModal, '.total-advanceF input', '.Total-amount-facilities');
+    setInputFromExternal(formContainer, whiteModal, '.amount-facilitiesF input', '.Total-advance-payment');
+    setInputFromExternal(formContainer, whiteModal, '.amount-eachF input', '.amount-each-installment');
+
+    // Placeholder ها
+    setPlaceholder(containerIns, '.first-last-name input', 'نام و نام خانوادگی');
+    setPlaceholder(containerIns, '.phone input', 'شماره تماس');
+    setPlaceholder(containerIns, '.message input', 'توضیحات');
+  } catch (err) {
+    console.error('onrenderedSchmaTourBookingForm:', err.message);
+  }
 };
 
 const onrenderedSchmaTourBookingForm = async (args) => {
@@ -1033,6 +1069,57 @@ const OnProcessedTourBookingForm = async (args) => {
     }, 3000);
   } catch (err) {
     console.error('OnProcessedTourBookingForm=' + err.lineNumber + ',' + err.message);
+  }
+};
+
+const callbackSourceTourBookingFormIns = async (args) => {
+  try {
+    document
+      .querySelector('.tour__booking__form__modal__container_Ins')
+      .querySelector('button')
+      .classList.add('button--loading');
+    $bc.setSource('db.tourBookingFormIns', {
+      value: JSON.stringify(args.source?.rows[0]),
+      captcha: document
+        .querySelector('.tour__booking__form__modal__container_Ins')
+        .querySelector("input[name='captcha']").value,
+      captchaid: document
+        .querySelector('.tour__booking__form__modal__container_Ins')
+        .querySelector("input[name='captchaid']").value,
+      run: true,
+    });
+  } catch (err) {
+    console.error('callbackSourcetourBookingFormIns=' + err.lineNumber + ',' + err.message);
+  }
+};
+const OnProcessedTourBookingFormIns = async (args) => {
+  try {
+    var response = args.response;
+    var json = await response.json();
+    var errorid = json.errorid;
+    document
+      .querySelector('.tour__booking__form__modal__container_Ins')
+      .querySelector('button')
+      .classList.remove('button--loading');
+    if (errorid == '6') {
+      document
+        .querySelector('.tour__booking__form__modal__container_Ins')
+        .querySelector('.message__action__container').innerHTML = 'درخواست شما با موفقیت ثبت شد';
+    } else {
+      document
+        .querySelector('.tour__booking__form__modal__container_Ins')
+        .querySelector('.message__action__container').innerHTML = 'خطایی رخ داده, لطفا مجدد اقدام کنید';
+    }
+    setTimeout(function () {
+      document
+        .querySelector('.tour__booking__form__modal__container_Ins')
+        .querySelector('.message__action__container').innerHTML = '';
+      setTimeout(function () {
+        document.querySelector('.tour__booking__form__modal__container_Ins').classList.add('hidden');
+      }, 2000);
+    }, 3000);
+  } catch (err) {
+    console.error('OnProcessedtourBookingFormIns=' + err.lineNumber + ',' + err.message);
   }
 };
 
@@ -1243,3 +1330,196 @@ const waitUntilHotelCardsLoaded = (callback, maxTries = 20, interval = 300) => {
 waitUntilHotelCardsLoaded(() => {
   initializeHotelFilters();
 });
+
+// TOUR INSTALLMENT
+// var limitrange = 150;
+// var rangeInput = document.getElementById('myRange');
+// var amountInput = document.getElementById('amount');
+// rangeInput.addEventListener('input', updateRangeBackground);
+// var loanAmount = 8;
+// var loanMonths = 4;
+// var interestRate = 5;
+// var totalprice = 0;
+
+// var adultCountF = 1;
+// var childbedCountF = 0;
+// var childwobedCountF = 0;
+// var infantCountF = 0;
+
+// function selectPlanInstallment(el, plan, monthplan, limitinstallment, lm, ir) {
+//   loanMonths = lm;
+//   interestRate = ir;
+
+//   document.querySelectorAll('.plan-radio').forEach((element) => {
+//     element.addEventListener('click', function (ele) {
+//       document.querySelectorAll('.plan-container').forEach((div) => {
+//         div.querySelector('label').classList.remove('bg-primary-500');
+//         div.querySelector('label').classList.remove('text-white');
+//         div.querySelector('label').classList.add('text-neutralcolor-900');
+//         div.querySelector('label').classList.add('bg-gray-100');
+//       });
+//     });
+//   });
+
+//   el.querySelector('label').classList.add('bg-primary-500');
+//   el.querySelector('label').classList.remove('bg-gray-100');
+//   el.querySelector('label').classList.add('text-white');
+//   el.querySelector('label').classList.remove('text-neutralcolor-900');
+
+//   limitrange = limitinstallment;
+//   rangeInput.setAttribute('max', limitrange);
+//   document.getElementById('limit-range').innerText = limitrange;
+
+//   document
+//     .getElementById('month-list')
+//     .querySelectorAll('li')
+//     .forEach((element) => {
+//       element.classList.add('hidden');
+//     });
+
+//   document.querySelectorAll(`.${monthplan}`).forEach((element) => {
+//     element.classList.remove('hidden');
+//   });
+
+//   updateRangeBackground();
+//   calculateInstallments();
+// }
+
+// function updateRangeBackground() {
+//   const value = parseFloat(rangeInput.value);
+//   const min = parseFloat(rangeInput.min);
+//   const max = parseFloat(rangeInput.max);
+//   const percentage = ((value - min) / (max - min)) * 100;
+//   rangeInput.style.background = `linear-gradient(to right, #2e58d1 ${percentage}%, #e5e7eb ${percentage}%)`;
+// }
+
+// window.addEventListener('DOMContentLoaded', () => {
+//   updateRangeBackground();
+// });
+
+// function updateLoanAmount(amount) {
+//   loanAmount = amount;
+//   document.getElementById('myRange').value = amount;
+//   updateRangeBackground();
+//   calculateInstallments();
+// }
+
+// function updateLoanFromRange(amount) {
+//   loanAmount = amount;
+//   document.getElementById('amount').value = amount;
+//   updateRangeBackground();
+//   calculateInstallments();
+// }
+
+// function increase(element) {
+//   loanAmount = Math.min(parseInt(loanAmount) + 1, limitrange);
+//   document.getElementById('amount').value = loanAmount;
+//   document.getElementById('myRange').value = loanAmount;
+//   calculateInstallments();
+//   updateRangeBackground();
+// }
+
+// function decrease() {
+//   loanAmount = Math.max(parseInt(loanAmount) - 1, 8);
+//   document.getElementById('amount').value = loanAmount;
+//   document.getElementById('myRange').value = loanAmount;
+//   calculateInstallments();
+//   updateRangeBackground();
+// }
+
+// function calculateMonth(months, interestrate, element) {
+//   const allTabs = document.querySelectorAll('#month-list li');
+//   allTabs.forEach(function (tab) {
+//     tab.classList.remove('bg-primary-500');
+//     tab.classList.add('bg-gray-100');
+
+//     tab.classList.add('text-neutralcolor-900');
+//     tab.classList.remove('text-white');
+//   });
+
+//   element.classList.remove('text-neutralcolor-900');
+//   element.classList.add('text-white');
+
+//   element.classList.remove('bg-gray-100');
+//   element.classList.add('bg-primary-500');
+
+//   loanMonths = months;
+//   interestRate = interestrate;
+//   calculateInstallments();
+// }
+
+// function calculateInstallments() {
+//   const toEnglishNumber = (str) => {
+//     return str.replace(/[۰-۹]/g, (d) => String('۰۱۲۳۴۵۶۷۸۹'.indexOf(d))).replace(/[٬,]/g, '');
+//   };
+
+//   const safeParse = (id) => {
+//     const el = document.getElementById(id);
+//     if (!el) {
+//       console.warn(`⛔ عنصر ${id} پیدا نشد: ${id}`);
+//       return 0;
+//     }
+//     return parseFloat(toEnglishNumber(el.value || '0')) || 0;
+//   };
+
+//   const inpHDNdoubleP = safeParse('inphidden-doubleP');
+//   const inpHDNsingleP = safeParse('inphidden-singleP');
+//   const inpHDNwBedP = safeParse('inphidden-wBedP');
+//   const inpHDNwoBedP = safeParse('inphidden-woBedP');
+
+//   document.getElementById('adult-installment').disabled = inpHDNdoubleP === 0 && inpHDNsingleP === 0;
+//   document.getElementById('child-bed-installment').disabled = inpHDNwBedP === 0;
+//   document.getElementById('child-installment').disabled = inpHDNwoBedP === 0;
+//   document.getElementById('infant-installment').disabled = inpHDNwoBedP === 0;
+
+//   adultCountF = parseInt(document.getElementById('adult-installment')?.value || '0');
+//   childbedCountF = parseInt(document.getElementById('child-bed-installment')?.value || '0');
+//   childwobedCountF = parseInt(document.getElementById('child-installment')?.value || '0');
+//   infantCountF = parseInt(document.getElementById('infant-installment')?.value || '0');
+
+//   if (adultCountF === 1) {
+//     totalprice =
+//       adultCountF * inpHDNsingleP +
+//       childwobedCountF * inpHDNwoBedP +
+//       infantCountF * inpHDNwoBedP +
+//       childbedCountF * inpHDNwBedP;
+//   } else {
+//     totalprice =
+//       adultCountF * inpHDNdoubleP +
+//       childwobedCountF * inpHDNwoBedP +
+//       infantCountF * inpHDNwoBedP +
+//       childbedCountF * inpHDNwBedP;
+//   }
+
+//   const totalAmount = (parseFloat(loanAmount) || 0) * 1_000_000;
+
+//   const totalAdvancePayment = totalprice - totalAmount;
+
+//   if (totalAmount <= 0) {
+//     document.querySelector('.total-amount').textContent = totalprice.toLocaleString();
+//     document.querySelector('.Total-amount-facilities').textContent = totalprice.toLocaleString();
+//     document.querySelector('.Total-advance-payment').textContent = totalprice.toLocaleString();
+//     document.querySelector('.amount-each-installment').textContent = '0';
+//     return;
+//   }
+
+//   const totalInterest = interestRate * loanMonths * 1_000_000;
+
+//   const totalAmountWithFacilities = totalInterest + totalAmount;
+
+//   const installmentAmount = totalAmountWithFacilities / loanMonths;
+
+//   document.querySelector('.total-amount').textContent = totalprice.toLocaleString();
+//   document.querySelector('.Total-amount-facilities').textContent = totalAmountWithFacilities.toLocaleString();
+//   document.querySelector('.Total-advance-payment').textContent = totalAdvancePayment.toLocaleString();
+//   document.querySelector('.amount-each-installment').textContent = installmentAmount.toLocaleString();
+// }
+
+// updateRangeBackground();
+// calculateInstallments();
+
+// function closeModalContainerForm(event) {
+//   if (event.target === event.currentTarget) {
+//     event.currentTarget.classList.add('hidden');
+//   }
+// }

@@ -203,8 +203,8 @@
                                 <div class="flex gap-2 text-red-600 mt-4">
                                     <svg width="24" height="24" fill="none" stroke="#ef4444" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                          d="M12 9v2m0 4h.01M4.93 4.93l14.14 14.14M12 2a10 10 0 100 20 10 10 0 000-20z" />
-                                      </svg>
+                                            d="M12 9v2m0 4h.01M4.93 4.93l14.14 14.14M12 2a10 10 0 100 20 10 10 0 000-20z" />
+                                    </svg>
                                     برای مبالغ بالای ۱۵۰ میلیون تومان، لازم است فرد دیگری به‌عنوان ضامن معرفی شود
                                 </div>
 
@@ -387,7 +387,7 @@
     rangeInput.addEventListener('input', updateRangeBackground);
     var loanAmount = 8;
     var loanMonths = 4;
-    var interestRate = 0.5;
+    var interestRate = 5;
     var totalprice = 0;
 
 
@@ -504,70 +504,75 @@
     }
 
 
-function calculateInstallments() {
-  const toEnglishNumber = (str) => {
-    return str
-      .replace(/[۰-۹]/g, (d) => String('۰۱۲۳۴۵۶۷۸۹'.indexOf(d)))
-      .replace(/[٬,]/g, '');
-  };
+    function calculateInstallments() {
+    const toEnglishNumber = (str) => {
+        return str
+            .replace(/[۰-۹]/g, (d) => String('۰۱۲۳۴۵۶۷۸۹'.indexOf(d)))
+            .replace(/[٬,]/g, '');
+    };
 
-  const safeParse = (id) => {
-    const el = document.getElementById(id);
-    if (!el) {
-      console.warn(`⛔ عنصر ${id} پیدا نشد: ${id}`);
-      return 0;
+    const safeParse = (id) => {
+        const el = document.getElementById(id);
+        if (!el) {
+            console.warn(`⛔ عنصر ${id} پیدا نشد: ${id}`);
+            return 0;
+        }
+        return parseFloat(toEnglishNumber(el.value || '0')) || 0;
+    };
+
+    const inpHDNdoubleP = safeParse("inphidden-doubleP");
+    const inpHDNsingleP = safeParse("inphidden-singleP");
+    const inpHDNwBedP = safeParse("inphidden-wBedP");
+    const inpHDNwoBedP = safeParse("inphidden-woBedP");
+
+    document.getElementById("adult-installment").disabled = (inpHDNdoubleP === 0 && inpHDNsingleP === 0);
+    document.getElementById("child-bed-installment").disabled = (inpHDNwBedP === 0);
+    document.getElementById("child-installment").disabled = (inpHDNwoBedP === 0);
+    document.getElementById("infant-installment").disabled = (inpHDNwoBedP === 0);
+
+    adultCountF = parseInt(document.getElementById("adult-installment")?.value || "0");
+    childbedCountF = parseInt(document.getElementById("child-bed-installment")?.value || "0");
+    childwobedCountF = parseInt(document.getElementById("child-installment")?.value || "0");
+    infantCountF = parseInt(document.getElementById("infant-installment")?.value || "0");
+
+    if (adultCountF === 1) {
+        totalprice =
+            (adultCountF * inpHDNsingleP) +
+            (childwobedCountF * inpHDNwoBedP) +
+            (infantCountF * inpHDNwoBedP) +
+            (childbedCountF * inpHDNwBedP);
+    } else {
+        totalprice =
+            (adultCountF * inpHDNdoubleP) +
+            (childwobedCountF * inpHDNwoBedP) +
+            (infantCountF * inpHDNwoBedP) +
+            (childbedCountF * inpHDNwBedP);
     }
-    return parseFloat(toEnglishNumber(el.value || '0')) || 0;
-  };
 
-  const inpHDNdoubleP = safeParse("inphidden-doubleP");
-  const inpHDNsingleP = safeParse("inphidden-singleP");
-  const inpHDNwBedP = safeParse("inphidden-wBedP");
-  const inpHDNwoBedP = safeParse("inphidden-woBedP");
+    const totalAmount = (parseFloat(loanAmount) || 0) * 1_000_000;
 
-  document.getElementById("adult-installment").disabled = (inpHDNdoubleP === 0 && inpHDNsingleP === 0);
-  document.getElementById("child-bed-installment").disabled = (inpHDNwBedP === 0);
-  document.getElementById("child-installment").disabled = (inpHDNwoBedP === 0);
-  document.getElementById("infant-installment").disabled = (inpHDNwoBedP === 0);
+    const totalAdvancePayment = totalprice - totalAmount;
 
-  adultCountF = parseInt(document.getElementById("adult-installment")?.value || "0");
-  childbedCountF = parseInt(document.getElementById("child-bed-installment")?.value || "0");
-  childwobedCountF = parseInt(document.getElementById("child-installment")?.value || "0");
-  infantCountF = parseInt(document.getElementById("infant-installment")?.value || "0");
+    if (totalAmount <= 0) {
+        document.querySelector('.total-amount').textContent = totalprice.toLocaleString();
+        document.querySelector('.Total-amount-facilities').textContent = totalprice.toLocaleString();
+        document.querySelector('.Total-advance-payment').textContent = totalprice.toLocaleString();
+        document.querySelector('.amount-each-installment').textContent = '0';
+        return;
+    }
 
-  if (adultCountF === 1) {
-    totalprice =
-      (adultCountF * inpHDNsingleP) +
-      (childwobedCountF * inpHDNwoBedP) +
-      (infantCountF * inpHDNwoBedP) +
-      (childbedCountF * inpHDNwBedP);
-  } else {
-    totalprice =
-      (adultCountF * inpHDNdoubleP) +
-      (childwobedCountF * inpHDNwoBedP) +
-      (infantCountF * inpHDNwoBedP) +
-      (childbedCountF * inpHDNwBedP);
-  }
+    const totalInterest = interestRate * loanMonths * 1_000_000;
 
-  const totalAmount = (parseFloat(loanAmount) || 0) * 1_000_000;
+    const totalAmountWithFacilities = totalInterest + totalAmount;
 
-  let totalAdvancePayment = 0;
-  if (totalprice > totalAmount) {
-    totalAdvancePayment = totalprice - totalAmount;
-  }
+    const installmentAmount = totalAmountWithFacilities / loanMonths;
 
-  // تغییر سود طبق درخواست شما:
-  const totalInterest = loanMonths * interestRate * 1_000_000;
-  const totalAmountWithFacilities = totalInterest + totalAdvancePayment + totalAmount;
-  const installmentAmount = Math.ceil(totalAmountWithFacilities / loanMonths);
+    document.querySelector('.total-amount').textContent = totalprice.toLocaleString();
+    document.querySelector('.Total-amount-facilities').textContent = totalAmountWithFacilities.toLocaleString();
+    document.querySelector('.Total-advance-payment').textContent = totalAdvancePayment.toLocaleString();
+    document.querySelector('.amount-each-installment').textContent = installmentAmount.toLocaleString();
 
-  document.querySelector('.total-amount').textContent = totalprice.toLocaleString();
-  document.querySelector('.Total-amount-facilities').textContent = totalAmountWithFacilities.toLocaleString();
-  document.querySelector('.Total-advance-payment').textContent = totalAdvancePayment.toLocaleString();
-  document.querySelector('.amount-each-installment').textContent = installmentAmount.toLocaleString();
 }
-
-
 
 
     updateRangeBackground();
@@ -575,7 +580,6 @@ function calculateInstallments() {
 
 
     function closeModalContainerForm(event) {
-        // بررسی اینکه آیا کلیک روی پس‌زمینه مودال انجام شده است یا خیر
         if (event.target === event.currentTarget) {
             event.currentTarget.classList.add('hidden');
         }
