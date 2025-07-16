@@ -548,7 +548,7 @@ object {
 img,
 video {
   /* max-width: 100%; */
-  height: auto;
+  /* height: auto; */
 }
 
 /* Make elements with the HTML hidden attribute stay hidden by default */
@@ -1065,6 +1065,9 @@ body {
 }
 .border {
   border-width: 1px;
+}
+.border-solid {
+    border-style: solid;
 }
 .border-b {
   border-bottom-width: 1px;
