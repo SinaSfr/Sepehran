@@ -1684,7 +1684,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // reply-comment
 async function Reply_Comment(element) {
-  const responsereply = await fetch('Client_CheckAuthentication.inc');
+  const responsereply = await fetch("Client_CheckAuthentication.inc");
   if (!responsereply.ok) {
     throw new Error('متاسفانه مشکلی به وجود آمده است لطفا بعدا مجددا تلاش فرمایید.');
   } else {
@@ -1692,8 +1692,8 @@ async function Reply_Comment(element) {
     if (CheckAuthentication === 'true') {
       var firstname = document.querySelector('.user-profile-content .default-name').innerText;
       var lastname = document.querySelector('.user-profile-content .default-family').innerText;
-      element.closest('.opinionRow').querySelector('.reply-title').value = firstname + ' ' + lastname;
-      element.closest('.opinionRow').querySelector('.replyCommentForm').classList.toggle('hidden');
+      element.closest('.opinionRow').querySelector('.reply-title').value = firstname + " " + lastname;
+      element.closest('.opinionRow').querySelector('.replyCommentForm').classList.toggle("hidden");
     } else {
       showLoginContainer(this);
     }
@@ -1703,9 +1703,10 @@ async function Reply_Comment(element) {
 // send-reply
 async function send_Reply(element, event) {
   event.preventDefault();
-  var form = new FormData(element.closest('pov-form'));
+  var form = new FormData(element.closest('form'));
+
   var xhr = new XMLHttpRequest();
-  xhr.open('POST', element.closest('pov-form').action, true);
+  xhr.open('POST', element.closest('form').action, true);
   xhr.onload = function () {
     if (xhr.status === 200) {
       document.getElementById('popupMessage').innerHTML = xhr.responseText;
@@ -1717,6 +1718,30 @@ async function send_Reply(element, event) {
   };
   xhr.send(form);
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  const popup = document.getElementById('popuparticle');
+  const popupContent = document.querySelector('.popup-content');
+  const closePopupBtn = document.getElementById('closePopuparticle');
+
+  if (popup && popupContent && closePopupBtn) {
+    closePopupBtn.addEventListener('click', () => {
+      popup.classList.add('hidden');
+    });
+
+    popup.addEventListener('click', (event) => {
+      if (!popupContent.contains(event.target)) {
+        popup.classList.add('hidden');
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        popup.classList.add('hidden');
+      }
+    });
+  }
+});
 
 // request-form
 function uploadDocumentRequest(args) {
