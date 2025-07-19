@@ -37,6 +37,9 @@
   src: url("../fonts/fontFlaticon.ttf") format("truetype"),
     url("../fonts/fontFlaticon.eot#iefix") format("embedded-opentype");
 }
+.fas.fa-exclamation-triangle{
+  font-family: 'fontawesome';
+}
 .EnNum {
   font-family: "IRANSansWebEnNum";
 }
@@ -352,15 +355,16 @@
 input,
 select,
 button {
-  font-family: "DanaFaNum";
+  font-family: "YekanBakhFaNum";
 }
 html,
 html body {
-  font-family: "DanaFaNum";
+  font-family: "YekanBakhFaNum";
 }
 .mm-spn.mm-spn--navbar.mm-spn--main:after,
-.mm-spn, .mm-spn a, .mm-spn li, .mm-spn ul{
-  font-family: "DanaFaNum";
+.mm-spn, .mm-spn a, .mm-spn li, .mm-spn ul,
+.message_box.message_box_nodata{
+  font-family: "YekanBakhFaNum";
 }
 .currency-selected::after {
   font-size: 15px;

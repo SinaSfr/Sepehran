@@ -796,8 +796,9 @@
                         </svg>
                         <h2 id="plan" class="text-[32px] font-black">شروع سفر</h2>
                     </div>
-    
-                    <div class="execution__details__path__item execution__details__path__origins flex-col gap-8">
+
+                    <div
+                        class="relative execution__details__path__item execution__details__path__origins flex-col gap-8 border-r border-dashed border-gray-500 pr-4">
                         <basis core="print" datamembername="refresh.executionPlanTypesOrigins"
                             if="{##refresh.executionPlanTypesOrigins##}" run="atclient"
                             onrendered="onrenderedExecutionOrigins">
@@ -810,36 +811,49 @@
                             </layout>
                             <face>
                                 <script type="text/template">
-                                <div class="execution__details__path__item__details flex flex-col items-center gap-4 justify-between">
-                                    <div class="execution__details__path__item flex flex-col items-center gap-3">
-                                        <div class="flex flex-col gap-2">
-                                            {{ return await renderTransportationImage($data)}}
-                                            <span class="font-light text-xs">شماره پرواز : <span>W5112</span></span>
-                                        </div>
-                                        <div class="flex items-center gap-2 bg-gray-50 rounded-lg p-2 text-sm font-bold">
-                                            <span class="__times__start text-primary-500">@info.departure.time@</span>
-                                            <span class="text-primary-500">@info.origin.name@</span>
-                                            <span class="text-primary-500 origins__city details__city">@info.city.name@</span>
-                                        </div>
-                                    </div>
-                                    <div class="flex flex-col items-center gap-0.5">
+                                <div class="execution__details__path__item__details flex flex-col gap-4 justify-between">
+                                    <div class="flex flex-col gap-0.5">
                                         <div class="flex gap-1 items-center text-xs font-light">
                                             <span>زمان سفر:</span>
                                             <span>@info.time@ دقیقه</span>
                                         </div>
-                                        <div class="relative">
-                                            <svg width="134" height="12">
+                                        <div>
+                                            <svg class="hidden" width="134" height="12">
                                                 <use href="./images/sprite-icons.svg#icon-plane-airline-mobile"></use>
                                             </svg>
                                             <span
-                                                class="absolute -top-0.5 -left-2 right-0 mx-auto bg-secondary-500 w-4 h-4 rounded-full"></span>
+                                                class="absolute top-[50%] right-[-9px] bg-secondary-500 w-4 h-4 rounded-full"></span>
+                                                <svg class="absolute -right-3 -top-1" width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M2.63331 8.91297L5.74665 10.253L6.43998 10.5463C6.54665 10.5996 6.63998 10.7396 6.63998 10.8596L6.63998 12.8996C6.63998 13.5396 7.11331 14.2996 7.68665 14.593C7.88665 14.693 8.12665 14.693 8.32665 14.593C8.89331 14.2996 9.36665 13.533 9.36665 12.893L9.36665 10.853C9.36665 10.733 9.45998 10.593 9.56665 10.5396L13.3666 8.9063C13.7866 8.73297 14.1266 8.2063 14.1266 7.75297L14.1266 6.87297C14.1266 6.3063 13.7 6.0263 13.1733 6.25297L9.83332 7.69297C9.57332 7.8063 9.35998 7.6663 9.35998 7.37963L9.35998 6.63964L9.35998 5.43963C9.35998 5.2863 9.44665 5.0663 9.55332 4.95964L11.1 3.4063C11.26 3.2463 11.3333 2.93297 11.26 2.7063L10.96 1.79964C10.84 1.4063 10.3933 1.21964 10.0266 1.4063L8.43998 2.73964C8.19998 2.9463 7.80665 2.9463 7.56665 2.73964L5.97998 1.4063C5.61332 1.2263 5.16665 1.4063 5.03331 1.79964L4.73332 2.7063C4.65998 2.9263 4.73332 3.2463 4.89332 3.4063L6.43998 4.95964C6.55331 5.0663 6.63998 5.2863 6.63998 5.43963L6.63998 7.37963C6.63998 7.6663 6.43331 7.79963 6.16665 7.69297L2.82665 6.25297C2.29998 6.0263 1.87331 6.3063 1.87331 6.87297L1.87331 7.75297C1.87331 8.2063 2.21331 8.73297 2.63331 8.91297Z"
+                                                        fill="#005FF0" />
+                                                    <path
+                                                        d="M11.0979 3.4076L9.55125 4.96094L6.43792 4.96094L4.89125 3.4076C4.73125 3.2476 4.65792 2.9276 4.73125 2.7076L5.03125 1.80094C5.16459 1.4076 5.61125 1.2276 5.97792 1.4076L7.56459 2.74094C7.80459 2.9476 8.19792 2.9476 8.43792 2.74094L10.0246 1.4076C10.3913 1.22094 10.8379 1.4076 10.9579 1.80094L11.2579 2.7076C11.3313 2.93427 11.2579 3.2476 11.0979 3.4076Z"
+                                                        fill="#005FF0" />
+                                                </svg>
+                                                <svg class="absolute -right-3 bottom-0" width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M13.7467 5.79967C13.0533 2.71301 10.36 1.33301 8.00002 1.33301C8.00002 1.33301 8.00002 1.33301 7.99335 1.33301C5.64002 1.33301 2.95335 2.71301 2.25335 5.79301C1.46668 9.23301 3.57335 12.1463 5.48002 13.9863C6.18668 14.6663 7.09335 15.0063 8.00002 15.0063C8.90668 15.0063 9.81335 14.6663 10.5133 13.9863C12.42 12.1463 14.5267 9.23967 13.7467 5.79967ZM10.1867 6.35301L7.52002 9.01967C7.42002 9.11967 7.29335 9.16634 7.16668 9.16634C7.04002 9.16634 6.91335 9.11967 6.81335 9.01967L5.81335 8.01967C5.62002 7.82634 5.62002 7.50634 5.81335 7.31301C6.00668 7.11967 6.32668 7.11967 6.52002 7.31301L7.16668 7.95967L9.48002 5.64634C9.67335 5.45301 9.99335 5.45301 10.1867 5.64634C10.38 5.83967 10.38 6.15967 10.1867 6.35301Z"
+                                                        fill="#005FF0" />
+                                                </svg>
                                         </div>
                                         <span class="text-sm mr-2">1st</span>
                                     </div>
-                                    <div class="flex flex-col items-center gap-1 rounded-lg">
-                                        <span class="font-extrabold details__city">@info.city.name@</span>
-                                        <span class="text-sm">@info.destination.name@</span>
+                                    <div class="execution__details__path__item flex flex-col gap-3">
+                                        <div class="flex flex-col gap-2">
+                                            {{ return await renderTransportationImage($data)}}
+                                            <span class="hidden font-light text-xs">شماره پرواز : <span>W5112</span></span>
+                                        </div>
+                                        <div class="flex flex-col gap-2 bg-gray-50 rounded-lg p-2 text-sm font-bold">
+                                            <span class="text-primary-500 origins__city details__city">@info.city.name@</span>
+                                            <span class="text-primary-500">@info.origin.name@</span>
+                                            <span class="__times__start text-primary-500">@info.departure.time@</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col gap-1 rounded-lg">
                                         <span class="font-extrabold">@info.arrival.time@</span>
+                                        <span class="text-sm">@info.destination.name@</span>
+                                        <span id="origin-departure-tour" class="font-extrabold details__city">@info.city.name@</span>
                                     </div>
                                 </div>
                             
@@ -859,9 +873,8 @@
                         </svg>
                         <h2 class="text-[32px] font-black">پایان سفر</h2>
                     </div>
-    
-    
-                    <div class="execution__details__path__item execution__details__path__destinations flex flex-col gap-8">
+                    <div
+                        class="relative execution__details__path__item execution__details__path__destinations flex flex-col gap-8 border-r border-dashed border-gray-500 pr-4">
                         <basis core="print" datamembername="refresh.executionPlanTypesDestinations"
                             if="{##refresh.executionPlanTypesDestinations##}" run="atclient"
                             onrendered="onrenderedExecutionDestinations">
@@ -874,42 +887,56 @@
                             </layout>
                             <face>
                                 <script type="text/template">
-                                <div class="execution__details__path__item__details flex flex-col items-center gap-4 justify-between">
-                                    <div class="execution__details__path__item flex flex-col items-center gap-3">
-                                        <div class="flex flex-col gap-2">
-                                            {{ return await renderTransportationImage($data)}}
-                                            <span class="font-light text-xs">شماره پرواز : <span>W5112</span></span>
-                                        </div>
-                                        <div class="flex items-center gap-2 bg-gray-50 rounded-lg p-2 text-sm font-bold">
-                                            <span class="__times__start text-primary-500">@info.departure.time@</span>
-                                            <span class="text-primary-500">@info.origin.name@</span>
-                                            <span class="text-primary-500 origins__city details__city">@info.city.name@</span>
-                                        </div>
-                                    </div>
-                                    <div class="flex flex-col items-center gap-0.5">
+                                <div class="execution__details__path__item__details flex flex-col gap-4 justify-between">
+                                     <div class="flex flex-col gap-0.5">
                                         <div class="flex gap-1 items-center text-xs font-light">
                                             <span>زمان سفر:</span>
                                             <span>@info.time@ دقیقه</span>
                                         </div>
-                                        <div class="relative">
-                                            <svg width="134" height="12">
+                                        <div>
+                                            <svg class="hidden" width="134" height="12">
                                                 <use href="./images/sprite-icons.svg#icon-plane-airline-mobile"></use>
                                             </svg>
                                             <span
-                                                class="absolute -top-0.5 -left-2 right-0 mx-auto bg-secondary-500 w-4 h-4 rounded-full"></span>
+                                                class="absolute top-[50%] right-[-9px] bg-secondary-500 w-4 h-4 rounded-full"></span>
+                                                <svg class="absolute -right-3 -top-1" width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M2.63331 8.91297L5.74665 10.253L6.43998 10.5463C6.54665 10.5996 6.63998 10.7396 6.63998 10.8596L6.63998 12.8996C6.63998 13.5396 7.11331 14.2996 7.68665 14.593C7.88665 14.693 8.12665 14.693 8.32665 14.593C8.89331 14.2996 9.36665 13.533 9.36665 12.893L9.36665 10.853C9.36665 10.733 9.45998 10.593 9.56665 10.5396L13.3666 8.9063C13.7866 8.73297 14.1266 8.2063 14.1266 7.75297L14.1266 6.87297C14.1266 6.3063 13.7 6.0263 13.1733 6.25297L9.83332 7.69297C9.57332 7.8063 9.35998 7.6663 9.35998 7.37963L9.35998 6.63964L9.35998 5.43963C9.35998 5.2863 9.44665 5.0663 9.55332 4.95964L11.1 3.4063C11.26 3.2463 11.3333 2.93297 11.26 2.7063L10.96 1.79964C10.84 1.4063 10.3933 1.21964 10.0266 1.4063L8.43998 2.73964C8.19998 2.9463 7.80665 2.9463 7.56665 2.73964L5.97998 1.4063C5.61332 1.2263 5.16665 1.4063 5.03331 1.79964L4.73332 2.7063C4.65998 2.9263 4.73332 3.2463 4.89332 3.4063L6.43998 4.95964C6.55331 5.0663 6.63998 5.2863 6.63998 5.43963L6.63998 7.37963C6.63998 7.6663 6.43331 7.79963 6.16665 7.69297L2.82665 6.25297C2.29998 6.0263 1.87331 6.3063 1.87331 6.87297L1.87331 7.75297C1.87331 8.2063 2.21331 8.73297 2.63331 8.91297Z"
+                                                        fill="#005FF0" />
+                                                    <path
+                                                        d="M11.0979 3.4076L9.55125 4.96094L6.43792 4.96094L4.89125 3.4076C4.73125 3.2476 4.65792 2.9276 4.73125 2.7076L5.03125 1.80094C5.16459 1.4076 5.61125 1.2276 5.97792 1.4076L7.56459 2.74094C7.80459 2.9476 8.19792 2.9476 8.43792 2.74094L10.0246 1.4076C10.3913 1.22094 10.8379 1.4076 10.9579 1.80094L11.2579 2.7076C11.3313 2.93427 11.2579 3.2476 11.0979 3.4076Z"
+                                                        fill="#005FF0" />
+                                                </svg>
+                                                <svg class="absolute -right-3 bottom-0" width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M13.7467 5.79967C13.0533 2.71301 10.36 1.33301 8.00002 1.33301C8.00002 1.33301 8.00002 1.33301 7.99335 1.33301C5.64002 1.33301 2.95335 2.71301 2.25335 5.79301C1.46668 9.23301 3.57335 12.1463 5.48002 13.9863C6.18668 14.6663 7.09335 15.0063 8.00002 15.0063C8.90668 15.0063 9.81335 14.6663 10.5133 13.9863C12.42 12.1463 14.5267 9.23967 13.7467 5.79967ZM10.1867 6.35301L7.52002 9.01967C7.42002 9.11967 7.29335 9.16634 7.16668 9.16634C7.04002 9.16634 6.91335 9.11967 6.81335 9.01967L5.81335 8.01967C5.62002 7.82634 5.62002 7.50634 5.81335 7.31301C6.00668 7.11967 6.32668 7.11967 6.52002 7.31301L7.16668 7.95967L9.48002 5.64634C9.67335 5.45301 9.99335 5.45301 10.1867 5.64634C10.38 5.83967 10.38 6.15967 10.1867 6.35301Z"
+                                                        fill="#005FF0" />
+                                                </svg>
+                                                
                                         </div>
                                         <span class="text-sm mr-2">1st</span>
                                     </div>
-                                    <div class="flex flex-col items-center gap-1 rounded-lg">
-                                        <span class="font-extrabold details__city destinations__city">@info.city.name@</span>
-                                        <span class="text-sm">@info.destination.name@</span>
+                                    <div class="execution__details__path__item flex flex-col gap-3">
+                                        <div class="flex flex-col gap-2">
+                                            {{ return await renderTransportationImage($data)}}
+                                            <span class="hidden font-light text-xs">شماره پرواز : <span>W5112</span></span>
+                                        </div>
+                                        <div class="flex flex-col gap-2 bg-gray-50 rounded-lg p-2 text-sm font-bold">
+                                            <span class="text-primary-500 destinations__city details__city">@info.city.name@</span>
+                                            <span class="text-primary-500">@info.origin.name@</span>
+                                            <span class="__times__start text-primary-500">@info.departure.time@</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col gap-1 rounded-lg">
                                         <span class="font-extrabold">@info.arrival.time@</span>
+                                        <span class="text-sm">@info.destination.name@</span>
+                                        <span id="destination-departure-tour" class="font-extrabold details__city">@info.city.name@</span>
                                     </div>
                                 </div>
                             </script>
                             </face>
                         </basis>
-    
+
                     </div>
                 </div>
             </div>
@@ -1457,51 +1484,51 @@
 
 
         <basis core="call" if="{##db.tourForm.run|(false)##}" triggers="db.tourForm" run="atclient" file="/tour-book.bc"
-        hotelName="{##db.tourForm.hotelName##}" method="post" hotelRate="{##db.tourForm.hotelRate##}"
-        hotelService="{##db.tourForm.hotelService##}" tourName="{##db.tourForm.tourName##}"
-        doubleP="{##db.tourForm.doubleP##}" singleP="{##db.tourForm.singleP##}" wBedP="{##db.tourForm.wBedP##}"
-        woBedP="{##db.tourForm.woBedP##}" doubleU="{##db.tourForm.doubleU##}" singleU="{##db.tourForm.singleU##}"
-        wBedU="{##db.tourForm.wBedU##}" woBedU="{##db.tourForm.woBedU|()##}" startDate="{##db.tourForm.startDate##}"
-        endDate="{##db.tourForm.endDate##}" weekdayStartDate="{##db.tourForm.weekdayStartDate##}"
-        weekdayEndDate="{##db.tourForm.weekdayEndDate##}" departureName="{##db.tourForm.departureName##}"
-        destinationName="{##db.tourForm.destinationName##}" startTime="{##db.tourForm.startTime##}"
-        endTime="{##db.tourForm.endTime##}"></basis>
-    </div>
-    <!-- tour-installment form section -->
-    <div>
-        <basis core="call" if="{##db.tourFormInstallment.run|(false)##}" triggers="db.tourFormInstallment"
-            run="atclient" file="/tour-bookInstallment.bc" hotelName="{##db.tourFormInstallment.hotelName##}"
-            method="post" hotelRate="{##db.tourFormInstallment.hotelRate##}"
-            hotelService="{##db.tourFormInstallment.hotelService##}"
-            tourName="{##db.tourFormInstallment.tourName##}" doubleP="{##db.tourFormInstallment.doubleP##}"
-            singleP="{##db.tourFormInstallment.singleP##}" wBedP="{##db.tourFormInstallment.wBedP##}"
-            woBedP="{##db.tourFormInstallment.woBedP##}" doubleU="{##db.tourFormInstallment.doubleU##}"
-            singleU="{##db.tourFormInstallment.singleU##}" wBedU="{##db.tourFormInstallment.wBedU##}"
-            woBedU="{##db.tourFormInstallment.woBedU|()##}" adultCount="{##db.tourFormInstallment.adultCount|(2)##}"
-            childCount="{##db.tourFormInstallment.childCount|(0)##}"
-            infantCount="{##db.tourFormInstallment.infantCount|(0)##}"
-            startDate="{##db.tourFormInstallment.startDate##}" endDate="{##db.tourFormInstallment.endDate##}"
-            weekdayStartDate="{##db.tourFormInstallment.weekdayStartDate##}"
-            weekdayEndDate="{##db.tourFormInstallment.weekdayEndDate##}"
-            departureName="{##db.tourFormInstallment.departureName##}"
-            destinationName="{##db.tourFormInstallment.destinationName##}"
-            startTime="{##db.tourFormInstallment.startTime##}" endTime="{##db.tourFormInstallment.endTime##}"
-            totalAmountINS="{##db.tourFormInstallment.totalAmountINS##}"
-            totalAmountFacilityINS="{##db.tourFormInstallment.totalAmountFacilityINS##}"
-            totalAdvancePaymentINS="{##db.tourFormInstallment.totalAdvancePaymentINS##}"
-            amountEachInstallmentINS="{##db.tourFormInstallment.amountEachInstallmentINS##}"></basis>
-    </div>
-    <div id="load-form-lachin">
-        <basis core="call" if="{##db.tourFormInstallmentplan.run|(false)##}" triggers="db.tourFormInstallmentplan"
-            run="atclient" file="/installmentbook-plan.bc" hotelName="{##db.tourFormInstallmentplan.hotelName##}"
-            method="post" hotelRate="{##db.tourFormInstallmentplan.hotelRate##}"
-            hotelService="{##db.tourFormInstallmentplan.hotelService##}"
-            tourName="{##db.tourFormInstallmentplan.tourName##}" doubleP="{##db.tourFormInstallmentplan.doubleP##}"
-            singleP="{##db.tourFormInstallmentplan.singleP##}" wBedP="{##db.tourFormInstallmentplan.wBedP##}"
-            woBedP="{##db.tourFormInstallmentplan.woBedP##}" doubleU="{##db.tourFormInstallmentplan.doubleU##}"
-            singleU="{##db.tourFormInstallmentplan.singleU##}" wBedU="{##db.tourFormInstallmentplan.wBedU##}"
-            woBedU="{##db.tourFormInstallmentplan.woBedU|()##}"></basis>
-    </div>
+            hotelName="{##db.tourForm.hotelName##}" method="post" hotelRate="{##db.tourForm.hotelRate##}"
+            hotelService="{##db.tourForm.hotelService##}" tourName="{##db.tourForm.tourName##}"
+            doubleP="{##db.tourForm.doubleP##}" singleP="{##db.tourForm.singleP##}" wBedP="{##db.tourForm.wBedP##}"
+            woBedP="{##db.tourForm.woBedP##}" doubleU="{##db.tourForm.doubleU##}" singleU="{##db.tourForm.singleU##}"
+            wBedU="{##db.tourForm.wBedU##}" woBedU="{##db.tourForm.woBedU|()##}" startDate="{##db.tourForm.startDate##}"
+            endDate="{##db.tourForm.endDate##}" weekdayStartDate="{##db.tourForm.weekdayStartDate##}"
+            weekdayEndDate="{##db.tourForm.weekdayEndDate##}" departureName="{##db.tourForm.departureName##}"
+            destinationName="{##db.tourForm.destinationName##}" startTime="{##db.tourForm.startTime##}"
+            endTime="{##db.tourForm.endTime##}"></basis>
+        </div>
+        <!-- tour-installment form section -->
+        <div>
+            <basis core="call" if="{##db.tourFormInstallment.run|(false)##}" triggers="db.tourFormInstallment"
+                run="atclient" file="/tour-bookInstallment.bc" hotelName="{##db.tourFormInstallment.hotelName##}"
+                method="post" hotelRate="{##db.tourFormInstallment.hotelRate##}"
+                hotelService="{##db.tourFormInstallment.hotelService##}"
+                tourName="{##db.tourFormInstallment.tourName##}" doubleP="{##db.tourFormInstallment.doubleP##}"
+                singleP="{##db.tourFormInstallment.singleP##}" wBedP="{##db.tourFormInstallment.wBedP##}"
+                woBedP="{##db.tourFormInstallment.woBedP##}" doubleU="{##db.tourFormInstallment.doubleU##}"
+                singleU="{##db.tourFormInstallment.singleU##}" wBedU="{##db.tourFormInstallment.wBedU##}"
+                woBedU="{##db.tourFormInstallment.woBedU|()##}" adultCount="{##db.tourFormInstallment.adultCount|(2)##}"
+                childCount="{##db.tourFormInstallment.childCount|(0)##}"
+                infantCount="{##db.tourFormInstallment.infantCount|(0)##}"
+                startDate="{##db.tourFormInstallment.startDate##}" endDate="{##db.tourFormInstallment.endDate##}"
+                weekdayStartDate="{##db.tourFormInstallment.weekdayStartDate##}"
+                weekdayEndDate="{##db.tourFormInstallment.weekdayEndDate##}"
+                departureName="{##db.tourFormInstallment.departureName##}"
+                destinationName="{##db.tourFormInstallment.destinationName##}"
+                startTime="{##db.tourFormInstallment.startTime##}" endTime="{##db.tourFormInstallment.endTime##}"
+                totalAmountINS="{##db.tourFormInstallment.totalAmountINS##}"
+                totalAmountFacilityINS="{##db.tourFormInstallment.totalAmountFacilityINS##}"
+                totalAdvancePaymentINS="{##db.tourFormInstallment.totalAdvancePaymentINS##}"
+                amountEachInstallmentINS="{##db.tourFormInstallment.amountEachInstallmentINS##}"></basis>
+        </div>
+        <div id="load-form-lachin">
+            <basis core="call" if="{##db.tourFormInstallmentplan.run|(false)##}" triggers="db.tourFormInstallmentplan"
+                run="atclient" file="/installmentbook-plan.bc" hotelName="{##db.tourFormInstallmentplan.hotelName##}"
+                method="post" hotelRate="{##db.tourFormInstallmentplan.hotelRate##}"
+                hotelService="{##db.tourFormInstallmentplan.hotelService##}"
+                tourName="{##db.tourFormInstallmentplan.tourName##}" doubleP="{##db.tourFormInstallmentplan.doubleP##}"
+                singleP="{##db.tourFormInstallmentplan.singleP##}" wBedP="{##db.tourFormInstallmentplan.wBedP##}"
+                woBedP="{##db.tourFormInstallmentplan.woBedP##}" doubleU="{##db.tourFormInstallmentplan.doubleU##}"
+                singleU="{##db.tourFormInstallmentplan.singleU##}" wBedU="{##db.tourFormInstallmentplan.wBedU##}"
+                woBedU="{##db.tourFormInstallmentplan.woBedU|()##}"></basis>
+        </div>
     </main>
 
     <script src="[##cms.cms.cdn##]/_js/swiper-bundle.11.2.5.min.js"></script>

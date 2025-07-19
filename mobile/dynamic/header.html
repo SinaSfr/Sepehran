@@ -76,6 +76,9 @@
                     <ul class="text-sm divide-y divide-primary-50">
                         <li class="py-3"><a href="/" class="text-zinc-900">صفحه اصلی</a></li>
                         <li class="flex items-center py-3 ">
+                            <a href="https://blog.gardeshgaran.travel/" class="w-full text-zinc-900">مجله گردشگران</a>
+                        </li>
+                        <li class="flex items-center py-3 ">
                             <a href="" class="w-full text-zinc-900">هتل</a>
                         </li>
                         <basis core="tree" datamembername="russia-tour.cat" idcol="catid" parentidcol="parentid"
@@ -212,7 +215,7 @@
         <!-- header menu -->
     </section>
     <div
-        class="fixed z-20 left-0 right-0 bottom-0 flex items-center justify-center gap-6 px-7 py-4 bg-primary-50 rounded-t-2xl">
+        class="fixed z-50 left-0 right-0 bottom-0 flex items-center justify-center gap-6 px-7 py-4 bg-primary-50 rounded-t-2xl">
         <a href="/"
             class="flex items-center gap-1 text-sm font-semibold text-primary-500 border-b border-primary-500 pb-1">
             <svg width="24" height="24">
@@ -268,9 +271,8 @@
                                     <li class="header-li tourcategorydropdown__item cursor-pointer flex gap-2 items-center rounded p-1 flex-shrink-0"
                                         data-index="0" data-catid="@catid">
                                         <span class="bg-white p-1 rounded">
-                                            <img src="@image"
-                                                class="h-3 object-cover rounded" alt="@title" width="19" height="12"
-                                                loading="lazy">
+                                            <img src="@image" class="h-3 object-cover rounded" alt="@title" width="19"
+                                                height="12" loading="lazy">
                                         </span>
                                         <span class="text-sm font-semibold">@title</span>
                                     </li>
@@ -870,14 +872,14 @@
             <basis core="print" datamembername="db.info">
                 <face filter="TypeID in(240)">
                     <a href="tel:021@text"
-                    class="flex items-center justify-center gap-2 w-full h-[73px] font-extrabold rounded-xl bg-primary-500 text-white mt-20">
-                    مشاوره رایگان
-                    <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M16.7053 5.76482C18.3611 5.21289 19.1892 4.93718 19.6262 5.3742C20.063 5.81125 19.7875 6.6395 19.2356 8.29509L16.3977 16.8078C15.6134 19.1608 15.2209 20.3379 14.5002 20.3381C13.7795 20.3381 13.3872 19.161 12.6028 16.8078L11.8538 14.5597L16.2073 10.2072L16.2756 10.131C16.5959 9.73831 16.5732 9.15927 16.2073 8.79314C15.8412 8.42703 15.2622 8.40446 14.8694 8.72478L14.7932 8.79314L10.4397 13.1467L8.19263 12.3976C5.83958 11.6133 4.66251 11.2208 4.66235 10.5002C4.66235 9.77941 5.83941 9.38712 8.19263 8.60271L16.7053 5.76482Z"
-                            fill="white" />
-                    </svg>
-                </a>
+                        class="flex items-center justify-center gap-2 w-full h-[73px] font-extrabold rounded-xl bg-primary-500 text-white mt-20">
+                        مشاوره رایگان
+                        <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M16.7053 5.76482C18.3611 5.21289 19.1892 4.93718 19.6262 5.3742C20.063 5.81125 19.7875 6.6395 19.2356 8.29509L16.3977 16.8078C15.6134 19.1608 15.2209 20.3379 14.5002 20.3381C13.7795 20.3381 13.3872 19.161 12.6028 16.8078L11.8538 14.5597L16.2073 10.2072L16.2756 10.131C16.5959 9.73831 16.5732 9.15927 16.2073 8.79314C15.8412 8.42703 15.2622 8.40446 14.8694 8.72478L14.7932 8.79314L10.4397 13.1467L8.19263 12.3976C5.83958 11.6133 4.66251 11.2208 4.66235 10.5002C4.66235 9.77941 5.83941 9.38712 8.19263 8.60271L16.7053 5.76482Z"
+                                fill="white" />
+                        </svg>
+                    </a>
                 </face>
             </basis>
 

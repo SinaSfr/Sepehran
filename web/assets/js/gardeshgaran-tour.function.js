@@ -440,7 +440,11 @@ const onrenderedExecutionOrigins = async () => {
       '.tourExecution__container__origins .execution__details__path__item .details__city'
     );
     if (originElement) {
-      let origin = originElement.textContent;
+      let origin = originElement.textContent.trim();
+      console.log(origin);
+      
+      document.querySelector('.tourExecution__container__origins .origins__city').textContent = origin;
+      document.getElementById('destination-departure-tour').textContent = origin; // ✅ برعکس
 
       let ids = [];
       document
@@ -460,6 +464,7 @@ const onrenderedExecutionOrigins = async () => {
   }
 };
 
+
 const onrenderedExecutionDestinations = async () => {
   try {
     const destinationElement = document.querySelector(
@@ -467,6 +472,10 @@ const onrenderedExecutionDestinations = async () => {
     );
     if (destinationElement) {
       let destination = destinationElement.textContent;
+      console.log(destination);
+
+      document.querySelector('.tourExecution__container__destinations .destinations__city').textContent = destination;
+      document.getElementById('origin-departure-tour').textContent = destination; // اصلاح ID برای مقصد
 
       let ids = [];
       document
@@ -476,10 +485,7 @@ const onrenderedExecutionDestinations = async () => {
           ids.push(e.dataset.id);
         });
       if (ids.length > 0) {
-        $bc.setSource('db.airlinesDestinationsGallery', {
-          ids: ids,
-          run: true,
-        });
+        $bc.setSource('db.airlinesDestinationsGallery', { ids: ids, run: true });
       }
     }
   } catch (err) {
