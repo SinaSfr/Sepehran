@@ -1,8 +1,4 @@
 <basis core="group" if="'[##cms.cms.page_index##]' = 'نمایه پیش فرض'">
-    <basis core="dbsource" source="basiscore" name="db" mid="5" lid="1" usedforid="[##cms.cms.ownerid##]">
-        <member name="infofooter" type="view" />
-    </basis>
-
     <basis core="dbsource" source="basiscore" lid="1" mid="20" name="db" catid="215048">
         <member name="east-asia-tours" type="list" link="tour.bc" propertyid="" perpage="12" order="ord" />
     </basis>
@@ -20,13 +16,13 @@
                         height="86">
                     <div class="flex items-center gap-4 text-zinc-900 font-extrabold">
                         <h3>تلفن پشتیبانی مشتریان :</h3>
-                        <basis core="print" datamembername="db.infofooter">
+                        <basis core="print" datamembername="db.info">
                             <face filter="TypeID in(240)">
                                 <a href="021@text" class="transition-all duration-300 hover:text-primary-500">@text -021</a>
                             </face>
                         </basis>
                     </div>
-                    <basis core="print" datamembername="db.infofooter">
+                    <basis core="print" datamembername="db.info">
                         <layout>
                             <div class="text-zinc-900 font-extrabold">
                                 <h3 class="inline-block ml-1">آدرس تهران :</h3>
@@ -37,7 +33,7 @@
                             <div class="adress-wrapper inline">@largetext</div>
                         </face>
                     </basis>
-                    <basis core="print" datamembername="db.infofooter">
+                    <basis core="print" datamembername="db.info">
                         <face filter="TypeID in(144)">
                                 <div class="content-inner text-sm font-semibold text-justify leading-7 overflow-hidden transition-all duration-500">
                                     @largetext

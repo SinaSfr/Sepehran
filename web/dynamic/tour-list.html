@@ -20,10 +20,6 @@
     }'>
 </basis>
 
-<basis core="dbsource" source="basiscore" name="db" mid="5" lid="1" usedforid="[##cms.cms.ownerid##]">
-    <member name="info-tour" type="view" />
-</basis>
-
 <basis core="dbsource" source="basiscore" lid="1" mid="20" name="db" catid="[##cms.query.catid##]">
     <member name="navigation" type="tree" request="navcatid" parentid="[##cms.query.catid##]" />
 </basis>
@@ -273,7 +269,7 @@
                         </div>
                     </div>
                 </section>
-                <basis core="print" datamembername="db.info-tour">
+                <basis core="print" datamembername="db.info">
                     <layout>
                         <section class="bg-freeFormGrayBg bg-center bg-cover rounded-xl mt-4">
                             @child
@@ -998,7 +994,7 @@
                                 فرم مشاوره رایگان رو همین حالا پر کن یا با ما تماس بگیر و یه قدم به رویات نزدیک‌تر شو.
                             </div>
                             <div class="flex items-center gap-4 mt-4">
-                                <basis core="print" datamembername="db.info-tour">
+                                <basis core="print" datamembername="db.info">
                                     <face filter="TypeID in(240)">
                                         <a href="tel:021@text"
                                             class="group flex items-center gap-2 border rounded-xl transition-all duration-300 shadow-small-btn-shadow bg-primary-500 text-white border-primary-500 py-2 px-6 hover:border-gray-100 hover:text-zinc-900 hover:shadow-none hover:bg-white">تماس

@@ -799,7 +799,8 @@
                             <h2 id="plan" class="text-[36px] font-extrabold">شروع سفر</h2>
                         </div>
 
-                        <div class="execution__details__path__item execution__details__path__origins flex flex-col gap-8">
+                        <div
+                            class="execution__details__path__item execution__details__path__origins flex flex-col gap-8">
                             <basis core="print" datamembername="refresh.executionPlanTypesOrigins"
                                 if="{##refresh.executionPlanTypesOrigins##}" run="atclient"
                                 onrendered="onrenderedExecutionOrigins">
@@ -857,7 +858,8 @@
                             <h2 class="text-[36px] font-extrabold">پایان سفر</h2>
                         </div>
 
-                        <div class="execution__details__path__item execution__details__path__destinations flex flex-col gap-8">
+                        <div
+                            class="execution__details__path__item execution__details__path__destinations flex flex-col gap-8">
                             <basis core="print" datamembername="refresh.executionPlanTypesDestinations"
                                 if="{##refresh.executionPlanTypesDestinations##}" run="atclient"
                                 onrendered="onrenderedExecutionDestinations">
@@ -1177,11 +1179,11 @@
                                         <input type="hidden" name="replyProductid" value="[##cms.query.aid##]" />
                                         <input name="mid" value="1" type="hidden" />
                                         <input
-                                            class="bg-secondary hover:bg-secondary-500 h-12 rounded-[4px] w-full block leading-48px min-w-32 px-3 text-sm font-danaregular my-3"
+                                            class="group flex items-center justify-center gap-2 font-extrabold rounded-xl w-36 h-[73px] transition-all duration-300 bg-secondary-500 cursor-pointer hover:shadow-btn-shadow"
                                             type="submit" value="ثبت" />
                                     </form>
                                 </div>
-                                <div class="replyCommentTxt w-10/12 mx-auto">@Child</div>
+                                <div class="replyCommentTxt mx-auto">@Child</div>
                             </div>
                         </face>
                         <face level="2" filter="username='آمیتیس'">
@@ -1223,6 +1225,20 @@
                             </div>
                         </face>
                     </basis>
+                    <div id="popuparticle" class="popup hidden">
+                        <div
+                            class="fixed z-50 left-0 right-0 bottom-0 top-0 w-screen h-screen overflow-auto bg-black/45 flex justify-center items-center">
+                            <div
+                                class="relative popup-content bg-white rounded-xl p-12 border border-solid border-primary-500 m-auto">
+                                <span id="closePopuparticle" class="close absolute left-1 top-1 cursor-pointer">
+                                    <svg width="24" height="24">
+                                        <use xlink:href="./images/sprite-icons.svg#engine-close-icon"></use>
+                                    </svg>
+                                </span>
+                                <div id="popupMessage" class="font-danaregular"></div>
+                            </div>
+                        </div>
+                    </div>
                 </section>
 
                 <basis core="list" datamembername="db.tour-related">

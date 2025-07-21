@@ -632,6 +632,9 @@ body {
 .right-60 {
   right: 15rem;
 }
+.right-\[134px\] {
+    right: 134px;
+}
 .top-0 {
   top: 0;
 }

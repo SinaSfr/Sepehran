@@ -1684,7 +1684,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // reply-comment
 async function Reply_Comment(element) {
-  const responsereply = await fetch("Client_CheckAuthentication.inc");
+  const responsereply = await fetch('Client_CheckAuthentication.inc');
   if (!responsereply.ok) {
     throw new Error('متاسفانه مشکلی به وجود آمده است لطفا بعدا مجددا تلاش فرمایید.');
   } else {
@@ -1692,8 +1692,8 @@ async function Reply_Comment(element) {
     if (CheckAuthentication === 'true') {
       var firstname = document.querySelector('.user-profile-content .default-name').innerText;
       var lastname = document.querySelector('.user-profile-content .default-family').innerText;
-      element.closest('.opinionRow').querySelector('.reply-title').value = firstname + " " + lastname;
-      element.closest('.opinionRow').querySelector('.replyCommentForm').classList.toggle("hidden");
+      element.closest('.opinionRow').querySelector('.reply-title').value = firstname + ' ' + lastname;
+      element.closest('.opinionRow').querySelector('.replyCommentForm').classList.toggle('hidden');
     } else {
       showLoginContainer(this);
     }
@@ -1742,6 +1742,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+function refresh_captcha(element, event) {
+  var form = element.closest('form');
+  var captchaElement = form.querySelector('.load-captcha');
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', '/Client_Captcha.bc', true);
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      captchaElement.innerHTML = xhr.responseText;
+    }
+  };
+  xhr.send();
+}
 
 // request-form
 function uploadDocumentRequest(args) {
