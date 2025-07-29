@@ -3,15 +3,8 @@
 </basis>
 
 <basis core="dbsource" source="basiscore" lid="1" mid="20" name="db" catid="[##cms.query.catid##]">
-  <member
-    name="visa-list"
-    type="list"
-    link="visa.bc"
-    propertyid="1417,3087433,3087930,3087931,3087936"
-    perpage="6"
-    size="352x192"
-    pageno="[##cms.query.pagenum|(1)##]"
-    order="ord" />
+  <member name="visa-list" type="list" link="visa.bc" propertyid="1417,3087433,3087930,3087931,3087936" perpage="6"
+    size="352x192" pageno="[##cms.query.pagenum|(1)##]" order="ord" />
   <member name="paging" type="list" request="paging" count="2" parentname="visa-list" />
 </basis>
 
@@ -25,431 +18,385 @@
 
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0,shrink-to-fit=no,viewport-fit=cover" />
-    <!-- Title & Description -->
-    <title>[##cms.seo.title|(گردشگران سپهر تهران - خرید بلیط هواپیما - رزرو تور خارجی و داخلی)##]</title>
-    <meta
-      name="description"
-      content="[##cms.seo.description|(گردشگران سپهر تهران ارائه‌دهنده بلیط هواپیما، تورهای خارجی و داخلی، رزرو هتل، و خدمات ویزا. سفر به استانبول، دبی، آنتالیا، اروپا با بهترین قیمت)##]" />
-    <!-- Title & Description -->
-    <basis core="dbsource" source="hosting" name="tag" urlid="[##cms.seo.urlid##]">
-      <member type="list" name="list" request="taglist" preview=""></member>
-    </basis>
-    <basis core="print" datamembername="tag.list">
-      <face filter="key = 'canonical'">
-        <link rel="canonical" href="@value" />
-      </face>
-      <face>
-        <meta property="@key" content="@value" />
-      </face>
-    </basis>
-    <!-- pwa metatags -->
-    <basis core="call" file="pwa.inc" pageindex="[##cms.cms.pageindex##]" />
-    <!-- common styles for all page -->
-    <basis core="call" file="style.inc" pageindex="[##cms.cms.pageindex##]" />
-  </head>
-  <body>
-    <basis core="call" file="header.inc" pageindex="[##cms.cms.pageindex##]" />
-    <main>
-      <section class="relative flex items-center justify-center bg-tourlistBg bg-center bg-cover py-4">
-        <div class="absolute inset-0 w-full h-full bg-black/45"></div>
-        <ul
-          itemscope
-          itemtype="https://schema.org/BreadcrumbList"
-          class="relative flex flex-wrap justify-center items-center text-sm gap-1">
-          <li
-            class="inline-block font-normal"
-            itemprop="itemListElement"
-            itemscope
-            itemtype="https://schema.org/ListItem">
-            <a
-              class="text-white text-xs font-light transition-all duration-300 hover:text-secondary-500"
-              itemprop="item"
-              href="/"
-              aria-label="home">
-              <span itemprop="name">صفحه اصلی</span>
-              <meta itemprop="position" content="1" />
-            </a>
-          </li>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M15 6L9 12L15 18" stroke="white" stroke-width="2" />
-          </svg>
 
-          <basis core="print" datamembername="db.navigation">
-            <face filter="RowNumber=max(RowNumber) and parentcatid<>214993">
-              <li
-                class="w-full flex justify-center text-white mt-2"
-                itemprop="itemListElement"
-                itemscope
-                itemtype="https://schema.org/ListItem">
-                <h1 class="text-secondary-500 text-[32px] leading-[32px] font-black" itemprop="name">@title</h1>
+<head>
+  <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-WX4XTXHH');</script>
+  <!-- End Google Tag Manager -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,shrink-to-fit=no,viewport-fit=cover" />
+  <!-- Title & Description -->
+  <title>[##cms.seo.title|(گردشگران سپهر تهران - خرید بلیط هواپیما - رزرو تور خارجی و داخلی)##]</title>
+  <meta name="description"
+    content="[##cms.seo.description|(گردشگران سپهر تهران ارائه‌دهنده بلیط هواپیما، تورهای خارجی و داخلی، رزرو هتل، و خدمات ویزا. سفر به استانبول، دبی، آنتالیا، اروپا با بهترین قیمت)##]" />
+  <!-- Title & Description -->
+  <basis core="dbsource" source="hosting" name="tag" urlid="[##cms.seo.urlid##]">
+    <member type="list" name="list" request="taglist" preview=""></member>
+  </basis>
+  <basis core="print" datamembername="tag.list">
+    <face filter="key = 'canonical'">
+      <link rel="canonical" href="@value" />
+    </face>
+    <face>
+      <meta property="@key" content="@value" />
+    </face>
+  </basis>
+  <!-- pwa metatags -->
+  <basis core="call" file="pwa.inc" pageindex="[##cms.cms.pageindex##]" />
+  <!-- common styles for all page -->
+  <basis core="call" file="style.inc" pageindex="[##cms.cms.pageindex##]" />
+</head>
+
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WX4XTXHH" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <basis core="call" file="header.inc" pageindex="[##cms.cms.pageindex##]" />
+  <main>
+    <section class="relative flex items-center justify-center bg-tourlistBg bg-center bg-cover py-4">
+      <div class="absolute inset-0 w-full h-full bg-black/45"></div>
+      <ul itemscope itemtype="https://schema.org/BreadcrumbList"
+        class="relative flex flex-wrap justify-center items-center text-sm gap-1">
+        <li class="inline-block font-normal" itemprop="itemListElement" itemscope
+          itemtype="https://schema.org/ListItem">
+          <a class="text-white text-xs font-light transition-all duration-300 hover:text-secondary-500" itemprop="item"
+            href="/" aria-label="home">
+            <span itemprop="name">صفحه اصلی</span>
+            <meta itemprop="position" content="1" />
+          </a>
+        </li>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M15 6L9 12L15 18" stroke="white" stroke-width="2" />
+        </svg>
+
+        <basis core="print" datamembername="db.navigation">
+          <face filter="RowNumber=max(RowNumber) and parentcatid<>214993">
+            <li class="w-full flex justify-center text-white mt-2" itemprop="itemListElement" itemscope
+              itemtype="https://schema.org/ListItem">
+              <h1 class="text-secondary-500 text-[32px] leading-[32px] font-black" itemprop="name">@title</h1>
+              <meta itemprop="position" content="@rownumber" />
+            </li>
+          </face>
+          <face filter="link is null and parentcatid<>214993">
+            <li class="flex items-center gap-1 font-normal" itemprop="itemListElement" itemscope
+              itemtype="https://schema.org/ListItem">
+              <a class="text-white text-xs font-light transition-all duration-300 hover:text-secondary-500"
+                itemprop="item" href="/tour-list.bc?catid=@parentcatid" aria-label="@title">
+                <span itemprop="name">@title</span>
                 <meta itemprop="position" content="@rownumber" />
+              </a>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 6L9 12L15 18" stroke="white" stroke-width="2" />
+              </svg>
+            </li>
+          </face>
+          <face filter="parentcatid<>214993">
+            <li class="flex items-center gap-1 font-normal" itemprop="itemListElement" itemscope
+              itemtype="https://schema.org/ListItem">
+              <a class="text-white text-xs font-light transition-all duration-300 hover:text-secondary-500"
+                itemprop="item" href="@link" aria-label="@title">
+                <span class="text-white text-xs font-light transition-all duration-300 hover:text-secondary-500"
+                  itemprop="name">
+                  @title
+                </span>
+                <meta itemprop="position" content="@rownumber" />
+              </a>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 6L9 12L15 18" stroke="white" stroke-width="2" />
+              </svg>
+            </li>
+          </face>
+        </basis>
+      </ul>
+    </section>
+    <section class="mx-auto max-lg:w-[90%] max-xl:w-[97%] xl:max-w-7xl mt-6">
+      <h2 class="text-[32px] font-black mb-6">ویزا های توریستی</h2>
+      <basis core="list" datamembername="db.visa-list">
+        <layout>
+          <div class="flex flex-col gap-6">
+            <!-- items -->
+            @child
+          </div>
+        </layout>
+        <else-layout>
+          <div class="flex items-center justify-center">
+            <h2 class="text-xl font-extrabold mt-16 text-center">در حال حاضر ویزایی وجود ندارد!</h2>
+          </div>
+        </else-layout>
+        <face filter="link is null">
+          <a href="/visa.bc?id=@id"
+            class="flex flex-col border border-gray-50 rounded-xl shadow-card-shadow overflow-hidden">
+            <img src="@00352X00192prp" class="w-full h-48 object-cover" alt="@title" width="352" height="192"
+              loading="lazy" />
+            <div class="flex flex-col gap-1 py-4 px-6 divide-y divide-gray-100">
+              <div class="flex items-center gap-2">
+                <img src="[##cms.cms.cdn##]/images/flags/@prp_3087936" class="h-6 object-cover rounded" alt="@title"
+                  width="36" height="24" loading="lazy" />
+                <h2 class="text-2xl font-extrabold">@title</h2>
+              </div>
+              <div class="flex flex-col gap-2 pt-2">
+                <h3 class="flex items-center gap-2 text-sm font-bold">
+                  زمان مورد نیاز:
+                  <span class="text-primary-500">@prp_1417</span>
+                </h3>
+                <h3 class="flex items-center gap-2 text-sm font-bold">
+                  مدت زمان ویزا:
+                  <span class="text-primary-500">@prp_3087931</span>
+                </h3>
+                <h3 class="flex items-center gap-2 text-sm font-bold">
+                  تعداد دفعات ورود:
+                  <span class="text-primary-500">@prp_3087930</span>
+                </h3>
+              </div>
+              <div class="flex items-center justify-between pt-2">
+                <h3 class="text-sm font-bold">شروع قیمت از:</h3>
+                <span class="text-2xl font-extrabold text-primary-500">@prp_3087433</span>
+              </div>
+            </div>
+          </a>
+        </face>
+        <face>
+          <a href="@link" class="flex flex-col border border-gray-50 rounded-xl shadow-card-shadow overflow-hidden">
+            <img src="@00352X00192prp" class="w-full h-48 object-cover" alt="@title" width="352" height="192"
+              loading="lazy" />
+            <div class="flex flex-col gap-1 py-4 px-6 divide-y divide-gray-100">
+              <div class="flex items-center gap-2">
+                <img src="[##cms.cms.cdn##]/images/flags/@prp_3087936" class="h-6 object-cover rounded" alt="@title"
+                  width="36" height="24" loading="lazy" />
+                <h2 class="text-2xl font-extrabold">@title</h2>
+              </div>
+              <div class="flex flex-col gap-2 pt-2">
+                <h3 class="flex items-center gap-2 text-sm font-bold">
+                  زمان مورد نیاز:
+                  <span class="text-primary-500">@prp_1417</span>
+                </h3>
+                <h3 class="flex items-center gap-2 text-sm font-bold">
+                  مدت زمان ویزا:
+                  <span class="text-primary-500">@prp_3087931</span>
+                </h3>
+                <h3 class="flex items-center gap-2 text-sm font-bold">
+                  تعداد دفعات ورود:
+                  <span class="text-primary-500">@prp_3087930</span>
+                </h3>
+              </div>
+              <div class="flex items-center justify-between pt-2">
+                <h3 class="text-sm font-bold">شروع قیمت از:</h3>
+                <span class="text-2xl font-extrabold text-primary-500">@prp_3087433</span>
+              </div>
+            </div>
+          </a>
+        </face>
+      </basis>
+
+      <div id="paging" class="flex justify-center gap-4 mt-8">
+        <ul class="flex items-center gap-4 cd-pagination no-space direction-ltr" id="wibpaging">
+          <basis core="print" datamembername="db.paging">
+            <face filter="(@sta='pre')and('[##cms.cms.pageurl##]'='')">
+              <li
+                class="group flex items-center justify-center w-16 h-16 border border-gray-100 rounded-xl transition-all duration-300 hover:border-primary-500 page-no prev-page">
+                <a class="flex items-center justify-center w-full cursor-pointer text-zinc-900" aria-label="angle-left"
+                  href="/[##cms.cms.link_page##]&pagenum=@page">
+                  <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path class="transition-all duration-300 group-hover:stroke-primary-500"
+                      d="M15.5 6.15674L9.5 12.1567L15.5 18.1567" stroke="#1E2128" />
+                  </svg>
+                </a>
               </li>
             </face>
-            <face filter="link is null and parentcatid<>214993">
+            <face filter="(@sta='pre')and('[##cms.cms.pageurl##]'<>'')">
               <li
-                class="flex items-center gap-1 font-normal"
-                itemprop="itemListElement"
-                itemscope
-                itemtype="https://schema.org/ListItem">
-                <a
-                  class="text-white text-xs font-light transition-all duration-300 hover:text-secondary-500"
-                  itemprop="item"
-                  href="/tour-list.bc?catid=@parentcatid"
-                  aria-label="@title">
-                  <span itemprop="name">@title</span>
-                  <meta itemprop="position" content="@rownumber" />
+                class="group flex items-center justify-center w-16 h-16 border border-gray-100 rounded-xl transition-all duration-300 hover:border-primary-500 page-no prev-page">
+                <a class="flex items-center justify-center w-full cursor-pointer text-zinc-900" aria-label="angle-left"
+                  href="/[##cms.cms.pageurl##]?pagenum=@page">
+                  <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path class="transition-all duration-300 group-hover:stroke-primary-500"
+                      d="M15.5 6.15674L9.5 12.1567L15.5 18.1567" stroke="#1E2128" />
+                  </svg>
                 </a>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M15 6L9 12L15 18" stroke="white" stroke-width="2" />
-                </svg>
               </li>
             </face>
-            <face filter="parentcatid<>214993">
+          </basis>
+          <basis core="print" datamembername="db.paging">
+            <face filter="(@page=[##cms.query.pagenum|(1)##])and('[##cms.cms.pageurl##]'='')">
               <li
-                class="flex items-center gap-1 font-normal"
-                itemprop="itemListElement"
-                itemscope
-                itemtype="https://schema.org/ListItem">
-                <a
-                  class="text-white text-xs font-light transition-all duration-300 hover:text-secondary-500"
-                  itemprop="item"
-                  href="@link"
-                  aria-label="@title">
-                  <span
-                    class="text-white text-xs font-light transition-all duration-300 hover:text-secondary-500"
-                    itemprop="name">
-                    @title
-                  </span>
-                  <meta itemprop="position" content="@rownumber" />
+                class="flex items-center justify-center w-16 h-16 border border-primary-500 text-primary-500 text-2xl font-extrabold rounded-xl page-no">
+                <a class="flex items-center justify-center w-full h-full text-primary-500 cursor-pointer page-number"
+                  href="/[##cms.cms.link_page##]&pagenum=@page">
+                  @page
                 </a>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M15 6L9 12L15 18" stroke="white" stroke-width="2" />
-                </svg>
+              </li>
+            </face>
+            <face filter="(@page=[##cms.query.pagenum|(1)##])and('[##cms.cms.pageurl##]'<>'')">
+              <li
+                class="flex items-center justify-center w-16 h-16 border border-primary-500 text-primary-500 text-2xl font-extrabold rounded-xl page-no">
+                <a class="flex items-center justify-center w-full h-full text-primary-500 cursor-pointer page-number"
+                  href="/[##cms.cms.pageurl##]?pagenum=@page">
+                  @page
+                </a>
+              </li>
+            </face>
+            <face
+              filter="(@page<>[##cms.query.pagenum|(1)##]) and (@page>0) and (@sta='no') and ('[##cms.cms.pageurl##]'='') ">
+              <li
+                class="flex items-center justify-center w-16 h-16 border border-gray-100 text-gray-400 text-2xl font-extrabold rounded-xl transition-all duration-300 hover:border-primary-500 hover:text-primary-500 page-no">
+                <a class="flex items-center justify-center w-full h-full cursor-pointer page-number"
+                  href="/[##cms.cms.link_page##]&pagenum=@page">
+                  @page
+                </a>
+              </li>
+            </face>
+            <face
+              filter="(@page<>[##cms.query.pagenum|(1)##]) and (@page>0) and (@sta='no') and ('[##cms.cms.pageurl##]'<>'') ">
+              <li
+                class="flex items-center justify-center w-16 h-16 border border-gray-100 text-gray-400 text-2xl font-extrabold rounded-xl transition-all duration-300 hover:border-primary-500 hover:text-primary-500 page-no">
+                <a class="flex items-center justify-center w-full h-full cursor-pointer page-number"
+                  href="/[##cms.cms.pageurl##]?pagenum=@page">
+                  @page
+                </a>
+              </li>
+            </face>
+          </basis>
+          <basis core="print" datamembername="db.paging">
+            <face filter="(@sta='nex') and ('[##cms.cms.pageurl##]'='')">
+              <li
+                class="group flex items-center justify-center w-16 h-16 border border-gray-100 rounded-xl transition-all duration-300 hover:border-primary-500 page-no next-page">
+                <a class="flex items-center justify-center w-full h-full cursor-pointer" aria-label="angle-right"
+                  href="/[##cms.cms.link_page##]&pagenum=@page">
+                  <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path class="transition-all duration-300 group-hover:stroke-primary-500"
+                      d="M9.5 6.15674L15.5 12.1567L9.5 18.1567" stroke="#1E2128" />
+                  </svg>
+                </a>
+              </li>
+            </face>
+            <face filter="(@sta='nex') and ('[##cms.cms.pageurl##]'<>'')">
+              <li
+                class="group flex items-center justify-center w-16 h-16 border border-gray-100 rounded-xl transition-all duration-300 hover:border-primary-500 page-no next-page">
+                <a class="flex items-center justify-center w-full h-full cursor-pointer" aria-label="angle-right"
+                  href="/[##cms.cms.pageurl##]?pagenum=@page">
+                  <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path class="transition-all duration-300 group-hover:stroke-primary-500"
+                      d="M9.5 6.15674L15.5 12.1567L9.5 18.1567" stroke="#1E2128" />
+                  </svg>
+                </a>
               </li>
             </face>
           </basis>
         </ul>
-      </section>
-      <section class="mx-auto max-lg:w-[90%] max-xl:w-[97%] xl:max-w-7xl mt-6">
-        <h2 class="text-[32px] font-black mb-6">ویزا های توریستی</h2>
-        <basis core="list" datamembername="db.visa-list">
-          <layout>
-            <div class="flex flex-col gap-6">
-              <!-- items -->
-              @child
-            </div>
-          </layout>
-          <else-layout>
-            <div class="flex items-center justify-center">
-                <h2 class="text-xl font-extrabold mt-16 text-center">در حال حاضر ویزایی وجود ندارد!</h2>
-            </div>
-        </else-layout>
-          <face filter="link is null">
-            <a
-              href="/visa.bc?id=@id"
-              class="flex flex-col border border-gray-50 rounded-xl shadow-card-shadow overflow-hidden">
-              <img
-                src="@00352X00192prp"
-                class="w-full h-48 object-cover"
-                alt="@title"
-                width="352"
-                height="192"
-                loading="lazy" />
-              <div class="flex flex-col gap-1 py-4 px-6 divide-y divide-gray-100">
-                <div class="flex items-center gap-2">
-                  <img
-                    src="[##cms.cms.cdn##]/images/flags/@prp_3087936"
-                    class="h-6 object-cover rounded"
-                    alt="@title"
-                    width="36"
-                    height="24"
-                    loading="lazy" />
-                  <h2 class="text-2xl font-extrabold">@title</h2>
-                </div>
-                <div class="flex flex-col gap-2 pt-2">
-                  <h3 class="flex items-center gap-2 text-sm font-bold">
-                    زمان مورد نیاز:
-                    <span class="text-primary-500">@prp_1417</span>
-                  </h3>
-                  <h3 class="flex items-center gap-2 text-sm font-bold">
-                    مدت زمان ویزا:
-                    <span class="text-primary-500">@prp_3087931</span>
-                  </h3>
-                  <h3 class="flex items-center gap-2 text-sm font-bold">
-                    تعداد دفعات ورود:
-                    <span class="text-primary-500">@prp_3087930</span>
-                  </h3>
-                </div>
-                <div class="flex items-center justify-between pt-2">
-                  <h3 class="text-sm font-bold">شروع قیمت از:</h3>
-                  <span class="text-2xl font-extrabold text-primary-500">@prp_3087433</span>
-                </div>
-              </div>
-            </a>
-          </face>
-          <face>
-            <a href="@link" class="flex flex-col border border-gray-50 rounded-xl shadow-card-shadow overflow-hidden">
-              <img
-                src="@00352X00192prp"
-                class="w-full h-48 object-cover"
-                alt="@title"
-                width="352"
-                height="192"
-                loading="lazy" />
-              <div class="flex flex-col gap-1 py-4 px-6 divide-y divide-gray-100">
-                <div class="flex items-center gap-2">
-                  <img
-                    src="[##cms.cms.cdn##]/images/flags/@prp_3087936"
-                    class="h-6 object-cover rounded"
-                    alt="@title"
-                    width="36"
-                    height="24"
-                    loading="lazy" />
-                  <h2 class="text-2xl font-extrabold">@title</h2>
-                </div>
-                <div class="flex flex-col gap-2 pt-2">
-                  <h3 class="flex items-center gap-2 text-sm font-bold">
-                    زمان مورد نیاز:
-                    <span class="text-primary-500">@prp_1417</span>
-                  </h3>
-                  <h3 class="flex items-center gap-2 text-sm font-bold">
-                    مدت زمان ویزا:
-                    <span class="text-primary-500">@prp_3087931</span>
-                  </h3>
-                  <h3 class="flex items-center gap-2 text-sm font-bold">
-                    تعداد دفعات ورود:
-                    <span class="text-primary-500">@prp_3087930</span>
-                  </h3>
-                </div>
-                <div class="flex items-center justify-between pt-2">
-                  <h3 class="text-sm font-bold">شروع قیمت از:</h3>
-                  <span class="text-2xl font-extrabold text-primary-500">@prp_3087433</span>
-                </div>
-              </div>
-            </a>
-          </face>
-        </basis>
+      </div>
+    </section>
+    <section class="mx-auto max-lg:w-[92%] max-xl:w-[97%] xl:max-w-7xl mt-14">
+      <basis core="print" datamembername="db.view">
+        <face filter="TypeID in(150)">
+          <h2 class="ext-[32px] font-black mb-6">@text</h2>
+        </face>
+      </basis>
 
-        <div id="paging" class="flex justify-center gap-4 mt-8">
-          <ul class="flex items-center gap-4 cd-pagination no-space direction-ltr" id="wibpaging">
-            <basis core="print" datamembername="db.paging">
-              <face filter="(@sta='pre')and('[##cms.cms.pageurl##]'='')">
-                <li
-                  class="group flex items-center justify-center w-16 h-16 border border-gray-100 rounded-xl transition-all duration-300 hover:border-primary-500 page-no prev-page">
-                  <a
-                    class="flex items-center justify-center w-full cursor-pointer text-zinc-900"
-                    aria-label="angle-left"
-                    href="/[##cms.cms.link_page##]&pagenum=@page">
-                    <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path
-                        class="transition-all duration-300 group-hover:stroke-primary-500"
-                        d="M15.5 6.15674L9.5 12.1567L15.5 18.1567"
-                        stroke="#1E2128" />
-                    </svg>
-                  </a>
-                </li>
-              </face>
-              <face filter="(@sta='pre')and('[##cms.cms.pageurl##]'<>'')">
-                <li
-                  class="group flex items-center justify-center w-16 h-16 border border-gray-100 rounded-xl transition-all duration-300 hover:border-primary-500 page-no prev-page">
-                  <a
-                    class="flex items-center justify-center w-full cursor-pointer text-zinc-900"
-                    aria-label="angle-left"
-                    href="/[##cms.cms.pageurl##]?pagenum=@page">
-                    <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path
-                        class="transition-all duration-300 group-hover:stroke-primary-500"
-                        d="M15.5 6.15674L9.5 12.1567L15.5 18.1567"
-                        stroke="#1E2128" />
-                    </svg>
-                  </a>
-                </li>
-              </face>
-            </basis>
-            <basis core="print" datamembername="db.paging">
-              <face filter="(@page=[##cms.query.pagenum|(1)##])and('[##cms.cms.pageurl##]'='')">
-                <li
-                  class="flex items-center justify-center w-16 h-16 border border-primary-500 text-primary-500 text-2xl font-extrabold rounded-xl page-no">
-                  <a
-                    class="flex items-center justify-center w-full h-full text-primary-500 cursor-pointer page-number"
-                    href="/[##cms.cms.link_page##]&pagenum=@page">
-                    @page
-                  </a>
-                </li>
-              </face>
-              <face filter="(@page=[##cms.query.pagenum|(1)##])and('[##cms.cms.pageurl##]'<>'')">
-                <li
-                  class="flex items-center justify-center w-16 h-16 border border-primary-500 text-primary-500 text-2xl font-extrabold rounded-xl page-no">
-                  <a
-                    class="flex items-center justify-center w-full h-full text-primary-500 cursor-pointer page-number"
-                    href="/[##cms.cms.pageurl##]?pagenum=@page">
-                    @page
-                  </a>
-                </li>
-              </face>
-              <face
-                filter="(@page<>[##cms.query.pagenum|(1)##]) and (@page>0) and (@sta='no') and ('[##cms.cms.pageurl##]'='') ">
-                <li
-                  class="flex items-center justify-center w-16 h-16 border border-gray-100 text-gray-400 text-2xl font-extrabold rounded-xl transition-all duration-300 hover:border-primary-500 hover:text-primary-500 page-no">
-                  <a
-                    class="flex items-center justify-center w-full h-full cursor-pointer page-number"
-                    href="/[##cms.cms.link_page##]&pagenum=@page">
-                    @page
-                  </a>
-                </li>
-              </face>
-              <face
-                filter="(@page<>[##cms.query.pagenum|(1)##]) and (@page>0) and (@sta='no') and ('[##cms.cms.pageurl##]'<>'') ">
-                <li
-                  class="flex items-center justify-center w-16 h-16 border border-gray-100 text-gray-400 text-2xl font-extrabold rounded-xl transition-all duration-300 hover:border-primary-500 hover:text-primary-500 page-no">
-                  <a
-                    class="flex items-center justify-center w-full h-full cursor-pointer page-number"
-                    href="/[##cms.cms.pageurl##]?pagenum=@page">
-                    @page
-                  </a>
-                </li>
-              </face>
-            </basis>
-            <basis core="print" datamembername="db.paging">
-              <face filter="(@sta='nex') and ('[##cms.cms.pageurl##]'='')">
-                <li
-                  class="group flex items-center justify-center w-16 h-16 border border-gray-100 rounded-xl transition-all duration-300 hover:border-primary-500 page-no next-page">
-                  <a
-                    class="flex items-center justify-center w-full h-full cursor-pointer"
-                    aria-label="angle-right"
-                    href="/[##cms.cms.link_page##]&pagenum=@page">
-                    <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path
-                        class="transition-all duration-300 group-hover:stroke-primary-500"
-                        d="M9.5 6.15674L15.5 12.1567L9.5 18.1567"
-                        stroke="#1E2128" />
-                    </svg>
-                  </a>
-                </li>
-              </face>
-              <face filter="(@sta='nex') and ('[##cms.cms.pageurl##]'<>'')">
-                <li
-                  class="group flex items-center justify-center w-16 h-16 border border-gray-100 rounded-xl transition-all duration-300 hover:border-primary-500 page-no next-page">
-                  <a
-                    class="flex items-center justify-center w-full h-full cursor-pointer"
-                    aria-label="angle-right"
-                    href="/[##cms.cms.pageurl##]?pagenum=@page">
-                    <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path
-                        class="transition-all duration-300 group-hover:stroke-primary-500"
-                        d="M9.5 6.15674L15.5 12.1567L9.5 18.1567"
-                        stroke="#1E2128" />
-                    </svg>
-                  </a>
-                </li>
-              </face>
-            </basis>
-          </ul>
-        </div>
-      </section>
-      <section class="mx-auto max-lg:w-[92%] max-xl:w-[97%] xl:max-w-7xl mt-14">
-        <basis core="print" datamembername="db.view">
-          <face filter="TypeID in(150)">
-            <h2 class="ext-[32px] font-black mb-6">@text</h2>
-          </face>
-        </basis>
+      <basis core="print" datamembername="db.view">
+        <layout>
+          <div class="mb-10">@child</div>
+        </layout>
+        <face filter="TypeID in(129)">
+          <div class="text-sm font-semibold mt-6 leading-7 text-justify mb-8">@largetext</div>
+        </face>
+        <face filter="TypeID in(250)">
+          <h2 id="@valueID" class="text-[36px] font-extrabold mb-4">@text</h2>
+          <div class="text-content text-sm font-semibold mt-6 leading-7 text-justify mb-6">@largetext</div>
+        </face>
+      </basis>
 
-        <basis core="print" datamembername="db.view">
-          <layout>
-            <div class="mb-10">@child</div>
-          </layout>
-          <face filter="TypeID in(129)">
-            <div class="text-sm font-semibold mt-6 leading-7 text-justify mb-8">@largetext</div>
-          </face>
-          <face filter="TypeID in(250)">
-            <h2 id="@valueID" class="text-[36px] font-extrabold mb-4">@text</h2>
-            <div class="text-content text-sm font-semibold mt-6 leading-7 text-justify mb-6">@largetext</div>
-          </face>
-        </basis>
-
-        <div
-          class="bg-formBg bg-center bg-cover flex items-end border border-gray-100 shadow-big-shadow rounded-3xl h-[404px]">
-          <div class="flex flex-col items-center gap-1 mb-20 mr-8">
-            <button
-              class="open-consulation-btn group w-40 flex items-center justify-center gap-2 border border-gray-100 rounded-xl hover:shadow-small-btn-shadow py-2">
-              ارسال فرم
-              <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  class="transition-all duration-300 group-hover:fill-white"
-                  d="M16.7051 5.37444C18.3609 4.82251 19.189 4.5468 19.626 4.98381C20.0628 5.42087 19.7872 6.24912 19.2354 7.90471L16.3975 16.4174C15.6131 18.7704 15.2207 19.9475 14.5 19.9477C13.7792 19.9477 13.3869 18.7706 12.6025 16.4174L11.8535 14.1694L16.207 9.81682L16.2754 9.74065C16.5957 9.34793 16.573 8.76888 16.207 8.40276C15.8409 8.03665 15.2619 8.01407 14.8691 8.3344L14.793 8.40276L10.4395 12.7563L8.19238 12.0073C5.83933 11.2229 4.66227 10.8305 4.66211 10.1098C4.66211 9.38903 5.83917 8.99674 8.19238 8.21233L16.7051 5.37444Z"
-                  fill="#222222"></path>
-              </svg>
-            </button>
-            <div class="flex items-center gap-2">
-              <svg width="34" height="2" viewBox="0 0 34 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <line y1="0.609863" x2="34" y2="0.609863" stroke="#8892A6"></line>
-              </svg>
-              <span class="text-sm font-semibold text-gray-400">یا</span>
-              <svg width="34" height="2" viewBox="0 0 34 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <line y1="0.609863" x2="34" y2="0.609863" stroke="#8892A6"></line>
-              </svg>
-            </div>
-            <basis core="print" datamembername="db.info">
-              <face filter="TypeID in(240)">
-                <a
-                  href="tel:021@text"
-                  class="group w-40 flex items-center justify-center gap-2 border rounded-xl shadow-small-btn-shadow bg-primary-500 text-white border-primary-500 py-2">
-                  تماس بگیرید
-                  <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                      class="transition-all duration-300 group-hover:fill-white"
-                      d="M6.67962 3.43024L7.29289 2.81697C7.68342 2.42645 8.31658 2.42645 8.70711 2.81697L11.2929 5.40276C11.6834 5.79328 11.6834 6.42645 11.2929 6.81697L9.50048 8.60938C9.2016 8.90826 9.1275 9.36487 9.31653 9.74293C10.4093 11.9284 12.1814 13.7006 14.3669 14.7933C14.745 14.9824 15.2016 14.9083 15.5005 14.6094L17.2929 12.817C17.6834 12.4264 18.3166 12.4264 18.7071 12.817L21.2929 15.4028C21.6834 15.7933 21.6834 16.4264 21.2929 16.817L20.6796 17.4302C18.5683 19.5416 15.2257 19.7791 12.837 17.9876L11.6286 17.0813C9.88504 15.7736 8.33622 14.2248 7.02857 12.4813L6.12226 11.2729C4.33072 8.88416 4.56827 5.54159 6.67962 3.43024Z"
-                      fill="#fff"></path>
+      <div
+        class="bg-formBg bg-center bg-cover flex items-end border border-gray-100 shadow-big-shadow rounded-3xl h-[404px]">
+        <div class="flex flex-col items-center gap-1 mb-20 mr-8">
+          <button
+            class="open-consulation-btn group w-40 flex items-center justify-center gap-2 border border-gray-100 rounded-xl hover:shadow-small-btn-shadow py-2">
+            ارسال فرم
+            <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path class="transition-all duration-300 group-hover:fill-white"
+                d="M16.7051 5.37444C18.3609 4.82251 19.189 4.5468 19.626 4.98381C20.0628 5.42087 19.7872 6.24912 19.2354 7.90471L16.3975 16.4174C15.6131 18.7704 15.2207 19.9475 14.5 19.9477C13.7792 19.9477 13.3869 18.7706 12.6025 16.4174L11.8535 14.1694L16.207 9.81682L16.2754 9.74065C16.5957 9.34793 16.573 8.76888 16.207 8.40276C15.8409 8.03665 15.2619 8.01407 14.8691 8.3344L14.793 8.40276L10.4395 12.7563L8.19238 12.0073C5.83933 11.2229 4.66227 10.8305 4.66211 10.1098C4.66211 9.38903 5.83917 8.99674 8.19238 8.21233L16.7051 5.37444Z"
+                fill="#222222"></path>
+            </svg>
+          </button>
+          <div class="flex items-center gap-2">
+            <svg width="34" height="2" viewBox="0 0 34 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <line y1="0.609863" x2="34" y2="0.609863" stroke="#8892A6"></line>
+            </svg>
+            <span class="text-sm font-semibold text-gray-400">یا</span>
+            <svg width="34" height="2" viewBox="0 0 34 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <line y1="0.609863" x2="34" y2="0.609863" stroke="#8892A6"></line>
+            </svg>
+          </div>
+          <basis core="print" datamembername="db.info">
+            <face filter="TypeID in(240)">
+              <a href="tel:021@text"
+                class="group w-40 flex items-center justify-center gap-2 border rounded-xl shadow-small-btn-shadow bg-primary-500 text-white border-primary-500 py-2">
+                تماس بگیرید
+                <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path class="transition-all duration-300 group-hover:fill-white"
+                    d="M6.67962 3.43024L7.29289 2.81697C7.68342 2.42645 8.31658 2.42645 8.70711 2.81697L11.2929 5.40276C11.6834 5.79328 11.6834 6.42645 11.2929 6.81697L9.50048 8.60938C9.2016 8.90826 9.1275 9.36487 9.31653 9.74293C10.4093 11.9284 12.1814 13.7006 14.3669 14.7933C14.745 14.9824 15.2016 14.9083 15.5005 14.6094L17.2929 12.817C17.6834 12.4264 18.3166 12.4264 18.7071 12.817L21.2929 15.4028C21.6834 15.7933 21.6834 16.4264 21.2929 16.817L20.6796 17.4302C18.5683 19.5416 15.2257 19.7791 12.837 17.9876L11.6286 17.0813C9.88504 15.7736 8.33622 14.2248 7.02857 12.4813L6.12226 11.2729C4.33072 8.88416 4.56827 5.54159 6.67962 3.43024Z"
+                    fill="#fff"></path>
+                </svg>
+              </a>
+            </face>
+          </basis>
+          <div class="free-consulation-form hidden fixed z-30 items-center justify-center overflow-y-auto inset-0">
+            <div class="hidden inset-0 bg-black/45 modal-backdrop"></div>
+            <div
+              class="relative flex flex-col items-center gap-7 w-full h-full bg-gray-gradient bg-cover bg-center p-4">
+              <div class="flex justify-end w-full">
+                <span
+                  class="close-consulation-btn bg-secondary-500 rounded-full p-2 cursor-pointer transition-all duration-300 hover:bg-primary-500">
+                  <svg width="24" height="24">
+                    <use xlink:href="./images/sprite-icons.svg#engine-close-icon"></use>
                   </svg>
-                </a>
-              </face>
-            </basis>
-            <div class="free-consulation-form hidden fixed z-30 items-center justify-center overflow-y-auto inset-0">
-              <div class="hidden inset-0 bg-black/45 modal-backdrop"></div>
-              <div class="relative flex flex-col items-center gap-7 w-full h-full bg-gray-gradient bg-cover bg-center p-4">
-                <div class="flex justify-end w-full">
-                  <span class="close-consulation-btn bg-secondary-500 rounded-full p-2 cursor-pointer transition-all duration-300 hover:bg-primary-500">
-                    <svg width="24" height="24">
-                        <use xlink:href="./images/sprite-icons.svg#engine-close-icon"></use>
-                    </svg>
                 </span>
+              </div>
+              <div class="flex-1">
+                <div class="flex items-center gap-2 border-b-2 border-zinc-900 mb-2 pb-3">
+                  <svg width="42" height="43" viewBox="0 0 42 43" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M31.2053 8.76482C32.8611 8.21289 33.6892 7.93718 34.1262 8.3742C34.563 8.81125 34.2875 9.6395 33.7356 11.2951L26.3977 33.3078C25.6134 35.6608 25.2209 36.8379 24.5002 36.8381C23.7795 36.8381 23.3872 35.661 22.6028 33.3078L19.6038 24.3097L26.9573 16.9572C27.3477 16.5667 27.3476 15.9337 26.9573 15.5431C26.5668 15.1526 25.9337 15.1526 25.5432 15.5431L18.1897 22.8967L9.19263 19.8976C6.83957 19.1133 5.66251 18.7208 5.66235 18.0002C5.66235 17.2794 6.83941 16.8871 9.19263 16.1027L31.2053 8.76482Z"
+                      fill="#1E2128" />
+                  </svg>
+                  <h2 class="text-xl font-extrabold">مشاوره رایگان رزرو تور</h2>
                 </div>
-                  <div class="flex-1">
-                      <div class="flex items-center gap-2 border-b-2 border-zinc-900 mb-2 pb-3">
-                        <svg width="42" height="43" viewBox="0 0 42 43" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M31.2053 8.76482C32.8611 8.21289 33.6892 7.93718 34.1262 8.3742C34.563 8.81125 34.2875 9.6395 33.7356 11.2951L26.3977 33.3078C25.6134 35.6608 25.2209 36.8379 24.5002 36.8381C23.7795 36.8381 23.3872 35.661 22.6028 33.3078L19.6038 24.3097L26.9573 16.9572C27.3477 16.5667 27.3476 15.9337 26.9573 15.5431C26.5668 15.1526 25.9337 15.1526 25.5432 15.5431L18.1897 22.8967L9.19263 19.8976C6.83957 19.1133 5.66251 18.7208 5.66235 18.0002C5.66235 17.2794 6.83941 16.8871 9.19263 16.1027L31.2053 8.76482Z" fill="#1E2128"/>
-                          </svg>                                    
-                          <h2 class="text-xl font-extrabold">مشاوره رایگان رزرو تور</h2>
-                      </div>
-                      <div class="text-sm font-semibold mb-6">وقت سفر رسیده ما در گردشگران سپهر تهران منتظر شنیدن از شما هستیم. فرم زیر رو پر کنید تا راهنمای سفرتون در کمترین زمان باهاتون تماس بگیره. چه به دنبال ماجراجویی باشین، چه یه سفر آرامش‌بخش، ما کنارتونیم تا تجربه‌ای خاص براتون بسازیم.</div>
-                          <div class="flex flex-col mx-auto consulation-form mt-2" id="consulation-form">
+                <div class="text-sm font-semibold mb-6">وقت سفر رسیده ما در گردشگران سپهر تهران منتظر شنیدن از شما
+                  هستیم. فرم زیر رو پر کنید تا راهنمای سفرتون در کمترین زمان باهاتون تماس بگیره. چه به دنبال ماجراجویی
+                  باشین، چه یه سفر آرامش‌بخش، ما کنارتونیم تا تجربه‌ای خاص براتون بسازیم.</div>
+                <div class="flex flex-col mx-auto consulation-form mt-2" id="consulation-form">
 
-                            <basis core="schema" run="atclient"
-                                schemaurl="/schema/domainform/7CF675E2-4165-434A-B3D5-F01013BA5F10/17F8C970-A195-411E-B369-D86756F6C8B4/fa/مشاوره-رایگان"
-                                displaymode="new" button="[data-btn-uploadConsulation]" resultsourceid="upload.dataConsulation"
-                                OnRendered="RenderFormConsulation"></basis>
-                            <basis core="api" if="{##cms.uploadConsulation.run|(false)##}" run="atclient"
-                                url="/schema/domainform/7CF675E2-4165-434A-B3D5-F01013BA5F10/fa/editobject" method="post"
-                                body="object_edit={##cms.uploadConsulation.value##}&captcha={##cms.uploadConsulation.captcha##}&captchaid={##cms.uploadConsulation.captchaid##}"
-                                content-type="application/x-www-form-urlencoded" triggers='cms.uploadConsulation'
-                                OnProcessed="OnProcessedEditObjectConsulation"></basis>
-                            <basis core="callback" run="atclient" method="uploadDocumentConsulation" triggers="upload.dataConsulation">
-                            </basis>
-            
-                            <div class="captcha-button flex flex-col items-center justify-center mt-4">
-                                <div id="captchaContainer" class="captchaContainerclass captcha-sefaresh w-auto"
-                                    data-bc-answer-container data-bc-schema-info-multi="0" data-bc-schema-info-word="58"
-                                    data-bc-schema-info-part="1" data-bc-schema-info-part-0-type="text">
-                                    <basis core="dbsource" source="trust_login" name="captcha" run="atclient"
-                                        triggers="captcha.refreshConsulation">
-                                        <member name="code" type="scalar" request="captcha"></member>
-                                    </basis>
-                                    <basis datamembername="captcha.code" core="print" run="atclient">
-                                        <face>
-                                            <script type="text/template">
+                  <basis core="schema" run="atclient"
+                    schemaurl="/schema/domainform/7CF675E2-4165-434A-B3D5-F01013BA5F10/17F8C970-A195-411E-B369-D86756F6C8B4/fa/مشاوره-رایگان"
+                    displaymode="new" button="[data-btn-uploadConsulation]" resultsourceid="upload.dataConsulation"
+                    OnRendered="RenderFormConsulation"></basis>
+                  <basis core="api" if="{##cms.uploadConsulation.run|(false)##}" run="atclient"
+                    url="/schema/domainform/7CF675E2-4165-434A-B3D5-F01013BA5F10/fa/editobject" method="post"
+                    body="object_edit={##cms.uploadConsulation.value##}&captcha={##cms.uploadConsulation.captcha##}&captchaid={##cms.uploadConsulation.captchaid##}"
+                    content-type="application/x-www-form-urlencoded" triggers='cms.uploadConsulation'
+                    OnProcessed="OnProcessedEditObjectConsulation"></basis>
+                  <basis core="callback" run="atclient" method="uploadDocumentConsulation"
+                    triggers="upload.dataConsulation">
+                  </basis>
+
+                  <div class="captcha-button flex flex-col items-center justify-center mt-4">
+                    <div id="captchaContainer" class="captchaContainerclass captcha-sefaresh w-auto"
+                      data-bc-answer-container data-bc-schema-info-multi="0" data-bc-schema-info-word="58"
+                      data-bc-schema-info-part="1" data-bc-schema-info-part-0-type="text">
+                      <basis core="dbsource" source="trust_login" name="captcha" run="atclient"
+                        triggers="captcha.refreshConsulation">
+                        <member name="code" type="scalar" request="captcha"></member>
+                      </basis>
+                      <basis datamembername="captcha.code" core="print" run="atclient">
+                        <face>
+                          <script type="text/template">
                                               <div class="d-inline-block">
                                                 <div class="flex justify-between">
                                                 <div class="float-right w-[323px]">
@@ -462,80 +409,78 @@
                                                 </div>
                                                 
                                             </div></div></script>
-                                        </face>
-                                    </basis>
-                                </div>
-                                <button
-                                    class="flex justify-center items-center gap-2 w-full h-[73px] text-white transition-all duration-300 data-body-btn mt-6 bg-primary-500 rounded-xl hover:bg-secondary-500"
-                                    type="button" data-btn-uploadConsulation>
-                                    <span class="">ارسال اطلاعات</span>
-                                    <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                      <path d="M7.5 12H21.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                      <path d="M2.78481 11.7966L8.23501 7.90356C8.7645 7.52535 9.5 7.90385 9.5 8.55455V15.4454C9.5 16.0961 8.7645 16.4746 8.23501 16.0964L2.78481 12.2034C2.64522 12.1037 2.64522 11.8963 2.78481 11.7966Z" fill="white"/>
-                                      </svg>                                                
-                                </button>
-            
-                            </div>
-                            <div
-                            class="Loading_Form hidden data-body-btn w-[126px] h-12 px-4 py-2 bg-secondary-800 rounded-2xl justify-center items-center gap-2.5">
-                            <div id="ballsWaveG" class="text-base font-normal leading-normal ext-zinc-50">
-                                <div id="ballsWaveG_1" class="ballsWaveG"></div>
-                                <div id="ballsWaveG_2" class="ballsWaveG"></div>
-                                <div id="ballsWaveG_3" class="ballsWaveG"></div>
-                                <div id="ballsWaveG_4" class="ballsWaveG"></div>
-                                <div id="ballsWaveG_5" class="ballsWaveG"></div>
-                                <div id="ballsWaveG_6" class="ballsWaveG"></div>
-                                <div id="ballsWaveG_7" class="ballsWaveG"></div>
-                                <div id="ballsWaveG_8" class="ballsWaveG"></div>
-                            </div>
-                        </div>
-                            <div class="mt-4 text-center text-secondary-500 message-api"></div>
-                        </div>
+                        </face>
+                      </basis>
+                    </div>
+                    <button
+                      class="flex justify-center items-center gap-2 w-full h-[73px] text-white transition-all duration-300 data-body-btn mt-6 bg-primary-500 rounded-xl hover:bg-secondary-500"
+                      type="button" data-btn-uploadConsulation>
+                      <span class="">ارسال اطلاعات</span>
+                      <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7.5 12H21.5" stroke="white" stroke-width="2" stroke-linecap="round"
+                          stroke-linejoin="round" />
+                        <path
+                          d="M2.78481 11.7966L8.23501 7.90356C8.7645 7.52535 9.5 7.90385 9.5 8.55455V15.4454C9.5 16.0961 8.7645 16.4746 8.23501 16.0964L2.78481 12.2034C2.64522 12.1037 2.64522 11.8963 2.78481 11.7966Z"
+                          fill="white" />
+                      </svg>
+                    </button>
+
                   </div>
-              </div>
-          </div>
-          </div>
-        </div>
-      </section>
-      <section class="mx-auto max-lg:w-[92%] max-xl:w-[97%] xl:max-w-7xl mt-8 mb-10">
-        <basis core="print" datamembername="db.faq">
-          <layout>
-            <h2 class="text-[32px] font-black mb-3">سوالات متداول کاربران</h2>
-            <div class="flex flex-col gap-4">@child</div>
-          </layout>
-          <face filter="TypeID in(250)">
-            <div
-              class="faq-box transition-all duration-300 cursor-pointer rounded-xl border border-gray-100 bg-white p-4">
-              <div class="flex items-center justify-between">
-                <div class="flex items-center gap-2">
-                  <svg width="32" height="32" class="icon-plus-circle">
-                    <use xlink:href="./images/sprite-icons.svg#icon-plus-circle"></use>
-                  </svg>
-                  <svg width="32" height="32" class="hidden icon-plus-circle-white">
-                    <use xlink:href="./images/sprite-icons.svg#icon-plus-circle-white"></use>
-                  </svg>
-                  <h2 class="font-extrabold text-zinc-900">@text</h2>
+                  <div
+                    class="Loading_Form hidden data-body-btn w-[126px] h-12 px-4 py-2 bg-secondary-800 rounded-2xl justify-center items-center gap-2.5">
+                    <div id="ballsWaveG" class="text-base font-normal leading-normal ext-zinc-50">
+                      <div id="ballsWaveG_1" class="ballsWaveG"></div>
+                      <div id="ballsWaveG_2" class="ballsWaveG"></div>
+                      <div id="ballsWaveG_3" class="ballsWaveG"></div>
+                      <div id="ballsWaveG_4" class="ballsWaveG"></div>
+                      <div id="ballsWaveG_5" class="ballsWaveG"></div>
+                      <div id="ballsWaveG_6" class="ballsWaveG"></div>
+                      <div id="ballsWaveG_7" class="ballsWaveG"></div>
+                      <div id="ballsWaveG_8" class="ballsWaveG"></div>
+                    </div>
+                  </div>
+                  <div class="mt-4 text-center text-secondary-500 message-api"></div>
                 </div>
-                <svg
-                  class="flex-shrink-0 faq-btn transition-all duration-300"
-                  width="33"
-                  height="33"
-                  viewBox="0 0 33 33"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path d="M24.5 12.5864L16.5 20.5864L8.5 12.5864" stroke="#1E2128" stroke-width="3" />
-                </svg>
-              </div>
-              <div
-                class="faq-answer text-sm text-justify text-white font-semibold opacity-0 scale-y-0 max-h-0 overflow-hidden transition-all duration-500 ease-in-out origin-top pr-6 leading-6">
-                @largetext
               </div>
             </div>
-          </face>
-        </basis>
-      </section>
-    </main>
-    <basis core="call" file="footer.inc" pageindex="[##cms.cms.pageindex##]" />
-  </body>
-</html>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="mx-auto max-lg:w-[92%] max-xl:w-[97%] xl:max-w-7xl mt-8 mb-10">
+      <basis core="print" datamembername="db.faq">
+        <layout>
+          <h2 class="text-[32px] font-black mb-3">سوالات متداول کاربران</h2>
+          <div class="flex flex-col gap-4">@child</div>
+        </layout>
+        <face filter="TypeID in(250)">
+          <div
+            class="faq-box transition-all duration-300 cursor-pointer rounded-xl border border-gray-100 bg-white p-4">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <svg width="32" height="32" class="icon-plus-circle">
+                  <use xlink:href="./images/sprite-icons.svg#icon-plus-circle"></use>
+                </svg>
+                <svg width="32" height="32" class="hidden icon-plus-circle-white">
+                  <use xlink:href="./images/sprite-icons.svg#icon-plus-circle-white"></use>
+                </svg>
+                <h2 class="font-extrabold text-zinc-900">@text</h2>
+              </div>
+              <svg class="flex-shrink-0 faq-btn transition-all duration-300" width="33" height="33" viewBox="0 0 33 33"
+                fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M24.5 12.5864L16.5 20.5864L8.5 12.5864" stroke="#1E2128" stroke-width="3" />
+              </svg>
+            </div>
+            <div
+              class="faq-answer text-sm text-justify text-white font-semibold opacity-0 scale-y-0 max-h-0 overflow-hidden transition-all duration-500 ease-in-out origin-top pr-6 leading-6">
+              @largetext
+            </div>
+          </div>
+        </face>
+      </basis>
+    </section>
+  </main>
+  <basis core="call" file="footer.inc" pageindex="[##cms.cms.pageindex##]" />
+</body>
 
+</html>

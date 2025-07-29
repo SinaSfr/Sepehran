@@ -30,12 +30,12 @@
 
 <basis core="dbsource" source="basiscore" lid="1" mid="20" name="db" catid="215041">
   <member name="special-tour" type="list" link="tour.bc" propertyid="3087934,10000504,8181,8076,3087933" perpage="5"
-    order="ord" size="253x135" typeid="159"/>
+    order="ord" size="253x135" typeid="159" />
 </basis>
 
 <basis core="dbsource" source="basiscore" lid="1" mid="20" name="db" catid="[##cms.query.catid##]">
-  <member name="tour-list" type="list" link="tour.bc" propertyid="8076,8181,8077,10000504,3087921" perpage="6" size="306x135"
-    pageno="[##cms.query.pagenum|(1)##]" order="ord" />
+  <member name="tour-list" type="list" link="tour.bc" propertyid="8076,8181,8077,10000504,3087921" perpage="6"
+    size="306x135" pageno="[##cms.query.pagenum|(1)##]" order="ord" />
   <member name="paging" type="list" request="paging" count="2" parentname="tour-list" />
 </basis>
 <basis core="dbsource" source="basiscore" mid="20" name="list" lid="1" schemaid="987" term="[##cms.query.term##]">
@@ -58,6 +58,16 @@
 <html lang="fa" dir="rtl">
 
 <head>
+  <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-WX4XTXHH');</script>
+  <!-- End Google Tag Manager -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0,shrink-to-fit=no,viewport-fit=cover" />
   <!-- Title & Description -->
@@ -84,6 +94,10 @@
 </head>
 
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WX4XTXHH" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
   <basis core="call" file="header.inc" pageindex="[##cms.cms.pageindex##]" />
   <main>
     <section class="relative flex items-center justify-center bg-tourlistBg bg-center bg-cover py-4">
@@ -676,9 +690,9 @@
         </layout>
         <else-layout>
           <div class="flex items-center justify-center">
-              <h2 class="text-xl font-extrabold mt-16 text-center">در حال حاضر توری وجود ندارد!</h2>
+            <h2 class="text-xl font-extrabold mt-16 text-center">در حال حاضر توری وجود ندارد!</h2>
           </div>
-      </else-layout>
+        </else-layout>
         <face filter="link is null">
           <div class="relative tourL-tour-card group flex flex-col items-stretch">
             <div
@@ -710,7 +724,8 @@
                     @db.tour-list.title
                   </h2>
                   <div class="tour-destination-container flex items-center justify-center gap-4 mb-4">
-                    <h3 class="tour-destination text-2xl font-black text-primary-500 transition-all duration-300 group-hover:text-white">
+                    <h3
+                      class="tour-destination text-2xl font-black text-primary-500 transition-all duration-300 group-hover:text-white">
                       @db.tour-list.prp_3087921
                     </h3>
                     <svg width="32" height="3"
@@ -833,7 +848,8 @@
                     @db.tour-list.title
                   </h2>
                   <div class="tour-destination-container flex items-center justify-center gap-4 mb-4">
-                    <h3 class="tour-destination text-2xl font-black text-primary-500 transition-all duration-300 group-hover:text-white">
+                    <h3
+                      class="tour-destination text-2xl font-black text-primary-500 transition-all duration-300 group-hover:text-white">
                       @db.tour-list.prp_3087921
                     </h3>
                     <svg width="32" height="3"
@@ -1076,47 +1092,54 @@
           </basis>
           <div class="free-consulation-form hidden fixed z-30 items-center justify-center overflow-y-auto inset-0">
             <div class="hidden inset-0 bg-black/45 modal-backdrop"></div>
-            <div class="relative flex flex-col items-center gap-7 w-full h-full bg-gray-gradient bg-cover bg-center p-4">
+            <div
+              class="relative flex flex-col items-center gap-7 w-full h-full bg-gray-gradient bg-cover bg-center p-4">
               <div class="flex justify-end w-full">
-                <span class="close-consulation-btn bg-secondary-500 rounded-full p-2 cursor-pointer transition-all duration-300 hover:bg-primary-500">
+                <span
+                  class="close-consulation-btn bg-secondary-500 rounded-full p-2 cursor-pointer transition-all duration-300 hover:bg-primary-500">
                   <svg width="24" height="24">
-                      <use xlink:href="./images/sprite-icons.svg#engine-close-icon"></use>
+                    <use xlink:href="./images/sprite-icons.svg#engine-close-icon"></use>
                   </svg>
-              </span>
+                </span>
               </div>
-                <div class="flex-1">
-                    <div class="flex items-center gap-2 border-b-2 border-zinc-900 mb-2 pb-3">
-                      <svg width="42" height="43" viewBox="0 0 42 43" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M31.2053 8.76482C32.8611 8.21289 33.6892 7.93718 34.1262 8.3742C34.563 8.81125 34.2875 9.6395 33.7356 11.2951L26.3977 33.3078C25.6134 35.6608 25.2209 36.8379 24.5002 36.8381C23.7795 36.8381 23.3872 35.661 22.6028 33.3078L19.6038 24.3097L26.9573 16.9572C27.3477 16.5667 27.3476 15.9337 26.9573 15.5431C26.5668 15.1526 25.9337 15.1526 25.5432 15.5431L18.1897 22.8967L9.19263 19.8976C6.83957 19.1133 5.66251 18.7208 5.66235 18.0002C5.66235 17.2794 6.83941 16.8871 9.19263 16.1027L31.2053 8.76482Z" fill="#1E2128"/>
-                        </svg>                                    
-                        <h2 class="text-xl font-extrabold">مشاوره رایگان رزرو تور</h2>
-                    </div>
-                    <div class="text-sm font-semibold mb-6">وقت سفر رسیده ما در گردشگران سپهر تهران منتظر شنیدن از شما هستیم. فرم زیر رو پر کنید تا راهنمای سفرتون در کمترین زمان باهاتون تماس بگیره. چه به دنبال ماجراجویی باشین، چه یه سفر آرامش‌بخش، ما کنارتونیم تا تجربه‌ای خاص براتون بسازیم.</div>
-                        <div class="flex flex-col mx-auto consulation-form mt-2" id="consulation-form">
+              <div class="flex-1">
+                <div class="flex items-center gap-2 border-b-2 border-zinc-900 mb-2 pb-3">
+                  <svg width="42" height="43" viewBox="0 0 42 43" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M31.2053 8.76482C32.8611 8.21289 33.6892 7.93718 34.1262 8.3742C34.563 8.81125 34.2875 9.6395 33.7356 11.2951L26.3977 33.3078C25.6134 35.6608 25.2209 36.8379 24.5002 36.8381C23.7795 36.8381 23.3872 35.661 22.6028 33.3078L19.6038 24.3097L26.9573 16.9572C27.3477 16.5667 27.3476 15.9337 26.9573 15.5431C26.5668 15.1526 25.9337 15.1526 25.5432 15.5431L18.1897 22.8967L9.19263 19.8976C6.83957 19.1133 5.66251 18.7208 5.66235 18.0002C5.66235 17.2794 6.83941 16.8871 9.19263 16.1027L31.2053 8.76482Z"
+                      fill="#1E2128" />
+                  </svg>
+                  <h2 class="text-xl font-extrabold">مشاوره رایگان رزرو تور</h2>
+                </div>
+                <div class="text-sm font-semibold mb-6">وقت سفر رسیده ما در گردشگران سپهر تهران منتظر شنیدن از شما
+                  هستیم. فرم زیر رو پر کنید تا راهنمای سفرتون در کمترین زمان باهاتون تماس بگیره. چه به دنبال ماجراجویی
+                  باشین، چه یه سفر آرامش‌بخش، ما کنارتونیم تا تجربه‌ای خاص براتون بسازیم.</div>
+                <div class="flex flex-col mx-auto consulation-form mt-2" id="consulation-form">
 
-                          <basis core="schema" run="atclient"
-                              schemaurl="/schema/domainform/7CF675E2-4165-434A-B3D5-F01013BA5F10/17F8C970-A195-411E-B369-D86756F6C8B4/fa/مشاوره-رایگان"
-                              displaymode="new" button="[data-btn-uploadConsulation]" resultsourceid="upload.dataConsulation"
-                              OnRendered="RenderFormConsulation"></basis>
-                          <basis core="api" if="{##cms.uploadConsulation.run|(false)##}" run="atclient"
-                              url="/schema/domainform/7CF675E2-4165-434A-B3D5-F01013BA5F10/fa/editobject" method="post"
-                              body="object_edit={##cms.uploadConsulation.value##}&captcha={##cms.uploadConsulation.captcha##}&captchaid={##cms.uploadConsulation.captchaid##}"
-                              content-type="application/x-www-form-urlencoded" triggers='cms.uploadConsulation'
-                              OnProcessed="OnProcessedEditObjectConsulation"></basis>
-                          <basis core="callback" run="atclient" method="uploadDocumentConsulation" triggers="upload.dataConsulation">
-                          </basis>
-          
-                          <div class="captcha-button flex flex-col items-center justify-center mt-4">
-                              <div id="captchaContainer" class="captchaContainerclass captcha-sefaresh w-auto"
-                                  data-bc-answer-container data-bc-schema-info-multi="0" data-bc-schema-info-word="58"
-                                  data-bc-schema-info-part="1" data-bc-schema-info-part-0-type="text">
-                                  <basis core="dbsource" source="trust_login" name="captcha" run="atclient"
-                                      triggers="captcha.refreshConsulation">
-                                      <member name="code" type="scalar" request="captcha"></member>
-                                  </basis>
-                                  <basis datamembername="captcha.code" core="print" run="atclient">
-                                      <face>
-                                          <script type="text/template">
+                  <basis core="schema" run="atclient"
+                    schemaurl="/schema/domainform/7CF675E2-4165-434A-B3D5-F01013BA5F10/17F8C970-A195-411E-B369-D86756F6C8B4/fa/مشاوره-رایگان"
+                    displaymode="new" button="[data-btn-uploadConsulation]" resultsourceid="upload.dataConsulation"
+                    OnRendered="RenderFormConsulation"></basis>
+                  <basis core="api" if="{##cms.uploadConsulation.run|(false)##}" run="atclient"
+                    url="/schema/domainform/7CF675E2-4165-434A-B3D5-F01013BA5F10/fa/editobject" method="post"
+                    body="object_edit={##cms.uploadConsulation.value##}&captcha={##cms.uploadConsulation.captcha##}&captchaid={##cms.uploadConsulation.captchaid##}"
+                    content-type="application/x-www-form-urlencoded" triggers='cms.uploadConsulation'
+                    OnProcessed="OnProcessedEditObjectConsulation"></basis>
+                  <basis core="callback" run="atclient" method="uploadDocumentConsulation"
+                    triggers="upload.dataConsulation">
+                  </basis>
+
+                  <div class="captcha-button flex flex-col items-center justify-center mt-4">
+                    <div id="captchaContainer" class="captchaContainerclass captcha-sefaresh w-auto"
+                      data-bc-answer-container data-bc-schema-info-multi="0" data-bc-schema-info-word="58"
+                      data-bc-schema-info-part="1" data-bc-schema-info-part-0-type="text">
+                      <basis core="dbsource" source="trust_login" name="captcha" run="atclient"
+                        triggers="captcha.refreshConsulation">
+                        <member name="code" type="scalar" request="captcha"></member>
+                      </basis>
+                      <basis datamembername="captcha.code" core="print" run="atclient">
+                        <face>
+                          <script type="text/template">
                                             <div class="d-inline-block">
                                               <div class="flex justify-between">
                                               <div class="float-right w-[323px]">
@@ -1129,38 +1152,41 @@
                                               </div>
                                               
                                           </div></div></script>
-                                      </face>
-                                  </basis>
-                              </div>
-                              <button
-                                  class="flex justify-center items-center gap-2 w-full h-[73px] text-white transition-all duration-300 data-body-btn mt-6 bg-primary-500 rounded-xl hover:bg-secondary-500"
-                                  type="button" data-btn-uploadConsulation>
-                                  <span class="">ارسال اطلاعات</span>
-                                  <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M7.5 12H21.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M2.78481 11.7966L8.23501 7.90356C8.7645 7.52535 9.5 7.90385 9.5 8.55455V15.4454C9.5 16.0961 8.7645 16.4746 8.23501 16.0964L2.78481 12.2034C2.64522 12.1037 2.64522 11.8963 2.78481 11.7966Z" fill="white"/>
-                                    </svg>                                                
-                              </button>
-          
-                          </div>
-                          <div
-                          class="Loading_Form hidden data-body-btn w-[126px] h-12 px-4 py-2 bg-secondary-800 rounded-2xl justify-center items-center gap-2.5">
-                          <div id="ballsWaveG" class="text-base font-normal leading-normal ext-zinc-50">
-                              <div id="ballsWaveG_1" class="ballsWaveG"></div>
-                              <div id="ballsWaveG_2" class="ballsWaveG"></div>
-                              <div id="ballsWaveG_3" class="ballsWaveG"></div>
-                              <div id="ballsWaveG_4" class="ballsWaveG"></div>
-                              <div id="ballsWaveG_5" class="ballsWaveG"></div>
-                              <div id="ballsWaveG_6" class="ballsWaveG"></div>
-                              <div id="ballsWaveG_7" class="ballsWaveG"></div>
-                              <div id="ballsWaveG_8" class="ballsWaveG"></div>
-                          </div>
-                      </div>
-                          <div class="mt-4 text-center text-secondary-500 message-api"></div>
-                      </div>
+                        </face>
+                      </basis>
+                    </div>
+                    <button
+                      class="flex justify-center items-center gap-2 w-full h-[73px] text-white transition-all duration-300 data-body-btn mt-6 bg-primary-500 rounded-xl hover:bg-secondary-500"
+                      type="button" data-btn-uploadConsulation>
+                      <span class="">ارسال اطلاعات</span>
+                      <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7.5 12H21.5" stroke="white" stroke-width="2" stroke-linecap="round"
+                          stroke-linejoin="round" />
+                        <path
+                          d="M2.78481 11.7966L8.23501 7.90356C8.7645 7.52535 9.5 7.90385 9.5 8.55455V15.4454C9.5 16.0961 8.7645 16.4746 8.23501 16.0964L2.78481 12.2034C2.64522 12.1037 2.64522 11.8963 2.78481 11.7966Z"
+                          fill="white" />
+                      </svg>
+                    </button>
+
+                  </div>
+                  <div
+                    class="Loading_Form hidden data-body-btn w-[126px] h-12 px-4 py-2 bg-secondary-800 rounded-2xl justify-center items-center gap-2.5">
+                    <div id="ballsWaveG" class="text-base font-normal leading-normal ext-zinc-50">
+                      <div id="ballsWaveG_1" class="ballsWaveG"></div>
+                      <div id="ballsWaveG_2" class="ballsWaveG"></div>
+                      <div id="ballsWaveG_3" class="ballsWaveG"></div>
+                      <div id="ballsWaveG_4" class="ballsWaveG"></div>
+                      <div id="ballsWaveG_5" class="ballsWaveG"></div>
+                      <div id="ballsWaveG_6" class="ballsWaveG"></div>
+                      <div id="ballsWaveG_7" class="ballsWaveG"></div>
+                      <div id="ballsWaveG_8" class="ballsWaveG"></div>
+                    </div>
+                  </div>
+                  <div class="mt-4 text-center text-secondary-500 message-api"></div>
                 </div>
+              </div>
             </div>
-        </div>
+          </div>
         </div>
       </div>
 

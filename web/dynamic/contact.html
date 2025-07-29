@@ -1,92 +1,88 @@
-
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0,shrink-to-fit=no,viewport-fit=cover" />
-    <!-- Title & Description -->
-    <title>[##cms.seo.title|(گردشگران سپهر تهران - خرید بلیط هواپیما - رزرو تور خارجی و داخلی)##]</title>
-    <meta
-      name="description"
-      content="[##cms.seo.description|(گردشگران سپهر تهران ارائه‌دهنده بلیط هواپیما، تورهای خارجی و داخلی، رزرو هتل، و خدمات ویزا. سفر به استانبول، دبی، آنتالیا، اروپا با بهترین قیمت)##]" />
-    <!-- Title & Description -->
-    <basis core="dbsource" source="hosting" name="tag" urlid="[##cms.seo.urlid##]">
-      <member type="list" name="list" request="taglist" preview=""></member>
-    </basis>
-    <basis core="print" datamembername="tag.list">
-      <face filter="key = 'canonical'">
-        <link rel="canonical" href="@value" />
-      </face>
-      <face>
-        <meta property="@key" content="@value" />
-      </face>
-    </basis>
-    <!-- pwa metatags -->
-    <basis core="call" file="pwa.inc" />
-    <!-- common styles for all page -->
-    <basis core="call" file="style.inc" />
-  </head>
-  <body>
-    <basis core="call" file="header.inc" />
-    <main>
-      <section class="relative flex items-center justify-center bg-tourlistBg bg-center bg-cover h-32">
-        <div class="absolute inset-0 w-full h-full bg-black/45"></div>
-        <div class="relative flex items-center text-white gap-1">
-          <a href="/" class="transition-all duration-300 hover:text-secondary-500">خانه</a>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M15 6L9 12L15 18" stroke="white" stroke-width="2" />
-          </svg>
-          <span class="text-secondary-500 text-[54px] font-black">تماس باما</span>
-        </div>
-      </section>
-      <div class="flex items-center gap-10 mx-auto max-lg:w-[92%] max-xl:w-[97%] xl:max-w-7xl mt-16">
-        <section class="flex-1">
-          <h2 class="font-extrabold text-2xl mb-2">ارسال درخواست</h2>
-          <div class="text-sm font-semibold">
-            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون
-            بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است
-          </div>
-          <div class="flex flex-col mx-auto request-form mt-2" id="request-form">
-            <basis
-              core="schema"
-              run="atclient"
-              schemaurl="/schema/domainform/7CF675E2-4165-434A-B3D5-F01013BA5F10/3FDD2649-9AF5-4512-9517-8B18F463AB99/fa/ارسال-درخواست"
-              displaymode="new"
-              button="[data-btn-uploadRequest]"
-              resultsourceid="upload.dataRequest"
-              OnRendered="RenderFormRequest"></basis>
-            <basis
-              core="api"
-              if="{##cms.uploadRequest.run|(false)##}"
-              run="atclient"
-              url="/schema/domainform/7CF675E2-4165-434A-B3D5-F01013BA5F10/fa/editobject"
-              method="post"
-              body="object_edit={##cms.uploadRequest.value##}&captcha={##cms.uploadRequest.captcha##}&captchaid={##cms.uploadRequest.captchaid##}"
-              content-type="application/x-www-form-urlencoded"
-              triggers="cms.uploadRequest"
-              OnProcessed="OnProcessedEditObjectRequest"></basis>
-            <basis core="callback" run="atclient" method="uploadDocumentRequest" triggers="upload.dataRequest"></basis>
 
-            <div class="captcha-button flex items-center justify-center">
-              <div
-                id="captchaContainer"
-                class="captchaContainerclass captcha-sefaresh w-auto"
-                data-bc-answer-container
-                data-bc-schema-info-multi="0"
-                data-bc-schema-info-word="58"
-                data-bc-schema-info-part="1"
-                data-bc-schema-info-part-0-type="text">
-                <basis
-                  core="dbsource"
-                  source="trust_login"
-                  name="captcha"
-                  run="atclient"
-                  triggers="captcha.refreshRequest">
-                  <member name="code" type="scalar" request="captcha"></member>
-                </basis>
-                <basis datamembername="captcha.code" core="print" run="atclient">
-                  <face>
-                    <script type="text/template">
+<head>
+  <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-WX4XTXHH');</script>
+  <!-- End Google Tag Manager -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,shrink-to-fit=no,viewport-fit=cover" />
+  <!-- Title & Description -->
+  <title>[##cms.seo.title|(گردشگران سپهر تهران - خرید بلیط هواپیما - رزرو تور خارجی و داخلی)##]</title>
+  <meta name="description"
+    content="[##cms.seo.description|(گردشگران سپهر تهران ارائه‌دهنده بلیط هواپیما، تورهای خارجی و داخلی، رزرو هتل، و خدمات ویزا. سفر به استانبول، دبی، آنتالیا، اروپا با بهترین قیمت)##]" />
+  <!-- Title & Description -->
+  <basis core="dbsource" source="hosting" name="tag" urlid="[##cms.seo.urlid##]">
+    <member type="list" name="list" request="taglist" preview=""></member>
+  </basis>
+  <basis core="print" datamembername="tag.list">
+    <face filter="key = 'canonical'">
+      <link rel="canonical" href="@value" />
+    </face>
+    <face>
+      <meta property="@key" content="@value" />
+    </face>
+  </basis>
+  <!-- pwa metatags -->
+  <basis core="call" file="pwa.inc" />
+  <!-- common styles for all page -->
+  <basis core="call" file="style.inc" />
+</head>
+
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WX4XTXHH" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <basis core="call" file="header.inc" />
+  <main>
+    <section class="relative flex items-center justify-center bg-tourlistBg bg-center bg-cover h-32">
+      <div class="absolute inset-0 w-full h-full bg-black/45"></div>
+      <div class="relative flex items-center text-white gap-1">
+        <a href="/" class="transition-all duration-300 hover:text-secondary-500">خانه</a>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M15 6L9 12L15 18" stroke="white" stroke-width="2" />
+        </svg>
+        <h1 class="text-secondary-500 text-[54px] font-black">تماس باما</h1>
+      </div>
+    </section>
+    <div class="flex items-center gap-10 mx-auto max-lg:w-[92%] max-xl:w-[97%] xl:max-w-7xl mt-16">
+      <section class="flex-1">
+        <h2 class="font-extrabold text-2xl mb-2">ارسال درخواست</h2>
+        <div class="text-sm font-semibold">
+          لطفاً اطلاعات مورد نیاز را با دقت تکمیل نمایید و درخواست خود را از طریق این فرم ثبت کنید. پیش از ارسال، از صحت
+          اطلاعات واردشده اطمینان حاصل فرمایید.
+        </div>
+        <div class="flex flex-col mx-auto request-form mt-2" id="request-form">
+          <basis core="schema" run="atclient"
+            schemaurl="/schema/domainform/7CF675E2-4165-434A-B3D5-F01013BA5F10/3FDD2649-9AF5-4512-9517-8B18F463AB99/fa/ارسال-درخواست"
+            displaymode="new" button="[data-btn-uploadRequest]" resultsourceid="upload.dataRequest"
+            OnRendered="RenderFormRequest"></basis>
+          <basis core="api" if="{##cms.uploadRequest.run|(false)##}" run="atclient"
+            url="/schema/domainform/7CF675E2-4165-434A-B3D5-F01013BA5F10/fa/editobject" method="post"
+            body="object_edit={##cms.uploadRequest.value##}&captcha={##cms.uploadRequest.captcha##}&captchaid={##cms.uploadRequest.captchaid##}"
+            content-type="application/x-www-form-urlencoded" triggers="cms.uploadRequest"
+            OnProcessed="OnProcessedEditObjectRequest"></basis>
+          <basis core="callback" run="atclient" method="uploadDocumentRequest" triggers="upload.dataRequest"></basis>
+
+          <div class="captcha-button flex items-center justify-center">
+            <div id="captchaContainer" class="captchaContainerclass captcha-sefaresh w-auto" data-bc-answer-container
+              data-bc-schema-info-multi="0" data-bc-schema-info-word="58" data-bc-schema-info-part="1"
+              data-bc-schema-info-part-0-type="text">
+              <basis core="dbsource" source="trust_login" name="captcha" run="atclient"
+                triggers="captcha.refreshRequest">
+                <member name="code" type="scalar" request="captcha"></member>
+              </basis>
+              <basis datamembername="captcha.code" core="print" run="atclient">
+                <face>
+                  <script type="text/template">
                       <div class="d-inline-block"><div class="flex gap-6">
 
                                                           <div class="float-right w-[323px]"><input type="text" class="!w-[287px] contactUsInput codeinputm" name="captcha" maxlength="4" placeholder="کد امنیتی"/><input type="hidden" name="captchaid" value="@captcha@" /></div>
@@ -97,200 +93,170 @@
 
                                                       </div></div>
                     </script>
-                  </face>
-                </basis>
-              </div>
-              <button
-                class="flex justify-center items-center gap-2 w-32 h-[73px] text-white transition-all duration-300 data-body-btn bg-primary-500 rounded-xl hover:bg-secondary-500"
-                type="button"
-                data-btn-uploadRequest>
-                <span class="">ارسال</span>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M10 12L9.29289 11.2929L8.58579 12L9.29289 12.7071L10 12ZM20 13C20.5523 13 21 12.5523 21 12C21 11.4477 20.5523 11 20 11V13ZM16 6L15.2929 5.29289L9.29289 11.2929L10 12L10.7071 12.7071L16.7071 6.70711L16 6ZM10 12L9.29289 12.7071L15.2929 18.7071L16 18L16.7071 17.2929L10.7071 11.2929L10 12ZM10 12V13H20V12V11H10V12Z"
-                    fill="white" />
-                  <path d="M4 5L4 19" stroke="white" stroke-width="2" />
-                </svg>
-              </button>
-            </div>
-            <div
-              class="Loading_Form hidden data-body-btn w-[126px] h-12 px-4 py-2 bg-secondary-800 rounded-2xl justify-center items-center gap-2.5">
-              <div id="ballsWaveG" class="text-base font-normal leading-normal ext-zinc-50">
-                <div id="ballsWaveG_1" class="ballsWaveG"></div>
-                <div id="ballsWaveG_2" class="ballsWaveG"></div>
-                <div id="ballsWaveG_3" class="ballsWaveG"></div>
-                <div id="ballsWaveG_4" class="ballsWaveG"></div>
-                <div id="ballsWaveG_5" class="ballsWaveG"></div>
-                <div id="ballsWaveG_6" class="ballsWaveG"></div>
-                <div id="ballsWaveG_7" class="ballsWaveG"></div>
-                <div id="ballsWaveG_8" class="ballsWaveG"></div>
-              </div>
-            </div>
-            <div class="mt-4 text-center text-secondary-500 message-api"></div>
-          </div>
-        </section>
-
-        <section class="flex-[1.04]">
-          <div>
-            <basis core="print" datamembername="db.info">
-                <face filter="prpID=91462">
-                  <iframe
-                    defer
-                    title="gardeshgaran-location"
-                    class="w-full h-[368px] object-cover shadow-card-shadow rounded-2xl"
-                    width="352"
-                    height="368"
-                    loading="lazy"
-                    target="_blank"
-                    allowfullscreen
-                    src="https://maps.google.com/maps?q=@largetext,@text&z=14&output=embed"></iframe>
                 </face>
               </basis>
-            <div class="flex items-center gap-7">
-              <div class="flex-1 border border-gray-100 rounded-lg mt-7 p-4">
-                <div class="flex items-center gap-2 mb-4">
-                  <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                      d="M13.7316 11.4999C13.775 11.5749 13.8582 11.8146 13.9287 12.2826C13.9941 12.7166 14.0354 13.2455 14.0577 13.8127C14.0882 14.5883 14.0807 15.3992 14.064 16.0756C13.4699 15.7518 12.7639 15.3528 12.1075 14.9387C11.6274 14.6358 11.19 14.3355 10.8468 14.0619C10.4769 13.7668 10.3109 13.5749 10.2675 13.4999C10.2242 13.4248 10.141 13.1851 10.0705 12.7172C10.0051 12.2831 9.96373 11.7542 9.94145 11.187C9.91097 10.4112 9.91798 9.59983 9.93464 8.92328C10.5289 9.24713 11.235 9.64672 11.8917 10.0611C12.3717 10.3639 12.8091 10.6642 13.1523 10.9379C13.5223 11.2329 13.6883 11.4248 13.7316 11.4999Z"
-                      stroke="#2E58D1"
-                      stroke-width="2" />
-                    <circle cx="12" cy="12.5" r="9" stroke="#2E58D1" stroke-width="2" />
-                  </svg>
-                  <h2 class="text-primary-500 font-extrabold text-2xl">شعبه تهران</h2>
-                </div>
-                <basis core="print" datamembername="db.info">
-                    <face filter="TypeID in(244)">
-                        <div class="text-sm font-semibold mb-2 leading-7">
-                           @largetext
-                          </div>
-                    </face>
-                </basis>
-
-              </div>
-              <div class="flex-1 border border-gray-100 rounded-lg p-4 mt-7">
-                <div class="flex items-center gap-2 mb-4">
-                  <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                      d="M17.7071 14.2071L20.3552 16.8552C20.7113 17.2113 20.7113 17.7887 20.3552 18.1448C18.43 20.07 15.3821 20.2866 13.204 18.653L11.6286 17.4714C9.88504 16.1638 8.33622 14.615 7.02857 12.8714L5.84701 11.296C4.21341 9.11788 4.43001 6.06999 6.35523 4.14477C6.71133 3.78867 7.28867 3.78867 7.64477 4.14477L10.2929 6.79289C10.6834 7.18342 10.6834 7.81658 10.2929 8.20711L9.27175 9.22825C9.10946 9.39054 9.06923 9.63846 9.17187 9.84373C10.3585 12.2171 12.2829 14.1415 14.6563 15.3281C14.8615 15.4308 15.1095 15.3905 15.2717 15.2283L16.2929 14.2071C16.6834 13.8166 17.3166 13.8166 17.7071 14.2071Z"
-                      stroke="#2E58D1"
-                      stroke-width="2" />
-                  </svg>
-                  <h2 class="text-primary-500 font-extrabold text-2xl">تماس با گردشگران</h2>
-                </div>
-                <div class="text-sm font-semibold mb-2">
-                  شماره تماس:
-                  <basis core="print" datamembername="db.info">
-                    <face filter="TypeID in(240)">
-                        <a href="tel:021@text" class="unicode-embed direction-ltr">021-@text</a>
-                    </face>
-                </basis>
-                  
-                  خط ویژه
-                </div>
-                <span class="text-sm font-semibold">
-                  واتساپ:
-                  <a href="tel:" class="">09123456789</a>
-                </span>
-              </div>
+            </div>
+            <button
+              class="flex justify-center items-center gap-2 w-32 h-[73px] text-white transition-all duration-300 data-body-btn bg-primary-500 rounded-xl hover:bg-secondary-500"
+              type="button" data-btn-uploadRequest>
+              <span class="">ارسال</span>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M10 12L9.29289 11.2929L8.58579 12L9.29289 12.7071L10 12ZM20 13C20.5523 13 21 12.5523 21 12C21 11.4477 20.5523 11 20 11V13ZM16 6L15.2929 5.29289L9.29289 11.2929L10 12L10.7071 12.7071L16.7071 6.70711L16 6ZM10 12L9.29289 12.7071L15.2929 18.7071L16 18L16.7071 17.2929L10.7071 11.2929L10 12ZM10 12V13H20V12V11H10V12Z"
+                  fill="white" />
+                <path d="M4 5L4 19" stroke="white" stroke-width="2" />
+              </svg>
+            </button>
+          </div>
+          <div
+            class="Loading_Form hidden data-body-btn w-[126px] h-12 px-4 py-2 bg-secondary-800 rounded-2xl justify-center items-center gap-2.5">
+            <div id="ballsWaveG" class="text-base font-normal leading-normal ext-zinc-50">
+              <div id="ballsWaveG_1" class="ballsWaveG"></div>
+              <div id="ballsWaveG_2" class="ballsWaveG"></div>
+              <div id="ballsWaveG_3" class="ballsWaveG"></div>
+              <div id="ballsWaveG_4" class="ballsWaveG"></div>
+              <div id="ballsWaveG_5" class="ballsWaveG"></div>
+              <div id="ballsWaveG_6" class="ballsWaveG"></div>
+              <div id="ballsWaveG_7" class="ballsWaveG"></div>
+              <div id="ballsWaveG_8" class="ballsWaveG"></div>
             </div>
           </div>
-        </section>
-      </div>
+          <div class="mt-4 text-center text-secondary-500 message-api"></div>
+        </div>
+      </section>
 
-      <section class="mx-auto max-lg:w-[92%] max-xl:w-[97%] xl:max-w-7xl mt-16 mb-16">
-        <div class="bg-gray-50 rounded-[32px] py-10 px-20">
-          <div class="px-11 py-6 border-b border-gray-100 shadow-contact-form">
-            <h2 class="text-2xl font-extrabold text-center">فرم استخدام گردشگران</h2>
-          </div>
-          <div class="flex flex-col mx-auto employment-form mt-8" id="employment-form">
-            <basis
-              core="schema"
-              run="atclient"
-              schemaurl="/schema/domainform/7CF675E2-4165-434A-B3D5-F01013BA5F10/C7A5130F-7558-4492-A0A5-04B09A227FC5/fa/فرم-استخدام-گردشگران"
-              displaymode="new"
-              button="[data-btn-uploadEmployment]"
-              resultsourceid="upload.dataEmployment"
-              OnRendered="RenderFormEmployment"></basis>
-            <basis
-              core="api"
-              if="{##cms.uploadEmployment.run|(false)##}"
-              run="atclient"
-              url="/schema/domainform/7CF675E2-4165-434A-B3D5-F01013BA5F10/fa/editobject"
-              method="post"
-              body="object_edit={##cms.uploadEmployment.value##}&captcha={##cms.uploadEmployment.captcha##}&captchaid={##cms.uploadEmployment.captchaid##}"
-              content-type="application/x-www-form-urlencoded"
-              triggers="cms.uploadEmployment"
-              OnProcessed="OnProcessedEditObjectEmployment"></basis>
-            <basis
-              core="callback"
-              run="atclient"
-              method="uploadDocumentEmployment"
-              triggers="upload.dataEmployment"></basis>
+      <section class="flex-[1.04]">
+        <div>
+          <basis core="print" datamembername="db.info">
+            <face filter="prpID=91462">
+              <iframe defer title="gardeshgaran-location"
+                class="w-full h-[368px] object-cover shadow-card-shadow rounded-2xl" width="352" height="368"
+                loading="lazy" target="_blank" allowfullscreen
+                src="https://maps.google.com/maps?q=@largetext,@text&z=14&output=embed"></iframe>
+            </face>
+          </basis>
+          <div class="flex items-center gap-7">
+            <div class="flex-1 border border-gray-100 rounded-lg mt-7 p-4">
+              <div class="flex items-center gap-2 mb-4">
+                <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M13.7316 11.4999C13.775 11.5749 13.8582 11.8146 13.9287 12.2826C13.9941 12.7166 14.0354 13.2455 14.0577 13.8127C14.0882 14.5883 14.0807 15.3992 14.064 16.0756C13.4699 15.7518 12.7639 15.3528 12.1075 14.9387C11.6274 14.6358 11.19 14.3355 10.8468 14.0619C10.4769 13.7668 10.3109 13.5749 10.2675 13.4999C10.2242 13.4248 10.141 13.1851 10.0705 12.7172C10.0051 12.2831 9.96373 11.7542 9.94145 11.187C9.91097 10.4112 9.91798 9.59983 9.93464 8.92328C10.5289 9.24713 11.235 9.64672 11.8917 10.0611C12.3717 10.3639 12.8091 10.6642 13.1523 10.9379C13.5223 11.2329 13.6883 11.4248 13.7316 11.4999Z"
+                    stroke="#2E58D1" stroke-width="2" />
+                  <circle cx="12" cy="12.5" r="9" stroke="#2E58D1" stroke-width="2" />
+                </svg>
+                <h2 class="text-primary-500 font-extrabold text-2xl">شعبه تهران</h2>
+              </div>
+              <basis core="print" datamembername="db.info">
+                <face filter="TypeID in(244)">
+                  <div class="text-sm font-semibold mb-2 leading-7">
+                    @largetext
+                  </div>
+                </face>
+              </basis>
 
-            <div class="captcha-button flex items-center justify-center">
-              <div
-                id="captchaContainer"
-                class="captchaContainerclass captcha-sefaresh w-auto"
-                data-bc-answer-container
-                data-bc-schema-info-multi="0"
-                data-bc-schema-info-word="58"
-                data-bc-schema-info-part="1"
-                data-bc-schema-info-part-0-type="text">
-                <basis
-                  core="dbsource"
-                  source="trust_login"
-                  name="captcha-employment"
-                  run="atclient"
-                  triggers="captcha.refreshEmployment">
-                  <member name="code" type="scalar" request="captcha"></member>
+            </div>
+            <div class="flex-1 border border-gray-100 rounded-lg p-4 mt-7">
+              <div class="flex items-center gap-2 mb-4">
+                <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M17.7071 14.2071L20.3552 16.8552C20.7113 17.2113 20.7113 17.7887 20.3552 18.1448C18.43 20.07 15.3821 20.2866 13.204 18.653L11.6286 17.4714C9.88504 16.1638 8.33622 14.615 7.02857 12.8714L5.84701 11.296C4.21341 9.11788 4.43001 6.06999 6.35523 4.14477C6.71133 3.78867 7.28867 3.78867 7.64477 4.14477L10.2929 6.79289C10.6834 7.18342 10.6834 7.81658 10.2929 8.20711L9.27175 9.22825C9.10946 9.39054 9.06923 9.63846 9.17187 9.84373C10.3585 12.2171 12.2829 14.1415 14.6563 15.3281C14.8615 15.4308 15.1095 15.3905 15.2717 15.2283L16.2929 14.2071C16.6834 13.8166 17.3166 13.8166 17.7071 14.2071Z"
+                    stroke="#2E58D1" stroke-width="2" />
+                </svg>
+                <h2 class="text-primary-500 font-extrabold text-2xl">تماس با گردشگران</h2>
+              </div>
+              <div class="text-sm font-semibold mb-2">
+                شماره تماس:
+                <basis core="print" datamembername="db.info">
+                  <face filter="TypeID in(240)">
+                    <a href="tel:021@text" class="unicode-embed direction-ltr">021-@text</a>
+                  </face>
                 </basis>
-                <basis datamembername="captcha-employment.code" core="print" run="atclient">
-                  <face>
-                    <script type="text/template">
+
+                خط ویژه
+              </div>
+              <span class="text-sm font-semibold">
+                واتساپ:
+                <a href="tel:" class="">09123456789</a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section class="mx-auto max-lg:w-[92%] max-xl:w-[97%] xl:max-w-7xl mt-16 mb-16">
+      <div class="bg-gray-50 rounded-[32px] py-10 px-20">
+        <div class="px-11 py-6 border-b border-gray-100 shadow-contact-form">
+          <h2 class="text-2xl font-extrabold text-center">فرم استخدام گردشگران</h2>
+        </div>
+        <div class="flex flex-col mx-auto employment-form mt-8" id="employment-form">
+          <basis core="schema" run="atclient"
+            schemaurl="/schema/domainform/7CF675E2-4165-434A-B3D5-F01013BA5F10/C7A5130F-7558-4492-A0A5-04B09A227FC5/fa/فرم-استخدام-گردشگران"
+            displaymode="new" button="[data-btn-uploadEmployment]" resultsourceid="upload.dataEmployment"
+            OnRendered="RenderFormEmployment"></basis>
+          <basis core="api" if="{##cms.uploadEmployment.run|(false)##}" run="atclient"
+            url="/schema/domainform/7CF675E2-4165-434A-B3D5-F01013BA5F10/fa/editobject" method="post"
+            body="object_edit={##cms.uploadEmployment.value##}&captcha={##cms.uploadEmployment.captcha##}&captchaid={##cms.uploadEmployment.captchaid##}"
+            content-type="application/x-www-form-urlencoded" triggers="cms.uploadEmployment"
+            OnProcessed="OnProcessedEditObjectEmployment"></basis>
+          <basis core="callback" run="atclient" method="uploadDocumentEmployment" triggers="upload.dataEmployment">
+          </basis>
+
+          <div class="captcha-button flex items-center justify-center">
+            <div id="captchaContainer" class="captchaContainerclass captcha-sefaresh w-auto" data-bc-answer-container
+              data-bc-schema-info-multi="0" data-bc-schema-info-word="58" data-bc-schema-info-part="1"
+              data-bc-schema-info-part-0-type="text">
+              <basis core="dbsource" source="trust_login" name="captcha-employment" run="atclient"
+                triggers="captcha.refreshEmployment">
+                <member name="code" type="scalar" request="captcha"></member>
+              </basis>
+              <basis datamembername="captcha-employment.code" core="print" run="atclient">
+                <face>
+                  <script type="text/template">
                       <div class="d-inline-block"><div class="flex gap-6">
 
                                                           <div class="float-right w-[323px]"><input type="text" class="!w-[287px] contactUsInput codeinputm" name="captcha" maxlength="4" placeholder="کد امنیتی"/><input type="hidden" name="captchaid" value="@captcha@" /></div>
                                                           <div class="flex items-center gap-6">
-                                                              <img src="/@captcha@" loading="lazy" width="120" height="60" alt="captcha" class="w-16" />
+                                                              <img src="/@captcha@" loading="lazy" width="120" height="60" alt="captcha" class="w-16 h-auto" />
                                                               <svg class="inline-block align-middle cursor-pointer w-9 h-9" onclick="refreshCaptchaEmployment()" width="24" height="24" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18.1247 8.56165H18.1238C18.0007 8.56175 17.8788 8.5861 17.7651 8.63331C17.6514 8.68052 17.5481 8.74967 17.4611 8.8368C17.3741 8.92393 17.3052 9.02734 17.2581 9.14113C17.2111 9.25492 17.187 9.37685 17.1871 9.49997C17.1859 10.8143 16.8245 12.1032 16.1421 13.2265C15.4597 14.3498 14.4824 15.2646 13.3166 15.8714C12.1507 16.4782 10.8408 16.7538 9.52921 16.6683C8.21765 16.5827 6.95463 16.1393 5.87744 15.3862C2.63134 13.1132 1.83959 8.62309 4.11255 5.37696C6.38552 2.13083 10.8757 1.33899 14.1218 3.61204C14.6129 3.95501 15.0592 4.358 15.4504 4.81165H12.8121C12.5635 4.81165 12.325 4.91042 12.1492 5.08623C11.9734 5.26205 11.8746 5.5005 11.8746 5.74915C11.8746 5.99779 11.9734 6.23624 12.1492 6.41206C12.325 6.58787 12.5635 6.68665 12.8121 6.68665H17.1871C17.4358 6.68665 17.6742 6.58787 17.85 6.41206C18.0259 6.23624 18.1246 5.99779 18.1246 5.74915V1.37415C18.1246 1.12551 18.0259 0.887048 17.85 0.711233C17.6742 0.535418 17.4358 0.436646 17.1871 0.436646C16.9385 0.436646 16.7 0.535418 16.5242 0.711233C16.3484 0.887048 16.2496 1.12551 16.2496 1.37415V2.93536C15.9206 2.62321 15.5689 2.33596 15.1973 2.07598C14.2225 1.39342 13.1228 0.909542 11.9609 0.651979C10.7991 0.394417 9.59797 0.368213 8.42603 0.574863C7.25409 0.781513 6.13433 1.21697 5.13067 1.85637C4.12702 2.49578 3.25914 3.3266 2.57658 4.30141C1.19808 6.27013 0.658111 8.70582 1.07546 11.0727C1.49281 13.4395 2.83329 15.5436 4.80201 16.9221C6.31776 17.9898 8.12639 18.563 9.98041 18.5633C10.5144 18.5631 11.0474 18.5162 11.5732 18.4233C13.6714 18.0531 15.5722 16.9556 16.9417 15.3235C18.3112 13.6914 19.062 11.6289 19.0621 9.49833C19.0619 9.24983 18.963 9.01159 18.7873 8.83596C18.6115 8.66032 18.3732 8.56166 18.1247 8.56165Z" fill="#18181B"/></svg>
                                                           </div>
 
                                                       </div></div>
                     </script>
-                  </face>
-                </basis>
-              </div>
-              <button
-                class="flex justify-center items-center gap-2 w-32 h-[73px] text-white transition-all duration-300 data-body-btn bg-primary-500 rounded-xl hover:bg-secondary-500"
-                type="button"
-                data-btn-uploadEmployment>
-                <span class="">ارسال</span>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M10 12L9.29289 11.2929L8.58579 12L9.29289 12.7071L10 12ZM20 13C20.5523 13 21 12.5523 21 12C21 11.4477 20.5523 11 20 11V13ZM16 6L15.2929 5.29289L9.29289 11.2929L10 12L10.7071 12.7071L16.7071 6.70711L16 6ZM10 12L9.29289 12.7071L15.2929 18.7071L16 18L16.7071 17.2929L10.7071 11.2929L10 12ZM10 12V13H20V12V11H10V12Z"
-                    fill="white" />
-                  <path d="M4 5L4 19" stroke="white" stroke-width="2" />
-                </svg>
-              </button>
+                </face>
+              </basis>
             </div>
-            <div
-              class="Loading_Form hidden data-body-btn w-[126px] h-12 px-4 py-2 bg-secondary-800 rounded-2xl justify-center items-center gap-2.5">
-              <div id="ballsWaveG" class="text-base font-normal leading-normal ext-zinc-50">
-                <div id="ballsWaveG_1" class="ballsWaveG"></div>
-                <div id="ballsWaveG_2" class="ballsWaveG"></div>
-                <div id="ballsWaveG_3" class="ballsWaveG"></div>
-                <div id="ballsWaveG_4" class="ballsWaveG"></div>
-                <div id="ballsWaveG_5" class="ballsWaveG"></div>
-                <div id="ballsWaveG_6" class="ballsWaveG"></div>
-                <div id="ballsWaveG_7" class="ballsWaveG"></div>
-                <div id="ballsWaveG_8" class="ballsWaveG"></div>
-              </div>
-            </div>
-            <div class="mt-4 text-center text-secondary-500 message-api"></div>
+            <button
+              class="flex justify-center items-center gap-2 w-32 h-[73px] text-white transition-all duration-300 data-body-btn bg-primary-500 rounded-xl hover:bg-secondary-500"
+              type="button" data-btn-uploadEmployment>
+              <span class="">ارسال</span>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M10 12L9.29289 11.2929L8.58579 12L9.29289 12.7071L10 12ZM20 13C20.5523 13 21 12.5523 21 12C21 11.4477 20.5523 11 20 11V13ZM16 6L15.2929 5.29289L9.29289 11.2929L10 12L10.7071 12.7071L16.7071 6.70711L16 6ZM10 12L9.29289 12.7071L15.2929 18.7071L16 18L16.7071 17.2929L10.7071 11.2929L10 12ZM10 12V13H20V12V11H10V12Z"
+                  fill="white" />
+                <path d="M4 5L4 19" stroke="white" stroke-width="2" />
+              </svg>
+            </button>
           </div>
+          <div
+            class="Loading_Form hidden data-body-btn w-[126px] h-12 px-4 py-2 bg-secondary-800 rounded-2xl justify-center items-center gap-2.5">
+            <div id="ballsWaveG" class="text-base font-normal leading-normal ext-zinc-50">
+              <div id="ballsWaveG_1" class="ballsWaveG"></div>
+              <div id="ballsWaveG_2" class="ballsWaveG"></div>
+              <div id="ballsWaveG_3" class="ballsWaveG"></div>
+              <div id="ballsWaveG_4" class="ballsWaveG"></div>
+              <div id="ballsWaveG_5" class="ballsWaveG"></div>
+              <div id="ballsWaveG_6" class="ballsWaveG"></div>
+              <div id="ballsWaveG_7" class="ballsWaveG"></div>
+              <div id="ballsWaveG_8" class="ballsWaveG"></div>
+            </div>
+          </div>
+          <div class="mt-4 text-center text-secondary-500 message-api"></div>
         </div>
-      </section>
-    </main>
-    <basis core="call" file="footer.inc" />
-  </body>
+      </div>
+    </section>
+  </main>
+  <basis core="call" file="footer.inc" />
+</body>
+
 </html>
