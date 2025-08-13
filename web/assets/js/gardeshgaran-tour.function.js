@@ -1,6 +1,7 @@
 const callbackSourceExecutionPlanTypesView = async (args) => {
   try {
     const resultJson = args.source?.rows;
+
     const originsSourceArray = new Array();
     const destinationsSourceArray = new Array();
     let originsRownumber = 1;
@@ -36,17 +37,24 @@ const callbackSourceExecutionPlanTypesView = async (args) => {
 
 const renderInventoryView = async (element, day, from, to) => {
   try {
-    element.querySelectorAll('li').forEach((e) => {
-      e.querySelector('.group').classList.remove('border-primary-400');
-      e.querySelector('.tour-dates').classList.remove('text-primary-500');
+  
+    document.querySelectorAll('.swiper-tour-date .swiper-slide').forEach(e => {
+      e.querySelector('.group')?.classList.remove('border-primary-400');
+      e.querySelector('.tour-dates')?.classList.remove('text-primary-500');
     });
+
+    
     $bc.setSource('db.inventoryViewSpecificDate', {
       from: from,
       to: to,
       day: day,
     });
-    element.querySelector('.group').classList.add('border-primary-400');
-    element.querySelector('.tour-dates').classList.add('text-primary-500');
+
+    
+    element.querySelector('.group')?.classList.add('border-primary-400');
+    element.querySelector('.tour-dates')?.classList.add('text-primary-500');
+
+  
     window.scroll({
       top: document.querySelector('#hotels').offsetTop,
       behavior: 'smooth',
@@ -114,6 +122,85 @@ const onProcessedAirlinesOriginsImg = async (args) => {
     }
   }
 };
+
+// let swiperTourDate = null;
+
+const initSwiper = (loop) => {
+  swiperTourDate = new Swiper('.swiper-tour-date', {
+    slidesPerView: 1.5,
+    speed: 400,
+    centeredSlides: false,
+    spaceBetween: 24,
+    grabCursor: true,
+    autoplay: {
+      delay: 2500,
+      disableOnInteraction: false,
+    },
+    loop: loop,
+  });
+};
+
+const onProcessedTourDates = async (args) => {
+  const response = args.response;
+
+  if (response.status === 200) {
+    const responseJson = await response.json();
+    const data = responseJson.sources?.[0]?.data || [];
+
+    const startDateEl = document.querySelector(".date__details .start__date");
+    const endDateEl = document.querySelector(".date__details .end__date");
+
+    if (data.length > 0) {
+      const firstItem = data[0];
+      if (startDateEl) startDateEl.textContent = firstItem.start.date;
+      if (endDateEl) endDateEl.textContent = firstItem.end.date;
+    }
+
+    const swiperWrapper = document.querySelector(".swiper-tour-date .swiper-wrapper");
+    if (!swiperWrapper) return;
+
+    swiperWrapper.innerHTML = "";
+
+    if (data.length === 0) {
+      swiperWrapper.innerHTML = `
+        <li class="swiper-slide text-center py-6 text-gray-500">
+          در حال حاضر تاریخ دیگری وجود ندارد
+        </li>
+      `;
+    } else {
+      data.forEach(item => {
+        const li = document.createElement("li");
+        li.className = "swiper-slide cursor-pointer";
+        li.setAttribute(
+          "onclick",
+          `renderInventoryView(this,${item.day},${item.start.dateid},${item.end.dateid})`
+        );
+        li.innerHTML = `
+          <div class="group border border-gray-50 w-[230px] bg-white rounded-lg py-4 px-6 transition-all duration-300 hover:border-primary-400">
+            <h3 class="text-gray-500 font-light mb-1">تاریخ رفت و برگشت:</h3>
+            <div class="tour-dates flex items-center justify-between text-sm font-semibold text-gray-500 transition-all duration-300 group-hover:text-primary-500">
+              <span class="start__date" data-date="${item.start.date}">${item.start.date}</span>
+              تا
+              <span class="end__date" data-date="${item.end.date}">${item.end.date}</span>
+            </div>
+          </div>
+        `;
+        swiperWrapper.appendChild(li);
+      });
+    }
+
+    if (swiperTourDate) {
+      swiperTourDate.destroy(true, true);
+      swiperTourDate = null;
+    }
+
+    requestAnimationFrame(() => {
+      initSwiper(data.length > 1);
+    });
+  }
+};
+
+
 const onProcessedAirlinesDestinationsImg = async (args) => {
   const response = args.response;
   if (response.status == 200) {
@@ -441,10 +528,9 @@ const onrenderedExecutionOrigins = async () => {
     );
     if (originElement) {
       let origin = originElement.textContent.trim();
-      console.log(origin);
-      
+
       document.querySelector('.tourExecution__container__origins .origins__city').textContent = origin;
-      document.getElementById('destination-departure-tour').textContent = origin; // ✅ برعکس
+      document.getElementById('destination-departure-tour').textContent = origin;
 
       let ids = [];
       document
@@ -464,7 +550,6 @@ const onrenderedExecutionOrigins = async () => {
   }
 };
 
-
 const onrenderedExecutionDestinations = async () => {
   try {
     const destinationElement = document.querySelector(
@@ -472,10 +557,9 @@ const onrenderedExecutionDestinations = async () => {
     );
     if (destinationElement) {
       let destination = destinationElement.textContent;
-      console.log(destination);
 
       document.querySelector('.tourExecution__container__destinations .destinations__city').textContent = destination;
-      document.getElementById('origin-departure-tour').textContent = destination; // اصلاح ID برای مقصد
+      document.getElementById('origin-departure-tour').textContent = destination;
 
       let ids = [];
       document
@@ -586,7 +670,6 @@ const renderTourInstallmentForm = async (element) => {
     run: false,
   });
 
-  console.log('🔹 مقدار hotelService:', service);
   $bc.setSource('db.tourFormInstallmentplan', {
     hotelName: element.closest('.hotel-card').querySelector('.hotel-card-title').textContent,
     hotelRate: element.closest('.hotel-card').querySelector('.hotel-card-star').dataset.value,

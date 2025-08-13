@@ -2635,3 +2635,13 @@ body {
 .tour__booking__form__container [data-bc-section] {
   padding: 0 !important;
 }
+
+.tour-description h1,
+.tour-description h2,
+.tour-description h3,
+.tour-description h4,
+.tour-description h5,
+.tour-description h6{
+  font-size: revert;
+  font-weight: revert;
+}

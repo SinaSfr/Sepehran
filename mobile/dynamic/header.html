@@ -220,7 +220,7 @@
             <svg width="24" height="24">
                 <use xlink:href="./images/sprite-icons.svg#icon-blue-house"></use>
             </svg>
-            خانه
+            گردشگران تهران
         </a>
         <button id="openTourMobile" class="flex items-center gap-1 text-sm font-semibold">
             <svg width="24" height="24">
@@ -268,10 +268,10 @@
                                 </layout>
                                 <face>
                                     <li class="header-li tourcategorydropdown__item cursor-pointer flex gap-2 items-center rounded p-1 flex-shrink-0"
-                                        data-index="0" data-catid="@catid">
-                                        <span class="bg-white p-1 rounded">
-                                            <img src="@image" class="h-3 object-cover rounded" alt="@title" width="19"
-                                                height="12" loading="lazy">
+                                        data-index="0" data-catid="@catid" data-link="@link">
+                                        <span class="flex bg-white p-1 rounded">
+                                            <img src="@image" class="h-5 object-cover rounded" alt="@title" width="27"
+                                                height="20" loading="lazy">
                                         </span>
                                         <span class="text-sm font-semibold">@title</span>
                                     </li>
@@ -898,3 +898,5 @@
         </basis>
     </div>
 </header>
+
+<basis core="call" file="add_to_home_screen_fa.inc" pageindex="[##cms.cms.pageindex##]"></basis>

@@ -5,7 +5,7 @@
     "title": "dates",
     "dmnid": "[##cms.cms.domainid##]",
     "ownerid": "[##cms.cms.ownerid##]"
-}'>
+}' onprocessed="onProcessedTourDates">
 </basis>
 <basis core="api" name="api.executionPlanTypesView"
     url="https://basisfly.com/api/inventory/packages/execution-plan-view/" method="post" content-type="application/json"
@@ -144,7 +144,7 @@
     <!-- End Google Tag Manager (noscript) -->
     <basis core="call" file="header.inc" pageindex="[##cms.cms.pageindex##]" />
     <main class="layout__body__container" data-noimgsign="no-img-found.jpg" data-pagenameinventory="Tem1_Hotel.bc">
-        <section class="relative flex items-center justify-center bg-tourlistBg bg-center bg-cover py-4">
+        <section class="relative flex flex-col items-center justify-center bg-tourlistBg bg-center bg-cover py-4">
             <div class="absolute inset-0 w-full h-full bg-black/45"></div>
             <ul itemscope itemtype="https://schema.org/BreadcrumbList"
                 class="breadcrumb relative flex flex-wrap justify-center items-center text-sm gap-1">
@@ -162,10 +162,10 @@
 
                 <basis core="print" datamembername="db.navigation">
                     <face filter="RowNumber=max(RowNumber) and parentcatid<>214993">
-                        <li class="w-full flex justify-center text-white mt-2" itemprop="itemListElement" itemscope
+                        <li class="flex justify-center text-white" itemprop="itemListElement" itemscope
                             itemtype="https://schema.org/ListItem">
-                            <h1 class="text-secondary-500 text-[32px] leading-[32px] font-black" itemprop="name">@title
-                            </h1>
+                            <span class="text-white" itemprop="name">@title
+                            </span>
                             <meta itemprop="position" content="@rownumber" />
                         </li>
                     </face>
@@ -203,6 +203,16 @@
                     </face>
                 </basis>
             </ul>
+            <basis core="print" datamembername="db.tour-view">
+                <face filter="TypeID in(150)">
+                    <li class="inline-block font-normal mt-2">
+                        <h1 class="relative text-center text-secondary-500 text-[32px] leading-[32px] font-black"
+                            itemprop="name">
+                            @text
+                        </h1>
+                    </li>
+                </face>
+            </basis>
         </section>
         <basis core="print" datamembername="db.tour-view">
             <face filter="TypeID in(150)">
@@ -321,53 +331,33 @@
 
                 </div>
                 <div class="flex flex-col gap-3">
-                    <basis core='print' run='AtClient' datamembername='db.dates' onrendered='onrenderedDates'>
-                        <layout>
-                            <script type="text/template">
-                                <div class="flex justify-between items-center">
-                                    <h3 class="text-sm font-bold">تاریخ شروع تور:</h3>
-                                    <span class="relative">
-                                        <svg width="43" height="17" class="absolute right-4 -top-2">
-                                            <use href="./images/sprite-icons.svg#icon-plane-left"></use>
-                                        </svg>
-                                        <svg width="124" height="3">
-                                            <use href="./images/sprite-icons.svg#icon-plane-line"></use>
-                                        </svg>
-                                    </span>
-                                    @child
-                                </div>
-                        </script>
-                        </layout>
-                        <face>
-                            <script type="text/template">
-                                    <span class="text-sm font-bold">@start.date@</span>
-                            </script>
-                        </face>
-                    </basis>
+                    <div class="date__details flex justify-between items-center">
+                        <h3 class="text-sm font-bold">تاریخ شروع تور:</h3>
+                        <span class="relative">
+                            <svg width="43" height="17" class="absolute right-4 -top-2">
+                                <use href="./images/sprite-icons.svg#icon-plane-left"></use>
+                            </svg>
+                            <svg width="124" height="3">
+                                <use href="./images/sprite-icons.svg#icon-plane-line"></use>
+                            </svg>
+                        </span>
+                        <span class="start__date text-sm font-bold"></span>
+                    </div>
 
-                    <basis core='print' run='AtClient' datamembername='db.dates' onrendered='onrenderedDates'>
-                        <layout>
-                            <script type="text/template">
-                                <div class="flex justify-between items-center">
-                                    <h3 class="text-sm font-bold">تاریخ اتمام تور:</h3>
-                                    <span class="relative">
-                                        <svg width="43" height="17" class="absolute left-3 -top-2">
-                                            <use href="./images/sprite-icons.svg#icon-plane-right"></use>
-                                        </svg>
-                                        <svg width="124" height="3">
-                                            <use href="./images/sprite-icons.svg#icon-plane-line"></use>
-                                        </svg>
-                                    </span>
-                                    @child
-                                </div>
-                        </script>
-                        </layout>
-                        <face>
-                            <script type="text/template">
-                                    <span class="text-sm font-bold">@end.date@</span>
-                            </script>
-                        </face>
-                    </basis>
+                    <div class="date__details flex justify-between items-center">
+                        <h3 class="text-sm font-bold">تاریخ اتمام تور:</h3>
+                        <span class="relative">
+                            <svg width="43" height="17" class="absolute left-3 -top-2">
+                                <use href="./images/sprite-icons.svg#icon-plane-right"></use>
+                            </svg>
+                            <svg width="124" height="3">
+                                <use href="./images/sprite-icons.svg#icon-plane-line"></use>
+                            </svg>
+                        </span>
+                        <span class="end__date text-sm font-bold"></span>
+                    </div>
+
+
 
                 </div>
                 <div class="flex items-center gap-1">
@@ -380,7 +370,7 @@
                         </layout>
                         <face>
                             <span class="text-sm font-bold">@db.airline.name</span>
-                            <img src="@db.airline.pic" class="" alt="@db.airline.name" width="74" height="20"
+                            <img src="@db.airline.pic" class="h-auto" alt="@db.airline.name" width="74" height="20"
                                 loading="lazy" />
                         </face>
                     </basis>
@@ -446,41 +436,10 @@
                         <!-- Slider main container -->
                         <div class="swiper swiper-tour-date px-1">
                             <!-- Additional required wrapper -->
-                            <basis core='print' run='AtClient' datamembername='db.dates' onrendered='onrenderedDates'>
-                                <layout>
-                                    <script type="text/template">
-                                    <ul class="swiper-wrapper">
-                                        <!-- Slides -->
-                                        @child
-                                    </ul>
-                                </script>
-                                </layout>
-                                <else-layout>
-                                    <ul class="swiper-wrapper flex justify-center">
-                                        <!-- Slides -->
-                                        <li class="swiper-slide cursor-pointer">
-                                            در حال حاضر تاریخ دیگری وجود ندارد
-                                        </li>
-                                    </ul>
-                                </else-layout>
-                                <face>
-                                    <script type="text/template">
-                                        <li class="swiper-slide" onclick="renderInventoryView(this,@day@,@start.dateid@,@end.dateid@)">
-                                        <div
-                                            class="group border border-gray-50 w-[230px] bg-white rounded-lg py-4 px-6 transition-all duration-300 hover:border-primary-400">
-                                            <h3 class="text-gray-500 font-light mb-1">تاریخ رفت و برگشت:</h3>
-                                            <div
-                                                class="tour-dates flex items-center justify-between text-sm font-semibold text-gray-500 transition-all duration-300 group-hover:text-primary-500">
-                                                <span class="start__date" data-date="@start.date@">@start.date@</span>
-                                                تا
-                                                 <span class="end__date" data-date="@end.date@">@end.date@</span>
-                                            </div>
-                                        </div>
-                                        </li>
-                                    </script>
-                                </face>
-                            </basis>
-
+                            <ul class="swiper-wrapper">
+                                <!-- Slides -->
+                                @child
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -860,7 +819,18 @@
                                     <div class="execution__details__path__item flex flex-col gap-3">
                                         <div class="flex flex-col gap-2">
                                             {{ return await renderTransportationImage($data)}}
-                                            <span class="hidden font-light text-xs">شماره پرواز : <span>W5112</span></span>
+                                            <div class="font-light text-xs flex items-center">میزان بار مجاز : 
+                                                <div class="flex items-center text-sm font-bold">
+                                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000" height="16" width="16" version="1.1" id="Layer_1" viewBox="0 0 512 512" xml:space="preserve">
+                                                    <g>
+                                                        <g>
+                                                        <path d="M389.742,77.553H329.99V30.417h15.146V0H166.865v30.417h15.146v47.135h-59.752c-19.059,0-34.566,15.506-34.566,34.566    V438.41c0,19.059,15.506,34.566,34.566,34.566h26.268V512h30.417v-39.024h154.114V512h30.417v-39.024h26.268    c19.059,0,34.566-15.506,34.566-34.566V112.119C424.308,93.058,408.802,77.553,389.742,77.553z M179.349,408.086h-30.417V229.638    h30.417V408.086z M212.426,30.417h87.146v47.135h-87.146V30.417z M240.589,408.086h-30.417V229.638h30.417V408.086z     M301.829,408.086h-30.417V229.638h30.417V408.086z M316.834,190.41H195.166v-46.294h121.669V190.41z M363.068,408.086h-30.417    V229.638h30.417V408.086z"/>
+                                                        </g>
+                                                    </g>
+                                                    </svg>
+                                                    <span class="luggage-origin direction-ltr">@info.luggage@ kg</span>
+                                                </div>
+                                        </div>
                                         </div>
                                         <div class="flex flex-col gap-2 bg-gray-50 rounded-lg p-2 text-sm font-bold">
                                             <span class="text-primary-500 origins__city details__city">@info.city.name@</span>
@@ -937,7 +907,18 @@
                                     <div class="execution__details__path__item flex flex-col gap-3">
                                         <div class="flex flex-col gap-2">
                                             {{ return await renderTransportationImage($data)}}
-                                            <span class="hidden font-light text-xs">شماره پرواز : <span>W5112</span></span>
+                                            <div class="font-light text-xs flex items-center">میزان بار مجاز : 
+                                                <div class="flex items-center text-sm font-bold">
+                                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000" height="16" width="16" version="1.1" id="Layer_1" viewBox="0 0 512 512" xml:space="preserve">
+                                                    <g>
+                                                        <g>
+                                                        <path d="M389.742,77.553H329.99V30.417h15.146V0H166.865v30.417h15.146v47.135h-59.752c-19.059,0-34.566,15.506-34.566,34.566    V438.41c0,19.059,15.506,34.566,34.566,34.566h26.268V512h30.417v-39.024h154.114V512h30.417v-39.024h26.268    c19.059,0,34.566-15.506,34.566-34.566V112.119C424.308,93.058,408.802,77.553,389.742,77.553z M179.349,408.086h-30.417V229.638    h30.417V408.086z M212.426,30.417h87.146v47.135h-87.146V30.417z M240.589,408.086h-30.417V229.638h30.417V408.086z     M301.829,408.086h-30.417V229.638h30.417V408.086z M316.834,190.41H195.166v-46.294h121.669V190.41z M363.068,408.086h-30.417    V229.638h30.417V408.086z"/>
+                                                        </g>
+                                                    </g>
+                                                    </svg>
+                                                    <span class="luggage-destination direction-ltr">@info.luggage@ kg</span>
+                                                </div>
+                                        </div>
                                         </div>
                                         <div class="flex flex-col gap-2 bg-gray-50 rounded-lg p-2 text-sm font-bold">
                                             <span class="text-primary-500 destinations__city details__city">@info.city.name@</span>
@@ -1053,7 +1034,7 @@
             </face>
         </basis>
 
-        <section class="mx-auto max-lg:w-[92%] max-xl:w-[97%] xl:max-w-7xl mt-11">
+        <section class="tour-description mx-auto max-lg:w-[92%] max-xl:w-[97%] xl:max-w-7xl mt-11">
             <div class="inline-flex items-center gap-2 border-b-4 border-primary-500 mb-6">
                 <svg width="38" height="38">
                     <use href="./images/sprite-icons.svg#icon-tour-information"></use>

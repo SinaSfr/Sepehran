@@ -814,6 +814,9 @@ body {
 .max-h-\[366px\] {
   max-height: 366px;
 }
+.max-h-56 {
+  max-height: 14rem /* 224px */;
+}
 .min-h-80 {
   min-height: 20rem;
 }
@@ -1047,6 +1050,9 @@ body {
 .overflow-y-auto {
   overflow-y: auto;
 }
+.overflow-x-hidden {
+  overflow-x: hidden;
+}
 .rounded {
   border-radius: 0.25rem;
 }
@@ -1085,6 +1091,9 @@ body {
 .border-gray-50 {
   --tw-border-opacity: 1;
   border-color: rgb(249 250 251 / var(--tw-border-opacity, 1));
+}
+.border-primary {
+  border-color: var(--primary);
 }
 .border-primary-400 {
   border-color: var(--primary-400);
@@ -1705,6 +1714,9 @@ body {
 .hover\:bg-secondary-100:hover {
   background-color: var(--secondary-100);
 }
+.hover\:border-secondary:hover {
+  border-color: var(--secondary);
+}
 .hover\:text-primary-500:hover {
   color: var(--primary-500);
 }
@@ -1756,6 +1768,9 @@ body {
 }
 .group:hover .group-hover\:fill-primary-900 {
   fill: var(--primary-900);
+}
+.group:hover .group-hover\:fill-secondary-600 {
+  fill: var(--secondary-600);
 }
 .group:hover .group-hover\:fill-white {
   fill: #fff;
@@ -1864,4 +1879,39 @@ body {
 
 .adress-wrapper p{
   display: inline;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: var(--primary-200);
+  border-radius: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--secondary);
+  border-radius: 8px;
+  border: 2px solid #f0f0f0;
+  transition: background-color 0.3s;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: var(--primary);
+}
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--secondary) #f0f0f0;
+  transition: scrollbar-color 0.3s;
+}
+
+.custom-scrollbar:hover {
+  scrollbar-color: var(--primary) #f0f0f0;
+}
+
+#mobile_add_to_screen img{
+  width: 100%;
 }
