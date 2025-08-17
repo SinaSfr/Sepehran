@@ -123,7 +123,22 @@ const onProcessedAirlinesOriginsImg = async (args) => {
   }
 };
 
-// let swiperTourDate = null;
+let swiperTourDate = null;
+
+if (document.querySelector('.swiper-tour-date')) {
+  swiperTourDate = new Swiper('.swiper-tour-date', {
+    slidesPerView: 1.5,
+    speed: 400,
+    centeredSlides: false,
+    spaceBetween: 24,
+    grabCursor: true,
+    autoplay: {
+      delay: 2500,
+      disableOnInteraction: false,
+    },
+    loop: true,
+  });
+}
 
 const initSwiper = (loop) => {
   swiperTourDate = new Swiper('.swiper-tour-date', {

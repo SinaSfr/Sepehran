@@ -531,6 +531,12 @@ body {
 .max-w-md {
   max-width: 28rem;
 }
+.max-w-\[417px\] {
+  max-width: 417px;
+}
+.basis-\[45\%\] {
+  flex-basis: 45%;
+}
 .flex-1 {
   flex: 1 1 0%;
 }

@@ -645,12 +645,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
       if (index < destinations.length - 1 && destinations.length > 1) {
         const blueIcon = createIcon(
-          './images/sprite-icons.svg#icon-blue-border',
+          '/images/sprite-icons.svg#icon-blue-border',
           'transition-all duration-300 group-hover:hidden group-hover:invisible group-hover:opacity-0'
         );
 
         const whiteIcon = createIcon(
-          './images/sprite-icons.svg#icon-white-border',
+          '/images/sprite-icons.svg#icon-white-border',
           'hidden transition-all duration-300 invisible opacity-0 group-hover:visible group-hover:opacity-100 group-hover:block'
         );
 

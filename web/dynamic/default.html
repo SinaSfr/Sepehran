@@ -123,15 +123,15 @@
                 <face filter="ord in(1)">
                     <a href="tel:02191009292"
                         class="flex flex-col items-center border border-gray-50 rounded-xl shadow-card-shadow py-8 px-20 transition-all duration-300 hover:border-primary-500">
-                        <img src="@image" class="h-32 object-cover" alt="@title" width="99" height="121" loading="lazy">
+                        <img src="\@image" class="h-32 object-cover" alt="@title" width="99" height="121" loading="lazy">
                         <h2 class="text-2xl text-gray-900 font-extrabold mt-4">@title</h2>
                         <h3 class="text-sm font-semibold mt-2 text-center">@urldescription</h3>
                     </a>
                 </face>
                 <face filter="ord not in(1)">
-                    <a href="@link"
+                    <a href="/@link"
                         class="flex flex-col items-center border border-gray-50 rounded-xl shadow-card-shadow py-8 px-20 transition-all duration-300 hover:border-primary-500">
-                        <img src="@image" class="h-32 object-cover" alt="@title" width="99" height="121" loading="lazy">
+                        <img src="\@image" class="h-32 object-cover" alt="@title" width="99" height="121" loading="lazy">
                         <h2 class="text-2xl text-gray-900 font-extrabold mt-4">@title</h2>
                         <h3 class="text-sm font-semibold mt-2 text-center">@urldescription</h3>
                     </a>
@@ -163,7 +163,7 @@
                     <a href="/tour-list.bc?catid=@catid"
                         class="group flex items-end relative rounded-2xl overflow-hidden">
                         <div class="absolute inset-0 w-full bg-purple-overlay"></div>
-                        <img src="@image" class="w-full h-40 object-cover" alt="@title" width="304" height="164"
+                        <img src="\@image" class="w-full h-40 object-cover" alt="@title" width="304" height="164"
                             loading="lazy">
                         <div class="absolute w-full flex items-center justify-between mb-4 px-6">
                             <h2
@@ -178,9 +178,9 @@
             </face>
             <face>
                 <div class="swiper-slide w-[334px]">
-                    <a href="@link" class="group flex items-end relative rounded-2xl overflow-hidden">
+                    <a href="/@link" class="group flex items-end relative rounded-2xl overflow-hidden">
                         <div class="absolute inset-0 w-full bg-purple-overlay"></div>
-                        <img src="@image" class="w-full h-40 object-cover" alt="@title" width="304" height="164"
+                        <img src="\@image" class="w-full h-40 object-cover" alt="@title" width="304" height="164"
                             loading="lazy">
                         <div class="absolute w-full flex items-center justify-between mb-4 px-6">
                             <h2
@@ -215,7 +215,7 @@
                             <div
                                 class="absolute left-0 top-48 z-10 flex items-center justify-center h-10 w-10 bg-primary-500 rounded-full shadow-small-btn-shadow transition-all duration-300 hover:bg-secondary-500">
                                 <svg width="24" height="24">
-                                    <use xlink:href="./images/sprite-icons.svg#icon-chevron-left"></use>
+                                    <use xlink:href="/images/sprite-icons.svg#icon-chevron-left"></use>
                                 </svg>
                             </div>
                         </div>
@@ -223,7 +223,7 @@
                             <div
                                 class="absolute right-0 top-48 z-10 flex items-center justify-center h-10 w-10 bg-primary-500 rounded-full shadow-small-btn-shadow transition-all duration-300 hover:bg-secondary-500">
                                 <svg width="24" height="24">
-                                    <use xlink:href="./images/sprite-icons.svg#icon-chevron-right"></use>
+                                    <use xlink:href="/images/sprite-icons.svg#icon-chevron-right"></use>
                                 </svg>
                             </div>
                         </div>
@@ -234,7 +234,7 @@
                 <div class="swiper-slide w-[420px]">
                     <a href="/tour.bc?id=@id"
                         class="flex flex-col border border-gray-50 rounded-xl shadow-medium-btn-shadow p-6">
-                        <img src="@00344X00176prp"
+                        <img src="\@00344X00176prp"
                             class="w-full h-44 object-cover rounded-xl overflow-hidden shadow-soft-deep" alt="@title"
                             width="344" height="176" loading="lazy">
                         <h2 class="text-2xl font-extrabold mt-8 text-center">@title</h2>
@@ -242,21 +242,21 @@
                             <span
                                 class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
                                 <svg width="24" height="24" class="group-hover:hidden">
-                                    <use xlink:href="./images/sprite-icons.svg#icon-sun"></use>
+                                    <use xlink:href="/images/sprite-icons.svg#icon-sun"></use>
                                 </svg>
                                 @prp_8076
                             </span>
                             <span
                                 class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
                                 <svg width="24" height="24" class="group-hover:hidden">
-                                    <use xlink:href="./images/sprite-icons.svg#icon-flash"></use>
+                                    <use xlink:href="/images/sprite-icons.svg#icon-flash"></use>
                                 </svg>
                                 @prp_10000504
                             </span>
                             <span
                                 class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
                                 <svg width="24" height="24" class="group-hover:hidden">
-                                    <use xlink:href="./images/sprite-icons.svg#icon-blue-star"></use>
+                                    <use xlink:href="/images/sprite-icons.svg#icon-blue-star"></use>
                                 </svg>
                                 @prp_3087933 ستاره
                             </span>
@@ -281,8 +281,8 @@
             </face>
             <face filter="prp_3087934 is null">
                 <div class="swiper-slide w-[420px]">
-                    <a href="@link" class="flex flex-col border border-gray-50 rounded-xl shadow-medium-btn-shadow p-6">
-                        <img src="@00344X00176prp"
+                    <a href="/@link" class="flex flex-col border border-gray-50 rounded-xl shadow-medium-btn-shadow p-6">
+                        <img src="\@00344X00176prp"
                             class="w-full h-44 object-cover rounded-xl overflow-hidden shadow-soft-deep" alt="@title"
                             width="344" height="176" loading="lazy">
                         <h2 class="text-2xl font-extrabold mt-8 text-center">@title</h2>
@@ -290,21 +290,21 @@
                             <span
                                 class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
                                 <svg width="24" height="24" class="group-hover:hidden">
-                                    <use xlink:href="./images/sprite-icons.svg#icon-sun"></use>
+                                    <use xlink:href="/images/sprite-icons.svg#icon-sun"></use>
                                 </svg>
                                 @prp_8076
                             </span>
                             <span
                                 class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
                                 <svg width="24" height="24" class="group-hover:hidden">
-                                    <use xlink:href="./images/sprite-icons.svg#icon-flash"></use>
+                                    <use xlink:href="/images/sprite-icons.svg#icon-flash"></use>
                                 </svg>
                                 @prp_10000504
                             </span>
                             <span
                                 class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
                                 <svg width="24" height="24" class="group-hover:hidden">
-                                    <use xlink:href="./images/sprite-icons.svg#icon-blue-star"></use>
+                                    <use xlink:href="/images/sprite-icons.svg#icon-blue-star"></use>
                                 </svg>
                                 @prp_3087933 ستاره
                             </span>
@@ -332,7 +332,7 @@
                     <a href="/tour.bc?id=@id"
                         class="flex flex-col border border-gray-50 rounded-xl shadow-medium-btn-shadow p-6">
                         <div class="relative rounded-xl overflow-hidden shadow-soft-deep">
-                            <img src="@00344X00176prp" class="block w-full h-44 object-cover" alt="@title" width="344"
+                            <img src="\@00344X00176prp" class="block w-full h-44 object-cover" alt="@title" width="344"
                                 height="176" loading="lazy">
                             <span class="absolute left-0 bottom-0 text-sm font-bold py-2 px-4 bg-amber-400 rounded-tr">
                                 @prp_3087934</span>
@@ -342,21 +342,21 @@
                             <span
                                 class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
                                 <svg width="24" height="24" class="group-hover:hidden">
-                                    <use xlink:href="./images/sprite-icons.svg#icon-sun"></use>
+                                    <use xlink:href="/images/sprite-icons.svg#icon-sun"></use>
                                 </svg>
                                 @prp_8076
                             </span>
                             <span
                                 class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
                                 <svg width="24" height="24" class="group-hover:hidden">
-                                    <use xlink:href="./images/sprite-icons.svg#icon-flash"></use>
+                                    <use xlink:href="/images/sprite-icons.svg#icon-flash"></use>
                                 </svg>
                                 @prp_10000504
                             </span>
                             <span
                                 class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
                                 <svg width="24" height="24" class="group-hover:hidden">
-                                    <use xlink:href="./images/sprite-icons.svg#icon-blue-star"></use>
+                                    <use xlink:href="/images/sprite-icons.svg#icon-blue-star"></use>
                                 </svg>
                                 @prp_3087933 ستاره
                             </span>
@@ -382,9 +382,9 @@
             </face>
             <face>
                 <div class="swiper-slide w-[420px]">
-                    <a href="@link" class="flex flex-col border border-gray-50 rounded-xl shadow-medium-btn-shadow p-6">
+                    <a href="/@link" class="flex flex-col border border-gray-50 rounded-xl shadow-medium-btn-shadow p-6">
                         <div class="relative rounded-xl overflow-hidden shadow-soft-deep">
-                            <img src="@00344X00176prp" class="block w-full h-44 object-cover" alt="@title" width="344"
+                            <img src="\@00344X00176prp" class="block w-full h-44 object-cover" alt="@title" width="344"
                                 height="176" loading="lazy">
                             <span class="absolute left-0 bottom-0 text-sm font-bold py-2 px-4 bg-amber-400 rounded-tr">
                                 @prp_3087934</span>
@@ -394,21 +394,21 @@
                             <span
                                 class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
                                 <svg width="24" height="24" class="group-hover:hidden">
-                                    <use xlink:href="./images/sprite-icons.svg#icon-sun"></use>
+                                    <use xlink:href="/images/sprite-icons.svg#icon-sun"></use>
                                 </svg>
                                 @prp_8076
                             </span>
                             <span
                                 class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
                                 <svg width="24" height="24" class="group-hover:hidden">
-                                    <use xlink:href="./images/sprite-icons.svg#icon-flash"></use>
+                                    <use xlink:href="/images/sprite-icons.svg#icon-flash"></use>
                                 </svg>
                                 @prp_10000504
                             </span>
                             <span
                                 class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
                                 <svg width="24" height="24" class="group-hover:hidden">
-                                    <use xlink:href="./images/sprite-icons.svg#icon-blue-star"></use>
+                                    <use xlink:href="/images/sprite-icons.svg#icon-blue-star"></use>
                                 </svg>
                                 @prp_3087933 ستاره
                             </span>
@@ -468,14 +468,14 @@
                         <a href="https://maps.app.goo.gl/T2HRtS5WqqgKUmNLA"
                             class="flex items-center justify-center gap-4 bg-gray-50 rounded-xl font-extrabold py-4 px-8 transition-all duration-300 hover:bg-primary-500 hover:text-white hover:shadow-card-shadow">
                             <svg width="32" height="33">
-                                <use xlink:href="./images/sprite-icons.svg#icon-google-map"></use>
+                                <use xlink:href="/images/sprite-icons.svg#icon-google-map"></use>
                             </svg>
                             گوگل مپ
                         </a>
                         <a href=""
                             class="flex items-center justify-center gap-4 bg-gray-50 rounded-xl font-extrabold py-4 px-8 transition-all duration-300 hover:bg-primary-500 hover:text-white hover:shadow-card-shadow">
                             <svg width="32" height="33">
-                                <use xlink:href="./images/sprite-icons.svg#icon-veiz"></use>
+                                <use xlink:href="/images/sprite-icons.svg#icon-veiz"></use>
                             </svg>
                             ویز
                         </a>
@@ -518,7 +518,7 @@
                 <face filter="link is null">
                     <a href="/visa-list.bc?catid=@catid"
                         class="group flex flex-col border border-white rounded-xl p-6 transition-all duration-300 hover:shadow-medium-btn-shadow hover:border-gray-50">
-                        <img src="@image" class="w-28 h-20 object-cover rounded-xl shadow-small-flag-shadow"
+                        <img src="\@image" class="w-28 h-20 object-cover rounded-xl shadow-small-flag-shadow"
                             alt="@title" width="112" height="80" loading="lazy">
                         <h2 class="text-2xl font-extrabold mt-4 mb-1">@title</h2>
                         <div class="flex items-center gap-2 font-extrabold text-primary-500">اطلاعات بیشتر
@@ -537,9 +537,9 @@
                     </a>
                 </face>
                 <face>
-                    <a href="@link"
+                    <a href="/@link"
                         class="group flex flex-col border border-white rounded-xl p-6 transition-all duration-300 hover:shadow-medium-btn-shadow hover:border-gray-50">
-                        <img src="@image" class="w-28 h-20 object-cover rounded-xl shadow-small-flag-shadow"
+                        <img src="\@image" class="w-28 h-20 object-cover rounded-xl shadow-small-flag-shadow"
                             alt="@title" width="112" height="80" loading="lazy">
                         <h2 class="text-2xl font-extrabold mt-4 mb-1">@title</h2>
                         <div class="flex items-center gap-2 font-extrabold text-primary-500">اطلاعات بیشتر
@@ -586,7 +586,7 @@
                         <div class="swiper-slide w-[420px]">
                             <a href="/tour.bc?id=@id"
                                 class="flex flex-col border border-gray-50 rounded-xl shadow-medium-btn-shadow p-6">
-                                <img src="@00344X00176prp"
+                                <img src="\@00344X00176prp"
                                     class="w-full h-44 object-cover rounded-xl overflow-hidden shadow-soft-deep"
                                     alt="@title" width="344" height="176" loading="lazy">
                                 <h2 class="text-2xl font-extrabold mt-8 text-center">@title</h2>
@@ -594,21 +594,21 @@
                                     <span
                                         class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
                                         <svg width="24" height="24" class="group-hover:hidden">
-                                            <use xlink:href="./images/sprite-icons.svg#icon-sun"></use>
+                                            <use xlink:href="/images/sprite-icons.svg#icon-sun"></use>
                                         </svg>
                                         @prp_8076
                                     </span>
                                     <span
                                         class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
                                         <svg width="24" height="24" class="group-hover:hidden">
-                                            <use xlink:href="./images/sprite-icons.svg#icon-flash"></use>
+                                            <use xlink:href="/images/sprite-icons.svg#icon-flash"></use>
                                         </svg>
                                         @prp_10000504
                                     </span>
                                     <span
                                         class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
                                         <svg width="24" height="24" class="group-hover:hidden">
-                                            <use xlink:href="./images/sprite-icons.svg#icon-blue-star"></use>
+                                            <use xlink:href="/images/sprite-icons.svg#icon-blue-star"></use>
                                         </svg>
                                         @prp_3087933 ستاره
                                     </span>
@@ -633,9 +633,9 @@
                     </face>
                     <face filter="prp_3087934 is null">
                         <div class="swiper-slide w-[420px]">
-                            <a href="@link"
+                            <a href="/@link"
                                 class="flex flex-col border border-gray-50 rounded-xl shadow-medium-btn-shadow p-6">
-                                <img src="@00344X00176prp"
+                                <img src="\@00344X00176prp"
                                     class="w-full h-44 object-cover rounded-xl overflow-hidden shadow-soft-deep"
                                     alt="@title" width="344" height="176" loading="lazy">
                                 <h2 class="text-2xl font-extrabold mt-8 text-center">@title</h2>
@@ -643,21 +643,21 @@
                                     <span
                                         class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
                                         <svg width="24" height="24" class="group-hover:hidden">
-                                            <use xlink:href="./images/sprite-icons.svg#icon-sun"></use>
+                                            <use xlink:href="/images/sprite-icons.svg#icon-sun"></use>
                                         </svg>
                                         @prp_8076
                                     </span>
                                     <span
                                         class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
                                         <svg width="24" height="24" class="group-hover:hidden">
-                                            <use xlink:href="./images/sprite-icons.svg#icon-flash"></use>
+                                            <use xlink:href="/images/sprite-icons.svg#icon-flash"></use>
                                         </svg>
                                         @prp_10000504
                                     </span>
                                     <span
                                         class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
                                         <svg width="24" height="24" class="group-hover:hidden">
-                                            <use xlink:href="./images/sprite-icons.svg#icon-blue-star"></use>
+                                            <use xlink:href="/images/sprite-icons.svg#icon-blue-star"></use>
                                         </svg>
                                         @prp_3087933 ستاره
                                     </span>
@@ -685,7 +685,7 @@
                             <a href="/tour.bc?id=@id"
                                 class="flex flex-col border border-gray-50 rounded-xl shadow-medium-btn-shadow p-6">
                                 <div class="relative rounded-xl overflow-hidden shadow-soft-deep">
-                                    <img src="@00344X00176prp" class="block w-full h-44 object-cover" alt="@title"
+                                    <img src="\@00344X00176prp" class="block w-full h-44 object-cover" alt="@title"
                                         width="344" height="176" loading="lazy">
                                     <span
                                         class="absolute left-0 bottom-0 text-sm font-bold py-2 px-4 bg-amber-400 rounded-tr">
@@ -696,21 +696,21 @@
                                     <span
                                         class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
                                         <svg width="24" height="24" class="group-hover:hidden">
-                                            <use xlink:href="./images/sprite-icons.svg#icon-sun"></use>
+                                            <use xlink:href="/images/sprite-icons.svg#icon-sun"></use>
                                         </svg>
                                         @prp_8076
                                     </span>
                                     <span
                                         class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
                                         <svg width="24" height="24" class="group-hover:hidden">
-                                            <use xlink:href="./images/sprite-icons.svg#icon-flash"></use>
+                                            <use xlink:href="/images/sprite-icons.svg#icon-flash"></use>
                                         </svg>
                                         @prp_10000504
                                     </span>
                                     <span
                                         class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
                                         <svg width="24" height="24" class="group-hover:hidden">
-                                            <use xlink:href="./images/sprite-icons.svg#icon-blue-star"></use>
+                                            <use xlink:href="/images/sprite-icons.svg#icon-blue-star"></use>
                                         </svg>
                                         @prp_3087933 ستاره
                                     </span>
@@ -736,10 +736,10 @@
                     </face>
                     <face>
                         <div class="swiper-slide w-[420px]">
-                            <a href="@link"
+                            <a href="/@link"
                                 class="flex flex-col border border-gray-50 rounded-xl shadow-medium-btn-shadow p-6">
                                 <div class="relative rounded-xl overflow-hidden shadow-soft-deep">
-                                    <img src="@00344X00176prp" class="block w-full h-44 object-cover" alt="@title"
+                                    <img src="\@00344X00176prp" class="block w-full h-44 object-cover" alt="@title"
                                         width="344" height="176" loading="lazy">
                                     <span
                                         class="absolute left-0 bottom-0 text-sm font-bold py-2 px-4 bg-amber-400 rounded-tr">
@@ -750,21 +750,21 @@
                                     <span
                                         class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
                                         <svg width="24" height="24" class="group-hover:hidden">
-                                            <use xlink:href="./images/sprite-icons.svg#icon-sun"></use>
+                                            <use xlink:href="/images/sprite-icons.svg#icon-sun"></use>
                                         </svg>
                                         @prp_8076
                                     </span>
                                     <span
                                         class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
                                         <svg width="24" height="24" class="group-hover:hidden">
-                                            <use xlink:href="./images/sprite-icons.svg#icon-flash"></use>
+                                            <use xlink:href="/images/sprite-icons.svg#icon-flash"></use>
                                         </svg>
                                         @prp_10000504
                                     </span>
                                     <span
                                         class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
                                         <svg width="24" height="24" class="group-hover:hidden">
-                                            <use xlink:href="./images/sprite-icons.svg#icon-blue-star"></use>
+                                            <use xlink:href="/images/sprite-icons.svg#icon-blue-star"></use>
                                         </svg>
                                         @prp_3087933 ستاره
                                     </span>
@@ -795,7 +795,7 @@
                     <div
                         class="absolute left-0 top-48 z-10 flex items-center justify-center h-10 w-10 bg-primary-500 rounded-full shadow-small-btn-shadow">
                         <svg width="24" height="24">
-                            <use xlink:href="./images/sprite-icons.svg#icon-chevron-left"></use>
+                            <use xlink:href="/images/sprite-icons.svg#icon-chevron-left"></use>
                         </svg>
                     </div>
                 </div>
@@ -803,7 +803,7 @@
                     <div
                         class="absolute right-0 top-48 z-10 flex items-center justify-center h-10 w-10 bg-primary-500 rounded-full shadow-small-btn-shadow">
                         <svg width="24" height="24">
-                            <use xlink:href="./images/sprite-icons.svg#icon-chevron-right"></use>
+                            <use xlink:href="/images/sprite-icons.svg#icon-chevron-right"></use>
                         </svg>
                     </div>
                 </div>

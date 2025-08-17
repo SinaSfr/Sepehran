@@ -186,7 +186,7 @@
                         <li class="flex items-center gap-1 font-normal" itemprop="itemListElement" itemscope
                             itemtype="https://schema.org/ListItem">
                             <a class="text-white transition-all duration-300 hover:text-secondary-500" itemprop="item"
-                                href="@link" aria-label="@title"><span
+                                href="/@link" aria-label="@title"><span
                                     class="text-white transition-all duration-300 hover:text-secondary-500"
                                     itemprop="name">@title</span>
                                 <meta itemprop="position" content="@rownumber" />
@@ -226,7 +226,7 @@
                                 <div
                                     class="absolute left-3 top-48 z-10 flex items-center justify-center h-10 w-10 bg-primary-500 rounded-full shadow-small-btn-shadow transition-all duration-300 hover:bg-secondary-500">
                                     <svg width="24" height="24">
-                                        <use href="./images/sprite-icons.svg#icon-chevron-left"></use>
+                                        <use href="/images/sprite-icons.svg#icon-chevron-left"></use>
                                     </svg>
                                 </div>
                             </div>
@@ -234,7 +234,7 @@
                                 <div
                                     class="absolute right-3 top-48 z-10 flex items-center justify-center h-10 w-10 bg-primary-500 rounded-full shadow-small-btn-shadow transition-all duration-300 hover:bg-secondary-500">
                                     <svg width="24" height="24">
-                                        <use href="./images/sprite-icons.svg#icon-chevron-right"></use>
+                                        <use href="/images/sprite-icons.svg#icon-chevron-right"></use>
                                     </svg>
                                 </div>
                             </div>
@@ -266,7 +266,7 @@
             <section class="flex flex-col gap-5 p-4 flex-[1.21]">
                 <div class="flex items-center gap-2">
                     <svg width="28" height="28">
-                        <use href="./images/sprite-icons.svg#icon-blue-compass"></use>
+                        <use href="/images/sprite-icons.svg#icon-blue-compass"></use>
                     </svg>
                     <h2 class="text-2xl font-extrabold">اطلاعات تور:</h2>
                 </div>
@@ -280,7 +280,7 @@
                         <div
                             class="flex items-center gap-1 bg-secondary-100 text-sm font-bold rounded border border-secondary-200 py-1 px-2">
                             <svg width="28" height="28">
-                                <use href="./images/sprite-icons.svg#icon-lightning"></use>
+                                <use href="/images/sprite-icons.svg#icon-lightning"></use>
                             </svg>
                             @text
                         </div>
@@ -289,7 +289,7 @@
                         <div
                             class="flex items-center gap-1 bg-tertiary-100 text-sm font-bold rounded border border-tertiary-200 py-1 px-2">
                             <svg width="28" height="28">
-                                <use href="./images/sprite-icons.svg#icon-camera"></use>
+                                <use href="/images/sprite-icons.svg#icon-camera"></use>
                             </svg>
                             @text
                         </div>
@@ -298,7 +298,7 @@
                         <div
                             class="flex items-center gap-1 bg-primary-100 text-sm font-bold rounded border border-primary-200 py-1 px-2">
                             <svg width="28" height="28">
-                                <use href="./images/sprite-icons.svg#icon-black-flash"></use>
+                                <use href="/images/sprite-icons.svg#icon-black-flash"></use>
                             </svg>
                             @text
                         </div>
@@ -329,10 +329,10 @@
                         <h3 class="text-sm font-bold">تاریخ شروع تور:</h3>
                         <span class="relative">
                             <svg width="43" height="17" class="absolute right-5 -top-2">
-                                <use href="./images/sprite-icons.svg#icon-plane-left"></use>
+                                <use href="/images/sprite-icons.svg#icon-plane-left"></use>
                             </svg>
                             <svg width="194" height="3">
-                                <use href="./images/sprite-icons.svg#icon-plane-line"></use>
+                                <use href="/images/sprite-icons.svg#icon-plane-line"></use>
                             </svg>
                         </span>
                         <span class="start__date text-sm font-bold"></span>
@@ -345,10 +345,10 @@
                         <h3 class="text-sm font-bold">تاریخ اتمام تور:</h3>
                         <span class="relative">
                             <svg width="43" height="17" class="absolute left-5 -top-2">
-                                <use href="./images/sprite-icons.svg#icon-plane-right"></use>
+                                <use href="/images/sprite-icons.svg#icon-plane-right"></use>
                             </svg>
                             <svg width="194" height="3">
-                                <use href="./images/sprite-icons.svg#icon-plane-line"></use>
+                                <use href="/images/sprite-icons.svg#icon-plane-line"></use>
                             </svg>
                         </span>
                         <span class="end__date text-sm font-bold"></span>
@@ -367,7 +367,7 @@
                         </layout>
                         <face>
                             <span class="text-sm font-bold">@db.airline.name</span>
-                            <img src="@db.airline.pic" class="h-auto" alt="@db.airline.name" width="74" height="20"
+                            <img src="\@db.airline.pic" class="h-auto" alt="@db.airline.name" width="74" height="20"
                                 loading="lazy" />
                         </face>
                     </basis>
@@ -383,7 +383,7 @@
                     <face filter="Question in('مدت اقامت')">
                         <span class="flex items-center gap-1 text-sm font-bold">
                             <svg width="24" height="24">
-                                <use href="./images/sprite-icons.svg#icon-tour-sun"></use>
+                                <use href="/images/sprite-icons.svg#icon-tour-sun"></use>
                             </svg>
                             @text
                         </span>
@@ -424,7 +424,7 @@
                 <div class="bg-primary-50 rounded-2xl p-4">
                     <div class="flex items-center gap-2 mb-3">
                         <svg width="24" height="24">
-                            <use href="./images/sprite-icons.svg#icon-calender"></use>
+                            <use href="/images/sprite-icons.svg#icon-calender"></use>
                         </svg>
                         <h2 class="text-sm font-bold">این تور تاریخ های برگزاری دیگری هم دارد:</h2>
                     </div>
@@ -442,7 +442,7 @@
                 <div class="p-2">
                     <div class="flex items-center gap-2 mb-3">
                         <svg width="24" height="24">
-                            <use href="./images/sprite-icons.svg#icon-camera"></use>
+                            <use href="/images/sprite-icons.svg#icon-camera"></use>
                         </svg>
                         <h2 class="text-sm font-bold">امکان خرید این تور به صورت اقساطی وجود دارد:</h2>
                     </div>
@@ -505,19 +505,19 @@
                                     </div>
                                     <div class="flex items-center">
                                         <svg width="24" height="24">
-                                            <use href="./images/sprite-icons.svg#icon-silver-star"></use>
+                                            <use href="/images/sprite-icons.svg#icon-silver-star"></use>
                                         </svg>
                                         <svg width="24" height="24">
-                                            <use href="./images/sprite-icons.svg#icon-silver-star"></use>
+                                            <use href="/images/sprite-icons.svg#icon-silver-star"></use>
                                         </svg>
                                         <svg width="24" height="24">
-                                            <use href="./images/sprite-icons.svg#icon-golden-star"></use>
+                                            <use href="/images/sprite-icons.svg#icon-golden-star"></use>
                                         </svg>
                                         <svg width="24" height="24">
-                                            <use href="./images/sprite-icons.svg#icon-golden-star"></use>
+                                            <use href="/images/sprite-icons.svg#icon-golden-star"></use>
                                         </svg>
                                         <svg width="24" height="24">
-                                            <use href="./images/sprite-icons.svg#icon-golden-star"></use>
+                                            <use href="/images/sprite-icons.svg#icon-golden-star"></use>
                                         </svg>
                                     </div>
                                 </div>
@@ -538,19 +538,19 @@
                                     </div>
                                     <div class="flex items-center">
                                         <svg width="24" height="24">
-                                            <use href="./images/sprite-icons.svg#icon-silver-star"></use>
+                                            <use href="/images/sprite-icons.svg#icon-silver-star"></use>
                                         </svg>
                                         <svg width="24" height="24">
-                                            <use href="./images/sprite-icons.svg#icon-golden-star"></use>
+                                            <use href="/images/sprite-icons.svg#icon-golden-star"></use>
                                         </svg>
                                         <svg width="24" height="24">
-                                            <use href="./images/sprite-icons.svg#icon-golden-star"></use>
+                                            <use href="/images/sprite-icons.svg#icon-golden-star"></use>
                                         </svg>
                                         <svg width="24" height="24">
-                                            <use href="./images/sprite-icons.svg#icon-golden-star"></use>
+                                            <use href="/images/sprite-icons.svg#icon-golden-star"></use>
                                         </svg>
                                         <svg width="24" height="24">
-                                            <use href="./images/sprite-icons.svg#icon-golden-star"></use>
+                                            <use href="/images/sprite-icons.svg#icon-golden-star"></use>
                                         </svg>
                                     </div>
                                 </div>
@@ -571,19 +571,19 @@
                                     </div>
                                     <div class="flex items-center">
                                         <svg width="24" height="24">
-                                            <use href="./images/sprite-icons.svg#icon-golden-star"></use>
+                                            <use href="/images/sprite-icons.svg#icon-golden-star"></use>
                                         </svg>
                                         <svg width="24" height="24">
-                                            <use href="./images/sprite-icons.svg#icon-golden-star"></use>
+                                            <use href="/images/sprite-icons.svg#icon-golden-star"></use>
                                         </svg>
                                         <svg width="24" height="24">
-                                            <use href="./images/sprite-icons.svg#icon-golden-star"></use>
+                                            <use href="/images/sprite-icons.svg#icon-golden-star"></use>
                                         </svg>
                                         <svg width="24" height="24">
-                                            <use href="./images/sprite-icons.svg#icon-golden-star"></use>
+                                            <use href="/images/sprite-icons.svg#icon-golden-star"></use>
                                         </svg>
                                         <svg width="24" height="24">
-                                            <use href="./images/sprite-icons.svg#icon-golden-star"></use>
+                                            <use href="/images/sprite-icons.svg#icon-golden-star"></use>
                                         </svg>
                                     </div>
                                 </div>
@@ -622,35 +622,35 @@
                                     class="filter-hotel-services relative flex items-center justify-center w-16 h-14 border border-gray-50 text-sm font-bold rounded-lg bg-white cursor-pointer transition-all duration-300 hover:border-primary-400 hover:text-primary-500">
                                     <span class="filter-hotel-services-name">UALL</span>
                                     <svg width="8" height="8" class="absolute left-1 top-1">
-                                        <use href="./images/sprite-icons.svg#icon-information"></use>
+                                        <use href="/images/sprite-icons.svg#icon-information"></use>
                                     </svg>
                                 </div>
                                 <div
                                     class="filter-hotel-services relative flex items-center justify-center w-16 h-14 border border-gray-50 text-sm font-bold rounded-lg bg-white cursor-pointer transition-all duration-300 hover:border-primary-400 hover:text-primary-500">
                                     <span class="filter-hotel-services-name">BB</span>
                                     <svg width="8" height="8" class="absolute left-1 top-1">
-                                        <use href="./images/sprite-icons.svg#icon-information"></use>
+                                        <use href="/images/sprite-icons.svg#icon-information"></use>
                                     </svg>
                                 </div>
                                 <div
                                     class="filter-hotel-services relative flex items-center justify-center w-16 h-14 border border-gray-50 text-sm font-bold rounded-lg bg-white cursor-pointer transition-all duration-300 hover:border-primary-400 hover:text-primary-500">
                                     <span class="filter-hotel-services-name">HB</span>
                                     <svg width="8" height="8" class="absolute left-1 top-1">
-                                        <use href="./images/sprite-icons.svg#icon-information"></use>
+                                        <use href="/images/sprite-icons.svg#icon-information"></use>
                                     </svg>
                                 </div>
                                 <div
                                     class="filter-hotel-services relative flex items-center justify-center w-16 h-14 border border-gray-50 text-sm font-bold rounded-lg bg-white cursor-pointer transition-all duration-300 hover:border-primary-400 hover:text-primary-500">
                                     <span class="filter-hotel-services-name">FB</span>
                                     <svg width="8" height="8" class="absolute left-1 top-1">
-                                        <use href="./images/sprite-icons.svg#icon-information"></use>
+                                        <use href="/images/sprite-icons.svg#icon-information"></use>
                                     </svg>
                                 </div>
                                 <div
                                     class="filter-hotel-services relative flex items-center justify-center w-16 h-14 border border-gray-50 text-sm font-bold rounded-lg bg-white cursor-pointer transition-all duration-300 hover:border-primary-400 hover:text-primary-500">
                                     <span class="filter-hotel-services-name">ALL</span>
                                     <svg width="8" height="8" class="absolute left-1 top-1">
-                                        <use href="./images/sprite-icons.svg#icon-information"></use>
+                                        <use href="/images/sprite-icons.svg#icon-information"></use>
                                     </svg>
                                 </div>
                             </div>
@@ -684,7 +684,7 @@
                 <section>
                     <div class="inline-flex items-center gap-2 border-b-4 border-primary-500 mb-6">
                         <svg width="38" height="38">
-                            <use href="./images/sprite-icons.svg#icon-house"></use>
+                            <use href="/images/sprite-icons.svg#icon-house"></use>
                         </svg>
                         <h2 id="hotels" class="text-[36px] font-extrabold">هتل ها</h2>
                     </div>
@@ -752,7 +752,7 @@
                                             class="group flex items-center justify-center gap-2 font-extrabold rounded-xl w-48 h-[73px] transition-all duration-300 bg-secondary-500 hover:shadow-btn-shadow">
                                             شرایط اقساط
                                             <svg width="24" height="24">
-                                                <use href="./images/sprite-icons.svg#icon-black-camera"></use>
+                                                <use href="/images/sprite-icons.svg#icon-black-camera"></use>
                                             </svg>
                                         </button>
                                     </div>
@@ -767,7 +767,7 @@
                     <div class="tourExecution__container__origins">
                         <div class="inline-flex items-center gap-2 border-b-4 border-primary-500 mb-8">
                             <svg width="38" height="38">
-                                <use href="./images/sprite-icons.svg#icon-gray-compass"></use>
+                                <use href="/images/sprite-icons.svg#icon-gray-compass"></use>
                             </svg>
                             <h2 id="plan" class="text-[36px] font-extrabold">شروع سفر</h2>
                         </div>
@@ -815,7 +815,7 @@
                                                     دقیقه</span></span>
                                             <div class="relative">
                                                 <svg width="400" height="59">
-                                                    <use href="./images/sprite-icons.svg#icon-plane-airline"></use>
+                                                    <use href="/images/sprite-icons.svg#icon-plane-airline"></use>
                                                 </svg>
                                                 <span
                                                     class="absolute top-5 -left-2 right-0 mx-auto bg-secondary-500 w-4 h-4 rounded-full"></span>
@@ -837,7 +837,7 @@
                     <div class="tourExecution__container__destinations mt-16">
                         <div class="inline-flex items-center gap-2 border-b-4 border-primary-500 mb-8">
                             <svg width="38" height="38">
-                                <use href="./images/sprite-icons.svg#icon-gray-compass"></use>
+                                <use href="/images/sprite-icons.svg#icon-gray-compass"></use>
                             </svg>
                             <h2 class="text-[36px] font-extrabold">پایان سفر</h2>
                         </div>
@@ -885,7 +885,7 @@
                                                     دقیقه</span></span>
                                             <div class="relative">
                                                 <svg width="400" height="59">
-                                                    <use href="./images/sprite-icons.svg#icon-plane-airline"></use>
+                                                    <use href="/images/sprite-icons.svg#icon-plane-airline"></use>
                                                 </svg>
                                                 <span
                                                     class="absolute top-5 -left-2 right-0 mx-auto bg-secondary-500 w-4 h-4 rounded-full"></span>
@@ -916,10 +916,10 @@
                                     <div class="flex items-center justify-between">
                                         <div class="flex items-center gap-2">
                                             <svg width="32" height="32" class="orange-sun">
-                                                <use href="./images/sprite-icons.svg#icon-orange-sun"></use>
+                                                <use href="/images/sprite-icons.svg#icon-orange-sun"></use>
                                             </svg>
                                             <svg width="32" height="32" class="hidden white-sun">
-                                                <use href="./images/sprite-icons.svg#icon-white-sun"></use>
+                                                <use href="/images/sprite-icons.svg#icon-white-sun"></use>
                                             </svg>
                                             <h2 class="font-extrabold text-2xl text-zinc-900 travel-title"></h2>
                                         </div>
@@ -976,7 +976,7 @@
                         <section class="mt-11">
                             <div class="inline-flex items-center gap-2 border-b-4 border-primary-500 mb-6">
                                 <svg width="38" height="38">
-                                    <use href="./images/sprite-icons.svg#icon-shopping"></use>
+                                    <use href="/images/sprite-icons.svg#icon-shopping"></use>
                                 </svg>
                                 <h2 id="services" class="text-[36px] font-extrabold">خدمات تور:</h2>
                             </div>
@@ -991,7 +991,7 @@
                             class="flex items-center gap-3 text-sm font-bold bg-white rounded-2xl border border-gray-50 shadow-small-flag-shadow p-4">
                             <span class="flex items-center justify-center bg-primary-500 w-8 h-8 rounded-lg">
                                 <svg width="24" height="24">
-                                    <use href="./images/sprite-icons.svg#icon-note"></use>
+                                    <use href="/images/sprite-icons.svg#icon-note"></use>
                                 </svg>
                             </span>
                             @text
@@ -1005,7 +1005,7 @@
                 <section class="mt-11">
                     <div class="inline-flex items-center gap-2 border-b-4 border-primary-500 mb-6">
                         <svg width="38" height="38">
-                            <use href="./images/sprite-icons.svg#icon-tour-information"></use>
+                            <use href="/images/sprite-icons.svg#icon-tour-information"></use>
                         </svg>
                         <h2 id="description" class="text-[36px] font-extrabold">توضیحات تور:</h2>
                     </div>
@@ -1047,7 +1047,7 @@
                 <section class="mt-11">
                     <div class="inline-flex items-center gap-2 border-b-4 border-primary-500 mb-6">
                         <svg width="38" height="38">
-                            <use xlink:href="./images/sprite-icons.svg#icon-pen"></use>
+                            <use xlink:href="/images/sprite-icons.svg#icon-pen"></use>
                         </svg>
                         <h2 id="comments" class="text-[36px] font-extrabold">نظرات کاربران:</h2>
                     </div>
@@ -1104,7 +1104,7 @@
                                             class="group flex items-center justify-center gap-2 font-extrabold rounded-xl w-36 h-[73px] transition-all duration-300 bg-secondary-500 hover:shadow-btn-shadow">
                                             ارسال نظر
                                             <svg width="24" height="24">
-                                                <use xlink:href="./images/sprite-icons.svg#icon-black-flash"></use>
+                                                <use xlink:href="/images/sprite-icons.svg#icon-black-flash"></use>
                                             </svg>
                                         </button>
                                     </div>
@@ -1151,7 +1151,7 @@
                                             class="replyComment Login-options flex items-center gap-1 self-end text-sm font-bold border-b border-zinc-900 cursor-pointer">
                                             پاسخ
                                             <svg width="24" height="24">
-                                                <use xlink:href="./images/sprite-icons.svg#icon-leaf"></use>
+                                                <use xlink:href="/images/sprite-icons.svg#icon-leaf"></use>
                                             </svg>
                                         </div>
                                     </div>
@@ -1227,7 +1227,7 @@
                                 class="relative popup-content bg-white rounded-xl p-12 border border-solid border-primary-500 m-auto">
                                 <span id="closePopuparticle" class="close absolute left-1 top-1 cursor-pointer">
                                     <svg width="24" height="24">
-                                        <use xlink:href="./images/sprite-icons.svg#engine-close-icon"></use>
+                                        <use xlink:href="/images/sprite-icons.svg#engine-close-icon"></use>
                                     </svg>
                                 </span>
                                 <div id="popupMessage" class="font-danaregular"></div>
@@ -1261,7 +1261,7 @@
                                 <div
                                     class="absolute left-12 top-[353px] z-10 flex items-center justify-center h-10 w-10 bg-primary-500 rounded-full shadow-small-btn-shadow transition-all duration-300 hover:bg-secondary-500">
                                     <svg width="24" height="24">
-                                        <use href="./images/sprite-icons.svg#icon-chevron-left"></use>
+                                        <use href="/images/sprite-icons.svg#icon-chevron-left"></use>
                                     </svg>
                                 </div>
                             </div>
@@ -1269,7 +1269,7 @@
                                 <div
                                     class="absolute right-0 top-[353px] z-10 flex items-center justify-center h-10 w-10 bg-primary-500 rounded-full shadow-small-btn-shadow transition-all duration-300 hover:bg-secondary-500">
                                     <svg width="24" height="24">
-                                        <use href="./images/sprite-icons.svg#icon-chevron-right"></use>
+                                        <use href="/images/sprite-icons.svg#icon-chevron-right"></use>
                                     </svg>
                                 </div>
                             </div>
@@ -1287,7 +1287,7 @@
                     <face filter="link is null and prp_3087934 is null">
                         <div class="swiper-slide w-[420px]">
                             <div class="bg-white border border-gray-50 rounded-xl shadow-medium-btn-shadow p-6">
-                                <img src="@type_159"
+                                <img src="\@type_159"
                                     class="w-full h-44 object-cover rounded-xl overflow-hidden shadow-soft-deep"
                                     alt="@title" width="344" height="176" loading="lazy">
                                 <h2 class="text-2xl font-extrabold mt-8 text-center">@title</h2>
@@ -1295,21 +1295,21 @@
                                     <span
                                         class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
                                         <svg width="24" height="24" class="group-hover:hidden">
-                                            <use xlink:href="./images/sprite-icons.svg#icon-sun"></use>
+                                            <use xlink:href="/images/sprite-icons.svg#icon-sun"></use>
                                         </svg>
                                         @prp_8076
                                     </span>
                                     <span
                                         class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
                                         <svg width="24" height="24" class="group-hover:hidden">
-                                            <use xlink:href="./images/sprite-icons.svg#icon-flash"></use>
+                                            <use xlink:href="/images/sprite-icons.svg#icon-flash"></use>
                                         </svg>
                                         @prp_10000504
                                     </span>
                                     <span
                                         class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
                                         <svg width="24" height="24" class="group-hover:hidden">
-                                            <use xlink:href="./images/sprite-icons.svg#icon-blue-star"></use>
+                                            <use xlink:href="/images/sprite-icons.svg#icon-blue-star"></use>
                                         </svg>
                                         @prp_3087933 ستاره
                                     </span>
@@ -1335,7 +1335,7 @@
                     <face filter="prp_3087934 is null">
                         <div class="swiper-slide w-[420px]">
                             <div class="bg-white border border-gray-50 rounded-xl shadow-medium-btn-shadow p-6">
-                                <img src="@type_159"
+                                <img src="\@type_159"
                                     class="w-full h-44 object-cover rounded-xl overflow-hidden shadow-soft-deep"
                                     alt="@title" width="344" height="176" loading="lazy">
                                 <h2 class="text-2xl font-extrabold mt-8 text-center">@title</h2>
@@ -1343,21 +1343,21 @@
                                     <span
                                         class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
                                         <svg width="24" height="24" class="group-hover:hidden">
-                                            <use xlink:href="./images/sprite-icons.svg#icon-sun"></use>
+                                            <use xlink:href="/images/sprite-icons.svg#icon-sun"></use>
                                         </svg>
                                         @prp_8076
                                     </span>
                                     <span
                                         class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
                                         <svg width="24" height="24" class="group-hover:hidden">
-                                            <use xlink:href="./images/sprite-icons.svg#icon-flash"></use>
+                                            <use xlink:href="/images/sprite-icons.svg#icon-flash"></use>
                                         </svg>
                                         @prp_10000504
                                     </span>
                                     <span
                                         class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
                                         <svg width="24" height="24" class="group-hover:hidden">
-                                            <use xlink:href="./images/sprite-icons.svg#icon-blue-star"></use>
+                                            <use xlink:href="/images/sprite-icons.svg#icon-blue-star"></use>
                                         </svg>
                                         @prp_3087933 ستاره
                                     </span>
@@ -1384,7 +1384,7 @@
                         <div class="swiper-slide w-[420px]">
                             <div class="bg-white border border-gray-50 rounded-xl shadow-medium-btn-shadow p-6">
                                 <div class="relative rounded-xl overflow-hidden shadow-soft-deep">
-                                    <img src="@type_159" class="block w-full h-44 object-cover" alt="@title" width="344"
+                                    <img src="\@type_159" class="block w-full h-44 object-cover" alt="@title" width="344"
                                         height="176" loading="lazy">
                                     <span
                                         class="absolute left-0 bottom-0 text-sm font-bold py-2 px-4 bg-amber-400 rounded-tr">
@@ -1395,21 +1395,21 @@
                                     <span
                                         class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
                                         <svg width="24" height="24" class="group-hover:hidden">
-                                            <use xlink:href="./images/sprite-icons.svg#icon-sun"></use>
+                                            <use xlink:href="/images/sprite-icons.svg#icon-sun"></use>
                                         </svg>
                                         @prp_8076
                                     </span>
                                     <span
                                         class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
                                         <svg width="24" height="24" class="group-hover:hidden">
-                                            <use xlink:href="./images/sprite-icons.svg#icon-flash"></use>
+                                            <use xlink:href="/images/sprite-icons.svg#icon-flash"></use>
                                         </svg>
                                         @prp_10000504
                                     </span>
                                     <span
                                         class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
                                         <svg width="24" height="24" class="group-hover:hidden">
-                                            <use xlink:href="./images/sprite-icons.svg#icon-blue-star"></use>
+                                            <use xlink:href="/images/sprite-icons.svg#icon-blue-star"></use>
                                         </svg>
                                         @prp_3087933 ستاره
                                     </span>
@@ -1437,7 +1437,7 @@
                         <div class="swiper-slide w-[420px]">
                             <div class="bg-white border border-gray-50 rounded-xl shadow-medium-btn-shadow p-6">
                                 <div class="relative rounded-xl overflow-hidden shadow-soft-deep">
-                                    <img src="@type_159" class="block w-full h-44 object-cover" alt="@title" width="344"
+                                    <img src="\@type_159" class="block w-full h-44 object-cover" alt="@title" width="344"
                                         height="176" loading="lazy">
                                     <span
                                         class="absolute left-0 bottom-0 text-sm font-bold py-2 px-4 bg-amber-400 rounded-tr">
@@ -1448,21 +1448,21 @@
                                     <span
                                         class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
                                         <svg width="24" height="24" class="group-hover:hidden">
-                                            <use xlink:href="./images/sprite-icons.svg#icon-sun"></use>
+                                            <use xlink:href="/images/sprite-icons.svg#icon-sun"></use>
                                         </svg>
                                         @prp_8076
                                     </span>
                                     <span
                                         class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
                                         <svg width="24" height="24" class="group-hover:hidden">
-                                            <use xlink:href="./images/sprite-icons.svg#icon-flash"></use>
+                                            <use xlink:href="/images/sprite-icons.svg#icon-flash"></use>
                                         </svg>
                                         @prp_10000504
                                     </span>
                                     <span
                                         class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
                                         <svg width="24" height="24" class="group-hover:hidden">
-                                            <use xlink:href="./images/sprite-icons.svg#icon-blue-star"></use>
+                                            <use xlink:href="/images/sprite-icons.svg#icon-blue-star"></use>
                                         </svg>
                                         @prp_3087933 ستاره
                                     </span>
