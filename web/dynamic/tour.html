@@ -58,6 +58,10 @@
     onprocessed="onProcessedHotelsImg">
 </basis>
 
+<basis core="dbsource" source="basiscore" name="db" lid="1" mid="20" usedforid="[##cms.query.id##]">
+    <member request="json-ld" type="scalar" name="json" />
+  </basis>
+
 <basis core="dbsource" source="basiscore" name="db" mid="20" lid="1" usedforid="[##cms.query.id##]">
     <member name="tour-view" type="view" propertyid="3087932,3087920" />
     <member name="tour-view-travelplan" type="view"
@@ -66,6 +70,9 @@
         postsql="select * from [db.tour-view-airline] where Question in('شرکت های هواپیمایی')" />
     <member name="tour-related" type="list" blgid="18" propertyid="3087934,3087933,10000504,8181,8076" typeid="159"
         link="tour.bc" />
+</basis>
+<basis core="dbsource" source="media" lid="1" name="db" usedforid="[##cms.query.id##]" sourcemid="product">
+    <member type="list" name="pdf" format="pdf" />
 </basis>
 <basis core="dbsource" source="basiscore" mid="1" name="db" lid="1" schemaid="987" term="[##cms.query.term##]">
     <member name="airline" type="list" request="spelist" />
@@ -439,6 +446,21 @@
                         </div>
                     </div>
                 </div>
+                <basis core="print" datamembername="db.pdf">
+                    <else-layout>
+                        <a href="/Tem2_Pdf_Package.bc?id=[##cms.query.id##]" target="_blank"
+                            class="group flex items-center justify-center gap-2 text-white font-extrabold rounded-xl w-full h-[73px] transition-all duration-300 bg-primary-500 hover:shadow-btn-shadow">
+                            دانلود
+                            لیست تور</a>
+                    </else-layout>
+                    <layout>@child </layout>
+                    <face>
+                        <a href="/@largeIMG" target="_blank"
+                            class="group flex items-center justify-center gap-2 text-white font-extrabold rounded-xl w-full h-[73px] transition-all duration-300 bg-primary-500 hover:shadow-btn-shadow">
+                            دانلود
+                            لیست تور</a>
+                    </face>
+                </basis>
                 <div class="p-2">
                     <div class="flex items-center gap-2 mb-3">
                         <svg width="24" height="24">
@@ -779,7 +801,7 @@
                                 onrendered="onrenderedExecutionOrigins">
                                 <layout>
                                     <script type="text/template">
-                                    <div class="">
+                                    <div class="flex flex-col gap-6">
                                         @child
                                     </div>
                                     </script>
@@ -849,7 +871,7 @@
                                 onrendered="onrenderedExecutionDestinations">
                                 <layout>
                                     <script type="text/template">
-                                    <div class="">
+                                    <div class="flex flex-col gap-6">
                                         @child
                                     </div>
                                     </script>
@@ -1009,7 +1031,8 @@
                         </svg>
                         <h2 id="description" class="text-[36px] font-extrabold">توضیحات تور:</h2>
                     </div>
-                    <div class="relative tour-description content-container max-h-[480px] overflow-hidden transition-all duration-500">
+                    <div
+                        class="relative tour-description content-container max-h-[480px] overflow-hidden transition-all duration-500 pb-12">
                         <div
                             class="absolute z-10 bottom-0 h-60 w-full white-shadow bg-white-shadow transition-opacity duration-500">
                         </div>
@@ -1023,7 +1046,7 @@
                         </basis>
 
                         <button
-                            class="group see-more absolute bottom-6 left-0 right-0 mx-auto z-10 flex items-center justify-center gap-2 w-40 h-11 text-white rounded-xl bg-primary-500 transition-all duration-300 hover:shadow-small-btn-shadow">
+                            class="group see-more absolute bottom-6 left-0 right-0 mx-auto z-10 flex items-center justify-center gap-2 w-40 h-11 text-white rounded-xl bg-primary-500 cursor-pointer transition-all duration-300 hover:shadow-small-btn-shadow">
                             <span class="see-more-text">مشاهده همه</span>
                             <svg class="transition-all duration-300 group-hover:hidden group-hover:invisible group-hover:opacity-0"
                                 width="24" height="25" viewBox="0 0 24 25" fill="none"
@@ -1051,7 +1074,7 @@
                         </svg>
                         <h2 id="comments" class="text-[36px] font-extrabold">نظرات کاربران:</h2>
                     </div>
-                    <form action="/Tem1_OpinionAction.bc" method="POST" class="pov-form bg-white">
+                    <form action="/Tem1_OpinionAction.bc" onsubmit="SubmitOpinionForm(this , event)" method="POST" class="pov-form bg-white">
                         <input type="hidden" name="title" value="[##cms.seo.title##]" />
                         <div class="row-cm-art wide">
                             <div class="inputs-cm-art">
@@ -1384,8 +1407,8 @@
                         <div class="swiper-slide w-[420px]">
                             <div class="bg-white border border-gray-50 rounded-xl shadow-medium-btn-shadow p-6">
                                 <div class="relative rounded-xl overflow-hidden shadow-soft-deep">
-                                    <img src="\@type_159" class="block w-full h-44 object-cover" alt="@title" width="344"
-                                        height="176" loading="lazy">
+                                    <img src="\@type_159" class="block w-full h-44 object-cover" alt="@title"
+                                        width="344" height="176" loading="lazy">
                                     <span
                                         class="absolute left-0 bottom-0 text-sm font-bold py-2 px-4 bg-amber-400 rounded-tr">
                                         @prp_3087934</span>
@@ -1437,8 +1460,8 @@
                         <div class="swiper-slide w-[420px]">
                             <div class="bg-white border border-gray-50 rounded-xl shadow-medium-btn-shadow p-6">
                                 <div class="relative rounded-xl overflow-hidden shadow-soft-deep">
-                                    <img src="\@type_159" class="block w-full h-44 object-cover" alt="@title" width="344"
-                                        height="176" loading="lazy">
+                                    <img src="\@type_159" class="block w-full h-44 object-cover" alt="@title"
+                                        width="344" height="176" loading="lazy">
                                     <span
                                         class="absolute left-0 bottom-0 text-sm font-bold py-2 px-4 bg-amber-400 rounded-tr">
                                         @prp_3087934</span>
@@ -1539,6 +1562,8 @@
     <script src="[##cms.cms.cdn##]/_js/swiper-bundle.11.2.5.min.js"></script>
     <script src="[##cms.cms.cdn##]/js/gardeshgaran-tour.function.js" type="text/javascript"></script>
     <basis core="call" file="footer.inc" />
+
+    <script type="application/ld+json">[##db.json.Column1##]</script>
 </body>
 
 </html>

@@ -504,7 +504,7 @@ fieldset hr {
 /*<!--------------------------------END CSS VIEW TEMPLATE 3-------------------------------*/
 /*<!--------------------------MAIN COLORS------------------------------->*/
 .background-color_1 {
-  background-color: var(--primary);
+  background-color: var(--primary) !important;
 }
 .background-color_2 {
   background-color: var(--secondary);

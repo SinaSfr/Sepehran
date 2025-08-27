@@ -58,6 +58,10 @@
     onprocessed="onProcessedHotelsImg">
 </basis>
 
+<basis core="dbsource" source="basiscore" name="db" lid="1" mid="20" usedforid="[##cms.query.id##]">
+    <member request="json-ld" type="scalar" name="json" />
+  </basis>
+
 <basis core="dbsource" source="basiscore" name="db" mid="20" lid="1" usedforid="[##cms.query.id##]">
     <member name="tour-view" type="view" propertyid="3087932,3087920" />
     <member name="tour-view-travelplan" type="view"
@@ -66,6 +70,9 @@
         postsql="select * from [db.tour-view-airline] where Question in('شرکت های هواپیمایی')" />
     <member name="tour-related" type="list" blgid="18" propertyid="3087934,3087933,10000504,8181,8076" typeid="159"
         link="tour.bc" />
+</basis>
+<basis core="dbsource" source="media" lid="1" name="db" usedforid="[##cms.query.id##]" sourcemid="product">
+    <member type="list" name="pdf" format="pdf" />
 </basis>
 <basis core="dbsource" source="basiscore" mid="1" name="db" lid="1" schemaid="987" term="[##cms.query.term##]">
     <member name="airline" type="list" request="spelist" />
@@ -91,10 +98,6 @@
 
 <basis core="dbsource" source="userbehavior" name="db" usedforid="[##cms.query.id##]">
     <member name="comment" type="list" order="ord" request="listcomment" />
-</basis>
-
-<basis core="dbsource" source="basiscore" name="db" lid="1" mid="20" usedforid="[##cms.query.id##]">
-    <member request="json-ld" type="scalar" name="json" />
 </basis>
 
 
@@ -424,7 +427,7 @@
                 </basis>
 
             </section>
-            <section class="flex flex-col justify-between flex-1 min-w-0 mt-7 min-h-[275px]">
+            <section class="flex flex-col justify-between gap-2 flex-1 min-w-0 mt-7 min-h-[275px]">
                 <div class="bg-primary-50 rounded-2xl p-4">
                     <div class="flex items-center gap-2 mb-3">
                         <svg width="24" height="24">
@@ -443,6 +446,21 @@
                         </div>
                     </div>
                 </div>
+                <basis core="print" datamembername="db.pdf">
+                    <else-layout>
+                        <a href="/Tem2_Pdf_Package.bc?id=[##cms.query.id##]" target="_blank"
+                            class="group flex items-center justify-center gap-2 text-white font-extrabold rounded-xl w-full h-[73px] transition-all duration-300 bg-primary-500 hover:shadow-btn-shadow">
+                            دانلود
+                            لیست تور</a>
+                    </else-layout>
+                    <layout>@child </layout>
+                    <face>
+                        <a href="/@largeIMG" target="_blank"
+                            class="group flex items-center justify-center gap-2 text-white font-extrabold rounded-xl w-full h-[73px] transition-all duration-300 bg-primary-500 hover:shadow-btn-shadow">
+                            دانلود
+                            لیست تور</a>
+                    </face>
+                </basis>
                 <div class="mt-4">
                     <div class="flex items-center gap-2 mb-3">
                         <svg width="24" height="24">
@@ -1041,7 +1059,7 @@
                 </svg>
                 <h2 id="description" class="text-[32px] font-black">توضیحات تور:</h2>
             </div>
-            <div class="relative content-container max-h-[620px] overflow-hidden transition-all duration-500">
+            <div class="relative content-container max-h-[620px] overflow-hidden transition-all duration-500 pb-11">
                 <div
                     class="absolute z-10 bottom-0 h-60 w-full white-shadow bg-white-shadow transition-opacity duration-500">
                 </div>
@@ -1549,6 +1567,7 @@
 
     <basis core="call" file="footer.inc" pageindex="[##cms.cms.pageindex##]" />
 
+    <script type="application/ld+json">[##db.json.Column1##]</script>
 </body>
 
 </html>

@@ -34,7 +34,7 @@
 </basis>
 
 <basis core="dbsource" source="basiscore" lid="1" mid="20" name="db" catid="[##cms.query.catid##]">
-    <member name="tour-list" type="list" link="tour.bc" propertyid="8076,8181,8077,10000504,3087921,3087938,3087939"
+    <member name="tour-list" type="list" link="tour.bc" propertyid="8076,8181,8077,10000504,3087921,3087938,3087939,3087934"
         perpage="6" size="151x208" pageno="[##cms.query.pagenum|(1)##]" order="ord" />
     <member name="paging" type="list" request="paging" count="3" parentname="tour-list" />
 </basis>
@@ -618,7 +618,7 @@
                                 </h2>
                             </div>
                         </else-layout>
-                        <face filter="link is null">
+                        <face filter="[db.tour-list.prp_3087934] is null">
                             <div class="relative tourL-tour-card group flex items-stretch">
                                 <div
                                     class="tourL-tour-date-menu absolute w-[606px] top-60 z-20 left-[30%] right-0 mx-auto border border-primary-100 py-4 rounded-lg backdrop-blur bg-specialcolor-6 shadow-shadow-date opacity-0 invisible scale-95 transition-all duration-300 origin-top">
@@ -767,9 +767,14 @@
                                         class="absolute -top-28 right-20 h-[500px] object-cover opacity-40 transition-all duration-300 group-hover:hidden group-hover:invisible group-hover:opacity-0"
                                         alt="earth" width="500" height="500" loading="lazy">
                                     <div class="flex items-center gap-8">
-                                        <img src="\@db.tour-list.00151X00208prp"
-                                            class="h-52 object-cover backdrop-blur-sm opacity-80 rounded-2xl"
+                                        <div class="relative rounded-2xl overflow-hidden">
+                                            <img src="\@db.tour-list.00151X00208prp"
+                                            class="h-52 object-cover backdrop-blur-sm opacity-80"
                                             alt="@db.tour-list.title" width="151" height="208" loading="lazy">
+                                            <span
+                                                class="flex items-center justify-center w-full absolute left-0 bottom-0 text-sm font-bold py-2 bg-amber-400 rounded-tr">
+                                                @db.tour-list.prp_3087934</span>
+                                        </div>
                                         <span class="hidden economic">@db.tour-list.prp_3087939</span>
                                         <span class="hidden special-facilities">@db.tour-list.prp_3087938</span>
                                         <div class="relative z-10 max-w-[417px]">

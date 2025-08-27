@@ -1843,6 +1843,14 @@ body {
   .max-lg\:w-\[92\%\] {
     width: 92%;
   }
+  .user-profile-btn{
+    height: 40px;
+    width: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+  }
 }
 @media (min-width: 1024px) {
   .hasNot-login-icon {

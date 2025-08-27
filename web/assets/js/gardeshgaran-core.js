@@ -376,15 +376,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  const openMobileBtn = document.getElementById('openTourMobile');
+  const openMobileBtns = document.querySelectorAll('.openTourMobile');
   const mobileOverlay = document.querySelector('.tourcategorymobile__overlay');
-  const closeMobileBtn = document.getElementById('closeTourMobile');
+  const closeMobileBtn = document.getElementById('closeTourMobile'); 
 
-  if (openMobileBtn && mobileOverlay && closeMobileBtn) {
-    openMobileBtn.addEventListener('click', () => {
-      mobileOverlay.classList.remove('hidden', 'opacity-0');
-      mobileOverlay.classList.add('opacity-100');
-      document.body.classList.add('overflow-hidden');
+  if (openMobileBtns.length && mobileOverlay && closeMobileBtn) {
+    openMobileBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        mobileOverlay.classList.remove('hidden', 'opacity-0');
+        mobileOverlay.classList.add('opacity-100');
+        document.body.classList.add('overflow-hidden');
+      });
     });
 
     closeMobileBtn.addEventListener('click', () => {
@@ -1733,6 +1735,38 @@ async function Reply_Comment(element) {
       var lastname = document.querySelector('.user-profile-content .default-family').innerText;
       element.closest('.opinionRow').querySelector('.reply-title').value = firstname + ' ' + lastname;
       element.closest('.opinionRow').querySelector('.replyCommentForm').classList.toggle('hidden');
+    } else {
+      showLoginContainer(this);
+    }
+  }
+}
+
+
+//SubmitOpinionForm
+async function SubmitOpinionForm(element, event) {
+  event.preventDefault();
+  const response = await fetch("Client_CheckAuthentication.inc");
+  if (!response.ok) {
+    throw new Error(
+      "متاسفانه مشکلی به وجود آمده است لطفا بعدا مجددا تلاش فرمایید."
+    );
+  } else {
+    let CheckAuthentication = await response.text();
+    if (CheckAuthentication === "true") {
+      var form = new FormData(element.closest("form"));
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", element.closest("form").action, true);
+      xhr.onload = function () {
+        if (xhr.status === 200) {
+          document.getElementById("popupMessage").innerHTML = xhr.responseText;
+          document.getElementById("popuparticle").classList.remove("hidden");
+        } else {
+          document.getElementById("popupMessage").innerHTML = xhr.responseText;
+          document.getElementById("popuparticle").classList.remove("hidden");
+        }
+      };
+      xhr.send(form);
+      // window.location.reload();
     } else {
       showLoginContainer(this);
     }
