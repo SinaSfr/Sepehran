@@ -8,11 +8,12 @@
 
 <basis core="dbsource" source="basiscore" lid="1" mid="20" name="db" catid="215041">
   <member name="special-tour" type="list" link="tour.bc" propertyid="3087934,10000504,8181,8076,3087933" perpage="5"
-    order="ord" size="253x135" />
+    order="ord" size="253x144" />
 </basis>
 
-<basis core="dbsource" source="basiscore" lid="1" mid="20" name="visa-list">
-  <member name="cat" type="tree" request="cat" parentid="215049" order="ord"></member>
+<basis core="dbsource" source="basiscore" lid="1" mid="20" name="db" catid="215049">
+  <member name="visa-list" type="list" link="visa.bc" propertyid="1417,3087433,3087930,3087931,3087936" perpage="6"
+    size="352x192" order="ord" />
 </basis>
 
 <basis core="dbsource" source="basiscore" lid="1" mid="1" name="db" usedforid="2378762">
@@ -26,7 +27,7 @@
 
 <basis core="dbsource" source="basiscore" lid="1" mid="20" name="db" catid="[##fasli.cat.catid##]">
   <member name="seasonal-tours" type="list" link="tour.bc" propertyid="3087934,10000504,8181,8076,3087933" perpage="5"
-    order="ord" size="253x135" />
+    order="ord" size="253x144" />
 </basis>
 
 <!DOCTYPE html>
@@ -230,8 +231,8 @@
       <face filter="link is null and prp_3087934 is null">
         <div class="swiper-slide">
           <a href="/tour.bc?id=@id" class="flex flex-col border border-gray-50 rounded-xl shadow-medium-btn-shadow p-4">
-            <img src="\@00253X00135prp" class="w-full h-36 object-cover rounded-xl overflow-hidden shadow-soft-deep"
-              alt="@title" width="253" height="135" loading="lazy" />
+            <img src="\@00253X00144prp" class="w-full h-36 object-cover rounded-xl overflow-hidden shadow-soft-deep"
+              alt="@title" width="253" height="144" loading="lazy" />
             <h2 class="text-lg font-extrabold mt-8 text-center">@title</h2>
             <div class="flex items-center justify-between mt-3">
               <span
@@ -277,8 +278,8 @@
       <face filter="prp_3087934 is null">
         <div class="swiper-slide">
           <a href="/@link" class="flex flex-col border border-gray-50 rounded-xl shadow-medium-btn-shadow p-4">
-            <img src="\@00253X00135prp" class="w-full h-36 object-cover rounded-xl overflow-hidden shadow-soft-deep"
-              alt="@title" width="253" height="135" loading="lazy" />
+            <img src="\@00253X00144prp" class="w-full h-36 object-cover rounded-xl overflow-hidden shadow-soft-deep"
+              alt="@title" width="253" height="144" loading="lazy" />
             <h2 class="text-lg font-extrabold mt-8 text-center">@title</h2>
             <div class="flex items-center justify-between mt-3">
               <span
@@ -325,7 +326,7 @@
         <div class="swiper-slide">
           <a href="/tour.bc?id=@id" class="flex flex-col border border-gray-50 rounded-xl shadow-medium-btn-shadow p-4">
             <div class="relative rounded-xl overflow-hidden shadow-soft-deep h-36">
-              <img src="\@00253X00135prp" class="w-full h-36 object-cover" alt="@title" width="253" height="135"
+              <img src="\@00253X00144prp" class="w-full h-36 object-cover" alt="@title" width="253" height="144"
                 loading="lazy" />
               <span class="absolute left-0 bottom-0 text-sm font-bold py-2 px-4 bg-amber-400 rounded-tr">
                 @prp_3087934
@@ -377,7 +378,7 @@
         <div class="swiper-slide">
           <a href="/@link" class="flex flex-col border border-gray-50 rounded-xl shadow-medium-btn-shadow p-4">
             <div class="relative rounded-xl overflow-hidden shadow-soft-deep h-36">
-              <img src="\@00253X00135prp" class="w-full h-36 object-cover" alt="@title" width="253" height="135"
+              <img src="\@00253X00144prp" class="w-full h-36 object-cover" alt="@title" width="253" height="144"
                 loading="lazy" />
               <span class="absolute left-0 bottom-0 text-sm font-bold py-2 px-4 bg-amber-400 rounded-tr">
                 @prp_3087934
@@ -457,13 +458,20 @@
             </face>
           </basis>
 
-          <div class="flex items-center gap-3">
+          <div class="flex flex-wrap items-center gap-3">
             <a href="https://maps.app.goo.gl/T2HRtS5WqqgKUmNLA"
               class="flex items-center justify-center gap-4 bg-gray-50 rounded-xl font-extrabold py-4 px-8">
               <svg width="32" height="33">
                 <use xlink:href="/images/sprite-icons.svg#icon-google-map"></use>
               </svg>
               گوگل مپ
+            </a>
+            <a href="https://balad.ir/p/PrCGMG1WU0aFz0"
+              class="flex items-center justify-center gap-4 bg-gray-50 rounded-xl font-extrabold py-4 px-8">
+              <svg width="32" height="33">
+                <use xlink:href="/images/sprite-icons.svg#icon-google-balad"></use>
+              </svg>
+              بلد
             </a>
             <a href="https://nshn.ir/cd_bv784yxi2Cu"
               class="flex items-center justify-center gap-4 bg-gray-50 rounded-xl font-extrabold py-4 px-8">
@@ -495,47 +503,78 @@
           </svg>
         </a>
       </div>
-      <basis core="tree" datamembername="visa-list.cat" idcol="catid" parentidcol="parentid" nullvalue="215049">
+      <basis core="list" datamembername="db.visa-list">
         <layout>
-          <div class="grid grid-cols-2 gap-2">@child</div>
+          <div class="flex flex-col gap-6">
+            <!-- items -->
+            @child
+          </div>
         </layout>
+        <else-layout>
+          <div class="flex items-center justify-center">
+            <h2 class="text-xl font-extrabold mt-16 text-center">در حال حاضر ویزایی وجود ندارد!</h2>
+          </div>
+        </else-layout>
         <face filter="link is null">
-          <a href="/visa-list.bc?catid=@catid"
-            class="group flex flex-col border border-white rounded-xl p-6 transition-all duration-300 hover:shadow-medium-btn-shadow hover:border-gray-50">
-            <img src="\@image" class="w-28 h-20 object-cover rounded-xl shadow-small-flag-shadow" alt="@title"
-              width="112" height="80" loading="lazy" />
-            <h2 class="text-2xl font-extrabold mt-4 mb-1">@title</h2>
-            <div class="flex items-center gap-2 font-extrabold text-primary-500">
-              اطلاعات بیشتر
-              <span class="bg-primary-50 p-px rounded">
-                <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path class="transition-all duration-300 group-hover:opacity-0" d="M5.25 9.5H15.75" stroke="#2E58D1"
-                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                  <path
-                    d="M1.78481 9.29657L5.48501 6.65356C6.0145 6.27535 6.75 6.65385 6.75 7.30455V11.6954C6.75 12.3461 6.0145 12.7246 5.48501 12.3464L1.78481 9.70343C1.64522 9.60373 1.64522 9.39627 1.78481 9.29657Z"
-                    fill="#2E58D1" />
-                </svg>
-              </span>
+          <a href="/visa.bc?id=@id"
+            class="flex flex-col border border-gray-50 rounded-xl shadow-card-shadow overflow-hidden">
+            <img src="\@00352X00192prp" class="w-full h-48 object-cover" alt="@title" width="352" height="192"
+              loading="lazy" />
+            <div class="flex flex-col gap-1 py-4 px-6 divide-y divide-gray-100">
+              <div class="flex items-center gap-2">
+                <img src="[##cms.cms.cdn##]/images/flags/@prp_3087936" class="h-6 object-cover rounded" alt="@title"
+                  width="36" height="24" loading="lazy" />
+                <h2 class="text-2xl font-extrabold">@title</h2>
+              </div>
+              <div class="flex flex-col gap-2 pt-2">
+                <h3 class="flex items-center gap-2 text-sm font-bold">
+                  زمان مورد نیاز:
+                  <span class="text-primary-500">@prp_1417</span>
+                </h3>
+                <h3 class="flex items-center gap-2 text-sm font-bold">
+                  مدت زمان ویزا:
+                  <span class="text-primary-500">@prp_3087931</span>
+                </h3>
+                <h3 class="flex items-center gap-2 text-sm font-bold">
+                  تعداد دفعات ورود:
+                  <span class="text-primary-500">@prp_3087930</span>
+                </h3>
+              </div>
+              <div class="flex items-center justify-between pt-2">
+                <h3 class="text-sm font-bold">شروع قیمت از:</h3>
+                <span class="text-2xl font-extrabold text-primary-500">@prp_3087433</span>
+              </div>
             </div>
           </a>
         </face>
         <face>
-          <a href="/@link"
-            class="group flex flex-col border border-white rounded-xl p-6 transition-all duration-300 hover:shadow-medium-btn-shadow hover:border-gray-50">
-            <img src="\@image" class="w-28 h-20 object-cover rounded-xl shadow-small-flag-shadow" alt="@title"
-              width="112" height="80" loading="lazy" />
-            <h2 class="text-2xl font-extrabold mt-4 mb-1">@title</h2>
-            <div class="flex items-center gap-2 font-extrabold text-primary-500">
-              اطلاعات بیشتر
-              <span class="bg-primary-50 p-px rounded">
-                <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path class="transition-all duration-300 group-hover:opacity-0" d="M5.25 9.5H15.75" stroke="#2E58D1"
-                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                  <path
-                    d="M1.78481 9.29657L5.48501 6.65356C6.0145 6.27535 6.75 6.65385 6.75 7.30455V11.6954C6.75 12.3461 6.0145 12.7246 5.48501 12.3464L1.78481 9.70343C1.64522 9.60373 1.64522 9.39627 1.78481 9.29657Z"
-                    fill="#2E58D1" />
-                </svg>
-              </span>
+          <a href="/@link" class="flex flex-col border border-gray-50 rounded-xl shadow-card-shadow overflow-hidden">
+            <img src="\@00352X00192prp" class="w-full h-48 object-cover" alt="@title" width="352" height="192"
+              loading="lazy" />
+            <div class="flex flex-col gap-1 py-4 px-6 divide-y divide-gray-100">
+              <div class="flex items-center gap-2">
+                <img src="[##cms.cms.cdn##]/images/flags/@prp_3087936" class="h-6 object-cover rounded" alt="@title"
+                  width="36" height="24" loading="lazy" />
+                <h2 class="text-2xl font-extrabold">@title</h2>
+              </div>
+              <div class="flex flex-col gap-2 pt-2">
+                <h3 class="flex items-center gap-2 text-sm font-bold">
+                  زمان مورد نیاز:
+                  <span class="text-primary-500">@prp_1417</span>
+                </h3>
+                <h3 class="flex items-center gap-2 text-sm font-bold">
+                  مدت زمان ویزا:
+                  <span class="text-primary-500">@prp_3087931</span>
+                </h3>
+                <h3 class="flex items-center gap-2 text-sm font-bold">
+                  تعداد دفعات ورود:
+                  <span class="text-primary-500">@prp_3087930</span>
+                </h3>
+              </div>
+              <div class="flex items-center justify-between pt-2">
+                <h3 class="text-sm font-bold">شروع قیمت از:</h3>
+                <span class="text-2xl font-extrabold text-primary-500">@prp_3087433</span>
+              </div>
             </div>
           </a>
         </face>
@@ -567,8 +606,8 @@
             <div class="swiper-slide">
               <a href="/tour.bc?id=@id"
                 class="flex flex-col border border-gray-50 rounded-xl shadow-medium-btn-shadow p-4">
-                <img src="\@00253X00135prp" class="w-full h-36 object-cover rounded-xl overflow-hidden shadow-soft-deep"
-                  alt="@title" width="253" height="135" loading="lazy" />
+                <img src="\@00253X00144prp" class="w-full h-36 object-cover rounded-xl overflow-hidden shadow-soft-deep"
+                  alt="@title" width="253" height="144" loading="lazy" />
                 <h2 class="text-lg font-extrabold mt-8 text-center">@title</h2>
                 <div class="flex items-center justify-between mt-3">
                   <span
@@ -614,8 +653,8 @@
           <face filter="prp_3087934 is null">
             <div class="swiper-slide">
               <a href="/@link" class="flex flex-col border border-gray-50 rounded-xl shadow-medium-btn-shadow p-4">
-                <img src="\@00253X00135prp" class="w-full h-36 object-cover rounded-xl overflow-hidden shadow-soft-deep"
-                  alt="@title" width="253" height="135" loading="lazy" />
+                <img src="\@00253X00144prp" class="w-full h-36 object-cover rounded-xl overflow-hidden shadow-soft-deep"
+                  alt="@title" width="253" height="144" loading="lazy" />
                 <h2 class="text-lg font-extrabold mt-8 text-center">@title</h2>
                 <div class="flex items-center justify-between mt-3">
                   <span
@@ -663,7 +702,7 @@
               <a href="/tour.bc?id=@id"
                 class="flex flex-col border border-gray-50 rounded-xl shadow-medium-btn-shadow p-4">
                 <div class="relative rounded-xl overflow-hidden shadow-soft-deep h-36">
-                  <img src="\@00253X00135prp" class="w-full h-36 object-cover" alt="@title" width="253" height="135"
+                  <img src="\@00253X00144prp" class="w-full h-36 object-cover" alt="@title" width="253" height="144"
                     loading="lazy" />
                   <span class="absolute left-0 bottom-0 text-sm font-bold py-2 px-4 bg-amber-400 rounded-tr">
                     @prp_3087934
@@ -715,7 +754,7 @@
             <div class="swiper-slide">
               <a href="/@link" class="flex flex-col border border-gray-50 rounded-xl shadow-medium-btn-shadow p-4">
                 <div class="relative rounded-xl overflow-hidden shadow-soft-deep h-36">
-                  <img src="\@00253X00135prp" class="w-full h-36 object-cover" alt="@title" width="253" height="135"
+                  <img src="\@00253X00144prp" class="w-full h-36 object-cover" alt="@title" width="253" height="144"
                     loading="lazy" />
                   <span class="absolute left-0 bottom-0 text-sm font-bold py-2 px-4 bg-amber-400 rounded-tr">
                     @prp_3087934

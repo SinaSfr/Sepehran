@@ -47,13 +47,20 @@
                 مشاهده بیشتر
             </button>
 
-            <div class="flex items-center justify-center gap-3">
+            <div class="flex flex-wrap items-center justify-center gap-3">
                 <a href="https://maps.app.goo.gl/T2HRtS5WqqgKUmNLA"
                     class="flex items-center justify-center gap-4 bg-gray-50 rounded-xl font-extrabold py-4 px-8 transition-all duration-300 hover:bg-primary-500 hover:text-white hover:shadow-card-shadow">
                     <svg width="32" height="33">
                         <use xlink:href="/images/sprite-icons.svg#icon-google-map"></use>
                     </svg>
                     گوگل مپ
+                </a>
+                <a href="https://balad.ir/p/PrCGMG1WU0aFz0"
+                    class="flex items-center justify-center gap-4 bg-gray-50 rounded-xl font-extrabold py-4 px-8 transition-all duration-300 hover:bg-primary-500 hover:text-white hover:shadow-card-shadow">
+                    <svg width="32" height="33">
+                        <use xlink:href="/images/sprite-icons.svg#icon-balad"></use>
+                    </svg>
+                    بلد
                 </a>
                 <a href="https://nshn.ir/cd_bv784yxi2Cu"
                     class="flex items-center justify-center gap-4 bg-gray-50 rounded-xl font-extrabold py-4 px-8">
@@ -71,29 +78,58 @@
                     </svg>
                     تور های شرق آسیا
                 </div>
-                <basis core="list" datamembername="db.east-asia-tours">
-                    <layout>
-                        <ul class="grid grid-cols-2 gap-x-2 gap-y-3 pt-4 border-t border-primary-400 pr-1">
-                            @child
-                        </ul>
-                    </layout>
-                    <face filter="link is null">
-                        <li
-                            class="group flex items-center gap-2 text-sm font-semibold line-clamp--1 transition-all duration-300 hover:text-primary-500">
-                            <span
-                                class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover:bg-primary-500"></span>
-                            <a href="/tour.bc?id=@id">@title</a>
-                        </li>
-                    </face>
-                    <face>
-                        <li
-                            class="group flex items-center gap-2 text-sm font-semibold line-clamp--1 transition-all duration-300 hover:text-primary-500">
-                            <span
-                                class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover:bg-primary-500"></span>
-                            <a href="@link">@title</a>
-                        </li>
-                    </face>
-                </basis>
+                <ul class="grid grid-cols-2 gap-x-2 gap-y-3 pt-4 border-t border-primary-400 pr-1">
+                    <li
+                        class="group flex items-center gap-2 text-sm font-semibold line-clamp--1 transition-all duration-300 hover:text-primary-500">
+                        <span
+                            class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover:bg-primary-500"></span>
+                        <a href="https://gardeshgaran.travel/Thailand">تور تایلند</a>
+                    </li>
+                    <li
+                        class="group flex items-center gap-2 text-sm font-semibold line-clamp--1 transition-all duration-300 hover:text-primary-500">
+                        <span
+                            class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover:bg-primary-500"></span>
+                        <a href="https://gardeshgaran.travel/tours/Thailand/Phuket">تور پوکت</a>
+                    </li>
+                    <li
+                        class="group flex items-center gap-2 text-sm font-semibold line-clamp--1 transition-all duration-300 hover:text-primary-500">
+                        <span
+                            class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover:bg-primary-500"></span>
+                        <a href="https://gardeshgaran.travel/tours/thailand/thailand-combo">تور ترکیبی
+                            تایلند</a>
+                    </li>
+                    <li
+                        class="group flex items-center gap-2 text-sm font-semibold line-clamp--1 transition-all duration-300 hover:text-primary-500">
+                        <span
+                            class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover:bg-primary-500"></span>
+                        <a href="https://gardeshgaran.travel/tours/indonesia/Bali">تور بالی</a>
+                    </li>
+                    <li
+                        class="group flex items-center gap-2 text-sm font-semibold line-clamp--1 transition-all duration-300 hover:text-primary-500">
+                        <span
+                            class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover:bg-primary-500"></span>
+                        <a href="https://gardeshgaran.travel/tours/Maldives">تور مالدیو</a>
+                    </li>
+                    <li
+                        class="group flex items-center gap-2 text-sm font-semibold line-clamp--1 transition-all duration-300 hover:text-primary-500">
+                        <span
+                            class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover:bg-primary-500"></span>
+                        <a href="https://gardeshgaran.travel/tours/malaysia">تور مالزی</a>
+                    </li>
+                    <li
+                        class="group flex items-center gap-2 text-sm font-semibold line-clamp--1 transition-all duration-300 hover:text-primary-500">
+                        <span
+                            class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover:bg-primary-500"></span>
+                        <a href="https://gardeshgaran.travel/tours/malaysia/Kuala-Lumpur">تور کوالالامپور</a>
+                    </li>
+                    <li
+                        class="group flex items-center gap-2 text-sm font-semibold line-clamp--1 transition-all duration-300 hover:text-primary-500">
+                        <span
+                            class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover:bg-primary-500"></span>
+                        <a href="https://gardeshgaran.travel/tours/Singapore">تور سنگاپور</a>
+                    </li>
+                </ul>
+
             </div>
             <div>
                 <div class="flex items-center gap-3 font-extrabold pb-1">
@@ -102,29 +138,45 @@
                     </svg>
                     تور ویژه گردشگران
                 </div>
-                <basis core="list" datamembername="db.special-tour-footer">
-                    <layout>
-                        <ul class="grid grid-cols-2 gap-x-2 gap-y-3 pt-4 border-t border-primary-400 pr-1">
-                            @child
-                        </ul>
-                    </layout>
-                    <face filter="link is null">
-                        <li
-                            class="group flex items-center gap-2 text-sm font-semibold line-clamp--1 transition-all duration-300 hover:text-primary-500">
-                            <span
-                                class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover:bg-primary-500"></span>
-                            <a href="/tour.bc?id=@id">@title</a>
-                        </li>
-                    </face>
-                    <face>
-                        <li
-                            class="group flex items-center gap-2 text-sm font-semibold line-clamp--1 transition-all duration-300 hover:text-primary-500">
-                            <span
-                                class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover:bg-primary-500"></span>
-                            <a href="@link">@title</a>
-                        </li>
-                    </face>
-                </basis>
+                <ul class="grid grid-cols-2 gap-x-2 gap-y-3 pt-4 border-t border-primary-400 pr-1">
+                    <li
+                        class="group flex items-center gap-2 text-sm font-semibold line-clamp--1 transition-all duration-300 hover:text-primary-500">
+                        <span
+                            class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover:bg-primary-500"></span>
+                        <a href="https://gardeshgaran.travel/tours/Russia">تور روسیه</a>
+                    </li>
+                    <li
+                        class="group flex items-center gap-2 text-sm font-semibold line-clamp--1 transition-all duration-300 hover:text-primary-500">
+                        <span
+                            class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover:bg-primary-500"></span>
+                        <a href="https://gardeshgaran.travel/Turkiye">تور ترکیه</a>
+                    </li>
+                    <li
+                        class="group flex items-center gap-2 text-sm font-semibold line-clamp--1 transition-all duration-300 hover:text-primary-500">
+                        <span
+                            class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover:bg-primary-500"></span>
+                        <a href="https://gardeshgaran.travel/tours/Turkiye/Antalya">تور آنتالیا</a>
+                    </li>
+                    <li
+                        class="group flex items-center gap-2 text-sm font-semibold line-clamp--1 transition-all duration-300 hover:text-primary-500">
+                        <span
+                            class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover:bg-primary-500"></span>
+                        <a href="https://gardeshgaran.travel/tours/Northern-Lights-Russia">تور شفق قطبی</a>
+                    </li>
+                    <li
+                        class="group flex items-center gap-2 text-sm font-semibold line-clamp--1 transition-all duration-300 hover:text-primary-500">
+                        <span
+                            class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover:bg-primary-500"></span>
+                        <a href="https://gardeshgaran.travel/tours/cruise-ship">تور کشتی کروز</a>
+                    </li>
+                    <li
+                        class="group flex items-center gap-2 text-sm font-semibold line-clamp--1 transition-all duration-300 hover:text-primary-500">
+                        <span
+                            class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover:bg-primary-500"></span>
+                        <a href="https://gardeshgaran.travel/tours/persian-gulf-cruise-ship">تور کشتی کروز خلیج فارس</a>
+                    </li>
+                </ul>
+
             </div>
             <div>
                 <div class="flex items-center gap-3 font-extrabold pb-1">

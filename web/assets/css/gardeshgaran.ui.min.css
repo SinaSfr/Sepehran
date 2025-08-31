@@ -85,6 +85,9 @@ body {
 .left-12 {
   left: 3rem;
 }
+.left-24 {
+  left: 6rem;
+}
 .left-3 {
   left: 0.75rem;
 }
@@ -99,6 +102,9 @@ body {
 }
 .right-0 {
   right: 0;
+}
+.right-16 {
+  right: 4rem;
 }
 .right-20 {
   right: 5rem;

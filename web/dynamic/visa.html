@@ -206,35 +206,45 @@
             </face>
           </basis>
         </div>
-        <basis core="print" datamembername="db.view">
-          <layout>
-            <div class="flex flex-col gap-4">@child</div>
-          </layout>
-          <face filter="TypeID in('200') and vocabulary in('مدت-زمان-قابل-استفاده')">
-            <div class="flex items-center justify-between border-b border-gray-50 pb-2">
-              <h3 class="font-extrabold">زمان مورد نیاز:</h3>
-              <span class="font-extrabold">@text</span>
-            </div>
-          </face>
-          <face filter="TypeID in('251') and vocabulary in('مدت-اعتبار-ویزا')">
-            <div class="flex items-center justify-between border-b border-gray-50 pb-2">
-              <h3 class="font-extrabold">مدت اعتبار ویزا:</h3>
-              <span class="font-extrabold">@Answer</span>
-            </div>
-          </face>
-          <face filter="TypeID in(140)">
-            <div class="flex items-center justify-between border-b border-gray-50 pb-2">
-              <h3 class="font-extrabold">مدارک مورد نیاز:</h3>
-              <span class="font-extrabold">@text</span>
-            </div>
-          </face>
-          <face filter="TypeID in('200') and vocabulary in('تعداد-دفعات-ورود')">
-            <div class="flex items-center justify-between border-b border-gray-50 pb-2">
-              <h3 class="font-extrabold">تعداد دفعات ورود:</h3>
-              <span class="font-extrabold">@Answer</span>
-            </div>
-          </face>
-        </basis>
+        <div class="flex flex-col gap-4">
+          <basis core="print" datamembername="db.view">
+            <face filter="TypeID in('200') and vocabulary in('مدت-زمان-قابل-استفاده')">
+              <div class="flex items-center justify-between border-b border-gray-50 pb-2">
+                <h3 class="font-extrabold">زمان مورد نیاز:</h3>
+                <span class="font-extrabold">@text</span>
+              </div>
+            </face>
+            <face filter="TypeID in('251') and vocabulary in('مدت-اعتبار-ویزا')">
+              <div class="flex items-center justify-between border-b border-gray-50 pb-2">
+                <h3 class="font-extrabold">مدت اعتبار ویزا:</h3>
+                <span class="font-extrabold">@Answer</span>
+              </div>
+            </face>
+          </basis>
+          <basis core="print" datamembername="db.view">
+            <layout>
+              <div class="flex justify-between gap-3 border-b border-gray-50 pb-2">
+                <h3 class="font-extrabold flex-shrink-0">مدارک مورد نیاز:</h3>
+                <div class="flex flex-col gap-2">@child</div>
+              </div>
+            </layout>
+            <face filter="TypeID in(140)">
+              <div class="flex items-center gap-2 font-extrabold">
+                <span class="w-[7px] h-[7px] rounded-full bg-zinc-900 transition-all duration-300 group-hover:bg-primary-500"></span>
+                @text
+              </div>
+            </face>
+          </basis>
+          <basis core="print" datamembername="db.view">
+            <face filter="TypeID in('200') and vocabulary in('تعداد-دفعات-ورود')">
+              <div class="flex items-center justify-between border-b border-gray-50 pb-2">
+                <h3 class="font-extrabold">تعداد دفعات ورود:</h3>
+                <span class="font-extrabold">@Answer</span>
+              </div>
+            </face>
+          </basis>
+        </div>
+
         <basis core="print" datamembername="db.view">
           <face filter="TypeID in(170)">
             <div class="flex items-center justify-between mt-3">
@@ -567,7 +577,7 @@
                     </div>
                     <span class="field-captcha flex items-center gap-6">
                       <span class="load-captcha">
-                        <img class="captchaa w-16 h-auto" alt="کد امنیتی" src="[##captcha.code.captcha##]" width="120"
+                        <img class="captchaa w-16 h-auto" alt="کد امنیتی" src="\[##captcha.code.captcha##]" width="120"
                           height="60" />
                         <input type="hidden" value="[##captcha.code.captcha##]" name="Captchaid" />
                       </span>
