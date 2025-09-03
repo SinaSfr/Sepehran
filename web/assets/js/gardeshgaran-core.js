@@ -132,7 +132,6 @@ if (window.innerWidth < 1024) {
   }
 }
 
-
 document.addEventListener('DOMContentLoaded', function () {
   const toggleDropdowns = document.querySelectorAll('.toggle-dropdown');
 
@@ -169,26 +168,26 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function activateDropdownToggles(container = document) {
     const content = container.querySelector('.tourcategorydropdown__content');
-    if (!content) return; 
-  
+    if (!content) return;
+
     const toggleDropdowns = container.querySelectorAll('.toggle-dropdown');
-  
+
     toggleDropdowns.forEach((toggle) => {
       const submenu = toggle.nextElementSibling;
       const dropdownIcon = toggle.querySelector('.dropdown-icon');
-  
+
       if (!submenu) return;
-  
+
       const newToggle = toggle.cloneNode(true);
       toggle.parentNode.replaceChild(newToggle, toggle);
-  
+
       submenu.classList.add('max-h-0', 'opacity-0');
       submenu.style.maxHeight = null;
       submenu.style.opacity = '0';
-  
+
       newToggle.addEventListener('click', () => {
         dropdownIcon.classList.toggle('rotate-180');
-  
+
         if (submenu.classList.contains('max-h-0')) {
           submenu.classList.remove('max-h-0', 'opacity-0');
           submenu.style.maxHeight = submenu.scrollHeight * 30 + 'px';
@@ -378,7 +377,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const openMobileBtns = document.querySelectorAll('.openTourMobile');
   const mobileOverlay = document.querySelector('.tourcategorymobile__overlay');
-  const closeMobileBtn = document.getElementById('closeTourMobile'); 
+  const closeMobileBtn = document.getElementById('closeTourMobile');
 
   if (openMobileBtns.length && mobileOverlay && closeMobileBtn) {
     openMobileBtns.forEach((btn) => {
@@ -465,7 +464,7 @@ document.addEventListener('DOMContentLoaded', function () {
   if (!toggleBtn || !menu || !icon) return;
 
   toggleBtn.addEventListener('click', (e) => {
-    e.stopPropagation(); 
+    e.stopPropagation();
     menu.classList.toggle('opacity-0');
     menu.classList.toggle('scale-95');
     menu.classList.toggle('pointer-events-none');
@@ -473,7 +472,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   menu.addEventListener('click', (e) => {
-    e.stopPropagation(); 
+    e.stopPropagation();
   });
 
   document.addEventListener('click', () => {
@@ -1004,14 +1003,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const formatPrice = (val) => val.toLocaleString('fa-IR');
   const parsePrice = (priceString) => {
     if (!priceString) return 0;
-  
+
     const persianDigits = '۰۱۲۳۴۵۶۷۸۹';
-    let cleaned = priceString.replace(/[۰-۹]/g, d => persianDigits.indexOf(d));
-  
+    let cleaned = priceString.replace(/[۰-۹]/g, (d) => persianDigits.indexOf(d));
+
     cleaned = cleaned.replace(/[.,،/\s]/g, '');
-  
+
     cleaned = cleaned.replace(/[^\d]/g, '');
-  
+
     const parsed = parseInt(cleaned, 10) || 0;
     return parsed;
   };
@@ -1725,7 +1724,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // reply-comment
 async function Reply_Comment(element) {
-  const responsereply = await fetch('Client_CheckAuthentication.inc');
+  const responsereply = await fetch('/Client_CheckAuthentication.inc');
   if (!responsereply.ok) {
     throw new Error('متاسفانه مشکلی به وجود آمده است لطفا بعدا مجددا تلاش فرمایید.');
   } else {
@@ -1741,28 +1740,25 @@ async function Reply_Comment(element) {
   }
 }
 
-
 //SubmitOpinionForm
 async function SubmitOpinionForm(element, event) {
   event.preventDefault();
-  const response = await fetch("Client_CheckAuthentication.inc");
+  const response = await fetch('Client_CheckAuthentication.inc');
   if (!response.ok) {
-    throw new Error(
-      "متاسفانه مشکلی به وجود آمده است لطفا بعدا مجددا تلاش فرمایید."
-    );
+    throw new Error('متاسفانه مشکلی به وجود آمده است لطفا بعدا مجددا تلاش فرمایید.');
   } else {
     let CheckAuthentication = await response.text();
-    if (CheckAuthentication === "true") {
-      var form = new FormData(element.closest("form"));
+    if (CheckAuthentication === 'true') {
+      var form = new FormData(element.closest('form'));
       var xhr = new XMLHttpRequest();
-      xhr.open("POST", element.closest("form").action, true);
+      xhr.open('POST', element.closest('form').action, true);
       xhr.onload = function () {
         if (xhr.status === 200) {
-          document.getElementById("popupMessage").innerHTML = xhr.responseText;
-          document.getElementById("popuparticle").classList.remove("hidden");
+          document.getElementById('popupMessage').innerHTML = xhr.responseText;
+          document.getElementById('popuparticle').classList.remove('hidden');
         } else {
-          document.getElementById("popupMessage").innerHTML = xhr.responseText;
-          document.getElementById("popuparticle").classList.remove("hidden");
+          document.getElementById('popupMessage').innerHTML = xhr.responseText;
+          document.getElementById('popuparticle').classList.remove('hidden');
         }
       };
       xhr.send(form);

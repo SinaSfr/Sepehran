@@ -1,35 +1,70 @@
 const callbackSourceExecutionPlanTypesView = async (args) => {
   try {
     const resultJson = args.source?.rows;
-
-    const originsSourceArray = new Array();
-    const destinationsSourceArray = new Array();
+    let originsSourceArray = [];
+    let destinationsSourceArray = [];
     let originsRownumber = 1;
     let destinationsRownumber = 1;
+
     if (resultJson[0]) {
       document.querySelector('.tourExecution__container').classList.remove('hidden');
-      for (const element of resultJson[0].execution.origins) {
-        const sourceObj = new Object();
-        sourceObj['rownumber'] = originsRownumber;
-        sourceObj['info'] = element;
-        sourceObj['len'] = resultJson[0].execution.origins.length;
-        originsSourceArray.push(sourceObj);
-        originsRownumber++;
+
+      const origins = resultJson[0].execution.origins || [];
+      const destinations = resultJson[0].execution.destinations || [];
+
+      // --- origins ---
+      if (
+        origins.length === 1 &&
+        !origins[0].origin?.type &&
+        !origins[0].origin?.name &&
+        !origins[0].origin?.id &&
+        !origins[0].destination?.type &&
+        !origins[0].destination?.name &&
+        !origins[0].destination?.id &&
+        !origins[0].transportation?.type &&
+        !origins[0].transportation?.name
+      ) {
+        originsSourceArray = []; // خالی
+      } else {
+        for (const element of origins) {
+          const sourceObj = {};
+          sourceObj['rownumber'] = originsRownumber;
+          sourceObj['info'] = element;
+          sourceObj['len'] = origins.length;
+          originsSourceArray.push(sourceObj);
+          originsRownumber++;
+        }
       }
-      for (const element of resultJson[0].execution.destinations) {
-        const sourceObj = new Object();
-        sourceObj['rownumber'] = destinationsRownumber;
-        sourceObj['info'] = element;
-        sourceObj['len'] = resultJson[0].execution.destinations.length;
-        destinationsSourceArray.push(sourceObj);
-        destinationsRownumber++;
+
+      // --- destinations ---
+      if (
+        destinations.length === 1 &&
+        !destinations[0].origin?.type &&
+        !destinations[0].origin?.name &&
+        !destinations[0].origin?.id &&
+        !destinations[0].destination?.type &&
+        !destinations[0].destination?.name &&
+        !destinations[0].destination?.id &&
+        !destinations[0].transportation?.type &&
+        !destinations[0].transportation?.name
+      ) {
+        destinationsSourceArray = []; // خالی
+      } else {
+        for (const element of destinations) {
+          const sourceObj = {};
+          sourceObj['rownumber'] = destinationsRownumber;
+          sourceObj['info'] = element;
+          sourceObj['len'] = destinations.length;
+          destinationsSourceArray.push(sourceObj);
+          destinationsRownumber++;
+        }
       }
     }
 
     setTimeout(() => {
       $bc.setSource('refresh.executionPlanTypesOrigins', originsSourceArray);
       $bc.setSource('refresh.executionPlanTypesDestinations', destinationsSourceArray);
-    }, '10');
+    }, 10);
   } catch (err) {
     console.error('callbackSourceExecutionPlanTypesView=' + err.lineNumber + ',' + err.message);
   }
@@ -37,24 +72,20 @@ const callbackSourceExecutionPlanTypesView = async (args) => {
 
 const renderInventoryView = async (element, day, from, to) => {
   try {
-  
-    document.querySelectorAll('.swiper-tour-date .swiper-slide').forEach(e => {
+    document.querySelectorAll('.swiper-tour-date .swiper-slide').forEach((e) => {
       e.querySelector('.group')?.classList.remove('border-primary-400');
       e.querySelector('.tour-dates')?.classList.remove('text-primary-500');
     });
 
-    
     $bc.setSource('db.inventoryViewSpecificDate', {
       from: from,
       to: to,
       day: day,
     });
 
-    
     element.querySelector('.group')?.classList.add('border-primary-400');
     element.querySelector('.tour-dates')?.classList.add('text-primary-500');
 
-  
     window.scroll({
       top: document.querySelector('#hotels').offsetTop,
       behavior: 'smooth',
@@ -90,7 +121,7 @@ const onProcessedHotelsImg = async (args) => {
   }
 };
 
-const renderTransportationImage = async (element) => {
+const renderTransportationName = async (element) => {
   try {
     if (element) {
       if (element.info.transportation.id) {
@@ -162,8 +193,8 @@ const onProcessedTourDates = async (args) => {
     const responseJson = await response.json();
     const data = responseJson.sources?.[0]?.data || [];
 
-    const startDateEl = document.querySelector(".date__details .start__date");
-    const endDateEl = document.querySelector(".date__details .end__date");
+    const startDateEl = document.querySelector('.date__details .start__date');
+    const endDateEl = document.querySelector('.date__details .end__date');
 
     if (data.length > 0) {
       const firstItem = data[0];
@@ -171,10 +202,10 @@ const onProcessedTourDates = async (args) => {
       if (endDateEl) endDateEl.textContent = firstItem.end.date;
     }
 
-    const swiperWrapper = document.querySelector(".swiper-tour-date .swiper-wrapper");
+    const swiperWrapper = document.querySelector('.swiper-tour-date .swiper-wrapper');
     if (!swiperWrapper) return;
 
-    swiperWrapper.innerHTML = "";
+    swiperWrapper.innerHTML = '';
 
     if (data.length === 0) {
       swiperWrapper.innerHTML = `
@@ -183,13 +214,10 @@ const onProcessedTourDates = async (args) => {
         </li>
       `;
     } else {
-      data.forEach(item => {
-        const li = document.createElement("li");
-        li.className = "swiper-slide cursor-pointer";
-        li.setAttribute(
-          "onclick",
-          `renderInventoryView(this,${item.day},${item.start.dateid},${item.end.dateid})`
-        );
+      data.forEach((item) => {
+        const li = document.createElement('li');
+        li.className = 'swiper-slide cursor-pointer';
+        li.setAttribute('onclick', `renderInventoryView(this,${item.day},${item.start.dateid},${item.end.dateid})`);
         li.innerHTML = `
           <div class="group border border-gray-50 w-[230px] bg-white rounded-lg py-4 px-6 transition-all duration-300 hover:border-primary-400">
             <h3 class="text-gray-500 font-light mb-1">تاریخ رفت و برگشت:</h3>
@@ -214,7 +242,6 @@ const onProcessedTourDates = async (args) => {
     });
   }
 };
-
 
 const onProcessedAirlinesDestinationsImg = async (args) => {
   const response = args.response;
@@ -292,7 +319,8 @@ const renderHotels = async (element, type) => {
                           <div class="" data-index="${index}">
                     <div class="flex flex-col items-center">
                         <div class="w-full shadow-card-shadow mb-4">
-                            <img src="${img}" data-id="${hotel.hotelid}" data-pageName="${pageName}"
+                            <img src="${img}"         data-id="${item.hotel.hotelname1.hotelid}"
+        data-basiscoreid="${item.hotel.basiscoreid}"  data-pageName="${pageName}"
                                 class="tourInventory__details__item__img w-full h-40 object-cover rounded-xl" alt="" width="320" height="160"
                                 loading="lazy" />
                         </div>
@@ -331,7 +359,8 @@ const renderHotels = async (element, type) => {
           <div class="flex items-stretch justify-between w-full" data-index="${index}">
             <div class="flex items-center gap-6">
               <div class="shadow-card-shadow">
-                <img src="${img}" data-id="${hotel.hotelid}" data-pageName="${pageName}"
+                <img src="${img}" data-id="${item.hotel.hotelname1.hotelid}"
+        data-basiscoreid="${item.hotel.basiscoreid}" data-pageName="${pageName}"
                   class="tourInventory__details__item__img h-40 object-cover rounded-xl" alt="" width="253" height="164"
                   loading="lazy" />
               </div>
@@ -544,9 +573,6 @@ const onrenderedExecutionOrigins = async () => {
     if (originElement) {
       let origin = originElement.textContent.trim();
 
-      document.querySelector('.tourExecution__container__origins .origins__city').textContent = origin;
-      document.getElementById('destination-departure-tour').textContent = origin;
-
       let ids = [];
       document
         .querySelector('.tourExecution__container__origins')
@@ -565,6 +591,7 @@ const onrenderedExecutionOrigins = async () => {
   }
 };
 
+
 const onrenderedExecutionDestinations = async () => {
   try {
     const destinationElement = document.querySelector(
@@ -572,9 +599,6 @@ const onrenderedExecutionDestinations = async () => {
     );
     if (destinationElement) {
       let destination = destinationElement.textContent;
-
-      document.querySelector('.tourExecution__container__destinations .destinations__city').textContent = destination;
-      document.getElementById('origin-departure-tour').textContent = destination;
 
       let ids = [];
       document
@@ -649,16 +673,15 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 const renderTourInstallmentForm = async (element) => {
+  const card = element.closest('.hotel-card');
+  if (!card) return;
+
   let service = '-';
-  switch (
-    parseInt(
-      element.closest('.hotel-card').querySelector('.tourInventory__details__item__service .hotel-card-service').dataset
-        .value
-    )
-  ) {
-    case 0:
-      service = '-';
-      break;
+  const serviceVal = parseInt(
+    card.querySelector('.tourInventory__details__item__service .hotel-card-service')?.dataset.value ?? '-1',
+    10
+  );
+  switch (serviceVal) {
     case 1654:
       service = 'O.R';
       break;
@@ -680,127 +703,46 @@ const renderTourInstallmentForm = async (element) => {
     case 1660:
       service = 'Maximum All Inclusive';
       break;
+    default:
+      service = '-';
   }
-  $bc.setSource('db.tourBookingFormIns', {
-    run: false,
-  });
+
+  const pickPrice = (cls) => card.querySelector(`${cls} .tourInventory__details__item__price`)?.textContent ?? '';
+  const pickUnit = (cls) => card.querySelector(`${cls} .tourInventory__details__item__unit`)?.textContent ?? ' ';
+
+  $bc.setSource('db.tourBookingFormIns', { run: false });
 
   $bc.setSource('db.tourFormInstallmentplan', {
-    hotelName: element.closest('.hotel-card').querySelector('.hotel-card-title').textContent,
-    hotelRate: element.closest('.hotel-card').querySelector('.hotel-card-star').dataset.value,
+    hotelName: card.querySelector('.hotel-card-title')?.textContent ?? '',
+    hotelRate: card.querySelector('.hotel-card-star')?.dataset.value ?? '',
     hotelService: service,
-    tourName: document.querySelector('.tour-name').textContent,
-    doubleP: element
-      .closest('.hotel-card-wrapper')
-      .querySelectorAll('.tourInventory__details__item__double')[0]
-      .querySelector('.tourInventory__details__item__price').textContent,
-    singleP: element
-      .closest('.hotel-card-wrapper')
-      .querySelectorAll('.tourInventory__details__item__single')[0]
-      .querySelector('.tourInventory__details__item__price').textContent,
-    wBedP: element
-      .closest('.hotel-card-wrapper')
-      .querySelectorAll('.tourInventory__details__item__wBed')[0]
-      .querySelector('.tourInventory__details__item__price').textContent,
-    woBedP: element
-      .closest('.hotel-card-wrapper')
-      .querySelectorAll('.tourInventory__details__item__woBed')[0]
-      .querySelector('.tourInventory__details__item__price').textContent,
-    doubleU: element
-      .closest('.hotel-card-wrapper')
-      .querySelectorAll('.tourInventory__details__item__double')[0]
-      .querySelector('.tourInventory__details__item__unit')
-      ? element
-          .closest('.hotel-card-wrapper')
-          .querySelectorAll('.tourInventory__details__item__double')[0]
-          .querySelector('.tourInventory__details__item__unit').textContent
-      : ` `,
-    singleU: element
-      .closest('.hotel-card-wrapper')
-      .querySelectorAll('.tourInventory__details__item__single')[0]
-      .querySelector('.tourInventory__details__item__unit')
-      ? element
-          .closest('.hotel-card-wrapper')
-          .querySelectorAll('.tourInventory__details__item__single')[0]
-          .querySelector('.tourInventory__details__item__unit').textContent
-      : ` `,
-    wBedU: element
-      .closest('.hotel-card-wrapper')
-      .querySelectorAll('.tourInventory__details__item__wBed')[0]
-      .querySelector('.tourInventory__details__item__unit')
-      ? element
-          .closest('.hotel-card-wrapper')
-          .querySelectorAll('.tourInventory__details__item__wBed')[0]
-          .querySelector('.tourInventory__details__item__unit').textContent
-      : ` `,
-    woBedU: element
-      .closest('.hotel-card-wrapper')
-      .querySelectorAll('.tourInventory__details__item__woBed')[0]
-      .querySelector('.tourInventory__details__item__unit')
-      ? element
-          .closest('.hotel-card-wrapper')
-          .querySelectorAll('.tourInventory__details__item__woBed')[0]
-          .querySelector('.tourInventory__details__item__unit').textContent
-      : ` `,
+    tourName: document.querySelector('.tour-name')?.textContent ?? '',
+
+    doubleP: pickPrice('.tourInventory__details__item__double'),
+    singleP: pickPrice('.tourInventory__details__item__single'),
+    wBedP: pickPrice('.tourInventory__details__item__wBed'),
+    woBedP: pickPrice('.tourInventory__details__item__woBed'),
+
+    doubleU: pickUnit('.tourInventory__details__item__double'),
+    singleU: pickUnit('.tourInventory__details__item__single'),
+    wBedU: pickUnit('.tourInventory__details__item__wBed'),
+    woBedU: pickUnit('.tourInventory__details__item__woBed'),
+
     run: true,
   });
 
-  (FormhotelName = element.closest('.hotel-card').querySelector('.hotel-card-title').textContent),
-    (FormhotelRate = element.closest('.hotel-card').querySelector('.hotel-card-star').dataset.value),
-    (FormhotelService = service),
-    (FormtourName = document.querySelector('.tour-name').textContent),
-    (FormdoubleP = element
-      .closest('.hotel-card-wrapper')
-      .querySelectorAll('.tourInventory__details__item__double')[0]
-      .querySelector('.tourInventory__details__item__price').textContent),
-    (FormsingleP = element
-      .closest('.hotel-card-wrapper')
-      .querySelectorAll('.tourInventory__details__item__single')[0]
-      .querySelector('.tourInventory__details__item__price').textContent),
-    (FormwBedP = element
-      .closest('.hotel-card-wrapper')
-      .querySelectorAll('.tourInventory__details__item__wBed')[0]
-      .querySelector('.tourInventory__details__item__price').textContent),
-    (FormwoBedP = element
-      .closest('.hotel-card-wrapper')
-      .querySelectorAll('.tourInventory__details__item__woBed')[0]
-      .querySelector('.tourInventory__details__item__price').textContent),
-    (FormdoubleU = element
-      .closest('.hotel-card-wrapper')
-      .querySelectorAll('.tourInventory__details__item__double')[0]
-      .querySelector('.tourInventory__details__item__unit')
-      ? element
-          .closest('.hotel-card-wrapper')
-          .querySelectorAll('.tourInventory__details__item__double')[0]
-          .querySelector('.tourInventory__details__item__unit').textContent
-      : ` `),
-    (FormsingleU = element
-      .closest('.hotel-card-wrapper')
-      .querySelectorAll('.tourInventory__details__item__single')[0]
-      .querySelector('.tourInventory__details__item__unit')
-      ? element
-          .closest('.hotel-card-wrapper')
-          .querySelectorAll('.tourInventory__details__item__single')[0]
-          .querySelector('.tourInventory__details__item__unit').textContent
-      : ` `),
-    (FormwBedU = element
-      .closest('.hotel-card-wrapper')
-      .querySelectorAll('.tourInventory__details__item__wBed')[0]
-      .querySelector('.tourInventory__details__item__unit')
-      ? element
-          .closest('.hotel-card-wrapper')
-          .querySelectorAll('.tourInventory__details__item__wBed')[0]
-          .querySelector('.tourInventory__details__item__unit').textContent
-      : ` `),
-    (FormwoBedU = element
-      .closest('.hotel-card-wrapper')
-      .querySelectorAll('.tourInventory__details__item__woBed')[0]
-      .querySelector('.tourInventory__details__item__unit')
-      ? element
-          .closest('.hotel-card-wrapper')
-          .querySelectorAll('.tourInventory__details__item__woBed')[0]
-          .querySelector('.tourInventory__details__item__unit').textContent
-      : ` `);
+  FormhotelName = card.querySelector('.hotel-card-title')?.textContent ?? '';
+  FormhotelRate = card.querySelector('.hotel-card-star')?.dataset.value ?? '';
+  FormhotelService = service;
+  FormtourName = document.querySelector('.tour-name')?.textContent ?? '';
+  FormdoubleP = pickPrice('.tourInventory__details__item__double');
+  FormsingleP = pickPrice('.tourInventory__details__item__single');
+  FormwBedP = pickPrice('.tourInventory__details__item__wBed');
+  FormwoBedP = pickPrice('.tourInventory__details__item__woBed');
+  FormdoubleU = pickUnit('.tourInventory__details__item__double');
+  FormsingleU = pickUnit('.tourInventory__details__item__single');
+  FormwBedU = pickUnit('.tourInventory__details__item__wBed');
+  FormwoBedU = pickUnit('.tourInventory__details__item__woBed');
 };
 
 const renderReserveTourInstallmentForm = async (element) => {

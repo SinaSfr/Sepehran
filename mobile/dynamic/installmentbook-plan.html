@@ -247,7 +247,7 @@
 
                     <div class="w-full">
                         <form action="">
-                            <label class="font-danaregular text-base mt-5 mb-2 block" for="amount">مبلغ وام</label>
+                            <label class="font-danaregular text-base mt-5 mb-2 block" for="amount">درصد پیش پرداخت</label>
 
                             <div class="w-full rounded-xl bg-primary-50 h-12 flex items-center justify-between px-8">
                                 <span
@@ -255,8 +255,8 @@
                                     onclick="increase(this)">+</span>
                                 <div>
                                     <input id="amount" class="bg-transparent w-7 font-danaregular text-base text-center"
-                                        type="text" value="8" placeholder="150" oninput="updateLoanAmount(this.value)">
-                                    <span class="font-danaregular text-sm ">میلیون تومان</span>
+                                        type="text" value="30" placeholder="30" oninput="updateLoanAmount(this.value)">
+                                    <span class="font-danaregular text-sm ">درصد</span>
                                 </div>
                                 <span
                                     class="text-32px font-danamedium cursor-pointer hover:text-primary-500 w-12 h-76px text-center"
@@ -266,11 +266,10 @@
                             <div class="relative mt-6">
                                 <input oninput="updateLoanFromRange(this.value)" type="range" min="8" max="150"
                                     value="8" class="slider direction-ltr" id="myRange">
-                                <span class=" absolute left-0 text-neutralcolor-500 top-7 font-danaregular text-sm">8
-                                    میلیون تومان </span>
+                                <span class=" absolute left-0 text-neutralcolor-500 top-7 font-danaregular text-sm">30 درصد</span>
                                 <span class=" absolute right-0 text-neutralcolor-500 top-7 font-danaregular text-sm">
-                                    <span id="limit-range">150</span>
-                                    میلیون تومان</span>
+                                    <span id="limit-range">50</span>
+                                     درصد</span>
                             </div>
 
 
@@ -280,31 +279,31 @@
                                 </span>
 
                                 <ul class="flex flex-col gap-4 mt-4 gap-y-2" id="month-list">
-                                    <li month="4" rate="0.5" onclick="calculateMonth(4 , 0.5 , this)"
+                                    <li month="4" rate="[##cms.host.profit##]" onclick="calculateMonth(4 , [##cms.host.profit##] , this)"
                                         class="sayyadiplan flex items-center justify-center h-12 rounded-xl  bg-primary-500 text-white text-center hover:bg-primary-500 hover:text-white text-base cursor-pointer">
                                         4 ماهه</li>
-                                    <li month="5" rate="0.5" onclick="calculateMonth(5 , 0.5 , this)"
+                                    <li month="5" rate="[##cms.host.profit##]" onclick="calculateMonth(5 , [##cms.host.profit##], this)"
                                         class="sayyadiplan flex items-center justify-center h-12 rounded-xl  bg-gray-100 text-neutralcolor-900 text-center hover:bg-primary-500 hover:text-white text-base cursor-pointer">
                                         5 ماهه</li>
-                                    <li month="6" rate="0.5" onclick="calculateMonth(6 , 0.5 , this)"
+                                    <li month="6" rate="[##cms.host.profit##]" onclick="calculateMonth(6 , [##cms.host.profit##] , this)"
                                         class="sayyadiplan flex items-center justify-center h-12 rounded-xl  bg-gray-100 text-neutralcolor-900 text-center hover:bg-primary-500 hover:text-white text-base cursor-pointer">
                                         6 ماهه</li>
-                                    <li month="7" rate="0.5" onclick="calculateMonth(7 , 0.5 , this)"
+                                    <li month="7" rate="[##cms.host.profit##]" onclick="calculateMonth(7 , [##cms.host.profit##], this)"
                                         class="sayyadiplan flex items-center justify-center h-12 rounded-xl  bg-gray-100 text-neutralcolor-900 text-center hover:bg-primary-500 hover:text-white text-base cursor-pointer">
                                         7 ماهه</li>
-                                    <li month="8" rate="0.5" onclick="calculateMonth(8 , 0.5 , this)"
+                                    <li month="8" rate="[##cms.host.profit##]" onclick="calculateMonth(8 , [##cms.host.profit##] , this)"
                                         class="sayyadiplan flex items-center justify-center h-12 rounded-xl  bg-gray-100 text-neutralcolor-900 text-center hover:bg-primary-500 hover:text-white text-base cursor-pointer">
                                         8 ماهه</li>
-                                    <li month="9" rate="0.5" onclick="calculateMonth(9 , 0.5 , this)"
+                                    <li month="9" rate="[##cms.host.profit##]" onclick="calculateMonth(9 , [##cms.host.profit##] , this)"
                                         class="sayyadiplan flex items-center justify-center h-12 rounded-xl  bg-gray-100 text-neutralcolor-900 text-center hover:bg-primary-500 hover:text-white text-base cursor-pointer">
                                         9 ماهه</li>
-                                    <li month="10" rate="0.5" onclick="calculateMonth(10 , 0.5 , this)"
+                                    <li month="10" rate="[##cms.host.profit##]" onclick="calculateMonth(10 , [##cms.host.profit##] , this)"
                                         class="sayyadiplan flex items-center justify-center h-12 rounded-xl  bg-gray-100 text-neutralcolor-900 text-center hover:bg-primary-500 hover:text-white text-base cursor-pointer">
                                         10 ماهه</li>
-                                    <li month="11" rate="0.5" onclick="calculateMonth(11 , 0.5 , this)"
+                                    <li month="11" rate="[##cms.host.profit##]" onclick="calculateMonth(11 , [##cms.host.profit##] , this)"
                                         class="sayyadiplan flex items-center justify-center h-12 rounded-xl  bg-gray-100 text-neutralcolor-900 text-center hover:bg-primary-500 hover:text-white text-base cursor-pointer">
                                         11 ماهه</li>
-                                    <li month="5" rate="0.5" onclick="calculateMonth(12 , 0.5 , this)"
+                                    <li month="5" rate="[##cms.host.profit##]" onclick="calculateMonth(12 , [##cms.host.profit##] , this)"
                                         class="sayyadiplan flex items-center justify-center h-12 rounded-xl  bg-gray-100 text-neutralcolor-900 text-center hover:bg-primary-500 hover:text-white text-base cursor-pointer">
                                         12 ماهه</li>
 
@@ -379,209 +378,195 @@
 </div>
 
 <script>
-    // TOUR INSTALLMENT
-    var limitrange = 150;
     var rangeInput = document.getElementById('myRange');
     var amountInput = document.getElementById('amount');
     rangeInput.addEventListener('input', updateRangeBackground);
-    var loanAmount = 8;
+  
+    var loanAmount = 30;   
     var loanMonths = 4;
-    var interestRate = 5;
+    var interestRate = 5;  
     var totalprice = 0;
-
-
+  
     var adultCountF = 1;
     var childbedCountF = 0;
     var childwobedCountF = 0;
     var infantCountF = 0;
-
-
+  
     function selectPlanInstallment(el, plan, monthplan, limitinstallment, lm, ir) {
-
-
-        loanMonths = lm;
-        interestRate = ir;
-
-        document.querySelectorAll(".plan-radio").forEach(element => {
-            element.addEventListener("click", function (ele) {
-                document.querySelectorAll(".plan-container").forEach(div => {
-                    div.querySelector("label").classList.remove("bg-primary-500");
-                    div.querySelector("label").classList.remove("text-white");
-                    div.querySelector("label").classList.add("text-neutralcolor-900");
-                    div.querySelector("label").classList.add("bg-gray-100");
-                });
-            });
+      loanMonths = lm;
+      interestRate = ir;
+  
+      document.querySelectorAll(".plan-radio").forEach(element => {
+        element.addEventListener("click", function () {
+          document.querySelectorAll(".plan-container").forEach(div => {
+            div.querySelector("label").classList.remove("bg-primary-500", "text-white");
+            div.querySelector("label").classList.add("text-neutralcolor-900", "bg-gray-100");
+          });
         });
-
-
-        el.querySelector("label").classList.add("bg-primary-500");
-        el.querySelector("label").classList.remove("bg-gray-100");
-        el.querySelector("label").classList.add("text-white");
-        el.querySelector("label").classList.remove("text-neutralcolor-900");
-
-        limitrange = limitinstallment;
-        rangeInput.setAttribute("max", limitrange);
-        document.getElementById("limit-range").innerText = limitrange;
-
-        document.getElementById("month-list").querySelectorAll("li").forEach(element => {
-            element.classList.add("hidden");
-        });
-
-        document.querySelectorAll(`.${monthplan}`).forEach(element => {
-            element.classList.remove("hidden");
-        });
-
-        updateRangeBackground();
-        calculateInstallments();
+      });
+  
+      el.querySelector("label").classList.add("bg-primary-500", "text-white");
+      el.querySelector("label").classList.remove("bg-gray-100", "text-neutralcolor-900");
+  
+      limitrange = 50;
+      rangeInput.setAttribute("min", 30);
+      rangeInput.setAttribute("max", 50);
+      rangeInput.setAttribute("step", 5);
+      document.getElementById("limit-range").innerText = 50;
+  
+      document.getElementById("month-list").querySelectorAll("li").forEach(element => {
+        element.classList.add("hidden");
+      });
+      document.querySelectorAll(`.${monthplan}`).forEach(element => {
+        element.classList.remove("hidden");
+      });
+  
+      updateRangeBackground();
+      calculateInstallments();
     }
-
-
-
+  
     function updateRangeBackground() {
-        const value = parseFloat(rangeInput.value);
-        const min = parseFloat(rangeInput.min);
-        const max = parseFloat(rangeInput.max);
-        const percentage = ((value - min) / (max - min)) * 100;
-        rangeInput.style.background = `linear-gradient(to right, #2e58d1 ${percentage}%, #e5e7eb ${percentage}%)`;
-    }
 
+      if (rangeInput.min !== "30") rangeInput.min = 30;
+      if (rangeInput.max !== "50") rangeInput.max = 50;
+      if (rangeInput.step !== "5") rangeInput.step = 5;
+  
+      if (!rangeInput.value) rangeInput.value = loanAmount;
+  
+      const value = parseFloat(rangeInput.value);
+      const min = parseFloat(rangeInput.min);
+      const max = parseFloat(rangeInput.max);
+      const percentage = ((value - min) / (max - min)) * 100;
+      rangeInput.style.background = `linear-gradient(to right, #2e58d1 ${percentage}%, #e5e7eb ${percentage}%)`;
+    }
+  
     window.addEventListener('DOMContentLoaded', () => {
-        updateRangeBackground();
+      rangeInput.min = 30;
+      rangeInput.max = 50;
+      rangeInput.step = 5;
+      rangeInput.value = loanAmount;
+      if (amountInput) amountInput.value = loanAmount;
+      updateRangeBackground();
     });
-
+  
     function updateLoanAmount(amount) {
-        loanAmount = amount;
-        document.getElementById('myRange').value = amount;
-        updateRangeBackground();
-        calculateInstallments();
+      let p = parseInt(amount, 10);
+      if (isNaN(p)) p = 30;
+      p = Math.max(30, Math.min(50, Math.round(p / 5) * 5));
+      loanAmount = p;
+      document.getElementById('myRange').value = p;
+      updateRangeBackground();
+      calculateInstallments();
     }
-
+  
     function updateLoanFromRange(amount) {
-        loanAmount = amount;
-        document.getElementById('amount').value = amount;
-        updateRangeBackground();
-        calculateInstallments();
+      let p = parseInt(amount, 10);
+      if (isNaN(p)) p = 30;
+      loanAmount = p;
+      document.getElementById('amount').value = p;
+      updateRangeBackground();
+      calculateInstallments();
     }
-
-    function increase(element) {
-
-        loanAmount = Math.min(parseInt(loanAmount) + 1, limitrange);
-        document.getElementById('amount').value = loanAmount;
-        document.getElementById('myRange').value = loanAmount;
-        calculateInstallments();
-        updateRangeBackground();
+  
+    function increase() {
+      loanAmount = Math.min(parseInt(loanAmount, 10) + 5, 50);
+      document.getElementById('amount').value = loanAmount;
+      document.getElementById('myRange').value = loanAmount;
+      calculateInstallments();
+      updateRangeBackground();
     }
-
+  
     function decrease() {
-        loanAmount = Math.max(parseInt(loanAmount) - 1, 8);
-        document.getElementById('amount').value = loanAmount;
-        document.getElementById('myRange').value = loanAmount;
-        calculateInstallments();
-        updateRangeBackground();
+      loanAmount = Math.max(parseInt(loanAmount, 10) - 5, 30);
+      document.getElementById('amount').value = loanAmount;
+      document.getElementById('myRange').value = loanAmount;
+      calculateInstallments();
+      updateRangeBackground();
     }
-
+  
     function calculateMonth(months, interestrate, element) {
-
-        const allTabs = document.querySelectorAll('#month-list li');
-        allTabs.forEach(function (tab) {
-            tab.classList.remove('bg-primary-500');
-            tab.classList.add('bg-gray-100');
-
-            tab.classList.add('text-neutralcolor-900');
-            tab.classList.remove('text-white');
-        });
-
-        element.classList.remove('text-neutralcolor-900');
-        element.classList.add('text-white');
-
-        element.classList.remove('bg-gray-100');
-        element.classList.add('bg-primary-500');
-
-        loanMonths = months;
-        interestRate = interestrate;
-        calculateInstallments();
+      const allTabs = document.querySelectorAll('#month-list li');
+      allTabs.forEach(function (tab) {
+        tab.classList.remove('bg-primary-500', 'text-white');
+        tab.classList.add('bg-gray-100', 'text-neutralcolor-900');
+      });
+  
+      element.classList.remove('bg-gray-100', 'text-neutralcolor-900');
+      element.classList.add('bg-primary-500', 'text-white');
+  
+      loanMonths = months;
+      interestRate = interestrate;
+      calculateInstallments();
     }
-
-
+  
     function calculateInstallments() {
-    const toEnglishNumber = (str) => {
-        return str
-            .replace(/[۰-۹]/g, (d) => String('۰۱۲۳۴۵۶۷۸۹'.indexOf(d)))
-            .replace(/[٬,]/g, '');
-    };
-
-    const safeParse = (id) => {
+      const toEnglishNumber = (str) => {
+        return String(str || '')
+          .replace(/[۰-۹]/g, (d) => String('۰۱۲۳۴۵۶۷۸۹'.indexOf(d)))
+          .replace(/[٬,]/g, '');
+      };
+  
+      const safeParse = (id) => {
         const el = document.getElementById(id);
         if (!el) {
-            console.warn(`⛔ عنصر ${id} پیدا نشد: ${id}`);
-            return 0;
+          console.warn(`⛔ عنصر پیدا نشد: ${id}`);
+          return 0;
         }
         return parseFloat(toEnglishNumber(el.value || '0')) || 0;
-    };
-
-    const inpHDNdoubleP = safeParse("inphidden-doubleP");
-    const inpHDNsingleP = safeParse("inphidden-singleP");
-    const inpHDNwBedP = safeParse("inphidden-wBedP");
-    const inpHDNwoBedP = safeParse("inphidden-woBedP");
-
-    document.getElementById("adult-installment").disabled = (inpHDNdoubleP === 0 && inpHDNsingleP === 0);
-    document.getElementById("child-bed-installment").disabled = (inpHDNwBedP === 0);
-    document.getElementById("child-installment").disabled = (inpHDNwoBedP === 0);
-    document.getElementById("infant-installment").disabled = (inpHDNwoBedP === 0);
-
-    adultCountF = parseInt(document.getElementById("adult-installment")?.value || "0");
-    childbedCountF = parseInt(document.getElementById("child-bed-installment")?.value || "0");
-    childwobedCountF = parseInt(document.getElementById("child-installment")?.value || "0");
-    infantCountF = parseInt(document.getElementById("infant-installment")?.value || "0");
-
-    if (adultCountF === 1) {
+      };
+  
+      const inpHDNdoubleP = safeParse("inphidden-doubleP");
+      const inpHDNsingleP = safeParse("inphidden-singleP");
+      const inpHDNwBedP   = safeParse("inphidden-wBedP");
+      const inpHDNwoBedP  = safeParse("inphidden-woBedP");
+  
+      document.getElementById("adult-installment").disabled      = (inpHDNdoubleP === 0 && inpHDNsingleP === 0);
+      document.getElementById("child-bed-installment").disabled  = (inpHDNwBedP === 0);
+      document.getElementById("child-installment").disabled      = (inpHDNwoBedP === 0);
+      document.getElementById("infant-installment").disabled     = (inpHDNwoBedP === 0);
+  
+      adultCountF      = parseInt(document.getElementById("adult-installment")?.value || "0");
+      childbedCountF   = parseInt(document.getElementById("child-bed-installment")?.value || "0");
+      childwobedCountF = parseInt(document.getElementById("child-installment")?.value || "0");
+      infantCountF     = parseInt(document.getElementById("infant-installment")?.value || "0");
+  
+      if (adultCountF === 1) {
         totalprice =
-            (adultCountF * inpHDNsingleP) +
-            (childwobedCountF * inpHDNwoBedP) +
-            (infantCountF * inpHDNwoBedP) +
-            (childbedCountF * inpHDNwBedP);
-    } else {
+          (adultCountF * inpHDNsingleP) +
+          (childwobedCountF * inpHDNwoBedP) +
+          (infantCountF * inpHDNwoBedP) +
+          (childbedCountF * inpHDNwBedP);
+      } else {
         totalprice =
-            (adultCountF * inpHDNdoubleP) +
-            (childwobedCountF * inpHDNwoBedP) +
-            (infantCountF * inpHDNwoBedP) +
-            (childbedCountF * inpHDNwBedP);
+          (adultCountF * inpHDNdoubleP) +
+          (childwobedCountF * inpHDNwoBedP) +
+          (infantCountF * inpHDNwoBedP) +
+          (childbedCountF * inpHDNwBedP);
+      }
+  
+      const downPaymentPercent = (parseFloat(loanAmount) || 30) / 100;
+      const downPayment        = totalprice * downPaymentPercent;    
+      const remaining          = Math.max(totalprice - downPayment, 0); 
+  
+      const r = (parseFloat(interestRate) || 0) / 100;
+      const totalInterest = remaining * loanMonths * r;
+  
+      const totalAmountWithFacilities = remaining + totalInterest;
+  
+      const installmentAmount = loanMonths > 0 ? (totalAmountWithFacilities / loanMonths) : 0;
+  
+      document.querySelector('.total-amount').textContent              = Math.round(totalprice).toLocaleString();
+      document.querySelector('.Total-amount-facilities').textContent   = Math.round(totalAmountWithFacilities).toLocaleString();
+      document.querySelector('.Total-advance-payment').textContent     = Math.round(downPayment).toLocaleString();
+      document.querySelector('.amount-each-installment').textContent   = Math.round(installmentAmount).toLocaleString();
     }
-
-    const totalAmount = (parseFloat(loanAmount) || 0) * 1_000_000;
-
-    const totalAdvancePayment = totalprice - totalAmount;
-
-    if (totalAmount <= 0) {
-        document.querySelector('.total-amount').textContent = totalprice.toLocaleString();
-        document.querySelector('.Total-amount-facilities').textContent = totalprice.toLocaleString();
-        document.querySelector('.Total-advance-payment').textContent = totalprice.toLocaleString();
-        document.querySelector('.amount-each-installment').textContent = '0';
-        return;
-    }
-
-    const totalInterest = interestRate * loanMonths * 1_000_000;
-
-    const totalAmountWithFacilities = totalInterest + totalAmount;
-
-    const installmentAmount = totalAmountWithFacilities / loanMonths;
-
-    document.querySelector('.total-amount').textContent = totalprice.toLocaleString();
-    document.querySelector('.Total-amount-facilities').textContent = totalAmountWithFacilities.toLocaleString();
-    document.querySelector('.Total-advance-payment').textContent = totalAdvancePayment.toLocaleString();
-    document.querySelector('.amount-each-installment').textContent = installmentAmount.toLocaleString();
-
-}
-
-
+  
     updateRangeBackground();
     calculateInstallments();
-
-
+  
     function closeModalContainerForm(event) {
-        if (event.target === event.currentTarget) {
-            event.currentTarget.classList.add('hidden');
-        }
+      if (event.target === event.currentTarget) {
+        event.currentTarget.classList.add('hidden');
+      }
     }
-
-</script>
+  </script>
