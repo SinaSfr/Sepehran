@@ -2649,11 +2649,34 @@ body {
 }
 
 .tour-description h1,
+.visa-description h1,
 .tour-description h2,
+.visa-description h2,
 .tour-description h3,
+.visa-description h3,
 .tour-description h4,
+.visa-description h4,
 .tour-description h5,
-.tour-description h6{
+.visa-description h5,
+.tour-description h6,
+.visa-description h6 {
   font-size: revert;
   font-weight: revert;
+}
+.tour-description ul,
+.visa-description ul {
+  list-style: disc;
+  padding: revert !important;
+}
+
+.visa-description ol,
+.tour-description ol {
+  list-style: decimal;
+  padding: revert !important;
+}
+
+.visa-description table,
+.tour-description table{
+  table-layout: fixed;
+  width: 100%;
 }

@@ -34,8 +34,9 @@
 </basis>
 
 <basis core="dbsource" source="basiscore" lid="1" mid="20" name="db" catid="[##cms.query.catid##]">
-    <member name="tour-list" type="list" link="tour.bc" propertyid="8076,8181,8077,10000504,3087921,3087938,3087939,3087934"
-        perpage="6" size="151x208" pageno="[##cms.query.pagenum|(1)##]" order="ord" />
+    <member name="tour-list" type="list" link="tour.bc"
+        propertyid="8076,8181,8077,10000504,3087921,3087938,3087939,3087934" perpage="6" size="151x208"
+        pageno="[##cms.query.pagenum|(1)##]" order="ord" />
     <member name="paging" type="list" request="paging" count="3" parentname="tour-list" />
 </basis>
 <basis core="dbsource" source="basiscore" mid="20" name="list" lid="1" schemaid="987" term="[##cms.query.term##]">
@@ -176,8 +177,8 @@
                             <a href="/tour-list.bc?catid=@catid"
                                 class="group flex items-end relative rounded-2xl overflow-hidden">
                                 <div class="absolute inset-0 w-full bg-purple-overlay"></div>
-                                <img src="\@image" class="w-full h-40 object-cover" alt="@title" width="304" height="164"
-                                    loading="lazy">
+                                <img src="\@image" class="w-full h-40 object-cover" alt="@title" width="304"
+                                    height="164" loading="lazy">
                                 <div class="absolute w-full flex items-center justify-between mb-4 px-6">
                                     <h2
                                         class="text-white text-2xl font-extrabold transition-all duration-300 group-hover:text-secondary-500">
@@ -193,8 +194,8 @@
                         <div class="swiper-slide w-[334px]">
                             <a href="/@link" class="group flex items-end relative rounded-2xl overflow-hidden">
                                 <div class="absolute inset-0 w-full bg-purple-overlay"></div>
-                                <img src="\@image" class="w-full h-40 object-cover" alt="@title" width="304" height="164"
-                                    loading="lazy">
+                                <img src="\@image" class="w-full h-40 object-cover" alt="@title" width="304"
+                                    height="164" loading="lazy">
                                 <div class="absolute w-full flex items-center justify-between mb-4 px-6">
                                     <h2
                                         class="text-white text-2xl font-extrabold transition-all duration-300 group-hover:text-secondary-500">
@@ -307,228 +308,229 @@
 
             </aside>
             <div class="flex-1 min-w-0">
-                <section class="bg-primary-50 px-6 pt-8 pb-4 rounded-2xl">
-                    <h2 class="text-[36px] font-extrabold mb-6 pb-3 border-b-2 border-white">
-                        پیشنهادات ویژه <span class="text-primary-500">گردشگران</span>
-                    </h2>
-                    <div class="swiper swiper-special-suggestion pb-4">
-                        <!-- Additional required wrapper -->
-                        <basis core="list" datamembername="db.special-tour">
-                            <layout>
+
+                <basis core="list" datamembername="db.special-tour">
+                    <layout>
+                        <section class="bg-primary-50 px-6 pt-8 pb-4 rounded-2xl">
+                            <h2 class="text-[36px] font-extrabold mb-6 pb-3 border-b-2 border-white">
+                                پیشنهادات ویژه <span class="text-primary-500">گردشگران</span>
+                            </h2>
+                            <div class="swiper swiper-special-suggestion pb-4">
                                 <!-- Additional required wrapper -->
                                 <div class="swiper-wrapper">
                                     <!-- Slides -->
                                     @child
                                 </div>
-                            </layout>
-                            <face filter="link is null and prp_3087934 is null">
-                                <div class="swiper-slide w-[420px]">
-                                    <a href="/tour.bc?id=@id"
-                                        class="flex flex-col border border-gray-50 bg-white rounded-xl shadow-medium-btn-shadow p-6">
-                                        <img src="\@00344X00176prp"
-                                            class="w-full h-44 object-cover rounded-xl overflow-hidden shadow-soft-deep"
-                                            alt="@title" width="344" height="176" loading="lazy">
-                                        <h2 class="text-2xl font-extrabold mt-8 text-center">@title</h2>
-                                        <div class="flex items-center justify-between mt-3">
-                                            <span
-                                                class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
-                                                <svg width="24" height="24" class="group-hover:hidden">
-                                                    <use xlink:href="/images/sprite-icons.svg#icon-sun"></use>
-                                                </svg>
-                                                @prp_8076
-                                            </span>
-                                            <span
-                                                class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
-                                                <svg width="24" height="24" class="group-hover:hidden">
-                                                    <use xlink:href="/images/sprite-icons.svg#icon-flash"></use>
-                                                </svg>
-                                                @prp_10000504
-                                            </span>
-                                            <span
-                                                class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
-                                                <svg width="24" height="24" class="group-hover:hidden">
-                                                    <use xlink:href="/images/sprite-icons.svg#icon-blue-star"></use>
-                                                </svg>
-                                                @prp_3087933 ستاره
-                                            </span>
-                                        </div>
-                                        <div class="flex justify-between mt-6 h-full">
-                                            <div class="flex flex-col justify-between">
-                                                <span class="text-xs font-light">شروع قیمت از:</span>
-                                                <span class="text-2xl text-primary-500 font-extrabold">@prp_8181</span>
-                                            </div>
-                                            <button
-                                                class="group flex items-center justify-center gap-2 border border-gray-100 rounded-xl w-36 h-[73px] transition-all duration-300 hover:bg-primary-500 hover:shadow-btn-shadow hover:text-white">
-                                                اطلاعات بیشتر
-                                                <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path class="transition-all duration-300 group-hover:stroke-white"
-                                                        d="M15 6.15674L9 12.1567L15 18.1567" stroke="#1E2128" />
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </a>
+                            </div>
+                        </section>
+                    </layout>
+                    <face filter="link is null and prp_3087934 is null">
+                        <div class="swiper-slide w-[420px]">
+                            <a href="/tour.bc?id=@id"
+                                class="flex flex-col border border-gray-50 bg-white rounded-xl shadow-medium-btn-shadow p-6">
+                                <img src="\@00344X00176prp"
+                                    class="w-full h-44 object-cover rounded-xl overflow-hidden shadow-soft-deep"
+                                    alt="@title" width="344" height="176" loading="lazy">
+                                <h2 class="text-2xl font-extrabold mt-8 text-center">@title</h2>
+                                <div class="flex items-center justify-between mt-3">
+                                    <span
+                                        class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
+                                        <svg width="24" height="24" class="group-hover:hidden">
+                                            <use xlink:href="/images/sprite-icons.svg#icon-sun"></use>
+                                        </svg>
+                                        @prp_8076
+                                    </span>
+                                    <span
+                                        class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
+                                        <svg width="24" height="24" class="group-hover:hidden">
+                                            <use xlink:href="/images/sprite-icons.svg#icon-flash"></use>
+                                        </svg>
+                                        @prp_10000504
+                                    </span>
+                                    <span
+                                        class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
+                                        <svg width="24" height="24" class="group-hover:hidden">
+                                            <use xlink:href="/images/sprite-icons.svg#icon-blue-star"></use>
+                                        </svg>
+                                        @prp_3087933 ستاره
+                                    </span>
                                 </div>
-                            </face>
-                            <face filter="prp_3087934 is null">
-                                <div class="swiper-slide w-[420px]">
-                                    <a href="/@link"
-                                        class="flex flex-col border border-gray-50 bg-white rounded-xl shadow-medium-btn-shadow p-6">
-                                        <img src="\@00344X00176prp"
-                                            class="w-full h-44 object-cover rounded-xl overflow-hidden shadow-soft-deep"
-                                            alt="@title" width="344" height="176" loading="lazy">
-                                        <h2 class="text-2xl font-extrabold mt-8 text-center">@title</h2>
-                                        <div class="flex items-center justify-between mt-3">
-                                            <span
-                                                class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
-                                                <svg width="24" height="24" class="group-hover:hidden">
-                                                    <use xlink:href="/images/sprite-icons.svg#icon-sun"></use>
-                                                </svg>
-                                                @prp_8076
-                                            </span>
-                                            <span
-                                                class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
-                                                <svg width="24" height="24" class="group-hover:hidden">
-                                                    <use xlink:href="/images/sprite-icons.svg#icon-flash"></use>
-                                                </svg>
-                                                @prp_10000504
-                                            </span>
-                                            <span
-                                                class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
-                                                <svg width="24" height="24" class="group-hover:hidden">
-                                                    <use xlink:href="/images/sprite-icons.svg#icon-blue-star"></use>
-                                                </svg>
-                                                @prp_3087933 ستاره
-                                            </span>
-                                        </div>
-                                        <div class="flex justify-between mt-6 h-full">
-                                            <div class="flex flex-col justify-between">
-                                                <span class="text-xs font-light">شروع قیمت از:</span>
-                                                <span class="text-2xl text-primary-500 font-extrabold">@prp_8181</span>
-                                            </div>
-                                            <button
-                                                class="group flex items-center justify-center gap-2 border border-gray-100 rounded-xl w-36 h-[73px] transition-all duration-300 hover:bg-primary-500 hover:shadow-btn-shadow hover:text-white">
-                                                اطلاعات بیشتر
-                                                <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path class="transition-all duration-300 group-hover:stroke-white"
-                                                        d="M15 6.15674L9 12.1567L15 18.1567" stroke="#1E2128" />
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </a>
+                                <div class="flex justify-between mt-6 h-full">
+                                    <div class="flex flex-col justify-between">
+                                        <span class="text-xs font-light">شروع قیمت از:</span>
+                                        <span class="text-2xl text-primary-500 font-extrabold">@prp_8181</span>
+                                    </div>
+                                    <button
+                                        class="group flex items-center justify-center gap-2 border border-gray-100 rounded-xl w-36 h-[73px] transition-all duration-300 hover:bg-primary-500 hover:shadow-btn-shadow hover:text-white">
+                                        اطلاعات بیشتر
+                                        <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path class="transition-all duration-300 group-hover:stroke-white"
+                                                d="M15 6.15674L9 12.1567L15 18.1567" stroke="#1E2128" />
+                                        </svg>
+                                    </button>
                                 </div>
-                            </face>
-                            <face filter="link is null">
-                                <div class="swiper-slide w-[420px]">
-                                    <a href="/tour.bc?id=@id"
-                                        class="flex flex-col border border-gray-50 bg-white rounded-xl shadow-medium-btn-shadow p-6">
-                                        <div class="relative rounded-xl overflow-hidden shadow-soft-deep">
-                                            <img src="\@00344X00176prp" class="block w-full h-44 object-cover"
-                                                alt="@title" width="344" height="176" loading="lazy">
-                                            <span
-                                                class="absolute left-0 bottom-0 text-sm font-bold py-2 px-4 bg-amber-400 rounded-tr">
-                                                @prp_3087934</span>
-                                        </div>
-                                        <h2 class="text-2xl font-extrabold mt-8 text-center">@title</h2>
-                                        <div class="flex items-center justify-between mt-3">
-                                            <span
-                                                class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
-                                                <svg width="24" height="24" class="group-hover:hidden">
-                                                    <use xlink:href="/images/sprite-icons.svg#icon-sun"></use>
-                                                </svg>
-                                                @prp_8076
-                                            </span>
-                                            <span
-                                                class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
-                                                <svg width="24" height="24" class="group-hover:hidden">
-                                                    <use xlink:href="/images/sprite-icons.svg#icon-flash"></use>
-                                                </svg>
-                                                @prp_10000504
-                                            </span>
-                                            <span
-                                                class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
-                                                <svg width="24" height="24" class="group-hover:hidden">
-                                                    <use xlink:href="/images/sprite-icons.svg#icon-blue-star"></use>
-                                                </svg>
-                                                @prp_3087933 ستاره
-                                            </span>
-                                        </div>
-                                        <div class="flex justify-between mt-6 h-full">
-                                            <div class="flex flex-col justify-between">
-                                                <span class="text-xs font-light">شروع قیمت از:</span>
-                                                <span class="text-2xl text-primary-500 font-extrabold">@prp_8181</span>
+                            </a>
+                        </div>
+                    </face>
+                    <face filter="prp_3087934 is null">
+                        <div class="swiper-slide w-[420px]">
+                            <a href="/@link"
+                                class="flex flex-col border border-gray-50 bg-white rounded-xl shadow-medium-btn-shadow p-6">
+                                <img src="\@00344X00176prp"
+                                    class="w-full h-44 object-cover rounded-xl overflow-hidden shadow-soft-deep"
+                                    alt="@title" width="344" height="176" loading="lazy">
+                                <h2 class="text-2xl font-extrabold mt-8 text-center">@title</h2>
+                                <div class="flex items-center justify-between mt-3">
+                                    <span
+                                        class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
+                                        <svg width="24" height="24" class="group-hover:hidden">
+                                            <use xlink:href="/images/sprite-icons.svg#icon-sun"></use>
+                                        </svg>
+                                        @prp_8076
+                                    </span>
+                                    <span
+                                        class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
+                                        <svg width="24" height="24" class="group-hover:hidden">
+                                            <use xlink:href="/images/sprite-icons.svg#icon-flash"></use>
+                                        </svg>
+                                        @prp_10000504
+                                    </span>
+                                    <span
+                                        class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
+                                        <svg width="24" height="24" class="group-hover:hidden">
+                                            <use xlink:href="/images/sprite-icons.svg#icon-blue-star"></use>
+                                        </svg>
+                                        @prp_3087933 ستاره
+                                    </span>
+                                </div>
+                                <div class="flex justify-between mt-6 h-full">
+                                    <div class="flex flex-col justify-between">
+                                        <span class="text-xs font-light">شروع قیمت از:</span>
+                                        <span class="text-2xl text-primary-500 font-extrabold">@prp_8181</span>
+                                    </div>
+                                    <button
+                                        class="group flex items-center justify-center gap-2 border border-gray-100 rounded-xl w-36 h-[73px] transition-all duration-300 hover:bg-primary-500 hover:shadow-btn-shadow hover:text-white">
+                                        اطلاعات بیشتر
+                                        <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path class="transition-all duration-300 group-hover:stroke-white"
+                                                d="M15 6.15674L9 12.1567L15 18.1567" stroke="#1E2128" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </a>
+                        </div>
+                    </face>
+                    <face filter="link is null">
+                        <div class="swiper-slide w-[420px]">
+                            <a href="/tour.bc?id=@id"
+                                class="flex flex-col border border-gray-50 bg-white rounded-xl shadow-medium-btn-shadow p-6">
+                                <div class="relative rounded-xl overflow-hidden shadow-soft-deep">
+                                    <img src="\@00344X00176prp" class="block w-full h-44 object-cover" alt="@title"
+                                        width="344" height="176" loading="lazy">
+                                    <span
+                                        class="absolute left-0 bottom-0 text-sm font-bold py-2 px-4 bg-amber-400 rounded-tr">
+                                        @prp_3087934</span>
+                                </div>
+                                <h2 class="text-2xl font-extrabold mt-8 text-center">@title</h2>
+                                <div class="flex items-center justify-between mt-3">
+                                    <span
+                                        class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
+                                        <svg width="24" height="24" class="group-hover:hidden">
+                                            <use xlink:href="/images/sprite-icons.svg#icon-sun"></use>
+                                        </svg>
+                                        @prp_8076
+                                    </span>
+                                    <span
+                                        class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
+                                        <svg width="24" height="24" class="group-hover:hidden">
+                                            <use xlink:href="/images/sprite-icons.svg#icon-flash"></use>
+                                        </svg>
+                                        @prp_10000504
+                                    </span>
+                                    <span
+                                        class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
+                                        <svg width="24" height="24" class="group-hover:hidden">
+                                            <use xlink:href="/images/sprite-icons.svg#icon-blue-star"></use>
+                                        </svg>
+                                        @prp_3087933 ستاره
+                                    </span>
+                                </div>
+                                <div class="flex justify-between mt-6 h-full">
+                                    <div class="flex flex-col justify-between">
+                                        <span class="text-xs font-light">شروع قیمت از:</span>
+                                        <span class="text-2xl text-primary-500 font-extrabold">@prp_8181</span>
 
-                                            </div>
-                                            <button
-                                                class="group flex items-center justify-center gap-2 border border-gray-100 rounded-xl w-36 h-[73px] transition-all duration-300 hover:bg-primary-500 hover:shadow-btn-shadow hover:text-white">
-                                                اطلاعات بیشتر
-                                                <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path class="transition-all duration-300 group-hover:stroke-white"
-                                                        d="M15 6.15674L9 12.1567L15 18.1567" stroke="#1E2128" />
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </a>
+                                    </div>
+                                    <button
+                                        class="group flex items-center justify-center gap-2 border border-gray-100 rounded-xl w-36 h-[73px] transition-all duration-300 hover:bg-primary-500 hover:shadow-btn-shadow hover:text-white">
+                                        اطلاعات بیشتر
+                                        <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path class="transition-all duration-300 group-hover:stroke-white"
+                                                d="M15 6.15674L9 12.1567L15 18.1567" stroke="#1E2128" />
+                                        </svg>
+                                    </button>
                                 </div>
-                            </face>
-                            <face>
-                                <div class="swiper-slide w-[420px]">
-                                    <a href="/@link"
-                                        class="flex flex-col border border-gray-50 bg-white rounded-xl shadow-medium-btn-shadow p-6">
-                                        <div class="relative rounded-xl overflow-hidden shadow-soft-deep">
-                                            <img src="\@00344X00176prp" class="block w-full h-44 object-cover"
-                                                alt="@title" width="344" height="176" loading="lazy">
-                                            <span
-                                                class="absolute left-0 bottom-0 text-sm font-bold py-2 px-4 bg-amber-400 rounded-tr">
-                                                @prp_3087934</span>
-                                        </div>
-                                        <h2 class="text-2xl font-extrabold mt-8 text-center">@title</h2>
-                                        <div class="flex items-center justify-between mt-3">
-                                            <span
-                                                class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
-                                                <svg width="24" height="24" class="group-hover:hidden">
-                                                    <use xlink:href="/images/sprite-icons.svg#icon-sun"></use>
-                                                </svg>
-                                                @prp_8076
-                                            </span>
-                                            <span
-                                                class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
-                                                <svg width="24" height="24" class="group-hover:hidden">
-                                                    <use xlink:href="/images/sprite-icons.svg#icon-flash"></use>
-                                                </svg>
-                                                @prp_10000504
-                                            </span>
-                                            <span
-                                                class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
-                                                <svg width="24" height="24" class="group-hover:hidden">
-                                                    <use xlink:href="/images/sprite-icons.svg#icon-blue-star"></use>
-                                                </svg>
-                                                @prp_3087933 ستاره
-                                            </span>
-                                        </div>
-                                        <div class="flex justify-between mt-6 h-full">
-                                            <div class="flex flex-col justify-between">
-                                                <span class="text-xs font-light">شروع قیمت از:</span>
-                                                <span class="text-2xl text-primary-500 font-extrabold">@prp_8181</span>
-                                            </div>
-                                            <button
-                                                class="group flex items-center justify-center gap-2 border border-gray-100 rounded-xl w-36 h-[73px] transition-all duration-300 hover:bg-primary-500 hover:shadow-btn-shadow hover:text-white">
-                                                اطلاعات بیشتر
-                                                <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path class="transition-all duration-300 group-hover:stroke-white"
-                                                        d="M15 6.15674L9 12.1567L15 18.1567" stroke="#1E2128" />
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </a>
+                            </a>
+                        </div>
+                    </face>
+                    <face>
+                        <div class="swiper-slide w-[420px]">
+                            <a href="/@link"
+                                class="flex flex-col border border-gray-50 bg-white rounded-xl shadow-medium-btn-shadow p-6">
+                                <div class="relative rounded-xl overflow-hidden shadow-soft-deep">
+                                    <img src="\@00344X00176prp" class="block w-full h-44 object-cover" alt="@title"
+                                        width="344" height="176" loading="lazy">
+                                    <span
+                                        class="absolute left-0 bottom-0 text-sm font-bold py-2 px-4 bg-amber-400 rounded-tr">
+                                        @prp_3087934</span>
                                 </div>
-                            </face>
-                        </basis>
-                    </div>
-                </section>
+                                <h2 class="text-2xl font-extrabold mt-8 text-center">@title</h2>
+                                <div class="flex items-center justify-between mt-3">
+                                    <span
+                                        class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
+                                        <svg width="24" height="24" class="group-hover:hidden">
+                                            <use xlink:href="/images/sprite-icons.svg#icon-sun"></use>
+                                        </svg>
+                                        @prp_8076
+                                    </span>
+                                    <span
+                                        class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
+                                        <svg width="24" height="24" class="group-hover:hidden">
+                                            <use xlink:href="/images/sprite-icons.svg#icon-flash"></use>
+                                        </svg>
+                                        @prp_10000504
+                                    </span>
+                                    <span
+                                        class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
+                                        <svg width="24" height="24" class="group-hover:hidden">
+                                            <use xlink:href="/images/sprite-icons.svg#icon-blue-star"></use>
+                                        </svg>
+                                        @prp_3087933 ستاره
+                                    </span>
+                                </div>
+                                <div class="flex justify-between mt-6 h-full">
+                                    <div class="flex flex-col justify-between">
+                                        <span class="text-xs font-light">شروع قیمت از:</span>
+                                        <span class="text-2xl text-primary-500 font-extrabold">@prp_8181</span>
+                                    </div>
+                                    <button
+                                        class="group flex items-center justify-center gap-2 border border-gray-100 rounded-xl w-36 h-[73px] transition-all duration-300 hover:bg-primary-500 hover:shadow-btn-shadow hover:text-white">
+                                        اطلاعات بیشتر
+                                        <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path class="transition-all duration-300 group-hover:stroke-white"
+                                                d="M15 6.15674L9 12.1567L15 18.1567" stroke="#1E2128" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </a>
+                        </div>
+                    </face>
+                </basis>
+
                 <section class="mt-8">
                     <div class="flex items-center gap-6 mb-4">
                         <span class="font-extrabold">مرتب سازی براساس:</span>
@@ -724,7 +726,7 @@
                                 <div class="custom-dashed-left h-60 self-center"></div>
                                 <div
                                     class="flex items-center justify-center flex-1 bg-gray-50 rounded-2xl transition-all duration-300 group-hover:bg-primary-500">
-                                    <div> 
+                                    <div>
                                         <span
                                             class="flex text-sm font-semibold mb-2 transition-all duration-300 group-hover:text-white">شروع
                                             قیمت از:</span>
@@ -769,8 +771,8 @@
                                     <div class="flex items-center gap-8">
                                         <div class="relative rounded-2xl overflow-hidden">
                                             <img src="\@db.tour-list.00151X00208prp"
-                                            class="h-52 object-cover backdrop-blur-sm opacity-80"
-                                            alt="@db.tour-list.title" width="151" height="208" loading="lazy">
+                                                class="h-52 object-cover backdrop-blur-sm opacity-80"
+                                                alt="@db.tour-list.title" width="151" height="208" loading="lazy">
                                             <span
                                                 class="flex items-center justify-center w-full absolute left-0 bottom-0 text-sm font-bold py-2 bg-amber-400 rounded-tr">
                                                 @db.tour-list.prp_3087934</span>
@@ -994,13 +996,13 @@
                             </div>
                         </layout>
                         <face filter="TypeID in(129)">
-                            <div class="text-sm font-semibold mt-6 leading-7 text-justify mb-6">
+                            <div class="tour-description text-sm font-semibold mt-6 leading-7 text-justify mb-6">
                                 @largetext
                             </div>
                         </face>
                         <face filter="TypeID in(250)">
                             <h2 id="@valueID" class="font-medium text-zinc-900 mb-2">@text</h2>
-                            <div class="text-sm font-semibold mt-6 leading-7 text-justify mb-6">@largetext</div>
+                            <div class="tour-description text-sm font-semibold mt-6 leading-7 text-justify mb-6">@largetext</div>
                         </face>
                     </basis>
                     <div
@@ -1103,18 +1105,18 @@
                                                 <basis datamembername="captcha.code" core="print" run="atclient">
                                                     <face>
                                                         <script type="text/template">
-                                                              <div class="d-inline-block">
-                                                                <div class="flex justify-between">
-                                                                <div class="float-right w-[323px]">
-                                                                  <input type="text" class="!w-[287px] contactUsInput codeinputm" name="captcha" maxlength="4" placeholder="کد امنیتی"/>
-                                                                  <input type="hidden" name="captchaid" value="@captcha@" />
-                                                                </div>
-                                                                <div class="flex items-center gap-4 ml-2">
-                                                                    <img src="/@captcha@" loading="lazy" width="120" height="60" alt="captcha" class="w-16 h-auto" />
-                                                                    <svg class="inline-block align-middle cursor-pointer w-9 h-9" onclick="refreshCaptchaConsulation()" width="24" height="24" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18.1247 8.56165H18.1238C18.0007 8.56175 17.8788 8.5861 17.7651 8.63331C17.6514 8.68052 17.5481 8.74967 17.4611 8.8368C17.3741 8.92393 17.3052 9.02734 17.2581 9.14113C17.2111 9.25492 17.187 9.37685 17.1871 9.49997C17.1859 10.8143 16.8245 12.1032 16.1421 13.2265C15.4597 14.3498 14.4824 15.2646 13.3166 15.8714C12.1507 16.4782 10.8408 16.7538 9.52921 16.6683C8.21765 16.5827 6.95463 16.1393 5.87744 15.3862C2.63134 13.1132 1.83959 8.62309 4.11255 5.37696C6.38552 2.13083 10.8757 1.33899 14.1218 3.61204C14.6129 3.95501 15.0592 4.358 15.4504 4.81165H12.8121C12.5635 4.81165 12.325 4.91042 12.1492 5.08623C11.9734 5.26205 11.8746 5.5005 11.8746 5.74915C11.8746 5.99779 11.9734 6.23624 12.1492 6.41206C12.325 6.58787 12.5635 6.68665 12.8121 6.68665H17.1871C17.4358 6.68665 17.6742 6.58787 17.85 6.41206C18.0259 6.23624 18.1246 5.99779 18.1246 5.74915V1.37415C18.1246 1.12551 18.0259 0.887048 17.85 0.711233C17.6742 0.535418 17.4358 0.436646 17.1871 0.436646C16.9385 0.436646 16.7 0.535418 16.5242 0.711233C16.3484 0.887048 16.2496 1.12551 16.2496 1.37415V2.93536C15.9206 2.62321 15.5689 2.33596 15.1973 2.07598C14.2225 1.39342 13.1228 0.909542 11.9609 0.651979C10.7991 0.394417 9.59797 0.368213 8.42603 0.574863C7.25409 0.781513 6.13433 1.21697 5.13067 1.85637C4.12702 2.49578 3.25914 3.3266 2.57658 4.30141C1.19808 6.27013 0.658111 8.70582 1.07546 11.0727C1.49281 13.4395 2.83329 15.5436 4.80201 16.9221C6.31776 17.9898 8.12639 18.563 9.98041 18.5633C10.5144 18.5631 11.0474 18.5162 11.5732 18.4233C13.6714 18.0531 15.5722 16.9556 16.9417 15.3235C18.3112 13.6914 19.062 11.6289 19.0621 9.49833C19.0619 9.24983 18.963 9.01159 18.7873 8.83596C18.6115 8.66032 18.3732 8.56166 18.1247 8.56165Z" fill="#18181B"/></svg>
-                                                                </div>
-                                                                
-                                                            </div></div></script>
+                                                                            <div class="d-inline-block">
+                                                                              <div class="flex justify-between">
+                                                                              <div class="float-right w-[323px]">
+                                                                                <input type="text" class="!w-[287px] contactUsInput codeinputm" name="captcha" maxlength="4" placeholder="کد امنیتی"/>
+                                                                                <input type="hidden" name="captchaid" value="@captcha@" />
+                                                                              </div>
+                                                                              <div class="flex items-center gap-4 ml-2">
+                                                                                  <img src="/@captcha@" loading="lazy" width="120" height="60" alt="captcha" class="w-16 h-auto" />
+                                                                                  <svg class="inline-block align-middle cursor-pointer w-9 h-9" onclick="refreshCaptchaConsulation()" width="24" height="24" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18.1247 8.56165H18.1238C18.0007 8.56175 17.8788 8.5861 17.7651 8.63331C17.6514 8.68052 17.5481 8.74967 17.4611 8.8368C17.3741 8.92393 17.3052 9.02734 17.2581 9.14113C17.2111 9.25492 17.187 9.37685 17.1871 9.49997C17.1859 10.8143 16.8245 12.1032 16.1421 13.2265C15.4597 14.3498 14.4824 15.2646 13.3166 15.8714C12.1507 16.4782 10.8408 16.7538 9.52921 16.6683C8.21765 16.5827 6.95463 16.1393 5.87744 15.3862C2.63134 13.1132 1.83959 8.62309 4.11255 5.37696C6.38552 2.13083 10.8757 1.33899 14.1218 3.61204C14.6129 3.95501 15.0592 4.358 15.4504 4.81165H12.8121C12.5635 4.81165 12.325 4.91042 12.1492 5.08623C11.9734 5.26205 11.8746 5.5005 11.8746 5.74915C11.8746 5.99779 11.9734 6.23624 12.1492 6.41206C12.325 6.58787 12.5635 6.68665 12.8121 6.68665H17.1871C17.4358 6.68665 17.6742 6.58787 17.85 6.41206C18.0259 6.23624 18.1246 5.99779 18.1246 5.74915V1.37415C18.1246 1.12551 18.0259 0.887048 17.85 0.711233C17.6742 0.535418 17.4358 0.436646 17.1871 0.436646C16.9385 0.436646 16.7 0.535418 16.5242 0.711233C16.3484 0.887048 16.2496 1.12551 16.2496 1.37415V2.93536C15.9206 2.62321 15.5689 2.33596 15.1973 2.07598C14.2225 1.39342 13.1228 0.909542 11.9609 0.651979C10.7991 0.394417 9.59797 0.368213 8.42603 0.574863C7.25409 0.781513 6.13433 1.21697 5.13067 1.85637C4.12702 2.49578 3.25914 3.3266 2.57658 4.30141C1.19808 6.27013 0.658111 8.70582 1.07546 11.0727C1.49281 13.4395 2.83329 15.5436 4.80201 16.9221C6.31776 17.9898 8.12639 18.563 9.98041 18.5633C10.5144 18.5631 11.0474 18.5162 11.5732 18.4233C13.6714 18.0531 15.5722 16.9556 16.9417 15.3235C18.3112 13.6914 19.062 11.6289 19.0621 9.49833C19.0619 9.24983 18.963 9.01159 18.7873 8.83596C18.6115 8.66032 18.3732 8.56166 18.1247 8.56165Z" fill="#18181B"/></svg>
+                                                                              </div>
+                                                                              
+                                                                          </div></div></script>
                                                     </face>
                                                 </basis>
                                             </div>

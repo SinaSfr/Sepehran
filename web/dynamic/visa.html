@@ -8,7 +8,7 @@
   <member name="navigation" type="tree" request="navigationcat" />
 </basis>
 <basis core="dbsource" source="basiscore" lid="1" mid="20" name="visa-link">
-  <member name="cat" type="tree" request="cat" parentid="[##cms.query.vid##]" order="ord"></member>
+  <member name="cat" type="tree" request="cat" parentid="215049" order="ord"></member>
 </basis>
 
 <basis core="dbsource" source="media" lid="1" name="db" usedforid="[##cms.query.id##]" sourcemid="product">
@@ -19,7 +19,7 @@
   <member name="code" type="scalar" request="captcha"></member>
 </basis>
 
-<basis core="dbsource" source="userbehavior" name="db" usedforid="[##cms.query.id##]">
+<basis core="dbsource" source="userbehavior" mid="1" name="db" usedforid="[##cms.query.id##]">
   <member name="comment" type="list" order="ord" request="listcomment" />
 </basis>
 
@@ -230,7 +230,8 @@
             </layout>
             <face filter="TypeID in(140)">
               <div class="flex items-center gap-2 font-extrabold">
-                <span class="w-[7px] h-[7px] rounded-full bg-zinc-900 transition-all duration-300 group-hover:bg-primary-500"></span>
+                <span
+                  class="w-[7px] h-[7px] rounded-full bg-zinc-900 transition-all duration-300 group-hover:bg-primary-500"></span>
                 @text
               </div>
             </face>
@@ -341,13 +342,13 @@
               </div>
             </layout>
             <face filter="TypeID in(129)">
-              <div class="text-sm font-semibold mt-6 leading-7 text-justify mb-6">
+              <div class="visa-description text-sm font-semibold mt-6 leading-7 text-justify mb-6">
                 @largetext
               </div>
             </face>
             <face filter="TypeID in(250)">
               <h2 class="text-[48px] font-black mb-6">@text</h2>
-              <div class="text-sm font-semibold mt-6 leading-7 text-justify mb-6">@largetext</div>
+              <div class="visa-description text-sm font-semibold mt-6 leading-7 text-justify mb-6">@largetext</div>
             </face>
           </basis>
           <div class="flex items-center justify-center gap-3 mt-6 border border-gray-100 rounded-2xl mb-8">
@@ -547,7 +548,8 @@
             </svg>
             <h2 class="text-[36px] font-extrabold">نظرات کاربران:</h2>
           </div>
-          <form method="POST" class="pov-form bg-white mb-11">
+          <form action="/Tem1_OpinionAction.bc" onsubmit="SubmitOpinionForm(this , event)" method="POST"
+            class="pov-form bg-white">
             <input type="hidden" name="title" value="[##cms.seo.title##]" />
             <div class="row-cm-art wide">
               <div class="inputs-cm-art">
@@ -577,9 +579,9 @@
                     </div>
                     <span class="field-captcha flex items-center gap-6">
                       <span class="load-captcha">
-                        <img class="captchaa w-16 h-auto" alt="کد امنیتی" src="\[##captcha.code.captcha##]" width="120"
+                        <img class="captchaa w-16 h-auto" alt="کد امنیتی" src="[##captcha.code.captcha##]" width="120"
                           height="60" />
-                        <input type="hidden" value="[##captcha.code.captcha##]" name="Captchaid" />
+                        <input type="hidden" value="\[##captcha.code.captcha##]" name="Captchaid" />
                       </span>
                       <div onclick="refresh_captcha(this,event)">
                         <svg xmlns="http://www.w3.org/2000/svg" class="inline-block align-middle cursor-pointer w-9 h-9"
@@ -631,8 +633,8 @@
                 <div class="user-opinion-txt">
                   <div class="opinion-info flex justify-between pb-4 mb-3 border-b border-gray-100">
                     <div class="username-opinion flex items-center gap-6">
-                      <img src="[##cms.cms.cdn##]/images/opinion-avatar.png" class="h-20 rounded-full"
-                        alt="opinion-avatar" width="80" height="80" loading="lazy" />
+                      <img src="[##cms.cms.cdn##]/images/special-tour-card.jpg" class="h-20 rounded-full" alt=""
+                        width="80" height="80" loading="lazy" />
                       <div class="flex flex-col items-center">
                         <h2 class="text-2xl font-extrabold">@username</h2>
                       </div>
@@ -651,59 +653,63 @@
                     @comment
                   </div>
                 </div>
-                <div class="replyCommentForm mx-auto hidden pb-6 float-none clear-both mt-4">
-                  <form action="ReplyComment.bc" method="post" onsubmit="send_Reply(this , event)">
+                <div class="replyCommentForm w-10/12 mx-auto hidden pb-6 float-none clear-both mt-4">
+                  <form action="/ReplyComment.bc" method="post" onsubmit="send_Reply(this , event)">
                     <input
                       class="reply-title w-full border text-gray-400 placeholder-gray-400 text-sm font-bold rounded-lg h-40 p-6 resize-none outline-none"
                       type="hidden" name="username" value="" />
                     <textarea
                       class="w-full border text-gray-400 placeholder-gray-400 text-sm font-bold rounded-lg h-40 p-6 resize-none outline-none"
                       placeholder="پاسخ خود را تایپ کنید..." rows="6" name="ReplyComment" required>
-                      </textarea>
+                          </textarea>
                     <input type="hidden" name="parentid" value="@id" />
-                    <input type="hidden" name="replyProductid" value="[##cms.query.aid##]" />
+                    <input type="hidden" name="replyProductid" value="[##cms.query.id##]" />
                     <input name="mid" value="1" type="hidden" />
                     <input
-                      class="group flex items-center justify-center gap-2 font-extrabold rounded-xl w-36 h-[73px] transition-all duration-300 bg-secondary-500 cursor-pointer hover:shadow-btn-shadow"
+                      class="group flex items-center justify-center gap-2 mt-2 font-extrabold rounded-xl w-36 h-[73px] transition-all duration-300 bg-secondary-500 cursor-pointer hover:shadow-btn-shadow"
                       type="submit" value="ثبت" />
                   </form>
                 </div>
                 <div class="replyCommentTxt mx-auto">@Child</div>
               </div>
             </face>
-            <face level="2" filter="username='آمیتیس'">
-              <div class="opinionRowReply w-full bg-primary-50 rounded-3xl my-6">
-                <div class="text-sm rounded-xl px-3 py-3 my-2 w-11/12 mx-auto">
-                  <div class="user-opinion-txt flex justify-between items-center">
-                    <div class="opinion-info-reply flex justify-between w-2/12">
-                      <span class="support-icon text-black text-base mx-2 font-danabold"><img class="mb-2"
-                          src="[##cms.cms.cdn##]/images/gardeshgaran-comment-image.png" width="72" height="48"
-                          alt="gardeshgaran" />@username</span>
+            <face level="2" filter="username='گردشگران'">
+              <div class="opinionRow drop-shadow-comment-box bg-white rounded-3xl py-6 my-6 pr-20">
+                <div class="user-opinion-txt">
+                  <div class="opinion-info flex justify-between pb-4 mb-3 border-b border-gray-100">
+                    <div class="username-opinion flex items-center gap-6">
+                      <img src="[##cms.cms.cdn##]/images/special-tour-card.jpg" class="h-20 rounded-full" alt=""
+                        width="80" height="80" loading="lazy" />
+                      <div class="flex flex-col items-center">
+                        <h2 class="text-2xl font-extrabold">@username</h2>
+                      </div>
+
                     </div>
-                    <p class="w-10/12 font-danaregular text-sm leading-10 font-yekanbakhregularFA">
-                      @comment
-                    </p>
+                  </div>
+
+                  <div class="text-sm font-semibold leading-6 text-justify">
+                    @comment
                   </div>
                 </div>
               </div>
             </face>
             <face level="2">
-              <div class="opinionRowReply w-full bg-white rounded-3xl border border-neutralcolor-400 my-6">
-                <div class="text-sm rounded-xl px-3 py-3 my-3 w-11/12 mx-auto">
-                  <div class="user-opinion-txt flex justify-between">
-                    <div class="opinion-info-reply w-2/12">
-                      <span
-                        class="support-icon text-black text-sm mx-2 font-danabold flex flex-col justify-center items-center text-center">
-                        <img class="mb-2" src="[##cms.cms.cdn##]/images/user-reply-tag.png" width="32" height="32"
-                          alt="user-reply-tag" />
-                        @username
-                      </span>
+              <div class="opinionRow drop-shadow-comment-box bg-white rounded-3xl py-6 my-6 pr-20">
+                <div class="user-opinion-txt">
+                  <div class="opinion-info flex justify-between pb-4 mb-3 border-b border-gray-100">
+                    <div class="username-opinion flex items-center gap-6">
+                      <img src="[##cms.cms.cdn##]/images/special-tour-card.jpg" class="h-20 rounded-full" alt=""
+                        width="80" height="80" loading="lazy" />
+                      <div class="flex flex-col items-center">
+                        <h2 class="text-2xl font-extrabold">@username</h2>
+                      </div>
+
                     </div>
-                    <p class="w-10/12 font-danaregular text-sm leading-10 font-yekanbakhregularFA text-txtneutral-500">
-                      @comment
-                    </p>
                   </div>
-                  <div class="replyCommentTxt my-4">@Child</div>
+
+                  <div class="text-sm font-semibold leading-6 text-justify">
+                    @comment
+                  </div>
                 </div>
               </div>
             </face>
@@ -722,142 +728,7 @@
               </div>
             </div>
           </div>
-          <!-- <div
-            class="border border-gray-400 border-dashed [border-dash-array:8] py-8 px-10 rounded-xl"
-          >
-            <div class="flex flex-col gap-10">
-              <div>
-                <div
-                  class="flex justify-between pb-4 mb-3 border-b border-gray-100"
-                >
-                  <div class="flex items-center gap-6">
-                    <img
-                      src="[##cms.cms.cdn##]/images/special-tour-card.jpg"
-                      class="h-20 rounded-full"
-                      alt=""
-                      width="80"
-                      height="80"
-                      loading="lazy"
-                    />
-                    <div class="flex flex-col items-center">
-                      <h2 class="text-2xl font-extrabold">سعید خسروی</h2>
-                      <div class="flex items-center">
-                        <svg width="24" height="24">
-                          <use
-                            xlink:href="/images/sprite-icons.svg#icon-silver-star"
-                          ></use>
-                        </svg>
-                        <svg width="24" height="24">
-                          <use
-                            xlink:href="/images/sprite-icons.svg#icon-silver-star"
-                          ></use>
-                        </svg>
-                        <svg width="24" height="24">
-                          <use
-                            xlink:href="/images/sprite-icons.svg#icon-silver-star"
-                          ></use>
-                        </svg>
-                        <svg width="24" height="24">
-                          <use
-                            xlink:href="/images/sprite-icons.svg#icon-silver-star"
-                          ></use>
-                        </svg>
-                        <svg width="24" height="24">
-                          <use
-                            xlink:href="/images/sprite-icons.svg#icon-silver-star"
-                          ></use>
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-                  <a
-                    href=""
-                    class="flex items-center gap-1 self-end text-sm font-bold border-b border-zinc-900"
-                  >
-                    پاسخ
-                    <svg width="24" height="24">
-                      <use
-                        xlink:href="/images/sprite-icons.svg#icon-leaf"
-                      ></use>
-                    </svg>
-                  </a>
-                </div>
-                <div class="text-sm font-semibold leading-6 text-justify">
-                  لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
-                  استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و
-                  مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی
-                  تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای
-                  کاربردی می باشد کتابهای زیادی در شصت و سه درصد گذشته حال و
-                  آینده.
-                </div>
-              </div>
-              <div class="pr-20">
-                <div
-                  class="flex justify-between pb-4 mb-3 border-b border-gray-100"
-                >
-                  <div class="flex items-center gap-6">
-                    <img
-                      src="[##cms.cms.cdn##]/images/special-tour-card.jpg"
-                      class="h-20 rounded-full"
-                      alt=""
-                      width="80"
-                      height="80"
-                      loading="lazy"
-                    />
-                    <div class="flex flex-col items-center">
-                      <h2 class="text-2xl font-extrabold">سعید خسروی</h2>
-                      <div class="flex items-center">
-                        <svg width="24" height="24">
-                          <use
-                            xlink:href="/images/sprite-icons.svg#icon-silver-star"
-                          ></use>
-                        </svg>
-                        <svg width="24" height="24">
-                          <use
-                            xlink:href="/images/sprite-icons.svg#icon-silver-star"
-                          ></use>
-                        </svg>
-                        <svg width="24" height="24">
-                          <use
-                            xlink:href="/images/sprite-icons.svg#icon-silver-star"
-                          ></use>
-                        </svg>
-                        <svg width="24" height="24">
-                          <use
-                            xlink:href="/images/sprite-icons.svg#icon-silver-star"
-                          ></use>
-                        </svg>
-                        <svg width="24" height="24">
-                          <use
-                            xlink:href="/images/sprite-icons.svg#icon-silver-star"
-                          ></use>
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-                  <a
-                    href=""
-                    class="flex items-center gap-1 self-end text-sm font-bold border-b border-zinc-900"
-                  >
-                    پاسخ
-                    <svg width="24" height="24">
-                      <use
-                        xlink:href="/images/sprite-icons.svg#icon-leaf"
-                      ></use>
-                    </svg>
-                  </a>
-                </div>
-                <div class="text-sm font-semibold leading-6 text-justify">
-                  لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
-                  استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و
-                  مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی
-                  تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای
-                  کاربردی می باشد کتابهای زیادی در شصت و سه درصد گذشته حال و
-                  آینده.
-                </div>
-              </div>
-            </div>
-          </div> -->
+
         </section>
       </div>
       <aside class="w-96 sticky top-20 h-fit">
@@ -909,7 +780,7 @@
           </div>
           <div class="px-6">
             <basis core="tree" datamembername="visa-link.cat" idcol="catid" parentidcol="parentid"
-              nullvalue="[##cms.query.vid##]">
+              nullvalue="215049">
               <layout>
                 <ul class="grid grid-cols-2 gap-2">
                   @child
