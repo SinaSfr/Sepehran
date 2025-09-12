@@ -1813,6 +1813,9 @@ body {
 .group:hover .group-hover\:opacity-40 {
   opacity: 0.4;
 }
+.group:hover .group-hover\:max-h-\[500px\] {
+  max-height: 500px;
+}
 @media not all and (min-width: 1280px) {
   .max-xl\:w-\[97\%\] {
     width: 97%;

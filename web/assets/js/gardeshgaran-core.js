@@ -227,7 +227,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (details) {
           const label = details.querySelector('.tourcategorydropdown__label');
           if (label) {
-            label.textContent = firstItem.textContent.trim();
+            label.textContent = `همه‌ی ${firstItem.textContent.trim()}`;
             const link = firstItem.getAttribute('data-link');
             if (link) {
               label.setAttribute('href', '/' + link);
@@ -281,7 +281,7 @@ document.addEventListener('DOMContentLoaded', function () {
           if (details) {
             const label = details.querySelector('.tourcategorydropdown__label');
             if (label) {
-              label.textContent = item.textContent.trim();
+              label.textContent = `همه‌ی ${item.textContent.trim()}`;
               const link = item.getAttribute('data-link');
               if (link) {
                 label.setAttribute('href', '/' + link);
