@@ -906,6 +906,22 @@ const onTourDatesLoaded = async (apiResponse) => {
     }
 
     window.currentDateContainer.innerHTML = '';
+    if (swiperTourDateTourL && typeof swiperTourDateTourL.destroy === 'function') {
+      swiperTourDateTourL.destroy(true, true);
+    }
+    
+    swiperTourDateTourL = new Swiper('.swiper-tour-date-tourL', {
+      slidesPerView: 2.7,
+      speed: 400,
+      centeredSlides: false,
+      spaceBetween: 8,
+      grabCursor: true,
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
+      loop: true,
+    });
 
     const mobile = isMobile();
 

@@ -1,15 +1,3 @@
-<basis core="api" name="api.inventoryView" url="https://basisfly.com/api/inventory/packages/inventory-view/"
-  method="post" content-type="application/json" run="atclient" triggers="db.inventoryViewSpecificDate" body='{
-        "pid": "{##db.inventoryViewSpecificDate.pid##}",
-        "from": "{##db.inventoryViewSpecificDate.from##}",
-        "to": "{##db.inventoryViewSpecificDate.to##}",
-        "day": "{##db.inventoryViewSpecificDate.day##}",
-        "pagename": "[##cms.host.pageNameInventory|(Tem1_Hotel.bc)##]",
-        "dmnid": "[##cms.cms.domainid##]",
-        "ownerid": "[##cms.cms.ownerid##]"
-    }'>
-</basis>
-
 <basis core="api" name="api.getTourDates" url="https://basisfly.com/api/inventory/packages/execution-plan-view/"
   method="post" content-type="application/json" run="atclient" triggers="db.tourDatesRequest"
   if="{##db.tourDatesRequest##}" onprocessed="onTourDatesLoaded" body='{
@@ -29,13 +17,13 @@
 </basis>
 
 <basis core="dbsource" source="basiscore" lid="1" mid="20" name="db" catid="215041">
-  <member name="special-tour" type="list" link="tour.bc" propertyid="3087934,10000504,8181,8076,3087933" perpage="5"
-    order="ord" size="253x144" typeid="159" />
+  <member name="special-tour" type="list" link="tour.bc" propertyid="3087934,10000504,8181,8076,3087933,3088017"
+    perpage="5" order="ord" size="253x144" typeid="159" />
 </basis>
 
 <basis core="dbsource" source="basiscore" lid="1" mid="20" name="db" catid="[##cms.query.catid##]">
-  <member name="tour-list" type="list" link="tour.bc" propertyid="8076,8181,8077,10000504,3087921,3087934" perpage="6"
-    size="306x144" pageno="[##cms.query.pagenum|(1)##]" order="ord" />
+  <member name="tour-list" type="list" link="tour.bc" propertyid="8076,8181,8077,10000504,3087921,3087934,3088017"
+    perpage="6" size="306x144" pageno="[##cms.query.pagenum|(1)##]" order="ord" />
   <member name="paging" type="list" request="paging" count="2" parentname="tour-list" />
 </basis>
 <basis core="dbsource" source="basiscore" mid="20" name="list" lid="1" schemaid="987" term="[##cms.query.term##]">
@@ -247,59 +235,16 @@
           </div>
         </section>
       </layout>
-      <face filter="link is null and prp_3087934 is null">
-        <div class="swiper-slide">
-          <a href="/tour.bc?id=@id"
-            class="flex flex-col border border-gray-50 bg-white rounded-xl shadow-medium-btn-shadow p-4">
-            <img src="\@00253X00144prp" class="w-full h-36 object-cover rounded-xl overflow-hidden shadow-soft-deep"
-              alt="@title" width="253" height="144" loading="lazy" />
-            <h2 class="text-lg font-extrabold mt-8 text-center">@title</h2>
-            <div class="flex items-center justify-between mt-3">
-              <span
-                class="flex items-center gap-1 text-xs font-light text-primary-500 border border-gray-50 rounded py-1 px-2">
-                <svg width="24" height="24" class="group-hover:hidden">
-                  <use xlink:href="/images/sprite-icons.svg#icon-sun"></use>
-                </svg>
-                @prp_8076
-              </span>
-              <span
-                class="flex items-center gap-1 text-xs font-light text-primary-500 border border-gray-50 rounded py-1 px-2 w-20 line-clamp-1">
-                <svg width="24" height="24" class="group-hover:hidden">
-                  <use xlink:href="/images/sprite-icons.svg#icon-flash"></use>
-                </svg>
-                <span class="line-clamp--1 w-10">@prp_10000504</span>
-              </span>
-              <span
-                class="flex items-center gap-1 text-xs font-light text-primary-500 border border-gray-50 rounded py-1 px-2">
-                <svg width="24" height="24" class="group-hover:hidden">
-                  <use xlink:href="/images/sprite-icons.svg#icon-blue-star"></use>
-                </svg>
-                @prp_3087933 ستاره
-              </span>
-            </div>
-            <div class="flex items-center justify-between mt-6 h-full">
-              <div class="flex flex-col justify-between h-16">
-                <span class="text-xs font-light">شروع قیمت از:</span>
-                <span class="flex items-center gap-2 text-sm font-bold">
-                  <span class="text-2xl text-primary-500 font-extrabold">@prp_8181</span>
-                </span>
-              </div>
-              <button
-                class="group flex items-center justify-center gap-2 border border-gray-100 rounded-xl w-14 h-14 transition-all duration-300 hover:bg-primary-500 hover:shadow-btn-shadow">
-                <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path class="transition-all duration-300 group-hover:stroke-white"
-                    d="M15 6.15674L9 12.1567L15 18.1567" stroke="#1E2128" />
-                </svg>
-              </button>
-            </div>
-          </a>
-        </div>
-      </face>
       <face filter="prp_3087934 is null">
         <div class="swiper-slide">
           <a href="/@link" class="flex flex-col border border-gray-50 bg-white rounded-xl shadow-medium-btn-shadow p-4">
-            <img src="\@00253X00144prp" class="w-full h-36 object-cover rounded-xl overflow-hidden shadow-soft-deep"
-              alt="@title" width="253" height="144" loading="lazy" />
+            <div class="relative rounded-xl overflow-hidden shadow-soft-deep h-36">
+              <img src="\@00253X00144prp" class="w-full h-36 object-cover opacity-40"
+                alt="@title" width="253" height="144" loading="lazy" />
+              <img src="[##cms.cms.cdn##]/images/fully-booked.png"
+                class="absolute left-0 right-0 top-0 mx-auto w-44 h-36 object-cover" alt="fully-booked" width="176"
+                height="144" loading="lazy">
+            </div>
             <h2 class="text-lg font-extrabold mt-8 text-center">@title</h2>
             <div class="flex items-center justify-between mt-3">
               <span
@@ -314,7 +259,7 @@
                 <svg width="24" height="24" class="group-hover:hidden">
                   <use xlink:href="/images/sprite-icons.svg#icon-flash"></use>
                 </svg>
-                <span class="line-clamp--1 w-10">@prp_10000504</span>
+                <span>@prp_10000504</span>
               </span>
               <span
                 class="flex items-center gap-1 text-xs font-light text-primary-500 border border-gray-50 rounded py-1 px-2">
@@ -342,10 +287,9 @@
           </a>
         </div>
       </face>
-      <face filter="link is null">
+      <face filter="prp_3088017 is null">
         <div class="swiper-slide">
-          <a href="/tour.bc?id=@id"
-            class="flex flex-col border border-gray-50 bg-white rounded-xl shadow-medium-btn-shadow p-4">
+          <a href="/@link" class="flex flex-col border border-gray-50 bg-white rounded-xl shadow-medium-btn-shadow p-4">
             <div class="relative rounded-xl overflow-hidden shadow-soft-deep h-36">
               <img src="\@00253X00144prp" class="w-full h-36 object-cover" alt="@title" width="253" height="144"
                 loading="lazy" />
@@ -367,7 +311,56 @@
                 <svg width="24" height="24" class="group-hover:hidden">
                   <use xlink:href="/images/sprite-icons.svg#icon-flash"></use>
                 </svg>
-                <span class="line-clamp--1 w-10">@prp_10000504</span>
+                <span>@prp_10000504</span>
+              </span>
+              <span
+                class="flex items-center gap-1 text-xs font-light text-primary-500 border border-gray-50 rounded py-1 px-2">
+                <svg width="24" height="24" class="group-hover:hidden">
+                  <use xlink:href="/images/sprite-icons.svg#icon-blue-star"></use>
+                </svg>
+                @prp_3087933 ستاره
+              </span>
+            </div>
+            <div class="flex items-center justify-between mt-6 h-full">
+              <div class="flex flex-col justify-between h-16">
+                <span class="text-xs font-light">شروع قیمت از:</span>
+                <span class="flex items-center gap-2 text-sm font-bold">
+                  <span class="text-2xl text-primary-500 font-extrabold">@prp_8181</span>
+                </span>
+              </div>
+              <button
+                class="group flex items-center justify-center gap-2 border border-gray-100 rounded-xl w-14 h-14 transition-all duration-300 hover:bg-primary-500 hover:shadow-btn-shadow">
+                <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path class="transition-all duration-300 group-hover:stroke-white"
+                    d="M15 6.15674L9 12.1567L15 18.1567" stroke="#1E2128" />
+                </svg>
+              </button>
+            </div>
+          </a>
+        </div>
+      </face>
+      <face filter="prp_3087934 is null and prp_3088017 is null">
+        <div class="swiper-slide">
+          <a href="/@link" class="flex flex-col border border-gray-50 bg-white rounded-xl shadow-medium-btn-shadow p-4">
+            <div class="relative rounded-xl overflow-hidden shadow-soft-deep h-36">
+              <img src="\@00253X00144prp" class="w-full h-36 object-cover" alt="@title" width="253" height="144"
+                loading="lazy" />
+            </div>
+            <h2 class="text-lg font-extrabold mt-8 text-center">@title</h2>
+            <div class="flex items-center justify-between mt-3">
+              <span
+                class="flex items-center gap-1 text-xs font-light text-primary-500 border border-gray-50 rounded py-1 px-2">
+                <svg width="24" height="24" class="group-hover:hidden">
+                  <use xlink:href="/images/sprite-icons.svg#icon-sun"></use>
+                </svg>
+                @prp_8076
+              </span>
+              <span
+                class="flex items-center gap-1 text-xs font-light text-primary-500 border border-gray-50 rounded py-1 px-2 w-20 line-clamp-1">
+                <svg width="24" height="24" class="group-hover:hidden">
+                  <use xlink:href="/images/sprite-icons.svg#icon-flash"></use>
+                </svg>
+                <span>@prp_10000504</span>
               </span>
               <span
                 class="flex items-center gap-1 text-xs font-light text-primary-500 border border-gray-50 rounded py-1 px-2">
@@ -399,11 +392,14 @@
         <div class="swiper-slide">
           <a href="/@link" class="flex flex-col border border-gray-50 bg-white rounded-xl shadow-medium-btn-shadow p-4">
             <div class="relative rounded-xl overflow-hidden shadow-soft-deep h-36">
-              <img src="\@00253X00144prp" class="w-full h-36 object-cover" alt="@title" width="253" height="144"
-                loading="lazy" />
-              <span class="absolute left-0 bottom-0 text-sm font-bold py-2 px-4 bg-amber-400 rounded-tr">
+              <img src="\@00253X00144prp" class="w-full h-36 object-cover opacity-40" alt="@title" width="253"
+                height="144" loading="lazy" />
+              <span class="absolute left-0 bottom-0 text-sm font-bold py-2 px-4 bg-amber-400 rounded-tr opacity-40">
                 @prp_3087934
               </span>
+              <img src="[##cms.cms.cdn##]/images/fully-booked.png"
+                class="absolute left-0 right-0 top-0 mx-auto w-44 h-36 object-cover" alt="fully-booked" width="176"
+                height="144" loading="lazy">
             </div>
             <h2 class="text-lg font-extrabold mt-8 text-center">@title</h2>
             <div class="flex items-center justify-between mt-3">
@@ -419,7 +415,7 @@
                 <svg width="24" height="24" class="group-hover:hidden">
                   <use xlink:href="/images/sprite-icons.svg#icon-flash"></use>
                 </svg>
-                <span class="line-clamp--1 w-10">@prp_10000504</span>
+                <span>@prp_10000504</span>
               </span>
               <span
                 class="flex items-center gap-1 text-xs font-light text-primary-500 border border-gray-50 rounded py-1 px-2">
@@ -518,7 +514,7 @@
                 </div>
                 <div>
                   <h3 class="text-sm font-bold mb-2">تعداد روز های تور:</h3>
-                  <div class="day-tour-filter-wrapper flex items-center justify-between">
+                  <div class="day-tour-filter-wrapper grid grid-cols-2 gap-4 items-center justify-between">
 
                   </div>
                 </div>
@@ -624,9 +620,13 @@
                 class="absolute top-8 right-0 left-0 mx-auto h-[353px] object-cover opacity-40 transition-all duration-300 group-hover:hidden group-hover:invisible group-hover:opacity-0"
                 alt="earth" width="353" height="353" loading="lazy" />
               <div class="flex flex-col items-center gap-6">
-                <img src="\@db.tour-list.00306X00144prp"
-                  class="w-full h-36 object-cover backdrop-blur-sm opacity-80 rounded-2xl shadow-tour-card-mobile"
-                  alt="@db.tour-list.title" width="306" height="144" loading="lazy" />
+                <div class="relative rounded-2xl shadow-tour-card-mobile overflow-hidden h-36">
+                  <img src="\@db.tour-list.00306X00144prp" class="w-full h-36 object-cover backdrop-blur-sm opacity-40"
+                    alt="@db.tour-list.title" width="306" height="144" loading="lazy" />
+                  <img src="[##cms.cms.cdn##]/images/fully-booked.png"
+                    class="absolute left-0 right-0 top-0 mx-auto w-44 h-36 object-cover" alt="fully-booked" width="176"
+                    height="144" loading="lazy">
+                </div>
                 <div class="relative z-10">
                   <h2
                     class="text-xl text-center font-bold text-primary-500 mb-4 transition-all duration-300 group-hover:text-white">
@@ -727,6 +727,261 @@
             </div>
           </div>
         </face>
+        <face filter="[db.tour-list.prp_3088017] is null">
+          <div class="relative tourL-tour-card group flex flex-col items-stretch">
+            <div
+              class="tourL-tour-date-menu absolute w-full top-[65%] z-20 left-[30%] right-0 mx-auto border border-primary-100 py-4 rounded-lg backdrop-blur bg-specialcolor-6 shadow-shadow-date opacity-0 invisible scale-95 transition-all duration-300 origin-top">
+              <!-- Slider main container -->
+              <div class="swiper swiper-tour-date-tourL px-1">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper flex justify-center">
+
+                </div>
+              </div>
+            </div>
+            <div
+              class="relative bg-gray-50 rounded-2xl pb-4 pt-8 px-6 overflow-hidden transition-all duration-300 group-hover:bg-primary-500 group-hover:border-white">
+              <img src="[##cms.cms.cdn##]/images/earth.png"
+                class="absolute top-8 right-0 left-0 mx-auto h-[353px] object-cover hidden transition-all duration-300 invisible opacity-0 group-hover:visible group-hover:opacity-40 group-hover:block"
+                alt="earth" width="353" height="353" loading="lazy" />
+              <img src="[##cms.cms.cdn##]/images/blue-earth.png"
+                class="absolute top-8 right-0 left-0 mx-auto h-[353px] object-cover opacity-40 transition-all duration-300 group-hover:hidden group-hover:invisible group-hover:opacity-0"
+                alt="earth" width="353" height="353" loading="lazy" />
+              <div class="flex flex-col items-center gap-6">
+                <div class="relative rounded-2xl shadow-tour-card-mobile overflow-hidden">
+                  <img src="\@db.tour-list.00306X00144prp" class="w-full h-36 object-cover backdrop-blur-sm opacity-80"
+                    alt="@db.tour-list.title" width="306" height="144" loading="lazy" />
+                  <span
+                    class="flex items-center justify-center w-full absolute left-0 bottom-0 text-sm font-bold py-2 bg-amber-400 rounded-tr">
+                    @db.tour-list.prp_3087934</span>
+                </div>
+
+                <div class="relative z-10">
+                  <h2
+                    class="text-xl text-center font-bold text-primary-500 mb-4 transition-all duration-300 group-hover:text-white">
+                    @db.tour-list.title
+                  </h2>
+                  <div class="tour-destination-container flex items-center justify-center gap-4 mb-4">
+                    <h3
+                      class="tour-destination text-2xl font-black text-primary-500 transition-all duration-300 group-hover:text-white">
+                      @db.tour-list.prp_3087921
+                    </h3>
+                    <svg width="32" height="3"
+                      class="transition-all duration-300 group-hover:hidden group-hover:invisible group-hover:opacity-0">
+                      <use xlink:href="/images/sprite-icons.svg#icon-blue-border-mobile"></use>
+                    </svg>
+                    <svg width="32" height="3"
+                      class="hidden transition-all duration-300 invisible opacity-0 group-hover:visible group-hover:opacity-100 group-hover:block">
+                      <use xlink:href="/images/sprite-icons.svg#icon-white-border-mobile"></use>
+                    </svg>
+                  </div>
+                  <div class="flex items-center justify-center gap-5 mb-4">
+                    <span
+                      class="flex items-center gap-1 text-sm text-primary-500 font-bold transition-all duration-300 group-hover:text-white">
+                      <svg width="24" height="24"
+                        class="transition-all duration-300 group-hover:hidden group-hover:invisible group-hover:opacity-0">
+                        <use xlink:href="/images/sprite-icons.svg#icon-sun"></use>
+                      </svg>
+                      <svg width="24" height="24"
+                        class="hidden transition-all duration-300 invisible opacity-0 group-hover:visible group-hover:opacity-100 group-hover:block">
+                        <use xlink:href="/images/sprite-icons.svg#icon-sun-white"></use>
+                      </svg>
+                      <span class="tourL-tour-day">@db.tour-list.prp_8076</span>
+                    </span>
+                    <span
+                      class="flex items-center gap-1 text-sm text-primary-500 font-bold transition-all duration-300 group-hover:text-white">
+                      <svg width="24" height="24"
+                        class="transition-all duration-300 group-hover:hidden group-hover:invisible group-hover:opacity-0">
+                        <use xlink:href="/images/sprite-icons.svg#icon-sun"></use>
+                      </svg>
+                      <svg width="24" height="24"
+                        class="hidden transition-all duration-300 invisible opacity-0 group-hover:visible group-hover:opacity-100 group-hover:block">
+                        <use xlink:href="/images/sprite-icons.svg#icon-sun-white"></use>
+                      </svg>
+                      <span class="tourL-tour-airline"
+                        data-airline-img="\@list.airline.pic">@db.tour-list.prp_10000504</span>
+                    </span>
+                    <span
+                      class="flex items-center gap-1 text-sm text-primary-500 font-bold transition-all duration-300 group-hover:text-white">
+                      <svg width="24" height="24"
+                        class="transition-all duration-300 group-hover:hidden group-hover:invisible group-hover:opacity-0">
+                        <use xlink:href="/images/sprite-icons.svg#icon-sun"></use>
+                      </svg>
+                      <svg width="24" height="24"
+                        class="hidden transition-all duration-300 invisible opacity-0 group-hover:visible group-hover:opacity-100 group-hover:block">
+                        <use xlink:href="/images/sprite-icons.svg#icon-sun-white"></use>
+                      </svg>
+                      @db.tour-list.prp_8077
+                    </span>
+                  </div>
+                  <div class="flex justify-center">
+                    <button onclick="toggleTourDateMenu(this, '@db.tour-list.id')"
+                      class="tourL-tour-date-btn flex items-center justify-center gap-2 px-6 py-2 bg-white border border-gray-100 rounded-xl text-sm font-semibold">
+                      مشاهده تاریخ های برگذاری
+                      <svg width="24" height="24">
+                        <use xlink:href="/images/sprite-icons.svg#icon-calender"></use>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="custom-dashed-bottom w-[90%] self-center"></div>
+            <div class="bg-gray-50 rounded-2xl transition-all duration-300 group-hover:bg-primary-500 py-8 px-6">
+              <div class="flex flex-col items-center">
+                <div class="flex flex-col gap-4">
+                  <span class="text-sm font-semibold transition-all duration-300 group-hover:text-white">
+                    شروع قیمت از:
+                  </span>
+                  <span
+                    class="flex items-center gap-2 text-sm font-bold mb-6 transition-all duration-300 group-hover:text-white">
+                    <span
+                      class="text-[32px] text-primary-500 font-bold transition-all duration-300 group-hover:text-secondary-500 tourL-tour-price">
+                      @db.tour-list.prp_8181
+                    </span>
+                  </span>
+                </div>
+                <a href="/@db.tour-list.link"
+                  class="flex items-center justify-center gap-2 w-full h-[73px] font-extrabold rounded-xl bg-primary-500 text-white transition-all duration-300 group-hover:bg-secondary-500 group-hover:text-zinc-900">
+                  مشاهده جزئیات
+                  <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path class="transition-all duration-300 group-hover:stroke-zinc-900" d="M7 12.6567H21"
+                      stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    <path class="transition-all duration-300 group-hover:fill-zinc-900"
+                      d="M2.28481 12.4533L7.73501 8.5603C8.2645 8.18209 9 8.56059 9 9.21129V16.1022C9 16.7529 8.2645 17.1314 7.73501 16.7532L2.28481 12.8602C2.14522 12.7605 2.14522 12.553 2.28481 12.4533Z"
+                      fill="white" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </face>
+        <face filter="[db.tour-list.prp_3087934] is null and [db.tour-list.prp_3088017] is null">
+          <div class="relative tourL-tour-card group flex flex-col items-stretch">
+            <div
+              class="tourL-tour-date-menu absolute w-full top-[65%] z-20 left-[30%] right-0 mx-auto border border-primary-100 py-4 rounded-lg backdrop-blur bg-specialcolor-6 shadow-shadow-date opacity-0 invisible scale-95 transition-all duration-300 origin-top">
+              <!-- Slider main container -->
+              <div class="swiper swiper-tour-date-tourL px-1">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper flex justify-center">
+
+                </div>
+              </div>
+            </div>
+            <div
+              class="relative bg-gray-50 rounded-2xl pb-4 pt-8 px-6 overflow-hidden transition-all duration-300 group-hover:bg-primary-500 group-hover:border-white">
+              <img src="[##cms.cms.cdn##]/images/earth.png"
+                class="absolute top-8 right-0 left-0 mx-auto h-[353px] object-cover hidden transition-all duration-300 invisible opacity-0 group-hover:visible group-hover:opacity-40 group-hover:block"
+                alt="earth" width="353" height="353" loading="lazy" />
+              <img src="[##cms.cms.cdn##]/images/blue-earth.png"
+                class="absolute top-8 right-0 left-0 mx-auto h-[353px] object-cover opacity-40 transition-all duration-300 group-hover:hidden group-hover:invisible group-hover:opacity-0"
+                alt="earth" width="353" height="353" loading="lazy" />
+              <div class="flex flex-col items-center gap-6">
+                <div class="relative rounded-2xl shadow-tour-card-mobile overflow-hidden h-36">
+                  <img src="\@db.tour-list.00306X00144prp" class="w-full h-36 object-cover backdrop-blur-sm opacity-80"
+                    alt="@db.tour-list.title" width="306" height="144" loading="lazy" />
+                </div>
+
+                <div class="relative z-10">
+                  <h2
+                    class="text-xl text-center font-bold text-primary-500 mb-4 transition-all duration-300 group-hover:text-white">
+                    @db.tour-list.title
+                  </h2>
+                  <div class="tour-destination-container flex items-center justify-center gap-4 mb-4">
+                    <h3
+                      class="tour-destination text-2xl font-black text-primary-500 transition-all duration-300 group-hover:text-white">
+                      @db.tour-list.prp_3087921
+                    </h3>
+                    <svg width="32" height="3"
+                      class="transition-all duration-300 group-hover:hidden group-hover:invisible group-hover:opacity-0">
+                      <use xlink:href="/images/sprite-icons.svg#icon-blue-border-mobile"></use>
+                    </svg>
+                    <svg width="32" height="3"
+                      class="hidden transition-all duration-300 invisible opacity-0 group-hover:visible group-hover:opacity-100 group-hover:block">
+                      <use xlink:href="/images/sprite-icons.svg#icon-white-border-mobile"></use>
+                    </svg>
+                  </div>
+                  <div class="flex items-center justify-center gap-5 mb-4">
+                    <span
+                      class="flex items-center gap-1 text-sm text-primary-500 font-bold transition-all duration-300 group-hover:text-white">
+                      <svg width="24" height="24"
+                        class="transition-all duration-300 group-hover:hidden group-hover:invisible group-hover:opacity-0">
+                        <use xlink:href="/images/sprite-icons.svg#icon-sun"></use>
+                      </svg>
+                      <svg width="24" height="24"
+                        class="hidden transition-all duration-300 invisible opacity-0 group-hover:visible group-hover:opacity-100 group-hover:block">
+                        <use xlink:href="/images/sprite-icons.svg#icon-sun-white"></use>
+                      </svg>
+                      <span class="tourL-tour-day">@db.tour-list.prp_8076</span>
+                    </span>
+                    <span
+                      class="flex items-center gap-1 text-sm text-primary-500 font-bold transition-all duration-300 group-hover:text-white">
+                      <svg width="24" height="24"
+                        class="transition-all duration-300 group-hover:hidden group-hover:invisible group-hover:opacity-0">
+                        <use xlink:href="/images/sprite-icons.svg#icon-sun"></use>
+                      </svg>
+                      <svg width="24" height="24"
+                        class="hidden transition-all duration-300 invisible opacity-0 group-hover:visible group-hover:opacity-100 group-hover:block">
+                        <use xlink:href="/images/sprite-icons.svg#icon-sun-white"></use>
+                      </svg>
+                      <span class="tourL-tour-airline"
+                        data-airline-img="\@list.airline.pic">@db.tour-list.prp_10000504</span>
+                    </span>
+                    <span
+                      class="flex items-center gap-1 text-sm text-primary-500 font-bold transition-all duration-300 group-hover:text-white">
+                      <svg width="24" height="24"
+                        class="transition-all duration-300 group-hover:hidden group-hover:invisible group-hover:opacity-0">
+                        <use xlink:href="/images/sprite-icons.svg#icon-sun"></use>
+                      </svg>
+                      <svg width="24" height="24"
+                        class="hidden transition-all duration-300 invisible opacity-0 group-hover:visible group-hover:opacity-100 group-hover:block">
+                        <use xlink:href="/images/sprite-icons.svg#icon-sun-white"></use>
+                      </svg>
+                      @db.tour-list.prp_8077
+                    </span>
+                  </div>
+                  <div class="flex justify-center">
+                    <button onclick="toggleTourDateMenu(this, '@db.tour-list.id')"
+                      class="tourL-tour-date-btn flex items-center justify-center gap-2 px-6 py-2 bg-white border border-gray-100 rounded-xl text-sm font-semibold">
+                      مشاهده تاریخ های برگذاری
+                      <svg width="24" height="24">
+                        <use xlink:href="/images/sprite-icons.svg#icon-calender"></use>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="custom-dashed-bottom w-[90%] self-center"></div>
+            <div class="bg-gray-50 rounded-2xl transition-all duration-300 group-hover:bg-primary-500 py-8 px-6">
+              <div class="flex flex-col items-center">
+                <div class="flex flex-col gap-4">
+                  <span class="text-sm font-semibold transition-all duration-300 group-hover:text-white">
+                    شروع قیمت از:
+                  </span>
+                  <span
+                    class="flex items-center gap-2 text-sm font-bold mb-6 transition-all duration-300 group-hover:text-white">
+                    <span
+                      class="text-[32px] text-primary-500 font-bold transition-all duration-300 group-hover:text-secondary-500 tourL-tour-price">
+                      @db.tour-list.prp_8181
+                    </span>
+                  </span>
+                </div>
+                <a href="/@db.tour-list.link"
+                  class="flex items-center justify-center gap-2 w-full h-[73px] font-extrabold rounded-xl bg-primary-500 text-white transition-all duration-300 group-hover:bg-secondary-500 group-hover:text-zinc-900">
+                  مشاهده جزئیات
+                  <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path class="transition-all duration-300 group-hover:stroke-zinc-900" d="M7 12.6567H21"
+                      stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    <path class="transition-all duration-300 group-hover:fill-zinc-900"
+                      d="M2.28481 12.4533L7.73501 8.5603C8.2645 8.18209 9 8.56059 9 9.21129V16.1022C9 16.7529 8.2645 17.1314 7.73501 16.7532L2.28481 12.8602C2.14522 12.7605 2.14522 12.553 2.28481 12.4533Z"
+                      fill="white" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </face>
         <face>
           <div class="relative tourL-tour-card group flex flex-col items-stretch">
             <div
@@ -749,12 +1004,14 @@
                 alt="earth" width="353" height="353" loading="lazy" />
               <div class="flex flex-col items-center gap-6">
                 <div class="relative rounded-2xl shadow-tour-card-mobile overflow-hidden">
-                  <img src="\@db.tour-list.00306X00144prp"
-                  class="w-full h-36 object-cover backdrop-blur-sm opacity-80"
-                  alt="@db.tour-list.title" width="306" height="144" loading="lazy" />
+                  <img src="\@db.tour-list.00306X00144prp" class="w-full h-36 object-cover backdrop-blur-sm opacity-40"
+                    alt="@db.tour-list.title" width="306" height="144" loading="lazy" />
                   <span
-                  class="flex items-center justify-center w-full absolute left-0 bottom-0 text-sm font-bold py-2 bg-amber-400 rounded-tr">
-                  @db.tour-list.prp_3087934</span>
+                    class="flex items-center justify-center w-full absolute left-0 bottom-0 text-sm font-bold py-2 bg-amber-400 rounded-tr opacity-40">
+                    @db.tour-list.prp_3087934</span>
+                  <img src="[##cms.cms.cdn##]/images/fully-booked.png"
+                    class="absolute left-0 right-0 top-0 mx-auto w-44 h-36 object-cover" alt="fully-booked" width="176"
+                    height="144" loading="lazy">
                 </div>
 
                 <div class="relative z-10">

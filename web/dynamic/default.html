@@ -233,62 +233,17 @@
                     </div>
                 </section>
             </layout>
-            <face filter="link is null and prp_3087934 is null">
-                <div class="swiper-slide w-[420px]">
-                    <a href="/tour.bc?id=@id"
-                        class="flex flex-col border border-gray-50 rounded-xl shadow-medium-btn-shadow p-6">
-                        <img src="\@00344X00176prp"
-                            class="w-full h-44 object-cover rounded-xl overflow-hidden shadow-soft-deep" alt="@title"
-                            width="344" height="176" loading="lazy">
-                        <h2 class="text-2xl font-extrabold mt-8 text-center">@title</h2>
-                        <div class="flex items-center justify-between mt-3">
-                            <span
-                                class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
-                                <svg width="24" height="24" class="group-hover:hidden">
-                                    <use xlink:href="/images/sprite-icons.svg#icon-sun"></use>
-                                </svg>
-                                @prp_8076
-                            </span>
-                            <span
-                                class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
-                                <svg width="24" height="24" class="group-hover:hidden">
-                                    <use xlink:href="/images/sprite-icons.svg#icon-flash"></use>
-                                </svg>
-                                @prp_10000504
-                            </span>
-                            <span
-                                class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
-                                <svg width="24" height="24" class="group-hover:hidden">
-                                    <use xlink:href="/images/sprite-icons.svg#icon-blue-star"></use>
-                                </svg>
-                                @prp_3087933 ستاره
-                            </span>
-                        </div>
-                        <div class="flex justify-between mt-6 h-full">
-                            <div class="flex flex-col justify-between">
-                                <span class="text-xs font-light">شروع قیمت از:</span>
-                                <span class="text-2xl text-primary-500 font-extrabold">@prp_8181</span>
-                            </div>
-                            <button
-                                class="group flex items-center justify-center gap-2 border border-gray-100 rounded-xl w-36 h-[73px] transition-all duration-300 hover:bg-primary-500 hover:shadow-btn-shadow hover:text-white">
-                                اطلاعات بیشتر
-                                <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path class="transition-all duration-300 group-hover:stroke-white"
-                                        d="M15 6.15674L9 12.1567L15 18.1567" stroke="#1E2128" />
-                                </svg>
-                            </button>
-                        </div>
-                    </a>
-                </div>
-            </face>
             <face filter="prp_3087934 is null">
                 <div class="swiper-slide w-[420px]">
                     <a href="/@link"
                         class="flex flex-col border border-gray-50 rounded-xl shadow-medium-btn-shadow p-6">
-                        <img src="\@00344X00176prp"
-                            class="w-full h-44 object-cover rounded-xl overflow-hidden shadow-soft-deep" alt="@title"
-                            width="344" height="176" loading="lazy">
+                        <div class="relative rounded-xl overflow-hidden shadow-soft-deep">
+                            <img src="\@00344X00176prp" class="block w-full h-44 object-cover opacity-40" alt="@title"
+                                width="344" height="176" loading="lazy">
+                                <img src="[##cms.cms.cdn##]/images/fully-booked.png"
+                                class="absolute left-0 right-0 top-0 mx-auto w-52 h-44 object-cover"
+                                alt="fully-booked" width="160" height="128" loading="lazy">
+                        </div>
                         <h2 class="text-2xl font-extrabold mt-8 text-center">@title</h2>
                         <div class="flex items-center justify-between mt-3">
                             <span
@@ -331,14 +286,15 @@
                     </a>
                 </div>
             </face>
-            <face filter="link is null">
+            <face filter="prp_3088017 is null">
                 <div class="swiper-slide w-[420px]">
-                    <a href="/tour.bc?id=@id"
+                    <a href="/@link"
                         class="flex flex-col border border-gray-50 rounded-xl shadow-medium-btn-shadow p-6">
                         <div class="relative rounded-xl overflow-hidden shadow-soft-deep">
-                            <img src="\@00344X00176prp" class="block w-full h-44 object-cover" alt="@title" width="344"
-                                height="176" loading="lazy">
-                            <span class="absolute left-0 bottom-0 text-sm font-bold py-2 px-4 bg-amber-400 rounded-tr">
+                            <img src="\@00344X00176prp" class="block w-full h-44 object-cover" alt="@title"
+                                width="344" height="176" loading="lazy">
+                            <span
+                                class="absolute left-0 bottom-0 text-sm font-bold py-2 px-4 bg-amber-400 rounded-tr">
                                 @prp_3087934</span>
                         </div>
                         <h2 class="text-2xl font-extrabold mt-8 text-center">@title</h2>
@@ -369,7 +325,56 @@
                             <div class="flex flex-col justify-between">
                                 <span class="text-xs font-light">شروع قیمت از:</span>
                                 <span class="text-2xl text-primary-500 font-extrabold">@prp_8181</span>
-
+                            </div>
+                            <button
+                                class="group flex items-center justify-center gap-2 border border-gray-100 rounded-xl w-36 h-[73px] transition-all duration-300 hover:bg-primary-500 hover:shadow-btn-shadow hover:text-white">
+                                اطلاعات بیشتر
+                                <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path class="transition-all duration-300 group-hover:stroke-white"
+                                        d="M15 6.15674L9 12.1567L15 18.1567" stroke="#1E2128" />
+                                </svg>
+                            </button>
+                        </div>
+                    </a>
+                </div>
+            </face>
+            <face filter="prp_3087934 is null and prp_3088017 is null">
+                <div class="swiper-slide w-[420px]">
+                    <a href="/@link"
+                        class="flex flex-col border border-gray-50 rounded-xl shadow-medium-btn-shadow p-6">
+                        <div class="relative rounded-xl overflow-hidden shadow-soft-deep">
+                            <img src="\@00344X00176prp" class="block w-full h-44 object-cover" alt="@title"
+                                width="344" height="176" loading="lazy">
+                        </div>
+                        <h2 class="text-2xl font-extrabold mt-8 text-center">@title</h2>
+                        <div class="flex items-center justify-between mt-3">
+                            <span
+                                class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
+                                <svg width="24" height="24" class="group-hover:hidden">
+                                    <use xlink:href="/images/sprite-icons.svg#icon-sun"></use>
+                                </svg>
+                                @prp_8076
+                            </span>
+                            <span
+                                class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
+                                <svg width="24" height="24" class="group-hover:hidden">
+                                    <use xlink:href="/images/sprite-icons.svg#icon-flash"></use>
+                                </svg>
+                                @prp_10000504
+                            </span>
+                            <span
+                                class="flex items-center gap-1 text-sm font-bold text-primary-500 border border-gray-50 rounded py-1 px-2">
+                                <svg width="24" height="24" class="group-hover:hidden">
+                                    <use xlink:href="/images/sprite-icons.svg#icon-blue-star"></use>
+                                </svg>
+                                @prp_3087933 ستاره
+                            </span>
+                        </div>
+                        <div class="flex justify-between mt-6 h-full">
+                            <div class="flex flex-col justify-between">
+                                <span class="text-xs font-light">شروع قیمت از:</span>
+                                <span class="text-2xl text-primary-500 font-extrabold">@prp_8181</span>
                             </div>
                             <button
                                 class="group flex items-center justify-center gap-2 border border-gray-100 rounded-xl w-36 h-[73px] transition-all duration-300 hover:bg-primary-500 hover:shadow-btn-shadow hover:text-white">
@@ -389,10 +394,14 @@
                     <a href="/@link"
                         class="flex flex-col border border-gray-50 rounded-xl shadow-medium-btn-shadow p-6">
                         <div class="relative rounded-xl overflow-hidden shadow-soft-deep">
-                            <img src="\@00344X00176prp" class="block w-full h-44 object-cover" alt="@title" width="344"
-                                height="176" loading="lazy">
-                            <span class="absolute left-0 bottom-0 text-sm font-bold py-2 px-4 bg-amber-400 rounded-tr">
+                            <img src="\@00344X00176prp" class="block w-full h-44 object-cover opacity-40" alt="@title"
+                                width="344" height="176" loading="lazy">
+                            <span
+                                class="absolute left-0 bottom-0 text-sm font-bold py-2 px-4 bg-amber-400 rounded-tr opacity-40">
                                 @prp_3087934</span>
+                            <img src="[##cms.cms.cdn##]/images/fully-booked.png"
+                                class="absolute left-0 right-0 top-0 mx-auto w-52 h-44 object-cover"
+                                alt="fully-booked" width="160" height="128" loading="lazy">
                         </div>
                         <h2 class="text-2xl font-extrabold mt-8 text-center">@title</h2>
                         <div class="flex items-center justify-between mt-3">
@@ -620,11 +629,11 @@
                             <a href="/@link"
                                 class="flex flex-col border border-gray-50 rounded-xl shadow-medium-btn-shadow p-6">
                                 <div class="relative rounded-xl overflow-hidden shadow-soft-deep">
-                                    <img src="\@00344X00176prp" class="block w-full h-44 object-cover" alt="@title"
+                                    <img src="\@00344X00176prp" class="block w-full h-44 object-cover opacity-40" alt="@title"
                                         width="344" height="176" loading="lazy">
-                                    <img src="../assets/images/fully-booked.png"
-                                        class="absolute left-0 right-0 mx-auto w-80 h-64 object-cover" alt=""
-                                        width="320" height="256" loading="lazy">
+                                        <img src="[##cms.cms.cdn##]/images/fully-booked.png"
+                                        class="absolute left-0 right-0 top-0 mx-auto w-52 h-44 object-cover"
+                                        alt="fully-booked" width="160" height="128" loading="lazy">
                                 </div>
                                 <h2 class="text-2xl font-extrabold mt-8 text-center">@title</h2>
                                 <div class="flex items-center justify-between mt-3">
@@ -776,13 +785,13 @@
                             <a href="/@link"
                                 class="flex flex-col border border-gray-50 rounded-xl shadow-medium-btn-shadow p-6">
                                 <div class="relative rounded-xl overflow-hidden shadow-soft-deep">
-                                    <img src="\@00344X00176prp" class="block w-full h-44 object-cover" alt="@title"
+                                    <img src="\@00344X00176prp" class="block w-full h-44 object-cover opacity-40" alt="@title"
                                         width="344" height="176" loading="lazy">
                                     <span
-                                        class="absolute left-0 bottom-0 text-sm font-bold py-2 px-4 bg-amber-400 rounded-tr">
+                                        class="absolute left-0 bottom-0 text-sm font-bold py-2 px-4 bg-amber-400 rounded-tr opacity-40">
                                         @prp_3087934</span>
-                                    <img src="/images/fully-booked.png"
-                                        class="absolute left-0 right-0 top-0 mx-auto w-40 h-32 object-cover"
+                                    <img src="[##cms.cms.cdn##]/images/fully-booked.png"
+                                        class="absolute left-0 right-0 top-0 mx-auto w-52 h-44 object-cover"
                                         alt="fully-booked" width="160" height="128" loading="lazy">
                                 </div>
                                 <h2 class="text-2xl font-extrabold mt-8 text-center">@title</h2>
