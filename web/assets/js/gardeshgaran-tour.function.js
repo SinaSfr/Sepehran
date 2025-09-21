@@ -1,16 +1,16 @@
 const callbackSourceExecutionPlanTypesView = async (args) => {
   try {
-    const resultJson = args.source?.rows;
-    let originsSourceArray = [];
-    let destinationsSourceArray = [];
-    let originsRownumber = 1;
-    let destinationsRownumber = 1;
+    const resultJson = args.source?.rows
+    let originsSourceArray = []
+    let destinationsSourceArray = []
+    let originsRownumber = 1
+    let destinationsRownumber = 1
 
     if (resultJson[0]) {
-      document.querySelector('.tourExecution__container').classList.remove('hidden');
+      document.querySelector('.tourExecution__container').classList.remove('hidden')
 
-      const origins = resultJson[0].execution.origins || [];
-      const destinations = resultJson[0].execution.destinations || [];
+      const origins = resultJson[0].execution.origins || []
+      const destinations = resultJson[0].execution.destinations || []
 
       // --- origins ---
       if (
@@ -24,15 +24,15 @@ const callbackSourceExecutionPlanTypesView = async (args) => {
         !origins[0].transportation?.type &&
         !origins[0].transportation?.name
       ) {
-        originsSourceArray = []; // خالی
+        originsSourceArray = [] // خالی
       } else {
         for (const element of origins) {
-          const sourceObj = {};
-          sourceObj['rownumber'] = originsRownumber;
-          sourceObj['info'] = element;
-          sourceObj['len'] = origins.length;
-          originsSourceArray.push(sourceObj);
-          originsRownumber++;
+          const sourceObj = {}
+          sourceObj['rownumber'] = originsRownumber
+          sourceObj['info'] = element
+          sourceObj['len'] = origins.length
+          originsSourceArray.push(sourceObj)
+          originsRownumber++
         }
       }
 
@@ -48,78 +48,78 @@ const callbackSourceExecutionPlanTypesView = async (args) => {
         !destinations[0].transportation?.type &&
         !destinations[0].transportation?.name
       ) {
-        destinationsSourceArray = []; // خالی
+        destinationsSourceArray = [] // خالی
       } else {
         for (const element of destinations) {
-          const sourceObj = {};
-          sourceObj['rownumber'] = destinationsRownumber;
-          sourceObj['info'] = element;
-          sourceObj['len'] = destinations.length;
-          destinationsSourceArray.push(sourceObj);
-          destinationsRownumber++;
+          const sourceObj = {}
+          sourceObj['rownumber'] = destinationsRownumber
+          sourceObj['info'] = element
+          sourceObj['len'] = destinations.length
+          destinationsSourceArray.push(sourceObj)
+          destinationsRownumber++
         }
       }
     }
 
     setTimeout(() => {
-      $bc.setSource('refresh.executionPlanTypesOrigins', originsSourceArray);
-      $bc.setSource('refresh.executionPlanTypesDestinations', destinationsSourceArray);
-    }, 10);
+      $bc.setSource('refresh.executionPlanTypesOrigins', originsSourceArray)
+      $bc.setSource('refresh.executionPlanTypesDestinations', destinationsSourceArray)
+    }, 10)
   } catch (err) {
-    console.error('callbackSourceExecutionPlanTypesView=' + err.lineNumber + ',' + err.message);
+    console.error('callbackSourceExecutionPlanTypesView=' + err.lineNumber + ',' + err.message)
   }
-};
+}
 
 const renderInventoryView = async (element, day, from, to) => {
   try {
     document.querySelectorAll('.swiper-tour-date .swiper-slide').forEach((e) => {
-      e.querySelector('.group')?.classList.remove('border-primary-400');
-      e.querySelector('.tour-dates')?.classList.remove('text-primary-500');
-    });
+      e.querySelector('.group')?.classList.remove('border-primary-400')
+      e.querySelector('.tour-dates')?.classList.remove('text-primary-500')
+    })
 
     $bc.setSource('db.inventoryViewSpecificDate', {
       from: from,
       to: to,
       day: day,
-    });
+    })
 
-    element.querySelector('.group')?.classList.add('border-primary-400');
-    element.querySelector('.tour-dates')?.classList.add('text-primary-500');
+    element.querySelector('.group')?.classList.add('border-primary-400')
+    element.querySelector('.tour-dates')?.classList.add('text-primary-500')
 
     window.scroll({
       top: document.querySelector('#hotels').offsetTop,
       behavior: 'smooth',
-    });
+    })
   } catch (err) {
-    console.error('renderInventoryView=' + err.lineNumber + ',' + err.message);
+    console.error('renderInventoryView=' + err.lineNumber + ',' + err.message)
   }
-};
+}
 
 const onProcessedHotelsImg = async (args) => {
   try {
-    const response = args.response;
+    const response = args.response
     if (response.status === 200) {
-      const responseJson = await response.json();
-      if (!responseJson) return;
+      const responseJson = await response.json()
+      if (!responseJson) return
 
       document.querySelectorAll('.tourInventory__details__item__img').forEach((img) => {
-        const pageName = img.dataset.pagename;
-        const hotelId = parseInt(img.dataset.id);
+        const pageName = img.dataset.pagename
+        const hotelId = parseInt(img.dataset.id)
 
-        const matched = responseJson.find((item) => parseInt(item.usedforid) === hotelId);
+        const matched = responseJson.find((item) => parseInt(item.usedforid) === hotelId)
 
         if (!matched) {
-          console.warn(`No matched image for hotelId ${hotelId}`);
-          return;
+          console.warn(`No matched image for hotelId ${hotelId}`)
+          return
         }
 
-        img.src = `/${matched.originalImage}`;
-      });
+        img.src = `/${matched.originalImage}`
+      })
     }
   } catch (err) {
-    console.error('onProcessedHotelsImg=' + (err.lineNumber || '-') + ',' + err.message);
+    console.error('onProcessedHotelsImg=' + (err.lineNumber || '-') + ',' + err.message)
   }
-};
+}
 
 const renderTransportationName = async (element) => {
   try {
@@ -127,18 +127,18 @@ const renderTransportationName = async (element) => {
       if (element.info.transportation.id) {
         return ` <img src="" data-id="${element.info.transportation.id}"
                   class="transportation__img h-10 object-cover" alt="${element.info.transportation.name}" width="135"
-                    height="40" loading="lazy" />`;
+                    height="40" loading="lazy" />`
       }
     }
   } catch (err) {
-    console.error('renderTransportationName=' + err.lineNumber + ',' + err.message);
+    console.error('renderTransportationName=' + err.lineNumber + ',' + err.message)
   }
-};
+}
 
 const onProcessedAirlinesOriginsImg = async (args) => {
-  const response = args.response;
+  const response = args.response
   if (response.status == 200) {
-    const responseJson = await response.json();
+    const responseJson = await response.json()
     if (responseJson) {
       document
         .querySelector('.tourExecution__container__origins')
@@ -146,15 +146,15 @@ const onProcessedAirlinesOriginsImg = async (args) => {
         .forEach((e) => {
           for (const item of responseJson) {
             if (parseInt(e.dataset.id) == parseInt(item.usedforid)) {
-              e.setAttribute('src', `/${item.originalImage}`);
+              e.setAttribute('src', `/${item.originalImage}`)
             }
           }
-        });
+        })
     }
   }
-};
+}
 
-let swiperTourDate = null;
+let swiperTourDate = null
 
 if (document.querySelector('.swiper-tour-date')) {
   swiperTourDate = new Swiper('.swiper-tour-date', {
@@ -168,7 +168,7 @@ if (document.querySelector('.swiper-tour-date')) {
       disableOnInteraction: false,
     },
     loop: true,
-  });
+  })
 }
 
 const initSwiper = (loop) => {
@@ -183,41 +183,42 @@ const initSwiper = (loop) => {
       disableOnInteraction: false,
     },
     loop: loop,
-  });
-};
+  })
+}
 
 const onProcessedTourDates = async (args) => {
-  const response = args.response;
+  const response = args.response
 
   if (response.status === 200) {
-    const responseJson = await response.json();
-    const data = responseJson.sources?.[0]?.data || [];
+    const responseJson = await response.json()
+    const data = responseJson.sources?.[0]?.data || []
 
-    const startDateEl = document.querySelector('.date__details .start__date');
-    const endDateEl = document.querySelector('.date__details .end__date');
+    const startDateEl = document.querySelector('.date__details .start__date')
+    const endDateEl = document.querySelector('.date__details .end__date')
 
     if (data.length > 0) {
-      const firstItem = data[0];
-      if (startDateEl) startDateEl.textContent = firstItem.start.date;
-      if (endDateEl) endDateEl.textContent = firstItem.end.date;
+      const firstItem = data[0]
+      if (startDateEl) startDateEl.textContent = firstItem.start.date
+      if (endDateEl) endDateEl.textContent = firstItem.end.date
     }
 
-    const swiperWrapper = document.querySelector('.swiper-tour-date .swiper-wrapper');
-    if (!swiperWrapper) return;
+    const swiperWrapper = document.querySelector('.swiper-tour-date .swiper-wrapper')
+    if (!swiperWrapper) return
 
-    swiperWrapper.innerHTML = '';
+    swiperWrapper.innerHTML = ''
 
     if (data.length === 0) {
+      swiperWrapper.classList.add("justify-center")
       swiperWrapper.innerHTML = `
         <li class="swiper-slide text-center py-6 text-gray-500">
           در حال حاضر تاریخ دیگری وجود ندارد
         </li>
-      `;
+      `
     } else {
       data.forEach((item) => {
-        const li = document.createElement('li');
-        li.className = 'swiper-slide cursor-pointer';
-        li.setAttribute('onclick', `renderInventoryView(this,${item.day},${item.start.dateid},${item.end.dateid})`);
+        const li = document.createElement('li')
+        li.className = 'swiper-slide cursor-pointer'
+        li.setAttribute('onclick', `renderInventoryView(this,${item.day},${item.start.dateid},${item.end.dateid})`)
         li.innerHTML = `
           <div class="group border border-gray-50 w-[230px] bg-white rounded-lg py-4 px-6 transition-all duration-300 hover:border-primary-400">
             <h3 class="text-gray-500 font-light mb-1">تاریخ رفت و برگشت:</h3>
@@ -227,26 +228,26 @@ const onProcessedTourDates = async (args) => {
               <span class="end__date" data-date="${item.end.date}">${item.end.date}</span>
             </div>
           </div>
-        `;
-        swiperWrapper.appendChild(li);
-      });
+        `
+        swiperWrapper.appendChild(li)
+      })
     }
 
     if (swiperTourDate) {
-      swiperTourDate.destroy(true, true);
-      swiperTourDate = null;
+      swiperTourDate.destroy(true, true)
+      swiperTourDate = null
     }
 
     requestAnimationFrame(() => {
-      initSwiper(data.length > 1);
-    });
+      initSwiper(data.length > 1)
+    })
   }
-};
+}
 
 const onProcessedAirlinesDestinationsImg = async (args) => {
-  const response = args.response;
+  const response = args.response
   if (response.status == 200) {
-    const responseJson = await response.json();
+    const responseJson = await response.json()
     if (responseJson) {
       document
         .querySelector('.tourExecution__container__destinations')
@@ -254,66 +255,66 @@ const onProcessedAirlinesDestinationsImg = async (args) => {
         .forEach((e) => {
           for (const item of responseJson) {
             if (parseInt(e.dataset.id) == parseInt(item.usedforid)) {
-              e.setAttribute('src', `/${item.originalImage}`);
+              e.setAttribute('src', `/${item.originalImage}`)
             }
           }
-        });
+        })
     }
   }
-};
+}
 
 const onrenderedInventoryView = async () => {
   try {
-    let ids = [];
+    let ids = []
     document.querySelectorAll('.tourInventory__details__item__img').forEach((e) => {
       if (e.dataset.id !== '') {
-        ids.push(e.dataset.id);
+        ids.push(e.dataset.id)
       }
-    });
+    })
     if (ids.length > 0) {
       $bc.setSource('db.hotelGallery', {
         ids: ids,
         run: true,
-      });
+      })
     }
   } catch (err) {
-    console.error('onrenderedInventoryView=' + err.lineNumber + ',' + err.message);
+    console.error('onrenderedInventoryView=' + err.lineNumber + ',' + err.message)
   }
-};
+}
 
 const renderHotels = async (element, type) => {
   try {
     if (element) {
-      let output = '';
-      let index = 0;
+      let output = ''
+      let index = 0
       const escapeHtml = (unsafe) => {
         return (unsafe || '')
           .replace(/&/g, '&amp;')
           .replace(/</g, '&lt;')
           .replace(/>/g, '&gt;')
           .replace(/"/g, '&quot;')
-          .replace(/'/g, '&#039;');
-      };
+          .replace(/'/g, '&#039;')
+      }
 
       for (const item of element.hotelinfo[0].hotels) {
-        let img = `/common/images/img-symbol-sign.jpg`;
+        let img = `/common/images/img-symbol-sign.jpg`
         if (document.querySelector('.layout__body__container').dataset.noimgsign.length > 0) {
-          img = `/images/${document.querySelector('.layout__body__container').dataset.noimgsign}`;
+          img = `/images/${document.querySelector('.layout__body__container').dataset.noimgsign}`
         }
 
-        const hotel = item.hotel;
+        const hotel = item.hotel
         const cleanHotelName = (() => {
-          const div = document.createElement('div');
-          div.innerHTML = hotel.hotelname;
-          return div.textContent || div.innerText || '';
-        })();
+          const div = document.createElement('div')
+          div.innerHTML = hotel.hotelname
+          return div.textContent || div.innerText || ''
+        })()
 
-        const pageName = escapeHtml(document.querySelector('.layout__body__container').dataset.pagenameinventory);
+        const pageName = escapeHtml(document.querySelector('.layout__body__container').dataset.pagenameinventory)
 
-        const hotelStar = item.hotel.star === '' ? 0 : item.hotel.star;
-        const serviceHTML = await renderServiceHotel(hotel);
+        const hotelStar = item.hotel.star === '' ? 0 : item.hotel.star
+        const serviceHTML = await renderServiceHotel(hotel)
 
-        const isMobile = window.innerWidth <= 1024;
+        const isMobile = window.innerWidth <= 1024
         if (isMobile) {
           output += `
                           <div class="" data-index="${index}">
@@ -329,7 +330,7 @@ const renderHotels = async (element, type) => {
                         <div class="tourInventory__details__item__service flex items-center gap-3 mb-4">
                             <div class="flex flex-col gap-2 items-center bg-gray-50 p-2 rounded-lg">
                                 <span class="font-semibold text-sm hotel-card-service" data-value="${escapeHtml(
-                                  hotel.service.vid
+                                  hotel.service.vid,
                                 )}">${escapeHtml(serviceHTML.service)}</span>
                                 <span class="text-xs font-light">${escapeHtml(serviceHTML.english)}</span>
                             </div>
@@ -352,8 +353,8 @@ const renderHotels = async (element, type) => {
                             </svg>
                         </a>
                     </div>
-                    </div>`;
-          index++;
+                    </div>`
+          index++
         } else {
           output += `
           <div class="flex items-stretch justify-between w-full" data-index="${index}">
@@ -375,7 +376,7 @@ const renderHotels = async (element, type) => {
                 <div class="tourInventory__details__item__service flex items-center gap-3">
                   <div class="flex flex-col gap-2 items-center bg-gray-50 p-2 rounded-lg">
                     <span class="font-semibold text-sm hotel-card-service" data-value="${escapeHtml(
-                      hotel.service.vid
+                      hotel.service.vid,
                     )}">${escapeHtml(serviceHTML.service)}</span>
                     <span class="text-xs font-light">${escapeHtml(serviceHTML.english)}</span>
                   </div>
@@ -403,39 +404,39 @@ const renderHotels = async (element, type) => {
                 </svg>
               </a>
             </div>
-          </div>`;
-          index++;
+          </div>`
+          index++
         }
       }
 
-      return output;
+      return output
     }
   } catch (err) {
-    console.error('renderHotels=' + err.lineNumber + ',' + err.message);
+    console.error('renderHotels=' + err.lineNumber + ',' + err.message)
   }
-};
+}
 
 function renderPriceInfo(element, type) {
-  if (!element || !element.priceinfo || !type) return '';
+  if (!element || !element.priceinfo || !type) return ''
 
-  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 1024;
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 1024
   const priceTypes = {
     doublecost: { costKey: 'doublecostf', unitKey: 'doubleunit' },
     singlecost: { costKey: 'singlecostf', unitKey: 'singleunit' },
     childwithbed: { costKey: 'childwithbedf', unitKey: 'childwithbedunit' },
     childwithoutbed: { costKey: 'childwithoutbedf', unitKey: 'childwithoutbedunit' },
-  };
+  }
 
-  const config = priceTypes[type];
-  if (!config || !element.priceinfo[type]) return '';
+  const config = priceTypes[type]
+  if (!config || !element.priceinfo[type]) return ''
 
-  const items = element.priceinfo[type];
-  const formatPrice = (value) => new Intl.NumberFormat('fa-IR').format(value);
+  const items = element.priceinfo[type]
+  const formatPrice = (value) => new Intl.NumberFormat('fa-IR').format(value)
 
   const generatePriceHTML = (item, index, isMobile) => {
-    const cost = item[type][config.costKey];
-    const unit = item[type][config.unitKey] || '';
-    const dataPriceAttr = index === 0 ? `data-price="${cost}"` : '';
+    const cost = item[type][config.costKey]
+    const unit = item[type][config.unitKey] || ''
+    const dataPriceAttr = index === 0 ? `data-price="${cost}"` : ''
 
     if (items.length === 2 && index === 1) {
       return `
@@ -446,7 +447,7 @@ function renderPriceInfo(element, type) {
             ${formatPrice(cost)}
           </span>
           ${unit ? `<span class="text-sm text-zinc-900 tourInventory__details__item__unit">${unit}</span>` : ''}
-        </div>`;
+        </div>`
     }
 
     return `
@@ -459,16 +460,16 @@ function renderPriceInfo(element, type) {
           ${formatPrice(cost)}
         </span>
         ${unit ? `<span class="text-sm text-zinc-900 tourInventory__details__item__unit">${unit}</span>` : ''}
-      </div>`;
-  };
+      </div>`
+  }
 
   return items.length === 2
     ? items
         .map((item, index) => generatePriceHTML(item, index, isMobile))
         .join(
-          '<div class="relative w-full flex justify-center items-center -my-2"><hr class="w-full" /><span class="leading-4 font-IRANYekanMobileBoldFA text-2xl text-primary-900 bg-white px-3 mx-auto inline-block">+</span><hr class="w-full" /></div>'
+          '<div class="relative w-full flex justify-center items-center -my-2"><hr class="w-full" /><span class="leading-4 font-IRANYekanMobileBoldFA text-2xl text-primary-900 bg-white px-3 mx-auto inline-block">+</span><hr class="w-full" /></div>',
         )
-    : items.map((item) => generatePriceHTML(item, 0, isMobile)).join('');
+    : items.map((item) => generatePriceHTML(item, 0, isMobile)).join('')
 }
 
 const serviceDefinitions = {
@@ -504,20 +505,20 @@ const serviceDefinitions = {
     titleFa: 'تمام وعده‌های غذایی و امکانات هتل در هر زمان از اقامت بدون محدودیت',
     titleEn: 'Maximum All Inclusive',
   },
-};
+}
 
 const renderServiceHotel = async (element) => {
   try {
     if (element && element.service && element.service.vid) {
-      const vid = parseInt(element.service.vid);
-      const service = serviceDefinitions[vid];
+      const vid = parseInt(element.service.vid)
+      const service = serviceDefinitions[vid]
 
       if (service) {
         return {
           service: service.code,
           title: service.titleFa,
           english: service.titleEn,
-        };
+        }
       }
     }
 
@@ -525,115 +526,114 @@ const renderServiceHotel = async (element) => {
       service: '-',
       title: '',
       english: '',
-    };
+    }
   } catch (err) {
-    console.error('renderServiceHotel=' + err.lineNumber + ',' + err.message);
+    console.error('renderServiceHotel=' + err.lineNumber + ',' + err.message)
     return {
       service: '-',
       title: '',
       english: '',
-    };
+    }
   }
-};
+}
 
 const renderHotelRate = async (element) => {
   try {
     if (element) {
-      let output = '';
-      let i = 0;
+      let output = ''
+      let i = 0
       for (; i < element.star == '' ? 0 : element.star; ) {
         output += `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M10.3075 7.21986C10.9496 5.61918 11.2706 4.81883 11.7922 4.70791C11.9293 4.67874 12.0711 4.67874 12.2082 4.70791C12.7298 4.81883 13.0508 5.61918 13.6929 7.21986C14.058 8.13014 14.2406 8.58528 14.5822 8.89485C14.678 8.98168 14.782 9.05901 14.8928 9.12576C15.2876 9.36374 15.7805 9.40788 16.7663 9.49617C18.4351 9.64562 19.2695 9.72034 19.5243 10.1961C19.577 10.2946 19.6129 10.4013 19.6304 10.5117C19.7149 11.0447 19.1015 11.6028 17.8747 12.7189L17.534 13.0288C16.9605 13.5506 16.6737 13.8115 16.5078 14.1372C16.4083 14.3325 16.3416 14.5428 16.3104 14.7598C16.2582 15.1215 16.3422 15.5 16.5102 16.2569L16.5702 16.5274C16.8714 17.8849 17.022 18.5637 16.834 18.8973C16.6651 19.197 16.3541 19.3889 16.0105 19.4053C15.6279 19.4236 15.089 18.9844 14.011 18.106C13.3008 17.5273 12.9457 17.2379 12.5515 17.1249C12.1912 17.0216 11.8092 17.0216 11.4489 17.1249C11.0547 17.2379 10.6996 17.5273 9.98941 18.106C8.91144 18.9844 8.37245 19.4236 7.98993 19.4053C7.64633 19.3889 7.33528 19.197 7.16642 18.8973C6.97842 18.5637 7.12902 17.8849 7.43022 16.5274L7.49023 16.2569C7.65818 15.5 7.74216 15.1215 7.69004 14.7598C7.65878 14.5428 7.59207 14.3325 7.49257 14.1372C7.32669 13.8115 7.03992 13.5506 6.46637 13.0288L6.1257 12.7189C4.89891 11.6028 4.28552 11.0447 4.36999 10.5117C4.38749 10.4013 4.42337 10.2946 4.47614 10.1961C4.73094 9.72034 5.56532 9.64562 7.23408 9.49617C8.21986 9.40788 8.71276 9.36374 9.1076 9.12576C9.21834 9.05901 9.32236 8.98168 9.41818 8.89485C9.75979 8.58528 9.94236 8.13014 10.3075 7.21986Z" fill="#FFBC2C" stroke="#FFBC2C" stroke-width="2"/>
 </svg>
-`;
-        i++;
+`
+        i++
       }
-      let j = 0;
+      let j = 0
       for (; j < 5 - parseInt(element.star == '' ? 0 : element.star); ) {
         output += `<svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                                                     xmlns="http://www.w3.org/2000/svg">
         <path
             d="M10.3075 7.71986C10.9496 6.11918 11.2706 5.31883 11.7922 5.20791C11.9293 5.17874 12.0711 5.17874 12.2082 5.20791C12.7298 5.31883 13.0508 6.11918 13.6929 7.71986C14.058 8.63014 14.2406 9.08528 14.5822 9.39485C14.678 9.48168 14.782 9.55901 14.8928 9.62576C15.2876 9.86374 15.7805 9.90788 16.7663 9.99617C18.4351 10.1456 19.2695 10.2203 19.5243 10.6961C19.577 10.7946 19.6129 10.9013 19.6304 11.0117C19.7149 11.5447 19.1015 12.1028 17.8747 13.2189L17.534 13.5288C16.9605 14.0506 16.6737 14.3115 16.5078 14.6372C16.4083 14.8325 16.3416 15.0428 16.3104 15.2598C16.2582 15.6215 16.3422 16 16.5102 16.7569L16.5702 17.0274C16.8714 18.3849 17.022 19.0637 16.834 19.3973C16.6651 19.697 16.3541 19.8889 16.0105 19.9053C15.6279 19.9236 15.089 19.4844 14.011 18.606C13.3008 18.0273 12.9457 17.7379 12.5515 17.6249C12.1912 17.5216 11.8092 17.5216 11.4489 17.6249C11.0547 17.7379 10.6996 18.0273 9.98941 18.606C8.91144 19.4844 8.37245 19.9236 7.98993 19.9053C7.64633 19.8889 7.33528 19.697 7.16642 19.3973C6.97842 19.0637 7.12902 18.3849 7.43022 17.0274L7.49023 16.7569C7.65818 16 7.74216 15.6215 7.69004 15.2598C7.65878 15.0428 7.59207 14.8325 7.49257 14.6372C7.32669 14.3115 7.03992 14.0506 6.46637 13.5288L6.1257 13.2189C4.89891 12.1028 4.28552 11.5447 4.36999 11.0117C4.38749 10.9013 4.42337 10.7946 4.47614 10.6961C4.73094 10.2203 5.56532 10.1456 7.23408 9.99617C8.21986 9.90788 8.71276 9.86374 9.1076 9.62576C9.21834 9.55901 9.32236 9.48168 9.41818 9.39485C9.75979 9.08528 9.94236 8.63014 10.3075 7.71986Z"
             fill="#D7DBE1" stroke="#D7DBE1" stroke-width="2" />
-                                                                </svg>`;
-        j++;
+                                                                </svg>`
+        j++
       }
-      return output;
+      return output
     }
   } catch (err) {
-    console.error('renderHotelRate=' + err.lineNumber + ',' + err.message);
+    console.error('renderHotelRate=' + err.lineNumber + ',' + err.message)
   }
-};
+}
 
 const onrenderedExecutionOrigins = async () => {
   try {
     const originElement = document.querySelector(
-      '.tourExecution__container__origins .execution__details__path__item .details__city'
-    );
+      '.tourExecution__container__origins .execution__details__path__item .details__city',
+    )
     if (originElement) {
-      let origin = originElement.textContent.trim();
+      let origin = originElement.textContent.trim()
 
-      let ids = [];
+      let ids = []
       document
         .querySelector('.tourExecution__container__origins')
         .querySelectorAll('.transportation__img')
         .forEach((e) => {
           if (e.dataset.id !== '') {
-            ids.push(e.dataset.id);
+            ids.push(e.dataset.id)
           }
-        });
+        })
       if (ids.length > 0) {
-        $bc.setSource('db.airlinesOriginsGallery', { ids: ids, run: true });
+        $bc.setSource('db.airlinesOriginsGallery', { ids: ids, run: true })
       }
     }
   } catch (err) {
-    console.error('onrenderedExecutionOrigins=' + err.lineNumber + ',' + err.message);
+    console.error('onrenderedExecutionOrigins=' + err.lineNumber + ',' + err.message)
   }
-};
-
+}
 
 const onrenderedExecutionDestinations = async () => {
   try {
     const destinationElement = document.querySelector(
-      '.tourExecution__container__destinations .execution__details__path__item .details__city'
-    );
+      '.tourExecution__container__destinations .execution__details__path__item .details__city',
+    )
     if (destinationElement) {
-      let destination = destinationElement.textContent;
+      let destination = destinationElement.textContent
 
-      let ids = [];
+      let ids = []
       document
         .querySelector('.tourExecution__container__destinations')
         .querySelectorAll('.transportation__img')
         .forEach((e) => {
-          ids.push(e.dataset.id);
-        });
+          ids.push(e.dataset.id)
+        })
       if (ids.length > 0) {
-        $bc.setSource('db.airlinesDestinationsGallery', { ids: ids, run: true });
+        $bc.setSource('db.airlinesDestinationsGallery', { ids: ids, run: true })
       }
     }
   } catch (err) {
-    console.error('onrenderedExecutionDestinations=' + err.lineNumber + ',' + err.message);
+    console.error('onrenderedExecutionDestinations=' + err.lineNumber + ',' + err.message)
   }
-};
+}
 
 // dont repeat breadcrumb
 document.addEventListener('DOMContentLoaded', function () {
-  const breadcrumbContainer = document.querySelector('.breadcrumb');
-  const items = breadcrumbContainer.querySelectorAll('li');
-  const uniqueLinks = new Map();
+  const breadcrumbContainer = document.querySelector('.breadcrumb')
+  const items = breadcrumbContainer.querySelectorAll('li')
+  const uniqueLinks = new Map()
 
   items.forEach((li) => {
-    const link = li.querySelector('a');
+    const link = li.querySelector('a')
     if (link) {
-      const text = link.textContent.trim();
+      const text = link.textContent.trim()
       if (!uniqueLinks.has(text)) {
-        uniqueLinks.set(text, li);
+        uniqueLinks.set(text, li)
       } else {
-        li.remove();
+        li.remove()
       }
     }
-  });
-});
+  })
+})
 
 document.addEventListener('DOMContentLoaded', () => {
   function toPersianOrdinal(num) {
@@ -658,59 +658,59 @@ document.addEventListener('DOMContentLoaded', () => {
       18: 'هجدهم',
       19: 'نوزدهم',
       20: 'بیستم',
-    };
-    return map[num] || num + '‌ام';
+    }
+    return map[num] || num + '‌ام'
   }
 
-  const wrappers = document.querySelectorAll('.travel-wrapper');
+  const wrappers = document.querySelectorAll('.travel-wrapper')
 
   wrappers.forEach((wrapper, index) => {
-    const title = wrapper.querySelector('.travel-title');
+    const title = wrapper.querySelector('.travel-title')
     if (title) {
-      title.textContent = `روز ${toPersianOrdinal(index + 1)}`;
+      title.textContent = `روز ${toPersianOrdinal(index + 1)}`
     }
-  });
-});
+  })
+})
 
 const renderTourInstallmentForm = async (element) => {
-  const card = element.closest('.hotel-card');
-  if (!card) return;
+  const card = element.closest('.hotel-card')
+  if (!card) return
 
-  let service = '-';
+  let service = '-'
   const serviceVal = parseInt(
     card.querySelector('.tourInventory__details__item__service .hotel-card-service')?.dataset.value ?? '-1',
-    10
-  );
+    10,
+  )
   switch (serviceVal) {
     case 1654:
-      service = 'O.R';
-      break;
+      service = 'O.R'
+      break
     case 1655:
-      service = 'B.B';
-      break;
+      service = 'B.B'
+      break
     case 1656:
-      service = 'H.B';
-      break;
+      service = 'H.B'
+      break
     case 1657:
-      service = 'F.B';
-      break;
+      service = 'F.B'
+      break
     case 1658:
-      service = 'ALL';
-      break;
+      service = 'ALL'
+      break
     case 1659:
-      service = 'U.ALL';
-      break;
+      service = 'U.ALL'
+      break
     case 1660:
-      service = 'Maximum All Inclusive';
-      break;
+      service = 'Maximum All Inclusive'
+      break
     default:
-      service = '-';
+      service = '-'
   }
 
-  const pickPrice = (cls) => card.querySelector(`${cls} .tourInventory__details__item__price`)?.textContent ?? '';
-  const pickUnit = (cls) => card.querySelector(`${cls} .tourInventory__details__item__unit`)?.textContent ?? ' ';
+  const pickPrice = (cls) => card.querySelector(`${cls} .tourInventory__details__item__price`)?.textContent ?? ''
+  const pickUnit = (cls) => card.querySelector(`${cls} .tourInventory__details__item__unit`)?.textContent ?? ' '
 
-  $bc.setSource('db.tourBookingFormIns', { run: false });
+  $bc.setSource('db.tourBookingFormIns', { run: false })
 
   $bc.setSource('db.tourFormInstallmentplan', {
     hotelName: card.querySelector('.hotel-card-title')?.textContent ?? '',
@@ -729,32 +729,32 @@ const renderTourInstallmentForm = async (element) => {
     woBedU: pickUnit('.tourInventory__details__item__woBed'),
 
     run: true,
-  });
+  })
 
-  FormhotelName = card.querySelector('.hotel-card-title')?.textContent ?? '';
-  FormhotelRate = card.querySelector('.hotel-card-star')?.dataset.value ?? '';
-  FormhotelService = service;
-  FormtourName = document.querySelector('.tour-name')?.textContent ?? '';
-  FormdoubleP = pickPrice('.tourInventory__details__item__double');
-  FormsingleP = pickPrice('.tourInventory__details__item__single');
-  FormwBedP = pickPrice('.tourInventory__details__item__wBed');
-  FormwoBedP = pickPrice('.tourInventory__details__item__woBed');
-  FormdoubleU = pickUnit('.tourInventory__details__item__double');
-  FormsingleU = pickUnit('.tourInventory__details__item__single');
-  FormwBedU = pickUnit('.tourInventory__details__item__wBed');
-  FormwoBedU = pickUnit('.tourInventory__details__item__woBed');
-};
+  FormhotelName = card.querySelector('.hotel-card-title')?.textContent ?? ''
+  FormhotelRate = card.querySelector('.hotel-card-star')?.dataset.value ?? ''
+  FormhotelService = service
+  FormtourName = document.querySelector('.tour-name')?.textContent ?? ''
+  FormdoubleP = pickPrice('.tourInventory__details__item__double')
+  FormsingleP = pickPrice('.tourInventory__details__item__single')
+  FormwBedP = pickPrice('.tourInventory__details__item__wBed')
+  FormwoBedP = pickPrice('.tourInventory__details__item__woBed')
+  FormdoubleU = pickUnit('.tourInventory__details__item__double')
+  FormsingleU = pickUnit('.tourInventory__details__item__single')
+  FormwBedU = pickUnit('.tourInventory__details__item__wBed')
+  FormwoBedU = pickUnit('.tourInventory__details__item__woBed')
+}
 
 const renderReserveTourInstallmentForm = async (element) => {
-  document.getElementById('white-modal').classList.add('hidden');
+  document.getElementById('white-modal').classList.add('hidden')
 
   $bc.setSource('db.tourBookingFormIns', {
     run: false,
-  });
+  })
 
-  let sd2 = document.querySelector('.tour-dates .start__date')?.textContent || '';
+  let sd2 = document.querySelector('.tour-dates .start__date')?.textContent || ''
 
-  let ed2 = document.querySelector('.tour-dates .end__date')?.textContent || '';
+  let ed2 = document.querySelector('.tour-dates .end__date')?.textContent || ''
 
   $bc.setSource('db.tourFormInstallment', {
     hotelName: FormhotelName,
@@ -814,25 +814,25 @@ const renderReserveTourInstallmentForm = async (element) => {
       .innerText,
 
     run: true,
-  });
-};
+  })
+}
 
 const closeModalContainer = (element, event, closed, className, type) => {
   try {
     if (type == 'parent') {
       if (!event.target.closest('.modal__content')) {
-        element.closest(`.${closed}`).classList.add(`${className}`);
+        element.closest(`.${closed}`).classList.add(`${className}`)
       }
     } else {
-      element.closest(`.${closed}`).classList.add(`${className}`);
+      element.closest(`.${closed}`).classList.add(`${className}`)
     }
   } catch (err) {
-    console.error('closeModalContainer=' + err.lineNumber + ',' + err.message);
+    console.error('closeModalContainer=' + err.lineNumber + ',' + err.message)
   }
-};
+}
 
 function closeModalForm(element, container) {
-  document.getElementById(container).classList.add('hidden');
+  document.getElementById(container).classList.add('hidden')
 }
 
 const renderCaptchaCode = async (element, event) => {
@@ -842,39 +842,44 @@ const renderCaptchaCode = async (element, event) => {
     })
       .then((response) => response.text())
       .then((text) => {
-        element.closest('form').querySelector('.captcha__content').innerHTML = text;
+        element.closest('form').querySelector('.captcha__content').innerHTML = text
       })
-      .catch((error) => console.error(error));
+      .catch((error) => console.error(error))
   } catch (err) {
-    console.error('renderCaptchaCode=' + err.lineNumber + ',' + err.message);
+    console.error('renderCaptchaCode=' + err.lineNumber + ',' + err.message)
   }
-};
+}
 const onrenderedFormSchema = async () => {
   try {
   } catch (err) {
-    console.error('onrenderedFormSchema=' + err.lineNumber + ',' + err.message);
+    console.error('onrenderedFormSchema=' + err.lineNumber + ',' + err.message)
   }
-};
+}
 
 const toggleCount = (element, type, limit, passenger) => {
   try {
-    let currentCount = parseInt(element.closest('li').querySelector('.count__container').textContent);
-    type == 'plus' ? currentCount++ : currentCount--;
-    if (currentCount < limit) return false;
-    element.closest('li').querySelector('.count__container').textContent = currentCount;
+    let currentCount = parseInt(element.closest('li').querySelector('.count__container').textContent)
+    type == 'plus' ? currentCount++ : currentCount--
+    if (currentCount < limit) return false
+    element.closest('li').querySelector('.count__container').textContent = currentCount
     document
       .querySelector('.tour__booking__form__modal__container')
       .querySelector(`.${passenger}-count`)
-      .querySelector('input').value = currentCount;
+      .querySelector('input').value = currentCount
   } catch (err) {
-    console.error('toggleCount=' + err.lineNumber + ',' + err.message);
+    console.error('toggleCount=' + err.lineNumber + ',' + err.message)
   }
-};
+}
 
 const renderTourForm = async (element) => {
+  if (!element) return;
+
   // تبدیل مقدار سرویس
   let service = '-';
-  switch (parseInt(element.closest('.hotel-card').querySelector('.hotel-card-service').dataset.value)) {
+  const serviceEl = element.closest('.hotel-card')?.querySelector('.hotel-card-service');
+  const serviceValue = serviceEl ? parseInt(serviceEl.dataset.value) : null;
+
+  switch (serviceValue) {
     case 1654:
       service = 'O.R';
       break;
@@ -898,11 +903,9 @@ const renderTourForm = async (element) => {
       break;
   }
 
-  $bc.setSource('db.tourBookingForm', {
-    run: false,
-  });
+  $bc.setSource('db.tourBookingForm', { run: false });
 
-  const normalizeText = (text) => text.replace(/ي/g, 'ی').replace(/ك/g, 'ک');
+  const normalizeText = (text) => (text ? text.replace(/ي/g, 'ی').replace(/ك/g, 'ک') : '');
 
   let sd = '';
   let ed = '';
@@ -914,40 +917,42 @@ const renderTourForm = async (element) => {
   if (edEl) ed = normalizeText(edEl.textContent);
 
   const wrapper = element.closest('.hotel-card-wrapper');
+  const hotelCard = element.closest('.hotel-card');
 
   $bc.setSource('db.tourForm', {
-    hotelName: element.closest('.hotel-card').querySelector('.hotel-card-title').textContent,
-    hotelRate: element.closest('.hotel-card').querySelector('.hotel-card-star').dataset.value,
+    hotelName: hotelCard?.querySelector('.hotel-card-title')?.textContent || ' ',
+    hotelRate: hotelCard?.querySelector('.hotel-card-star')?.dataset.value || ' ',
     hotelService: service,
-    tourName: document.querySelector('.tour-name').textContent,
+    tourName: document.querySelector('.tour-name')?.textContent || ' ',
 
-    doubleP: wrapper.querySelector('.tourInventory__details__item__double .tourInventory__details__item__price')
-      .textContent,
-    singleP: wrapper.querySelector('.tourInventory__details__item__single .tourInventory__details__item__price')
-      .textContent,
-    wBedP: wrapper.querySelector('.tourInventory__details__item__wBed .tourInventory__details__item__price')
-      .textContent,
-    woBedP: wrapper.querySelector('.tourInventory__details__item__woBed .tourInventory__details__item__price')
-      .textContent,
+    doubleP:
+      wrapper?.querySelector('.tourInventory__details__item__double .tourInventory__details__item__price')
+        ?.textContent || ' ',
+    singleP:
+      wrapper?.querySelector('.tourInventory__details__item__single .tourInventory__details__item__price')
+        ?.textContent || ' ',
+    wBedP:
+      wrapper?.querySelector('.tourInventory__details__item__wBed .tourInventory__details__item__price')
+        ?.textContent || ' ',
+    woBedP:
+      wrapper?.querySelector('.tourInventory__details__item__woBed .tourInventory__details__item__price')
+        ?.textContent || ' ',
 
     doubleU:
-      wrapper.querySelector('.tourInventory__details__item__double .tourInventory__details__item__unit')?.textContent ||
-      ' ',
+      wrapper?.querySelector('.tourInventory__details__item__double .tourInventory__details__item__unit')
+        ?.textContent || ' ',
     singleU:
-      wrapper.querySelector('.tourInventory__details__item__single .tourInventory__details__item__unit')?.textContent ||
-      ' ',
+      wrapper?.querySelector('.tourInventory__details__item__single .tourInventory__details__item__unit')
+        ?.textContent || ' ',
     wBedU:
-      wrapper.querySelector('.tourInventory__details__item__wBed .tourInventory__details__item__unit')?.textContent ||
-      ' ',
+      wrapper?.querySelector('.tourInventory__details__item__wBed .tourInventory__details__item__unit')
+        ?.textContent || ' ',
     woBedU:
-      wrapper.querySelector('.tourInventory__details__item__woBed .tourInventory__details__item__unit')?.textContent ||
-      ' ',
+      wrapper?.querySelector('.tourInventory__details__item__woBed .tourInventory__details__item__unit')
+        ?.textContent || ' ',
 
     startDate: sd,
     endDate: ed,
-
-    // weekdayStartDate: document.querySelector('.origins__start__weekday')?.textContent || ' ',
-    // weekdayEndDate: document.querySelector('.destinations__start__weekday')?.textContent || ' ',
 
     departureName: document.querySelector('.origins__city')?.textContent || ' ',
     destinationName: document.querySelector('.destinations__city')?.textContent || ' ',
@@ -965,52 +970,52 @@ const renderTourForm = async (element) => {
 
 const onrenderedSchmaTourBookingFormIns = async () => {
   try {
-    const containerIns = document.querySelector('.tour__booking__form__modal__container_Ins');
-    if (!containerIns) return;
+    const containerIns = document.querySelector('.tour__booking__form__modal__container_Ins')
+    if (!containerIns) return
 
-    const formContainer = containerIns.querySelector('.tour__booking__form__container');
-    const whiteModal = document.querySelector('#white-modal');
+    const formContainer = containerIns.querySelector('.tour__booking__form__container')
+    const whiteModal = document.querySelector('#white-modal')
 
     const setInputValue = (root, inputSelector, textSelector) => {
-      const input = root.querySelector(inputSelector);
-      const textEl = root.querySelector(textSelector);
-      if (input && textEl) input.value = textEl.textContent.trim();
-    };
+      const input = root.querySelector(inputSelector)
+      const textEl = root.querySelector(textSelector)
+      if (input && textEl) input.value = textEl.textContent.trim()
+    }
 
     const setInputFromExternal = (inputRoot, textRoot, inputSelector, textSelector) => {
-      const input = inputRoot.querySelector(inputSelector);
-      const textEl = textRoot?.querySelector(textSelector);
-      if (input && textEl) input.value = textEl.textContent.trim();
-    };
+      const input = inputRoot.querySelector(inputSelector)
+      const textEl = textRoot?.querySelector(textSelector)
+      if (input && textEl) input.value = textEl.textContent.trim()
+    }
 
     const setPlaceholder = (root, inputSelector, placeholderText) => {
-      const input = root.querySelector(inputSelector);
-      if (input) input.placeholder = placeholderText;
-    };
+      const input = root.querySelector(inputSelector)
+      if (input) input.placeholder = placeholderText
+    }
 
     // از containerIns
-    setInputValue(containerIns, '.adult-count input', '.adult__count__container');
-    setInputValue(containerIns, '.child-count input', '.child__count__container');
-    setInputValue(containerIns, '.infant-count input', '.infant__count__container');
-    setInputValue(containerIns, '.hotel-name input', '.hotel__name__container');
-    setInputValue(containerIns, '.hotel-service input', '.hotel__service__container');
-    setInputValue(containerIns, '.hotel-rate input', '.hotel__rate__container');
-    setInputValue(containerIns, '.tour-name input', '.tour__name__container');
+    setInputValue(containerIns, '.adult-count input', '.adult__count__container')
+    setInputValue(containerIns, '.child-count input', '.child__count__container')
+    setInputValue(containerIns, '.infant-count input', '.infant__count__container')
+    setInputValue(containerIns, '.hotel-name input', '.hotel__name__container')
+    setInputValue(containerIns, '.hotel-service input', '.hotel__service__container')
+    setInputValue(containerIns, '.hotel-rate input', '.hotel__rate__container')
+    setInputValue(containerIns, '.tour-name input', '.tour__name__container')
 
     // مقادیر مالی از white-modal
-    setInputFromExternal(formContainer, whiteModal, '.total-amountF input', '.total-amount');
-    setInputFromExternal(formContainer, whiteModal, '.total-advanceF input', '.Total-amount-facilities');
-    setInputFromExternal(formContainer, whiteModal, '.amount-facilitiesF input', '.Total-advance-payment');
-    setInputFromExternal(formContainer, whiteModal, '.amount-eachF input', '.amount-each-installment');
+    setInputFromExternal(formContainer, whiteModal, '.total-amountF input', '.total-amount')
+    setInputFromExternal(formContainer, whiteModal, '.total-advanceF input', '.Total-amount-facilities')
+    setInputFromExternal(formContainer, whiteModal, '.amount-facilitiesF input', '.Total-advance-payment')
+    setInputFromExternal(formContainer, whiteModal, '.amount-eachF input', '.amount-each-installment')
 
     // Placeholder ها
-    setPlaceholder(containerIns, '.first-last-name input', 'نام و نام خانوادگی');
-    setPlaceholder(containerIns, '.phone input', 'شماره تماس');
-    setPlaceholder(containerIns, '.message input', 'توضیحات');
+    setPlaceholder(containerIns, '.first-last-name input', 'نام و نام خانوادگی')
+    setPlaceholder(containerIns, '.phone input', 'شماره تماس')
+    setPlaceholder(containerIns, '.message input', 'توضیحات')
   } catch (err) {
-    console.error('onrenderedSchmaTourBookingForm:', err.message);
+    console.error('onrenderedSchmaTourBookingForm:', err.message)
   }
-};
+}
 
 const onrenderedSchmaTourBookingForm = async (args) => {
   try {
@@ -1019,61 +1024,61 @@ const onrenderedSchmaTourBookingForm = async (args) => {
       .querySelector('.adult-count')
       .querySelector('input').value = document
       .querySelector('.tour__booking__form__modal__container')
-      .querySelector('.adult__count__container').textContent;
+      .querySelector('.adult__count__container').textContent
     document
       .querySelector('.tour__booking__form__modal__container')
       .querySelector('.child-count')
       .querySelector('input').value = document
       .querySelector('.tour__booking__form__modal__container')
-      .querySelector('.child__count__container').textContent;
+      .querySelector('.child__count__container').textContent
     document
       .querySelector('.tour__booking__form__modal__container')
       .querySelector('.infant-count')
       .querySelector('input').value = document
       .querySelector('.tour__booking__form__modal__container')
-      .querySelector('.infant__count__container').textContent;
+      .querySelector('.infant__count__container').textContent
     document
       .querySelector('.tour__booking__form__modal__container')
       .querySelector('.hotel-name')
       .querySelector('input').value = document
       .querySelector('.tour__booking__form__modal__container')
-      .querySelector('.hotel__name__container').textContent;
+      .querySelector('.hotel__name__container').textContent
     document
       .querySelector('.tour__booking__form__modal__container')
       .querySelector('.hotel-service')
       .querySelector('input').value = document
       .querySelector('.tour__booking__form__modal__container')
-      .querySelector('.hotel__service__container').textContent;
+      .querySelector('.hotel__service__container').textContent
     document
       .querySelector('.tour__booking__form__modal__container')
       .querySelector('.hotel-rate')
       .querySelector('input').value = document
       .querySelector('.tour__booking__form__modal__container')
-      .querySelector('.hotel__rate__container').textContent;
+      .querySelector('.hotel__rate__container').textContent
     document
       .querySelector('.tour__booking__form__modal__container')
       .querySelector('.tour-name')
       .querySelector('input').value = document
       .querySelector('.tour__booking__form__modal__container')
-      .querySelector('.tour__name__container').textContent;
+      .querySelector('.tour__name__container').textContent
 
     document
       .querySelector('.tour__booking__form__modal__container')
-      .querySelector('.first-last-name input').placeholder = 'نام و نام خانوادگی';
+      .querySelector('.first-last-name input').placeholder = 'نام و نام خانوادگی'
     document.querySelector('.tour__booking__form__modal__container').querySelector('.phone input').placeholder =
-      'شماره تماس';
+      'شماره تماس'
     document.querySelector('.tour__booking__form__modal__container').querySelector('.message input').placeholder =
-      'توضیحات';
+      'توضیحات'
   } catch (err) {
-    console.error('onrenderedSchmaTourBookingForm=' + err.lineNumber + ',' + err.message);
+    console.error('onrenderedSchmaTourBookingForm=' + err.lineNumber + ',' + err.message)
   }
-};
+}
 const callbackSourceTourBookingForm = async (args) => {
   try {
     document
       .querySelector('.tour__booking__form__modal__container')
       .querySelector('button')
-      .classList.add('button--loading');
+      .classList.add('button--loading')
     $bc.setSource('db.tourBookingForm', {
       value: JSON.stringify(args.source?.rows[0]),
       captcha: document.querySelector('.tour__booking__form__modal__container').querySelector("input[name='captcha']")
@@ -1082,48 +1087,48 @@ const callbackSourceTourBookingForm = async (args) => {
         .querySelector('.tour__booking__form__modal__container')
         .querySelector("input[name='captchaid']").value,
       run: true,
-    });
+    })
   } catch (err) {
-    console.error('callbackSourceTourBookingForm=' + err.lineNumber + ',' + err.message);
+    console.error('callbackSourceTourBookingForm=' + err.lineNumber + ',' + err.message)
   }
-};
+}
 const OnProcessedTourBookingForm = async (args) => {
   try {
-    var response = args.response;
-    var json = await response.json();
-    var errorid = json.errorid;
+    var response = args.response
+    var json = await response.json()
+    var errorid = json.errorid
     document
       .querySelector('.tour__booking__form__modal__container')
       .querySelector('button')
-      .classList.remove('button--loading');
+      .classList.remove('button--loading')
     if (errorid == '6') {
       document
         .querySelector('.tour__booking__form__modal__container')
-        .querySelector('.message__action__container').innerHTML = 'درخواست شما با موفقیت ثبت شد';
+        .querySelector('.message__action__container').innerHTML = 'درخواست شما با موفقیت ثبت شد'
     } else {
       document
         .querySelector('.tour__booking__form__modal__container')
-        .querySelector('.message__action__container').innerHTML = 'خطایی رخ داده, لطفا مجدد اقدام کنید';
+        .querySelector('.message__action__container').innerHTML = 'خطایی رخ داده, لطفا مجدد اقدام کنید'
     }
     setTimeout(function () {
       document
         .querySelector('.tour__booking__form__modal__container')
-        .querySelector('.message__action__container').innerHTML = '';
+        .querySelector('.message__action__container').innerHTML = ''
       setTimeout(function () {
-        document.querySelector('.tour__booking__form__modal__container').classList.add('hidden');
-      }, 2000);
-    }, 3000);
+        document.querySelector('.tour__booking__form__modal__container').classList.add('hidden')
+      }, 2000)
+    }, 3000)
   } catch (err) {
-    console.error('OnProcessedTourBookingForm=' + err.lineNumber + ',' + err.message);
+    console.error('OnProcessedTourBookingForm=' + err.lineNumber + ',' + err.message)
   }
-};
+}
 
 const callbackSourceTourBookingFormIns = async (args) => {
   try {
     document
       .querySelector('.tour__booking__form__modal__container_Ins')
       .querySelector('button')
-      .classList.add('button--loading');
+      .classList.add('button--loading')
     $bc.setSource('db.tourBookingFormIns', {
       value: JSON.stringify(args.source?.rows[0]),
       captcha: document
@@ -1133,249 +1138,249 @@ const callbackSourceTourBookingFormIns = async (args) => {
         .querySelector('.tour__booking__form__modal__container_Ins')
         .querySelector("input[name='captchaid']").value,
       run: true,
-    });
+    })
   } catch (err) {
-    console.error('callbackSourcetourBookingFormIns=' + err.lineNumber + ',' + err.message);
+    console.error('callbackSourcetourBookingFormIns=' + err.lineNumber + ',' + err.message)
   }
-};
+}
 const OnProcessedTourBookingFormIns = async (args) => {
   try {
-    var response = args.response;
-    var json = await response.json();
-    var errorid = json.errorid;
+    var response = args.response
+    var json = await response.json()
+    var errorid = json.errorid
     document
       .querySelector('.tour__booking__form__modal__container_Ins')
       .querySelector('button')
-      .classList.remove('button--loading');
+      .classList.remove('button--loading')
     if (errorid == '6') {
       document
         .querySelector('.tour__booking__form__modal__container_Ins')
-        .querySelector('.message__action__container').innerHTML = 'درخواست شما با موفقیت ثبت شد';
+        .querySelector('.message__action__container').innerHTML = 'درخواست شما با موفقیت ثبت شد'
     } else {
       document
         .querySelector('.tour__booking__form__modal__container_Ins')
-        .querySelector('.message__action__container').innerHTML = 'خطایی رخ داده, لطفا مجدد اقدام کنید';
+        .querySelector('.message__action__container').innerHTML = 'خطایی رخ داده, لطفا مجدد اقدام کنید'
     }
     setTimeout(function () {
       document
         .querySelector('.tour__booking__form__modal__container_Ins')
-        .querySelector('.message__action__container').innerHTML = '';
+        .querySelector('.message__action__container').innerHTML = ''
       setTimeout(function () {
-        document.querySelector('.tour__booking__form__modal__container_Ins').classList.add('hidden');
-      }, 2000);
-    }, 3000);
+        document.querySelector('.tour__booking__form__modal__container_Ins').classList.add('hidden')
+      }, 2000)
+    }, 3000)
   } catch (err) {
-    console.error('OnProcessedtourBookingFormIns=' + err.lineNumber + ',' + err.message);
+    console.error('OnProcessedtourBookingFormIns=' + err.lineNumber + ',' + err.message)
   }
-};
+}
 
 document.querySelectorAll('nav li[data-target]').forEach((item) => {
   item.addEventListener('click', (e) => {
-    e.preventDefault();
-    const targetId = item.getAttribute('data-target');
-    const targetEl = document.querySelector(targetId);
+    e.preventDefault()
+    const targetId = item.getAttribute('data-target')
+    const targetEl = document.querySelector(targetId)
 
     if (targetEl) {
-      const yOffset = -100;
-      const y = targetEl.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      const yOffset = -100
+      const y = targetEl.getBoundingClientRect().top + window.pageYOffset + yOffset
 
-      window.scrollTo({ top: y, behavior: 'smooth' });
+      window.scrollTo({ top: y, behavior: 'smooth' })
     }
-  });
-});
+  })
+})
 
 // filter-hotel-card
 function initializeHotelFilters() {
-  const normalizeText = (text) => (text ? text.replace(/\s|\./g, '').normalize('NFKD').toLowerCase() : '');
+  const normalizeText = (text) => (text ? text.replace(/\s|\./g, '').normalize('NFKD').toLowerCase() : '')
 
-  const selectedStars = new Set();
-  const selectedServices = new Set();
-  let hotelNameQuery = '';
+  const selectedStars = new Set()
+  const selectedServices = new Set()
+  let hotelNameQuery = ''
 
-  const hotelNameInput = document.querySelector('.hotel-name-input');
-  const starInputs = document.querySelectorAll('.star-hotel-input');
-  const serviceInputs = document.querySelectorAll('.filter-hotel-services');
-  const minRange = document.getElementById('hotel-minRange');
-  const maxRange = document.getElementById('hotel-maxRange');
-  const minValueSpan = document.getElementById('hotel-minValue');
-  const maxValueSpan = document.getElementById('hotel-maxValue');
-  const rangeTrack = document.getElementById('hotel-rangeTrack');
+  const hotelNameInput = document.querySelector('.hotel-name-input')
+  const starInputs = document.querySelectorAll('.star-hotel-input')
+  const serviceInputs = document.querySelectorAll('.filter-hotel-services')
+  const minRange = document.getElementById('hotel-minRange')
+  const maxRange = document.getElementById('hotel-maxRange')
+  const minValueSpan = document.getElementById('hotel-minValue')
+  const maxValueSpan = document.getElementById('hotel-maxValue')
+  const rangeTrack = document.getElementById('hotel-rangeTrack')
 
-  const hotelCards = document.querySelectorAll('.hotel-card');
+  const hotelCards = document.querySelectorAll('.hotel-card')
 
-  const formatPrice = (val) => val.toLocaleString('fa-IR');
+  const formatPrice = (val) => val.toLocaleString('fa-IR')
 
-  const parsePrice = (text) => parseInt(text, 10) || 0;
+  const parsePrice = (text) => parseInt(text, 10) || 0
 
   const allPrices = Array.from(hotelCards)
     .map((card) => {
-      const priceContainer = card.querySelector('[data-price]');
-      return priceContainer ? parsePrice(priceContainer.getAttribute('data-price')) : 0;
+      const priceContainer = card.querySelector('[data-price]')
+      return priceContainer ? parsePrice(priceContainer.getAttribute('data-price')) : 0
     })
-    .filter((p) => p > 0);
+    .filter((p) => p > 0)
 
-  const REAL_MIN = allPrices.length > 0 ? Math.min(...allPrices) : 0;
-  const REAL_MAX = allPrices.length > 0 ? Math.max(...allPrices) : 0;
+  const REAL_MIN = allPrices.length > 0 ? Math.min(...allPrices) : 0
+  const REAL_MAX = allPrices.length > 0 ? Math.max(...allPrices) : 0
 
-  let realMin = REAL_MIN;
-  let realMax = REAL_MAX;
+  let realMin = REAL_MIN
+  let realMax = REAL_MAX
 
   function updateFilterCount() {
-    const filterCountEl = document.getElementById('filterBtnCountHotel');
-    const filterBtn = document.getElementById('filterBtnHotel');
-    const filterIcon = document.getElementById('filterIconHotel');
+    const filterCountEl = document.getElementById('filterBtnCountHotel')
+    const filterBtn = document.getElementById('filterBtnHotel')
+    const filterIcon = document.getElementById('filterIconHotel')
 
-    if (!filterCountEl || !filterBtn || !filterIcon) return;
+    if (!filterCountEl || !filterBtn || !filterIcon) return
 
-    let count = 0;
+    let count = 0
 
-    if (selectedStars.size > 0) count++;
-    if (selectedServices.size > 0) count++;
-    if (realMin > REAL_MIN || realMax < REAL_MAX) count++;
-    if (hotelNameQuery.trim() !== '') count++;
+    if (selectedStars.size > 0) count++
+    if (selectedServices.size > 0) count++
+    if (realMin > REAL_MIN || realMax < REAL_MAX) count++
+    if (hotelNameQuery.trim() !== '') count++
 
     if (count > 0) {
-      filterCountEl.classList.remove('hidden');
-      filterCountEl.classList.add('flex');
-      filterCountEl.textContent = count;
+      filterCountEl.classList.remove('hidden')
+      filterCountEl.classList.add('flex')
+      filterCountEl.textContent = count
 
-      filterBtn.classList.remove('bg-white');
-      filterBtn.classList.add('bg-primary-500', 'shadow-small-btn-shadow', 'text-white');
+      filterBtn.classList.remove('bg-white')
+      filterBtn.classList.add('bg-primary-500', 'shadow-small-btn-shadow', 'text-white')
 
       filterIcon.querySelectorAll('path, ellipse').forEach((el) => {
-        el.setAttribute('stroke', '#11C086');
-      });
+        el.setAttribute('stroke', '#11C086')
+      })
     } else {
-      filterCountEl.classList.add('hidden');
-      filterCountEl.classList.remove('flex');
-      filterCountEl.textContent = '';
+      filterCountEl.classList.add('hidden')
+      filterCountEl.classList.remove('flex')
+      filterCountEl.textContent = ''
 
-      filterBtn.classList.remove('bg-primary-500', 'shadow-small-btn-shadow', 'text-white');
-      filterBtn.classList.add('bg-white');
+      filterBtn.classList.remove('bg-primary-500', 'shadow-small-btn-shadow', 'text-white')
+      filterBtn.classList.add('bg-white')
 
       filterIcon.querySelectorAll('path, ellipse').forEach((el) => {
-        el.setAttribute('stroke', '#33363F');
-      });
+        el.setAttribute('stroke', '#33363F')
+      })
     }
   }
 
   function filterCardsExtended() {
     hotelCards.forEach((card) => {
-      const starElems = card.querySelectorAll('.hotel-card-star');
-      const serviceElems = card.querySelectorAll('.hotel-card-service');
-      const hotelNameElem = card.querySelector('.hotel-card-title');
-      const priceContainer = card.querySelector('[data-price]');
+      const starElems = card.querySelectorAll('.hotel-card-star')
+      const serviceElems = card.querySelectorAll('.hotel-card-service')
+      const hotelNameElem = card.querySelector('.hotel-card-title')
+      const priceContainer = card.querySelector('[data-price]')
 
-      const cardStars = Array.from(starElems).map((el) => normalizeText(el.textContent));
-      const cardServices = Array.from(serviceElems).map((el) => normalizeText(el.textContent));
-      const cardHotelName = normalizeText(hotelNameElem?.textContent);
-      const cardPrice = priceContainer ? parsePrice(priceContainer.getAttribute('data-price')) : 0;
+      const cardStars = Array.from(starElems).map((el) => normalizeText(el.textContent))
+      const cardServices = Array.from(serviceElems).map((el) => normalizeText(el.textContent))
+      const cardHotelName = normalizeText(hotelNameElem?.textContent)
+      const cardPrice = priceContainer ? parsePrice(priceContainer.getAttribute('data-price')) : 0
 
-      const starMatch = selectedStars.size === 0 || cardStars.some((star) => selectedStars.has(star));
-      const serviceMatch = selectedServices.size === 0 || cardServices.some((service) => selectedServices.has(service));
-      const nameMatch = !hotelNameQuery || cardHotelName.includes(normalizeText(hotelNameQuery));
-      const priceMatch = cardPrice >= realMin && cardPrice <= realMax;
+      const starMatch = selectedStars.size === 0 || cardStars.some((star) => selectedStars.has(star))
+      const serviceMatch = selectedServices.size === 0 || cardServices.some((service) => selectedServices.has(service))
+      const nameMatch = !hotelNameQuery || cardHotelName.includes(normalizeText(hotelNameQuery))
+      const priceMatch = cardPrice >= realMin && cardPrice <= realMax
 
-      card.style.display = starMatch && serviceMatch && nameMatch && priceMatch ? 'flex' : 'none';
-    });
+      card.style.display = starMatch && serviceMatch && nameMatch && priceMatch ? 'flex' : 'none'
+    })
 
-    updateFilterCount();
+    updateFilterCount()
   }
 
   starInputs.forEach((el) => {
     el.addEventListener('click', () => {
-      const wrapper = el.closest('.star-hotel-wrapper');
-      const rawText = wrapper?.querySelector('.star-hotel')?.textContent || '';
-      const match = normalizeText(rawText).match(/(\d+)ستاره/);
-      const label = match ? match[0] : '';
+      const wrapper = el.closest('.star-hotel-wrapper')
+      const rawText = wrapper?.querySelector('.star-hotel')?.textContent || ''
+      const match = normalizeText(rawText).match(/(\d+)ستاره/)
+      const label = match ? match[0] : ''
 
-      if (!label) return;
+      if (!label) return
 
-      const isActive = selectedStars.has(label);
-      el.classList.toggle('bg-primary-500', !isActive);
-      el.classList.toggle('border-primary-500', !isActive);
+      const isActive = selectedStars.has(label)
+      el.classList.toggle('bg-primary-500', !isActive)
+      el.classList.toggle('border-primary-500', !isActive)
 
-      isActive ? selectedStars.delete(label) : selectedStars.add(label);
-      filterCardsExtended();
-    });
-  });
+      isActive ? selectedStars.delete(label) : selectedStars.add(label)
+      filterCardsExtended()
+    })
+  })
 
   serviceInputs.forEach((el) => {
     el.addEventListener('click', () => {
-      const labelElem = el.querySelector('.filter-hotel-services-name');
-      const label = normalizeText(labelElem ? labelElem.textContent : el.textContent);
+      const labelElem = el.querySelector('.filter-hotel-services-name')
+      const label = normalizeText(labelElem ? labelElem.textContent : el.textContent)
 
-      const isActive = selectedServices.has(label);
-      el.classList.toggle('text-primary-500', !isActive);
-      el.classList.toggle('border-primary-500', !isActive);
+      const isActive = selectedServices.has(label)
+      el.classList.toggle('text-primary-500', !isActive)
+      el.classList.toggle('border-primary-500', !isActive)
 
-      isActive ? selectedServices.delete(label) : selectedServices.add(label);
-      filterCardsExtended();
-    });
-  });
+      isActive ? selectedServices.delete(label) : selectedServices.add(label)
+      filterCardsExtended()
+    })
+  })
 
   if (hotelNameInput) {
     hotelNameInput.addEventListener('input', () => {
-      hotelNameQuery = hotelNameInput.value;
-      filterCardsExtended();
-    });
+      hotelNameQuery = hotelNameInput.value
+      filterCardsExtended()
+    })
   }
 
   function updatePriceValues() {
     if (!minRange || !maxRange || !minValueSpan || !maxValueSpan || !rangeTrack) {
-      return;
+      return
     }
 
-    const rawMin = parseInt(minRange.value) || 0;
-    const rawMax = parseInt(maxRange.value) || 0;
+    const rawMin = parseInt(minRange.value) || 0
+    const rawMax = parseInt(maxRange.value) || 0
 
-    realMin = Math.floor(REAL_MIN + ((REAL_MAX - REAL_MIN) * rawMin) / 100);
-    realMax = Math.floor(REAL_MIN + ((REAL_MAX - REAL_MIN) * rawMax) / 100);
+    realMin = Math.floor(REAL_MIN + ((REAL_MAX - REAL_MIN) * rawMin) / 100)
+    realMax = Math.floor(REAL_MIN + ((REAL_MAX - REAL_MIN) * rawMax) / 100)
 
-    minValueSpan.textContent = formatPrice(Math.min(realMin, realMax));
-    maxValueSpan.textContent = formatPrice(Math.max(realMin, realMax));
+    minValueSpan.textContent = formatPrice(Math.min(realMin, realMax))
+    maxValueSpan.textContent = formatPrice(Math.max(realMin, realMax))
 
-    const right = Math.min(rawMin, rawMax);
-    const width = Math.abs(rawMax - rawMin);
+    const right = Math.min(rawMin, rawMax)
+    const width = Math.abs(rawMax - rawMin)
 
-    rangeTrack.style.right = `${right}%`;
-    rangeTrack.style.width = `${width}%`;
+    rangeTrack.style.right = `${right}%`
+    rangeTrack.style.width = `${width}%`
 
-    filterCardsExtended();
+    filterCardsExtended()
   }
 
   if (minRange) {
-    minRange.value = minRange.value || '0';
-    minRange.addEventListener('input', updatePriceValues);
+    minRange.value = minRange.value || '0'
+    minRange.addEventListener('input', updatePriceValues)
   }
   if (maxRange) {
-    maxRange.value = maxRange.value || '100';
-    maxRange.addEventListener('input', updatePriceValues);
+    maxRange.value = maxRange.value || '100'
+    maxRange.addEventListener('input', updatePriceValues)
   }
 
-  setTimeout(updatePriceValues, 100);
-  filterCardsExtended();
+  setTimeout(updatePriceValues, 100)
+  filterCardsExtended()
 }
 
 const waitUntilHotelCardsLoaded = (callback, maxTries = 20, interval = 300) => {
-  let tries = 0;
+  let tries = 0
   const timer = setInterval(() => {
-    const cards = document.querySelectorAll('.hotel-card');
+    const cards = document.querySelectorAll('.hotel-card')
     if (cards.length > 0) {
-      clearInterval(timer);
-      callback();
+      clearInterval(timer)
+      callback()
     } else {
-      tries++;
+      tries++
       if (tries >= maxTries) {
-        clearInterval(timer);
+        clearInterval(timer)
       }
     }
-  }, interval);
-};
+  }, interval)
+}
 
 waitUntilHotelCardsLoaded(() => {
-  initializeHotelFilters();
-});
+  initializeHotelFilters()
+})
 
 // TOUR INSTALLMENT
 // var limitrange = 150;

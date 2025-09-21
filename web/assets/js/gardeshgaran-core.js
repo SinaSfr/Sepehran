@@ -1759,7 +1759,7 @@ async function Reply_Comment(element) {
 //SubmitOpinionForm
 async function SubmitOpinionForm(element, event) {
   event.preventDefault();
-  const response = await fetch('Client_CheckAuthentication.inc');
+  const response = await fetch('/Client_CheckAuthentication.inc');
   if (!response.ok) {
     throw new Error('متاسفانه مشکلی به وجود آمده است لطفا بعدا مجددا تلاش فرمایید.');
   } else {
@@ -2343,7 +2343,7 @@ if (document.querySelector('.swiper-special-destination-tour-mobile')) {
     },
   });
 }
-if (document.querySelector('.sswiper-small-img-mobile')) {
+if (document.querySelector('.swiper-small-img-mobile')) {
   var swiperSmallImgMobile = new Swiper('.swiper-small-img-mobile', {
     spaceBetween: 10,
     slidesPerView: 4,
