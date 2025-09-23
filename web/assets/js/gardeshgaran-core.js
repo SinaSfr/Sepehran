@@ -1013,6 +1013,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const rangeTrack = document.getElementById('rangeTrack');
   const minValText = document.getElementById('minValue');
   const maxValText = document.getElementById('maxValue');
+  const paging = document.getElementById('paging')
   const selectedDays = new Set();
   const selectedAirlines = new Set();
 
@@ -1052,6 +1053,16 @@ document.addEventListener('DOMContentLoaded', () => {
     realMin = REAL_MIN;
     realMax = REAL_MAX;
   }
+
+  function isAnyFilterActive() {
+    return (
+      selectedDays.size > 0 ||
+      selectedAirlines.size > 0 ||
+      realMin > REAL_MIN ||
+      realMax < REAL_MAX
+    )
+  }
+
 
   const daysMap = new Map();
   tourCards.forEach((card) => {
@@ -1149,8 +1160,18 @@ document.addEventListener('DOMContentLoaded', () => {
       const priceMatch = cardPrice >= realMin && cardPrice <= realMax;
 
       card.style.display = dayMatch && airlineMatch && priceMatch ? 'flex' : 'none';
+      
     });
 
+    if (paging) {
+      if (isAnyFilterActive()) {
+        paging.style.display = 'none';
+      } else {
+        const anyVisible = Array.from(tourCards).some(c => c.style.display !== 'none');
+        paging.style.display = anyVisible ? '' : 'none';
+      }
+    }
+  
     updateFilterCount();
   }
 

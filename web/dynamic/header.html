@@ -6,6 +6,12 @@
     <basis core="dbsource" source="basiscore" lid="1" mid="20" name="tour-category">
         <member name="cat" type="tree" request="cat" parentid="215037" order="ord"></member>
     </basis>
+    <basis core="dbsource" source="basiscore" lid="1" mid="20" name="tour-category-sql">
+        <member name="cat" type="tree" request="cat" parentid="217114" order="ord" postsql="SELECT COUNT(*) AS TotalRows
+        from [tour-category-sql.cat]
+        where catid in (217114)
+           OR parentid in (217114)"></member>
+    </basis>
     <basis core="dbsource" source="basiscore" lid="1" mid="20" name="seasonal-tour">
         <member name="cat" type="tree" request="cat" parentid="215848" order="ord"></member>
     </basis>
@@ -108,7 +114,7 @@
                                 </a>
                             </li>
                             <li class="flex items-center h-full">
-                                <a href=""
+                                <a href="/تماس-با-ما#recruitment-form"
                                     class="relative group  flex items-center text-sm font-semibold transition-all duration-300 text-zinc-900 hover:text-primary-600 xl:flex-shrink-0">فرصت
                                     شغلی
                                     <span

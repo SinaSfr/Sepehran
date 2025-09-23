@@ -148,7 +148,7 @@
       <div class="flex flex-[1.20] basis-0 min-w-0 flex-col gap-4">
         <basis core="print" datamembername="db.view">
           <layout>
-            <div class="flex flex-row-reverse justify-start items-center gap-4 border-b-2 border-gray-100 pb-2">
+            <div class="flex flex-row-reverse justify-start items-center gap-4 border-b-2 border-gray-200 pb-2">
               @child
             </div>
           </layout>
@@ -170,7 +170,7 @@
 
         <div class="flex items-center justify-center gap-4">
           <button
-            class="open-consulation-btn group flex items-center justify-center gap-2 font-extrabold border border-gray-100 rounded-xl w-36 h-[73px] transition-all duration-300 hover:bg-primary-500 hover:text-white hover:shadow-btn-shadow">
+            class="open-consulation-btn group flex items-center justify-center gap-2 font-extrabold border border-gray-200 rounded-xl w-36 h-[73px] transition-all duration-300 hover:bg-primary-500 hover:text-white hover:shadow-btn-shadow">
             ارسال فرم
             <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path class="transition-all duration-300 group-hover:stroke-white" d="M17 6.5L11 12.5L17 18.5"
@@ -195,7 +195,7 @@
 
         </div>
       </div>
-      <div class="flex-[0.86] border border-gray-100 shadow-card-shadow py-11 px-9 rounded-2xl">
+      <div class="flex-[0.86] border border-gray-200 shadow-card-shadow py-11 px-9 rounded-2xl">
         <div class="flex items-center gap-4 border-b-2 border-primary-500 pb-2 mb-3">
           <svg width="24" height="24">
             <use xlink:href="/images/sprite-icons.svg#icon-tick-book"></use>
@@ -209,13 +209,13 @@
         <div class="flex flex-col gap-4">
           <basis core="print" datamembername="db.view">
             <face filter="TypeID in('200') and vocabulary in('مدت-زمان-قابل-استفاده')">
-              <div class="flex items-center justify-between border-b border-gray-50 pb-2">
+              <div class="flex items-center justify-between border-b border-gray-200 pb-2">
                 <h3 class="font-extrabold">زمان مورد نیاز:</h3>
                 <span class="font-extrabold">@text</span>
               </div>
             </face>
             <face filter="TypeID in('251') and vocabulary in('مدت-اعتبار-ویزا')">
-              <div class="flex items-center justify-between border-b border-gray-50 pb-2">
+              <div class="flex items-center justify-between border-b border-gray-200 pb-2">
                 <h3 class="font-extrabold">مدت اعتبار ویزا:</h3>
                 <span class="font-extrabold">@Answer</span>
               </div>
@@ -223,7 +223,7 @@
           </basis>
           <basis core="print" datamembername="db.view">
             <layout>
-              <div class="flex justify-between gap-3 border-b border-gray-50 pb-2">
+              <div class="flex justify-between gap-3 border-b border-gray-200 pb-2">
                 <h3 class="font-extrabold flex-shrink-0">مدارک مورد نیاز:</h3>
                 <div class="flex flex-col gap-2">@child</div>
               </div>
@@ -238,7 +238,7 @@
           </basis>
           <basis core="print" datamembername="db.view">
             <face filter="TypeID in('200') and vocabulary in('تعداد-دفعات-ورود')">
-              <div class="flex items-center justify-between border-b border-gray-50 pb-2">
+              <div class="flex items-center justify-between border-b border-gray-200 pb-2">
                 <h3 class="font-extrabold">تعداد دفعات ورود:</h3>
                 <span class="font-extrabold">@Answer</span>
               </div>
@@ -266,7 +266,7 @@
           <!-- items -->
           <div class="flex flex-col items-center">
             <span
-              class="flex items-center justify-center w-[168px] h-[168px] border-2 border-gray-100 rounded-xl backdrop-blur shadow-shadow-soft bg-specialcolor-3">
+              class="flex items-center justify-center w-[168px] h-[168px] border-2 border-gray-200 rounded-xl backdrop-blur shadow-shadow-soft bg-specialcolor-3">
               <svg width="90" height="90">
                 <use xlink:href="/images/sprite-icons.svg#icon-wallet"></use>
               </svg>
@@ -280,7 +280,7 @@
           </div>
           <div class="flex flex-col items-center">
             <span
-              class="flex items-center justify-center w-[168px] h-[168px] border-2 border-gray-100 rounded-xl backdrop-blur shadow-shadow-soft bg-specialcolor-3">
+              class="flex items-center justify-center w-[168px] h-[168px] border-2 border-gray-200 rounded-xl backdrop-blur shadow-shadow-soft bg-specialcolor-3">
               <svg width="90" height="90">
                 <use xlink:href="/images/sprite-icons.svg#icon-documents"></use>
               </svg>
@@ -294,7 +294,7 @@
           </div>
           <div class="flex flex-col items-center">
             <span
-              class="flex items-center justify-center w-[168px] h-[168px] border-2 border-gray-100 rounded-xl backdrop-blur shadow-shadow-soft bg-specialcolor-3">
+              class="flex items-center justify-center w-[168px] h-[168px] border-2 border-gray-200 rounded-xl backdrop-blur shadow-shadow-soft bg-specialcolor-3">
               <svg width="90" height="90">
                 <use xlink:href="/images/sprite-icons.svg#icon-embassy"></use>
               </svg>
@@ -308,7 +308,7 @@
           </div>
           <div class="flex flex-col items-center">
             <span
-              class="flex items-center justify-center w-[168px] h-[168px] border-2 border-gray-100 rounded-xl backdrop-blur shadow-shadow-soft bg-specialcolor-3">
+              class="flex items-center justify-center w-[168px] h-[168px] border-2 border-gray-200 rounded-xl backdrop-blur shadow-shadow-soft bg-specialcolor-3">
               <svg width="90" height="90">
                 <use xlink:href="/images/sprite-icons.svg#icon-visa"></use>
               </svg>
@@ -351,7 +351,7 @@
               <div class="visa-description text-sm font-semibold mt-6 leading-7 text-justify mb-6">@largetext</div>
             </face>
           </basis>
-          <div class="flex items-center justify-center gap-3 mt-6 border border-gray-100 rounded-2xl mb-8">
+          <div class="flex items-center justify-center gap-3 mt-6 border border-gray-200 rounded-2xl mb-8">
             <div class="flex flex-col items-center w-[483px]">
               <h2 class="text-2xl font-extrabold mb-1"> ویزای خودتو با خیال راحت بگیر!</h2>
               <div class="text-sm font-semibold leading-7 text-center w-4/5">
@@ -364,7 +364,7 @@
                 <basis core="print" datamembername="db.info">
                   <face filter="TypeID in(240)">
                     <a href="tel:021@text"
-                      class="group flex items-center gap-2 border rounded-xl transition-all duration-300 shadow-small-btn-shadow bg-primary-500 text-white border-primary-500 py-2 px-6 hover:border-gray-100 hover:text-zinc-900 hover:shadow-none hover:bg-white">تماس
+                      class="group flex items-center gap-2 border rounded-xl transition-all duration-300 shadow-small-btn-shadow bg-primary-500 text-white border-primary-500 py-2 px-6 hover:border-gray-200 hover:text-zinc-900 hover:shadow-none hover:bg-white">تماس
                       بگیرید
                       <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path class="transition-all duration-300 group-hover:fill-zinc-900"
@@ -386,7 +386,7 @@
                   </svg>
                 </div>
                 <button
-                  class="open-consulation-btn group flex items-center gap-2 border border-gray-100 rounded-xl transition-all duration-300 hover:shadow-small-btn-shadow hover:bg-primary-500 hover:text-white hover:border-primary-500 py-2 px-6">ارسال
+                  class="open-consulation-btn group flex items-center gap-2 border border-gray-200 rounded-xl transition-all duration-300 hover:shadow-small-btn-shadow hover:bg-primary-500 hover:text-white hover:border-primary-500 py-2 px-6">ارسال
                   فرم
                   <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path class="transition-all duration-300 group-hover:fill-white"
@@ -515,7 +515,7 @@
           </layout>
           <face filter="TypeID in(250)">
             <div
-              class="faq-box transition-all duration-300 cursor-pointer rounded-xl border border-gray-100 bg-white py-6 px-8">
+              class="faq-box transition-all duration-300 cursor-pointer rounded-xl border border-gray-200 bg-white py-6 px-8">
               <div class="flex items-center justify-between">
                 <div class="flex items-center gap-2">
                   <svg width="32" height="32" class="icon-plus-circle">
@@ -631,7 +631,7 @@
             <face level="1">
               <div class="opinionRow drop-shadow-comment-box bg-white rounded-3xl py-6 my-6">
                 <div class="user-opinion-txt">
-                  <div class="opinion-info flex justify-between pb-4 mb-3 border-b border-gray-100">
+                  <div class="opinion-info flex justify-between pb-4 mb-3 border-b border-gray-200">
                     <div class="username-opinion flex items-center gap-6">
                       <img src="[##cms.cms.cdn##]/images/special-tour-card.jpg" class="h-20 rounded-full" alt=""
                         width="80" height="80" loading="lazy" />
@@ -676,7 +676,7 @@
             <face level="2" filter="username='گردشگران'">
               <div class="opinionRow drop-shadow-comment-box bg-white rounded-3xl py-6 my-6 pr-20">
                 <div class="user-opinion-txt">
-                  <div class="opinion-info flex justify-between pb-4 mb-3 border-b border-gray-100">
+                  <div class="opinion-info flex justify-between pb-4 mb-3 border-b border-gray-200">
                     <div class="username-opinion flex items-center gap-6">
                       <img src="[##cms.cms.cdn##]/images/special-tour-card.jpg" class="h-20 rounded-full" alt=""
                         width="80" height="80" loading="lazy" />
@@ -696,7 +696,7 @@
             <face level="2">
               <div class="opinionRow drop-shadow-comment-box bg-white rounded-3xl py-6 my-6 pr-20">
                 <div class="user-opinion-txt">
-                  <div class="opinion-info flex justify-between pb-4 mb-3 border-b border-gray-100">
+                  <div class="opinion-info flex justify-between pb-4 mb-3 border-b border-gray-200">
                     <div class="username-opinion flex items-center gap-6">
                       <img src="[##cms.cms.cdn##]/images/special-tour-card.jpg" class="h-20 rounded-full" alt=""
                         width="80" height="80" loading="lazy" />
@@ -733,10 +733,10 @@
       </div>
       <aside class="w-96 sticky top-20 h-fit">
         <section
-          class="bg-formBg bg-center bg-cover flex items-end border border-gray-100 shadow-big-shadow rounded-3xl h-[404px]">
+          class="bg-formBg bg-center bg-cover flex items-end border border-gray-200 shadow-big-shadow rounded-3xl h-[404px]">
           <div class="flex flex-col items-center gap-1 mb-20 mr-8">
             <button
-              class="open-consulation-btn group w-40 flex items-center justify-center gap-2 border border-gray-100 rounded-xl transition-all duration-300 hover:shadow-small-btn-shadow hover:bg-primary-500 hover:text-white hover:border-primary-500 py-2">ارسال
+              class="open-consulation-btn group w-40 flex items-center justify-center gap-2 border border-gray-200 rounded-xl transition-all duration-300 hover:shadow-small-btn-shadow hover:bg-primary-500 hover:text-white hover:border-primary-500 py-2">ارسال
               فرم
               <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path class="transition-all duration-300 group-hover:fill-white"
@@ -756,7 +756,7 @@
             <basis core="print" datamembername="db.info">
               <face filter="TypeID in(240)">
                 <a href="tel:021@text"
-                  class="group w-40 flex items-center justify-center gap-2 border rounded-xl transition-all duration-300 shadow-small-btn-shadow bg-primary-500 text-white border-primary-500 py-2 hover:border-gray-100 hover:shadow-none hover:bg-white hover:text-zinc-900">تماس
+                  class="group w-40 flex items-center justify-center gap-2 border rounded-xl transition-all duration-300 shadow-small-btn-shadow bg-primary-500 text-white border-primary-500 py-2 hover:border-gray-200 hover:shadow-none hover:bg-white hover:text-zinc-900">تماس
                   بگیرید
                   <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path class="transition-all duration-300 group-hover:fill-zinc-900"

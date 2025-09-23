@@ -133,7 +133,7 @@
         </else-layout>
         <face filter="link is null">
           <a href="/visa.bc?id=@id"
-            class="flex flex-col border border-gray-50 rounded-xl shadow-card-shadow overflow-hidden">
+            class="flex flex-col border border-gray-200 rounded-xl shadow-card-shadow overflow-hidden">
             <img src="\@00352X00192prp" class="w-full h-48 object-cover" alt="@title" width="352" height="192"
               loading="lazy" />
             <div class="flex flex-col gap-1 py-4 px-6 divide-y divide-gray-100">
@@ -164,7 +164,7 @@
           </a>
         </face>
         <face>
-          <a href="@link" class="flex flex-col border border-gray-50 rounded-xl shadow-card-shadow overflow-hidden">
+          <a href="@link" class="flex flex-col border border-gray-200 rounded-xl shadow-card-shadow overflow-hidden">
             <img src="\@00352X00192prp" class="w-full h-48 object-cover" alt="@title" width="352" height="192"
               loading="lazy" />
             <div class="flex flex-col gap-1 py-4 px-6 divide-y divide-gray-100">
@@ -201,7 +201,7 @@
           <basis core="print" datamembername="db.paging">
             <face filter="(@sta='pre')and('[##cms.cms.pageurl##]'='')">
               <li
-                class="group flex items-center justify-center w-16 h-16 border border-gray-100 rounded-xl transition-all duration-300 hover:border-primary-500 page-no prev-page">
+                class="group flex items-center justify-center w-16 h-16 border border-gray-200 rounded-xl transition-all duration-300 hover:border-primary-500 page-no prev-page">
                 <a class="flex items-center justify-center w-full cursor-pointer text-zinc-900" aria-label="angle-left"
                   href="/[##cms.cms.link_page##]&pagenum=@page">
                   <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -213,7 +213,7 @@
             </face>
             <face filter="(@sta='pre')and('[##cms.cms.pageurl##]'<>'')">
               <li
-                class="group flex items-center justify-center w-16 h-16 border border-gray-100 rounded-xl transition-all duration-300 hover:border-primary-500 page-no prev-page">
+                class="group flex items-center justify-center w-16 h-16 border border-gray-200 rounded-xl transition-all duration-300 hover:border-primary-500 page-no prev-page">
                 <a class="flex items-center justify-center w-full cursor-pointer text-zinc-900" aria-label="angle-left"
                   href="/[##cms.cms.pageurl##]?pagenum=@page">
                   <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -246,7 +246,7 @@
             <face
               filter="(@page<>[##cms.query.pagenum|(1)##]) and (@page>0) and (@sta='no') and ('[##cms.cms.pageurl##]'='') ">
               <li
-                class="flex items-center justify-center w-16 h-16 border border-gray-100 text-gray-400 text-2xl font-extrabold rounded-xl transition-all duration-300 hover:border-primary-500 hover:text-primary-500 page-no">
+                class="flex items-center justify-center w-16 h-16 border border-gray-200 text-gray-400 text-2xl font-extrabold rounded-xl transition-all duration-300 hover:border-primary-500 hover:text-primary-500 page-no">
                 <a class="flex items-center justify-center w-full h-full cursor-pointer page-number"
                   href="/[##cms.cms.link_page##]&pagenum=@page">
                   @page
@@ -256,7 +256,7 @@
             <face
               filter="(@page<>[##cms.query.pagenum|(1)##]) and (@page>0) and (@sta='no') and ('[##cms.cms.pageurl##]'<>'') ">
               <li
-                class="flex items-center justify-center w-16 h-16 border border-gray-100 text-gray-400 text-2xl font-extrabold rounded-xl transition-all duration-300 hover:border-primary-500 hover:text-primary-500 page-no">
+                class="flex items-center justify-center w-16 h-16 border border-gray-200 text-gray-400 text-2xl font-extrabold rounded-xl transition-all duration-300 hover:border-primary-500 hover:text-primary-500 page-no">
                 <a class="flex items-center justify-center w-full h-full cursor-pointer page-number"
                   href="/[##cms.cms.pageurl##]?pagenum=@page">
                   @page
@@ -267,7 +267,7 @@
           <basis core="print" datamembername="db.paging">
             <face filter="(@sta='nex') and ('[##cms.cms.pageurl##]'='')">
               <li
-                class="group flex items-center justify-center w-16 h-16 border border-gray-100 rounded-xl transition-all duration-300 hover:border-primary-500 page-no next-page">
+                class="group flex items-center justify-center w-16 h-16 border border-gray-200 rounded-xl transition-all duration-300 hover:border-primary-500 page-no next-page">
                 <a class="flex items-center justify-center w-full h-full cursor-pointer" aria-label="angle-right"
                   href="/[##cms.cms.link_page##]&pagenum=@page">
                   <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -279,7 +279,7 @@
             </face>
             <face filter="(@sta='nex') and ('[##cms.cms.pageurl##]'<>'')">
               <li
-                class="group flex items-center justify-center w-16 h-16 border border-gray-100 rounded-xl transition-all duration-300 hover:border-primary-500 page-no next-page">
+                class="group flex items-center justify-center w-16 h-16 border border-gray-200 rounded-xl transition-all duration-300 hover:border-primary-500 page-no next-page">
                 <a class="flex items-center justify-center w-full h-full cursor-pointer" aria-label="angle-right"
                   href="/[##cms.cms.pageurl##]?pagenum=@page">
                   <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -314,10 +314,10 @@
       </basis>
 
       <div
-        class="bg-formBg bg-center bg-cover flex items-end border border-gray-100 shadow-big-shadow rounded-3xl h-[404px]">
+        class="bg-formBg bg-center bg-cover flex items-end border border-gray-200 shadow-big-shadow rounded-3xl h-[404px]">
         <div class="flex flex-col items-center gap-1 mb-20 mr-8">
           <button
-            class="open-consulation-btn group w-40 flex items-center justify-center gap-2 border border-gray-100 rounded-xl hover:shadow-small-btn-shadow py-2">
+            class="open-consulation-btn group w-40 flex items-center justify-center gap-2 border border-gray-200 rounded-xl hover:shadow-small-btn-shadow py-2">
             ارسال فرم
             <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path class="transition-all duration-300 group-hover:fill-white"
@@ -455,7 +455,7 @@
         </layout>
         <face filter="TypeID in(250)">
           <div
-            class="faq-box transition-all duration-300 cursor-pointer rounded-xl border border-gray-100 bg-white p-4">
+            class="faq-box transition-all duration-300 cursor-pointer rounded-xl border border-gray-200 bg-white p-4">
             <div class="flex items-center justify-between">
               <div class="flex items-center gap-2">
                 <svg width="32" height="32" class="icon-plus-circle">
