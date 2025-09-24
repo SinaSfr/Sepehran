@@ -558,7 +558,7 @@ video {
 }
 body {
   font-family: 'YekanBakhFaNum';
-  overflow-wrap: break-word;
+  overflow-wrap: anywhere;
 }
 .container {
   width: 100%;
@@ -1035,6 +1035,11 @@ body {
 }
 .divide-primary-400 > :not([hidden]) ~ :not([hidden]) {
   border-color: var(--primary-400);
+}
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .self-center {
   align-self: center;

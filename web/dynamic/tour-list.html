@@ -43,6 +43,10 @@
     <member name="faq" type="view" propertyid="" />
 </basis>
 
+<basis core="dbsource" source="media" lid="1" name="special-purposes" usedforid="2387343" sourcemid="article">
+    <member type="list" name="gallery" format="4" order="ord"></member>
+  </basis>
+
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 
@@ -151,46 +155,27 @@
             </h2>
             <!-- Slider main container -->
             <div class="swiper swiper-special-destination-tour">
-                <basis core="tree" datamembername="special-purposes.cat" idcol="catid" parentidcol="parentid"
-                    nullvalue="215042">
+                <basis core="print" datamembername="special-purposes.gallery">
                     <layout>
                         <!-- Additional required wrapper -->
-                        <div class="swiper-wrapper flex justify-center">
+                        <div class="swiper-wrapper">
                             <!-- Slides -->
                             @child
                         </div>
                     </layout>
-                    <face filter="link is null">
-                        <div class="swiper-slide w-[334px]">
-                            <a href="/tour-list.bc?catid=@catid"
-                                class="group flex items-end relative rounded-2xl overflow-hidden">
-                                <div class="absolute inset-0 w-full bg-purple-overlay"></div>
-                                <img src="\@image" class="w-full h-40 object-cover" alt="@title" width="304"
-                                    height="164" loading="lazy">
-                                <div class="absolute w-full flex items-center justify-between mb-4 px-6">
-                                    <h2
-                                        class="text-white text-2xl font-extrabold transition-all duration-300 group-hover:text-secondary-500">
-                                        @title</h2>
-                                    <div
-                                        class="text-sm font-bold text-white transition-all duration-300 group-hover:text-secondary-500">
-                                        تعداد تور ها: @countid</div>
-                                </div>
-                            </a>
-                        </div>
-                    </face>
                     <face>
                         <div class="swiper-slide w-[334px]">
-                            <a href="/@link" class="group flex items-end relative rounded-2xl overflow-hidden">
+                            <a href="/@description" class="group flex items-end relative rounded-2xl overflow-hidden">
                                 <div class="absolute inset-0 w-full bg-purple-overlay"></div>
-                                <img src="\@image" class="w-full h-40 object-cover" alt="@title" width="304"
+                                <img src="\@largeIMG" class="w-full h-40 object-cover" alt="@name" width="304"
                                     height="164" loading="lazy">
                                 <div class="absolute w-full flex items-center justify-between mb-4 px-6">
                                     <h2
                                         class="text-white text-2xl font-extrabold transition-all duration-300 group-hover:text-secondary-500">
-                                        @title</h2>
-                                    <div
+                                        @name</h2>
+                                    <!-- <div
                                         class="text-sm font-bold text-white transition-all duration-300 group-hover:text-secondary-500">
-                                        تعداد تور ها: @countid</div>
+                                     @description</div> -->
                                 </div>
                             </a>
                         </div>

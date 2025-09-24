@@ -342,7 +342,7 @@ const renderHotels = async (element, type) => {
                         <a href="/${pageName}?id=${hotel.hotelid}" data-id="${
             hotel.hotelid
           }" data-pageName="${pageName}"
-                            class="group flex items-center justify-center gap-2 font-extrabold border border-gray-100 rounded-xl w-full h-[73px] transition-all duration-300 hover:bg-primary-500 hover:text-white hover:shadow-btn-shadow">
+                            class="group flex items-center justify-center gap-2 font-extrabold border border-gray-200 rounded-xl w-full h-[73px] transition-all duration-300 hover:bg-primary-500 hover:text-white hover:shadow-btn-shadow">
                             جزئیات هتل
                             <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -393,7 +393,7 @@ const renderHotels = async (element, type) => {
                 <span class="text-sm font-bold">021-91009292</span> تماس بگیرید
               </div>
               <a href="/${pageName}?id=${hotel.hotelid}" data-id="${hotel.hotelid}" data-pageName="${pageName}"
-                class="group flex items-center justify-center gap-2 font-extrabold border border-gray-100 rounded-xl w-40 h-[73px] transition-all duration-300 hover:bg-primary-500 hover:text-white hover:shadow-btn-shadow">
+                class="group flex items-center justify-center gap-2 font-extrabold border border-gray-200 rounded-xl w-40 h-[73px] transition-all duration-300 hover:bg-primary-500 hover:text-white hover:shadow-btn-shadow">
                 جزئیات هتل
                 <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
                   xmlns="http://www.w3.org/2000/svg">

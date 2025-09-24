@@ -68,8 +68,8 @@
         postsql="select * from [db.tour-view-travelplan] where Question in('برنامه سفر')" />
     <member name="tour-view-airline" type="view"
         postsql="select * from [db.tour-view-airline] where Question in('شرکت های هواپیمایی')" />
-    <member name="tour-related" type="list" blgid="18" propertyid="3087934,3087933,10000504,8181,8076" typeid="159"
-        link="tour.bc" />
+    <member name="tour-related" type="list" blgid="18" propertyid="3087934,3087933,10000504,8181,8076,3088017"
+        typeid="159" link="tour.bc" />
 </basis>
 <basis core="dbsource" source="media" lid="1" name="db" usedforid="[##cms.query.id##]" sourcemid="product">
     <member type="list" name="pdf" format="pdf" />
@@ -282,7 +282,7 @@
                 </div>
                 <basis core="print" datamembername="db.tour-view">
                     <layout>
-                        <div class="grid grid-cols-2 gap-4 border-y border-gray-50 py-2">
+                        <div class="grid grid-cols-2 gap-4 border-y border-gray-200 py-2">
                             @child
                         </div>
                     </layout>
@@ -471,7 +471,7 @@
                         </basis>
                         <div class="flex items-center gap-3">
                             <a href="#"
-                                class="group hidden items-center justify-center gap-2 font-extrabold border border-gray-100 rounded-xl w-40 h-[73px] transition-all duration-300 hover:bg-primary-500 hover:text-white hover:shadow-btn-shadow">
+                                class="group hidden items-center justify-center gap-2 font-extrabold border border-gray-200 rounded-xl w-40 h-[73px] transition-all duration-300 hover:bg-primary-500 hover:text-white hover:shadow-btn-shadow">
                                 محاسبه اقساط
                                 <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -484,14 +484,14 @@
                             <basis core="print" datamembername="db.info">
                                 <face filter="TypeID in(240)">
                                     <a href="tel:021@text"
-                                    class="flex items-center justify-center gap-2 font-extrabold text-white bg-primary-500 rounded-xl w-40 h-[73px] transition-all duration-300 hover:shadow-small-btn-shadow">
-                                    مشاوره خرید
-                                    <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M17 6.5L11 12.5L17 18.5" stroke="#fff" stroke-width="2" />
-                                        <path d="M6 7.5V17.5" stroke="#fff" stroke-width="2" />
-                                    </svg>
-                                </a>
+                                        class="flex items-center justify-center gap-2 font-extrabold text-white bg-primary-500 rounded-xl w-40 h-[73px] transition-all duration-300 hover:shadow-small-btn-shadow">
+                                        مشاوره خرید
+                                        <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M17 6.5L11 12.5L17 18.5" stroke="#fff" stroke-width="2" />
+                                            <path d="M6 7.5V17.5" stroke="#fff" stroke-width="2" />
+                                        </svg>
+                                    </a>
                                 </face>
                             </basis>
 
@@ -505,7 +505,7 @@
         </div>
         <section class="mx-auto max-lg:w-[92%] max-xl:w-[97%] xl:max-w-7xl mt-6">
             <button id="filterBtnHotel"
-                class="flex items-center justify-center gap-2 w-full h-12 rounded-lg font-extrabold bg-white border border-gray-50 transition-all duration-300 mb-6">
+                class="flex items-center justify-center gap-2 w-full h-12 rounded-lg font-extrabold bg-white border border-gray-200 transition-all duration-300 mb-6">
                 <span id="filterBtnCountHotel"
                     class="hidden items-center justify-center w-7 h-7 bg-secondary-500 rounded"></span>
                 فیلتر ها
@@ -522,7 +522,7 @@
             <div id="filterMenuHotel"
                 class="fixed inset-0 z-50 transition-all duration-300 translate-y-full overflow-y-auto">
                 <section
-                    class="relative bg-searchBg bg-center bg-cover border border-gray-100 rounded-xl overflow-hidden shadow-card-shadow">
+                    class="relative bg-searchBg bg-center bg-cover border border-gray-200 rounded-xl overflow-hidden shadow-card-shadow">
                     <div class="absolute z-10 inset-0 w-full h-full bg-white/90"></div>
                     <div class="relative z-20 p-8">
                         <div class="flex justify-end">
@@ -673,35 +673,35 @@
                             <h3 class="text-sm font-bold mb-2">خدمات هتل:</h3>
                             <div class="filter-hotel-services-wrapper grid grid-cols-4 gap-5">
                                 <div
-                                    class="filter-hotel-services relative flex items-center justify-center w-16 h-14 border border-gray-50 text-sm font-bold rounded-lg bg-white cursor-pointer transition-all duration-300 hover:border-primary-400 hover:text-primary-500">
+                                    class="filter-hotel-services relative flex items-center justify-center w-16 h-14 border border-gray-200 text-sm font-bold rounded-lg bg-white cursor-pointer transition-all duration-300 hover:border-primary-400 hover:text-primary-500">
                                     <span class="filter-hotel-services-name">UALL</span>
                                     <svg width="8" height="8" class="absolute left-1 top-1">
                                         <use href="/images/sprite-icons.svg#icon-information"></use>
                                     </svg>
                                 </div>
                                 <div
-                                    class="filter-hotel-services relative flex items-center justify-center w-16 h-14 border border-gray-50 text-sm font-bold rounded-lg bg-white cursor-pointer">
+                                    class="filter-hotel-services relative flex items-center justify-center w-16 h-14 border border-gray-200 text-sm font-bold rounded-lg bg-white cursor-pointer">
                                     <span class="filter-hotel-services-name">BB</span>
                                     <svg width="8" height="8" class="absolute left-1 top-1">
                                         <use href="/images/sprite-icons.svg#icon-information"></use>
                                     </svg>
                                 </div>
                                 <div
-                                    class="filter-hotel-services relative flex items-center justify-center w-16 h-14 border border-gray-50 text-sm font-bold rounded-lg bg-white cursor-pointer">
+                                    class="filter-hotel-services relative flex items-center justify-center w-16 h-14 border border-gray-200 text-sm font-bold rounded-lg bg-white cursor-pointer">
                                     <span class="filter-hotel-services-name">HB</span>
                                     <svg width="8" height="8" class="absolute left-1 top-1">
                                         <use href="/images/sprite-icons.svg#icon-information"></use>
                                     </svg>
                                 </div>
                                 <div
-                                    class="filter-hotel-services relative flex items-center justify-center w-16 h-14 border border-gray-50 text-sm font-bold rounded-lg bg-white cursor-pointer">
+                                    class="filter-hotel-services relative flex items-center justify-center w-16 h-14 border border-gray-200 text-sm font-bold rounded-lg bg-white cursor-pointer">
                                     <span class="filter-hotel-services-name">FB</span>
                                     <svg width="8" height="8" class="absolute left-1 top-1">
                                         <use href="/images/sprite-icons.svg#icon-information"></use>
                                     </svg>
                                 </div>
                                 <div
-                                    class="filter-hotel-services relative flex items-center justify-center w-16 h-14 border border-gray-50 text-sm font-bold rounded-lg bg-white cursor-pointer">
+                                    class="filter-hotel-services relative flex items-center justify-center w-16 h-14 border border-gray-200 text-sm font-bold rounded-lg bg-white cursor-pointer">
                                     <span class="filter-hotel-services-name">ALL</span>
                                     <svg width="8" height="8" class="absolute left-1 top-1">
                                         <use href="/images/sprite-icons.svg#icon-information"></use>
@@ -712,24 +712,24 @@
                     </div>
                 </section>
             </div>
-            <nav
-                class="sticky top-0 h-fit z-40 bg-gray-50 py-6 px-4 rounded-xl overflow-x-auto whitespace-nowrap scrollbar-thin">
-                <ul class="flex items-center gap-10">
-                    <li data-target="#hotels" class="font-extrabold transition-all duration-300 hover:text-primary-500">
-                        هتل ها</li>
-                    <li data-target="#plan" class="font-extrabold transition-all duration-300 hover:text-primary-500">
-                        برنامه سفر</li>
-                    <li data-target="#services"
-                        class="font-extrabold transition-all duration-300 hover:text-primary-500">خدمات تور</li>
-                    <li data-target="#description"
-                        class="font-extrabold transition-all duration-300 hover:text-primary-500">توضیحات</li>
-                    <li data-target="#comments"
-                        class="font-extrabold transition-all duration-300 hover:text-primary-500">نظرات</li>
-                    <li data-target="#similar"
-                        class="font-extrabold transition-all duration-300 hover:text-primary-500">تور مشابه</li>
-                </ul>
-            </nav>
         </section>
+        <nav
+            class="sticky top-0 h-fit z-40 bg-gray-50 py-6 px-4 rounded-xl overflow-x-auto whitespace-nowrap scrollbar-thin">
+            <ul class="flex items-center gap-10">
+                <li data-target="#hotels" class="font-extrabold transition-all duration-300 hover:text-primary-500">
+                    هتل ها</li>
+                <li data-target="#plan" class="font-extrabold transition-all duration-300 hover:text-primary-500">
+                    برنامه سفر</li>
+                <li data-target="#services" class="font-extrabold transition-all duration-300 hover:text-primary-500">
+                    خدمات تور</li>
+                <li data-target="#description"
+                    class="font-extrabold transition-all duration-300 hover:text-primary-500">توضیحات</li>
+                <li data-target="#comments" class="font-extrabold transition-all duration-300 hover:text-primary-500">
+                    نظرات</li>
+                <li data-target="#similar" class="font-extrabold transition-all duration-300 hover:text-primary-500">تور
+                    مشابه</li>
+            </ul>
+        </nav>
         <section id="hotels" class="mx-auto max-lg:w-[92%] max-xl:w-[97%] xl:max-w-7xl mt-6">
             <basis core="print" datamembername="api.inventoryView" run="atclient" onrendered="onrenderedInventoryView">
                 <layout>
@@ -742,12 +742,12 @@
                 </layout>
                 <face>
                     <script type="text/template">
-                <div class="hotel-card flex flex-col gap-8 border border-gray-100 rounded-xl p-4">
+                <div class="hotel-card flex flex-col gap-8 border border-gray-200 rounded-xl p-4">
                     {{return await renderHotels($data)}}
                     <div class="flex flex-col gap-8 items-center">
-                        <div class="flex justify-center px-9 py-7 border border-gray-50 shadow-card-shadow rounded-xl">
+                        <div class="flex justify-center px-9 py-7 border border-gray-200 shadow-card-shadow rounded-xl">
                             <ul class="flex items-center flex-wrap justify-between gap-y-8">
-                                <li class="tourInventory__details__item__double relative w-1/2 flex flex-col gap-2 items-center border-l-2 border-gray-100 border-dashed">
+                                <li class="tourInventory__details__item__double relative w-1/2 flex flex-col gap-2 items-center border-l-2 border-gray-200 border-dashed">
                                     <span class="text-sm font-semibold">دوتخته</span>
                                     {{ return await renderPriceInfo($data,'doublecost')}}
                                 </li>
@@ -755,7 +755,7 @@
                                     <span class="text-sm font-semibold">تک تخته</span>
                                     {{ return await renderPriceInfo($data,'singlecost')}}
                                 </li>
-                                <li class="tourInventory__details__item__wBed relative w-1/2 flex flex-col gap-2 items-center border-l-2 border-gray-100 border-dashed">
+                                <li class="tourInventory__details__item__wBed relative w-1/2 flex flex-col gap-2 items-center border-l-2 border-gray-200 border-dashed">
                                     <span class="text-sm font-semibold">کودک با تخت</span>
                                     {{ return await renderPriceInfo($data,'childwithbed')}}
                                 </li>
@@ -803,7 +803,7 @@
                     </div>
 
                     <div
-                        class="relative execution__details__path__item execution__details__path__origins flex-col gap-8 border-r border-dashed border-gray-500 pr-4">
+                        class="relative execution__details__path__item execution__details__path__origins flex-col gap-8 border-r border-dashed border-gray-2000 pr-4">
                         <basis core="print" datamembername="refresh.executionPlanTypesOrigins"
                             if="{##refresh.executionPlanTypesOrigins##}" run="atclient"
                             onrendered="onrenderedExecutionOrigins">
@@ -890,7 +890,7 @@
                         <h2 class="text-[32px] font-black">پایان سفر</h2>
                     </div>
                     <div
-                        class="relative execution__details__path__item execution__details__path__destinations flex flex-col gap-8 border-r border-dashed border-gray-500 pr-4">
+                        class="relative execution__details__path__item execution__details__path__destinations flex flex-col gap-8 border-r border-dashed border-gray-2000 pr-4">
                         <basis core="print" datamembername="refresh.executionPlanTypesDestinations"
                             if="{##refresh.executionPlanTypesDestinations##}" run="atclient"
                             onrendered="onrenderedExecutionDestinations">
@@ -975,10 +975,13 @@
                         @child
                     </div>
                 </layout>
+                <face filter="text in('')">
+
+                </face>
                 <face>
                     <div class="travel-wrapper rounded-xl">
                         <div
-                            class="travel-box transition-all duration-300 cursor-pointer rounded-xl border border-gray-100 bg-white py-6 px-8">
+                            class="travel-box transition-all duration-300 cursor-pointer rounded-xl border border-gray-200 bg-white py-6 px-8">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center gap-2">
                                     <svg width="32" height="32" class="orange-sun">
@@ -1001,7 +1004,7 @@
                         </div>
                         <div
                             class="travel-answer bg-white opacity-0 scale-y-0 max-h-0 overflow-hidden transition-all duration-500 ease-in-out origin-top">
-                            <div class="flex flex-col gap-24 py-4 px-8 border-b border-gray-50 mb-3">
+                            <div class="flex flex-col gap-24 py-4 px-8 border-b border-gray-200 mb-3">
                                 <div class="flex-[3.22]">
                                     <h2 class="font-semibold text-sm mb-3">@text</h2>
                                     <div class="text-xs font-light leading-5 text-justify">
@@ -1013,7 +1016,7 @@
                                         class="h-[101px] object-cover shadow-drop-shadow rounded-lg" alt="" width="151"
                                         height="101" loading="lazy"/>
                                     <a href=""
-                                        class="group flex items-center justify-center gap-2 w-[152px] h-11 border border-gray-100 rounded-xl text-sm font-semibold mt-3 transition-all duration-300 hover:text-white hover:bg-primary-500 hover:shadow-small-btn-shadow">
+                                        class="group flex items-center justify-center gap-2 w-[152px] h-11 border border-gray-200 rounded-xl text-sm font-semibold mt-3 transition-all duration-300 hover:text-white hover:bg-primary-500 hover:shadow-small-btn-shadow">
                                         ساحل سانور
                                         <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
                                             xmlns="http://www.w3.org/2000/svg">
@@ -1051,7 +1054,7 @@
             </layout>
             <face filter="Question in('خدمات')">
                 <div
-                    class="flex items-center gap-3 text-sm font-bold bg-white rounded-2xl border border-gray-50 shadow-small-flag-shadow p-3">
+                    class="flex items-center gap-3 text-sm font-bold bg-white rounded-2xl border border-gray-200 shadow-small-flag-shadow p-3">
                     <span class="flex items-center justify-center bg-primary-500 w-8 h-8 rounded-lg">
                         <svg width="24" height="24">
                             <use href="/images/sprite-icons.svg#icon-note"></use>
@@ -1191,7 +1194,7 @@
                     <div class="opinionRow drop-shadow-comment-box bg-white rounded-3xl py-6 my-6">
                         <div class="user-opinion-txt">
                             <div
-                                class="opinion-info flex items-center justify-between pb-4 mb-3 border-b border-gray-100">
+                                class="opinion-info flex items-center justify-between pb-4 mb-3 border-b border-gray-200">
                                 <div class="flex items-center gap-6">
                                     <img src="[##cms.cms.cdn##]/images/special-tour-card.jpg" class="h-20 rounded-full"
                                         alt="" width="80" height="80" loading="lazy" />
@@ -1233,7 +1236,7 @@
                     <div class="opinionRow drop-shadow-comment-box bg-white rounded-3xl py-6 my-6 pr-20">
                         <div class="user-opinion-txt">
                             <div
-                                class="opinion-info flex items-center justify-between pb-4 mb-3 border-b border-gray-100">
+                                class="opinion-info flex items-center justify-between pb-4 mb-3 border-b border-gray-200">
                                 <div class="flex items-center gap-6">
                                     <img src="[##cms.cms.cdn##]/images/special-tour-card.jpg" class="h-20 rounded-full"
                                         alt="" width="80" height="80" loading="lazy" />
@@ -1249,7 +1252,7 @@
                     <div class="opinionRow drop-shadow-comment-box bg-white rounded-3xl py-6 my-6 pr-20">
                         <div class="user-opinion-txt">
                             <div
-                                class="opinion-info flex items-center justify-between pb-4 mb-3 border-b border-gray-100">
+                                class="opinion-info flex items-center justify-between pb-4 mb-3 border-b border-gray-200">
                                 <div class="flex items-center gap-6">
                                     <img src="[##cms.cms.cdn##]/images/special-tour-card.jpg" class="h-20 rounded-full"
                                         alt="" width="80" height="80" loading="lazy" />
@@ -1309,35 +1312,36 @@
                     </div>
                 </section>
             </layout>
-            <face filter="link is null and prp_3087934 is null">
+            <face filter="prp_3087934 is null and prp_3088017 is null">
                 <div class="swiper-slide">
-                    <a href="/tour.bc?id=@id"
-                        class="flex flex-col border border-gray-50 bg-white rounded-xl shadow-medium-btn-shadow p-4">
-                        <img src="\@type_159"
-                            class="w-full h-36 object-cover rounded-xl overflow-hidden shadow-soft-deep" alt="@title"
-                            width="253" height="135" loading="lazy" />
+                    <a href="/@link"
+                        class="flex flex-col border border-gray-200 bg-white rounded-xl shadow-medium-btn-shadow p-4">
+                        <div class="relative rounded-xl overflow-hidden shadow-soft-deep h-36">
+                            <img src="\@00253X00144prp" class="w-full h-36 object-cover" alt="@title" width="253"
+                                height="144" loading="lazy" />
+                        </div>
                         <h2 class="text-lg font-extrabold mt-8 text-center">@title</h2>
-                        <div class="flex items-center justify-between mt-3">
+                        <div class="grid grid-cols-2 gap-2 mt-3">
                             <span
-                                class="flex items-center gap-1 text-xs font-light text-primary-500 border border-gray-50 rounded py-1 px-2">
+                                class="flex items-center gap-1 text-xs font-light text-primary-500 border border-gray-200 rounded py-1 px-2">
                                 <svg width="24" height="24" class="group-hover:hidden">
-                                    <use href="/images/sprite-icons.svg#icon-sun"></use>
+                                    <use xlink:href="/images/sprite-icons.svg#icon-flash"></use>
                                 </svg>
-                                @prp_8076
+                                <span>@prp_10000504</span>
                             </span>
                             <span
-                                class="flex items-center gap-1 text-xs font-light text-primary-500 border border-gray-50 rounded py-1 px-2 w-20 line-clamp-1">
+                                class="flex items-center gap-1 text-xs font-light text-primary-500 border border-gray-200 rounded py-1 px-2">
                                 <svg width="24" height="24" class="group-hover:hidden">
-                                    <use href="/images/sprite-icons.svg#icon-flash"></use>
-                                </svg>
-                                <span class="line-clamp--1 w-10">@prp_10000504</span>
-                            </span>
-                            <span
-                                class="flex items-center gap-1 text-xs font-light text-primary-500 border border-gray-50 rounded py-1 px-2">
-                                <svg width="24" height="24" class="group-hover:hidden">
-                                    <use href="/images/sprite-icons.svg#icon-blue-star"></use>
+                                    <use xlink:href="/images/sprite-icons.svg#icon-blue-star"></use>
                                 </svg>
                                 @prp_3087933 ستاره
+                            </span>
+                            <span
+                                class="flex items-center gap-1 text-xs truncate font-light text-primary-500 border border-gray-200 rounded py-1 px-2">
+                                <svg width="24" height="24" class="group-hover:hidden">
+                                    <use xlink:href="/images/sprite-icons.svg#icon-sun"></use>
+                                </svg>
+                                @prp_8076
                             </span>
                         </div>
                         <div class="flex items-center justify-between mt-6 h-full">
@@ -1348,7 +1352,7 @@
                                 </span>
                             </div>
                             <button
-                                class="group flex items-center justify-center gap-2 border border-gray-100 rounded-xl w-14 h-14 transition-all duration-300 hover:bg-primary-500 hover:shadow-btn-shadow">
+                                class="group flex items-center justify-center gap-2 border border-gray-200 rounded-xl w-14 h-14 transition-all duration-300 hover:bg-primary-500 hover:shadow-btn-shadow">
                                 <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path class="transition-all duration-300 group-hover:stroke-white"
@@ -1362,32 +1366,36 @@
             <face filter="prp_3087934 is null">
                 <div class="swiper-slide">
                     <a href="/@link"
-                        class="flex flex-col border border-gray-50 bg-white rounded-xl shadow-medium-btn-shadow p-4">
-                        <img src="\@type_159"
-                            class="w-full h-36 object-cover rounded-xl overflow-hidden shadow-soft-deep" alt="@title"
-                            width="253" height="135" loading="lazy" />
+                        class="flex flex-col border border-gray-200 bg-white rounded-xl shadow-medium-btn-shadow p-4">
+                        <div class="relative rounded-xl overflow-hidden shadow-soft-deep h-36">
+                            <img src="\@00253X00144prp" class="w-full h-36 object-cover opacity-40" alt="@title"
+                                width="253" height="144" loading="lazy" />
+                            <img src="[##cms.cms.cdn##]/images/fully-booked.png"
+                                class="absolute left-0 right-0 top-0 mx-auto w-44 h-36 object-cover" alt="fully-booked"
+                                width="176" height="144" loading="lazy">
+                        </div>
                         <h2 class="text-lg font-extrabold mt-8 text-center">@title</h2>
-                        <div class="flex items-center justify-between mt-3">
+                        <div class="grid grid-cols-2 gap-2 mt-3">
                             <span
-                                class="flex items-center gap-1 text-xs font-light text-primary-500 border border-gray-50 rounded py-1 px-2">
+                                class="flex items-center gap-1 text-xs font-light text-primary-500 border border-gray-200 rounded py-1 px-2">
                                 <svg width="24" height="24" class="group-hover:hidden">
-                                    <use href="/images/sprite-icons.svg#icon-sun"></use>
+                                    <use xlink:href="/images/sprite-icons.svg#icon-flash"></use>
                                 </svg>
-                                @prp_8076
+                                <span>@prp_10000504</span>
                             </span>
                             <span
-                                class="flex items-center gap-1 text-xs font-light text-primary-500 border border-gray-50 rounded py-1 px-2 w-20 line-clamp-1">
+                                class="flex items-center gap-1 text-xs font-light text-primary-500 border border-gray-200 rounded py-1 px-2">
                                 <svg width="24" height="24" class="group-hover:hidden">
-                                    <use href="/images/sprite-icons.svg#icon-flash"></use>
-                                </svg>
-                                <span class="line-clamp--1 w-10">@prp_10000504</span>
-                            </span>
-                            <span
-                                class="flex items-center gap-1 text-xs font-light text-primary-500 border border-gray-50 rounded py-1 px-2">
-                                <svg width="24" height="24" class="group-hover:hidden">
-                                    <use href="/images/sprite-icons.svg#icon-blue-star"></use>
+                                    <use xlink:href="/images/sprite-icons.svg#icon-blue-star"></use>
                                 </svg>
                                 @prp_3087933 ستاره
+                            </span>
+                            <span
+                                class="flex items-center gap-1 text-xs truncate font-light text-primary-500 border border-gray-200 rounded py-1 px-2">
+                                <svg width="24" height="24" class="group-hover:hidden">
+                                    <use xlink:href="/images/sprite-icons.svg#icon-sun"></use>
+                                </svg>
+                                @prp_8076
                             </span>
                         </div>
                         <div class="flex items-center justify-between mt-6 h-full">
@@ -1398,7 +1406,7 @@
                                 </span>
                             </div>
                             <button
-                                class="group flex items-center justify-center gap-2 border border-gray-100 rounded-xl w-14 h-14 transition-all duration-300 hover:bg-primary-500 hover:shadow-btn-shadow">
+                                class="group flex items-center justify-center gap-2 border border-gray-200 rounded-xl w-14 h-14 transition-all duration-300 hover:bg-primary-500 hover:shadow-btn-shadow">
                                 <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path class="transition-all duration-300 group-hover:stroke-white"
@@ -1409,39 +1417,39 @@
                     </a>
                 </div>
             </face>
-            <face filter="link is null">
+            <face filter="prp_3088017 is null">
                 <div class="swiper-slide">
-                    <a href="/tour.bc?id=@id"
-                        class="flex flex-col border border-gray-50 bg-white rounded-xl shadow-medium-btn-shadow p-4">
-                        <div class="relative rounded-xl overflow-hidden shadow-soft-deep">
-                            <img src="\@type_159" class="w-full h-36 object-cover" alt="@title" width="253" height="135"
-                                loading="lazy" />
+                    <a href="/@link"
+                        class="flex flex-col border border-gray-200 bg-white rounded-xl shadow-medium-btn-shadow p-4">
+                        <div class="relative rounded-xl overflow-hidden shadow-soft-deep h-36">
+                            <img src="\@00253X00144prp" class="w-full h-36 object-cover" alt="@title" width="253"
+                                height="144" loading="lazy" />
                             <span class="absolute left-0 bottom-0 text-sm font-bold py-2 px-4 bg-amber-400 rounded-tr">
                                 @prp_3087934
                             </span>
                         </div>
                         <h2 class="text-lg font-extrabold mt-8 text-center">@title</h2>
-                        <div class="flex items-center justify-between mt-3">
+                        <div class="grid grid-cols-2 gap-2 mt-3">
                             <span
-                                class="flex items-center gap-1 text-xs font-light text-primary-500 border border-gray-50 rounded py-1 px-2">
+                                class="flex items-center gap-1 text-xs font-light text-primary-500 border border-gray-200 rounded py-1 px-2">
                                 <svg width="24" height="24" class="group-hover:hidden">
-                                    <use href="/images/sprite-icons.svg#icon-sun"></use>
+                                    <use xlink:href="/images/sprite-icons.svg#icon-flash"></use>
                                 </svg>
-                                @prp_8076
+                                <span>@prp_10000504</span>
                             </span>
                             <span
-                                class="flex items-center gap-1 text-xs font-light text-primary-500 border border-gray-50 rounded py-1 px-2 w-20 line-clamp-1">
+                                class="flex items-center gap-1 text-xs font-light text-primary-500 border border-gray-200 rounded py-1 px-2">
                                 <svg width="24" height="24" class="group-hover:hidden">
-                                    <use href="/images/sprite-icons.svg#icon-flash"></use>
-                                </svg>
-                                <span class="line-clamp--1 w-10">@prp_10000504</span>
-                            </span>
-                            <span
-                                class="flex items-center gap-1 text-xs font-light text-primary-500 border border-gray-50 rounded py-1 px-2">
-                                <svg width="24" height="24" class="group-hover:hidden">
-                                    <use href="/images/sprite-icons.svg#icon-blue-star"></use>
+                                    <use xlink:href="/images/sprite-icons.svg#icon-blue-star"></use>
                                 </svg>
                                 @prp_3087933 ستاره
+                            </span>
+                            <span
+                                class="flex items-center gap-1 text-xs truncate font-light text-primary-500 border border-gray-200 rounded py-1 px-2">
+                                <svg width="24" height="24" class="group-hover:hidden">
+                                    <use xlink:href="/images/sprite-icons.svg#icon-sun"></use>
+                                </svg>
+                                @prp_8076
                             </span>
                         </div>
                         <div class="flex items-center justify-between mt-6 h-full">
@@ -1452,7 +1460,7 @@
                                 </span>
                             </div>
                             <button
-                                class="group flex items-center justify-center gap-2 border border-gray-100 rounded-xl w-14 h-14 transition-all duration-300 hover:bg-primary-500 hover:shadow-btn-shadow">
+                                class="group flex items-center justify-center gap-2 border border-gray-200 rounded-xl w-14 h-14 transition-all duration-300 hover:bg-primary-500 hover:shadow-btn-shadow">
                                 <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path class="transition-all duration-300 group-hover:stroke-white"
@@ -1466,36 +1474,40 @@
             <face>
                 <div class="swiper-slide">
                     <a href="/@link"
-                        class="flex flex-col border border-gray-50 bg-white rounded-xl shadow-medium-btn-shadow p-4">
-                        <div class="relative rounded-xl overflow-hidden shadow-soft-deep">
-                            <img src="\@type_159" class="w-full h-36 object-cover" alt="@title" width="253" height="135"
-                                loading="lazy" />
-                            <span class="absolute left-0 bottom-0 text-sm font-bold py-2 px-4 bg-amber-400 rounded-tr">
+                        class="flex flex-col border border-gray-200 bg-white rounded-xl shadow-medium-btn-shadow p-4">
+                        <div class="relative rounded-xl overflow-hidden shadow-soft-deep h-36">
+                            <img src="\@00253X00144prp" class="w-full h-36 object-cover opacity-40" alt="@title"
+                                width="253" height="144" loading="lazy" />
+                            <span
+                                class="absolute left-0 bottom-0 text-sm font-bold py-2 px-4 bg-amber-400 rounded-tr opacity-40">
                                 @prp_3087934
                             </span>
+                            <img src="[##cms.cms.cdn##]/images/fully-booked.png"
+                                class="absolute left-0 right-0 top-0 mx-auto w-44 h-36 object-cover" alt="fully-booked"
+                                width="176" height="144" loading="lazy">
                         </div>
                         <h2 class="text-lg font-extrabold mt-8 text-center">@title</h2>
-                        <div class="flex items-center justify-between mt-3">
+                        <div class="grid grid-cols-2 gap-2 mt-3">
                             <span
-                                class="flex items-center gap-1 text-xs font-light text-primary-500 border border-gray-50 rounded py-1 px-2">
+                                class="flex items-center gap-1 text-xs font-light text-primary-500 border border-gray-200 rounded py-1 px-2">
                                 <svg width="24" height="24" class="group-hover:hidden">
-                                    <use href="/images/sprite-icons.svg#icon-sun"></use>
+                                    <use xlink:href="/images/sprite-icons.svg#icon-flash"></use>
                                 </svg>
-                                @prp_8076
+                                <span>@prp_10000504</span>
                             </span>
                             <span
-                                class="flex items-center gap-1 text-xs font-light text-primary-500 border border-gray-50 rounded py-1 px-2 w-20 line-clamp-1">
+                                class="flex items-center gap-1 text-xs font-light text-primary-500 border border-gray-200 rounded py-1 px-2">
                                 <svg width="24" height="24" class="group-hover:hidden">
-                                    <use href="/images/sprite-icons.svg#icon-flash"></use>
-                                </svg>
-                                <span class="line-clamp--1 w-10">@prp_10000504</span>
-                            </span>
-                            <span
-                                class="flex items-center gap-1 text-xs font-light text-primary-500 border border-gray-50 rounded py-1 px-2">
-                                <svg width="24" height="24" class="group-hover:hidden">
-                                    <use href="/images/sprite-icons.svg#icon-blue-star"></use>
+                                    <use xlink:href="/images/sprite-icons.svg#icon-blue-star"></use>
                                 </svg>
                                 @prp_3087933 ستاره
+                            </span>
+                            <span
+                                class="flex items-center gap-1 text-xs truncate font-light text-primary-500 border border-gray-200 rounded py-1 px-2">
+                                <svg width="24" height="24" class="group-hover:hidden">
+                                    <use xlink:href="/images/sprite-icons.svg#icon-sun"></use>
+                                </svg>
+                                @prp_8076
                             </span>
                         </div>
                         <div class="flex items-center justify-between mt-6 h-full">
@@ -1506,7 +1518,7 @@
                                 </span>
                             </div>
                             <button
-                                class="group flex items-center justify-center gap-2 border border-gray-100 rounded-xl w-14 h-14 transition-all duration-300 hover:bg-primary-500 hover:shadow-btn-shadow">
+                                class="group flex items-center justify-center gap-2 border border-gray-200 rounded-xl w-14 h-14 transition-all duration-300 hover:bg-primary-500 hover:shadow-btn-shadow">
                                 <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path class="transition-all duration-300 group-hover:stroke-white"
