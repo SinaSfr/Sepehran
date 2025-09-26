@@ -5,10 +5,13 @@
 <basis core="dbsource" source="basiscore" lid="1" mid="20" name="special-purposes">
     <member name="cat" type="tree" request="cat" parentid="215042" order="ord"></member>
 </basis>
+<basis core="dbsource" source="media" lid="1" name="special-purposes" usedforid="2387343" sourcemid="article">
+    <member type="list" name="gallery" format="4" order="ord"></member>
+  </basis>
 
-<basis core="dbsource" source="basiscore" lid="1" mid="20" name="db" catid="215041">
+<basis core="dbsource" source="basiscore" lid="1" mid="20" name="db" catid="217152">
     <member name="special-tour" type="list" link="tour.bc" propertyid="3087934,10000504,8181,8076,3087933,3088017"
-        perpage="5" order="ord" size="344x176" />
+        perpage="8" order="ord" size="344x176" />
 </basis>
 
 <basis core="dbsource" source="basiscore" lid="1" mid="20" name="db" catid="215049">
@@ -143,8 +146,7 @@
 
         </section>
 
-        <basis core="tree" datamembername="special-purposes.cat" idcol="catid" parentidcol="parentid"
-            nullvalue="215042">
+        <basis core="print" datamembername="special-purposes.gallery">
             <layout>
                 <section class=" mt-32">
                     <h2 class="mx-auto max-lg:w-[90%] max-xl:w-[97%] xl:max-w-7xl text-[36px] font-extrabold mb-6">مقاصد
@@ -154,44 +156,26 @@
                     <!-- Slider main container -->
                     <div class="swiper swiper-special-destination">
                         <!-- Additional required wrapper -->
-                        <div class="swiper-wrapper flex justify-center">
+                        <div class="swiper-wrapper">
                             <!-- Slides -->
                             @child
                         </div>
                     </div>
                 </section>
             </layout>
-            <face filter="link is null">
-                <div class="swiper-slide w-[334px]">
-                    <a href="/tour-list.bc?catid=@catid"
-                        class="group flex items-end relative rounded-2xl overflow-hidden">
-                        <div class="absolute inset-0 w-full bg-purple-overlay"></div>
-                        <img src="\@image" class="w-full h-40 object-cover" alt="@title" width="304" height="164"
-                            loading="lazy">
-                        <div class="absolute w-full flex items-center justify-between mb-4 px-6">
-                            <h2
-                                class="text-white text-2xl font-extrabold transition-all duration-300 group-hover:text-secondary-500">
-                                @title</h2>
-                            <div
-                                class="text-sm font-bold text-white transition-all duration-300 group-hover:text-secondary-500">
-                                تعداد تور ها: @countid</div>
-                        </div>
-                    </a>
-                </div>
-            </face>
             <face>
                 <div class="swiper-slide w-[334px]">
-                    <a href="/@link" class="group flex items-end relative rounded-2xl overflow-hidden">
+                    <a href="/@description" class="group flex items-end relative rounded-2xl overflow-hidden">
                         <div class="absolute inset-0 w-full bg-purple-overlay"></div>
-                        <img src="\@image" class="w-full h-40 object-cover" alt="@title" width="304" height="164"
-                            loading="lazy">
+                        <img src="\@largeIMG" class="w-full h-40 object-cover" alt="@name" width="304"
+                            height="164" loading="lazy">
                         <div class="absolute w-full flex items-center justify-between mb-4 px-6">
                             <h2
                                 class="text-white text-2xl font-extrabold transition-all duration-300 group-hover:text-secondary-500">
-                                @title</h2>
-                            <div
+                                @name</h2>
+                            <!-- <div
                                 class="text-sm font-bold text-white transition-all duration-300 group-hover:text-secondary-500">
-                                تعداد تور ها: @countid</div>
+                             @description</div> -->
                         </div>
                     </a>
                 </div>
