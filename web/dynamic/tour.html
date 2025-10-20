@@ -330,8 +330,7 @@
                     </basis>
 
                 </div>
-                <div class="flex flex-col gap-3">
-                    <!-- Additional required wrapper -->
+                <!-- <div class="flex flex-col gap-3">
                     <div class="date__details flex justify-between items-center">
                         <h3 class="text-sm font-bold">شروع اعتبار تور:</h3>
                         <span class="relative">
@@ -345,9 +344,6 @@
                         <span class="start__date text-sm font-bold"></span>
                     </div>
 
-
-
-                    <!-- Additional required wrapper -->
                     <div class="date__details flex justify-between items-center">
                         <h3 class="text-sm font-bold"> پایان اعتبار تور:</h3>
                         <span class="relative">
@@ -360,9 +356,6 @@
                         </span>
                         <span class="end__date text-sm font-bold"></span>
                     </div>
-
-
-
                 </div>
                 <div class="flex items-center gap-1">
                     <h2 class="text-sm font-bold">ایرلاین: </h2>
@@ -379,7 +372,7 @@
                         </face>
                     </basis>
 
-                </div>
+                </div> -->
                 <basis core="print" datamembername="db.tour-view">
                     <layout>
                         <div class="flex items-center justify-between">
@@ -455,17 +448,26 @@
                     </div>
                     <basis core="print" datamembername="db.pdf">
                         <else-layout>
-                            <a href="/Tem2_Pdf_Package.bc?id=[##cms.query.id##]" target="_blank"
-                                class="group flex items-center justify-center gap-2 text-white font-extrabold rounded-xl w-full h-[73px] transition-all duration-300 bg-primary-500 hover:shadow-btn-shadow">
-                                دانلود
-                                لیست تور</a>
+                            <form class="w-full" action="/tours/package/pdf?id=[##cms.query.id##]" method="POST"
+                                target="_blank">
+                                <input type="hidden" class="hidden" name="id" value="[##cms.query.id##]">
+                                <input type="hidden" class="hidden" name="from" id="form-from">
+                                <input type="hidden" class="hidden" name="to" id="form-to">
+                                <input type="hidden" class="hidden" name="day" id="form-day">
+                                <input type="hidden" class="hidden" name="fdate" id="fdate">
+                                <input type="hidden" class="hidden" name="rdate" id="rdate">
+                                <button type="submit" target="_blank"
+                                    class="group flex cursor-pointer items-center justify-center gap-2 text-white font-extrabold rounded-xl w-full h-[73px] transition-all duration-300 bg-primary-500 hover:shadow-btn-shadow">
+                                    دانلود
+                                    پکیج تور</button>
+                            </form>
                         </else-layout>
                         <layout>@child </layout>
                         <face>
                             <a href="/@largeIMG" target="_blank"
                                 class="group flex items-center justify-center gap-2 text-white font-extrabold rounded-xl w-full h-[73px] transition-all duration-300 bg-primary-500 hover:shadow-btn-shadow">
                                 دانلود
-                                لیست تور</a>
+                                پکیج تور</a>
                         </face>
                     </basis>
                 </div>
@@ -485,14 +487,14 @@
                         <basis core="print" datamembername="db.info">
                             <face filter="TypeID in(240)">
                                 <a href="tel:021@text"
-                                class="flex items-center justify-center gap-2 font-extrabold text-white bg-primary-500 rounded-xl w-full h-[73px] transition-all duration-300 hover:shadow-small-btn-shadow">
-                                مشاوره خرید
-                                <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M17 6.5L11 12.5L17 18.5" stroke="#fff" stroke-width="2" />
-                                    <path d="M6 7.5V17.5" stroke="#fff" stroke-width="2" />
-                                </svg>
-                            </a>
+                                    class="flex items-center justify-center gap-2 font-extrabold text-white bg-primary-500 rounded-xl w-full h-[73px] transition-all duration-300 hover:shadow-small-btn-shadow">
+                                    مشاوره خرید
+                                    <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M17 6.5L11 12.5L17 18.5" stroke="#fff" stroke-width="2" />
+                                        <path d="M6 7.5V17.5" stroke="#fff" stroke-width="2" />
+                                    </svg>
+                                </a>
                             </face>
                         </basis>
 
@@ -1104,7 +1106,8 @@
                                 <div>
                                     <textarea rows="7" cols="30" required name="OpinionMessage"
                                         placeholder="محتوای کامنت را بنویسید."
-                                        class="w-full border text-gray-400 placeholder-gray-400 text-sm font-bold rounded-lg h-40 p-6 resize-none outline-none"></textarea>
+                                        class="w-full border text-gray-400 placeholder-gray-400 text-sm font-bold rounded-lg h-40 p-6 resize-none outline-none">
+                                    </textarea>
                                 </div>
                                 <input name="productid" value="[##cms.query.id##]" type="hidden" />
                                 <input name="mid" value="1" type="hidden" />

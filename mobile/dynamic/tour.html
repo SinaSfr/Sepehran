@@ -333,7 +333,7 @@
                     </basis>
 
                 </div>
-                <div class="flex flex-col gap-3">
+                <!-- <div class="flex flex-col gap-3">
                     <div class="date__details flex justify-between items-center">
                         <h3 class="text-sm font-bold">شروع اعتبار تور:</h3>
                         <span class="relative">
@@ -378,7 +378,7 @@
                         </face>
                     </basis>
 
-                </div>
+                </div> -->
                 <basis core="print" datamembername="db.tour-view">
                     <layout>
                         <div class="flex items-center justify-between">
@@ -456,17 +456,27 @@
                     <div class="flex item-center justify-between">
                         <basis core="print" datamembername="db.pdf">
                             <else-layout>
-                                <a href="/Tem2_Pdf_Package.bc?id=[##cms.query.id##]" target="_blank"
-                                    class="group flex items-center justify-center gap-2 text-white font-extrabold rounded-xl w-44 h-[73px] transition-all duration-300 bg-primary-500 hover:shadow-btn-shadow">
-                                    دانلود
-                                    لیست تور</a>
+                                <form class="w-full mb-0" action="/tours/package/pdf?id=[##cms.query.id##]" method="POST"
+                                    target="_blank">
+                                    <input type="hidden" class="hidden" name="id" value="[##cms.query.id##]">
+                                    <input type="hidden" class="hidden" name="from" id="form-from">
+                                    <input type="hidden" class="hidden" name="to" id="form-to">
+                                    <input type="hidden" class="hidden" name="day" id="form-day">
+                                    <input type="hidden" class="hidden" name="fdate" id="fdate">
+                                    <input type="hidden" class="hidden" name="rdate" id="rdate">
+                                    <button type="submit" target="_blank"
+                                        class="group flex items-center justify-center gap-2 text-white font-extrabold rounded-xl w-44 h-[73px] transition-all duration-300 bg-primary-500 hover:shadow-btn-shadow">
+                                        دانلود
+                                        پکیج تور</button>
+                                </form>
+
                             </else-layout>
                             <layout>@child </layout>
                             <face>
                                 <a href="/@largeIMG" target="_blank"
                                     class="group flex items-center justify-center gap-2 text-white font-extrabold rounded-xl w-44 h-[73px] transition-all duration-300 bg-primary-500 hover:shadow-btn-shadow">
                                     دانلود
-                                    لیست تور</a>
+                                    پکیج تور</a>
                             </face>
                         </basis>
                         <div class="flex items-center gap-3">
@@ -1581,7 +1591,7 @@
     </main>
 
     <script src="[##cms.cms.cdn##]/_js/swiper-bundle.11.2.5.min.js"></script>
-    <script src="/js/gardeshgaran-tour.function.js" type="text/javascript"></script>
+    <script src="[##cms.cms.cdn##]/js/gardeshgaran-tour.function.js" type="text/javascript"></script>
 
     <basis core="call" file="footer.inc" pageindex="[##cms.cms.pageindex##]" />
 

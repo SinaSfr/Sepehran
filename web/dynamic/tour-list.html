@@ -149,58 +149,6 @@
                 </basis>
             </ul>
         </section>
-        <section class="mt-10">
-            <h2 class="mx-auto max-lg:w-[90%] max-xl:w-[97%] xl:max-w-7xl text-[36px] font-extrabold mb-6">
-                مقاصد ویژه <span class="text-primary-500">گردشگران</span>
-            </h2>
-            <!-- Slider main container -->
-            <div class="swiper swiper-special-destination-tour">
-                <basis core="print" datamembername="special-purposes.gallery">
-                    <layout>
-                        <!-- Additional required wrapper -->
-                        <div class="swiper-wrapper">
-                            <!-- Slides -->
-                            @child
-                        </div>
-                    </layout>
-                    <face>
-                        <div class="swiper-slide w-[334px]">
-                            <a href="/@description" class="group flex items-end relative rounded-2xl overflow-hidden">
-                                <div class="absolute inset-0 w-full bg-purple-overlay"></div>
-                                <img src="\@largeIMG" class="w-full h-40 object-cover" alt="@name" width="304"
-                                    height="164" loading="lazy">
-                                <div class="absolute w-full flex items-center justify-between mb-4 px-6">
-                                    <h2
-                                        class="text-white text-2xl font-extrabold transition-all duration-300 group-hover:text-secondary-500">
-                                        @name</h2>
-                                    <!-- <div
-                                        class="text-sm font-bold text-white transition-all duration-300 group-hover:text-secondary-500">
-                                     @description</div> -->
-                                </div>
-                            </a>
-                        </div>
-                    </face>
-                </basis>
-
-                <!-- If we need navigation buttons -->
-                <div class="swiper-button-prev-custom">
-                    <div
-                        class="absolute left-0 top-16 z-10 flex items-center justify-center h-10 w-10 bg-primary-500 rounded-full shadow-small-btn-shadow">
-                        <svg width="24" height="24">
-                            <use xlink:href="/images/sprite-icons.svg#icon-chevron-left"></use>
-                        </svg>
-                    </div>
-                </div>
-                <div class="swiper-button-next-custom">
-                    <div
-                        class="absolute right-0 top-16 z-10 flex items-center justify-center h-10 w-10 bg-primary-500 rounded-full shadow-small-btn-shadow">
-                        <svg width="24" height="24">
-                            <use xlink:href="/images/sprite-icons.svg#icon-chevron-right"></use>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-        </section>
         <div class="flex gap-4 mx-auto max-lg:w-[90%] max-xl:w-[97%] xl:max-w-7xl mt-8 mb-16">
             <aside class="w-[304px] sticky top-0 h-fit">
                 <section
@@ -612,7 +560,7 @@
                                     </div>
                                 </div>
                                 <div
-                                    class="relative bg-gray-50 rounded-2xl py-8 px-10 overflow-hidden transition-all duration-300 group-hover:bg-primary-500 group-hover:border-white">
+                                    class="flex-[2.5] relative bg-gray-50 rounded-2xl py-8 px-10 overflow-hidden transition-all duration-300 group-hover:bg-primary-500 group-hover:border-white">
                                     <img src="[##cms.cms.cdn##]/images/earth.png"
                                         class="absolute -top-28 right-20 h-[500px] object-cover hidden transition-all duration-300 invisible opacity-0 group-hover:visible group-hover:opacity-40 group-hover:block"
                                         alt="earth" width="500" height="500" loading="lazy">
@@ -667,12 +615,12 @@
                                                     class="flex items-center gap-1 text-sm text-primary-500 font-extrabold transition-all duration-300 group-hover:text-white">
                                                     <svg width="24" height="24"
                                                         class="transition-all duration-300 group-hover:hidden group-hover:invisible group-hover:opacity-0">
-                                                        <use xlink:href="/images/sprite-icons.svg#icon-sun">
+                                                        <use xlink:href="/images/sprite-icons.svg#icon-flash">
                                                         </use>
                                                     </svg>
                                                     <svg width="24" height="24"
                                                         class="hidden transition-all duration-300 invisible opacity-0 group-hover:visible group-hover:opacity-100 group-hover:block">
-                                                        <use xlink:href="/images/sprite-icons.svg#icon-sun-white">
+                                                        <use xlink:href="/images/sprite-icons.svg#icon-flash-white">
                                                         </use>
                                                     </svg>
                                                     <span class="tourL-tour-airline"
@@ -682,12 +630,12 @@
                                                     class="flex items-center gap-1 text-sm text-primary-500 font-extrabold transition-all duration-300 group-hover:text-white">
                                                     <svg width="24" height="24"
                                                         class="transition-all duration-300 group-hover:hidden group-hover:invisible group-hover:opacity-0">
-                                                        <use xlink:href="/images/sprite-icons.svg#icon-sun">
+                                                        <use xlink:href="/images/sprite-icons.svg#icon-blue-calender">
                                                         </use>
                                                     </svg>
                                                     <svg width="24" height="24"
                                                         class="hidden transition-all duration-300 invisible opacity-0 group-hover:visible group-hover:opacity-100 group-hover:block">
-                                                        <use xlink:href="/images/sprite-icons.svg#icon-sun-white">
+                                                        <use xlink:href="/images/sprite-icons.svg#icon-white-calender">
                                                         </use>
                                                     </svg>
                                                     @db.tour-list.prp_8077
@@ -708,8 +656,8 @@
                                 </div>
                                 <div class="custom-dashed-left h-60 self-center"></div>
                                 <div
-                                    class="flex items-center justify-center flex-1 bg-gray-50 rounded-2xl transition-all duration-300 group-hover:bg-primary-500">
-                                    <div>
+                                    class="flex items-center justify-center flex-1 px-6 bg-gray-50 rounded-2xl transition-all duration-300 group-hover:bg-primary-500">
+                                    <div class="flex flex-col items-center text-center">
                                         <span
                                             class="flex text-sm font-semibold mb-2 transition-all duration-300 group-hover:text-white">شروع
                                             قیمت از:</span>
@@ -744,7 +692,7 @@
                                     </div>
                                 </div>
                                 <div
-                                    class="relative bg-gray-50 rounded-2xl py-8 px-10 overflow-hidden transition-all duration-300 group-hover:bg-primary-500 group-hover:border-white">
+                                    class="flex-[2.5] relative bg-gray-50 rounded-2xl py-8 px-10 overflow-hidden transition-all duration-300 group-hover:bg-primary-500 group-hover:border-white">
                                     <img src="[##cms.cms.cdn##]/images/earth.png"
                                         class="absolute -top-28 right-20 h-[500px] object-cover hidden transition-all duration-300 invisible opacity-0 group-hover:visible group-hover:opacity-40 group-hover:block"
                                         alt="earth" width="500" height="500" loading="lazy">
@@ -802,12 +750,12 @@
                                                     class="flex items-center gap-1 text-sm text-primary-500 font-extrabold transition-all duration-300 group-hover:text-white">
                                                     <svg width="24" height="24"
                                                         class="transition-all duration-300 group-hover:hidden group-hover:invisible group-hover:opacity-0">
-                                                        <use xlink:href="/images/sprite-icons.svg#icon-sun">
+                                                        <use xlink:href="/images/sprite-icons.svg#icon-flash">
                                                         </use>
                                                     </svg>
                                                     <svg width="24" height="24"
                                                         class="hidden transition-all duration-300 invisible opacity-0 group-hover:visible group-hover:opacity-100 group-hover:block">
-                                                        <use xlink:href="/images/sprite-icons.svg#icon-sun-white">
+                                                        <use xlink:href="/images/sprite-icons.svg#icon-flash-white">
                                                         </use>
                                                     </svg>
                                                     <span class="tourL-tour-airline"
@@ -817,12 +765,12 @@
                                                     class="flex items-center gap-1 text-sm text-primary-500 font-extrabold transition-all duration-300 group-hover:text-white">
                                                     <svg width="24" height="24"
                                                         class="transition-all duration-300 group-hover:hidden group-hover:invisible group-hover:opacity-0">
-                                                        <use xlink:href="/images/sprite-icons.svg#icon-sun">
+                                                        <use xlink:href="/images/sprite-icons.svg#icon-blue-calender">
                                                         </use>
                                                     </svg>
                                                     <svg width="24" height="24"
                                                         class="hidden transition-all duration-300 invisible opacity-0 group-hover:visible group-hover:opacity-100 group-hover:block">
-                                                        <use xlink:href="/images/sprite-icons.svg#icon-sun-white">
+                                                        <use xlink:href="/images/sprite-icons.svg#icon-white-calender">
                                                         </use>
                                                     </svg>
                                                     @db.tour-list.prp_8077
@@ -843,8 +791,8 @@
                                 </div>
                                 <div class="custom-dashed-left h-60 self-center"></div>
                                 <div
-                                    class="flex items-center justify-center flex-1 bg-gray-50 rounded-2xl transition-all duration-300 group-hover:bg-primary-500">
-                                    <div>
+                                    class="flex items-center justify-center flex-1 px-6 bg-gray-50 rounded-2xl transition-all duration-300 group-hover:bg-primary-500">
+                                    <div class="flex flex-col items-center text-center">
                                         <span
                                             class="flex text-sm font-semibold mb-2 transition-all duration-300 group-hover:text-white">شروع
                                             قیمت از:</span>
@@ -879,7 +827,7 @@
                                     </div>
                                 </div>
                                 <div
-                                    class="relative bg-gray-50 rounded-2xl py-8 px-10 overflow-hidden transition-all duration-300 group-hover:bg-primary-500 group-hover:border-white">
+                                    class="flex-[2.5] relative bg-gray-50 rounded-2xl py-8 px-10 overflow-hidden transition-all duration-300 group-hover:bg-primary-500 group-hover:border-white">
                                     <img src="[##cms.cms.cdn##]/images/earth.png"
                                         class="absolute -top-28 right-20 h-[500px] object-cover hidden transition-all duration-300 invisible opacity-0 group-hover:visible group-hover:opacity-40 group-hover:block"
                                         alt="earth" width="500" height="500" loading="lazy">
@@ -937,12 +885,12 @@
                                                     class="flex items-center gap-1 text-sm text-primary-500 font-extrabold transition-all duration-300 group-hover:text-white">
                                                     <svg width="24" height="24"
                                                         class="transition-all duration-300 group-hover:hidden group-hover:invisible group-hover:opacity-0">
-                                                        <use xlink:href="/images/sprite-icons.svg#icon-sun">
+                                                        <use xlink:href="/images/sprite-icons.svg#icon-flash">
                                                         </use>
                                                     </svg>
                                                     <svg width="24" height="24"
                                                         class="hidden transition-all duration-300 invisible opacity-0 group-hover:visible group-hover:opacity-100 group-hover:block">
-                                                        <use xlink:href="/images/sprite-icons.svg#icon-sun-white">
+                                                        <use xlink:href="/images/sprite-icons.svg#icon-flash-white">
                                                         </use>
                                                     </svg>
                                                     <span class="tourL-tour-airline"
@@ -952,12 +900,12 @@
                                                     class="flex items-center gap-1 text-sm text-primary-500 font-extrabold transition-all duration-300 group-hover:text-white">
                                                     <svg width="24" height="24"
                                                         class="transition-all duration-300 group-hover:hidden group-hover:invisible group-hover:opacity-0">
-                                                        <use xlink:href="/images/sprite-icons.svg#icon-sun">
+                                                        <use xlink:href="/images/sprite-icons.svg#icon-blue-calender">
                                                         </use>
                                                     </svg>
                                                     <svg width="24" height="24"
                                                         class="hidden transition-all duration-300 invisible opacity-0 group-hover:visible group-hover:opacity-100 group-hover:block">
-                                                        <use xlink:href="/images/sprite-icons.svg#icon-sun-white">
+                                                        <use xlink:href="/images/sprite-icons.svg#icon-white-calender">
                                                         </use>
                                                     </svg>
                                                     @db.tour-list.prp_8077
@@ -978,8 +926,8 @@
                                 </div>
                                 <div class="custom-dashed-left h-60 self-center"></div>
                                 <div
-                                    class="flex items-center justify-center flex-1 bg-gray-50 rounded-2xl transition-all duration-300 group-hover:bg-primary-500">
-                                    <div>
+                                    class="flex items-center justify-center flex-1 px-6 bg-gray-50 rounded-2xl transition-all duration-300 group-hover:bg-primary-500">
+                                    <div class="flex flex-col items-center text-center">
                                         <span
                                             class="flex text-sm font-semibold mb-2 transition-all duration-300 group-hover:text-white">شروع
                                             قیمت از:</span>
@@ -1014,7 +962,7 @@
                                     </div>
                                 </div>
                                 <div
-                                    class="relative bg-gray-50 rounded-2xl py-8 px-10 overflow-hidden transition-all duration-300 group-hover:bg-primary-500 group-hover:border-white">
+                                    class="flex-[2.5] relative bg-gray-50 rounded-2xl py-8 px-10 overflow-hidden transition-all duration-300 group-hover:bg-primary-500 group-hover:border-white">
                                     <img src="[##cms.cms.cdn##]/images/earth.png"
                                         class="absolute -top-28 right-20 h-[500px] object-cover hidden transition-all duration-300 invisible opacity-0 group-hover:visible group-hover:opacity-40 group-hover:block"
                                         alt="earth" width="500" height="500" loading="lazy">
@@ -1075,12 +1023,12 @@
                                                     class="flex items-center gap-1 text-sm text-primary-500 font-extrabold transition-all duration-300 group-hover:text-white">
                                                     <svg width="24" height="24"
                                                         class="transition-all duration-300 group-hover:hidden group-hover:invisible group-hover:opacity-0">
-                                                        <use xlink:href="/images/sprite-icons.svg#icon-sun">
+                                                        <use xlink:href="/images/sprite-icons.svg#icon-flash">
                                                         </use>
                                                     </svg>
                                                     <svg width="24" height="24"
                                                         class="hidden transition-all duration-300 invisible opacity-0 group-hover:visible group-hover:opacity-100 group-hover:block">
-                                                        <use xlink:href="/images/sprite-icons.svg#icon-sun-white">
+                                                        <use xlink:href="/images/sprite-icons.svg#icon-flash-white">
                                                         </use>
                                                     </svg>
                                                     <span class="tourL-tour-airline"
@@ -1090,12 +1038,12 @@
                                                     class="flex items-center gap-1 text-sm text-primary-500 font-extrabold transition-all duration-300 group-hover:text-white">
                                                     <svg width="24" height="24"
                                                         class="transition-all duration-300 group-hover:hidden group-hover:invisible group-hover:opacity-0">
-                                                        <use xlink:href="/images/sprite-icons.svg#icon-sun">
+                                                        <use xlink:href="/images/sprite-icons.svg#icon-blue-calender">
                                                         </use>
                                                     </svg>
                                                     <svg width="24" height="24"
                                                         class="hidden transition-all duration-300 invisible opacity-0 group-hover:visible group-hover:opacity-100 group-hover:block">
-                                                        <use xlink:href="/images/sprite-icons.svg#icon-sun-white">
+                                                        <use xlink:href="/images/sprite-icons.svg#icon-white-calender">
                                                         </use>
                                                     </svg>
                                                     @db.tour-list.prp_8077
@@ -1116,8 +1064,8 @@
                                 </div>
                                 <div class="custom-dashed-left h-60 self-center"></div>
                                 <div
-                                    class="flex items-center justify-center flex-1 bg-gray-50 rounded-2xl transition-all duration-300 group-hover:bg-primary-500">
-                                    <div>
+                                    class="flex items-center justify-center flex-1 px-6 bg-gray-50 rounded-2xl transition-all duration-300 group-hover:bg-primary-500">
+                                    <div class="flex flex-col items-center text-center">
                                         <span
                                             class="flex text-sm font-semibold mb-2 transition-all duration-300 group-hover:text-white">شروع
                                             قیمت از:</span>
@@ -1238,6 +1186,60 @@
                         </ul>
                     </div>
                 </section>
+
+                <section class="mt-10">
+                    <h2 class="mx-auto max-lg:w-[90%] max-xl:w-[97%] xl:max-w-7xl text-[36px] font-extrabold mb-6">
+                        مقاصد ویژه <span class="text-primary-500">گردشگران</span>
+                    </h2>
+                    <!-- Slider main container -->
+                    <div class="swiper swiper-special-destination-tour">
+                        <basis core="print" datamembername="special-purposes.gallery">
+                            <layout>
+                                <!-- Additional required wrapper -->
+                                <div class="swiper-wrapper">
+                                    <!-- Slides -->
+                                    @child
+                                </div>
+                            </layout>
+                            <face>
+                                <div class="swiper-slide w-[334px]">
+                                    <a href="/@description" class="group flex items-end relative rounded-2xl overflow-hidden">
+                                        <div class="absolute inset-0 w-full bg-purple-overlay"></div>
+                                        <img src="\@largeIMG" class="w-full h-40 object-cover" alt="@name" width="304"
+                                            height="164" loading="lazy">
+                                        <div class="absolute w-full flex items-center justify-between mb-4 px-6">
+                                            <h2
+                                                class="text-white text-2xl font-extrabold transition-all duration-300 group-hover:text-secondary-500">
+                                                @name</h2>
+                                            <!-- <div
+                                                class="text-sm font-bold text-white transition-all duration-300 group-hover:text-secondary-500">
+                                             @description</div> -->
+                                        </div>
+                                    </a>
+                                </div>
+                            </face>
+                        </basis>
+        
+                        <!-- If we need navigation buttons -->
+                        <div class="swiper-button-prev-custom">
+                            <div
+                                class="absolute left-0 top-16 z-10 flex items-center justify-center h-10 w-10 bg-primary-500 rounded-full shadow-small-btn-shadow">
+                                <svg width="24" height="24">
+                                    <use xlink:href="/images/sprite-icons.svg#icon-chevron-left"></use>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="swiper-button-next-custom">
+                            <div
+                                class="absolute right-0 top-16 z-10 flex items-center justify-center h-10 w-10 bg-primary-500 rounded-full shadow-small-btn-shadow">
+                                <svg width="24" height="24">
+                                    <use xlink:href="/images/sprite-icons.svg#icon-chevron-right"></use>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
                 <section class="mt-6">
                     <basis core="print" datamembername="db.view">
                         <face filter="TypeID in(150)">
