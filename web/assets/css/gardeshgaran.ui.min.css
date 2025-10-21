@@ -426,6 +426,9 @@ body {
 .max-h-\[480px\] {
   max-height: 480px;
 }
+.max-h-\[557px\] {
+  max-height: 557px;
+}
 .w-0 {
   width: 0;
 }

@@ -827,49 +827,81 @@ document.addEventListener('DOMContentLoaded', function () {
       e.stopPropagation()
       const isShown = menu.classList.contains('opacity-100')
       closeAllTourMenus()
-      if (!isShown) {
-        menu.classList.remove('opacity-0', 'invisible', 'scale-95')
-        menu.classList.add('opacity-100', 'visible', 'scale-100')
-      }
+      if (!isShown) openMenu(menu)
     })
 
-    menu.addEventListener('click', function (e) {
-      e.stopPropagation()
-    })
+    const panel = menu.querySelector('.tourL-tour-date-panel')
+    if (panel) {
+      panel.addEventListener('click', (e) => e.stopPropagation())
+    }
+
+    const closeBtn = menu.querySelector('.close-tourL-tour-date-menu')
+    if (closeBtn) {
+      closeBtn.addEventListener('click', function (e) {
+        e.stopPropagation()
+        closeMenu(menu)
+      })
+    }
+
+    const backdrop = menu.querySelector('.fixed.inset-0')
+    if (backdrop) {
+      backdrop.addEventListener('click', function (e) {
+        e.stopPropagation()
+        closeMenu(menu)
+      })
+    }
   })
 
   document.addEventListener('click', function (e) {
     const isInsideMenu = e.target.closest('.tourL-tour-date-menu')
     const isButton = e.target.closest('.tourL-tour-date-btn')
-    if (!isInsideMenu && !isButton) {
-      closeAllTourMenus()
-    }
+    if (!isInsideMenu && !isButton) closeAllTourMenus()
   })
 
-  function closeAllTourMenus() {
-    document.querySelectorAll('.tourL-tour-date-menu').forEach((menu) => {
-      menu.classList.remove('opacity-100', 'visible', 'scale-100')
-      menu.classList.add('opacity-0', 'invisible', 'scale-95')
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeAllTourMenus()
+  })
+
+  function openMenu(menu) {
+    menu.classList.remove('opacity-0', 'invisible', 'scale-95')
+    menu.classList.add('opacity-100', 'visible', 'scale-100')
+    document.documentElement.classList.add('overflow-hidden')
+    document.body.classList.add('overflow-hidden')
+  }
+
+  function closeMenu(menu) {
+    menu.classList.remove('opacity-100', 'visible', 'scale-100')
+    menu.classList.add('opacity-0', 'invisible', 'scale-95')
+    queueMicrotask(() => {
+      const anyOpen = document.querySelector('.tourL-tour-date-menu.opacity-100')
+      if (!anyOpen) {
+        document.documentElement.classList.remove('overflow-hidden')
+        document.body.classList.remove('overflow-hidden')
+      }
     })
+  }
+
+  function closeAllTourMenus() {
+    document.querySelectorAll('.tourL-tour-date-menu').forEach(closeMenu)
   }
 })
 
+
 // tour-list date
 const toggleTourDateMenu = (button, tourId) => {
-  const dateMenu = button.closest('.tourL-tour-card').querySelector('.tourL-tour-date-menu')
-  const swiperWrapper = dateMenu.querySelector('.swiper-tour-date-tourL .swiper-wrapper')
+  const card = button.closest('.tourL-tour-card')
+  const dateMenu = card.querySelector('.tourL-tour-date-menu')
+  const listContainer = dateMenu.querySelector('.tour-date-list')
 
   document.querySelectorAll('.tourL-tour-date-menu').forEach((menu) => {
-    if (menu !== dateMenu) {
-      menu.classList.add('opacity-0', 'invisible', 'scale-95')
-    }
+    if (menu !== dateMenu) menu.classList.add('opacity-0', 'invisible', 'scale-95')
   })
 
   if (dateMenu.classList.contains('opacity-0')) {
-    swiperWrapper.innerHTML = '<div class="loading">در حال بارگذاری...</div>'
-
-    window.currentDateContainer = swiperWrapper
+    listContainer.innerHTML = '<div class="loading py-4 text-sm text-gray-500">در حال بارگذاری...</div>'
+    window.currentDateContainer = listContainer
     window.currentTourId = tourId
+    window.currentTourCard = card  
 
     $bc.setSource('db.tourDatesRequest', tourId)
 
@@ -879,91 +911,140 @@ const toggleTourDateMenu = (button, tourId) => {
   }
 }
 
-const isMobile = () => {
-  return window.innerWidth < 1024
+function isMobileScreen() {
+  return window.innerWidth < 1024;
 }
 
+function buildTourDateRow({ start, end, day }, tourId, card) {
+  const mobile = isMobileScreen();
+
+  const wrap = document.createElement('div');
+  wrap.className = [
+    'flex', 'gap-3', 'border', 'border-primary-200', 'rounded-xl',
+    mobile ? 'flex-col' : 'items-center',
+    mobile ? 'p-3' : 'p-4',
+  ].join(' ');
+
+  const tourLink = "tel:02191009292";
+
+  const airlineSpan = card.querySelector('.tourL-tour-airline');
+  const airlineImg = airlineSpan?.dataset?.airlineImg || '';
+  const airlineAlt = (airlineSpan?.textContent || '').trim() || 'Airline';
+
+  const daySpan = card.querySelector('.tourL-tour-day');
+  const dayText = (daySpan?.textContent || '').trim() || `${day} شب - ${day + 1} روز`;
+
+  const priceSpan = card.querySelector('.tourL-tour-price');
+  const priceText = (priceSpan?.textContent || '').trim() || '—';
+
+  const left = document.createElement('div');
+  left.className = ['flex', 'items-center', mobile ? 'gap-3' : 'gap-4'].join(' ');
+  left.innerHTML = `
+<div class="flex items-center gap-2">
+  <svg width="24" height="24"><use xlink:href="/images/sprite-icons.svg#icon-calender"></use></svg>
+  <span class="start__date" data-date="${start.date}">${start.date}</span>
+</div>
+<div class="flex items-center gap-2">
+  <svg width="24" height="24"><use xlink:href="/images/sprite-icons.svg#icon-calender"></use></svg>
+  <span class="end__date" data-date="${end.date}">${end.date}</span>
+</div>
+`;
+
+  const mid = document.createElement('div');
+  mid.className = [
+    'flex',
+    mobile ? 'flex-col' : 'items-center',
+    mobile ? '' : 'gap-4',
+    mobile ? '' : 'flex-1'
+  ].join(' ');
+  mid.innerHTML = `
+<div class="grid grid-cols-2 gap-3">
+  <div class="flex items-center gap-1 text-sm text-primary-500 font-extrabold">
+    <svg width="24" height="24"><use xlink:href="/images/sprite-icons.svg#icon-sun"></use></svg>
+    <span class="tourL-tour-day">${dayText}</span>
+  </div>
+  ${airlineImg ? `<img src="${airlineImg}" class="h-auto" alt="${airlineAlt}" width="74" height="30" loading="lazy">` : ''}
+</div>
+<div class="${mobile ? 'mt-2' : ''}">
+  <span class="inline-flex items-center gap-2">
+    از
+    <span class="inline-flex ${mobile ? 'text-lg' : 'text-2xl'} text-primary-500 font-extrabold">
+      ${priceText}
+    </span>
+  </span>
+</div>
+`;
+
+  const right = document.createElement('div');
+  right.className = ['flex', 'items-center', 'gap-2', mobile ? 'w-full' : ''].join(' ');
+
+  const a = document.createElement('a');
+  a.href = tourLink;
+  a.className = [
+    'flex', 'items-center', 'justify-center', 'gap-2',
+    mobile ? 'flex-1' : 'w-28',
+    mobile ? 'h-12' : 'h-12',
+    'font-extrabold', 'rounded-xl', 'bg-primary-500', 'text-white',
+    'transition-all', 'duration-300', 'hover:shadow-btn-shadow'
+  ].join(' ');
+  a.innerHTML = `
+تماس
+<svg width="25" height="24"><use xlink:href="/images/sprite-icons.svg#icon-white-phone"></use></svg>
+`;
+
+  const form = document.createElement('form');
+  form.className = mobile ? 'flex-1 mb-0' : 'mb-0';
+  form.action = `/tours/package/pdf?id=${tourId}`;
+  form.method = 'POST';
+  form.target = '_blank';
+  form.innerHTML = `
+<input type="hidden" name="id" value="${tourId}">
+<input type="hidden" name="from" value="${start.dateid}">
+<input type="hidden" name="to" value="${end.dateid}">
+<input type="hidden" name="day" value="${day}">
+<input type="hidden" name="fdate" value="${start.date}">
+<input type="hidden" name="rdate" value="${end.date}">
+<button type="submit"
+  class="group flex cursor-pointer items-center justify-center gap-2 ${mobile ? 'w-full' : 'w-28'} h-12 text-zinc-900 font-extrabold rounded-xl transition-all duration-300 bg-secondary-500 hover:shadow-btn-shadow">
+  دانلود پکیج
+</button>
+`;
+
+  right.appendChild(a);
+  right.appendChild(form);
+
+  wrap.appendChild(left);
+  wrap.appendChild(mid);
+  wrap.appendChild(right);
+
+  return wrap;
+}
 const onTourDatesLoaded = async (apiResponse) => {
-  if (!window.currentDateContainer) {
-    return
-  }
+  if (!window.currentDateContainer) return
 
   try {
     const response = apiResponse.response
     const jsonData = await response.json()
 
     let data = []
-    if (jsonData && jsonData.sources && jsonData.sources.length > 0) {
+    if (jsonData?.sources?.length > 0) {
       data = jsonData.sources[0].data || []
     }
 
-    if (!data || !Array.isArray(data) || data.length === 0) {
-      window.currentDateContainer.innerHTML = '<div class="no-dates">تاریخی موجود نیست</div>'
+    if (!Array.isArray(data) || data.length === 0) {
+      window.currentDateContainer.innerHTML = '<div class="no-dates py-4 text-sm text-gray-500">تاریخی موجود نیست</div>'
       return
     }
 
+    const card = window.currentTourCard
     window.currentDateContainer.innerHTML = ''
-    if (swiperTourDateTourL && typeof swiperTourDateTourL.destroy === 'function') {
-      swiperTourDateTourL.destroy(true, true)
-    }
-
-    swiperTourDateTourL = new Swiper('.swiper-tour-date-tourL', {
-      slidesPerView: 2.7,
-      speed: 400,
-      centeredSlides: false,
-      spaceBetween: 8,
-      grabCursor: true,
-      autoplay: {
-        delay: 2500,
-        disableOnInteraction: false,
-      },
-      loop: true,
-    })
-
-    const mobile = isMobile()
-
-    data.forEach((dateItem, index) => {
-      const tourLink = `/tour.bc?id=${window.currentTourId}&from=${dateItem.start.dateid}&to=${dateItem.end.dateid}&day=${dateItem.day}`
-
-      if (mobile) {
-        const div = document.createElement('div')
-        div.className = 'date-li swiper-slide !w-[230px]'
-        div.onclick = () => renderInventoryList(div, dateItem.day, dateItem.start.dateid, dateItem.end.dateid)
-
-        div.innerHTML = `
-                    <a href="${tourLink}" class="group block border border-gray-50 bg-white rounded-lg py-4 px-6 transition-all duration-300 hover:border-primary-400">
-                        <h3 class="text-gray-500 font-light mb-1">تاریخ رفت و برگشت:</h3>
-                        <div class="tour-dates text-sm font-semibold text-gray-500 transition-all duration-300 group-hover/leveltwo:text-primary-500">
-                            <span class="start__date" data-date="${dateItem.start.date}">${dateItem.start.date}</span>
-                            تا
-                            <span class="end__date unicode-embed direction-ltr" data-date="${dateItem.end.date}">${dateItem.end.date}</span>
-                        </div>
-                    </a>
-                `
-
-        window.currentDateContainer.appendChild(div)
-      } else {
-        const li = document.createElement('li')
-        li.className = 'date-li swiper-slide cursor-pointer'
-        li.onclick = () => renderInventoryList(li, dateItem.day, dateItem.start.dateid, dateItem.end.dateid)
-
-        li.innerHTML = `
-                    <a href="${tourLink}" class="group/leveltwo block border border-gray-50 w-[230px] bg-white rounded-lg py-4 px-6 transition-all duration-300 hover:border-primary-400">
-                        <h3 class="text-gray-500 font-light mb-1">تاریخ رفت و برگشت:</h3>
-                        <div class="tour-dates text-sm font-semibold text-gray-500 transition-all duration-300 group-hover/leveltwo:text-primary-500">
-                            <span class="start__date" data-date="${dateItem.start.date}">${dateItem.start.date}</span>
-                            تا
-                            <span class="end__date unicode-embed direction-ltr" data-date="${dateItem.end.date}">${dateItem.end.date}</span>
-                        </div>
-                    </a>
-                `
-
-        window.currentDateContainer.appendChild(li)
-      }
+    data.forEach((dateItem) => {
+      const row = buildTourDateRow(dateItem, window.currentTourId, card)
+      window.currentDateContainer.appendChild(row)
     })
   } catch (error) {
     console.error('خطا در پردازش response:', error)
-    window.currentDateContainer.innerHTML = '<div class="error">خطا در بارگذاری تاریخ‌ها</div>'
+    window.currentDateContainer.innerHTML = '<div class="error py-4 text-sm text-red-500">خطا در بارگذاری تاریخ‌ها</div>'
   }
 }
 

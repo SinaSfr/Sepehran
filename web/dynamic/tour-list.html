@@ -45,7 +45,7 @@
 
 <basis core="dbsource" source="media" lid="1" name="special-purposes" usedforid="2387343" sourcemid="article">
     <member type="list" name="gallery" format="4" order="ord"></member>
-  </basis>
+</basis>
 
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
@@ -407,8 +407,8 @@
                             <a href="/@link"
                                 class="flex flex-col border border-gray-200 bg-white rounded-xl shadow-medium-btn-shadow p-6">
                                 <div class="relative rounded-xl overflow-hidden shadow-soft-deep">
-                                    <img src="\@00344X00176prp" class="block w-full h-44 object-cover opacity-40" alt="@title"
-                                        width="344" height="176" loading="lazy">
+                                    <img src="\@00344X00176prp" class="block w-full h-44 object-cover opacity-40"
+                                        alt="@title" width="344" height="176" loading="lazy">
                                     <span
                                         class="absolute left-0 bottom-0 text-sm font-bold py-2 px-4 bg-amber-400 rounded-tr opacity-40">
                                         @prp_3087934</span>
@@ -552,11 +552,23 @@
                         <face filter="[db.tour-list.prp_3087934] is null and [db.tour-list.prp_3088017] is null">
                             <div class="relative tourL-tour-card group flex items-stretch">
                                 <div
-                                    class="tourL-tour-date-menu absolute w-[606px] top-60 z-20 left-[30%] right-0 mx-auto border border-primary-100 py-4 rounded-lg backdrop-blur bg-specialcolor-6 shadow-shadow-date opacity-0 invisible scale-95 transition-all duration-300 origin-top">
-                                    <!-- Slider main container -->
-                                    <div class="swiper swiper-tour-date-tourL px-1">
-                                        <!-- Additional required wrapper -->
-                                        <div class="swiper-wrapper flex gap-8"></div>
+                                    class="tourL-tour-date-menu fixed inset-0 z-50 flex items-center justify-center opacity-0 invisible scale-95 transition-all duration-300 origin-top">
+                                    <div class="fixed inset-0 bg-black/45"></div>
+
+                                    <div
+                                        class="tourL-tour-date-panel relative z-10
+                                             border border-primary-100 py-4 px-6 rounded-lg bg-white shadow-shadow-date max-h-[557px] overflow-y-auto custom-scrollbar">
+                                        <div class="flex items-center justify-between gap-24 mb-6">
+                                            <h2 class="text-xl font-bold text-zinc-900">تاریخ های برگزاری تور</h2>
+                                            <button type="button"
+                                                class="close-tourL-tour-date-menu bg-secondary-500 rounded-full p-2 cursor-pointer"
+                                                aria-label="بستن">
+                                                <svg width="24" height="24">
+                                                    <use xlink:href="/images/sprite-icons.svg#engine-close-icon"></use>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        <div class="tour-date-list flex flex-col gap-3"></div>
                                     </div>
                                 </div>
                                 <div
@@ -684,11 +696,23 @@
                         <face filter="[db.tour-list.prp_3087934] is null">
                             <div class="relative tourL-tour-card group flex items-stretch">
                                 <div
-                                    class="tourL-tour-date-menu absolute w-[606px] top-60 z-20 left-[30%] right-0 mx-auto border border-primary-100 py-4 rounded-lg backdrop-blur bg-specialcolor-6 shadow-shadow-date opacity-0 invisible scale-95 transition-all duration-300 origin-top">
-                                    <!-- Slider main container -->
-                                    <div class="swiper swiper-tour-date-tourL px-1">
-                                        <!-- Additional required wrapper -->
-                                        <div class="swiper-wrapper flex gap-8"></div>
+                                    class="tourL-tour-date-menu fixed inset-0 z-50 flex items-center justify-center opacity-0 invisible scale-95 transition-all duration-300 origin-top">
+                                    <div class="fixed inset-0 bg-black/45"></div>
+
+                                    <div
+                                        class="tourL-tour-date-panel relative z-10
+                                             border border-primary-100 py-4 px-6 rounded-lg bg-white shadow-shadow-date max-h-[557px] overflow-y-auto custom-scrollbar">
+                                        <div class="flex items-center justify-between gap-24 mb-6">
+                                            <h2 class="text-xl font-bold text-zinc-900">تاریخ های برگزاری تور</h2>
+                                            <button type="button"
+                                                class="close-tourL-tour-date-menu bg-secondary-500 rounded-full p-2 cursor-pointer"
+                                                aria-label="بستن">
+                                                <svg width="24" height="24">
+                                                    <use xlink:href="/images/sprite-icons.svg#engine-close-icon"></use>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        <div class="tour-date-list flex flex-col gap-3"></div>
                                     </div>
                                 </div>
                                 <div
@@ -819,11 +843,23 @@
                         <face filter="[db.tour-list.prp_3088017] is null">
                             <div class="relative tourL-tour-card group flex items-stretch">
                                 <div
-                                    class="tourL-tour-date-menu absolute w-[606px] top-60 z-20 left-[30%] right-0 mx-auto border border-primary-100 py-4 rounded-lg backdrop-blur bg-specialcolor-6 shadow-shadow-date opacity-0 invisible scale-95 transition-all duration-300 origin-top">
-                                    <!-- Slider main container -->
-                                    <div class="swiper swiper-tour-date-tourL px-1">
-                                        <!-- Additional required wrapper -->
-                                        <div class="swiper-wrapper flex gap-8"></div>
+                                    class="tourL-tour-date-menu fixed inset-0 z-50 flex items-center justify-center opacity-0 invisible scale-95 transition-all duration-300 origin-top">
+                                    <div class="fixed inset-0 bg-black/45"></div>
+
+                                    <div
+                                        class="tourL-tour-date-panel relative z-10
+                                             border border-primary-100 py-4 px-6 rounded-lg bg-white shadow-shadow-date max-h-[557px] overflow-y-auto custom-scrollbar">
+                                        <div class="flex items-center justify-between gap-24 mb-6">
+                                            <h2 class="text-xl font-bold text-zinc-900">تاریخ های برگزاری تور</h2>
+                                            <button type="button"
+                                                class="close-tourL-tour-date-menu bg-secondary-500 rounded-full p-2 cursor-pointer"
+                                                aria-label="بستن">
+                                                <svg width="24" height="24">
+                                                    <use xlink:href="/images/sprite-icons.svg#engine-close-icon"></use>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        <div class="tour-date-list flex flex-col gap-3"></div>
                                     </div>
                                 </div>
                                 <div
@@ -954,11 +990,23 @@
                         <face>
                             <div class="relative tourL-tour-card group flex items-stretch">
                                 <div
-                                    class="tourL-tour-date-menu absolute w-[606px] top-60 z-20 left-[30%] right-0 mx-auto border border-primary-100 py-4 rounded-lg backdrop-blur bg-specialcolor-6 shadow-shadow-date opacity-0 invisible scale-95 transition-all duration-300 origin-top">
-                                    <!-- Slider main container -->
-                                    <div class="swiper swiper-tour-date-tourL px-1">
-                                        <!-- Additional required wrapper -->
-                                        <div class="swiper-wrapper flex gap-8"></div>
+                                    class="tourL-tour-date-menu fixed inset-0 z-50 flex items-center justify-center opacity-0 invisible scale-95 transition-all duration-300 origin-top">
+                                    <div class="fixed inset-0 bg-black/45"></div>
+
+                                    <div
+                                        class="tourL-tour-date-panel relative z-10
+                                             border border-primary-100 py-4 px-6 rounded-lg bg-white shadow-shadow-date max-h-[557px] overflow-y-auto custom-scrollbar">
+                                        <div class="flex items-center justify-between gap-24 mb-6">
+                                            <h2 class="text-xl font-bold text-zinc-900">تاریخ های برگزاری تور</h2>
+                                            <button type="button"
+                                                class="close-tourL-tour-date-menu bg-secondary-500 rounded-full p-2 cursor-pointer"
+                                                aria-label="بستن">
+                                                <svg width="24" height="24">
+                                                    <use xlink:href="/images/sprite-icons.svg#engine-close-icon"></use>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        <div class="tour-date-list flex flex-col gap-3"></div>
                                     </div>
                                 </div>
                                 <div
@@ -1203,7 +1251,8 @@
                             </layout>
                             <face>
                                 <div class="swiper-slide w-[334px]">
-                                    <a href="/@description" class="group flex items-end relative rounded-2xl overflow-hidden">
+                                    <a href="/@description"
+                                        class="group flex items-end relative rounded-2xl overflow-hidden">
                                         <div class="absolute inset-0 w-full bg-purple-overlay"></div>
                                         <img src="\@largeIMG" class="w-full h-40 object-cover" alt="@name" width="304"
                                             height="164" loading="lazy">
@@ -1219,7 +1268,7 @@
                                 </div>
                             </face>
                         </basis>
-        
+
                         <!-- If we need navigation buttons -->
                         <div class="swiper-button-prev-custom">
                             <div
