@@ -10,7 +10,7 @@
   <member type="list" name="gallery" format="4" order="ord"></member>
 </basis>
 
-<basis core="dbsource" source="basiscore" lid="1" mid="20" name="db" catid="215041">
+<basis core="dbsource" source="basiscore" lid="1" mid="20" name="db" catid="217152">
   <member name="special-tour" type="list" link="tour.bc" propertyid="3087934,10000504,8181,8076,3087933,3088017"
     perpage="5" order="ord" size="253x144" />
 </basis>
@@ -117,73 +117,6 @@
         </div>
       </div>
     </section>
-    <section class="mt-16">
-      <div class="swiper swiper-slogan-mobile">
-        <basis core="tree" datamembername="slogan-list.cat" idcol="catid" parentidcol="parentid" nullvalue="215034">
-          <layout>
-            <div class="swiper-wrapper">@child</div>
-          </layout>
-          <face filter="ord in(1)">
-            <div class="swiper-slide">
-              <a href="tel:02191009292"
-                class="flex flex-col items-center border border-gray-200 rounded-xl shadow-card-shadow py-8 px-3">
-                <img src="\@image" class="h-32 object-cover" alt="@title" width="99" height="121" loading="lazy" />
-                <h2 class="text-2xl font-extrabold mt-4">@title</h2>
-                <h3 class="text-sm font-semibold mt-2 text-center">@urldescription</h3>
-              </a>
-            </div>
-          </face>
-          <face filter="ord not in(1)">
-            <div class="swiper-slide">
-              <a href="/@link"
-                class="flex flex-col items-center border border-gray-200 rounded-xl shadow-card-shadow py-8 px-3">
-                <img src="\@image" class="h-32 object-cover" alt="@title" width="99" height="121" loading="lazy" />
-                <h2 class="text-2xl font-extrabold mt-4">@title</h2>
-                <h3 class="text-sm font-semibold mt-2 text-center">@urldescription</h3>
-              </a>
-            </div>
-          </face>
-        </basis>
-      </div>
-    </section>
-
-    <!-- Additional required wrapper -->
-    <basis core="print" datamembername="special-purposes.gallery">
-      <layout>
-        <section class="mt-16">
-          <h2 class="mx-auto max-lg:w-[92%] max-xl:w-[97%] xl:max-w-7xl text-[32px] font-black mb-6">
-            مقاصد ویژه
-            <span class="text-primary-500">گردشگران</span>
-          </h2>
-          <!-- Slider main container -->
-          <div class="swiper swiper-special-destination-mobile">
-            <div class="swiper-wrapper">
-              <!-- Slides -->
-              @child
-            </div>
-          </div>
-        </section>
-      </layout>
-      <face>
-        <div class="swiper-slide">
-          <a href="/@description" class="group flex items-end relative rounded-2xl overflow-hidden">
-            <div class="absolute inset-0 w-full bg-purple-overlay"></div>
-            <img src="\@largeIMG" class="w-full h-40 object-cover" alt="@name" width="304" height="164"
-              loading="lazy" />
-            <div class="absolute w-full flex items-center justify-between mb-4 px-6">
-              <h2
-                class="text-white text-2xl font-extrabold transition-all duration-300 group-hover:text-secondary-500">
-                @name
-              </h2>
-              <!-- <div class="text-sm font-bold text-white transition-all duration-300 group-hover:text-secondary-500">
-                 @description
-              </div> -->
-            </div>
-          </a>
-        </div>
-      </face>
-    </basis>
-
 
     <basis core="list" datamembername="db.special-tour">
       <layout>
@@ -429,6 +362,42 @@
       </face>
     </basis>
 
+    <!-- Additional required wrapper -->
+    <basis core="print" datamembername="special-purposes.gallery">
+      <layout>
+        <section class="mt-16">
+          <h2 class="mx-auto max-lg:w-[92%] max-xl:w-[97%] xl:max-w-7xl text-[32px] font-black mb-6">
+            مقاصد ویژه
+            <span class="text-primary-500">گردشگران</span>
+          </h2>
+          <!-- Slider main container -->
+          <div class="swiper swiper-special-destination-mobile">
+            <div class="swiper-wrapper">
+              <!-- Slides -->
+              @child
+            </div>
+          </div>
+        </section>
+      </layout>
+      <face>
+        <div class="swiper-slide">
+          <a href="/@description" class="group flex items-end relative rounded-2xl overflow-hidden">
+            <div class="absolute inset-0 w-full bg-purple-overlay"></div>
+            <img src="\@largeIMG" class="w-full h-40 object-cover" alt="@name" width="304" height="164"
+              loading="lazy" />
+            <div class="absolute w-full flex items-center justify-between mb-4 px-6">
+              <h2 class="text-white text-2xl font-extrabold transition-all duration-300 group-hover:text-secondary-500">
+                @name
+              </h2>
+              <!-- <div class="text-sm font-bold text-white transition-all duration-300 group-hover:text-secondary-500">
+                 @description
+              </div> -->
+            </div>
+          </a>
+        </div>
+      </face>
+    </basis>
+
 
     <section class="mx-auto max-lg:w-[92%] max-xl:w-[97%] xl:max-w-7xl mt-32">
       <div class="flex items-center justify-between border-b-2 border-gray-200 pb-3 mb-8">
@@ -489,99 +458,7 @@
         </div>
       </div>
     </section>
-    <section class="mx-auto max-lg:w-[92%] max-xl:w-[97%] xl:max-w-7xl mt-16">
-      <div class="flex items-center justify-between border-b-2 border-gray-200 pb-3 mb-8">
-        <h2 class="text-[32px] font-black">خدمات ویزا</h2>
-        <a href="/visa"
-          class="group flex items-center justify-center gap-3 rounded-lg px-4 py-2 text-sm font-semibold bg-gray-50 transition-all duration-300 hover:bg-primary-500 hover:shadow-small-btn-shadow hover:text-white">
-          مشاهده همه
-          <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path class="transition-all duration-300 group-hover:stroke-white" d="M7 12.6567H21" stroke="#33363F"
-              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-            <path class="transition-all duration-300 group-hover:fill-white"
-              d="M2.28481 12.4533L7.73501 8.5603C8.2645 8.18209 9 8.56059 9 9.21129V16.1022C9 16.7529 8.2645 17.1314 7.73501 16.7532L2.28481 12.8602C2.14522 12.7605 2.14522 12.553 2.28481 12.4533Z"
-              fill="#33363F" />
-          </svg>
-        </a>
-      </div>
-      <basis core="list" datamembername="db.visa-list">
-        <layout>
-          <div class="flex flex-col gap-6">
-            <!-- items -->
-            @child
-          </div>
-        </layout>
-        <else-layout>
-          <div class="flex items-center justify-center">
-            <h2 class="text-xl font-extrabold mt-16 text-center">در حال حاضر ویزایی وجود ندارد!</h2>
-          </div>
-        </else-layout>
-        <face filter="link is null">
-          <a href="/visa.bc?id=@id"
-            class="flex flex-col border border-gray-200 rounded-xl shadow-card-shadow overflow-hidden">
-            <img src="\@00352X00192prp" class="w-full h-48 object-cover" alt="@title" width="352" height="192"
-              loading="lazy" />
-            <div class="flex flex-col gap-1 py-4 px-6 divide-y divide-gray-100">
-              <div class="flex items-center gap-2">
-                <img src="[##cms.cms.cdn##]/images/flags/@prp_3087936" class="h-6 object-cover rounded" alt="@title"
-                  width="36" height="24" loading="lazy" />
-                <h2 class="text-2xl font-extrabold">@title</h2>
-              </div>
-              <div class="flex flex-col gap-2 pt-2">
-                <h3 class="flex items-center gap-2 text-sm font-bold">
-                  زمان مورد نیاز:
-                  <span class="text-primary-500">@prp_1417</span>
-                </h3>
-                <h3 class="flex items-center gap-2 text-sm font-bold">
-                  مدت زمان ویزا:
-                  <span class="text-primary-500">@prp_3087931</span>
-                </h3>
-                <h3 class="flex items-center gap-2 text-sm font-bold">
-                  تعداد دفعات ورود:
-                  <span class="text-primary-500">@prp_3087930</span>
-                </h3>
-              </div>
-              <div class="flex items-center justify-between pt-2">
-                <h3 class="text-sm font-bold">شروع قیمت از:</h3>
-                <span class="text-2xl font-extrabold text-primary-500">@prp_3087433</span>
-              </div>
-            </div>
-          </a>
-        </face>
-        <face>
-          <a href="/@link" class="flex flex-col border border-gray-200 rounded-xl shadow-card-shadow overflow-hidden">
-            <img src="\@00352X00192prp" class="w-full h-48 object-cover" alt="@title" width="352" height="192"
-              loading="lazy" />
-            <div class="flex flex-col gap-1 py-4 px-6 divide-y divide-gray-100">
-              <div class="flex items-center gap-2">
-                <img src="[##cms.cms.cdn##]/images/flags/@prp_3087936" class="h-6 object-cover rounded" alt="@title"
-                  width="36" height="24" loading="lazy" />
-                <h2 class="text-2xl font-extrabold">@title</h2>
-              </div>
-              <div class="flex flex-col gap-2 pt-2">
-                <h3 class="flex items-center gap-2 text-sm font-bold">
-                  زمان مورد نیاز:
-                  <span class="text-primary-500">@prp_1417</span>
-                </h3>
-                <h3 class="flex items-center gap-2 text-sm font-bold">
-                  مدت زمان ویزا:
-                  <span class="text-primary-500">@prp_3087931</span>
-                </h3>
-                <h3 class="flex items-center gap-2 text-sm font-bold">
-                  تعداد دفعات ورود:
-                  <span class="text-primary-500">@prp_3087930</span>
-                </h3>
-              </div>
-              <div class="flex items-center justify-between pt-2">
-                <h3 class="text-sm font-bold">شروع قیمت از:</h3>
-                <span class="text-2xl font-extrabold text-primary-500">@prp_3087433</span>
-              </div>
-            </div>
-          </a>
-        </face>
-      </basis>
-    </section>
-    <section class="mt-16 mb-16">
+    <section class="mt-16">
       <basis core="tree" datamembername="fasli.cat" idcol="catid" parentidcol="parentid" nullvalue="215038">
         <layout>
           <h2 class="mx-auto max-lg:w-[92%] max-xl:w-[97%] xl:max-w-7xl text-[36px] font-extrabold mb-6">
@@ -831,6 +708,127 @@
             </svg>
           </div>
         </div>
+      </div>
+    </section>
+    <section class="mx-auto max-lg:w-[92%] max-xl:w-[97%] xl:max-w-7xl mt-16">
+      <div class="flex items-center justify-between border-b-2 border-gray-200 pb-3 mb-8">
+        <h2 class="text-[32px] font-black">خدمات ویزا</h2>
+        <a href="/visa"
+          class="group flex items-center justify-center gap-3 rounded-lg px-4 py-2 text-sm font-semibold bg-gray-50 transition-all duration-300 hover:bg-primary-500 hover:shadow-small-btn-shadow hover:text-white">
+          مشاهده همه
+          <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path class="transition-all duration-300 group-hover:stroke-white" d="M7 12.6567H21" stroke="#33363F"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path class="transition-all duration-300 group-hover:fill-white"
+              d="M2.28481 12.4533L7.73501 8.5603C8.2645 8.18209 9 8.56059 9 9.21129V16.1022C9 16.7529 8.2645 17.1314 7.73501 16.7532L2.28481 12.8602C2.14522 12.7605 2.14522 12.553 2.28481 12.4533Z"
+              fill="#33363F" />
+          </svg>
+        </a>
+      </div>
+      <basis core="list" datamembername="db.visa-list">
+        <layout>
+          <div class="flex flex-col gap-6">
+            <!-- items -->
+            @child
+          </div>
+        </layout>
+        <else-layout>
+          <div class="flex items-center justify-center">
+            <h2 class="text-xl font-extrabold mt-16 text-center">در حال حاضر ویزایی وجود ندارد!</h2>
+          </div>
+        </else-layout>
+        <face filter="link is null">
+          <a href="/visa.bc?id=@id"
+            class="flex flex-col border border-gray-200 rounded-xl shadow-card-shadow overflow-hidden">
+            <img src="\@00352X00192prp" class="w-full h-48 object-cover" alt="@title" width="352" height="192"
+              loading="lazy" />
+            <div class="flex flex-col gap-1 py-4 px-6 divide-y divide-gray-100">
+              <div class="flex items-center gap-2">
+                <img src="[##cms.cms.cdn##]/images/flags/@prp_3087936" class="h-6 object-cover rounded" alt="@title"
+                  width="36" height="24" loading="lazy" />
+                <h2 class="text-2xl font-extrabold">@title</h2>
+              </div>
+              <div class="flex flex-col gap-2 pt-2">
+                <h3 class="flex items-center gap-2 text-sm font-bold">
+                  زمان مورد نیاز:
+                  <span class="text-primary-500">@prp_1417</span>
+                </h3>
+                <h3 class="flex items-center gap-2 text-sm font-bold">
+                  مدت زمان ویزا:
+                  <span class="text-primary-500">@prp_3087931</span>
+                </h3>
+                <h3 class="flex items-center gap-2 text-sm font-bold">
+                  تعداد دفعات ورود:
+                  <span class="text-primary-500">@prp_3087930</span>
+                </h3>
+              </div>
+              <div class="flex items-center justify-between pt-2">
+                <h3 class="text-sm font-bold">شروع قیمت از:</h3>
+                <span class="text-2xl font-extrabold text-primary-500">@prp_3087433</span>
+              </div>
+            </div>
+          </a>
+        </face>
+        <face>
+          <a href="/@link" class="flex flex-col border border-gray-200 rounded-xl shadow-card-shadow overflow-hidden">
+            <img src="\@00352X00192prp" class="w-full h-48 object-cover" alt="@title" width="352" height="192"
+              loading="lazy" />
+            <div class="flex flex-col gap-1 py-4 px-6 divide-y divide-gray-100">
+              <div class="flex items-center gap-2">
+                <img src="[##cms.cms.cdn##]/images/flags/@prp_3087936" class="h-6 object-cover rounded" alt="@title"
+                  width="36" height="24" loading="lazy" />
+                <h2 class="text-2xl font-extrabold">@title</h2>
+              </div>
+              <div class="flex flex-col gap-2 pt-2">
+                <h3 class="flex items-center gap-2 text-sm font-bold">
+                  زمان مورد نیاز:
+                  <span class="text-primary-500">@prp_1417</span>
+                </h3>
+                <h3 class="flex items-center gap-2 text-sm font-bold">
+                  مدت زمان ویزا:
+                  <span class="text-primary-500">@prp_3087931</span>
+                </h3>
+                <h3 class="flex items-center gap-2 text-sm font-bold">
+                  تعداد دفعات ورود:
+                  <span class="text-primary-500">@prp_3087930</span>
+                </h3>
+              </div>
+              <div class="flex items-center justify-between pt-2">
+                <h3 class="text-sm font-bold">شروع قیمت از:</h3>
+                <span class="text-2xl font-extrabold text-primary-500">@prp_3087433</span>
+              </div>
+            </div>
+          </a>
+        </face>
+      </basis>
+    </section>
+    <section class="mt-16 mb-16">
+      <div class="swiper swiper-slogan-mobile">
+        <basis core="tree" datamembername="slogan-list.cat" idcol="catid" parentidcol="parentid" nullvalue="215034">
+          <layout>
+            <div class="swiper-wrapper">@child</div>
+          </layout>
+          <face filter="ord in(1)">
+            <div class="swiper-slide">
+              <a href="tel:02191009292"
+                class="flex flex-col items-center border border-gray-200 rounded-xl shadow-card-shadow py-8 px-3">
+                <img src="\@image" class="h-32 object-cover" alt="@title" width="99" height="121" loading="lazy" />
+                <h2 class="text-2xl font-extrabold mt-4">@title</h2>
+                <h3 class="text-sm font-semibold mt-2 text-center">@urldescription</h3>
+              </a>
+            </div>
+          </face>
+          <face filter="ord not in(1)">
+            <div class="swiper-slide">
+              <a href="/@link"
+                class="flex flex-col items-center border border-gray-200 rounded-xl shadow-card-shadow py-8 px-3">
+                <img src="\@image" class="h-32 object-cover" alt="@title" width="99" height="121" loading="lazy" />
+                <h2 class="text-2xl font-extrabold mt-4">@title</h2>
+                <h3 class="text-sm font-semibold mt-2 text-center">@urldescription</h3>
+              </a>
+            </div>
+          </face>
+        </basis>
       </div>
     </section>
   </main>

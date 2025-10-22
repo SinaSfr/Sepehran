@@ -4,7 +4,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function checkAllResourcesLoaded() {
     const resources = performance.getEntriesByType('resource')
-    const loadedFiles = resources.map((res) => res.name.split('/').pop()).filter((name) => requiredFiles.includes(name))
+    const loadedFiles = resources
+      .map((res) => res.name.split('/').pop())
+      .filter((name) => requiredFiles.includes(name))
 
     return requiredFiles.every((file) => loadedFiles.includes(file))
   }
@@ -38,12 +40,9 @@ document.addEventListener('DOMContentLoaded', function () {
               document.head.appendChild(scriptTag).parentNode.removeChild(scriptTag)
             }
 
-            //active flighttype-items search-engine
             const items = document.querySelectorAll('.flighttype-items li')
-
             if (items.length > 0) {
               items[0].classList.add('active')
-
               items.forEach((item) => {
                 item.addEventListener('click', () => {
                   items.forEach((li) => li.classList.remove('active'))
@@ -51,41 +50,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 })
               })
             }
-
-            // rotate chevron-icon
-            const selectors = [
-              '.click-content',
-              '.reserve-field.departure-date > div:first-child',
-              '.reserve-field.return-date > div:first-child',
-            ]
-
-            let allElements = []
-
-            selectors.forEach((selector) => {
-              const elements = document.querySelectorAll(selector)
-              if (elements.length > 0) {
-                elements.forEach((element) => {
-                  allElements.push(element)
-
-                  element.addEventListener('click', function (e) {
-                    e.stopPropagation()
-
-                    allElements.forEach((el) => el.classList.remove('rotate'))
-
-                    this.classList.add('rotate')
-                  })
-                })
-              }
-            })
-
-            document.addEventListener('click', function (e) {
-              const isInsideTarget = allElements.some((el) => el.contains(e.target))
-              const isInsideCalendar = e.target.closest('.Basis_Calendar_Box') !== null
-
-              if (!isInsideTarget && !isInsideCalendar) {
-                allElements.forEach((el) => el.classList.remove('rotate'))
-              }
-            })
 
             const inputExteraHoteldate = document.querySelectorAll('.Basis_Date_ExteraHoteldate')
             if (inputExteraHoteldate.length > 0) {
@@ -110,6 +74,7 @@ document.addEventListener('DOMContentLoaded', function () {
     waitForFiles()
   }
 })
+
 
 const headerMenu = document.querySelector('.header-menu')
 const headerMenuClose = document.querySelector('.header-menu-close')
