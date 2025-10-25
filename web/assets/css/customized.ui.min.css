@@ -558,7 +558,7 @@ video {
 }
 body {
   font-family: 'YekanBakhFaNum';
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
 }
 .container {
   width: 100%;
@@ -744,6 +744,15 @@ body {
 }
 .hidden {
   display: none;
+}
+.break-inside-avoid {
+  break-inside: avoid;
+}
+.column-9 {
+  columns: 9;
+}
+.column-7 {
+  columns: 7;
 }
 .h-0\.5 {
   height: 0.125rem;
@@ -1089,6 +1098,10 @@ body {
 }
 .border-t {
   border-top-width: 1px;
+}
+.border-zinc-500 {
+  --tw-border-opacity: 1;
+  border-color: rgb(113 113 122 / var(--tw-border-opacity, 1)) /* #71717a */;
 }
 .border-gray-100 {
   --tw-border-opacity: 1;

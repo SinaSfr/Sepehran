@@ -1,0 +1,34 @@
+<basis core="dbsource" source="basiscore" lid="1" mid="20" name="tour-category-all">
+    <member name="cat" type="tree" request="cat" parentid="[##cms.query.catid##]" order="ord"></member>
+    <member name="sql" type="tree" request="cat" parentid="[##cms.query.catid##]" order="ord" postsql="SELECT COUNT(*) AS TotalRows
+    from [tour-category-all.sql] where parentid in ([##cms.query.catid##])"></member>
+</basis>
+
+<basis core="group" if="'[##tour-category-all.sql.TotalRows##]' <> '0'">
+  <basis
+    core="tree"
+    datamembername="tour-category-all.cat"
+    idcol="catid"
+    parentidcol="parentid"
+    nullvalue="[##cms.query.catid##]">
+    <face level="1" filter="link is null">
+      <div class="flex items-center gap-2 pr-2">
+        <span class="w-[6px] h-[6px] flex-shrink-0 rounded-full bg-white border border-solid border-zinc-500"></span>
+        <a
+          href="/tour-list.bc?catid=@catid"
+          class="font-medium transition-all duration-300 text-zinc-500 hover:text-primary-500">
+          @title
+        </a>
+      </div>
+    </face>
+    <face level="1">
+      <div class="flex items-center gap-2 pr-2">
+        <span class="w-[6px] h-[6px] flex-shrink-0 rounded-full bg-white border border-solid border-zinc-500"></span>
+        <a href="/@link" class="font-medium transition-all duration-300 text-zinc-500 hover:text-primary-500">@title</a>
+      </div>
+    </face>
+  </basis>
+</basis>
+<basis core="group" if="'[##tour-category-all.sql.TotalRows##]' = '0'">
+
+</basis>

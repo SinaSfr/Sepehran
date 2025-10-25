@@ -684,7 +684,9 @@ const onrenderedExecutionDestinations = async () => {
         .querySelector(".tourExecution__container__destinations")
         .querySelectorAll(".transportation__img")
         .forEach((e) => {
-          ids.push(e.dataset.id);
+          if (e.dataset.id !== "") {
+            ids.push(e.dataset.id);
+          }
         });
       if (ids.length > 0) {
         $bc.setSource("db.airlinesDestinationsGallery", {

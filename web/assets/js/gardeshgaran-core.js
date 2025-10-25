@@ -268,6 +268,104 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 })
 
+document.addEventListener('DOMContentLoaded', function () {
+  const megaMenus = document.querySelectorAll('.mega-menu-li');
+
+  function getLinkHref(dataLink, dataMid, dataId) {
+    if (!dataLink) {
+      if (dataMid === '20') {
+        return `/tour-list.bc?catid=${dataId}`;
+      } else if (dataMid === '1') {
+        return `/article-list.bc?catid=${dataId}`;
+      } else {
+        return '#';
+      }
+    }
+    return dataLink;
+  }
+
+  megaMenus.forEach((menu) => {
+    const menuItems = menu.querySelectorAll('.menu-item');
+    const fetchContentHeader = menu.querySelector('.fetch-content-header');
+
+    async function loadContent(dataId, dataMid, dataTab, dataLink) {
+      if (!fetchContentHeader || !dataId) return;
+
+      const section = document.createElement('div');
+      section.classList.add('mb-8', 'break-inside-avoid');
+
+      const headerContainer = document.createElement('div');
+      headerContainer.classList.add('group', 'flex', 'items-center', 'gap-4', 'mb-3');
+
+      const dot = document.createElement('span');
+      dot.classList.add(
+        'w-[6px]',
+        'h-[6px]',
+        'rounded-full',
+        'bg-primary-500',
+        'flex-shrink-0',
+        'transition-all',
+        'duration-300',
+        'group-hover:bg-secondary-500'
+      );
+
+      const headerLink = document.createElement('a');
+      headerLink.classList.add(
+        'text-lg',
+        'font-bold',
+        'text-primary-500',
+        'transition-all',
+        'duration-300',
+        'group-hover:text-secondary-500'
+      );
+      function normalizeHref(h) {
+        if (!h) return '#';
+        const trimmed = h.trim();
+      
+        if (/^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(trimmed) || trimmed.startsWith('//')) {
+          return trimmed;
+        }
+        if (trimmed.startsWith('/')) {
+          return trimmed;
+        }
+        return '/' + trimmed.replace(/^(\.\/)+/, '').replace(/^\/+/, '');
+      }
+      
+      const rawHref = getLinkHref(dataLink, dataMid, dataId);
+      headerLink.setAttribute('href', normalizeHref(rawHref));
+      headerLink.textContent = dataTab || 'بدون عنوان';
+
+      headerContainer.appendChild(dot);
+      headerContainer.appendChild(headerLink);
+
+      section.appendChild(headerContainer);
+
+      const contentBox = document.createElement('div');
+      contentBox.classList.add('flex', 'flex-col', 'gap-2', 'mt-4');
+
+      section.appendChild(contentBox);
+      fetchContentHeader.appendChild(section);
+
+      try {
+        const response = await fetch(`/header-load-items.bc?catid=${dataId}&mid=${dataMid}`);
+        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+        const data = await response.text();
+        contentBox.innerHTML = data;
+      } catch (error) {
+        contentBox.innerHTML = "<p class='text-red-600'>خطا در بارگذاری محتوا: " + error.message + '</p>';
+      }
+    }
+
+    menuItems.forEach((btn) => {
+      const dataId = btn.dataset.id;
+      const dataMid = btn.dataset.mid;
+      const dataLink = btn.dataset.link;
+      const dataTab = btn.dataset.tab;
+      loadContent(dataId, dataMid, dataTab, dataLink);
+    });
+  });
+});
+
 document.addEventListener('DOMContentLoaded', () => {
   const trigger = document.querySelector('.tourcategorydropdown__trigger')
   const content = document.querySelector('.tourcategorydropdown__content')
