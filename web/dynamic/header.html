@@ -51,141 +51,70 @@
                                     </span>
                                 </a>
                             </li>
-                            <basis core="tree" datamembername="visa.cat" idcol="catid" parentidcol="parentid"
-                                nullvalue="215049">
-                                <layout>
-                                    <li class="relative flex items-center h-full group">
-                                        <span
-                                            class="special-tour-label hidden absolute bg-secondary-500 rounded font-bold text-xs p-0.5 -right-3 top-2"
-                                            data-special-catid="215157">ویژه</span>
-                                        <a href="/visa"
-                                            class="relative group flex items-center gap-2 font-semibold text-sm h-full group text-zinc-900 xl:flex-shrink-0">ویزا
-                                            <svg class="transition-all duration-300 group-hover:rotate-180" width="24"
-                                                height="25" viewBox="0 0 24 25" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M18 9.5L12 15.5L6 9.5" stroke="#1E2128"></path>
-                                            </svg>
-                                            <span
-                                                class="absolute left-0 right-0 top-[52px] h-0.5 w-full bg-secondary-500 opacity-0 translate-y-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-1">
-                                            </span>
-                                        </a>
-                                        <!-- submenu -->
-                                        <ul
-                                            class="absolute z-30 flex flex-col invisible w-56 gap-2 p-2 font-medium transition-all duration-100 bg-white shadow-card-shadow opacity-0 rounded-xl top-full group-hover:visible group-hover:opacity-100">
-                                            @child
-                                        </ul>
-                                        <!-- submenu end -->
-                                    </li>
-                                </layout>
-                                <face level="end" filter="link is null">
-                                    <li class="py-1 px-2 transition-all duration-300 rounded-md group/levelfour">
-                                        <a href="/visa-list.bc?catid=@catid"
-                                            class="flex items-center gap-2 transition-all duration-300 group-hover/levelfour:text-primary-500">
-                                            <span
-                                                class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover/levelfour:bg-primary-500"></span>
-                                            @title
-                                        </a>
-                                    </li>
-                                </face>
-                                <face level="end">
-                                    <li class="py-1 px-2 transition-all duration-300 rounded-md group/levelfour">
-                                        <a href="/@link"
-                                            class="flex items-center gap-2 transition-all duration-300 group-hover/levelfour:text-primary-500">
-                                            <span
-                                                class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover/levelfour:bg-primary-500"></span>
-                                            @title
-                                        </a>
-                                    </li>
-                                </face>
-                                <face level="1" filter="link is null">
-                                    <li class="px-2 transition-all duration-300 rounded-md group/leveltwo">
-                                        <div
-                                            class="flex justify-between items-center cursor-pointer text-zinc-900 group-hover/leveltwo:text-white">
-                                            <div class="flex justify-between items-center cursor-pointer">
-                                                <a href="/visa-list.bc?catid=@catid"
-                                                    class="flex items-center gap-2 transition-all duration-300 group-hover/leveltwo:text-primary-500">
-                                                    <span
-                                                        class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover/leveltwo:bg-primary-500"></span>
-                                                    @title
-                                                </a>
-                                                <svg class="transition-all duration-300 group-hover/leveltwo:rotate-90"
-                                                    width="24" height="25" viewBox="0 0 24 25" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M18 9.5L12 15.5L6 9.5" stroke="#1E2128"></path>
-                                                </svg>
-                                            </div>
-                                        </div>
-                                        <ul
-                                            class="absolute z-30 flex flex-col invisible w-56 gap-2 p-2 font-medium transition-all duration-100 bg-white shadow-card-shadow opacity-0 rounded-xl top-[70%] right-56 group-hover/leveltwo:visible group-hover/leveltwo:opacity-100">
-                                            @child
-                                        </ul>
-                                    </li>
-                                </face>
-                                <face level="1">
-                                    <li class="px-2 transition-all duration-300 rounded-md group/leveltwo">
-                                        <div class="flex justify-between items-center cursor-pointer">
-                                            <a href="/@link"
-                                                class="flex items-center gap-2 transition-all duration-300 group-hover/leveltwo:text-primary-500">
-                                                <span
-                                                    class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover/leveltwo:bg-primary-500"></span>
-                                                @title
-                                            </a>
-                                            <svg class="transition-all duration-300 group-hover/leveltwo:rotate-90"
-                                                width="24" height="25" viewBox="0 0 24 25" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M18 9.5L12 15.5L6 9.5" stroke="#1E2128"></path>
-                                            </svg>
-                                        </div>
-                                        <ul
-                                            class="absolute z-30 flex flex-col invisible w-56 gap-2 p-2 font-medium transition-all duration-100 bg-white shadow-card-shadow opacity-0 rounded-xl top-[70%] right-56 group-hover/leveltwo:visible group-hover/leveltwo:opacity-100">
-                                            @child
-                                        </ul>
-                                    </li>
-                                </face>
-                                <face level="2" filter="link is null">
-                                    <li class="relative px-2 transition-all duration-300 rounded-md group/levelthree">
-                                        <div class="flex justify-between items-center cursor-pointer">
-                                            <a href="/visa-list.bc?catid=@catid"
-                                                class="flex items-center gap-2 transition-all duration-300 group-hover/levelthree:text-primary-500">
-                                                <span
-                                                    class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover/levelthree:bg-primary-500"></span>
-                                                @title
-                                            </a>
-                                            <svg class="transition-all duration-300 group-hover/levelthree:rotate-90"
-                                                width="24" height="25" viewBox="0 0 24 25" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M18 9.5L12 15.5L6 9.5" stroke="#1E2128"></path>
-                                            </svg>
-                                        </div>
-                                        <ul
-                                            class="absolute z-30 flex flex-col invisible w-64 gap-2 p-2 font-medium transition-all duration-100 bg-white shadow-card-shadow opacity-0 rounded-xl top-full right-60 group-hover/levelthree:visible group-hover/levelthree:opacity-100">
-                                            @child
-                                        </ul>
-                                    </li>
-                                </face>
-                                <face level="2">
-                                    <li class="relative px-2 transition-all duration-300 rounded-md group/levelthree">
-                                        <div class="flex justify-between items-center cursor-pointer">
-                                            <a href="/@link"
-                                                class="flex items-center gap-2 transition-all duration-300 group-hover/levelthree:text-primary-500">
-                                                <span
-                                                    class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover/levelthree:bg-primary-500"></span>
-                                                @title
-                                            </a>
-                                            <svg class="transition-all duration-300 group-hover/levelthree:rotate-90"
-                                                width="24" height="25" viewBox="0 0 24 25" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M18 9.5L12 15.5L6 9.5" stroke="#1E2128"></path>
-                                            </svg>
-                                        </div>
-                                        <ul
-                                            class="absolute z-30 flex flex-col invisible w-64 gap-2 p-2 font-medium transition-all duration-100 bg-white shadow-card-shadow opacity-0 rounded-xl top-full right-60 group-hover/levelthree:visible group-hover/levelthree:opacity-100">
-                                            @child
-                                        </ul>
-                                    </li>
-                                </face>
 
-                            </basis>
+                            <li class="relative flex items-center h-full group">
+                                <span
+                                    class="special-tour-label hidden absolute bg-secondary-500 rounded font-bold text-xs p-0.5 -right-3 top-2"
+                                    data-special-catid="">ویژه</span>
+                                <span
+                                    class="relative group flex items-center gap-2 font-semibold text-sm h-full group text-zinc-900 xl:flex-shrink-0 cursor-pointer">سفرهای
+                                    استوایی
+                                    <svg class="transition-all duration-300 group-hover:rotate-180" width="24"
+                                        height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M18 9.5L12 15.5L6 9.5" stroke="#1E2128"></path>
+                                    </svg>
+                                    <span
+                                        class="absolute left-0 right-0 top-[52px] h-0.5 w-full bg-secondary-500 opacity-0 translate-y-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-1">
+                                    </span>
+                                </span>
+                                <!-- submenu -->
+                                <ul
+                                    class="absolute z-30 flex flex-col invisible w-56 gap-2 p-2 font-medium transition-all duration-100 bg-white shadow-card-shadow opacity-0 rounded-xl top-full group-hover:visible group-hover:opacity-100">
+                                    <li class="py-1 px-2 transition-all duration-300 rounded-md group/levelfour">
+                                        <a href="https://gardeshgaran.travel/tours/indonesia/Bali"
+                                            class="flex items-center gap-2 transition-all duration-300 group-hover/levelfour:text-primary-500">
+                                            <span
+                                                class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover/levelfour:bg-primary-500"></span>
+                                            تور بالی
+                                        </a>
+                                    </li>
+                                    <li class="py-1 px-2 transition-all duration-300 rounded-md group/levelfour">
+                                        <a href="https://gardeshgaran.travel/tours/Maldives"
+                                            class="flex items-center gap-2 transition-all duration-300 group-hover/levelfour:text-primary-500">
+                                            <span
+                                                class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover/levelfour:bg-primary-500"></span>
+                                            تور مالدیو
+                                        </a>
+                                    </li>
+                                    <li class="py-1 px-2 transition-all duration-300 rounded-md group/levelfour">
+                                        <a href="https://gardeshgaran.travel/tours/malaysia"
+                                            class="flex items-center gap-2 transition-all duration-300 group-hover/levelfour:text-primary-500">
+                                            <span
+                                                class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover/levelfour:bg-primary-500"></span>
+                                            تور مالزی
+                                        </a>
+                                    </li>
+                                    <li class="py-1 px-2 transition-all duration-300 rounded-md group/levelfour">
+                                        <a href="https://gardeshgaran.travel/tours/Singapore"
+                                            class="flex items-center gap-2 transition-all duration-300 group-hover/levelfour:text-primary-500">
+                                            <span
+                                                class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover/levelfour:bg-primary-500"></span>
+                                            تور سنگاپور
+                                        </a>
+                                    </li>
+                                    <li class="py-1 px-2 transition-all duration-300 rounded-md group/levelfour">
+                                        <a href="https://gardeshgaran.travel/tours/thailand/thailand-combo"
+                                            class="flex items-center gap-2 transition-all duration-300 group-hover/levelfour:text-primary-500">
+                                            <span
+                                                class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover/levelfour:bg-primary-500"></span>
+                                            تور ترکیبی تایلند
+                                        </a>
+                                    </li>
+
+                                </ul>
+                                <!-- submenu end -->
+                            </li>
+
                             <li class="relative flex items-center h-full group">
                                 <a href="https://blog.gardeshgaran.travel/"
                                     class="relative group flex items-center gap-2 font-semibold text-sm h-full group text-zinc-900 xl:flex-shrink-0 transition-all duration-300 hover:text-primary-600">مجله
@@ -854,142 +783,93 @@
                                 </face>
 
                             </basis>
-                            <basis core="tree" datamembername="european-tour.cat" idcol="catid" parentidcol="parentid"
-                                nullvalue="215780">
-                                <layout>
-                                    <li class="relative flex items-center h-full group">
-                                        <span
-                                            class="special-tour-label hidden absolute bg-secondary-500 rounded font-bold text-xs p-0.5 -right-3 top-2"
-                                            data-special-catid="215157">ویژه</span>
-                                        <a href="/tours/Europe-tour"
-                                            class="relative group flex items-center gap-2 font-semibold text-sm h-full group text-zinc-900 xl:flex-shrink-0">تور
-                                            اروپا
-                                            <svg class="transition-all duration-300 group-hover:rotate-180" width="24"
-                                                height="25" viewBox="0 0 24 25" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M18 9.5L12 15.5L6 9.5" stroke="#1E2128"></path>
-                                            </svg>
-                                            <span
-                                                class="absolute left-0 right-0 top-[52px] h-0.5 w-full bg-secondary-500 opacity-0 translate-y-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-1">
-                                            </span>
-                                        </a>
-                                        <!-- submenu -->
-                                        <ul
-                                            class="absolute z-30 flex flex-col invisible w-56 gap-2 p-2 font-medium transition-all duration-100 bg-white shadow-card-shadow opacity-0 rounded-xl top-full group-hover:visible group-hover:opacity-100">
-                                            @child
-                                        </ul>
-                                        <!-- submenu end -->
-                                    </li>
-                                </layout>
-                                <face level="end" filter="link is null">
-                                    <li class="py-1 px-2 transition-all duration-300 rounded-md group/levelfour">
-                                        <a href="/tour-list.bc?catid=@catid"
-                                            class="flex items-center gap-2 transition-all duration-300 group-hover/levelfour:text-primary-500">
-                                            <span
-                                                class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover/levelfour:bg-primary-500"></span>
-                                            @title
-                                        </a>
-                                    </li>
-                                </face>
-                                <face level="end">
-                                    <li class="py-1 px-2 transition-all duration-300 rounded-md group/levelfour">
-                                        <a href="/@link"
-                                            class="flex items-center gap-2 transition-all duration-300 group-hover/levelfour:text-primary-500">
-                                            <span
-                                                class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover/levelfour:bg-primary-500"></span>
-                                            @title
-                                        </a>
-                                    </li>
-                                </face>
-                                <face level="1" filter="link is null">
-                                    <li class="px-2 transition-all duration-300 rounded-md group/leveltwo">
-                                        <div
-                                            class="flex justify-between items-center cursor-pointer text-zinc-900 group-hover/leveltwo:text-white">
-                                            <div class="flex justify-between items-center cursor-pointer">
-                                                <a href="/tour-list.bc?catid=@catid"
-                                                    class="flex items-center gap-2 transition-all duration-300 group-hover/leveltwo:text-primary-500">
-                                                    <span
-                                                        class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover/leveltwo:bg-primary-500"></span>
-                                                    @title
-                                                </a>
-                                                <svg class="transition-all duration-300 group-hover/leveltwo:rotate-90"
-                                                    width="24" height="25" viewBox="0 0 24 25" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M18 9.5L12 15.5L6 9.5" stroke="#1E2128"></path>
-                                                </svg>
-                                            </div>
-                                        </div>
-                                        <ul
-                                            class="absolute z-30 flex flex-col invisible w-56 gap-2 p-2 font-medium transition-all duration-100 bg-white shadow-card-shadow opacity-0 rounded-xl top-[70%] right-56 group-hover/leveltwo:visible group-hover/leveltwo:opacity-100">
-                                            @child
-                                        </ul>
-                                    </li>
-                                </face>
-                                <face level="1">
-                                    <li class="px-2 transition-all duration-300 rounded-md group/leveltwo">
-                                        <div class="flex justify-between items-center cursor-pointer">
-                                            <a href="/@link"
-                                                class="flex items-center gap-2 transition-all duration-300 group-hover/leveltwo:text-primary-500">
-                                                <span
-                                                    class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover/leveltwo:bg-primary-500"></span>
-                                                @title
-                                            </a>
-                                            <svg class="transition-all duration-300 group-hover/leveltwo:rotate-90"
-                                                width="24" height="25" viewBox="0 0 24 25" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M18 9.5L12 15.5L6 9.5" stroke="#1E2128"></path>
-                                            </svg>
-                                        </div>
-                                        <ul
-                                            class="absolute z-30 flex flex-col invisible w-56 gap-2 p-2 font-medium transition-all duration-100 bg-white shadow-card-shadow opacity-0 rounded-xl top-[70%] right-56 group-hover/leveltwo:visible group-hover/leveltwo:opacity-100">
-                                            @child
-                                        </ul>
-                                    </li>
-                                </face>
-                                <face level="2" filter="link is null">
-                                    <li class="relative px-2 transition-all duration-300 rounded-md group/levelthree">
-                                        <div class="flex justify-between items-center cursor-pointer">
-                                            <a href="/tour-list.bc?catid=@catid"
-                                                class="flex items-center gap-2 transition-all duration-300 group-hover/levelthree:text-primary-500">
-                                                <span
-                                                    class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover/levelthree:bg-primary-500"></span>
-                                                @title
-                                            </a>
-                                            <svg class="transition-all duration-300 group-hover/levelthree:rotate-90"
-                                                width="24" height="25" viewBox="0 0 24 25" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M18 9.5L12 15.5L6 9.5" stroke="#1E2128"></path>
-                                            </svg>
-                                        </div>
-                                        <ul
-                                            class="absolute z-30 flex flex-col invisible w-64 gap-2 p-2 font-medium transition-all duration-100 bg-white shadow-card-shadow opacity-0 rounded-xl top-full right-60 group-hover/levelthree:visible group-hover/levelthree:opacity-100">
-                                            @child
-                                        </ul>
-                                    </li>
-                                </face>
-                                <face level="2">
-                                    <li class="relative px-2 transition-all duration-300 rounded-md group/levelthree">
-                                        <div class="flex justify-between items-center cursor-pointer">
-                                            <a href="/@link"
-                                                class="flex items-center gap-2 transition-all duration-300 group-hover/levelthree:text-primary-500">
-                                                <span
-                                                    class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover/levelthree:bg-primary-500"></span>
-                                                @title
-                                            </a>
-                                            <svg class="transition-all duration-300 group-hover/levelthree:rotate-90"
-                                                width="24" height="25" viewBox="0 0 24 25" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M18 9.5L12 15.5L6 9.5" stroke="#1E2128"></path>
-                                            </svg>
-                                        </div>
-                                        <ul
-                                            class="absolute z-30 flex flex-col invisible w-64 gap-2 p-2 font-medium transition-all duration-100 bg-white shadow-card-shadow opacity-0 rounded-xl top-full right-60 group-hover/levelthree:visible group-hover/levelthree:opacity-100">
-                                            @child
-                                        </ul>
-                                    </li>
-                                </face>
+                            <li class="relative flex items-center h-full group">
+                                <span
+                                    class="special-tour-label hidden absolute bg-secondary-500 rounded font-bold text-xs p-0.5 -right-3 top-2"
+                                    data-special-catid="">ویژه</span>
+                                <a href="https://gardeshgaran.travel/tours/luxury"
+                                    class="relative group flex items-center gap-2 font-semibold text-sm h-full group text-zinc-900 xl:flex-shrink-0 cursor-pointer">تور
+                                    لوکس
 
-                            </basis>
+                                    <svg class="transition-all duration-300 group-hover:rotate-180" width="24"
+                                        height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M18 9.5L12 15.5L6 9.5" stroke="#1E2128"></path>
+                                    </svg>
+                                    <span
+                                        class="absolute left-0 right-0 top-[52px] h-0.5 w-full bg-secondary-500 opacity-0 translate-y-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-1">
+                                    </span>
+                                </a>
+                                <!-- submenu -->
+                                <ul
+                                    class="absolute z-30 flex flex-col invisible w-56 gap-2 p-2 font-medium transition-all duration-100 bg-white shadow-card-shadow opacity-0 rounded-xl top-full group-hover:visible group-hover:opacity-100">
+                                    <li class="py-1 px-2 transition-all duration-300 rounded-md group/levelfour">
+                                        <a href="https://gardeshgaran.travel/tours/cruise-ship"
+                                            class="flex items-center gap-2 transition-all duration-300 group-hover/levelfour:text-primary-500">
+                                            <span
+                                                class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover/levelfour:bg-primary-500"></span>
+                                                تور کشتی کروز
+                                        </a>
+                                    </li>
+                                    <li class="py-1 px-2 transition-all duration-300 rounded-md group/levelfour">
+                                        <a href="https://gardeshgaran.travel/tours/persian-gulf-cruise-ship"
+                                            class="flex items-center gap-2 transition-all duration-300 group-hover/levelfour:text-primary-500">
+                                            <span
+                                                class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover/levelfour:bg-primary-500"></span>
+                                                تور کشتی کروز خلیج فارس
+                                        </a>
+                                    </li>
+                                    <li class="py-1 px-2 transition-all duration-300 rounded-md group/levelfour">
+                                        <a href="https://gardeshgaran.travel/tours/Northern-Lights-Russia"
+                                            class="flex items-center gap-2 transition-all duration-300 group-hover/levelfour:text-primary-500">
+                                            <span
+                                                class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover/levelfour:bg-primary-500"></span>
+                                                تور شفق قطبی روسیه
+                                        </a>
+                                    </li>
+                                    <li class="py-1 px-2 transition-all duration-300 rounded-md group/levelfour">
+                                        <a href="https://gardeshgaran.travel/tours/South-Korea"
+                                            class="flex items-center gap-2 transition-all duration-300 group-hover/levelfour:text-primary-500">
+                                            <span
+                                                class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover/levelfour:bg-primary-500"></span>
+                                                تور کره جنوبی
+                                        </a>
+                                    </li>
+                                    <li class="py-1 px-2 transition-all duration-300 rounded-md group/levelfour">
+                                        <a href="https://gardeshgaran.travel/tours/South-Africa"
+                                            class="flex items-center gap-2 transition-all duration-300 group-hover/levelfour:text-primary-500">
+                                            <span
+                                                class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover/levelfour:bg-primary-500"></span>
+                                                تور آفریقای جنوبی
+                                        </a>
+                                    </li>
+                                    <li class="py-1 px-2 transition-all duration-300 rounded-md group/levelfour">
+                                        <a href="https://gardeshgaran.travel/tours/Brazil"
+                                            class="flex items-center gap-2 transition-all duration-300 group-hover/levelfour:text-primary-500">
+                                            <span
+                                                class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover/levelfour:bg-primary-500"></span>
+                                                تور برزیل
+                                        </a>
+                                    </li>
+                                    <li class="py-1 px-2 transition-all duration-300 rounded-md group/levelfour">
+                                        <a href="https://gardeshgaran.travel/tours/Japan"
+                                            class="flex items-center gap-2 transition-all duration-300 group-hover/levelfour:text-primary-500">
+                                            <span
+                                                class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover/levelfour:bg-primary-500"></span>
+                                                تور ژاپن
+                                        </a>
+                                    </li>
+                                    <li class="py-1 px-2 transition-all duration-300 rounded-md group/levelfour">
+                                        <a href="https://gardeshgaran.travel/tours/Kenya"
+                                            class="flex items-center gap-2 transition-all duration-300 group-hover/levelfour:text-primary-500">
+                                            <span
+                                                class="w-[6px] h-[6px] rounded-full bg-zinc-900 transition-all duration-300 group-hover/levelfour:bg-primary-500"></span>
+                                                تور کنیا
+                                        </a>
+                                    </li>
+
+                                </ul>
+                                <!-- submenu end -->
+                            </li>
 
                             <basis core="tree" datamembername="nowruz-tour.cat" idcol="catid" parentidcol="parentid"
                                 nullvalue="217390">

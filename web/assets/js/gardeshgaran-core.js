@@ -4,9 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function checkAllResourcesLoaded() {
     const resources = performance.getEntriesByType('resource')
-    const loadedFiles = resources
-      .map((res) => res.name.split('/').pop())
-      .filter((name) => requiredFiles.includes(name))
+    const loadedFiles = resources.map((res) => res.name.split('/').pop()).filter((name) => requiredFiles.includes(name))
 
     return requiredFiles.every((file) => loadedFiles.includes(file))
   }
@@ -75,7 +73,6 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 })
 
-
 const headerMenu = document.querySelector('.header-menu')
 const headerMenuClose = document.querySelector('.header-menu-close')
 const bars3 = document.querySelector('.bars3')
@@ -95,11 +92,13 @@ if (window.innerWidth < 1024) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-  const toggleDropdowns = document.querySelectorAll('.toggle-dropdown')
+  const toggleDropdowns = document.querySelectorAll('.toggle-dropdownmenu')
 
   toggleDropdowns.forEach((toggle) => {
     const submenu = toggle.nextElementSibling
     const dropdownIcon = toggle.querySelector('.dropdown-icon')
+
+    if (!submenu || !submenu.classList.contains('submenu')) return;
 
     submenu.classList.add('max-h-0', 'opacity-0')
     submenu.style.maxHeight = null
@@ -269,35 +268,35 @@ document.addEventListener('DOMContentLoaded', function () {
 })
 
 document.addEventListener('DOMContentLoaded', function () {
-  const megaMenus = document.querySelectorAll('.mega-menu-li');
+  const megaMenus = document.querySelectorAll('.mega-menu-li')
 
   function getLinkHref(dataLink, dataMid, dataId) {
     if (!dataLink) {
       if (dataMid === '20') {
-        return `/tour-list.bc?catid=${dataId}`;
+        return `/tour-list.bc?catid=${dataId}`
       } else if (dataMid === '1') {
-        return `/article-list.bc?catid=${dataId}`;
+        return `/article-list.bc?catid=${dataId}`
       } else {
-        return '#';
+        return '#'
       }
     }
-    return dataLink;
+    return dataLink
   }
 
   megaMenus.forEach((menu) => {
-    const menuItems = menu.querySelectorAll('.menu-item');
-    const fetchContentHeader = menu.querySelector('.fetch-content-header');
+    const menuItems = menu.querySelectorAll('.menu-item')
+    const fetchContentHeader = menu.querySelector('.fetch-content-header')
 
     async function loadContent(dataId, dataMid, dataTab, dataLink) {
-      if (!fetchContentHeader || !dataId) return;
+      if (!fetchContentHeader || !dataId) return
 
-      const section = document.createElement('div');
-      section.classList.add('mb-8', 'break-inside-avoid');
+      const section = document.createElement('div')
+      section.classList.add('mb-8', 'break-inside-avoid')
 
-      const headerContainer = document.createElement('div');
-      headerContainer.classList.add('group', 'flex', 'items-center', 'gap-4', 'mb-3');
+      const headerContainer = document.createElement('div')
+      headerContainer.classList.add('group', 'flex', 'items-center', 'gap-4', 'mb-3')
 
-      const dot = document.createElement('span');
+      const dot = document.createElement('span')
       dot.classList.add(
         'w-[6px]',
         'h-[6px]',
@@ -306,65 +305,65 @@ document.addEventListener('DOMContentLoaded', function () {
         'flex-shrink-0',
         'transition-all',
         'duration-300',
-        'group-hover:bg-secondary-500'
-      );
+        'group-hover:bg-secondary-500',
+      )
 
-      const headerLink = document.createElement('a');
+      const headerLink = document.createElement('a')
       headerLink.classList.add(
         'text-lg',
         'font-bold',
         'text-primary-500',
         'transition-all',
         'duration-300',
-        'group-hover:text-secondary-500'
-      );
+        'group-hover:text-secondary-500',
+      )
       function normalizeHref(h) {
-        if (!h) return '#';
-        const trimmed = h.trim();
-      
+        if (!h) return '#'
+        const trimmed = h.trim()
+
         if (/^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(trimmed) || trimmed.startsWith('//')) {
-          return trimmed;
+          return trimmed
         }
         if (trimmed.startsWith('/')) {
-          return trimmed;
+          return trimmed
         }
-        return '/' + trimmed.replace(/^(\.\/)+/, '').replace(/^\/+/, '');
+        return '/' + trimmed.replace(/^(\.\/)+/, '').replace(/^\/+/, '')
       }
-      
-      const rawHref = getLinkHref(dataLink, dataMid, dataId);
-      headerLink.setAttribute('href', normalizeHref(rawHref));
-      headerLink.textContent = dataTab || 'بدون عنوان';
 
-      headerContainer.appendChild(dot);
-      headerContainer.appendChild(headerLink);
+      const rawHref = getLinkHref(dataLink, dataMid, dataId)
+      headerLink.setAttribute('href', normalizeHref(rawHref))
+      headerLink.textContent = dataTab || 'بدون عنوان'
 
-      section.appendChild(headerContainer);
+      headerContainer.appendChild(dot)
+      headerContainer.appendChild(headerLink)
 
-      const contentBox = document.createElement('div');
-      contentBox.classList.add('flex', 'flex-col', 'gap-2', 'mt-4');
+      section.appendChild(headerContainer)
 
-      section.appendChild(contentBox);
-      fetchContentHeader.appendChild(section);
+      const contentBox = document.createElement('div')
+      contentBox.classList.add('flex', 'flex-col', 'gap-2', 'mt-4')
+
+      section.appendChild(contentBox)
+      fetchContentHeader.appendChild(section)
 
       try {
-        const response = await fetch(`/header-load-items.bc?catid=${dataId}&mid=${dataMid}`);
-        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-        const data = await response.text();
-        contentBox.innerHTML = data;
+        const response = await fetch(`/header-load-items.bc?catid=${dataId}&mid=${dataMid}`)
+        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`)
+        const data = await response.text()
+        contentBox.innerHTML = data
       } catch (error) {
-        contentBox.innerHTML = "<p class='text-red-600'>خطا در بارگذاری محتوا: " + error.message + '</p>';
+        contentBox.innerHTML = "<p class='text-red-600'>خطا در بارگذاری محتوا: " + error.message + '</p>'
       }
     }
 
     menuItems.forEach((btn) => {
-      const dataId = btn.dataset.id;
-      const dataMid = btn.dataset.mid;
-      const dataLink = btn.dataset.link;
-      const dataTab = btn.dataset.tab;
-      loadContent(dataId, dataMid, dataTab, dataLink);
-    });
-  });
-});
+      const dataId = btn.dataset.id
+      const dataMid = btn.dataset.mid
+      const dataLink = btn.dataset.link
+      const dataTab = btn.dataset.tab
+      loadContent(dataId, dataMid, dataTab, dataLink)
+    })
+  })
+})
 
 document.addEventListener('DOMContentLoaded', () => {
   const trigger = document.querySelector('.tourcategorydropdown__trigger')
@@ -949,7 +948,6 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 })
 
-
 // tour-list date
 const toggleTourDateMenu = (button, tourId) => {
   const card = button.closest('.tourL-tour-card')
@@ -964,7 +962,7 @@ const toggleTourDateMenu = (button, tourId) => {
     listContainer.innerHTML = '<div class="loading py-4 text-sm text-gray-500">در حال بارگذاری...</div>'
     window.currentDateContainer = listContainer
     window.currentTourId = tourId
-    window.currentTourCard = card  
+    window.currentTourCard = card
 
     $bc.setSource('db.tourDatesRequest', tourId)
 
@@ -975,113 +973,135 @@ const toggleTourDateMenu = (button, tourId) => {
 }
 
 function isMobileScreen() {
-  return window.innerWidth < 1024;
+  return window.innerWidth < 1024
 }
 
 function buildTourDateRow({ start, end, day }, tourId, card) {
-  const mobile = isMobileScreen();
+  const mobile = isMobileScreen()
 
-  const wrap = document.createElement('div');
+  const wrap = document.createElement('div')
   wrap.className = [
-    'flex', 'gap-3', 'border', 'border-primary-200', 'rounded-xl',
-    mobile ? 'flex-col' : 'items-center',
-    mobile ? 'p-3' : 'p-4',
-  ].join(' ');
-
-  const tourLink = "tel:02191009292";
-
-  const airlineSpan = card.querySelector('.tourL-tour-airline');
-  const airlineImg = airlineSpan?.dataset?.airlineImg || '';
-  const airlineAlt = (airlineSpan?.textContent || '').trim() || 'Airline';
-
-  const daySpan = card.querySelector('.tourL-tour-day');
-  const dayText = (daySpan?.textContent || '').trim() || `${day} شب - ${day + 1} روز`;
-
-  const priceSpan = card.querySelector('.tourL-tour-price');
-  const priceText = (priceSpan?.textContent || '').trim() || '—';
-
-  const left = document.createElement('div');
-  left.className = ['flex', 'items-center', mobile ? 'gap-3' : 'gap-4'].join(' ');
-  left.innerHTML = `
-<div class="flex items-center gap-2">
-  <svg width="24" height="24"><use xlink:href="/images/sprite-icons.svg#icon-calender"></use></svg>
-  <span class="start__date" data-date="${start.date}">${start.date}</span>
-</div>
-<div class="flex items-center gap-2">
-  <svg width="24" height="24"><use xlink:href="/images/sprite-icons.svg#icon-calender"></use></svg>
-  <span class="end__date" data-date="${end.date}">${end.date}</span>
-</div>
-`;
-
-  const mid = document.createElement('div');
-  mid.className = [
     'flex',
+    'gap-3',
+    'border',
+    'border-primary-200',
+    'rounded-xl',
+    'transition-all',
+    'duration-300',
+    'hover:shadow-btn-shadow',
     mobile ? 'flex-col' : 'items-center',
-    mobile ? '' : 'gap-4',
-    mobile ? '' : 'flex-1'
-  ].join(' ');
+    mobile ? 'p-3' : 'px-4 h-20',
+  ].join(' ')
+
+  const airlineSpan = card.querySelector('.tourL-tour-airline')
+  const airlineImg = airlineSpan?.dataset?.airlineImg || ''
+  const airlineAlt = (airlineSpan?.textContent || '').trim() || 'Airline'
+
+  const daySpan = card.querySelector('.tourL-tour-day')
+  const dayText = (daySpan?.textContent || '').trim() || `${day} شب - ${day + 1} روز`
+
+  const priceSpan = card.querySelector('.tourL-tour-price')
+  const priceText = (priceSpan?.textContent || '').trim() || '—'
+
+  const left = document.createElement('div')
+  left.className = ['flex', 'items-center', mobile ? 'gap-3' : 'gap-4'].join(' ')
+  left.innerHTML = `
+    <div class="flex items-center gap-2">
+      <svg width="24" height="24"><use xlink:href="/images/sprite-icons.svg#icon-calender"></use></svg>
+      <span class="start__date" data-date="${start.date}">${start.date}</span>
+    </div>
+    <div class="flex items-center gap-2">
+      <svg width="24" height="24"><use xlink:href="/images/sprite-icons.svg#icon-calender"></use></svg>
+      <span class="end__date" data-date="${end.date}">${end.date}</span>
+    </div>
+  `
+
+  const mid = document.createElement('div')
+  mid.className = ['flex', mobile ? 'flex-col' : 'items-center', mobile ? '' : 'gap-4', mobile ? '' : 'flex-1'].join(
+    ' ',
+  )
   mid.innerHTML = `
-<div class="grid grid-cols-2 gap-3">
-  <div class="flex items-center gap-1 text-sm text-primary-500 font-extrabold">
-    <svg width="24" height="24"><use xlink:href="/images/sprite-icons.svg#icon-sun"></use></svg>
-    <span class="tourL-tour-day">${dayText}</span>
-  </div>
-  ${airlineImg ? `<img src="${airlineImg}" class="h-auto" alt="${airlineAlt}" width="74" height="30" loading="lazy">` : ''}
-</div>
-<div class="${mobile ? 'mt-2' : ''}">
-  <span class="inline-flex items-center gap-2">
-    از
-    <span class="inline-flex ${mobile ? 'text-lg' : 'text-2xl'} text-primary-500 font-extrabold">
-      ${priceText}
-    </span>
-  </span>
-</div>
-`;
+    <div class="grid grid-cols-2 gap-3">
+      <div class="flex items-center gap-1 text-sm text-primary-500 font-extrabold">
+        <svg width="24" height="24"><use xlink:href="/images/sprite-icons.svg#icon-sun"></use></svg>
+        <span class="tourL-tour-day">${dayText}</span>
+      </div>
+      ${
+        airlineImg
+          ? `<img src="${airlineImg}" class="h-auto" alt="${airlineAlt}" width="74" height="30" loading="lazy">`
+          : ''
+      }
+    </div>
+    <div class="${mobile ? 'mt-2' : ''}">
+      <span class="inline-flex items-center gap-2">
+        از
+        <span class="inline-flex ${mobile ? 'text-lg' : 'text-2xl'} text-primary-500 font-extrabold">
+          ${priceText}
+        </span>
+      </span>
+    </div>
+  `
 
-  const right = document.createElement('div');
-  right.className = ['flex', 'items-center', 'gap-2', mobile ? 'w-full' : ''].join(' ');
+  const right = document.createElement('div')
+  right.className = ['flex', 'items-center', 'gap-2', mobile ? 'w-full' : ''].join(' ')
 
-  const a = document.createElement('a');
-  a.href = tourLink;
+  const tourLink = `/tour.bc?id=${tourId}&day=${day}&from=${start.dateid}&to=${end.dateid}`
+
+  const a = document.createElement('a')
+
+  a.href = tourLink
   a.className = [
-    'flex', 'items-center', 'justify-center', 'gap-2',
-    mobile ? 'flex-1' : 'w-28',
-    mobile ? 'h-12' : 'h-12',
-    'font-extrabold', 'rounded-xl', 'bg-primary-500', 'text-white',
-    'transition-all', 'duration-300', 'hover:shadow-btn-shadow'
-  ].join(' ');
-  a.innerHTML = `
-تماس
-<svg width="25" height="24"><use xlink:href="/images/sprite-icons.svg#icon-white-phone"></use></svg>
-`;
+    'flex',
+    'gap-4',
+    mobile ? 'flex-col' : 'items-center',
+    mobile ? '' : 'w-full',
+    'h-full',
+    'transition-all',
+    'duration-300',
+    'cursor-pointer',
+  ].join(' ')
 
-  const form = document.createElement('form');
-  form.className = mobile ? 'flex-1 mb-0' : 'mb-0';
-  form.action = `/tours/package/pdf?id=${tourId}`;
-  form.method = 'POST';
-  form.target = '_blank';
+  a.appendChild(left)
+  a.appendChild(mid)
+
+  const contactLink = document.createElement('a')
+  contactLink.href = 'tel:02191009292'
+  contactLink.className =
+    'flex items-center justify-center gap-2 w-28 h-12 font-extrabold rounded-xl bg-primary-500 text-white transition-all duration-300 hover:shadow-btn-shadow'
+  contactLink.innerHTML = `
+    تماس
+    <svg width="25" height="24"><use xlink:href="/images/sprite-icons.svg#icon-white-phone"></use></svg>
+  `
+
+  const form = document.createElement('form')
+  form.className = mobile ? 'flex-1 mb-0' : 'mb-0'
+  form.action = `/tours/package/pdf?id=${tourId}`
+  form.method = 'POST'
+  form.target = '_blank'
   form.innerHTML = `
-<input type="hidden" name="id" value="${tourId}">
-<input type="hidden" name="from" value="${start.dateid}">
-<input type="hidden" name="to" value="${end.dateid}">
-<input type="hidden" name="day" value="${day}">
-<input type="hidden" name="fdate" value="${start.date}">
-<input type="hidden" name="rdate" value="${end.date}">
-<button type="submit"
-  class="group flex cursor-pointer items-center justify-center gap-2 ${mobile ? 'w-full' : 'w-28'} h-12 text-zinc-900 font-extrabold rounded-xl transition-all duration-300 bg-secondary-500 hover:shadow-btn-shadow">
-  دانلود پکیج
-</button>
-`;
+    <input type="hidden" name="id" value="${tourId}">
+    <input type="hidden" name="from" value="${start.dateid}">
+    <input type="hidden" name="to" value="${end.dateid}">
+    <input type="hidden" name="day" value="${day}">
+    <input type="hidden" name="fdate" value="${start.date}">
+    <input type="hidden" name="rdate" value="${end.date}">
+    <button type="submit"
+      class="group flex cursor-pointer items-center justify-center gap-2 ${
+        mobile ? 'w-full' : 'w-28'
+      } h-12 text-zinc-900 font-extrabold rounded-xl transition-all duration-300 bg-secondary-500 hover:shadow-btn-shadow">
+      دانلود پکیج
+    </button>
+  `
 
-  right.appendChild(a);
-  right.appendChild(form);
+  right.appendChild(contactLink)
+  right.appendChild(form)
 
-  wrap.appendChild(left);
-  wrap.appendChild(mid);
-  wrap.appendChild(right);
+  wrap.appendChild(a)
+  wrap.appendChild(right)
 
-  return wrap;
+  return wrap
 }
+
 const onTourDatesLoaded = async (apiResponse) => {
   if (!window.currentDateContainer) return
 
@@ -1107,7 +1127,8 @@ const onTourDatesLoaded = async (apiResponse) => {
     })
   } catch (error) {
     console.error('خطا در پردازش response:', error)
-    window.currentDateContainer.innerHTML = '<div class="error py-4 text-sm text-red-500">خطا در بارگذاری تاریخ‌ها</div>'
+    window.currentDateContainer.innerHTML =
+      '<div class="error py-4 text-sm text-red-500">خطا در بارگذاری تاریخ‌ها</div>'
   }
 }
 
@@ -1807,7 +1828,7 @@ document.addEventListener('DOMContentLoaded', function () {
           tourListContainer.appendChild(card)
         })
 
-        return 
+        return
       }
 
       currentPriceFilter = selectedFilter
@@ -1851,36 +1872,35 @@ document.addEventListener('DOMContentLoaded', function () {
     })
   })
 
-  let specialActive = false; 
+  let specialActive = false
 
   if (specialTourBtn) {
     specialTourBtn.addEventListener('click', () => {
-      specialActive = !specialActive;
+      specialActive = !specialActive
 
       if (specialActive) {
-        specialTourBtn.classList.add('border-primary-500', 'bg-primary-100', 'text-primary-500');
-        specialTourBtn.classList.remove('border-gray-200', 'tbg-white');
+        specialTourBtn.classList.add('border-primary-500', 'bg-primary-100', 'text-primary-500')
+        specialTourBtn.classList.remove('border-gray-200', 'tbg-white')
 
-        tourListContainer.innerHTML = '';
+        tourListContainer.innerHTML = ''
         tourCards.forEach((card) => {
-          const specialSpan = card.querySelector('.special-facilities');
-          const isSpecial = specialSpan?.innerText?.trim().toLowerCase() === 'true';
-          toggleCardVisibility(card, isSpecial);
-          if (isSpecial) tourListContainer.appendChild(card);
-        });
+          const specialSpan = card.querySelector('.special-facilities')
+          const isSpecial = specialSpan?.innerText?.trim().toLowerCase() === 'true'
+          toggleCardVisibility(card, isSpecial)
+          if (isSpecial) tourListContainer.appendChild(card)
+        })
       } else {
-        specialTourBtn.classList.remove('border-primary-500', 'bg-primary-100', 'text-primary-500');
-        specialTourBtn.classList.add('border-gray-200', 'tbg-white');
+        specialTourBtn.classList.remove('border-primary-500', 'bg-primary-100', 'text-primary-500')
+        specialTourBtn.classList.add('border-gray-200', 'tbg-white')
 
-        tourListContainer.innerHTML = '';
+        tourListContainer.innerHTML = ''
         originalOrder.forEach((card) => {
-          toggleCardVisibility(card, true);
-          tourListContainer.appendChild(card);
-        });
+          toggleCardVisibility(card, true)
+          tourListContainer.appendChild(card)
+        })
       }
-    });
+    })
   }
-
 })
 
 document.addEventListener('DOMContentLoaded', () => {

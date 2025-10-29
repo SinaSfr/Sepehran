@@ -89,12 +89,60 @@
                         <li class="flex items-center py-3 ">
                             <a href="" class="w-full text-zinc-900">هتل</a>
                         </li>
-                        <basis core="tree" datamembername="visa.cat" idcol="catid" parentidcol="parentid"
-                            nullvalue="215049">
+
+                        <li class="">
+                            <div class="flex items-center justify-between cursor-pointer toggle-dropdownmenu">
+                                <span class="text-zinc-900">سفرهای استوایی</span>
+                                <svg width="48" class="transition-all duration-300 dropdown-icon" height="48"
+                                    viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M31 20.5L24 27.5L17 20.5" stroke="#000" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <!-- submenu -->
+                            <ul
+                                class="flex flex-col overflow-hidden transition-all duration-300 bg-white divide-y opacity-0 submenu divide-primary-50 max-h-0">
+                                <li class="px-4 py-4">
+                                    <div class="flex items-center justify-between cursor-pointer">
+                                        <a href="https://gardeshgaran.travel/tours/indonesia/Bali"
+                                            class="text-zinc-900">تور بالی</a>
+                                    </div>
+                                </li>
+                                <li class="px-4 py-4">
+                                    <div class="flex items-center justify-between cursor-pointer">
+                                        <a href="https://gardeshgaran.travel/tours/Maldives" class="text-zinc-900">تور
+                                            مالدیو</a>
+                                    </div>
+                                </li>
+                                <li class="px-4 py-4">
+                                    <div class="flex items-center justify-between cursor-pointer">
+                                        <a href="https://gardeshgaran.travel/tours/malaysia" class="text-zinc-900">تور
+                                            مالزی</a>
+                                    </div>
+                                </li>
+                                <li class="px-4 py-4">
+                                    <div class="flex items-center justify-between cursor-pointer">
+                                        <a href="https://gardeshgaran.travel/tours/Singapore" class="text-zinc-900">تور
+                                            سنگاپور</a>
+                                    </div>
+                                </li>
+                                <li class="px-4 py-4">
+                                    <div class="flex items-center justify-between cursor-pointer">
+                                        <a href="https://gardeshgaran.travel/tours/thailand/thailand-combo"
+                                            class="text-zinc-900">تور ترکیبی تایلند</a>
+                                    </div>
+                                </li>
+                            </ul>
+                            <!-- submenu end -->
+                        </li>
+
+                        <basis core="tree" datamembername="nowruz-tour.cat" idcol="catid" parentidcol="parentid"
+                            nullvalue="217390">
                             <layout>
                                 <li class="">
-                                    <div class="flex items-center justify-between cursor-pointer toggle-dropdown">
-                                        <span class="text-zinc-900">ویزا</span>
+                                    <div class="flex items-center justify-between cursor-pointer toggle-dropdownmenu">
+                                        <a href="https://gardeshgaran.travel/tours/Nowruz" class="text-zinc-900">تور
+                                            نوروز</a>
                                         <svg width="48" class="transition-all duration-300 dropdown-icon" height="48"
                                             viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M31 20.5L24 27.5L17 20.5" stroke="#000" stroke-width="2"
@@ -112,7 +160,7 @@
 
                             <face level="end" filter="link is null">
                                 <li class="py-4 px-4">
-                                    <a href="/visa-list.bc?catid=@catid" class="text-zinc-900">@title</a>
+                                    <a href="/tour-list.bc?catid=@catid" class="text-zinc-900">@title</a>
                                 </li>
                             </face>
 
@@ -125,7 +173,7 @@
                             <face level="1" filter="link is null">
                                 <li class="px-2">
                                     <div class="flex items-center justify-between cursor-pointer toggle-dropdown">
-                                        <a href="/visa-list.bc?catid=@catid" class="text-zinc-900">@title</a>
+                                        <a href="/tour-list.bc?catid=@catid" class="text-zinc-900">@title</a>
                                         <svg width="48" class="transition-all duration-300 dropdown-icon" height="48"
                                             viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M31 20.5L24 27.5L17 20.5" stroke="#000" stroke-width="2"
@@ -164,7 +212,7 @@
                             <face level="2" filter="link is null">
                                 <li class="px-4">
                                     <div class="flex items-center justify-between cursor-pointer toggle-dropdown">
-                                        <a href="/visa-list.bc?catid=@catid" class="text-zinc-900">@title</a>
+                                        <a href="/tour-list.bc?catid=@catid" class="text-zinc-900">@title</a>
                                         <svg width="48" class="transition-all duration-300 dropdown-icon" height="48"
                                             viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M31 20.5L24 27.5L17 20.5" stroke="#000" stroke-width="2"
@@ -201,118 +249,6 @@
 
 
                         </basis>
-                        <basis core="tree" datamembername="nowruz-tour.cat" idcol="catid" parentidcol="parentid"
-                        nullvalue="217390">
-                        <layout>
-                            <li class="">
-                                <div class="flex items-center justify-between cursor-pointer toggle-dropdown">
-                                    <a href="https://gardeshgaran.travel/tours/Nowruz" class="text-zinc-900">تور نوروز</a>
-                                    <svg width="48" class="transition-all duration-300 dropdown-icon" height="48"
-                                        viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M31 20.5L24 27.5L17 20.5" stroke="#000" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                </div>
-                                <!-- submenu -->
-                                <ul
-                                    class="flex flex-col overflow-hidden transition-all duration-300 bg-white divide-y opacity-0 submenu divide-primary-50 max-h-0">
-                                    @child
-                                </ul>
-                                <!-- submenu end -->
-                            </li>
-                        </layout>
-
-                        <face level="end" filter="link is null">
-                            <li class="py-4 px-4">
-                                <a href="/tour-list.bc?catid=@catid" class="text-zinc-900">@title</a>
-                            </li>
-                        </face>
-
-                        <face level="end">
-                            <li class="py-4 px-4">
-                                <a href="/@link" class="text-zinc-900">@title</a>
-                            </li>
-                        </face>
-
-                        <face level="1" filter="link is null">
-                            <li class="px-2">
-                                <div class="flex items-center justify-between cursor-pointer toggle-dropdown">
-                                    <a href="/tour-list.bc?catid=@catid" class="text-zinc-900">@title</a>
-                                    <svg width="48" class="transition-all duration-300 dropdown-icon" height="48"
-                                        viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M31 20.5L24 27.5L17 20.5" stroke="#000" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                </div>
-                                <!-- nested submenu -->
-                                <ul
-                                    class="flex flex-col overflow-hidden transition-all duration-300 bg-white divide-y opacity-0 header-nested-menu submenu divide-primary-50 max-h-0">
-                                    @child
-                                </ul>
-                                <!-- nested submenu end -->
-                            </li>
-                        </face>
-
-                        <face level="1">
-                            <li class="px-2">
-                                <div class="flex items-center justify-between cursor-pointer toggle-dropdown">
-                                    <a href="/@link" class="text-zinc-900">@title</a>
-                                    <svg width="48" class="transition-all duration-300 dropdown-icon" height="48"
-                                        viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M31 20.5L24 27.5L17 20.5" stroke="#000" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                </div>
-                                <!-- nested submenu -->
-                                <ul
-                                    class="flex flex-col overflow-hidden transition-all duration-300 bg-white divide-y opacity-0 header-nested-menu submenu divide-primary-50 max-h-0">
-                                    @child
-                                </ul>
-                                <!-- nested submenu end -->
-                            </li>
-                        </face>
-
-
-                        <face level="2" filter="link is null">
-                            <li class="px-4">
-                                <div class="flex items-center justify-between cursor-pointer toggle-dropdown">
-                                    <a href="/tour-list.bc?catid=@catid" class="text-zinc-900">@title</a>
-                                    <svg width="48" class="transition-all duration-300 dropdown-icon" height="48"
-                                        viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M31 20.5L24 27.5L17 20.5" stroke="#000" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                </div>
-                                <!-- nested submenu -->
-                                <ul
-                                    class="flex flex-col overflow-hidden transition-all duration-300 bg-white divide-y opacity-0 header-nested-menu submenu divide-primary-50 max-h-0">
-                                    @child
-                                </ul>
-                                <!-- nested submenu end -->
-                            </li>
-                        </face>
-
-                        <face level="2">
-                            <li class="px-4">
-                                <div class="flex items-center justify-between cursor-pointer toggle-dropdown">
-                                    <a href="/@link" class="text-zinc-900">@title</a>
-                                    <svg width="48" class="transition-all duration-300 dropdown-icon" height="48"
-                                        viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M31 20.5L24 27.5L17 20.5" stroke="#000" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                </div>
-                                <!-- nested submenu -->
-                                <ul
-                                    class="flex flex-col overflow-hidden transition-all duration-300 bg-white divide-y opacity-0 header-nested-menu submenu divide-primary-50 max-h-0">
-                                    @child
-                                </ul>
-                                <!-- nested submenu end -->
-                            </li>
-                        </face>
-
-
-                    </basis>
                         <li class="flex items-center py-3 ">
                             <a href="" class="w-full text-zinc-900">
                                 تماس با ما
