@@ -64,58 +64,64 @@
     <main>
         <section class="relative flex items-center justify-center bg-tourlistBg bg-center bg-cover h-32">
             <div class="absolute inset-0 w-full h-full bg-black/45"></div>
-            <ul itemscope itemtype="https://schema.org/BreadcrumbList"
-                class="relative flex items-center text-sm gap-1 mt-2">
-                <li class="inline-block font-normal" itemprop="itemListElement" itemscope
-                    itemtype="https://schema.org/ListItem">
-                    <a class="text-white transition-all duration-300 hover:text-secondary-500" itemprop="item" href="/"
-                        aria-label="home"><span itemprop="name">صفحه اصلی</span>
-                        <meta itemprop="position" content="1" />
-                    </a>
-                </li>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M15 6L9 12L15 18" stroke="white" stroke-width="2" />
-                </svg>
+            <nav aria-label="breadcrumb">
+                <ol itemscope itemtype="https://schema.org/BreadcrumbList"
+                    class="relative flex items-center text-sm gap-1 mt-2">
+                    <li class="inline-block font-normal" itemprop="itemListElement" itemscope
+                        itemtype="https://schema.org/ListItem">
+                        <a class="text-white transition-all duration-300 hover:text-secondary-500" itemprop="item"
+                            href="/" aria-label="home"><span itemprop="name">صفحه اصلی</span>
+                            <meta itemprop="position" content="1" />
+                        </a>
+                    </li>
+                    <li>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15 6L9 12L15 18" stroke="white" stroke-width="2" />
+                        </svg>
+                    </li>
 
-                <basis core="print" datamembername="db.navigation">
-                    <face filter="RowNumber=max(RowNumber) and parentcatid<>214993">
-                        <li class="text-white inline-block font-normal" itemprop="itemListElement" itemscope
-                            itemtype="https://schema.org/ListItem">
-                            <h1 class="relative text-secondary-500 text-[54px] font-black" itemprop="name">@title</h1>
-                            <meta itemprop="position" content="@rownumber" />
-                        </li>
-                    </face>
-                    <face filter="link is null and parentcatid<>214993">
-                        <li class="flex items-center gap-1 font-normal " itemprop="itemListElement" itemscope
-                            itemtype="https://schema.org/ListItem">
-                            <a class="text-white transition-all duration-300 hover:text-secondary-500" itemprop="item"
-                                href="/tour-list.bc?catid=@parentcatid" aria-label="@title"><span
-                                    itemprop="name">@title</span>
+                    <basis core="print" datamembername="db.navigation">
+                        <face filter="RowNumber=max(RowNumber) and parentcatid<>214993">
+                            <li class="text-white inline-block font-normal" itemprop="itemListElement" itemscope
+                                itemtype="https://schema.org/ListItem">
+                                <h1 class="relative text-secondary-500 text-[54px] font-black" itemprop="name">@title
+                                </h1>
                                 <meta itemprop="position" content="@rownumber" />
-                            </a>
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path d="M15 6L9 12L15 18" stroke="white" stroke-width="2" />
-                            </svg>
-                        </li>
-                    </face>
-                    <face filter="parentcatid<>214993">
-                        <li class="flex items-center gap-1 font-normal " itemprop="itemListElement" itemscope
-                            itemtype="https://schema.org/ListItem">
-                            <a class="text-white transition-all duration-300 hover:text-secondary-500" itemprop="item"
-                                href="/@link" aria-label="@title"><span
-                                    class="text-white transition-all duration-300 hover:text-secondary-500"
-                                    itemprop="name">@title</span>
-                                <meta itemprop="position" content="@rownumber" />
-                            </a>
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path d="M15 6L9 12L15 18" stroke="white" stroke-width="2" />
-                            </svg>
-                        </li>
-                    </face>
-                </basis>
-            </ul>
+                            </li>
+                        </face>
+                        <face filter="link is null and parentcatid<>214993">
+                            <li class="flex items-center gap-1 font-normal " itemprop="itemListElement" itemscope
+                                itemtype="https://schema.org/ListItem">
+                                <a class="text-white transition-all duration-300 hover:text-secondary-500"
+                                    itemprop="item" href="/tour-list.bc?catid=@parentcatid" aria-label="@title"><span
+                                        itemprop="name">@title</span>
+                                    <meta itemprop="position" content="@rownumber" />
+                                </a>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M15 6L9 12L15 18" stroke="white" stroke-width="2" />
+                                </svg>
+                            </li>
+                        </face>
+                        <face filter="parentcatid<>214993">
+                            <li class="flex items-center gap-1 font-normal " itemprop="itemListElement" itemscope
+                                itemtype="https://schema.org/ListItem">
+                                <a class="text-white transition-all duration-300 hover:text-secondary-500"
+                                    itemprop="item" href="/@link" aria-label="@title"><span
+                                        class="text-white transition-all duration-300 hover:text-secondary-500"
+                                        itemprop="name">@title</span>
+                                    <meta itemprop="position" content="@rownumber" />
+                                </a>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M15 6L9 12L15 18" stroke="white" stroke-width="2" />
+                                </svg>
+                            </li>
+                        </face>
+                    </basis>
+                </ol>
+            </nav>
+
         </section>
         <section class="mx-auto max-lg:w-[90%] max-xl:w-[97%] xl:max-w-7xl mt-16">
             <h2 class="text-[36px] font-extrabold mb-8">برای چه مقصدی ویزا می‌خواهید؟</h2>
@@ -361,7 +367,8 @@
                             </face>
                             <face filter="TypeID in(250)">
                                 <h2 class="text-[36px] font-extrabold mb-4">@text</h2>
-                                <div class="text-content visa-description text-sm font-semibold mt-6 leading-7 text-justify mb-6">
+                                <div
+                                    class="text-content visa-description text-sm font-semibold mt-6 leading-7 text-justify mb-6">
                                     @largetext</div>
                             </face>
                         </basis>
@@ -447,11 +454,12 @@
                                         </span>
                                         <div class="flex-1">
                                             <div class="flex items-center gap-2 border-b-2 border-zinc-900 mb-2 pb-3">
-                                                <svg width="42" height="43" viewBox="0 0 42 43" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <svg width="42" height="43" viewBox="0 0 42 43" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
                                                     <path
-                                                      d="M31.2053 8.76482C32.8611 8.21289 33.6892 7.93718 34.1262 8.3742C34.563 8.81125 34.2875 9.6395 33.7356 11.2951L26.3977 33.3078C25.6134 35.6608 25.2209 36.8379 24.5002 36.8381C23.7795 36.8381 23.3872 35.661 22.6028 33.3078L19.6038 24.3097L26.9573 16.9572C27.3477 16.5667 27.3476 15.9337 26.9573 15.5431C26.5668 15.1526 25.9337 15.1526 25.5432 15.5431L18.1897 22.8967L9.19263 19.8976C6.83957 19.1133 5.66251 18.7208 5.66235 18.0002C5.66235 17.2794 6.83941 16.8871 9.19263 16.1027L31.2053 8.76482Z"
-                                                      fill="#1E2128" />
-                                                  </svg>
+                                                        d="M31.2053 8.76482C32.8611 8.21289 33.6892 7.93718 34.1262 8.3742C34.563 8.81125 34.2875 9.6395 33.7356 11.2951L26.3977 33.3078C25.6134 35.6608 25.2209 36.8379 24.5002 36.8381C23.7795 36.8381 23.3872 35.661 22.6028 33.3078L19.6038 24.3097L26.9573 16.9572C27.3477 16.5667 27.3476 15.9337 26.9573 15.5431C26.5668 15.1526 25.9337 15.1526 25.5432 15.5431L18.1897 22.8967L9.19263 19.8976C6.83957 19.1133 5.66251 18.7208 5.66235 18.0002C5.66235 17.2794 6.83941 16.8871 9.19263 16.1027L31.2053 8.76482Z"
+                                                        fill="#1E2128" />
+                                                </svg>
                                                 <h2 class="text-[36px] font-extrabold">مشاوره رایگان رزرو تور</h2>
                                             </div>
                                             <div class="text-sm font-semibold mb-6">وقت سفر رسیده ما در گردشگران سپهر

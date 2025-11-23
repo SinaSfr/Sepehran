@@ -96,58 +96,63 @@
     <main>
         <section class="relative flex items-center justify-center bg-tourlistBg bg-center bg-cover h-32">
             <div class="absolute inset-0 w-full h-full bg-black/45"></div>
-            <ul itemscope itemtype="https://schema.org/BreadcrumbList"
-                class="relative flex items-center text-sm gap-1 mt-2">
-                <li class="inline-block font-normal" itemprop="itemListElement" itemscope
-                    itemtype="https://schema.org/ListItem">
-                    <a class="text-white transition-all duration-300 hover:text-secondary-500" itemprop="item" href="/"
-                        aria-label="home"><span itemprop="name">صفحه اصلی</span>
-                        <meta itemprop="position" content="1" />
-                    </a>
-                </li>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M15 6L9 12L15 18" stroke="white" stroke-width="2" />
-                </svg>
+            <nav aria-label="breadcrumb">
+                <ol itemscope itemtype="https://schema.org/BreadcrumbList"
+                    class="relative flex items-center text-sm gap-1 mt-2">
+                    <li class="inline-block font-normal" itemprop="itemListElement" itemscope
+                        itemtype="https://schema.org/ListItem">
+                        <a class="text-white transition-all duration-300 hover:text-secondary-500" itemprop="item"
+                            href="/" aria-label="home"><span itemprop="name">صفحه اصلی</span>
+                            <meta itemprop="position" content="1" />
+                        </a>
+                    </li>
+                    <li>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15 6L9 12L15 18" stroke="white" stroke-width="2" />
+                        </svg>
+                    </li>
 
-                <basis core="print" datamembername="db.navigation">
-                    <face filter="RowNumber=max(RowNumber) and parentcatid<>214993">
-                        <li class="text-white inline-block font-normal" itemprop="itemListElement" itemscope
-                            itemtype="https://schema.org/ListItem">
-                            <h1 class="relative text-secondary-500 text-[54px] font-black" itemprop="name">@title</h1>
-                            <meta itemprop="position" content="@rownumber" />
-                        </li>
-                    </face>
-                    <face filter="link is null and parentcatid<>214993">
-                        <li class="flex items-center gap-1 font-normal " itemprop="itemListElement" itemscope
-                            itemtype="https://schema.org/ListItem">
-                            <a class="text-white transition-all duration-300 hover:text-secondary-500" itemprop="item"
-                                href="/tour-list.bc?catid=@parentcatid" aria-label="@title"><span
-                                    itemprop="name">@title</span>
+                    <basis core="print" datamembername="db.navigation">
+                        <face filter="RowNumber=max(RowNumber) and parentcatid<>214993">
+                            <li class="text-white inline-block font-normal" itemprop="itemListElement" itemscope
+                                itemtype="https://schema.org/ListItem">
+                                <h1 class="relative text-secondary-500 text-[54px] font-black" itemprop="name">@title
+                                </h1>
                                 <meta itemprop="position" content="@rownumber" />
-                            </a>
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path d="M15 6L9 12L15 18" stroke="white" stroke-width="2" />
-                            </svg>
-                        </li>
-                    </face>
-                    <face filter="parentcatid<>214993">
-                        <li class="flex items-center gap-1 font-normal " itemprop="itemListElement" itemscope
-                            itemtype="https://schema.org/ListItem">
-                            <a class="text-white transition-all duration-300 hover:text-secondary-500" itemprop="item"
-                                href="/@link" aria-label="@title"><span
-                                    class="text-white transition-all duration-300 hover:text-secondary-500"
-                                    itemprop="name">@title</span>
-                                <meta itemprop="position" content="@rownumber" />
-                            </a>
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path d="M15 6L9 12L15 18" stroke="white" stroke-width="2" />
-                            </svg>
-                        </li>
-                    </face>
-                </basis>
-            </ul>
+                            </li>
+                        </face>
+                        <face filter="link is null and parentcatid<>214993">
+                            <li class="flex items-center gap-1 font-normal " itemprop="itemListElement" itemscope
+                                itemtype="https://schema.org/ListItem">
+                                <a class="text-white transition-all duration-300 hover:text-secondary-500"
+                                    itemprop="item" href="/tour-list.bc?catid=@parentcatid" aria-label="@title"><span
+                                        itemprop="name">@title</span>
+                                    <meta itemprop="position" content="@rownumber" />
+                                </a>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M15 6L9 12L15 18" stroke="white" stroke-width="2" />
+                                </svg>
+                            </li>
+                        </face>
+                        <face filter="parentcatid<>214993">
+                            <li class="flex items-center gap-1 font-normal " itemprop="itemListElement" itemscope
+                                itemtype="https://schema.org/ListItem">
+                                <a class="text-white transition-all duration-300 hover:text-secondary-500"
+                                    itemprop="item" href="/@link" aria-label="@title"><span
+                                        class="text-white transition-all duration-300 hover:text-secondary-500"
+                                        itemprop="name">@title</span>
+                                    <meta itemprop="position" content="@rownumber" />
+                                </a>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M15 6L9 12L15 18" stroke="white" stroke-width="2" />
+                                </svg>
+                            </li>
+                        </face>
+                    </basis>
+                </ol>
+            </nav>
         </section>
         <div class="flex gap-4 mx-auto max-lg:w-[90%] max-xl:w-[97%] xl:max-w-7xl mt-8 mb-16">
             <aside class="w-[304px] sticky top-0 h-fit">
@@ -656,7 +661,7 @@
                                             <div class="flex justify-center">
                                                 <button onclick="toggleTourDateMenu(this, '@db.tour-list.id')"
                                                     class="tourL-tour-date-btn flex items-center justify-center gap-2 w-48 h-11 bg-white border border-gray-200 rounded-xl text-sm font-semibold">
-                                                    تاریخ های برگذاری
+                                                    تاریخ های برگزاری
                                                     <svg width="24" height="24">
                                                         <use xlink:href="/images/sprite-icons.svg#icon-calender">
                                                         </use>
@@ -803,7 +808,7 @@
                                             <div class="flex justify-center">
                                                 <button onclick="toggleTourDateMenu(this, '@db.tour-list.id')"
                                                     class="tourL-tour-date-btn flex items-center justify-center gap-2 w-48 h-11 bg-white border border-gray-200 rounded-xl text-sm font-semibold">
-                                                    تاریخ های برگذاری
+                                                    تاریخ های برگزاری
                                                     <svg width="24" height="24">
                                                         <use xlink:href="/images/sprite-icons.svg#icon-calender">
                                                         </use>
@@ -950,7 +955,7 @@
                                             <div class="flex justify-center">
                                                 <button onclick="toggleTourDateMenu(this, '@db.tour-list.id')"
                                                     class="tourL-tour-date-btn flex items-center justify-center gap-2 w-48 h-11 bg-white border border-gray-200 rounded-xl text-sm font-semibold">
-                                                    تاریخ های برگذاری
+                                                    تاریخ های برگزاری
                                                     <svg width="24" height="24">
                                                         <use xlink:href="/images/sprite-icons.svg#icon-calender">
                                                         </use>
@@ -1100,7 +1105,7 @@
                                             <div class="flex justify-center">
                                                 <button onclick="toggleTourDateMenu(this, '@db.tour-list.id')"
                                                     class="tourL-tour-date-btn flex items-center justify-center gap-2 w-48 h-11 bg-white border border-gray-200 rounded-xl text-sm font-semibold">
-                                                    تاریخ های برگذاری
+                                                    تاریخ های برگزاری
                                                     <svg width="24" height="24">
                                                         <use xlink:href="/images/sprite-icons.svg#icon-calender">
                                                         </use>

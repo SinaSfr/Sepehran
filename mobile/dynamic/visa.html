@@ -74,59 +74,64 @@
   <main>
     <section class="relative flex items-center justify-center bg-tourlistBg bg-center bg-cover h-24">
       <div class="absolute inset-0 w-full h-full bg-black/45"></div>
-      <ul itemscope itemtype="https://schema.org/BreadcrumbList"
-        class="relative flex flex-wrap justify-center items-center text-sm gap-1">
-        <li class="inline-block font-normal" itemprop="itemListElement" itemscope
-          itemtype="https://schema.org/ListItem">
-          <a class="text-white text-xs font-light transition-all duration-300 hover:text-secondary-500" itemprop="item"
-            href="/" aria-label="home">
-            <span itemprop="name">صفحه اصلی</span>
-            <meta itemprop="position" content="1" />
-          </a>
-        </li>
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M15 6L9 12L15 18" stroke="white" stroke-width="2" />
-        </svg>
+      <nav aria-label="breadcrumb">
+        <ol itemscope itemtype="https://schema.org/BreadcrumbList"
+          class="relative flex flex-wrap justify-center items-center text-sm gap-1">
+          <li class="inline-block font-normal" itemprop="itemListElement" itemscope
+            itemtype="https://schema.org/ListItem">
+            <a class="text-white text-xs font-light transition-all duration-300 hover:text-secondary-500"
+              itemprop="item" href="/" aria-label="home">
+              <span itemprop="name">صفحه اصلی</span>
+              <meta itemprop="position" content="1" />
+            </a>
+          </li>
+          <li>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 6L9 12L15 18" stroke="white" stroke-width="2" />
+            </svg>
+          </li>
 
-        <basis core="print" datamembername="db.navigation">
-          <face filter="RowNumber=max(RowNumber) and parentcatid<>214993">
-            <li class="w-full flex justify-center text-white mt-2" itemprop="itemListElement" itemscope
-              itemtype="https://schema.org/ListItem">
-              <h1 class="text-secondary-500 text-[32px] leading-[32px] font-black" itemprop="name">@title</h1>
-              <meta itemprop="position" content="@rownumber" />
-            </li>
-          </face>
-          <face filter="link is null and parentcatid<>214993">
-            <li class="flex items-center gap-1 font-normal" itemprop="itemListElement" itemscope
-              itemtype="https://schema.org/ListItem">
-              <a class="text-white text-xs font-light transition-all duration-300 hover:text-secondary-500"
-                itemprop="item" href="/tour-list.bc?catid=@parentcatid" aria-label="@title">
-                <span itemprop="name">@title</span>
+          <basis core="print" datamembername="db.navigation">
+            <face filter="RowNumber=max(RowNumber) and parentcatid<>214993">
+              <li class="w-full flex justify-center text-white mt-2" itemprop="itemListElement" itemscope
+                itemtype="https://schema.org/ListItem">
+                <h1 class="text-secondary-500 text-[32px] leading-[32px] font-black" itemprop="name">@title</h1>
                 <meta itemprop="position" content="@rownumber" />
-              </a>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M15 6L9 12L15 18" stroke="white" stroke-width="2" />
-              </svg>
-            </li>
-          </face>
-          <face filter="parentcatid<>214993">
-            <li class="flex items-center gap-1 font-normal" itemprop="itemListElement" itemscope
-              itemtype="https://schema.org/ListItem">
-              <a class="text-white text-xs font-light transition-all duration-300 hover:text-secondary-500"
-                itemprop="item" href="/@link" aria-label="@title">
-                <span class="text-white text-xs font-light transition-all duration-300 hover:text-secondary-500"
-                  itemprop="name">
-                  @title
-                </span>
-                <meta itemprop="position" content="@rownumber" />
-              </a>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M15 6L9 12L15 18" stroke="white" stroke-width="2" />
-              </svg>
-            </li>
-          </face>
-        </basis>
-      </ul>
+              </li>
+            </face>
+            <face filter="link is null and parentcatid<>214993">
+              <li class="flex items-center gap-1 font-normal" itemprop="itemListElement" itemscope
+                itemtype="https://schema.org/ListItem">
+                <a class="text-white text-xs font-light transition-all duration-300 hover:text-secondary-500"
+                  itemprop="item" href="/tour-list.bc?catid=@parentcatid" aria-label="@title">
+                  <span itemprop="name">@title</span>
+                  <meta itemprop="position" content="@rownumber" />
+                </a>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M15 6L9 12L15 18" stroke="white" stroke-width="2" />
+                </svg>
+              </li>
+            </face>
+            <face filter="parentcatid<>214993">
+              <li class="flex items-center gap-1 font-normal" itemprop="itemListElement" itemscope
+                itemtype="https://schema.org/ListItem">
+                <a class="text-white text-xs font-light transition-all duration-300 hover:text-secondary-500"
+                  itemprop="item" href="/@link" aria-label="@title">
+                  <span class="text-white text-xs font-light transition-all duration-300 hover:text-secondary-500"
+                    itemprop="name">
+                    @title
+                  </span>
+                  <meta itemprop="position" content="@rownumber" />
+                </a>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M15 6L9 12L15 18" stroke="white" stroke-width="2" />
+                </svg>
+              </li>
+            </face>
+          </basis>
+        </ol>
+      </nav>
+
     </section>
     <section class="flex flex-col items-center gap-4 mx-auto max-lg:w-[92%] max-xl:w-[97%] xl:max-w-7xl mt-8">
       <basis core="print" datamembername="db.view">
@@ -496,8 +501,7 @@
         </svg>
         <h2 class="text-2xl font-extrabold text-primary-500">انواع ویزا های توریستی</h2>
       </div>
-      <basis core="tree" datamembername="visa-link.cat" idcol="catid" parentidcol="parentid"
-        nullvalue="215049">
+      <basis core="tree" datamembername="visa-link.cat" idcol="catid" parentidcol="parentid" nullvalue="215049">
         <layout>
           <div class="px-6">
             <ul class="grid grid-cols-2 gap-x-10 gap-y-2">

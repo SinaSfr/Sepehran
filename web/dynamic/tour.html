@@ -152,60 +152,65 @@
     <main class="layout__body__container" data-noimgsign="no-img-found.jpg" data-pagenameinventory="Tem1_Hotel.bc">
         <section class="relative flex flex-col items-center justify-center bg-tourlistBg bg-center bg-cover py-6">
             <div class="absolute inset-0 w-full h-full bg-black/45"></div>
-            <ul itemscope itemtype="https://schema.org/BreadcrumbList"
-                class="breadcrumb relative flex items-center text-sm gap-1 mt-2">
-                <li class="inline-block font-normal" itemprop="itemListElement" itemscope
-                    itemtype="https://schema.org/ListItem">
-                    <a class="text-white transition-all duration-300 hover:text-secondary-500" itemprop="item" href="/"
-                        aria-label="home"><span itemprop="name">صفحه اصلی</span>
-                        <meta itemprop="position" content="1" />
-                    </a>
-                </li>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M15 6L9 12L15 18" stroke="white" stroke-width="2" />
-                </svg>
+            <nav aria-label="breadcrumb">
+                <ol itemscope itemtype="https://schema.org/BreadcrumbList"
+                    class="breadcrumb relative flex items-center text-sm gap-1 mt-2">
+                    <li class="inline-block font-normal" itemprop="itemListElement" itemscope
+                        itemtype="https://schema.org/ListItem">
+                        <a class="text-white transition-all duration-300 hover:text-secondary-500" itemprop="item"
+                            href="/" aria-label="home"><span itemprop="name">صفحه اصلی</span>
+                            <meta itemprop="position" content="1" />
+                        </a>
+                    </li>
+                    <li>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15 6L9 12L15 18" stroke="white" stroke-width="2" />
+                        </svg>
+                    </li>
 
-                <basis core="print" datamembername="db.navigation">
-                    <face filter="RowNumber=max(RowNumber) and parentcatid<>214993">
-                        <li class="text-white inline-block font-normal" itemprop="itemListElement" itemscope
-                            itemtype="https://schema.org/ListItem">
-                            <span class="relative text-white" itemprop="name">
-                                @title
-                            </span>
-                            <meta itemprop="position" content="@rownumber" />
-                        </li>
-                    </face>
-                    <face filter="link is null and parentcatid<>214993">
-                        <li class="flex items-center gap-1 font-normal" itemprop="itemListElement" itemscope
-                            itemtype="https://schema.org/ListItem">
-                            <a class="text-white transition-all duration-300 hover:text-secondary-500" itemprop="item"
-                                href="/tour-list.bc?catid=@parentcatid" aria-label="@title"><span
-                                    itemprop="name">@title</span>
+                    <basis core="print" datamembername="db.navigation">
+                        <face filter="RowNumber=max(RowNumber) and parentcatid<>214993">
+                            <li class="text-white inline-block font-normal" itemprop="itemListElement" itemscope
+                                itemtype="https://schema.org/ListItem">
+                                <span class="relative text-white" itemprop="name">
+                                    @title
+                                </span>
                                 <meta itemprop="position" content="@rownumber" />
-                            </a>
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path d="M15 6L9 12L15 18" stroke="white" stroke-width="2" />
-                            </svg>
-                        </li>
-                    </face>
-                    <face filter="parentcatid<>214993">
-                        <li class="flex items-center gap-1 font-normal" itemprop="itemListElement" itemscope
-                            itemtype="https://schema.org/ListItem">
-                            <a class="text-white transition-all duration-300 hover:text-secondary-500" itemprop="item"
-                                href="/@link" aria-label="@title"><span
-                                    class="text-white transition-all duration-300 hover:text-secondary-500"
-                                    itemprop="name">@title</span>
-                                <meta itemprop="position" content="@rownumber" />
-                            </a>
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path d="M15 6L9 12L15 18" stroke="white" stroke-width="2" />
-                            </svg>
-                        </li>
-                    </face>
-                </basis>
-            </ul>
+                            </li>
+                        </face>
+                        <face filter="link is null and parentcatid<>214993">
+                            <li class="flex items-center gap-1 font-normal" itemprop="itemListElement" itemscope
+                                itemtype="https://schema.org/ListItem">
+                                <a class="text-white transition-all duration-300 hover:text-secondary-500"
+                                    itemprop="item" href="/tour-list.bc?catid=@parentcatid" aria-label="@title"><span
+                                        itemprop="name">@title</span>
+                                    <meta itemprop="position" content="@rownumber" />
+                                </a>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M15 6L9 12L15 18" stroke="white" stroke-width="2" />
+                                </svg>
+                            </li>
+                        </face>
+                        <face filter="parentcatid<>214993">
+                            <li class="flex items-center gap-1 font-normal" itemprop="itemListElement" itemscope
+                                itemtype="https://schema.org/ListItem">
+                                <a class="text-white transition-all duration-300 hover:text-secondary-500"
+                                    itemprop="item" href="/@link" aria-label="@title"><span
+                                        class="text-white transition-all duration-300 hover:text-secondary-500"
+                                        itemprop="name">@title</span>
+                                    <meta itemprop="position" content="@rownumber" />
+                                </a>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M15 6L9 12L15 18" stroke="white" stroke-width="2" />
+                                </svg>
+                            </li>
+                        </face>
+                    </basis>
+                </ol>
+            </nav>
+
             <basis core="print" datamembername="db.tour-view">
                 <face filter="TypeID in(150)">
                     <li class="text-white inline-block font-normal">
