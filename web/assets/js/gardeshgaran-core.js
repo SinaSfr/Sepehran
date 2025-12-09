@@ -75,19 +75,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
 const headerMenu = document.querySelector('.header-menu')
 const headerMenuClose = document.querySelector('.header-menu-close')
-const bars3 = document.querySelector('.bars3')
+const bars3Elements = document.querySelectorAll('.bars3');  
 
 if (window.innerWidth < 1024) {
-  if (headerMenu && headerMenuClose && bars3) {
+  if (headerMenu && headerMenuClose && bars3Elements.length > 0) {
     headerMenuClose.addEventListener('click', function () {
-      headerMenu.style.transform = 'translateX(1024px)'
-      document.body.classList.remove('overflow-hidden')
-    })
+      headerMenu.style.transform = 'translateX(1024px)';
+      document.body.classList.remove('overflow-hidden');
+    });
 
-    bars3.addEventListener('click', function () {
-      headerMenu.style.transform = 'translateX(0)'
-      document.body.classList.add('overflow-hidden')
-    })
+    bars3Elements.forEach(bars3 => {
+      bars3.addEventListener('click', function () {
+        headerMenu.style.transform = 'translateX(0)';
+        document.body.classList.add('overflow-hidden');
+      });
+    });
   }
 }
 
