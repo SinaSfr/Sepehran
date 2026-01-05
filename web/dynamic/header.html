@@ -1,7 +1,7 @@
 <basis core="dbsource" source="basiscore" name="db" mid="5" lid="1" usedforid="[##cms.cms.ownerid##]">
     <member name="info" type="view" />
 </basis>
-<basis core="group" if="'[##cms.cms.page_index##]' = 'نمایه پیش فرض'">
+<basis core="group" if="'[##cms.cms.page_index##]' = 'desktop'">
 
     <basis core="dbsource" source="basiscore" lid="1" mid="20" name="tour-category">
         <member name="cat" type="tree" request="cat" parentid="215037" order="ord"></member>
@@ -1072,6 +1072,6 @@
     </header>
 </basis>
 
-<basis core="group" if="'[##cms.cms.page_index##]' = 'موبایل'">
+<basis core="group" if="'[##cms.cms.page_index##]' = 'mobile phone'">
     <basis core="call" file="header.inc" pageindex="[##cms.cms.pageindex##]"></basis>
 </basis>
